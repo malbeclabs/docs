@@ -25,10 +25,10 @@ jobs:
           name: github-pages
           retention-days: 1
       - run: ls -al "/home/runner/work/docs-demo/docs-demo/site" || true
-      - run: ls -al "/home/runner/work/docs-demo/site" || true
+      - run: ls -al "/home/runner/work/_temp" || true
       - run: tar \
             --dereference --hard-dereference \
-            --directory "/home/runner/work/docs-demo/site" \
+            --directory "/home/runner/work/docs-demo/docs-demo/site" \
             -cvf "/home/runner/work/_temp/artifact.tar" \
             --exclude=.git \
             --exclude=.github  \
