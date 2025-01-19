@@ -21,10 +21,7 @@ jobs:
       - run: mkdocs build
       - run: ls -al "/home/runner/work/docs-demo/docs-demo/site" || true
       - run: ls -al "/home/runner/work/_temp" || true
-      - run: cd /home/runner/work/docs-demo/docs-demo/site && tar \
-             --dereference \
-             -cvf "/home/runner/work/_temp/artifact.tar" \
-             .
+      - run: cd /home/runner/work/docs-demo/docs-demo/site && tar --dereference -cvf "/home/runner/work/_temp/artifact.tar" .
       - uses: actions/upload-artifact@v4
         with:
           name: github-pages
