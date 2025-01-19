@@ -21,12 +21,9 @@ jobs:
       - run: mkdocs build
       - run: ls -al "/home/runner/work/docs-demo/docs-demo/site" || true
       - run: ls -al "/home/runner/work/_temp" || true
-      - run: tar \
+      - run: cd /home/runner/work/docs-demo/docs-demo/site && tar \
              --dereference \
-             --directory "/home/runner/work/docs-demo/docs-demo/site" \
              -cvf "/home/runner/work/_temp/artifact.tar" \
-             --exclude=.git \
-             --exclude=.github \
              .
       - uses: actions/upload-artifact@v4
         with:
