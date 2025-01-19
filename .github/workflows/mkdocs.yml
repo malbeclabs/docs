@@ -31,10 +31,10 @@ jobs:
           compression-level: 6
           overwrite: false
           include-hidden-files: false
-       - uses: actions/deploy-pages@v4
-         with:
-           timeout: 600000
-           error_count: 10
-           reporting_interval: 5000
-           artifact_name: github-pages
-           preview: false
+      - uses: actions/deploy-pages@v4
+        with:
+          timeout: 600000
+          error_count: 10
+          reporting_interval: 5000
+          artifact_name: github-pages
+          preview: false
