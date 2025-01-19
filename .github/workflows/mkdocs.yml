@@ -33,7 +33,6 @@ jobs:
              --exclude=.git \
              --exclude=.github \
              .
-        shell: /usr/bin/sh -e {0}
       - uses: actions/upload-artifact@v4
         with:
           name: github-pages
