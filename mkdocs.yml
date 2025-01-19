@@ -1,1 +1,4 @@
-site_name: My Docs
+site_name: Malbec Labs
+site_url: https://docs.malbeclabs.com/
+theme:
+  name: material
