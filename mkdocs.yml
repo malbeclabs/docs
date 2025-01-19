@@ -2,3 +2,6 @@ site_name: Malbec Labs
 site_url: https://docs.malbeclabs.com/
 theme:
   name: material
+  palette:
+    scheme: slate
+    primary: red
