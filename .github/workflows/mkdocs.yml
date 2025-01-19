@@ -28,8 +28,8 @@ jobs:
       - run: ls -al "/home/runner/work/_temp" || true
       - run: tar \
              --dereference \
-             --directory "/Users/amcconnell/src/git/docs-demo/site" \
-             -cvf "/tmp/artifact.tar" \
+             --directory "/home/runner/work/docs-demo/docs-demo/site" \
+             -cvf "/home/runner/work/_temp/artifact.tar" \
              --exclude=.git \
              --exclude=.github \
              .
