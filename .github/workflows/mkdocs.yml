@@ -34,7 +34,16 @@ jobs:
       - run: tar \
             --dereference --hard-dereference \
             --directory "./site" \
-            -cvf "$RUNNER_TEMP/artifact.tar" \
+            -cvf "/home/runner/work/_temp/artifact.tar" \
             --exclude=.git \
             --exclude=.github
         shell: /usr/bin/sh -e {0}
+      - uses actions/upload-artifact@v4
+        with:
+          name: github-pages
+          path: /home/runner/work/_temp/artifact.tar
+          retention-days: 1
+          if-no-files-found: error
+          compression-level: 6
+          overwrite: false
+          include-hidden-files: false
