@@ -31,15 +31,12 @@ jobs:
           path: ./site
           name: github-pages
           retention-days: 1
-      - run: echo ::group::Archive artifact
-          tar \
+      - run: tar \
             --dereference --hard-dereference \
             --directory "$INPUT_PATH" \
             -cvf "$RUNNER_TEMP/artifact.tar" \
             --exclude=.git \
-            --exclude=.github \
-            .
-           echo ::endgroup::
+            --exclude=.github
         with:
           shell: /usr/bin/sh -e {0}
           env:
