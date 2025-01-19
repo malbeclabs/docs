@@ -17,7 +17,6 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: 3.12
-      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
       - run: pip install mkdocs-material 
       - run: mkdocs build
       - uses: actions/upload-pages-artifact@v3
@@ -25,11 +24,14 @@ jobs:
           path: ./site
           name: github-pages
           retention-days: 1
-      - run: tar --dereference --hard-dereference \
-            --directory "/home/runner/work/docs-demo/docs-demo/site" \
+      - run: ls -al "/home/runner/work/docs-demo/docs-demo/site" || true
+      - run: ls -al "/home/runner/work/docs-demo/site" || true
+      - run: tar \
+            --dereference --hard-dereference \
+            --directory "/home/runner/work/docs-demo/site" \
             -cvf "/home/runner/work/_temp/artifact.tar" \
             --exclude=.git \
-            --exclude=.github 
+            --exclude=.github  \
         shell: /usr/bin/sh -e {0}
       - uses: actions/upload-artifact@v4
         with:
