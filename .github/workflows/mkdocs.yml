@@ -27,11 +27,12 @@ jobs:
       - run: ls -al "/home/runner/work/docs-demo/docs-demo/site" || true
       - run: ls -al "/home/runner/work/_temp" || true
       - run: tar \
-            --dereference --hard-dereference \
-            --directory "/home/runner/work/docs-demo/docs-demo/site" \
-            -cvf "/home/runner/work/_temp/artifact.tar" \
-            --exclude=.git \
-            --exclude=.github  \
+             --dereference \
+             --directory "/Users/amcconnell/src/git/docs-demo/site" \
+             -cvf "/tmp/artifact.tar" \
+             --exclude=.git \
+             --exclude=.github \
+             .
         shell: /usr/bin/sh -e {0}
       - uses: actions/upload-artifact@v4
         with:
