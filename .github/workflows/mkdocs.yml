@@ -37,7 +37,6 @@ jobs:
             -cvf "$RUNNER_TEMP/artifact.tar" \
             --exclude=.git \
             --exclude=.github
-        with:
-          shell: /usr/bin/sh -e {0}
-          env:
-            INPUT_PATH: ./site
+        shell: /usr/bin/sh -e {0}
+        env:
+          INPUT_PATH: ./site
