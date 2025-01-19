@@ -19,11 +19,6 @@ jobs:
           python-version: 3.12
       - run: pip install mkdocs-material 
       - run: mkdocs build
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./site
-          name: github-pages
-          retention-days: 1
       - run: ls -al "/home/runner/work/docs-demo/docs-demo/site" || true
       - run: ls -al "/home/runner/work/_temp" || true
       - run: tar \
