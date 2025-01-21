@@ -19,7 +19,16 @@ Rocky / Redhat:
 sudo yum remove doublezero
 ```
 
-## FAQ 3. What happens under the hood when I run `doublezero connect`? 
+## FAQ 3. What components does doublezero install on my machine?
+``` mermaid
+architecture-beta
+    group api(server)[server]
+    service doublezerod(server)[doublezerod service] in api
+    service doublezero(server)[doublezero CLI] in api
+    doublezero:L -- R:doublezerod
+```
+
+## FAQ 4. What happens under the hood when I run `doublezero connect`? 
 1. [doublezero CLI] doublezero connect adds the user account on smartcontract in pending status and waits
 1. [activator] activatord will assign IPs and change the status to activated
 1. [doublezero CLI] The CLI will detect the activation, collects the network info
@@ -28,5 +37,6 @@ sudo yum remove doublezero
 1. [controller] controller polls the smartcontract every 10s and updates its config cache
 1. [eosagent] eosagents on all switches poll controller and deploy any new config every 5 seconds
 
-## 4. How can I connect to a specific doublezero node instead of letting the system pick the closest one?
+## FAQ 4. How can I connect to a specific doublezero network device instead of letting the system pick the closest one?
 ???
+

@@ -14,4 +14,4 @@ TODO: Convert from outline to narrative format:
     - Your host will use this tunnel interface to communicate to other hosts on the DoubleZero network.
 - System architecture components - blockchain, doublezero CLI, doublezerod, controller, eosagent
 
-What's next? Learn [how to connect to DoubleZero](/how-to-connect/).
+What's next? Learn [how to connect to DoubleZero](connect.md).

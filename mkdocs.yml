@@ -2,14 +2,23 @@ site_name: Malbec Labs
 site_url: https://docs.malbeclabs.com/
 theme:
   name: material
+  logo: logo.png
+  faviron: assets/favicon.png
   palette:
     scheme: slate
-    primary: red
+    primary: deep orange
   features:
     - content.code.copy
-    - navigation.sections    
+    - navigation.indexes
+    - toc.integrate
+    - header.autohide
 nav:
   - Welcome: index.md
-  - Connect: how-to-connect.md
+  - Connect: connect.md
+  - FAQs: faqs.md
 markdown_extensions:
-  - toc
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
