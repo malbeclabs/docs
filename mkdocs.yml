@@ -17,6 +17,7 @@ nav:
   - Connect: connect.md
   - FAQs: faqs.md
 markdown_extensions:
+  - admonition
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
