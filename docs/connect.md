@@ -89,7 +89,7 @@ doublezero balance
 
 This step signs a doublezero smart contract and connects the system to the lowest-latency doublezero node available.
 ```
-doublezero connect --client-ip [MY_CLIENT_IP]
+sudo doublezero connect --client-ip [MY_CLIENT_IP]
 ```
 
 Congratulaions, your DoubleZero connection is up and running! We hope. Let's run a few more commands to make sure everything is working.
