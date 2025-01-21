@@ -77,11 +77,3 @@ Error result: `Device "doublezero01" does not exist`
 ip route show dev doublezero01
 ```
 Expected result: `169.254.0.12/31 proto kernel scope link src 169.254.0.13`
-
-### 9. Verify BGP session
-!!! note end inline
-    This will be replaced by a `doublezero status` CLI command.
-```
-???
-```
-Expected result: ???
