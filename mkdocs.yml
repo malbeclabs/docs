@@ -5,3 +5,11 @@ theme:
   palette:
     scheme: slate
     primary: red
+  features:
+    - content.code.copy
+    - navigation.sections    
+nav:
+  - Welcome: index.md
+  - Connect: how-to-connect.md
+markdown_extensions:
+  - toc
