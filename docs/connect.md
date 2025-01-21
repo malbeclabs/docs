@@ -51,21 +51,19 @@ sudo journalctl -u doublezerod
 
 
 ### 3. Create doublezero config directory
-!!! note inline end
-    Replace [MY_CLIENT_IP] with your server's publicly routable IP address
 ```
-mkdir -p ~/.config/doublezero --client-ip [MY_CLIENT_IP]
+mkdir -p ~/.config/doublezero
 ```
 
 ### 4. Copy your Solana id.json to the doublezero config directory.
-The smart contract program for DoubleZero testnet is installed on Solana devnet.  The DoubleZero command line interface expects that you have a Solana devnet wallet with >= 1 SOL.
+The smart contract program for DoubleZero testnet is installed on Solana devnet. In order to interact with the DoubleZero smart contract your Solana devnet will need >= 0 SOL. In the steps below please ensure you're using a keypair with devnet SOL.
 
-Copy the `id.json` associated with your devnet wallet to the config directory.
+Copy the `id.json` associated with your Solana devnet keypair to the config directory.
 ```
 cp </path/to/id.json> ~/.config/doublezero 
 ```
 
-### 5. Verify that doublezero is talking to the correct Solana cluster
+### 5. Verify that doublezero is talking to the correct Solana cluster and verify your balance
 ```
 doublezero config get
 
@@ -79,10 +77,19 @@ WebSocket URL: wss://api.devnet.solana.com
 Keypair Path: "/home/ubuntu/.config/doublezero/id.json" 
 ```
 
+Verify your balance:
+```
+doublezero balance
+```
+
+
 ### 6. Connect
+!!! note inline end
+    Replace [MY_CLIENT_IP] with your server's publicly routable IP address which you can obtain using `ip address show`
+
 This step signs a doublezero smart contract and connects the system to the lowest-latency doublezero node available.
 ```
-doublezero connect
+doublezero connect --client-ip [MY_CLIENT_IP]
 ```
 
 Congratulaions, your DoubleZero connection is up and running! We hope. Let's run a few more commands to make sure everything is working.
@@ -104,3 +111,5 @@ Error result: `Device "doublezero0" does not exist`
 ip route show dev doublezero0
 ```
 Expected result: `169.254.0.12/31 proto kernel scope link src 169.254.0.13`
+
+Note that the actual IP assignments will differ, but all addresses should be assigned from the link local range as originally proposed in RFC3927.
