@@ -26,16 +26,16 @@ curl -1sLf \
 ### 2. Install doublezero
 !!! note inline end
     After this step you can perform doublezero read operations, such as `doublezero device list`.
-    
+
 Now that we have the repo set up, we can install DoubleZero and start the DoubleZero daemon process (doublezerod) using the appropriate commands below for your operating system:
 
 Ubuntu / Debian:
 ```
-sudo apt-get install doublezero
+sudo apt-get install doublezero=0.0.19-1
 ```
 Rocky / Redhat:
 ```
-sudo yum install doublezero
+sudo yum install doublezero-0.0.19
 ```
 
 ### 3. Create doublezero config directory
