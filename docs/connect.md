@@ -38,12 +38,27 @@ Rocky / Redhat:
 sudo yum install doublezero-0.0.19
 ```
 
+After the package is installed, a new systemd unit is installed, activated and started.  To see the status:
+
+```
+sudo systemctl status doublezerod
+```
+
+To see the doublezerod logs, look in the journal:
+```
+sudo journalctl -u doublezerod
+```
+
+
 ### 3. Create doublezero config directory
 ```
 mdkir -p ~/.config/doublezero
 ```
 
 ### 4. Copy your Solana id.json to the doublezero config directory.
+The smart contract program for DoubleZero testnet is installed on Solana devnet.  The DoubleZero command line interface expects that you have a Solana devnet wallet with >= 1 SOL.
+
+Copy the `id.json` associated with your devnet wallet to the config directory.
 ```
 cp </path/to/id.json> ~/.config/doublezerro 
 ```
@@ -53,6 +68,15 @@ cp </path/to/id.json> ~/.config/doublezerro
 doublezero config get
 
 ```
+
+Expected result:
+```
+Config File: /home/ubuntu/.config/doublezero/cli/config.yml
+RPC URL: https://api.devnet.solana.com
+WebSocket URL: wss://api.devnet.solana.com
+Keypair Path: "/home/ubuntu/.config/doublezero/id.json" 
+```
+
 ### 6. Connect
 This step signs a doublezero smart contract and connects the system to the lowest-latency doublezero node available.
 ```
