@@ -27,7 +27,7 @@ architecture-beta
     group api(server)[server]
     service doublezerod(server)[doublezerod service] in api
     service doublezero(server)[doublezero CLI] in api
-    doublezero:L -- R:doublezerod
+    doublezero:R --> L:doublezerod
 ```
 
 ## FAQ 4. What happens under the hood when I run `doublezero connect`? 

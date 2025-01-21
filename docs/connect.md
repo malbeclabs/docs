@@ -94,6 +94,7 @@ Congratulaions, your DoubleZero connection is up and running! We hope. Let's run
 ip link show doublezero0
 ```
 Expected result: Interface details like IP address
+
 Error result: `Device "doublezero0" does not exist`
 
 ### 8. Verify routing link address in routing table
