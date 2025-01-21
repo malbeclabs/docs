@@ -20,6 +20,8 @@ sudo yum remove doublezero
 ```
 
 ## FAQ 3. What components does doublezero install on my machine?
+The doublezero package provides a command line interface (CLI) and small daemon to interface with doublezero smart contracts and provision the connection. These components communicate with two external services - the doublezero activator, which interfaces with the Solana blockchain, and the doublezero controller, which configures doublezero network devices. 
+
 ``` mermaid
 architecture-beta
     group api(server)[server]
@@ -29,6 +31,7 @@ architecture-beta
 ```
 
 ## FAQ 4. What happens under the hood when I run `doublezero connect`? 
+
 1. [doublezero CLI] doublezero connect adds the user account on smartcontract in pending status and waits
 1. [activator] activatord will assign IPs and change the status to activated
 1. [doublezero CLI] The CLI will detect the activation, collects the network info
@@ -36,7 +39,4 @@ architecture-beta
 1. [doublezerod] doublezerod collects the info from the smart contract provisions the server's network resources - rules, routes, tunnels, neighbors
 1. [controller] controller polls the smartcontract every 10s and updates its config cache
 1. [eosagent] eosagents on all switches poll controller and deploy any new config every 5 seconds
-
-## FAQ 4. How can I connect to a specific doublezero network device instead of letting the system pick the closest one?
-???
 

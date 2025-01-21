@@ -6,12 +6,4 @@ What are the benefits of connecting to DZ? Compared to the public internet, the 
 
 For more details, see the [DoubleZero Protocol](https://doublezero.xyz/whitepaper.pdf) whitepaper.
 
-TODO: Convert from outline to narrative format:
-
-- What does DoubleZero do on my host?
-    - This software package provides a command line interface (CLI) and small daemon to interface with doublezero smart contracts and provision the connection.
-    - Once you have connected to DoubleZero, a network tunnel interface appears to the host OS as normal network interface with a DoubleZero-assigned IP.
-    - Your host will use this tunnel interface to communicate to other hosts on the DoubleZero network.
-- System architecture components - blockchain, doublezero CLI, doublezerod, controller, eosagent
-
 What's next? Learn [how to connect to DoubleZero](connect.md).
