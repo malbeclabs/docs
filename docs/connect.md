@@ -13,13 +13,13 @@ DoubleZero is an open source project hosted on GitHub. Releases are built into b
 Ubuntu / Debian:
 ```
 curl -1sLf \
-  https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh' \
+  https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh \
   | sudo -E bash
 ```
 Rocky / Redhat:
 ```
 curl -1sLf \
-  https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh' \
+  https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh \
   | sudo -E bash
 ```
 
@@ -39,13 +39,15 @@ sudo yum install doublezero-0.0.19
 ```
 
 ### 3. Create doublezero config directory
+!!! note inline end
+    Replace [MY_CLIENT_IP] with your server's publicly routable IP address
 ```
-mdkir -p ~/.config/doublezero
+mkdir -p ~/.config/doublezero --client-ip [MY_CLIENT_IP]
 ```
 
 ### 4. Copy your Solana id.json to the doublezero config directory.
 ```
-cp </path/to/id.json> ~/.config/doublezerro 
+cp </path/to/id.json> ~/.config/doublezero 
 ```
 
 ### 5. Verify that doublezero is talking to the correct Solana cluster
@@ -65,15 +67,15 @@ Congratulaions, your DoubleZero connection is up and running! We hope. Let's run
 !!! note end inline
     This will be replaced by a `doublezero status` CLI command.
 ```
-ip link show doublezero01
+ip link show doublezero0
 ```
 Expected result: Interface details like IP address
-Error result: `Device "doublezero01" does not exist`
+Error result: `Device "doublezero0" does not exist`
 
 ### 8. Verify routing link address in routing table
 !!! note end inline
     This will be replaced by a `doublezero status` CLI command.
 ```
-ip route show dev doublezero01
+ip route show dev doublezero0
 ```
 Expected result: `169.254.0.12/31 proto kernel scope link src 169.254.0.13`
