@@ -1,5 +1,5 @@
 # How to connect to DoubleZero - for testnet Users
-???+ note "By minimizing or scrolling past this box, I agree to the terms of the following Evaluation Agreement"
+??? note "By connecting to the DoubleZero testnet I agree to the terms of the Evaluation Agreement set forth here (click to expand)"
     <span style="font-size:14px;">DoubleZero Testnet</span>
     Evaluation Agreement
 
