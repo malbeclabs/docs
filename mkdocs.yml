@@ -18,6 +18,9 @@ nav:
   - FAQs: faqs.md
 markdown_extensions:
   - admonition
+  - pymdownx.details
+  - pymdownx.snippets
+  - pymdownx.caret
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
