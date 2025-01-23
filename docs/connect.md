@@ -113,7 +113,7 @@ The smart contract program for DoubleZero testnet is installed on Solana devnet.
     Today DoubleZero can only run as root, but we are working on a fix that will allow it to run as any user.
 Copy the `id.json` associated with your Solana devnet keypair to the config directory.
 ```
-sudo cp </path/to/id.json> /root/.config/doublezero 
+sudo cp </path/to/id.json> /root/.config/doublezero/
 ```
 
 ### 5. Verify that doublezero is talking to the correct Solana cluster and verify your balance
@@ -145,7 +145,7 @@ This step signs a doublezero smart contract and connects the system to the lowes
 sudo doublezero connect --client-ip [MY_CLIENT_IP]
 ```
 
-Congratulaions, your DoubleZero connection is up and running! We hope. Let's run a few more commands to make sure everything is working.
+Congratulations, your DoubleZero connection is up and running! We hope. Let's run a few more commands to make sure everything is working.
 
 ### 7. Verify tunnel interface
 !!! note end inline 

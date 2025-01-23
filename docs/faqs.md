@@ -12,7 +12,7 @@ sudo yum upgrade doublezero
 ## FAQ 2. How can I uninstall doublezero from my system?
 Ubuntu / Debian:
 ```
-sudo apt-get reomve doublezero
+sudo apt-get remove doublezero
 ```
 Rocky / Redhat:
 ```
