@@ -1,5 +1,5 @@
 # How to connect to DoubleZero - for testnet Users
-??? note "By connecting to the DoubleZero testnet I agree to the terms of the Evaluation Agreement set forth here (click to expand)"
+??? warning "By connecting to the DoubleZero testnet I agree to the terms of the Evaluation Agreement set forth here (click to expand)"
     <span style="font-size:14px;">DoubleZero Testnet</span>
     Evaluation Agreement
 
@@ -75,7 +75,7 @@ curl -1sLf \
 ```
 
 ### 2. Install doublezero
-!!! note inline end
+!!! tip inline end " "
     After this step you can perform doublezero read operations, such as `doublezero device list`.
 
 Now that we have the repo set up, we can install DoubleZero and start the DoubleZero daemon process (doublezerod) using the appropriate commands below for your operating system:
@@ -103,20 +103,22 @@ sudo journalctl -u doublezerod
 
 ### 3. Create doublezero config directory
 ```
-mkdir -p ~/.config/doublezero
+sudo mkdir -p /root/.config/doublezero
 ```
 
 ### 4. Copy your Solana id.json to the doublezero config directory.
 The smart contract program for DoubleZero testnet is installed on Solana devnet. In order to interact with the DoubleZero smart contract your Solana devnet will need >= 0 SOL. In the steps below please ensure you're using a keypair with devnet SOL.
 
+!!! info inline end
+    Today DoubleZero can only run as root, but we are working on a fix that will allow it to run as any user.
 Copy the `id.json` associated with your Solana devnet keypair to the config directory.
 ```
-cp </path/to/id.json> ~/.config/doublezero 
+sudo cp </path/to/id.json> /root/.config/doublezero 
 ```
 
 ### 5. Verify that doublezero is talking to the correct Solana cluster and verify your balance
 ```
-doublezero config get
+sudo doublezero config get
 
 ```
 
@@ -130,7 +132,7 @@ Keypair Path: "/home/ubuntu/.config/doublezero/id.json"
 
 Verify your balance:
 ```
-doublezero balance
+sudo doublezero balance
 ```
 
 
@@ -146,8 +148,8 @@ sudo doublezero connect --client-ip [MY_CLIENT_IP]
 Congratulaions, your DoubleZero connection is up and running! We hope. Let's run a few more commands to make sure everything is working.
 
 ### 7. Verify tunnel interface
-!!! note end inline
-    This will be replaced by a `doublezero status` CLI command.
+!!! note end inline 
+    In the future, verification will be provided by the `doublezero status` CLI command.
 ```
 ip link show doublezero0
 ```
@@ -156,8 +158,6 @@ Expected result: Interface details like IP address
 Error result: `Device "doublezero0" does not exist`
 
 ### 8. Verify routing link address in routing table
-!!! note end inline
-    This will be replaced by a `doublezero status` CLI command.
 ```
 ip route show dev doublezero0
 ```
