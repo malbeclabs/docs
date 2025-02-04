@@ -82,21 +82,21 @@ Now that we have the repo set up, we can install DoubleZero and start the Double
 
 Ubuntu / Debian - install:
 ```
-sudo apt-get install doublezero=0.0.21-1
+sudo apt-get install doublezero=0.0.22-1
 ```
 Ubuntu / Debian - upgrade:
 ```
-sudo apt upgrade doublezero=0.0.21-1
+sudo apt upgrade doublezero=0.0.22-1
 ```
 
 Rocky / Redhat - install:
 ```
-sudo yum install doublezero-0.0.21
+sudo yum install doublezero-0.0.22
 ```
 
 Rocky / Redhat - upgrade:
 ```
-sudo yum update doublezero-0.0.21
+sudo yum update doublezero-0.0.22
 ```
 
 
