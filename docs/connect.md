@@ -3,7 +3,7 @@
     <span style="font-size:14px;">DoubleZero Testnet</span>
     Evaluation Agreement
 
-    By accessing or using the SoDoubleZero Testnetlution (defined below), you agree as of the
+    By accessing or using the Solution (defined below), you agree as of the
     first date of such access (the "**Effective Date**") that this
     Evaluation Agreement (the "**Agreement**") sets forth the terms and
     conditions under which DoubleZero Foundation ("**DZF**") will provide
@@ -74,20 +74,31 @@ curl -1sLf \
   | sudo -E bash
 ```
 
-### 2. Install doublezero
+### 2. Install or upgrade doublezero
 !!! tip inline end " "
     After this step you can perform doublezero read operations, such as `doublezero device list`.
 
 Now that we have the repo set up, we can install DoubleZero and start the DoubleZero daemon process (doublezerod) using the appropriate commands below for your operating system:
 
-Ubuntu / Debian:
+Ubuntu / Debian - install:
 ```
-sudo apt-get install doublezero=0.0.19-1
+sudo apt-get install doublezero=0.0.21-1
 ```
-Rocky / Redhat:
+Ubuntu / Debian - upgrade:
 ```
-sudo yum install doublezero-0.0.19
+sudo apt upgrade doublezero=0.0.21-1
 ```
+
+Rocky / Redhat - install:
+```
+sudo yum install doublezero-0.0.21
+```
+
+Rocky / Redhat - upgrade:
+```
+sudo yum update doublezero-0.0.21
+```
+
 
 After the package is installed, a new systemd unit is installed, activated and started.  To see the status:
 
@@ -100,26 +111,22 @@ To see the doublezerod logs, look in the journal:
 sudo journalctl -u doublezerod
 ```
 
-
 ### 3. Create doublezero config directory
 ```
-sudo mkdir -p /root/.config/doublezero
+mkdir -p ~/.config/doublezero
 ```
 
 ### 4. Copy your Solana id.json to the doublezero config directory.
 The smart contract program for DoubleZero testnet is installed on Solana devnet. In order to interact with the DoubleZero smart contract your Solana devnet will need >= 0 SOL. In the steps below please ensure you're using a keypair with devnet SOL.
 
-!!! info inline end
-    Today DoubleZero can only run as root, but we are working on a fix that will allow it to run as any user.
-Copy the `id.json` associated with your Solana devnet keypair to the config directory.
+Copy the `id.json` associated with your Solana devnet keypair to the doublezero config directory.
 ```
-sudo cp </path/to/id.json> /root/.config/doublezero/
+sudo cp </path/to/id.json> ~/.config/doublezero/
 ```
 
 ### 5. Verify that doublezero is talking to the correct Solana cluster and verify your balance
 ```
-sudo doublezero config get
-
+doublezero config get
 ```
 
 Expected result:
@@ -132,7 +139,7 @@ Keypair Path: "/home/ubuntu/.config/doublezero/id.json"
 
 Verify your balance:
 ```
-sudo doublezero balance
+doublezero balance
 ```
 
 
@@ -142,7 +149,7 @@ sudo doublezero balance
 
 This step signs a doublezero smart contract and connects the system to the lowest-latency doublezero node available.
 ```
-sudo doublezero connect --client-ip [MY_CLIENT_IP]
+doublezero connect --client-ip [MY_CLIENT_IP]
 ```
 
 Congratulations, your DoubleZero connection is up and running! We hope. Let's run a few more commands to make sure everything is working.
