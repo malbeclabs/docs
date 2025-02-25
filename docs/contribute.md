@@ -256,7 +256,7 @@ Note that quanitites reflect two data center's equipment i.e. the total required
 
 | Make   | Model         | Part Number     | DZ Requirement | QTY | Note |
 |--------|-------------|----------------|----------------|-----|-------------------------------------------------------------|
-| Arista | 1000BASE-LX | SFP-1G-LX    | No             | 2   | Cabling and optic choice available at contributor's discretion. |
+| Arista | 1000BASE-LX (Rate Adapting) | SFP-10G-RA-1G-LX    | No | 2   | Cabling and optic choice available at contributor's discretion. |
  Finisar | DynamiX QSA™ | MAM1Q00A-QSA   | No             | 2   | Cabling and optic choice available at contributor's discretion. |
 
 ---
