@@ -117,7 +117,7 @@ mkdir -p ~/.config/doublezero
 ```
 
 ### 4. Copy your Solana id.json to the doublezero config directory.
-The smart contract program for DoubleZero testnet is installed on Solana devnet. In order to interact with the DoubleZero smart contract your Solana devnet will need >= 0 SOL. In the steps below please ensure you're using a keypair with devnet SOL.
+The smart contract program for DoubleZero testnet is installed on Solana devnet. In order to interact with the DoubleZero smart contract your Solana devnet will need >= 0 SOL. In the steps below please ensure you're using a devnet wallet with SOL.
 
 Copy the `id.json` associated with your Solana devnet keypair to the doublezero config directory.
 ```
@@ -142,8 +142,20 @@ Verify your balance:
 doublezero balance
 ```
 
+### 6. Contact DZF to have your pubkey added to the allowlist
+!!! note inline end
+	To check if your pubkey is already in the allowlist, use `doublezero user allowlist get`
 
-### 6. Connect
+DoubleZero testnet is currently in a permissioned mode.  In order to connect, your pubkey must be present in the allowlist which is managed by the DoubleZero Foundation.
+
+Check your pubkey:
+```
+doublezero address
+```
+
+If your pubkey is not in the allowlist, please reach out to the [DoubleZero Foundation](https://doublezero.xyz).
+
+### 7. Connect
 !!! note inline end
     Replace [MY_CLIENT_IP] with your server's publicly routable IP address which you can obtain using `ip address show`
 
@@ -154,7 +166,7 @@ doublezero connect --client-ip [MY_CLIENT_IP]
 
 Congratulations, your DoubleZero connection is up and running! We hope. Let's run a few more commands to make sure everything is working.
 
-### 7. Verify tunnel interface
+### 8. Verify tunnel interface
 !!! note end inline 
     In the future, verification will be provided by the `doublezero status` CLI command.
 ```
@@ -164,7 +176,7 @@ Expected result: Interface details like IP address
 
 Error result: `Device "doublezero0" does not exist`
 
-### 8. Verify routing link address in routing table
+### 9. Verify routing link address in routing table
 ```
 ip route show dev doublezero0
 ```
