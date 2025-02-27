@@ -80,26 +80,31 @@ curl -1sLf \
 
 Now that we have the repo set up, we can install DoubleZero and start the DoubleZero daemon process (doublezerod) using the appropriate commands below for your operating system:
 
-Ubuntu / Debian - install:
+#### 2.1 Ubuntu / Debian
+
+First time install:
 ```
 sudo apt-get install doublezero=0.0.22-1
 ```
-Ubuntu / Debian - upgrade:
+
+Upgrade:
 ```
 sudo apt upgrade doublezero=0.0.22-1
 ```
 
-Rocky / Redhat - install:
+#### 2.2 Rocky / RHEL
+
+First time install:
 ```
 sudo yum install doublezero-0.0.22
 ```
 
-Rocky / Redhat - upgrade:
+Upgrade:
 ```
 sudo yum update doublezero-0.0.22
 ```
 
-
+### 3. Check the status of `doublezerod`
 After the package is installed, a new systemd unit is installed, activated and started.  To see the status:
 
 ```
@@ -111,12 +116,12 @@ To see the doublezerod logs, look in the journal:
 sudo journalctl -u doublezerod
 ```
 
-### 3. Create doublezero config directory
+### 4. Create doublezero config directory
 ```
 mkdir -p ~/.config/doublezero
 ```
 
-### 4. Copy your Solana id.json to the doublezero config directory.
+### 5. Copy your Solana id.json to the doublezero config directory.
 The smart contract program for DoubleZero testnet is installed on Solana devnet. In order to interact with the DoubleZero smart contract your Solana devnet will need >= 0 SOL. In the steps below please ensure you're using a devnet wallet with SOL.
 
 Copy the `id.json` associated with your Solana devnet keypair to the doublezero config directory.
@@ -124,7 +129,7 @@ Copy the `id.json` associated with your Solana devnet keypair to the doublezero 
 sudo cp </path/to/id.json> ~/.config/doublezero/
 ```
 
-### 5. Verify that doublezero is talking to the correct Solana cluster and verify your balance
+### 6. Verify that doublezero is talking to the correct Solana cluster and verify your balance
 ```
 doublezero config get
 ```
@@ -142,7 +147,7 @@ Verify your balance:
 doublezero balance
 ```
 
-### 6. Contact DZF to have your pubkey added to the allowlist
+### 7. Contact DZF to have your pubkey added to the allowlist
 !!! note inline end
 	To check if your pubkey is already in the allowlist, use `doublezero user allowlist get`
 
@@ -155,7 +160,7 @@ doublezero address
 
 If your pubkey is not in the allowlist, please reach out to the [DoubleZero Foundation](https://doublezero.xyz).
 
-### 7. Connect
+### 8. Connect
 !!! note inline end
     Replace [MY_CLIENT_IP] with your server's publicly routable IP address which you can obtain using `ip address show`
 
@@ -166,7 +171,7 @@ doublezero connect --client-ip [MY_CLIENT_IP]
 
 Congratulations, your DoubleZero connection is up and running! We hope. Let's run a few more commands to make sure everything is working.
 
-### 8. Verify tunnel interface
+### 9. Verify tunnel interface
 !!! note end inline 
     In the future, verification will be provided by the `doublezero status` CLI command.
 ```
@@ -176,7 +181,7 @@ Expected result: Interface details like IP address
 
 Error result: `Device "doublezero0" does not exist`
 
-### 9. Verify routing link address in routing table
+### 10. Verify routing link address in routing table
 ```
 ip route show dev doublezero0
 ```
