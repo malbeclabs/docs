@@ -13,7 +13,7 @@ Anyone that wishes to participate in the growth of the DoubleZero network can co
 
 As a network contributor, the simplest way to get started in DoubleZero is by identifying capacity in your network that can be dedicated for DoubleZero. Once identified, DZDs must be deployed, facilitating the DoubleZero overlay network which only requires IPv4 reachability and a minimum MTU of 2048 bytes as its dependencies from the contributor’s network.
 
-Figure 1 highlights the simplest model for contributing bandwidth. A DZD is deployed in each data center, interfacing with the network contributor’s internal network to provide DoubleZero WAN connectivity. This is complemented by local Internet, typically a Direct Internet Access (DIA) solution, that is used as on-ramps for DoubleZero Users. While it is expected that DIA will be the preferred option for facilitating access to users of DoubleZero, numerous connectivity models are possible e.g. physical cabling to servers, network fabric extension etc. We refer to these options as Choose Your Own Adventure (CYOA), providing the contributor flexibility to connect local or remote users as best fits their internal network policies. 
+Figure 1 highlights the simplest model for contributing bandwidth. A DZD is deployed in each data center, interfacing with the network contributor’s internal network to provide DoubleZero WAN connectivity. This is complemented by local Internet, typically a Direct Internet Access (DIA) solution, that is used as on-ramps for DoubleZero Users. While it is expected that DIA will be the preferred option for facilitating access to users of DoubleZero, numerous connectivity models are possible e.g. physical cabling to servers, network fabric extension, etc. We refer to these options as Choose Your Own Adventure (CYOA), providing the contributor flexibility to connect local or remote users in a way that best fits their internal network policies. 
 
 As with any network, reachability is a fundamental part of the architecture and network contributors cannot live in isolation. As such, the DZD MUST have a link to a DoubleZero Exchange to create a contiguous network between participants.
 
@@ -111,11 +111,11 @@ More advanced network contributors may be able to deploy DoubleZero bandwidth as
 
 While reusing available capacity will be attractive to many network contributors, it is possible that new bandwidth is purchased from a 3rd party to be dedicated to DoubleZero. In such a scenario, the DZD would connect directly to the 3rd party carrier without any internal devices of the contributor sitting inline (figure 8).
 
-This option is attractive as it ensures dedicated bandwidth for DoubleZero, is simple operationally and ensure complete segmentation from any other network services. This option will have the highest OPEX increase and new service contracts with 3rd party carriers.
+This option is attractive as it ensures dedicated bandwidth for DoubleZero, is simple operationally and ensures complete segmentation from any other network services. This option will have the highest OPEX increase and new service contracts with 3rd party carriers.
 
 ## Install Guide
 ### Indicative Hardware Requirements - 100Gbps Bandwidth Contribution
-Note that quantities reflect two data center's equipment i.e. the total required hardware necessary to deploy 1 bandwidth contribution.
+Note that quantities reflect two data centers' equipment, i.e. the total required hardware necessary to deploy 1 bandwidth contribution.
 
 ```
 *All FPGAs are subject to final testing.  10G and 1G contributions can be supported using Arista 7130LBR switches with inbuilt dual Virtex® UltraScale+™ FPGAs.
