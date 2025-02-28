@@ -1,6 +1,6 @@
 ## Summary
 
-Anyone that wishes to participate in the growth of the DoubleZero network can contribute bandwidth and network hardware to the ecosystem. The DoubleZero smart contract is the cornerstone of ensuring that the network maintains high-quality links that can be measured and integrated into the topology, allowing our network controllers to develop the most efficient end-to-end path between our different users and endpoints. Upon execution of the smart contract and deployment of the network equipment and bandwidth, an entity is classified as a network contributor.  See [DoubleZero Economics](https://economics.doublezero.xyz/overview) to further understand the economics for a network contributor.
+Anyone who wishes to participate in the growth of the DoubleZero network can contribute bandwidth and network hardware to the ecosystem. The DoubleZero smart contract is the cornerstone of ensuring that the network maintains high-quality links that can be measured and integrated into the topology, allowing our network controllers to develop the most efficient end-to-end path between our different users and endpoints. Upon execution of the smart contract and deployment of the network equipment and bandwidth, an entity is classified as a network contributor.  See [DoubleZero Economics](https://economics.doublezero.xyz/overview) to further understand the economics for a network contributor.
 
 ## Requirements to be a DoubleZero Network Contributor
 
@@ -117,9 +117,7 @@ This option is attractive as it ensures dedicated bandwidth for DoubleZero, is s
 ### Indicative Hardware Requirements - 100Gbps Bandwidth Contribution
 Note that quantities reflect two data centers' equipment, i.e. the total required hardware necessary to deploy 1 bandwidth contribution.
 
-```
-*All FPGAs are subject to final testing.  10G and 1G contributions can be supported using Arista 7130LBR switches with inbuilt dual Virtex® UltraScale+™ FPGAs.
-```
+??? warning "*All FPGAs are subject to final testing.  10G and 1G contributions can be supported using Arista 7130LBR switches with inbuilt dual Virtex® UltraScale+™ FPGAs."
 
 #### Function & Port Requirements
 
@@ -128,7 +126,7 @@ Note that quantities reflect two data centers' equipment, i.e. the total require
 | Private Bandwidth           | 100G       | Yes            | 1   |                                                                                                                                                                   |
 | Direct Internet Access (DIA) | 10G       | Yes            | 2   |                                                                                                                                                                   |
 | DoubleZero eXchange (DZX)   | 100G       | Yes*           | 1   | Must be supported once more than 3 providers operate in the same metro area, preceding this, cross-connects or other peering arrangements can be used to interconnect to other providers. |
-| Management                  |            | Noc            | 1   | Determined by contributor's own internal management policies.                                                                                                    |
+| Management                  |            | No            | 1   | Determined by contributor's own internal management policies.                                                                                                    |
 | Console                     |            | No             | 1   | Determined by contributor's own internal management policies.                                                                                                    |
 
 #### DZD Network Hardware
