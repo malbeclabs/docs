@@ -15,6 +15,7 @@ theme:
 nav:
   - Welcome: index.md
   - Connect: connect.md
+  - Contribute: contribute.md
   - FAQs: faqs.md
 markdown_extensions:
   - admonition
@@ -26,3 +27,6 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
+  - attr_list
+  - md_in_html
+  - pymdownx.blocks.caption
