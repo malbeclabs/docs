@@ -1,6 +1,6 @@
 ## Summary
 
-Anyone that wishes to participate in the growth of the DoubleZero network can contribute bandwidth and network hardware to the ecosystem. The DoubleZero smart contract is the cornerstone of ensuring that the network maintains high-quality links that can be measured and integrated into the topology, allowing our network controllers to develop the most efficient end-to-end path between our different users and endpoints. Upon execution of the smart contract and deployment of the network equipment and bandwidth, an entity is classified as a network contributor, resulting in… [SMALL SECTION ON TOKENOMICS].
+Anyone that wishes to participate in the growth of the DoubleZero network can contribute bandwidth and network hardware to the ecosystem. The DoubleZero smart contract is the cornerstone of ensuring that the network maintains high-quality links that can be measured and integrated into the topology, allowing our network controllers to develop the most efficient end-to-end path between our different users and endpoints. Upon execution of the smart contract and deployment of the network equipment and bandwidth, an entity is classified as a network contributor.  See [Double Economics](https://economics.doublezero.xyz/overview) to further understand the economics for a network contributor.
 
 ## Requirements to be a DoubleZero Network Contributor
 
