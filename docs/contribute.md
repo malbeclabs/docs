@@ -1,10 +1,10 @@
 ## Summary
 
-Anyone who wishes to participate in the growth of the DoubleZero network can contribute bandwidth and network hardware to the ecosystem. The DoubleZero smart contract is the cornerstone of ensuring that the network maintains high-quality links that can be measured and integrated into the topology, allowing our network controllers to develop the most efficient end-to-end path between our different users and endpoints. Upon execution of the smart contract and deployment of the network equipment and bandwidth, an entity is classified as a network contributor.  See [DoubleZero Economics](https://economics.doublezero.xyz/overview) to further understand the economics for a network contributor.
+Anyone who wishes to participate in the growth of the DoubleZero network can contribute bandwidth and network hardware to the ecosystem. The DoubleZero smart contract is the cornerstone of ensuring that the network maintains high-quality links that can be measured and integrated into the topology, allowing our network controllers to develop the most efficient end-to-end path between our different users and endpoints. Upon execution of the smart contract and deployment of the network equipment and bandwidth, an entity is classified as a network contributor.  See [DoubleZero Economics](https://economics.doublezero.xyz/overview) to further understand the economics behind participating in DoubleZero as a network contributor.
 
 ## Requirements to be a DoubleZero Network Contributor
 
-- Dedicated bandwidth that can provide IPv4 connectivity and an MTU 0f 2048 bytes between two data centers
+- Dedicated bandwidth that can provide IPv4 connectivity and an MTU of 2048 bytes between two data centers
 - DoubleZero Device (DZD) hardware that is compatible with the DoubleZero protocol
 - Connectivity to the Internet and other DoubleZero network contributors
 - Installation of DoubleZero software on the DZD
@@ -15,7 +15,7 @@ As a network contributor, the simplest way to get started in DoubleZero is by id
 
 Figure 1 highlights the simplest model for contributing bandwidth. A DZD is deployed in each data center, interfacing with the network contributor’s internal network to provide DoubleZero WAN connectivity. This is complemented by local Internet, typically a Direct Internet Access (DIA) solution, that is used as on-ramps for DoubleZero Users. While it is expected that DIA will be the preferred option for facilitating access to users of DoubleZero, numerous connectivity models are possible e.g. physical cabling to servers, network fabric extension, etc. We refer to these options as Choose Your Own Adventure (CYOA), providing the contributor flexibility to connect local or remote users in a way that best fits their internal network policies. 
 
-As with any network, reachability is a fundamental part of the architecture and network contributors cannot live in isolation. As such, the DZD MUST have a link to a DoubleZero Exchange to create a contiguous network between participants.
+As with any network, reachability is a fundamental part of the architecture as network contributors cannot live in isolation. As such, the DZD MUST have a link to a DoubleZero Exchange to create a contiguous network between participants.
 
 <figure markdown="span">
   ![Image title](images/figure1.png){ width="800" }
@@ -163,7 +163,7 @@ Note that quantities reflect two data centers' equipment, i.e. the total require
 | Public IPv4  | /29               | Yes            | Must be routable via DIA. We may eliminate the need for this over time. |
 
 ### Indicative Hardware Requirements - 10Gbps Bandwidth Contribution
-Note that quantities reflect two data center's equipment i.e. the total required hardware necessary to deploy 1 bandwidth contribution.
+Note that quantities reflect two data centers' equipment i.e. the total required hardware necessary to deploy 1 bandwidth contribution.
 
 #### Function & Port Requirements
 
@@ -210,7 +210,7 @@ Note that quantities reflect two data center's equipment i.e. the total required
 | Public IPv4  | /29               | Yes            | Must be routable via DIA. We may eliminate the need for this over time. |
 
 ### Indicative Hardware Requirements - 1Gbps Bandwidth Contribution
-Note that quantities reflect two data center's equipment i.e. the total required hardware necessary to deploy 1 bandwidth contribution.
+Note that quantities reflect two data centers' equipment i.e. the total required hardware necessary to deploy 1 bandwidth contribution.
 
 #### Function & Port Requirements
 
