@@ -114,8 +114,8 @@ While reusing available capacity will be attractive to many network contributors
 This option is attractive as it ensures dedicated bandwidth for DoubleZero, is simple operationally and ensure complete segmentation from any other network services. This option will have the highest OPEX increase and new service contracts with 3rd party carriers.
 
 ## Install Guide
-### Indicative Hardware Requirements - 100Gbps Bandiwdth Contribution
-Note that quanitites reflect two data center's equipment i.e. the total required hardware necessary to deploy 1 bandwidth contribution.
+### Indicative Hardware Requirements - 100Gbps Bandwidth Contribution
+Note that quantities reflect two data center's equipment i.e. the total required hardware necessary to deploy 1 bandwidth contribution.
 
 ```
 *All FPGAs are subject to final testing.  10G and 1G contributions can be supported using Arista 7130LBR switches with inbuilt dual Virtex® UltraScale+™ FPGAs.
@@ -136,7 +136,7 @@ Note that quanitites reflect two data center's equipment i.e. the total required
 | Make     | Model            | Part Number           | DZ Requirement | QTY | Note |
 |----------|-----------------|----------------------|----------------|-----|-----------------------------------------------------------|
 | AMD*      | C1100*           | V-C1100-P00G-PQ-G*    | Yes            | 4   |                                                           |
-| Bittware* | TeraBox 140EB*  | terabox-140eb*       | Yes            | 2   | Chassis for FPGA card (provides power only)                 |
+| LDA* | Unity*  | Unity*       | Yes            | 2   | Chassis for FPGA card (provides power only)                 |
 | Arista   | 7280CR3A        | DCS-7280CR3A-32S    | Yes            | 2   | Alternatives may be possible if lead times are challenging. |
 
 ---
@@ -164,8 +164,8 @@ Note that quanitites reflect two data center's equipment i.e. the total required
 |--------------|-------------------|----------------|----------------------------------------------------------|
 | Public IPv4  | /29               | Yes            | Must be routable via DIA. We may eliminate the need for this over time. |
 
-### Indicative Hardware Requirements - 10Gbps Bandiwdth Contribution
-Note that quanitites reflect two data center's equipment i.e. the total required hardware necessary to deploy 1 bandwidth contribution.
+### Indicative Hardware Requirements - 10Gbps Bandwidth Contribution
+Note that quantities reflect two data center's equipment i.e. the total required hardware necessary to deploy 1 bandwidth contribution.
 
 #### Function & Port Requirements
 
@@ -184,7 +184,7 @@ Note that quanitites reflect two data center's equipment i.e. the total required
 | Make     | Model            | Part Number           | DZ Requirement | QTY | Note |
 |----------|-----------------|----------------------|----------------|-----|-----------------------------------------------------------|
 | AMD*      | C1100*           | V-C1100-P00G-PQ-G*    | Yes            | 4   |                                                           |
-| Bittware* | TeraBox 140EB*  | terabox-140eb*       | Yes            | 2   | Chassis for FPGA card (provides power only)                 |
+| LDA* | Unity*  | Unity*       | Yes            | 2   | Chassis for FPGA card (provides power only)                 |
 | Arista   | 7280CR3A        | DCS-7280CR3A-32S    | Yes            | 2   | Alternatives may be possible if lead times are challenging. |
 
 ---
@@ -211,8 +211,8 @@ Note that quanitites reflect two data center's equipment i.e. the total required
 |--------------|-------------------|----------------|----------------------------------------------------------|
 | Public IPv4  | /29               | Yes            | Must be routable via DIA. We may eliminate the need for this over time. |
 
-### Indicative Hardware Requirements - 1Gbps Bandiwdth Contribution
-Note that quanitites reflect two data center's equipment i.e. the total required hardware necessary to deploy 1 bandwidth contribution.
+### Indicative Hardware Requirements - 1Gbps Bandwidth Contribution
+Note that quantities reflect two data center's equipment i.e. the total required hardware necessary to deploy 1 bandwidth contribution.
 
 #### Function & Port Requirements
 
@@ -231,7 +231,7 @@ Note that quanitites reflect two data center's equipment i.e. the total required
 | Make     | Model            | Part Number           | DZ Requirement | QTY | Note |
 |----------|-----------------|----------------------|----------------|-----|-----------------------------------------------------------|
 | AMD*      | C1100*           | V-C1100-P00G-PQ-G*    | Yes            | 4   |                                                           |
-| Bittware* | TeraBox 140EB*  | terabox-140eb*       | Yes            | 2   | Chassis for FPGA card (provides power only)                 |
+| LDA* | Unity*  | Unity*       | Yes            | 2   | Chassis for FPGA card (provides power only)                 |
 | Arista   | 7280CR3A        | DCS-7280CR3A-32S    | Yes            | 2   | Alternatives may be possible if lead times are challenging. |
 
 ---
@@ -256,7 +256,7 @@ Note that quanitites reflect two data center's equipment i.e. the total required
 
 | Make   | Model         | Part Number     | DZ Requirement | QTY | Note |
 |--------|-------------|----------------|----------------|-----|-------------------------------------------------------------|
-| Arista | 1000BASE-LX (Rate Adapting) | SFP-10G-RA-1G-LX    | No | 2   | Cabling and optic choice available at contributor's discretion. |
+| Arista | 1000BASE-LX (Rate Adapting) | SFP-10G-RA-1G-LX    | No | 2   | Cabling and optic choice available at contributor's discretion (Requires QSA). |
  Finisar | DynamiX QSA™ | MAM1Q00A-QSA   | No             | 2   | Cabling and optic choice available at contributor's discretion. |
 
 ---
