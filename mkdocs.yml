@@ -14,8 +14,11 @@ theme:
     - header.autohide
 nav:
   - Welcome: index.md
-  - Connect: connect.md
   - Contribute: contribute.md
+  - testnet-beta:
+    - Connect: connect.md
+    - Disconnect: disconnect.md
+    - Run a Solana Validator: solana-validator.md
   - FAQs: faqs.md
 markdown_extensions:
   - admonition
