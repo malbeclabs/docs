@@ -117,7 +117,7 @@ This option is attractive as it ensures dedicated bandwidth for DoubleZero, is s
 ### Indicative Hardware Requirements - 100Gbps Bandwidth Contribution
 Note that quantities reflect two data centers' equipment, i.e. the total required hardware necessary to deploy 1 bandwidth contribution.
 
-??? warning "*All FPGAs are subject to final testing.  10G and 1G contributions can be supported using Arista 7130LBR switches with inbuilt dual Virtex® UltraScale+™ FPGAs."
+??? warning "*All FPGAs are subject to final testing.  10G contributions can be supported using Arista 7130LBR switches with inbuilt dual Virtex® UltraScale+™ FPGAs."
 
 #### Function & Port Requirements
 
@@ -201,62 +201,6 @@ Note that quantities reflect two data centers' equipment i.e. the total required
 |--------|-------------|----------------|----------------|-----|-------------------------------------------------------------|
 | Arista | 10GBASE-LR | SFP-10G-LR    | No             | 4   | Cabling and optic choice available at contributor's discretion. |
  Finisar | DynamiX QSA™ | MAM1Q00A-QSA   | No             | 4   | Cabling and optic choice available at contributor's discretion. |
----
-
-#### IP Addressing
-
-| IP Addressing | Minimum Subnet Size | DZ Requirement | Note |
-|--------------|-------------------|----------------|----------------------------------------------------------|
-| Public IPv4  | /29               | Yes            | Must be routable via DIA. We may eliminate the need for this over time. |
-
-### Indicative Hardware Requirements - 1Gbps Bandwidth Contribution
-Note that quantities reflect two data centers' equipment i.e. the total required hardware necessary to deploy 1 bandwidth contribution.
-
-#### Function & Port Requirements
-
-| Function                    | Port Speed | DZ Requirement | QTY | Note |
-|-----------------------------|------------|----------------|-----|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Private Bandwidth           | 1G         | Yes            | 1   |                                                                                                                                                                   |
-| Direct Internet Access (DIA) | 10G        | Yes            | 2   |                                                                                                                                                                   |
-| DoubleZero eXchange (DZX)   | 100G       | Yes*           | 1   | Must be supported once more than 3 providers operate in the same metro area; preceding this, cross-connects or other peering arrangements can be used to interconnect to other providers. |
-| Management                  |            | No             | 1   | Determined by contributor's own internal management policies.                                                                                                    |
-| Console                     |            | No             | 1   | Determined by contributor's own internal management policies.                                                                                                    |
-
----
-
-#### Hardware
-
-| Make     | Model            | Part Number           | DZ Requirement | QTY | Note |
-|----------|-----------------|----------------------|----------------|-----|-----------------------------------------------------------|
-| AMD*      | C1100*           | V-C1100-P00G-PQ-G*    | Yes            | 4   |                                                           |
-| LDA* | Unity*  | Unity*       | Yes            | 2   | Chassis for FPGA card (provides power only)                 |
-| Arista   | 7280CR3A        | DCS-7280CR3A-32S    | Yes            | 2   | Alternatives may be possible if lead times are challenging. |
-
----
-
-#### Optics - 100G
-
-| Make   | Model         | Part Number     | DZ Requirement | QTY | Note |
-|--------|-------------|----------------|----------------|-----|-------------------------------------------------------------|
-| Arista | 100GBASE-LR | QSFP-100G-LR    | No             | 14  | Cabling and optic choice available at contributor's discretion. 100G required to connect FPGAs. |
-
----
-
-#### Optics - 10G
-
-| Make   | Model         | Part Number     | DZ Requirement | QTY | Note |
-|--------|-------------|----------------|----------------|-----|-------------------------------------------------------------|
-| Arista | 10GBASE-LR | SFP-10G-LR   | No             | 2   | Cabling and optic choice available at contributor's discretion. |
-
----
-
-#### Optics - 1G
-
-| Make   | Model         | Part Number     | DZ Requirement | QTY | Note |
-|--------|-------------|----------------|----------------|-----|-------------------------------------------------------------|
-| Arista | 1000BASE-LX (Rate Adapting) | SFP-10G-RA-1G-LX    | No | 2   | Cabling and optic choice available at contributor's discretion (Requires QSA). |
- Finisar | DynamiX QSA™ | MAM1Q00A-QSA   | No             | 2   | Cabling and optic choice available at contributor's discretion. |
-
 ---
 
 #### IP Addressing
