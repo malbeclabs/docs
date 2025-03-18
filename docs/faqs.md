@@ -63,7 +63,7 @@
 
 ## Where
 
-**GitHub software location:** 
+**GitHub software location:**
 
 - Open sourcing is on our near term roadmap but is not done.  In the mean time, packaged versions of the software are hosted in our apt/yum repos hosted by Cloudsmith.  We recorgnize many users will want to compile this software from the source code and will open our repo to the public as soon as we're able.
 
@@ -95,7 +95,7 @@
 
 **How do I fail over to my exiting Internet connection if I am having problems with my DZ connection?**
 
-- The answer depends on what your next step is.  If you wish to leave DoubleZero altogether, use `doublezero disconnect` … if you expect to reconnect after DoubleZero is repaired, you can simply top `doublezerod` using `systemctl stop doublezerod`In either case you need to restart the validator process and bind to a new IP address that you wish to use.  This is because none of the existing Solana validators client have multi-homing awareness but we’re working with both Anza and Firedancer to add this support.
+- The answer depends on what your next step is.  If you wish to leave DoubleZero altogether, use `doublezero disconnect` … if you expect to reconnect after DoubleZero is repaired, you can simply stop `doublezerod` using `systemctl stop doublezerod`.  In either case you need to restart the validator process and bind to a new IP address that you wish to use.  This is because none of the existing Solana validators client have multi-homing awareness but we’re working with both Anza and Firedancer to add this support.
 - We intend to provide docs for the failover process for each validator client stack which can be integrated into your ops processes
 
 **Will I run the same validator client as I am running now?**
