@@ -20,9 +20,15 @@ In Jito and Agave:
 !!! note inline end
     If you do not manually disconnect, you will be force-disconnected prior to the maintenance starting and any attempts to generate new user contracts will be rejected.
 
-- Using doublezero package version 0.0.22, disconnect your user tunnel using `doublezero disconnect` any time prior to 2025-05-06 15:00:00 UTC
+Using doublezero package version 0.0.22, disconnect your user tunnel any time prior to 2025-05-06 15:00:00 UTC
 
+```
+doublezero disconnect
+```
 
+### &#x1F6A7; Stop here until after maintenance concludes
+
+At this point, your validator should be up and running on the public internet.  Once the maintenance concludes, you will be notified by the DoubleZero Foundation to proceed with the client side upgrade and reconnection.
 
 
 ### Upgrade the DoubleZero client and CLI
