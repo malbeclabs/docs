@@ -6,7 +6,8 @@ theme:
   faviron: assets/favicon.png
   palette:
     scheme: slate
-    primary: deep orange
+    primary: grey
+    accent: custom
   features:
     - content.code.copy
     - navigation.indexes
@@ -17,6 +18,8 @@ nav:
   - Connect: connect.md
   - Contribute: contribute.md
   - FAQs: faqs.md
+  - Notices:
+    - notices/20250506-testnet-upgrade.md
 markdown_extensions:
   - admonition
   - pymdownx.details
