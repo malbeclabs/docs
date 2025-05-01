@@ -65,6 +65,32 @@ Restart doublezerod:
 sudo systemctl restart doublezerod.service
 ```
 
+### Check that doublezerod has re-discovered DZ devices
+
+Before connecting, be sure `doublezerod` has discovered and pinged each of the available DZ testnet switches:
+
+```
+doublezero latency
+```
+
+Sample output:
+```
+$ doublezero latency
+ pubkey                                       | name      | ip             | min      | max      | avg      | reachable 
+ 96AfeBT6UqUmREmPeFZxw6PbLrbfET51NxBFCCsVAnek | la2-dz01  | 207.45.216.134 |   0.38ms |   0.45ms |   0.42ms | true 
+ CCTSmqMkxJh3Zpa9gQ8rCzhY7GiTqK7KnSLBYrRriuan | ny5-dz01  | 64.86.249.22   |  68.81ms |  68.87ms |  68.85ms | true 
+ BX6DYCzJt3XKRc1Z3N8AMSSqctV6aDdJryFMGThNSxDn | ty2-dz01  | 180.87.154.78  | 112.16ms | 112.25ms | 112.22ms | true 
+ 55tfaZ1kRGxugv7MAuinXP4rHATcGTbNyEKrNsbuVLx2 | ld4-dz01  | 195.219.120.66 | 138.15ms | 138.21ms | 138.17ms | true 
+ 3uGKPEjinn74vd9LHtC4VJvAMAZZgU9qX9rPxtc6pF2k | ams-dz001 | 195.219.138.50 | 141.84ms | 141.97ms | 141.91ms | true 
+ 65DqsEiFucoFWPLHnwbVHY1mp3d7MNM2gNjDTgtYZtFQ | frk-dz01  | 195.219.220.58 | 143.52ms | 143.62ms | 143.58ms | true 
+ 9uhh2D5c14WJjbwgM7BudztdoPZYCjbvqcTPgEKtTMZE | sg1-dz01  | 180.87.102.98  | 176.66ms | 176.76ms | 176.72ms | true
+```
+
+
+If no devices are returned in the output, wait 10-20 seconds and retry.
+
+
+
 ### Check that you have SOL in your account on the DoubleZero ledger
 
 In order to interact on the DoubleZero ledger, you need SOL for transaction fees.  If your balance is 0, contact the DoubleZero Foundation.
