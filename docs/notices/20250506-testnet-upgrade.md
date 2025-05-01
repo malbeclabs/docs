@@ -1,6 +1,6 @@
 ## Background
 
-On May 6, 2025 at approximately 15:00 UTC the DoubleZero testnet-beta network will undergo service-impacting maintenance to provide new functionality to users.  We generally aim to conduct maintenance without impacting user traffic.  However, since this maintenance will cause all DoubleZero users to change their IP address, there is no practical way to make this change without a brief outage.
+On May 6, 2025 at approximately 15:00 UTC, the DoubleZero Foundation and Malbec Labs will perform service-impacting maintenance on the DoubleZero testnet-beta network so we can provide new functionality to users.  We generally aim to conduct maintenance without impacting user traffic.  However, since this maintenance will cause all DoubleZero users to change their IP addresses, there is no practical way to make this change without a brief outage.
 
 In order to minimize downtime to your Solana testnet and/or Solana mainnet-beta validator nodes that are currently connected to DoubleZero, please follow the steps below.  Most of the work can happen at any point before the maintenance event.
 
@@ -80,7 +80,7 @@ Provisioning: status: ok
 /  Connected  
 ```
 
-Connecting in IBRL mode does not require restarting the Jito or Agave clients because your public IP is now be advertised to DoubleZero so that other users on DoubleZero will route via the DoubleZero network when sending to your validator.  Likewise, the routes received from DoubleZero and installed in the kernel routing table cause your validator to send to other DoubleZero-enabled validators over the DoubleZero network.
+Connecting in IBRL mode does not require restarting the Jito or Agave clients because your public IP will now be advertised to DoubleZero so that other users on DoubleZero will route via the DoubleZero network when sending to your validator.  Likewise, the routes received from DoubleZero and installed in the kernel routing table cause your validator to send to other DoubleZero-enabled validators over the DoubleZero network.
 
 Confirm connectivity by running:
 
