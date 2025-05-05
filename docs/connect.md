@@ -149,7 +149,7 @@ Copy the `id.json` you want to use with DoubleZero to the doublezero config dire
 sudo cp </path/to/id.json> ~/.config/doublezero/
 ```
 
-For DoubleZero testnet, DoubleZero's smartcontract is hosted in a Solana Permissioned Environment (SPE) hosted on rpcpool.com. In order to interact with the DoubleZero ledger, you need SOL for transaction fees. If your balance is 0, contact the DoubleZero Foundation.
+For DoubleZero testnet, DoubleZero's smartcontract is deployed in a Solana Permissioned Environment (SPE) hosted on rpcpool.com. In order to interact with the DoubleZero ledger, you need SOL for transaction fees. If your balance is 0, contact the DoubleZero Foundation.
 
 ```
 doublezero balance
