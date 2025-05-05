@@ -58,7 +58,7 @@
 - A Solana account for use with DoubleZero, with a balance of at least 1 SOL - refer to Solana docs
 
 ## Steps
-### 1. Set up apt repo
+### 1. Set up package repo
 DoubleZero is an open source project hosted on GitHub. Releases are built into binaries that are pushed to Cloudsmith.io, which distributes the binaries for both Debian-flavor and RedHat-flavor Linux systems. Add the repository to your system using the appropriate commands below for your operating system:
 
 Ubuntu / Debian:
@@ -84,24 +84,24 @@ Now that we have the repo set up, we can install DoubleZero and start the Double
 
 First time install:
 ```
-sudo apt-get install doublezero=0.0.22-1
+sudo apt-get install doublezero=0.1.0-1
 ```
 
 Upgrade:
 ```
-sudo apt upgrade doublezero=0.0.22-1
+sudo apt upgrade doublezero=0.1.0-1
 ```
 
 #### 2.2 Rocky / RHEL
 
 First time install:
 ```
-sudo yum install doublezero-0.0.22
+sudo yum install doublezero-0.1.0
 ```
 
 Upgrade:
 ```
-sudo yum update doublezero-0.0.22
+sudo yum update doublezero-0.1.0
 ```
 
 ### 3. Check the status of `doublezerod`
@@ -137,9 +137,10 @@ doublezero config get
 Expected result:
 ```
 Config File: /home/ubuntu/.config/doublezero/cli/config.yml
-RPC URL: https://api.devnet.solana.com
-WebSocket URL: wss://api.devnet.solana.com
-Keypair Path: "/home/ubuntu/.config/doublezero/id.json" 
+RPC URL: https://doublezerolocalnet.rpcpool.com/f50e62d0-06e7-410e-867e-6873e358ed30
+WebSocket URL: wss://doublezerolocalnet.rpcpool.com/f50e62d0-06e7-410e-867e-6873e358ed30/whirligig (computed)
+Keypair Path: /home/ubuntu/.config/doublezero/id.json
+Program ID: DZtnuQ839pSaDMFG5q1ad2V95G82S5EC4RrB3Ndw2Heb
 ```
 
 Verify your balance:
@@ -157,34 +158,70 @@ Check your pubkey:
 ```
 doublezero address
 ```
-
 If your pubkey is not in the allowlist, please reach out to the [DoubleZero Foundation](https://doublezero.xyz).
 
-### 8. Connect
-!!! note inline end
-    Replace [MY_CLIENT_IP] with your server's publicly routable IP address which you can obtain using `ip address show`
+### 8. Check that doublezerod has discovered DZ devices
+Before connecting, be sure `doublezerod` has discovered and pinged each of the available DZ testnet switches:
+```
+doublezero latency
+```
+Sample output:
+```
+$ doublezero latency
+ pubkey                                       | name      | ip             | min      | max      | avg      | reachable 
+ 96AfeBT6UqUmREmPeFZxw6PbLrbfET51NxBFCCsVAnek | la2-dz01  | 207.45.216.134 |   0.38ms |   0.45ms |   0.42ms | true 
+ CCTSmqMkxJh3Zpa9gQ8rCzhY7GiTqK7KnSLBYrRriuan | ny5-dz01  | 64.86.249.22   |  68.81ms |  68.87ms |  68.85ms | true 
+ BX6DYCzJt3XKRc1Z3N8AMSSqctV6aDdJryFMGThNSxDn | ty2-dz01  | 180.87.154.78  | 112.16ms | 112.25ms | 112.22ms | true 
+ 55tfaZ1kRGxugv7MAuinXP4rHATcGTbNyEKrNsbuVLx2 | ld4-dz01  | 195.219.120.66 | 138.15ms | 138.21ms | 138.17ms | true 
+ 3uGKPEjinn74vd9LHtC4VJvAMAZZgU9qX9rPxtc6pF2k | ams-dz001 | 195.219.138.50 | 141.84ms | 141.97ms | 141.91ms | true 
+ 65DqsEiFucoFWPLHnwbVHY1mp3d7MNM2gNjDTgtYZtFQ | frk-dz01  | 195.219.220.58 | 143.52ms | 143.62ms | 143.58ms | true 
+ 9uhh2D5c14WJjbwgM7BudztdoPZYCjbvqcTPgEKtTMZE | sg1-dz01  | 180.87.102.98  | 176.66ms | 176.76ms | 176.72ms | true
+```
+If no devices are returned in the output, wait 10-20 seconds and retry.
 
+### 9. Connect
 This step signs a doublezero smart contract and connects the system to the lowest-latency doublezero node available.
 ```
-doublezero connect --client-ip [MY_CLIENT_IP]
+doublezero connect ibrl
 ```
-
+You should see output similar to the following:
+```
+$ doublezero connect ibrl
+DoubleZero Service Provisioning
+🔗  Start Provisioning User...
+    Get your Public IP: <Your public IP> (If you want to specify a particular address, use the argument --client-ip x.x.x.x)
+🔍  Provisioning User for IP: <Your public IP>
+    Creating an account for the IP: <Your public IP>
+    The Device has been selected: <selected DoubleZero device IP> 
+    User activated with dz_ip: <Your public IP>
+Provisioning: status: ok
+/  Connected                                                                                                           
+```
 Congratulations, your DoubleZero connection is up and running! We hope. Let's run a few more commands to make sure everything is working.
 
-### 9. Verify tunnel interface
-!!! note end inline 
-    In the future, verification will be provided by the `doublezero status` CLI command.
+### 10. Verify doublezero tunnel
 ```
-ip link show doublezero0
+doublezero status
 ```
-Expected result: Interface details like IP address
-
-Error result: `Device "doublezero0" does not exist`
-
-### 10. Verify routing link address in routing table
+Expected result:
+```
+Tunnel status: up
+Name: doublezero0
+Tunnel src: <Your public IP>
+Tunnel dst: <Doublezero IP>
+Doublezero IP: <Your public IP>
+Last Session Update: <Timestamp>
+```
+### 11. Verify routing link address in routing table
 ```
 ip route show dev doublezero0
 ```
-Expected result: `169.254.0.12/31 proto kernel scope link src 169.254.0.13`
+You should see a variable number routes marked with "proto bgp", and a single 169.254/31 route. 
+```
+$ ip route show dev doublezero0
+<DZ User X's IP> via 169.254.0.2 proto bgp src <DZ User X's IP>
+<DZ User Y's IP> via 169.254.0.2 proto bgp src <DZ User Y's IP>
+169.254.0.2/31 proto kernel scope link src 169.254.0.3
+```
 
-Note that the actual IP assignments will differ, but all addresses should be assigned from the link local range as originally proposed in RFC3927.
+For the 169.254/31 route, your actual IP assignments will differ, but all addresses will be assigned from the link local range as defined in RFC3927.
