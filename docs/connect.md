@@ -51,11 +51,19 @@
     This Agreement may not be transferred or assigned by User without the prior written consent of DZF. DZF may freely assign this Agreement. All notices required to be sent hereunder shall be sent by email (to DZF: legal@doublezero.xyz) and deemed received the day after sending (with transmission confirmed). If any provision of this Agreement is held to be invalid or unenforceable, the remaining provisions of this Agreement will remain in full force and effect. The waiver by either party of any default or breach of this Agreement shall not constitute a waiver of any other or subsequent default or breach. Neither party shall be liable for any delay or failure in performance due to acts of God, earthquakes, shortages of supplies, transportation difficulties, labor disputes, riots, war, fire, epidemics, and similar occurrences beyond its control, whether or not foreseeable. This Agreement together with any attachments constitutes the complete agreement between the parties and supersedes all prior or contemporaneous agreements or representations, written or oral, concerning the subject matter herein. This Agreement may not be modified or amended except in writing signed by a duly authorized representative of each party.
 
 ## Prerequisites
+!!! warning inline end
+    DoubleZero needs to be installed directly on your validator host, not in a container.
 - x86_64 server running Ubuntu or Rocky (doublezero uses minimal system resources and should run with no issue on any modern bare metal machine)
+- If you are running Firedancer, you will need to add the following to your `config.toml` file. (No additional configuration is required for Agave and Jito.)
+```
+[development.net]
+    provider = "socket"
+```
 - Internet connectivity with a public IP address (no NAT)
 - Your host firewall must allow inbound GRE (IP protocol 47) and BGP (TCP port 179).
 - Solana CLI (optional)
-- A Solana account for use with DoubleZero, with a balance of at least 1 SOL - refer to Solana docs
+
+### Validator configuration
 
 ## Steps
 ### 1. Set up package repo
@@ -75,7 +83,7 @@ curl -1sLf \
 ```
 
 ### 2. Install or upgrade doublezero
-!!! tip inline end " "
+!!! tip inline end
     After this step you can perform doublezero read operations, such as `doublezero device list`.
 
 Now that we have the repo set up, we can install DoubleZero and start the DoubleZero daemon process (doublezerod) using the appropriate commands below for your operating system:
@@ -121,15 +129,7 @@ sudo journalctl -u doublezerod
 mkdir -p ~/.config/doublezero
 ```
 
-### 5. Copy your Solana id.json to the doublezero config directory.
-The smart contract program for DoubleZero testnet is installed on Solana devnet. In order to interact with the DoubleZero smart contract your Solana devnet will need >= 0 SOL. In the steps below please ensure you're using a devnet wallet with SOL.
-
-Copy the `id.json` associated with your Solana devnet keypair to the doublezero config directory.
-```
-sudo cp </path/to/id.json> ~/.config/doublezero/
-```
-
-### 6. Verify that doublezero is talking to the correct Solana cluster and verify your balance
+### 5. Verify that doublezero is talking to the correct Solana cluster
 ```
 doublezero config get
 ```
@@ -143,9 +143,22 @@ Keypair Path: /home/ubuntu/.config/doublezero/id.json
 Program ID: DZtnuQ839pSaDMFG5q1ad2V95G82S5EC4RrB3Ndw2Heb
 ```
 
-Verify your balance:
+### 6. Add your Solana id.json to the doublezero config directory and check balance
+Copy the `id.json` you want to use with DoubleZero to the doublezero config directory. 
+```
+sudo cp </path/to/id.json> ~/.config/doublezero/
+```
+
+For DoubleZero testnet, DoubleZero's smartcontract is hosted in a Solana Permissioned Environment (SPE) hosted on rpcpool.com. In order to interact with the DoubleZero ledger, you need SOL for transaction fees. If your balance is 0, contact the DoubleZero Foundation.
+
 ```
 doublezero balance
+```
+
+Sample output:
+```
+$ doublezero balance
+1.9981754 SOL
 ```
 
 ### 7. Contact DZF to have your pubkey added to the allowlist
