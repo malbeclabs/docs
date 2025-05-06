@@ -54,14 +54,14 @@
 !!! warning inline end
     DoubleZero needs to be installed directly on your validator host, not in a container.
 - x86_64 server running Ubuntu or Rocky (doublezero uses minimal system resources and should run with no issue on any modern bare metal machine)
-- If you are running Firedancer, you will need to add the following to your `config.toml` file. (No additional configuration is required for Agave and Jito.)
+- Internet connectivity with a public IP address (no NAT)
+- Your host firewall must allow inbound GRE (IP protocol 47) and BGP (TCP port 179).
+- Solana CLI (optional)
+- If you are running Firedancer, you will need to add the following to your `config.toml` file on version v0.502.20212 or higher. (No additional configuration is required for Agave and Jito.)
 ```
 [development.net]
     provider = "socket"
 ```
-- Internet connectivity with a public IP address (no NAT)
-- Your host firewall must allow inbound GRE (IP protocol 47) and BGP (TCP port 179).
-- Solana CLI (optional)
 
 ### Validator configuration
 
@@ -84,7 +84,7 @@ curl -1sLf \
 
 ### 2. Install or upgrade doublezero
 !!! tip inline end
-    After this step you can perform doublezero read operations, such as `doublezero device list`.
+    After this step you can perform doublezero read operations, such as `doublezero user list`.
 
 Now that we have the repo set up, we can install DoubleZero and start the DoubleZero daemon process (doublezerod) using the appropriate commands below for your operating system:
 
@@ -149,7 +149,12 @@ Copy or link the `id.json` you want to use with DoubleZero to the doublezero con
 sudo cp </path/to/id.json> ~/.config/doublezero/
 ```
 
-For DoubleZero testnet, DoubleZero's smartcontract is deployed in a Solana Permissioned Environment (SPE) hosted on rpcpool.com. In order to interact with the DoubleZero ledger, you need SOL for transaction fees. If your balance is 0, contact the DoubleZero Foundation.
+Check that you've copied or linked the expected pubkey. 
+```
+doublezero address
+```
+
+For DoubleZero testnet, DoubleZero's smartcontract is deployed in a Solana Permissioned Environment (SPE) hosted on rpcpool.com. In order to interact with the DoubleZero ledger, you need SOL for transaction fees. If you find a zero balance, please see the next step. 
 
 ```
 doublezero balance
@@ -163,15 +168,12 @@ $ doublezero balance
 
 ### 7. Contact DZF to have your pubkey added to the allowlist
 !!! note inline end
-	To check if your pubkey is already in the allowlist, use `doublezero user allowlist get`
+	To check if your pubkey is already in the allowlist, use `doublezero user allowlist list | grep <your_pubkey>`
 
 DoubleZero testnet is currently in a permissioned mode.  In order to connect, your pubkey must be present in the allowlist which is managed by the DoubleZero Foundation.
 
-Check your pubkey:
-```
-doublezero address
-```
 If your pubkey is not in the allowlist, please reach out to the [DoubleZero Foundation](https://doublezero.xyz).
+Once allowlisted, you will also notice that the ```doublezero balance``` is non-zero. If you still see a zero balance please reach out to the [DoubleZero Foundation](https://doublezero.xyz).
 
 ### 8. Check that doublezerod has discovered DZ devices
 Before connecting, be sure `doublezerod` has discovered and pinged each of the available DZ testnet switches:
