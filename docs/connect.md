@@ -144,7 +144,7 @@ Program ID: DZtnuQ839pSaDMFG5q1ad2V95G82S5EC4RrB3Ndw2Heb
 ```
 
 ### 6. Add your Solana id.json to the doublezero config directory and check balance
-Copy the `id.json` you want to use with DoubleZero to the doublezero config directory. 
+Copy or link the `id.json` you want to use with DoubleZero to the doublezero config directory. 
 ```
 sudo cp </path/to/id.json> ~/.config/doublezero/
 ```
