@@ -59,7 +59,7 @@
 - Solana CLI (optional)
 - If you are running Firedancer, you will need to add the following to your `config.toml` file on version v0.502.20212 or higher. (No additional configuration is required for Agave and Jito.)
 ```
-[development.net]
+[net]
     provider = "socket"
 ```
 
