@@ -23,7 +23,7 @@
 
     <span style="font-size:14px;">2.2 ^^Restrictions^^. </span>User may use the Solution in accordance with this Agreement from the Effective Date until terminated by DZF (the "**Evaluation Period**"). User understands that any rights to use the Solution beyond the Evaluation Period will be subject to a separate commercial agreement between the parties with respect thereto, including the payment of fees. User shall not, and shall not permit any third party to: (i) modify or create any derivative works based on the Solution or any portion thereof; (ii) reproduce the Solution except as expressly permitted by this Agreement; (iii) sublicense, distribute, sell, lend, rent, lease, transfer, or grant any rights in or to all or any portion of the Solution or provide access to the Solution to third parties, on a service bureau basis or otherwise, except as an offering of the Information Services through or in connection with User's platform or product and not on a standalone basis; or (iv) use the Solution other than as provided herein.
 
-    <span style="font-size:14px;">2.3 ^^Ownership^^.</span> DZF retains all right, title and interest, including intellectual property rights, in and to the Solution. 
+    <span style="font-size:14px;">2.3 ^^Ownership^^.</span> DZF retains all right, title and interest, including intellectual property rights, in and to the Solution.
 
     <span style="font-size:14px;">3 FEEDBACK.</span>
     DZF may periodically request that User provide, and User agrees to provide to DZF, feedback regarding the use, operation, and functionality of the Solution ("Feedback"). User hereby grants DZF a non-exclusive, worldwide, perpetual, irrevocable, royalty-free, fully paid-up, fully sublicensable and transferable right and license to use and incorporate Feedback into any products and services, to make, use, sell, offer for sale, import, and otherwise exploit such products and services, and to otherwise use, copy, distribute, and otherwise exploit the Feedback without restriction.
@@ -39,7 +39,7 @@
 
     <span style="font-size:14px;">6. WARRANTY DISCLAIMER; LIMITATION OF LIABILITY.</span>
 
-    <span style="font-size:14px;">6.1 ^^WARRANTY DISCLAIMER^^.</span> THE SOLUTION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. DZF MAKES NO WARRANTIES, WHETHER EXPRESS, IMPLIED, STATUTORY OR OTHERWISE WITH RESPECT TO THE SOLUTION AND DOCUMENTATION INCLUDING THEIR CONDITION, CONFORMITY TO ANY REPRESENTATION OR DESCRIPTION, AND DZF SPECIFICALLY DISCLAIMS ALL IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT. 
+    <span style="font-size:14px;">6.1 ^^WARRANTY DISCLAIMER^^.</span> THE SOLUTION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. DZF MAKES NO WARRANTIES, WHETHER EXPRESS, IMPLIED, STATUTORY OR OTHERWISE WITH RESPECT TO THE SOLUTION AND DOCUMENTATION INCLUDING THEIR CONDITION, CONFORMITY TO ANY REPRESENTATION OR DESCRIPTION, AND DZF SPECIFICALLY DISCLAIMS ALL IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.
 
     <span style="font-size:14px;">6.2 ^^LIMITATION OF LIABILITY^^.</span>
     EXCEPT FOR A BREACH OF SECTIONS 2.1, 2.2, AND 5, IN NO EVENT SHALL EITHER PARTY BE LIABLE TO THE OTHER FOR INDIRECT, INCIDENTAL, SPECIAL OR OTHER CONSEQUENTIAL DAMAGES, INCLUDING WITHOUT LIMITATION DAMAGES FOR LOSS OF PROFITS OR USE OR LOSS OF DATA, INCURRED BY YOU OR ANY THIRD PARTY, ARISING OUT OF OR RELATED TO THIS AGREEMENT WHETHER IN AN ACTION IN CONTRACT, TORT, OR OTHERWISE, EVEN IF THE OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. IN NO EVENT SHALL DZF'S AGGREGATE LIABILITY ARISING OUT OF OR RELATED TO THIS AGREEMENT EXCEED ONE HUNDRED DOLLARS (\$100), WHETHER AN ACTION IN CONTRACT, TORT, OR OTHERWISE. **THE FOREGOING LIMITATIONS WILL APPLY NOTWITHSTANDING THE FAILURE OF ESSENTIAL PURPOSE OF ANY LIMITED REMEDY HEREIN.** THE PARTIES AGREE THAT THE FOREGOING LIMITATIONS REPRESENT A REASONABLE ALLOCATION OF RISK UNDER THIS AGREEMENT.
@@ -144,17 +144,17 @@ Program ID: DZtnuQ839pSaDMFG5q1ad2V95G82S5EC4RrB3Ndw2Heb
 ```
 
 ### 6. Add your Solana id.json to the doublezero config directory and check balance
-Copy or link the `id.json` you want to use with DoubleZero to the doublezero config directory. 
+Copy or link the `id.json` you want to use with DoubleZero to the doublezero config directory.
 ```
 sudo cp </path/to/id.json> ~/.config/doublezero/
 ```
 
-Check that you've copied or linked the expected pubkey. 
+Check that you've copied or linked the expected pubkey.
 ```
 doublezero address
 ```
 
-For DoubleZero testnet, DoubleZero's smartcontract is deployed in a Solana Permissioned Environment (SPE) hosted on rpcpool.com. In order to interact with the DoubleZero ledger, you need SOL for transaction fees. If you find a zero balance, please see the next step. 
+For DoubleZero testnet, DoubleZero's smartcontract is deployed in a Solana Permissioned Environment (SPE) hosted on rpcpool.com. In order to interact with the DoubleZero ledger, you need SOL for transaction fees. If you find a zero balance, please see the next step.
 
 ```
 doublezero balance
@@ -183,19 +183,24 @@ doublezero latency
 Sample output:
 ```
 $ doublezero latency
- pubkey                                       | name      | ip             | min      | max      | avg      | reachable 
- 96AfeBT6UqUmREmPeFZxw6PbLrbfET51NxBFCCsVAnek | la2-dz01  | 207.45.216.134 |   0.38ms |   0.45ms |   0.42ms | true 
- CCTSmqMkxJh3Zpa9gQ8rCzhY7GiTqK7KnSLBYrRriuan | ny5-dz01  | 64.86.249.22   |  68.81ms |  68.87ms |  68.85ms | true 
- BX6DYCzJt3XKRc1Z3N8AMSSqctV6aDdJryFMGThNSxDn | ty2-dz01  | 180.87.154.78  | 112.16ms | 112.25ms | 112.22ms | true 
- 55tfaZ1kRGxugv7MAuinXP4rHATcGTbNyEKrNsbuVLx2 | ld4-dz01  | 195.219.120.66 | 138.15ms | 138.21ms | 138.17ms | true 
- 3uGKPEjinn74vd9LHtC4VJvAMAZZgU9qX9rPxtc6pF2k | ams-dz001 | 195.219.138.50 | 141.84ms | 141.97ms | 141.91ms | true 
- 65DqsEiFucoFWPLHnwbVHY1mp3d7MNM2gNjDTgtYZtFQ | frk-dz01  | 195.219.220.58 | 143.52ms | 143.62ms | 143.58ms | true 
+ pubkey                                       | name      | ip             | min      | max      | avg      | reachable
+ 96AfeBT6UqUmREmPeFZxw6PbLrbfET51NxBFCCsVAnek | la2-dz01  | 207.45.216.134 |   0.38ms |   0.45ms |   0.42ms | true
+ CCTSmqMkxJh3Zpa9gQ8rCzhY7GiTqK7KnSLBYrRriuan | ny5-dz01  | 64.86.249.22   |  68.81ms |  68.87ms |  68.85ms | true
+ BX6DYCzJt3XKRc1Z3N8AMSSqctV6aDdJryFMGThNSxDn | ty2-dz01  | 180.87.154.78  | 112.16ms | 112.25ms | 112.22ms | true
+ 55tfaZ1kRGxugv7MAuinXP4rHATcGTbNyEKrNsbuVLx2 | ld4-dz01  | 195.219.120.66 | 138.15ms | 138.21ms | 138.17ms | true
+ 3uGKPEjinn74vd9LHtC4VJvAMAZZgU9qX9rPxtc6pF2k | ams-dz001 | 195.219.138.50 | 141.84ms | 141.97ms | 141.91ms | true
+ 65DqsEiFucoFWPLHnwbVHY1mp3d7MNM2gNjDTgtYZtFQ | frk-dz01  | 195.219.220.58 | 143.52ms | 143.62ms | 143.58ms | true
  9uhh2D5c14WJjbwgM7BudztdoPZYCjbvqcTPgEKtTMZE | sg1-dz01  | 180.87.102.98  | 176.66ms | 176.76ms | 176.72ms | true
 ```
 If no devices are returned in the output, wait 10-20 seconds and retry.
 
 ### 9. Connect
-This step signs a doublezero smart contract and connects the system to the lowest-latency doublezero node available.
+
+This step signs a doublezero smart contract and connects the system to the lowest-latency doublezero node available. DoubleZero has two modes available currently: IBRL and Multicast.
+
+NOTE: As of v0.2.0, only a single tunnel can be provisioned at a time.
+
+#### IBRL Mode
 ```
 doublezero connect ibrl
 ```
@@ -207,31 +212,134 @@ DoubleZero Service Provisioning
     Get your Public IP: <Your public IP> (If you want to specify a particular address, use the argument --client-ip x.x.x.x)
 🔍  Provisioning User for IP: <Your public IP>
     Creating an account for the IP: <Your public IP>
-    The Device has been selected: <selected DoubleZero device IP> 
+    The Device has been selected: <selected DoubleZero device IP>
     User activated with dz_ip: <Your public IP>
 Provisioning: status: ok
-/  Connected                                                                                                           
+/  Connected
 ```
+
+
+#### Multicast Mode
+
+Multicast mode has both a `publisher` and a `subscriber` role. The publisher sends out packets across the network and subscribers are those who receive packets originating from the publisher.
+
+NOTE: As of v0.2.0, a user can be only a subscriber or a publisher. If a user wishes to change their subscription or become a publisher, they'll have to disconnect and reconnect.
+
+##### Publisher
+
+```
+ doublezero --keypair $SOLANA_KEYPAIR connect multicast publisher <multicast_group> --client-ip <client_ip>
+```
+
+You should see output similar to the following:
+```
+
+🔗  Start Provisioning User...
+    Using Public IP: <Your public IP>
+🔍  Provisioning User for IP: <Your public IP>
+    Creating an account for the IP: <Your public IP>
+    The Device has been selected: <selected DoubleZero device IP>
+|  Waiting for user activation..
+    User activated with dz_ip: <Your public IP>
+    Provisioning: status: ok
+/  Connected
+```
+
+You should also notice the `publishers` column count increase by one.
+
+```
+doublezero multicast group list
+```
+
+```
+ account                                      | code | multicast_ip | max_bandwidth | publishers | subscribers | status    | owner
+ 52ieY9ydcJsms5rYMdsYtH6SnpMvWT2GcvAa8UydRdgi | mg01 | <multicast_ip> | 10Gbps        | 1          | 0           | activated | Dc3LFdWwKGJvJcVkXhAr14kh1HS6pN7oCWrvHfQtsHGe
+```
+
+##### Subscriber
+
+```
+  doublezero --keypair $SOLANA_KEYPAIR connect multicast subscriber <multicast_group> --client-ip <client_ip>
+```
+
+You should see output similar to the following:
+
+```
+🔗  Start Provisioning User...
+    Using Public IP: <Your public IP>
+🔍  Provisioning User for IP: <Your public IP>
+    Creating an account for the IP: <Your public IP>
+    The Device has been selected: <selected DoubleZero device IP>
+|  Waiting for user activation...
+    User activated with dz_ip: <Your public IP>
+    Provisioning: status: ok
+/  Connected
+```
+
+You should also see the number of `subscribers` increase by one.
+
+```
+doublezero multicast group list
+```
+
+```
+account                                      | code | multicast_ip   | max_bandwidth | publishers | subscribers | status    | owner
+52ieY9ydcJsms5rYMdsYtH6SnpMvWT2GcvAa8UydRdgi | mg01 | <multicast_ip> | 10Gbps        | 0          | 1           | activated | Dc3LFdWwKGJvJcVkXhAr14kh1HS6pN7oCWrvHfQtsHGe
+```
+
+
 Congratulations, your DoubleZero connection is up and running! We hope. Let's run a few more commands to make sure everything is working.
 
 ### 10. Verify doublezero tunnel
+
+#### IBRL mode
 ```
 doublezero status
 ```
+
 Expected result:
+
 ```
-Tunnel status: up
-Name: doublezero0
-Tunnel src: <Your public IP>
-Tunnel dst: <Doublezero IP>
-Doublezero IP: <Your public IP>
-Last Session Update: <Timestamp>
+ Tunnel status | Last Session Update | Tunnel Name | Tunnel src       | Tunnel dst      | Doublezero IP     | User Type
+ up            | <Timestamp>         | doublezero0 | <Your public IP> | <Doublezero IP> | <Your public IP>  | IBRL
 ```
+
+
+#### Multicast Mode
+
+
+##### Publisher
+```
+doublezero status
+```
+
+Expected result:
+
+```
+ Tunnel status | Last Session Update | Tunnel Name | Tunnel src       | Tunnel dst      | Doublezero IP     | User Type
+ up            | <Timestamp>         | doublezero1 | <Your public IP> | <Doublezero IP> | <Your public IP>  | Multicast
+```
+
+
+##### Subscriber
+```
+doublezero status
+```
+
+Expected result:
+
+```
+ Tunnel status | Last Session Update | Tunnel Name | Tunnel src       | Tunnel dst      | Doublezero IP | User Type
+ up            | <Timestamp>         | doublezero1 | <Your public IP> | <Doublezero IP> |               | Multicast
+```
+
 ### 11. Verify routing link address in routing table
+
+#### IBRL
 ```
 ip route show dev doublezero0
 ```
-You should see a variable number routes marked with "proto bgp", and a single 169.254/31 route. 
+You should see a variable number of routes marked with "proto bgp", and a single 169.254/31 route.
 ```
 $ ip route show dev doublezero0
 <DZ User X's IP> via 169.254.0.2 proto bgp src <DZ User X's IP>
@@ -239,4 +347,29 @@ $ ip route show dev doublezero0
 169.254.0.2/31 proto kernel scope link src 169.254.0.3
 ```
 
-For the 169.254/31 route, your actual IP assignments will differ, but all addresses will be assigned from the link local range as defined in RFC3927.
+#### Multicast
+
+You should see a variable number of routes marked with "proto static", and a single 169.254/31 route.
+
+##### Publisher
+```
+$ ip route show dev doublezero1
+```
+
+```
+169.254.0.0/31 proto kernel scope link src 169.254.0.1
+<multicast_ip> via 169.254.0.0 proto static src 64.86.249.81
+```
+
+##### Subscriber
+
+```
+$ ip route show dev doublezero1
+```
+
+You should see a variable number of routes marked with "proto static", and a single 169.254/31 route. Note that for subscribers, the `src` is empty.
+
+```
+169.254.0.0/31 proto kernel scope link src 169.254.0.1
+<multicast_ip> via 169.254.0.0 proto static
+```
