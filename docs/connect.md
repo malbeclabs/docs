@@ -218,8 +218,8 @@ Provisioning: status: ok
 /  Connected
 ```
 
-
-#### Multicast Mode
+<details>
+<summary>Multicast Mode</summary>
 
 Multicast mode has both a `publisher` and a `subscriber` role. The publisher sends out packets across the network and subscribers are those who receive packets originating from the publisher.
 
@@ -286,7 +286,7 @@ doublezero multicast group list
 account                                      | code | multicast_ip   | max_bandwidth | publishers | subscribers | status    | owner
 52ieY9ydcJsms5rYMdsYtH6SnpMvWT2GcvAa8UydRdgi | mg01 | <multicast_ip> | 10Gbps        | 0          | 1           | activated | Dc3LFdWwKGJvJcVkXhAr14kh1HS6pN7oCWrvHfQtsHGe
 ```
-
+</details>
 
 Congratulations, your DoubleZero connection is up and running! We hope. Let's run a few more commands to make sure everything is working.
 
@@ -305,7 +305,8 @@ Expected result:
 ```
 
 
-#### Multicast Mode
+<details>
+<summary>Multicast Mode</summary>
 
 
 ##### Publisher
@@ -332,6 +333,7 @@ Expected result:
  Tunnel status | Last Session Update | Tunnel Name | Tunnel src       | Tunnel dst      | Doublezero IP | User Type
  up            | <Timestamp>         | doublezero1 | <Your public IP> | <Doublezero IP> |               | Multicast
 ```
+</details>
 
 ### 11. Verify routing link address in routing table
 
@@ -346,10 +348,8 @@ $ ip route show dev doublezero0
 <DZ User Y's IP> via 169.254.0.2 proto bgp src <DZ User Y's IP>
 169.254.0.2/31 proto kernel scope link src 169.254.0.3
 ```
-
-#### Multicast
-
-You should see a variable number of routes marked with "proto static", and a single 169.254/31 route.
+<details>
+<summary>Multicast</summary>
 
 ##### Publisher
 ```
@@ -373,3 +373,4 @@ You should see a variable number of routes marked with "proto static", and a sin
 169.254.0.0/31 proto kernel scope link src 169.254.0.1
 <multicast_ip> via 169.254.0.0 proto static
 ```
+</details>
