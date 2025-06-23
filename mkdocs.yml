@@ -13,9 +13,13 @@ theme:
     - navigation.indexes
     - toc.integrate
     - header.autohide
+    - navigation.expand
 nav:
   - Welcome: index.md
-  - Connect: connect.md
+  - Connect:
+    - Setup: setup.md
+    - Connect IBRL: connect-ibrl.md
+    - Connect Multicast: connect-multicast.md
   - Contribute: contribute.md
   - FAQs: faqs.md
   - Notices:
