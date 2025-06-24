@@ -64,8 +64,6 @@
     provider = "socket"
 ```
 
-### Validator configuration
-
 ## Steps
 ### 1. Set up package repo
 DoubleZero is an open source project hosted on GitHub. Releases are built into binaries that are pushed to Cloudsmith.io, which distributes the binaries for both Debian-flavor and RedHat-flavor Linux systems. Add the repository to your system using the appropriate commands below for your operating system:
