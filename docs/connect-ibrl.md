@@ -56,7 +56,7 @@
 
 Note that connecting in IBRL mode does not require restarting the Jito or Agave clients because your existing public IP is advertised to DoubleZero so that other users on DoubleZero will route via the DoubleZero network when sending to your validator. Likewise, the routes received from DoubleZero and installed in the kernel routing table cause your validator to send to other DoubleZero-enabled validators over the DoubleZero network.
 
-Please follow the [setup](/connect) instructions before proceeding.
+Please follow the [setup](/setup) instructions before proceeding.
 
 !!! note inline end 
     As of v0.2.0, only a single tunnel can be provisioned at a time.

@@ -1,4 +1,4 @@
-# How to connect to DoubleZero in Multicast Mode - for testnet Users
+# How to set up DoubleZero - for testnet Users
 ??? warning "By connecting to the DoubleZero testnet I agree to the terms of the Evaluation Agreement set forth here (click to expand)"
     <span style="font-size:14px;">DoubleZero Testnet</span>
     Evaluation Agreement
@@ -50,127 +50,148 @@
     <span style="font-size:14px;">8. GENERAL PROVISIONS.</span>
     This Agreement may not be transferred or assigned by User without the prior written consent of DZF. DZF may freely assign this Agreement. All notices required to be sent hereunder shall be sent by email (to DZF: legal@doublezero.xyz) and deemed received the day after sending (with transmission confirmed). If any provision of this Agreement is held to be invalid or unenforceable, the remaining provisions of this Agreement will remain in full force and effect. The waiver by either party of any default or breach of this Agreement shall not constitute a waiver of any other or subsequent default or breach. Neither party shall be liable for any delay or failure in performance due to acts of God, earthquakes, shortages of supplies, transportation difficulties, labor disputes, riots, war, fire, epidemics, and similar occurrences beyond its control, whether or not foreseeable. This Agreement together with any attachments constitutes the complete agreement between the parties and supersedes all prior or contemporaneous agreements or representations, written or oral, concerning the subject matter herein. This Agreement may not be modified or amended except in writing signed by a duly authorized representative of each party.
 
-### 1. Connect Multicast Mode
-DoubleZero Multicast Mode enables development teams like Anza, Firedancer and Jito to bring multicast publishers and subscribers on to the DoubleZero testnet. Multicast mode has both a `publisher` and a `subscriber` role. The publisher sends out packets across the network and subscribers are those who receive packets originating from the publisher.
 
-Please follow the [setup](/setup) instructions before proceeding.
-
-!!! note inline end 
-    As of v0.2.0, only a single tunnel can be provisioned at a time. In addition, a user can be only a subscriber or a publisher. If you want to switch between publisher or subscriber, you'll have to disconnect and reconnect.
-
-#### Publisher
-
+## Prerequisites
+!!! warning inline end
+    DoubleZero needs to be installed directly on your validator host, not in a container.
+- x86_64 server running Ubuntu or Rocky (doublezero uses minimal system resources and should run with no issue on any modern bare metal machine)
+- Internet connectivity with a public IP address (no NAT)
+- Your host firewall must allow inbound GRE (IP protocol 47) and BGP (TCP port 179).
+- Solana CLI (optional)
+- If you are running Firedancer, you will need to add the following to your `config.toml` file on version v0.502.20212 or higher. (No additional configuration is required for Agave and Jito.)
 ```
- doublezero --keypair $SOLANA_KEYPAIR connect multicast publisher <multicast_group> --client-ip <client_ip>
-```
-
-You should see output similar to the following:
+[net]
+    provider = "socket"
 ```
 
-🔗  Start Provisioning User...
-    Using Public IP: <Your public IP>
-🔍  Provisioning User for IP: <Your public IP>
-    Creating an account for the IP: <Your public IP>
-    The Device has been selected: <selected DoubleZero device IP>
-|  Waiting for user activation..
-    User activated with dz_ip: <Your public IP>
-    Provisioning: status: ok
-/  Connected
+## Steps
+### 1. Set up package repo
+DoubleZero is an open source project hosted on GitHub. Releases are built into binaries that are pushed to Cloudsmith.io, which distributes the binaries for both Debian-flavor and RedHat-flavor Linux systems. Add the repository to your system using the appropriate commands below for your operating system:
+
+Ubuntu / Debian:
+```
+curl -1sLf \
+  https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh \
+  | sudo -E bash
+```
+Rocky / Redhat:
+```
+curl -1sLf \
+  https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh \
+  | sudo -E bash
 ```
 
-You should also notice the `publishers` column count increase by one.
+### 2. Install or upgrade doublezero
+!!! tip inline end
+    After this step you can perform doublezero read operations, such as `doublezero user list`.
 
-```
-doublezero multicast group list
-```
+Now that we have the repo set up, we can install DoubleZero and start the DoubleZero daemon process (doublezerod) using the appropriate commands below for your operating system:
 
-```
- account                                      | code | multicast_ip | max_bandwidth | publishers | subscribers | status    | owner
- 52ieY9ydcJsms5rYMdsYtH6SnpMvWT2GcvAa8UydRdgi | mg01 | <multicast_ip> | 10Gbps        | 1          | 0           | activated | Dc3LFdWwKGJvJcVkXhAr14kh1HS6pN7oCWrvHfQtsHGe
-```
+#### 2.1 Ubuntu / Debian
 
-#### Subscriber
-
+First time install:
 ```
-  doublezero --keypair $SOLANA_KEYPAIR connect multicast subscriber <multicast_group> --client-ip <client_ip>
+sudo apt-get install doublezero=0.2.2-1
 ```
 
-You should see output similar to the following:
-
+Upgrade:
 ```
-🔗  Start Provisioning User...
-    Using Public IP: <Your public IP>
-🔍  Provisioning User for IP: <Your public IP>
-    Creating an account for the IP: <Your public IP>
-    The Device has been selected: <selected DoubleZero device IP>
-|  Waiting for user activation...
-    User activated with dz_ip: <Your public IP>
-    Provisioning: status: ok
-/  Connected
+sudo apt upgrade doublezero=0.2.2-1
 ```
 
-You should also see the number of `subscribers` increase by one.
+#### 2.2 Rocky / RHEL
 
+First time install:
 ```
-doublezero multicast group list
-```
-
-```
-account                                      | code | multicast_ip   | max_bandwidth | publishers | subscribers | status    | owner
-52ieY9ydcJsms5rYMdsYtH6SnpMvWT2GcvAa8UydRdgi | mg01 | <multicast_ip> | 10Gbps        | 0          | 1           | activated | Dc3LFdWwKGJvJcVkXhAr14kh1HS6pN7oCWrvHfQtsHGe
+sudo yum install doublezero-0.2.2
 ```
 
-
-Congratulations, your DoubleZero connection is up and running! We hope. Let's run a few more commands to make sure everything is working.
-
-### 2. Verify doublezero tunnel
-
-#### Publisher
+Upgrade:
 ```
-doublezero status
+sudo yum update doublezero-0.2.2
 ```
 
-Expected result:
+### 3. Check the status of `doublezerod`
+After the package is installed, a new systemd unit is installed, activated and started.  To see the status:
 
 ```
- Tunnel status | Last Session Update | Tunnel Name | Tunnel src       | Tunnel dst      | Doublezero IP     | User Type
- up            | <Timestamp>         | doublezero1 | <Your public IP> | <Doublezero IP> | <Your public IP>  | Multicast
+sudo systemctl status doublezerod
 ```
 
-
-#### Subscriber
+To see the doublezerod logs, look in the journal:
 ```
-doublezero status
+sudo journalctl -u doublezerod
+```
+
+### 4. Create doublezero config directory
+```
+mkdir -p ~/.config/doublezero
+```
+
+### 5. Verify that doublezero is talking to the correct Solana cluster
+```
+doublezero config get
 ```
 
 Expected result:
-
 ```
- Tunnel status | Last Session Update | Tunnel Name | Tunnel src       | Tunnel dst      | Doublezero IP | User Type
- up            | <Timestamp>         | doublezero1 | <Your public IP> | <Doublezero IP> |               | Multicast
-```
-
-### 3. Verify routing link address in routing table
-
-In multicast mode, you should see a single 169.254/31 route, plus a static route for the multicast group you are connected to. 
-
-#### Publisher
-```
-$ ip route show dev doublezero1
+Config File: /home/ubuntu/.config/doublezero/cli/config.yml
+RPC URL: https://doublezerolocalnet.rpcpool.com/f50e62d0-06e7-410e-867e-6873e358ed30
+WebSocket URL: wss://doublezerolocalnet.rpcpool.com/f50e62d0-06e7-410e-867e-6873e358ed30/whirligig (computed)
+Keypair Path: /home/ubuntu/.config/doublezero/id.json
+Program ID: DZtnuQ839pSaDMFG5q1ad2V95G82S5EC4RrB3Ndw2Heb
 ```
 
+### 6. Add your Solana id.json to the doublezero config directory and check balance
+Copy or link the `id.json` you want to use with DoubleZero to the doublezero config directory.
 ```
-169.254.0.0/31 proto kernel scope link src 169.254.0.1
-<multicast_ip> via 169.254.0.0 proto static src 64.86.249.81
-```
-
-#### Subscriber
-
-```
-$ ip route show dev doublezero1
+sudo cp </path/to/id.json> ~/.config/doublezero/
 ```
 
+Check that you've copied or linked the expected pubkey.
 ```
-169.254.0.0/31 proto kernel scope link src 169.254.0.1
-<multicast_ip> via 169.254.0.0 proto static
+doublezero address
 ```
+
+For DoubleZero testnet, DoubleZero's smartcontract is deployed in a Solana Permissioned Environment (SPE) hosted on rpcpool.com. In order to interact with the DoubleZero ledger, you need SOL for transaction fees. If you find a zero balance, please see the next step.
+
+```
+doublezero balance
+```
+
+Sample output:
+```
+$ doublezero balance
+1.9981754 SOL
+```
+
+### 7. Contact DZF to have your pubkey added to the allowlist
+!!! note inline end
+	To check if your pubkey is already in the allowlist, use `doublezero user allowlist list | grep <your_pubkey>`
+
+DoubleZero testnet is currently in a permissioned mode.  In order to connect, your pubkey must be present in the allowlist which is managed by the DoubleZero Foundation.
+
+If your pubkey is not in the allowlist, please reach out to the [DoubleZero Foundation](https://doublezero.xyz).
+Once allowlisted, you will also notice that the ```doublezero balance``` is non-zero. If you still see a zero balance please reach out to the [DoubleZero Foundation](https://doublezero.xyz).
+
+### 8. Check that doublezerod has discovered DZ devices
+Before connecting, be sure `doublezerod` has discovered and pinged each of the available DZ testnet switches:
+```
+doublezero latency
+```
+Sample output:
+```
+$ doublezero latency
+ pubkey                                       | name      | ip             | min      | max      | avg      | reachable
+ 96AfeBT6UqUmREmPeFZxw6PbLrbfET51NxBFCCsVAnek | la2-dz01  | 207.45.216.134 |   0.38ms |   0.45ms |   0.42ms | true
+ CCTSmqMkxJh3Zpa9gQ8rCzhY7GiTqK7KnSLBYrRriuan | ny5-dz01  | 64.86.249.22   |  68.81ms |  68.87ms |  68.85ms | true
+ BX6DYCzJt3XKRc1Z3N8AMSSqctV6aDdJryFMGThNSxDn | ty2-dz01  | 180.87.154.78  | 112.16ms | 112.25ms | 112.22ms | true
+ 55tfaZ1kRGxugv7MAuinXP4rHATcGTbNyEKrNsbuVLx2 | ld4-dz01  | 195.219.120.66 | 138.15ms | 138.21ms | 138.17ms | true
+ 3uGKPEjinn74vd9LHtC4VJvAMAZZgU9qX9rPxtc6pF2k | ams-dz001 | 195.219.138.50 | 141.84ms | 141.97ms | 141.91ms | true
+ 65DqsEiFucoFWPLHnwbVHY1mp3d7MNM2gNjDTgtYZtFQ | frk-dz01  | 195.219.220.58 | 143.52ms | 143.62ms | 143.58ms | true
+ 9uhh2D5c14WJjbwgM7BudztdoPZYCjbvqcTPgEKtTMZE | sg1-dz01  | 180.87.102.98  | 176.66ms | 176.76ms | 176.72ms | true
+```
+If no devices are returned in the output, wait 10-20 seconds and retry.
+
+### 9. Connect
+Once you have set up DoubleZero, you can proceed to connect to DoubleZero in [IBRL mode](connect-ibrl.md) or [multicast mode](connect-multicast.md).
