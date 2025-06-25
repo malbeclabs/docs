@@ -16,10 +16,9 @@ theme:
     - navigation.expand
 nav:
   - Welcome: index.md
-  - Connect:
-    - Setup: setup.md
-    - Connect IBRL: connect-ibrl.md
-    - Connect Multicast: connect-multicast.md
+  - Setup: connect.md
+  - Connect - IBRL Mode: connect-ibrl.md
+  - Connect - Multicast Mode: connect-multicast.md
   - Contribute: contribute.md
   - FAQs: faqs.md
   - Notices:

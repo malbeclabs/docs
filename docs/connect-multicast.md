@@ -53,7 +53,7 @@
 ### 1. Connect Multicast Mode
 DoubleZero Multicast Mode enables development teams like Anza, Firedancer and Jito to bring multicast publishers and subscribers on to the DoubleZero testnet. Multicast mode has both a `publisher` and a `subscriber` role. The publisher sends out packets across the network and subscribers are those who receive packets originating from the publisher.
 
-Please follow the [setup](setup.md) instructions before proceeding.
+Please follow the [setup](/connect) instructions before proceeding.
 
 !!! note inline end 
     As of v0.2.0, only a single tunnel can be provisioned at a time. In addition, a user can be only a subscriber or a publisher. If you want to switch between publisher or subscriber, you'll have to disconnect and reconnect.
