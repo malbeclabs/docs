@@ -6,4 +6,5 @@ What are the benefits of connecting to DZ? Compared to the public internet, the 
 
 For more details, see the [DoubleZero Protocol](https://doublezero.xyz/whitepaper.pdf) whitepaper.
 
-What's next? Learn [how to connect to DoubleZero](connect.md).
+
+What's next? Learn how to perform [initial setup](setup.md), connect to DoubleZero in [IBRL mode](connect-ibrl.md), and connect to DoubleZero in [multicast mode](connect-multicast.md).
