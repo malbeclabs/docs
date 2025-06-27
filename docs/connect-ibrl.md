@@ -58,7 +58,7 @@ Note that connecting in IBRL mode does not require restarting the Jito or Agave 
 
 Please follow the [setup](setup.md) instructions before proceeding.
 
-!!! note inline end 
+!!! note inline end
     As of v0.2.0, only a single tunnel can be provisioned at a time.
 ```
 doublezero connect ibrl

@@ -55,7 +55,7 @@ DoubleZero Multicast Mode enables development teams like Anza, Firedancer and Ji
 
 Please follow the [setup](setup.md) instructions before proceeding.
 
-!!! note inline end 
+!!! note inline end
     As of v0.2.0, only a single tunnel can be provisioned at a time. In addition, a user can be only a subscriber or a publisher. If you want to switch between publisher or subscriber, you'll have to disconnect and reconnect.
 
 #### Publisher
@@ -152,7 +152,7 @@ Expected result:
 
 ### 3. Verify routing link address in routing table
 
-In multicast mode, you should see a single 169.254/31 route, plus a static route for the multicast group you are connected to. 
+In multicast mode, you should see a single 169.254/31 route, plus a static route for the multicast group you are connected to.
 
 #### Publisher
 ```
