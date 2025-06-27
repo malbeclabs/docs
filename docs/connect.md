@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="refresh" content="0; url=/new-page/" />
+    <meta http-equiv="refresh" content="0; url=/setup/" />
   </head>
   <body>
-    <p>If you are not redirected, <a href="/new-page/">click here</a>.</p>
+    <p>If you are not redirected, <a href="/setup/">click here</a>.</p>
   </body>
 </html>
