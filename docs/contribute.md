@@ -15,7 +15,7 @@ As a network contributor, the simplest way to get started in DoubleZero is by id
 
 Figure 1 highlights the simplest model for contributing bandwidth. A DZD is deployed in each data center, interfacing with the network contributor’s internal network to provide DoubleZero WAN connectivity. This is complemented by local Internet, typically a Direct Internet Access (DIA) solution, that is used as on-ramps for DoubleZero Users. While it is expected that DIA will be the preferred option for facilitating access to users of DoubleZero, numerous connectivity models are possible e.g. physical cabling to servers, network fabric extension, etc. We refer to these options as Choose Your Own Adventure (CYOA), providing the contributor flexibility to connect local or remote users in a way that best fits their internal network policies. 
 
-As with any network, reachability is a fundamental part of the architecture as network contributors cannot live in isolation. As such, the DZD MUST have a link to a DoubleZero Exchange to create a contiguous network between participants.
+As with any network, reachability is a fundamental part of the architecture as network contributors cannot live in isolation. As such, the DZD MUST have a link to a DoubleZero Exchange (DZX) to create a contiguous network between participants.
 
 <figure markdown="span">
   ![Image title](images/figure1.png){ width="800" }
@@ -37,7 +37,7 @@ The ways in which a network contributor can grow their DoubleZero contributions 
   <figcaption>Figure 2: DoubleZero Network Bandwidth Contribution Between 3 Data Centers - Single Contributor</figcaption>
 </figure>
 
-A single DZD can support multiple links contributed to DoubleZero. Figure 2 illustrates a potential topology if a single data center 1 terminates bandwidth to two remote different data centers 2 and 3. In this scenario, each data center contains only 1 DZD. All DZDs are using DIA for user on-ramps as their CYOA interface.
+A single DZD can support multiple links contributed to DoubleZero. Figure 2 illustrates a potential topology if a single data center 1 terminates bandwidth to two different remote data centers 2 and 3. In this scenario, each data center contains only 1 DZD. All DZDs are using DIA for user on-ramps as their CYOA interface.
 
 #### Example 2: Single Contributor, 3 Data Centers, Three Links
 
@@ -83,7 +83,7 @@ This solution has numerous benefits, including nominal CAPEX and OPEX increases 
 
 #### Packet Switched Bandwidth
 
-Packet switched networks can be considered your typical enterprise network, running standard routing and switching protocols supporting business applications. There are numerous networking technologies that achieve connectivity, two options that we highlight are layer 2 (L2) extensions using VLAN tags and layer 3 virtual private networks (L3VPN).
+Packet switched networks can be considered your typical enterprise network, running standard routing and switching protocols supporting business applications. There are numerous networking technologies that achieve connectivity, one option that we highlight is layer 2 (L2) extensions using VLAN tags.
 
 ##### L2 Extension
 <figure markdown="span">
@@ -95,21 +95,13 @@ An L2 extension as shown in Figure 6 can be facilitated through VLAN tagging. A 
 
 This solution benefits from being widely supported and relatively easy to implement while creating segmentation between DoubleZero and internal layer 3 services. Bandwidth can be controlled based on the interface speed of the contributor’s internal switch or router. Careful consideration must be given to performance across the shared internal L2 network through technologies such as Quality of Service (QoS) or other traffic management policies. However, additional CAPEX and OPEX investments should be nominal if existing capacity is available within the contributor’s core network.
 
-##### L3VPN
-<figure markdown="span">
-  ![Image title](images/figure7.png){ width="800" }
-  <figcaption>Figure 7: Packet Switched Networks - L3VPN </figcaption>
-</figure>
-
-More advanced network contributors may be able to deploy DoubleZero bandwidth as a L3VPN service within an MPLS network (figure 7). Through the use of virtual routing and forwarding (VRF) instances and label switching, DoubleZero packets would be delivered across an existing MPLS backbone. Network contributor internal bandwidth could be shared between multiple DZ devices while being controlled based on the interface speed of the contributor’s internal switch or router. This design assumes existing segmentation within the contributor’s network and as such DoubleZero looks like another L3 service. Careful consideration must be given to performance across the shared internal L3VPN network through technologies such as Quality of Service (QoS) or other traffic management policies. However, additional CAPEX and OPEX investments should be nominal if existing capacity is available.
-
 #### Dedicated 3rd Party Bandwidth
 <figure markdown="span">
-  ![Image title](images/figure8.png){ width="800" }
-  <figcaption>Figure 8: Dedicated 3rd Party Bandwidth </figcaption>
+  ![Image title](images/figure7.png){ width="800" }
+  <figcaption>Figure 7: Dedicated 3rd Party Bandwidth </figcaption>
 </figure>
 
-While reusing available capacity will be attractive to many network contributors, it is possible that new bandwidth is purchased from a 3rd party to be dedicated to DoubleZero. In such a scenario, the DZD would connect directly to the 3rd party carrier without any internal devices of the contributor sitting inline (figure 8).
+While reusing available capacity will be attractive to many network contributors, it is possible that new bandwidth is purchased from a 3rd party to be dedicated to DoubleZero. In such a scenario, the DZD would connect directly to the 3rd party carrier without any internal devices of the contributor sitting inline (figure 7).
 
 This option is attractive as it ensures dedicated bandwidth for DoubleZero, is simple operationally and ensures complete segmentation from any other network services. This option will have the highest OPEX increase and new service contracts with 3rd party carriers.
 

@@ -44,7 +44,7 @@
 
 **Does running a DoubleZero device require special hardware?**
 
-- Running a DoubleZerodevice device requires connecting physical Arista devices built to spec (bare metal servers will not work) to a point-point circuit such as a wavelength service, an L2 extension or an L3 packet service.  It can use existing network capacity, or the network contributor can light up dark fiber as a wavelength service and contribute it to the protocol.
+- Running a DoubleZero Device requires connecting physical Arista devices built to spec (bare metal servers will not work) to a point-to-point circuit such as a wavelength service or an L2 extension.  It can use existing network capacity, or the network contributor can light up dark fiber as a wavelength service and contribute it to the protocol.
 
 **GRE has 24 bytes of overhead.  Does that cause packet fragmentation if we still target an MTU size of 1232 bytes?**
 
