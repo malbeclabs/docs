@@ -83,7 +83,7 @@ This solution has numerous benefits, including nominal CAPEX and OPEX increases 
 
 #### Packet Switched Bandwidth
 
-Packet switched networks can be considered a typical enterprise network, running standard routing and switching protocols supporting business applications. There are numerous networking technologies that achieve connectivity, one option that we highlight is layer 2 (L2) extensions using VLAN tags.
+Packet switched networks can be considered a typical enterprise network, running standard routing and switching protocols supporting business applications. There are numerous networking technologies that achieve connectivity. One option that we highlight is layer 2 (L2) extensions using VLAN tags.
 
 ##### L2 Extension
 <figure markdown="span">
