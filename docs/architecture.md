@@ -20,7 +20,7 @@ DoubleZero Exchanges (DZXs) are interconnect points in the mesh network where di
 
 Resource contributors host instances of the DoubleZero Ledger, providing the RPC endpoints to the rest of the DoubleZero network for users to configure the network and devices to read that configuration.
 
-## Nodes
+## Components
 
 ### DoubleZero Ledger
 
