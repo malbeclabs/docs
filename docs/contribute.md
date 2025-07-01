@@ -37,7 +37,7 @@ The ways in which a network contributor can grow their DoubleZero contributions 
   <figcaption>Figure 2: DoubleZero Network Bandwidth Contribution Between 3 Data Centers - Single Contributor</figcaption>
 </figure>
 
-A single DZD can support multiple links contributed to DoubleZero. Figure 2 illustrates a potential topology if a single data center 1 terminates bandwidth to two different remote data centers 2 and 3. In this scenario, each data center contains only 1 DZD. All DZDs are using DIA for user on-ramps as their CYOA interface.
+A single DZD can support multiple links contributed to DoubleZero. Figure 2 illustrates a potential topology if a single data center, denoted as 1, terminates bandwidth to two different remote data centers 2 and 3. In this scenario, each data center contains only 1 DZD. All DZDs are using DIA for user on-ramps as their CYOA interface.
 
 #### Example 2: Single Contributor, 3 Data Centers, Three Links
 
@@ -83,7 +83,7 @@ This solution has numerous benefits, including nominal CAPEX and OPEX increases 
 
 #### Packet Switched Bandwidth
 
-Packet switched networks can be considered your typical enterprise network, running standard routing and switching protocols supporting business applications. There are numerous networking technologies that achieve connectivity, one option that we highlight is layer 2 (L2) extensions using VLAN tags.
+Packet switched networks can be considered a typical enterprise network, running standard routing and switching protocols supporting business applications. There are numerous networking technologies that achieve connectivity, one option that we highlight is layer 2 (L2) extensions using VLAN tags.
 
 ##### L2 Extension
 <figure markdown="span">

@@ -32,11 +32,11 @@ The DoubleZero Daemon software runs on servers needing to communicate over the D
 
 ### Activator
 
-The Activator service monitors the DZ Ledger for contract events that require IP address allocations and state changes and manages those changes on behalf of the network.
+The Activator service, a singleton service managed by the DoubleZero Foundation, monitors the DZ Ledger for contract events that require IP address allocations and state changes and manages those changes on behalf of the network.
 
 ### Controller
 
-The Controller service serves as the configuration interface for DoubleZero Device Agents to render their current configuration based on smart contract events submitted to the DZ Ledger.
+The Controller service, a singleton service managed by the DoubleZero Foundation, serves as the configuration interface for DoubleZero Device Agents to render their current configuration based on smart contract events submitted to the DZ Ledger.
 
 ### Agent
 
@@ -44,4 +44,4 @@ The Agent software runs directly on DoubleZero Devices and applies configuration
 
 ### Device
 
-The physical device enclosure providing the routing and link termination for the DoubleZero network. Runs the DoubleZero Agent software and configures based on configuration read from the DZ Ledger via the Controller service.
+The physical device enclosure providing the routing and link termination for the DoubleZero network. DZDs run the DoubleZero Agent software and are configured based on data read from the DZ Ledger via the Controller service.
