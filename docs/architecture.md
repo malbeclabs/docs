@@ -2,7 +2,10 @@
 
 What makes up the different actors and components of the DoubleZero network?
 
-Figure 1: Network architecture components
+<figure markdown="span">
+  ![Image title](images/figure8.png){ width="800" }
+  <figcaption>Figure 1: Network architecture components</figcaption>
+</figure>
 
 ## Contributors
 
