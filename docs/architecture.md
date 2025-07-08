@@ -9,7 +9,7 @@ What makes up the different actors and components of the DoubleZero network?
 
 ## Contributors
 
-The DoubleZero network is made up of connectivity and packet processing contributions from a growing community of distributed network infrastructure providers in cities across the globe. Contributors bring fiber optic cable link and information processing resources to the protocol to provide the decentralized mesh network.
+The DoubleZero network is made up of connectivity and packet processing contributions from a growing community of distributed network infrastructure providers in cities across the globe. Contributors bring fiber optic cable links and information processing resources to the protocol to provide the decentralized mesh network.
 
 ### Network Bandwidth Contributors
 

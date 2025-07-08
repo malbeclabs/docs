@@ -18,7 +18,7 @@
 
 **What are the FPGA capabilities on DoubleZero?**
 
-- Once enabled, the DoubleZero FPGA implementation will provide transaction deduplication and signature verification of UDP traffic (not QUIC).  We are actively working on a solution that balances the benefits of QUIC with the benefits of spam prevention.
+- Once enabled, the DoubleZero FPGA implementation will provide transaction deduplication and signature verification of UDP traffic (not QUIC), also referred to as the "edge filtration" feature of the network.  We are actively working on a solution that balances the benefits of QUIC with the benefits of spam prevention.
 
 **Which validator clients have been tested on DoubleZero testnet?**
 
