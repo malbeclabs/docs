@@ -20,6 +20,7 @@ nav:
   - Connect - IBRL Mode: connect-ibrl.md
   - Connect - Multicast Mode: connect-multicast.md
   - Contribute: contribute.md
+  - Architecture: architecture.md
   - FAQs: faqs.md
   - Notices:
     - notices/20250506-testnet-upgrade.md
