@@ -14,6 +14,10 @@
 
 - For testnet, Jump Trading is the primary contributor.
 
+**Can I use the DoubleZero network if my system is not a blockchain validator?**
+
+- In the initial implementation, DoubleZero is compatible with the Agave and Firedancer validator clients as well as RPC and MEV nodes supporting them. This focus allows the first version of DoubleZero to provide the integrated information service fully optimized for its users and authorize access to the service using the identity and attestation tooling native to that user community. In the near future, the protocol is expected to evolve to natively support other distributed networks (blockchain L1s and L2s) as well.
+
 ## What
 
 **What are the FPGA capabilities on DoubleZero?**

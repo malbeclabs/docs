@@ -10,7 +10,9 @@ DoubleZero contributors have network capacity in the form of underutilized priva
 
 ### Users
 
-DoubleZero users have distributed systems, such as blockchains, that require high-performance network connectivity. Interconnecting a blockchain system with DoubleZero, users gain a bundling of optimization features to accelerate their network I/O.
+DoubleZero users participate in distributed systems, such as blockchains, that require high-performance network connectivity. Interconnecting a blockchain system with DoubleZero, users gain a bundling of optimization features to accelerate their network I/O.
+
+In its initial implementation, the DoubleZero network is compatible with blockchain validator clients as well as RPC and MEV infrastructure providers. These user systems undergo admission control by verifying their uniquely identifying public key addresses on their respective ledgers before allowing them access to the network. As the network evolves to include user systems from other ecosystems, additional identification and authentication strategies will be added tailored to each user project community.
 
 ## Benefits
 
