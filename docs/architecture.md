@@ -23,7 +23,7 @@ DoubleZero Exchanges (DZXs) are interconnect points in the mesh network where di
 
 ### Computational Resource Contributors
 
-Separate from network contributors, resource contributors are a decentralized group of network participants that perform various maintenance and monitoring duties necessary to sustain the technical integrity and ongoing functionality of the DoubleZero network. Specifically, they (i) track user transactions and payments; (ii) calculate fees for network contributors; (iii) record the results of (i) and (ii); (iv) administer, strictly on a non-discretionary basis, the smart contracts that control protocol tokenomics; (v) relay attestations to the Solana blockchain; and (vi) publish telemetry data regarding link quality and utilization to provide transparent, real-time performance metrics for all network contributors.
+Separate from network contributors, resource contributors are a decentralized group of network participants that perform various maintenance and monitoring duties necessary to sustain the technical integrity and ongoing functionality of the DoubleZero network. Specifically, they (i) track user transactions and payments; (ii) calculate fees for network contributors; (iii) record the results of (i) and (ii); (iv) administer, strictly on a non-discretionary basis, the smart contracts that control protocol tokenomics; (v) relay attestations to the applicable blockchain; and (vi) publish telemetry data regarding link quality and utilization to provide transparent, real-time performance metrics for all network contributors.
 
 ## Components
 
