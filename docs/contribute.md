@@ -1,21 +1,23 @@
 ## Summary
 
-Anyone who wishes to participate in the growth of the DoubleZero network can contribute bandwidth and network hardware to the ecosystem. The DoubleZero smart contract is the cornerstone of ensuring that the network maintains high-quality links that can be measured and integrated into the topology, allowing our network controllers to develop the most efficient end-to-end path between our different users and endpoints. Upon execution of the smart contract and deployment of the network equipment and bandwidth, an entity is classified as a network contributor.  See [DoubleZero Economics](https://economics.doublezero.xyz/overview) to further understand the economics behind participating in DoubleZero as a network contributor.
+Anyone who wishes to monetize their underutilized fiber optic cables and network hardware may contribute to the DoubleZero network. Network contributors must provide dedicated bandwidth between two points, operate DoubleZero compatible devices (DZDs) at each end, and a connection to the public internet at each end. Network contributors must also run DoubleZero software on each DZD to provide services like multicast, user lookup, and edge filtration.
+
+The DoubleZero smart contract is the cornerstone of ensuring that the network maintains high-quality links that can be measured and integrated into the topology, allowing our network controllers to develop the most efficient end-to-end path between our different users and endpoints. Upon execution of the smart contract and deployment of the network equipment and bandwidth, an entity is classified as a network contributor.  See [DoubleZero Economics](https://economics.doublezero.xyz/overview) to further understand the economics behind participating in DoubleZero as a network contributor.
 
 ## Requirements to be a DoubleZero Network Contributor
 
 - Dedicated bandwidth that can provide IPv4 connectivity and an MTU of 2048 bytes between two data centers
 - DoubleZero Device (DZD) hardware that is compatible with the DoubleZero protocol
-- Connectivity to the Internet and other DoubleZero network contributors
+- Connectivity to the internet and other DoubleZero network contributors
 - Installation of DoubleZero software on the DZD
 
 ## Quick Start Guide
 
 As a network contributor, the simplest way to get started in DoubleZero is by identifying capacity in your network that can be dedicated for DoubleZero. Once identified, DZDs must be deployed, facilitating the DoubleZero overlay network which only requires IPv4 reachability and a minimum MTU of 2048 bytes as its dependencies from the contributor’s network.
 
-Figure 1 highlights the simplest model for contributing bandwidth. A DZD is deployed in each data center, interfacing with the network contributor’s internal network to provide DoubleZero WAN connectivity. This is complemented by local Internet, typically a Direct Internet Access (DIA) solution, that is used as on-ramps for DoubleZero Users. While it is expected that DIA will be the preferred option for facilitating access to users of DoubleZero, numerous connectivity models are possible e.g. physical cabling to servers, network fabric extension, etc. We refer to these options as Choose Your Own Adventure (CYOA), providing the contributor flexibility to connect local or remote users in a way that best fits their internal network policies. 
+Figure 1 highlights the simplest model for contributing bandwidth and packet sending and processing services. A DZD is deployed in each data center, interfacing with the network contributor’s internal network to provide DoubleZero WAN connectivity. This is complemented by local internet, typically a Direct Internet Access (DIA) solution, that is used as on-ramps for DoubleZero users. While it is expected that DIA will be the preferred option for facilitating access to users of DoubleZero, numerous connectivity models are possible e.g. physical cabling to servers, network fabric extension, etc. We refer to these options as Choose Your Own Adventure (CYOA), providing the contributor flexibility to connect local or remote users in a way that best fits their internal network policies. 
 
-As with any network, reachability is a fundamental part of the architecture as network contributors cannot live in isolation. As such, the DZD MUST have a link to a DoubleZero Exchange to create a contiguous network between participants.
+As with any network, reachability is a fundamental part of the architecture as network contributors cannot live in isolation. As such, the DZD *must* have a link to a DoubleZero Exchange (DZX) to create a contiguous network between participants.
 
 <figure markdown="span">
   ![Image title](images/figure1.png){ width="800" }
@@ -37,7 +39,7 @@ The ways in which a network contributor can grow their DoubleZero contributions 
   <figcaption>Figure 2: DoubleZero Network Bandwidth Contribution Between 3 Data Centers - Single Contributor</figcaption>
 </figure>
 
-A single DZD can support multiple links contributed to DoubleZero. Figure 2 illustrates a potential topology if a single data center 1 terminates bandwidth to two remote different data centers 2 and 3. In this scenario, each data center contains only 1 DZD. All DZDs are using DIA for user on-ramps as their CYOA interface.
+A single DZD can support multiple links contributed to DoubleZero. Figure 2 illustrates a potential topology if a single data center, denoted as 1, terminates bandwidth to two different remote data centers 2 and 3. In this scenario, each data center contains only 1 DZD. All DZDs are using DIA for user on-ramps as their CYOA interface.
 
 #### Example 2: Single Contributor, 3 Data Centers, Three Links
 
@@ -52,7 +54,7 @@ Figure 3 describes the DoubleZero topology when a single contributor deploys thr
 
 The creation of a contiguous network is a fundamental building block of the DoubleZero architecture. Contributors interface via a DoubleZero Exchange (DZX) within a metropolitan area, which is a city such as New York (NYC), London (LON) or Tokyo (TYO). A DZX is a network fabric similar to an Internet Exchange, allowing peering and route exchange.
 
-In figure 4, network contributor 1 operates in data centers 1, 2 and 3, while network contributor 2 operates in data centers 2,4 and 5. By interconnecting in data center 2, the DoubleZero network reach increases to 5 contiguous data centers.
+In figure 4, network contributor 1 operates in data centers 1, 2 and 3, while network contributor 2 operates in data centers 2, 4 and 5. By interconnecting in data center 2, the DoubleZero network reach increases to 5 contiguous data centers.
 
 <figure markdown="span">
   ![Image title](images/figure4.png){ width="1000" }
@@ -61,7 +63,7 @@ In figure 4, network contributor 1 operates in data centers 1, 2 and 3, while ne
 
 ### Bandwidth Contribution Options
 
-DoubleZero requires a network contributor to offer connectivity via a guaranteed bandwidth, latency and jitter profile between DZDs at two terminating data centers expressed via a smart contract. DoubleZero does not mandate how a network contributor implements their contribution, however, in the following sections we provide indicative options for use at their sole discretion.
+DoubleZero requires a network contributor to offer integrated connectivity via a guaranteed bandwidth, latency and jitter profile between DZDs at two terminating data centers expressed via a smart contract. DoubleZero does not mandate how a network contributor implements their contribution, however, in the following sections we provide indicative options for use at their sole discretion.
 
 Important areas to consider for a network contributor might be:
 
@@ -79,11 +81,11 @@ Important areas to consider for a network contributor might be:
 
 Layer 1 bandwidth, more formally described as wavelength services, may see dedicated capacity provisioned on an existing optical infrastructure, such as DWDM, CWDM or via optical multiplexers (MUX). In figure 5, the DZDs use a colored optic that is cabled to an L1 MUX, which interleaves the DZD wavelength on to an existing dark fiber. 
 
-This solution has numerous benefits, including nominal CAPEX and OPEX increases within a contributor’s core network, as well as iterative operational changes to an existing network with existing investments in such technology. This option is particularly robust in offering performance guarantees and segregation from the network contributor’s network services.
+This solution has numerous benefits for network contributors who already operate an existing core network. The iterative operational changes, as well as additional CAPEX and OPEX requirements, are modest. This option is particularly robust in offering segregation from the network contributor's network services.
 
 #### Packet Switched Bandwidth
 
-Packet switched networks can be considered your typical enterprise network, running standard routing and switching protocols supporting business applications. There are numerous networking technologies that achieve connectivity, two options that we highlight are layer 2 (L2) extensions using VLAN tags and layer 3 virtual private networks (L3VPN).
+Packet switched networks can be considered a typical enterprise network, running standard routing and switching protocols supporting business applications. There are numerous networking technologies that achieve connectivity, for example, layer 2 (L2) extensions using VLAN tags.
 
 ##### L2 Extension
 <figure markdown="span">
@@ -93,29 +95,21 @@ Packet switched networks can be considered your typical enterprise network, runn
 
 An L2 extension as shown in Figure 6 can be facilitated through VLAN tagging. A DZD’s port can be cabled to a contributor’s internal network switch, with the switch port being set as an access port in, for example, VLAN 10. Through 802.1q tagging, this VLAN can be carried over multiple switch-hops on the contributor’s network, terminating at the switch interfacing with the remote DZD.
 
-This solution benefits from being widely supported and relatively easy to implement while creating segmentation between DoubleZero and internal layer 3 services. Bandwidth can be controlled based on the interface speed of the contributor’s internal switch or router. Careful consideration must be given to performance across the shared internal L2 network through technologies such as Quality of Service (QoS) or other traffic management policies. However, additional CAPEX and OPEX investments should be nominal if existing capacity is available within the contributor’s core network.
-
-##### L3VPN
-<figure markdown="span">
-  ![Image title](images/figure7.png){ width="800" }
-  <figcaption>Figure 7: Packet Switched Networks - L3VPN </figcaption>
-</figure>
-
-More advanced network contributors may be able to deploy DoubleZero bandwidth as a L3VPN service within an MPLS network (figure 7). Through the use of virtual routing and forwarding (VRF) instances and label switching, DoubleZero packets would be delivered across an existing MPLS backbone. Network contributor internal bandwidth could be shared between multiple DZ devices while being controlled based on the interface speed of the contributor’s internal switch or router. This design assumes existing segmentation within the contributor’s network and as such DoubleZero looks like another L3 service. Careful consideration must be given to performance across the shared internal L3VPN network through technologies such as Quality of Service (QoS) or other traffic management policies. However, additional CAPEX and OPEX investments should be nominal if existing capacity is available.
+This solution benefits from being widely supported and relatively easy to implement while creating segmentation between DoubleZero and internal layer 3 services. Bandwidth can be controlled based on the interface speed of the contributor’s internal switch or router. Careful consideration must be given to performance across the shared internal L2 network through technologies such as Quality of Service (QoS) or other traffic management policies. However, additional CAPEX and OPEX investments should be modest if existing capacity is available within the contributor’s core network.
 
 #### Dedicated 3rd Party Bandwidth
 <figure markdown="span">
-  ![Image title](images/figure8.png){ width="800" }
-  <figcaption>Figure 8: Dedicated 3rd Party Bandwidth </figcaption>
+  ![Image title](images/figure7.png){ width="800" }
+  <figcaption>Figure 7: Dedicated 3rd Party Bandwidth </figcaption>
 </figure>
 
-While reusing available capacity will be attractive to many network contributors, it is possible that new bandwidth is purchased from a 3rd party to be dedicated to DoubleZero. In such a scenario, the DZD would connect directly to the 3rd party carrier without any internal devices of the contributor sitting inline (figure 8).
+While reusing available capacity will be attractive to many network contributors, one can also dedicate newly acquired bandwidth to DoubleZero. In such a scenario, the DZD would connect directly to the 3rd party carrier without any internal devices of the contributor sitting inline (figure 7).
 
-This option is attractive as it ensures dedicated bandwidth for DoubleZero, is simple operationally and ensures complete segmentation from any other network services. This option will have the highest OPEX increase and new service contracts with 3rd party carriers.
+This option is attractive as it ensures dedicated bandwidth for DoubleZero, is simple operationally and ensures complete segmentation from any other network services. This option will likely have the highest OPEX increase and requires new service contracts with 3rd party carriers.
 
 ## Install Guide
 ### Indicative Hardware Requirements - 100Gbps Bandwidth Contribution
-Note that quantities reflect two data centers' equipment, i.e. the total required hardware necessary to deploy 1 bandwidth contribution.
+Note that quantities below reflect equipment needed in two data centers, i.e. the total required hardware necessary to deploy 1 fiber optic cable for bandwidth contribution.
 
 ??? warning "*All FPGAs are subject to final testing.  10G contributions can be supported using Arista 7130LBR switches with inbuilt dual Virtex® UltraScale+™ FPGAs."
 
@@ -218,3 +212,130 @@ Note that quantities reflect two data centers' equipment i.e. the total required
 | Rack Space  | 4U           |
 | Power       | 4KW (recommended) |
 
+### DoubleZero Agent Installation
+
+#### Prerequisites
+
+1. Supported network hardware: Arista Networks 7130 and 7280 switches (see above).
+2. Admin access to the Arista switch(es) that will be joining the DoubleZero network.
+3. Each device's DoubleZero public key, generated by running the command `doublezero device create`.
+4. Determine which Arista routing instance the agent will use to connect to the DoubleZero Controller. If you can ping the controller with `ping <W.X.Y.Z>` where W.X.Y.Z is the IP address of the DoubleZero Controller, you will use the default routing instance, named `default`. If you need to specify a VRF, for example with `ping vrf management <W.X.Y.Z>`, then your routing instance would be `management`.
+
+#### Agent Installation Steps
+
+Use these steps if your DoubleZero Agent will connect to the DoubleZero Controller using Arista's default routing instance.
+
+1. To allow agents running on the local devices, including doublezero-agent, to call the local device's API, enter the following into the EOS configuration:
+    ```
+    !
+    ! Replace the word "default" with the VRF name identified in prerequisites step 4
+    !
+    management api eos-sdk-rpc
+        transport grpc eapilocal
+            localhost loopback vrf default
+            service all
+            no disabled
+    ```
+
+2. Download and install the current stable doublezero-agent binary package
+
+    a. As admin on the EOS CLI, run the `bash` shell command and then enter the following commands:
+        ```
+        switch# bash
+        $ sudo bash
+        # cd /mnt/flash
+        # wget https://dl.cloudsmith.io/public/malbeclabs/doublezero/rpm/any-version/x86_64/doublezero-agent-<X.Y.Z>_linux_amd64.rpm
+        # exit
+        $ exit
+        ```
+
+    !!! note
+        You can find more info about Arista EOS extensions [here](https://www.arista.com/en/um-eos/eos-managing-eos-extensions)
+
+    b. Back on the EOS CLI, set up the agent
+        ```
+        switch# copy flash:doublezero-agent_<X.Y.Z>_linux_amd64.rpm extension:
+        switch# extension doublezero-agent_<X.Y.Z>_linux_amd64.rpm
+        switch# copy installed-extensions boot-extensions
+        ```
+    c. Verify the extension
+
+    The Status should be "A, I, B".
+        ```
+        switch# show extensions
+        Name                                        Version/Release     Status     Extension
+        ------------------------------------------- ------------------- ---------- ---------
+        doublezero-agent_<X.Y.Z>_linux_amd64.rpm    X.Y.Z/1             A, I, B    1
+
+        A: available | NA: not available | I: installed | F: forced | B: install at boot
+        ```
+
+3. To set up and start the agent, go back to EOS command line, add the following to the Arista EOS configuration:
+    a. Configure the doublezero-agent
+    ```
+    !
+    ! Replace the word "default" with the VRF name identified in prerequisites step 4
+    !
+    daemon doublezero-agent
+    exec ip netns exec ns-default /usr/local/bin/doublezero-agent -pubkey <PUBKEY>
+    no shut
+    ```
+    b. Verify that the agent is working
+    When the agent is up and running you should see the following log entries:
+    ```
+    switch# ceos2#show agent doublezero-agent logs
+    2025/01/21 18:17:52 main.go:71: Starting doublezero-agent
+    2025/01/21 18:17:52 main.go:72: doublezero-agent controller: 18.116.166.35:7000
+    2025/01/21 18:17:52 main.go:73: doublezero-agent sleep-interval-in-seconds: 5.000000
+    2025/01/21 18:17:52 main.go:74: doublezero-agent controller-timeout-in-seconds: 2.000000
+    2025/01/21 18:17:52 main.go:75: doublezero-agent pubkey: 111111G5zfGFHe9aek69vLPkXTZnkozyBm468PhitD7U
+    2025/01/21 18:17:52 main.go:76: doublezero-agent device: 127.0.0.1:9543
+    2025/01/21 18:17:52 dzclient.go:32: controllerAddressAndPort 18.116.166.35:7000
+    ```
+
+#### Agent Upgrade Steps
+
+1. Download the latest version of agent:
+```
+switch# bash
+$ sudo bash
+# cd /mnt/flash
+# wget https://dl.cloudsmith.io/public/malbeclabs/doublezero/rpm/any-distro/any-version/x86_64/doublezero-agent_<X.Y.Z>_linux_amd64.rpm
+# exit
+$ exit
+```
+
+2. Back on the EOS CLI, remove the old version
+First, find the filename of the old version, similar to the new version downloaded but one or more versions behind the new one: `doublezero-agent_<W.X.Y>_linux_amd64.rpm`
+```
+switch# show extensions
+```
+Run the following commands to remove the old version. Replace the filenames below with the one from the `show extensions` command above.
+```
+switch# delete flash:doublezero-agent_<W.X.Y>_linux_amd64.rpm
+switch# delete extension:doublezero-agent_<W.X.Y>_linux_amd64.rpm
+```
+3. Set up the new agent version
+```
+switch# copy flash:doublezero-agent_<X.Y.Z>_linux_amd64.rpm extension:
+switch# extension doublezero-agent_<X.Y.Z>_linux_amd64.rpm
+switch# copy installed-extensions boot-extensions
+```
+
+4. Verify the extension
+
+    The Status should be "A, I, B".
+    ```
+    switch# show extensions
+    Name                                        Version/Release    Status     Extension
+    ------------------------------------------- ------------------ ---------- ---------
+    doublezero-agent_<X.Y.Z>_linux_amd64.rpm    <X.Y.Z>/1          A, I, B    1
+
+    A: available | NA: not available | I: installed | F: forced | B: install at boot
+    ```
+
+#### Verify Agent Log Output
+
+```
+show agent doublezero-agent log
+```

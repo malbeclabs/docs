@@ -169,10 +169,10 @@ $ doublezero balance
 !!! note inline end
 	To check if your pubkey is already in the allowlist, use `doublezero user allowlist list | grep <your_pubkey>`
 
-DoubleZero testnet is currently in a permissioned mode.  In order to connect, your pubkey must be present in the allowlist which is managed by the DoubleZero Foundation.
+DoubleZero testnet is currently in a permissioned mode.  In order to connect, your pubkey must be present in the allowlist.
 
-If your pubkey is not in the allowlist, please reach out to the [DoubleZero Foundation](https://doublezero.xyz).
-Once allowlisted, you will also notice that the ```doublezero balance``` is non-zero. If you still see a zero balance please reach out to the [DoubleZero Foundation](https://doublezero.xyz).
+If your pubkey is not in the allowlist, please reach out to [hello@doublezero.xyz](mailto:hello@doublezero.xyz).
+Once allowlisted, you will also notice that the ```doublezero balance``` is non-zero. If you still see a zero balance please reach out to [hello@doublezero.xyz](mailto:hello@doublezero.xyz).
 
 ### 8. Check that doublezerod has discovered DZ devices
 Before connecting, be sure `doublezerod` has discovered and pinged each of the available DZ testnet switches:
