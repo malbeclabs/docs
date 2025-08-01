@@ -4,7 +4,7 @@
 
 **Who do I contact to join DoubleZero testnet?**
 
-- [hello@doublezero.xyz](mailto:hello@doublezero.xyz)
+- The [DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701) server on Discord
 
 **How do I get support after I join testnet?**
 
@@ -36,7 +36,7 @@
 
 **Can I connect to DoubleZero without running the DoubleZero software?**
 
-- No, not yet.  If there are use cases in mind where you’d like to connect to DoubleZero without the DoubleZero software package please reach out to [hello@doublezero.xyz](mailto:hello@doublezero.xyz).  It is possible that alternative DoubleZero clients will be built.
+- No, not yet.  If there are use cases in mind where you’d like to connect to DoubleZero without the DoubleZero software package please reach out to [Discord](https://discord.com/channels/1341597747932958802/1344323790464880701).  It is possible that alternative DoubleZero clients will be built.
 
 **Is anybody already running a Solana mainnet-beta validator on the DoubleZero testnet?**
 
@@ -58,7 +58,7 @@
 
 **When can I connect to testnet?**
 
-- DoubleZero testnet is live.  Please send your GitHub account names to [hello@doublezero.xyz](mailto:hello@doublezero.xyz) and we’ll send you instructions to connect.
+- DoubleZero testnet is live.  Please share your GitHub account names on [Discord](https://discord.com/channels/1341597747932958802/1344323790464880701) and we’ll send you instructions to connect.
 
 **I have read that the DZ network is multicast-enabled.  How does that work?**
 
@@ -79,7 +79,7 @@
 
 **How do I join testnet?**
 
-- Please send your GitHub account name(s) to [hello@doublezero.xyz](mailto:hello@doublezero.xyz) and we'll send you instructions to connect.
+- Please share your GitHub account name(s) on [Discord](https://discord.com/channels/1341597747932958802/1344323790464880701) and we'll send you instructions to connect.
 
 **As a user, do I have to ask my bare metal hosting provider to change anything in my hosting environment?**
 
