@@ -171,7 +171,8 @@ $ doublezero balance
 
 DoubleZero testnet is currently in a permissioned mode.  In order to connect, your pubkey must be present in the allowlist.
 
-If your pubkey is not in the allowlist, please complete [this form](htthttps://doublezero.xyz/connect).
+If your pubkey is not in the allowlist, please complete [this form](https://doublezero.xyz/connect).
+Users will be added periodically, and in the order applications are recieved.
 Once allowlisted, you will receive and email and notice that the ```doublezero balance``` is non-zero. If you still see a zero balance please reach out on [Discord](https://discord.com/channels/1341597747932958802/1344323790464880701).
 
 ### 8. Check that doublezerod has discovered DZ devices
