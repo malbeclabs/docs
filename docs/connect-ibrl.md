@@ -104,3 +104,27 @@ $ ip route show dev doublezero0
 <DZ User Y's IP> via 169.254.0.2 proto bgp src <DZ User Y's IP>
 169.254.0.2/31 proto kernel scope link src 169.254.0.3
 ```
+
+### 4. Check Latency
+
+```
+doublezero latency
+```
+You should see the nearest DoubleZero devices, and your latency to them.
+```
+doublezero latency
+ pubkey                                       | code         | ip             | min      | max      | avg      | reachable
+ 6E1fuqbDBG5ejhYEGKHNkWG5mSTczjy4R77XCKEdUtpb | nyc-dz001    | 64.86.249.22   | 2.54ms   | 2.77ms   | 2.62ms   | true    
+ Cpt3doj17dCF6bEhvc7VeAuZbXLD88a1EboTyE8uj6ZL | lon-dz001    | 195.219.120.66 | 72.04ms  | 72.40ms  | 72.17ms  | true    
+ CT8mP6RUoRcAB67HjKV9am7SBTCpxaJEwfQrSjVLdZfD | lax-dz001    | 207.45.216.134 | 72.21ms  | 72.23ms  | 72.22ms  | true    
+ 4Wr7PQr5kyqCNJo3RKa8675K7ZtQ6fBUeorcexgp49Zp | ams-dz001    | 195.219.138.50 | 76.62ms  | 76.84ms  | 76.73ms  | true    
+ 29ghthsKeH2ZCUmN2sUvhJtpEXn2ZxqAuq4sZFBFZmEs | fra-dz001    | 195.219.220.58 | 83.20ms  | 83.33ms  | 83.26ms  | true    
+ hWffRFpLrsZoF5r9qJS6AL2D9TEmSvPUBEbDrLc111Y  | fra-dz-001-x | 195.12.227.250 | 96.06ms  | 96.24ms  | 96.13ms  | true    
+ 8jyamHfu3rumSEJt9YhtYw3J4a7aKeiztdqux17irGSj | prg-dz-001-x | 195.12.228.250 | 104.61ms | 105.09ms | 104.83ms | true    
+ 5tqXoiQtZmuL6CjhgAC6vA49JRUsgB9Gsqh4fNjEhftU | tyo-dz001    | 180.87.154.78  | 178.16ms | 178.31ms | 178.25ms | true    
+ D3ZjDiLzvrGi5NJGzmM7b3YZg6e2DrUcBCQznJr3KfC8 | sin-dz001    | 180.87.102.98  | 233.59ms | 233.72ms | 233.65ms | true    
+```
+
+!!! note inline end
+    If the nearest DoubleZero device is over 25ms from you may not be experiencing significant performance benefits. Consult your network administrator for best practices.
+```
