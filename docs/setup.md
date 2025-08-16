@@ -162,7 +162,7 @@ doublezero balance
 Sample output:
 ```
 $ doublezero balance
-1.9981754 SOL
+4.997897 Credits
 ```
 
 ### 7. Contact DZF to have your pubkey added to the allowlist
