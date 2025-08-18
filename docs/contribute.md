@@ -363,6 +363,10 @@ Use these steps if your DoubleZero Agent will connect to the DoubleZero Controll
 
     b. Save the keypair on the device at `/mnt/flash/metrics-publisher-keypair.json`
 
+      ```sh
+      scp ~/.config/doublezero/metrics-publisher.json <DZD>:/mnt/flash/metrics-publisher-keypair.json
+      ```
+
     c. Register it onchain on the DoubleZero ledger:
 
       ```sh
