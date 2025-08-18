@@ -126,5 +126,4 @@ doublezero latency
 ```
 
 !!! note inline end
-    If the nearest DoubleZero device is over 25ms from you may not be experiencing significant performance benefits. Consult your network administrator for best practices.
-```
+    If the nearest DoubleZero device is over 25ms you may not be experiencing any performance benefits by connecting to DoubleZero.
