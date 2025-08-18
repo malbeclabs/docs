@@ -358,7 +358,7 @@ Use these steps if your DoubleZero Agent will connect to the DoubleZero Controll
     a. Outside of the device, generate a keypair:
 
       ```sh
-      doublezero keygen -o metrics-publisher-keypair.json
+      doublezero keygen -o -o ~/.config/doublezero/metrics-publisher.json
       ```
 
     b. Save the keypair on the device at `/mnt/flash/metrics-publisher-keypair.json`
