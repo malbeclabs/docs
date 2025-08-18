@@ -370,7 +370,7 @@ Use these steps if your DoubleZero Agent will connect to the DoubleZero Controll
     c. Register it onchain on the DoubleZero ledger:
 
       ```sh
-      doublezero device update --pubkey <DEVICE_PUBKEY> --metrics-publisher <METRICS_PUBLISHER_PUBKEY>
+      doublezero device update --pubkey <DEVICE_ACCOUNT> --metrics-publisher <METRICS_PUBLISHER_PUBKEY>
       ```
 
 2. Download and install the current stable doublezero-telemetry binary package
@@ -418,14 +418,14 @@ Use these steps if your DoubleZero Agent will connect to the DoubleZero Controll
     ! Replace the word "default" with the VRF name identified in prerequisites step 4
     !
     daemon doublezero-agent
-    exec /usr/local/bin/doublezero-device-telemetry-agent --management-namespace ns-default --local-device-pubkey <DEVICE_PUBKEY> --env mainnet --keypair /mnt/flash/metrics-publisher-keypair.json
+    exec /usr/local/bin/doublezero-device-telemetry-agent --management-namespace ns-default --local-device-pubkey <DEVICE_ACCOUNT> --env mainnet --keypair /mnt/flash/metrics-publisher-keypair.json
     no shut
     ```
     b. Verify that the agent is working
     When the agent is up and running you should see the following log entries:
     ```
     switch# ceos2#show agent doublezero-telemetry logs
-    time=2025-08-18T18:54:04.341Z level=INFO msg="Starting telemetry collector" twampReflector=0.0.0.0:862 localDevicePK=<DEVICE_PUBKEY> probeInterval=10s submissionInterval=1m0s
+    time=2025-08-18T18:54:04.341Z level=INFO msg="Starting telemetry collector" twampReflector=0.0.0.0:862 localDevicePK=<DEVICE_ACCOUNT> probeInterval=10s submissionInterval=1m0s
     time=2025-08-18T18:54:04.342Z level=INFO msg="Starting peer discovery" refreshInterval=10s
     time=2025-08-18T18:54:04.342Z level=INFO msg="Starting submission loop" interval=1m0s maxRetries=5 metricsPublisherPK=<METRICS_PUBLISHER_PUBKEY>
     time=2025-08-18T18:54:04.342Z level=INFO msg="Starting probe loop"
