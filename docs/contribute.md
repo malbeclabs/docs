@@ -417,8 +417,8 @@ Use these steps if your DoubleZero Agent will connect to the DoubleZero Controll
     !
     ! Replace the word "default" with the VRF name identified in prerequisites step 4
     !
-    daemon doublezero-agent
-    exec /usr/local/bin/doublezero-device-telemetry-agent --management-namespace ns-default --local-device-pubkey <DEVICE_ACCOUNT> --env mainnet --keypair /mnt/flash/metrics-publisher-keypair.json
+    daemon doublezero-telemetry
+    exec /usr/local/bin/doublezero-telemetry --management-namespace ns-default --local-device-pubkey <DEVICE_ACCOUNT> --env mainnet --keypair /mnt/flash/metrics-publisher-keypair.json
     no shut
     ```
     b. Verify that the agent is working
