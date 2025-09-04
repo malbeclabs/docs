@@ -277,7 +277,7 @@ Use these steps if your DoubleZero Agent will connect to the DoubleZero Controll
     ! If the VRF name identified in prerequisites step 4 is not "ns-default", prefix the following
     ! exec command with `exec /sbin/ip netns exec <vrf>`
     ! For example:
-    ! exec /sbin/ip netns exec ns-default /usr/local/bin/doublezero-agent -pubkey <PUBKEY>
+    ! exec /sbin/ip netns exec ns-management /usr/local/bin/doublezero-agent -pubkey <PUBKEY>
     !
     daemon doublezero-agent
     exec /usr/local/bin/doublezero-agent -pubkey <PUBKEY>
@@ -420,6 +420,8 @@ Use these steps if your DoubleZero Agent will connect to the DoubleZero Controll
     !
     ! If the VRF name identified in prerequisites step 4 is not "ns-default", include a CLI arg of
     ! `--management-namespace <vrf>` on the following `exec` command.
+    ! For example:
+    ! exec /usr/local/bin/doublezero-telemetry --management-namespace ns-management ...
     !
     daemon doublezero-telemetry
     exec /usr/local/bin/doublezero-telemetry --local-device-pubkey <DEVICE_ACCOUNT> --env mainnet --keypair /mnt/flash/metrics-publisher-keypair.json
