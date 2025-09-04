@@ -274,10 +274,13 @@ Use these steps if your DoubleZero Agent will connect to the DoubleZero Controll
     a. Configure the doublezero-agent
     ```
     !
-    ! Replace the word "default" with the VRF name identified in prerequisites step 4
+    ! If the VRF name identified in prerequisites step 4 is not "ns-default", prefix the following
+    ! exec command with `exec /sbin/ip netns exec <vrf>`
+    ! For example:
+    ! exec /sbin/ip netns exec ns-default /usr/local/bin/doublezero-agent -pubkey <PUBKEY>
     !
     daemon doublezero-agent
-    exec /sbin/ip netns exec ns-default /usr/local/bin/doublezero-agent -pubkey <PUBKEY>
+    exec /usr/local/bin/doublezero-agent -pubkey <PUBKEY>
     no shut
     ```
     b. Verify that the agent is working
