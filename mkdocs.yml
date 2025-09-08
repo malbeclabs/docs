@@ -19,6 +19,7 @@ nav:
   - Setup: setup.md
   - Connect - IBRL Mode: connect-ibrl.md
   - Connect - Multicast Mode: connect-multicast.md
+  - Troubleshooting: troubleshooting.md
   - Contribute: contribute.md
   - Architecture: architecture.md
   - FAQs: faqs.md

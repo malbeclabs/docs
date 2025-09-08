@@ -1,28 +1,20 @@
-# Frequently asked question (FAQ)
+gin# Frequently asked question (FAQ)
 
 ## Who
 
 **Who do I contact to join DoubleZero testnet?**
 
-- The [DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701) server on Discord
+- Fill out [this form](https://doublezero.xyz/connect), and join [DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701) server on Discord
 
 **How do I get support after I join testnet?**
 
-- For testnet users DoubleZero Foundation has established a community Slack channel to collaborate, ask questions and report findings.  Later on we expect there will be a communication channel like Discord to collaborate with testnet and mainnet-beta users.
-
-**Who are the existing network contributors supporting DoubleZero’s physical network?**
-
-- For testnet, Jump Trading is the primary contributor.
+- [DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701) has channels where users help eachother, as well as a Support Ticket system where you can get personalized answers.
 
 **Can I use the DoubleZero network if my system is not a blockchain validator?**
 
 - In the initial implementation, DoubleZero is compatible with the Agave and Firedancer validator clients as well as RPC and MEV nodes supporting them. This focus allows the first version of DoubleZero to provide the integrated information service fully optimized for its users and authorize access to the service using the identity and attestation tooling native to that user community. In the near future, the protocol is expected to evolve to natively support other distributed networks (blockchain L1s and L2s) as well.
 
 ## What
-
-**What are the FPGA capabilities on DoubleZero?**
-
-- Once enabled, the DoubleZero FPGA implementation will provide transaction deduplication and signature verification of UDP traffic (not QUIC), also referred to as the "edge filtration" feature of the network.  We are actively working on a solution that balances the benefits of QUIC with the benefits of spam prevention.
 
 **Which validator clients have been tested on DoubleZero testnet?**
 
@@ -40,7 +32,7 @@
 
 **Is anybody already running a Solana mainnet-beta validator on the DoubleZero testnet?**
 
-- Yes, there are multiple mainnet-beta validators running on DZ testnet. Some were created by Malbec Labs and our network contributors for testing purposes leading up to our testnet launch, and others are run by third-parties that want to benefit from the DoubleZero network.
+- Yes, there 
 
 **What are the reliability guarantees of DoubleZero testnet?**
 
@@ -55,10 +47,6 @@
 - Packet fragmentation will not occur for packets transiting the DoubleZero network since the DoubleZero network can handle jumbo frames.  For packets transiting the public internet inside DoubleZero user tunnels, we also do not expect packet fragmentation because even though the payload is targeted to 1232 bytes, the total packet size can be up to 1500 bytes which leaves plenty of headroom.
 
 ## When
-
-**When can I connect to testnet?**
-
-- DoubleZero testnet is live.  Please share your GitHub account names on [Discord](https://discord.com/channels/1341597747932958802/1344323790464880701) and we’ll send you instructions to connect.
 
 **I have read that the DZ network is multicast-enabled.  How does that work?**
 
