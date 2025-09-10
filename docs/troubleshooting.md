@@ -220,7 +220,7 @@ This issue is often related to the GRE tunnel being successfully activated, but 
 
     Your firewall settings could differ. However, in this example notice rule: 
    `179/tcp (v6)               ALLOW       Anywhere`
-which permits bgp (tcp 179) above the rules which to block traffic to 169.254.0.0/16. This is required. 
+which permits bgp (tcp 179) above rules which block traffic to 169.254.0.0/16. This is required. 
     ```
     To                         Action      From
     --                         ------      ----
@@ -229,6 +229,5 @@ which permits bgp (tcp 179) above the rules which to block traffic to 169.254.0.
     To                         Action      From
     --                         ------      ----
     ```
-    `179/tcp (v6)               ALLOW       Anywhere`
-must be included before any deny rules
+
 
