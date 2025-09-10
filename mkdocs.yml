@@ -25,6 +25,7 @@ nav:
   - FAQs: faqs.md
   - Notices:
     - notices/20250506-testnet-upgrade.md
+  - Changelog: changelog.md
 markdown_extensions:
   - admonition
   - pymdownx.details

@@ -30,6 +30,9 @@ DZfHh2vjXFqt8zfNbT1afm8PGuCm3BrQKegC5THtKFdn
 [comment]: # ()
 
 #### 3. Check Allow List
+
+Sample pubkey: `C6Gi3JDE8FVeBMYuLKA9s5bZuGQ4N3TkYffJ6ErNiDiW` replace this with your pubkey when running command.
+
 Command: 
 
 `doublezero access-pass list | awk 'NR==1 || /C6Gi3JDE8FVeBMYuLKA9s5bZuGQ4N3TkYffJ6ErNiDiW/'`
@@ -43,7 +46,7 @@ account                                      | accesspass_type                  
 2XHCWm8Sef1GirhAhAJVA8WTXToPT6gFYP7fA9mWMShR | prepaid                                                        | 149.28.33.124   | C6Gi3JDE8FVeBMYuLKA9s5bZuGQ4N3TkYffJ6ErNiDiW | MAX               | MAX             | 0           | requested    | DZfHh2vjXFqt8zfNbT1afm8PGuCm3BrQKegC5THtKFdn 
 ```
 [comment]: # ()
-#### 4. Check Double Zero Credits
+#### 4. Check DoubleZero Ledger Credits
 Command: 
 
 `doublezero balance`
@@ -52,16 +55,28 @@ Output:
 ```
 0.78 Credits
 ```
-[comment]: # ()
+[comment]: # (add section linked later for 0 balance mainnet/testnet)
 
-#### 5. Check Firewall
+#### 5. Check Connection Status
+Command: 
+
+`doublezero status`
+
+Output:
+```
+ Tunnel status | Last Session Update     | Tunnel Name | Tunnel src   | Tunnel dst   | Doublezero IP | User Type 
+ up            | 2025-09-03 16:07:57 UTC | doublezero0 | 149.28.38.64 | 64.86.249.22 | 149.28.38.64  | IBRL
+```
+[comment]: # (in next iteration add "up" "unknown" and "down" explainers, which then link to a sectino below for troubleshooting undesired states.)
+
+#### 6. Check Firewall
 Command: 
 
 `sudo ufw status`
 
 !!! note inline end
     Your firewall settings could differ. However, in this example notice rule: 
-    179/tcp (v6)               ALLOW       Anywhere (v6)
+   `179/tcp (v6)               ALLOW       Anywhere`
 which permits bgp (tcp 179) above the rules which to block traffic to 169.254.0.0/16. This is required.
 
 
@@ -92,18 +107,9 @@ To                         Action      From
 198.18.0.0/15              DENY OUT    Anywhere
 169.254.0.0/16             DENY OUT    Anywhere
 ```
-[comment]: # ()
+[comment]: # (issue also exists below, can link instead of inline note)
 
-#### 6. Check Connection Status
-Command: 
 
-`doublezero status`
-
-Output:
-```
- Tunnel status | Last Session Update     | Tunnel Name | Tunnel src   | Tunnel dst   | Doublezero IP | User Type 
- up            | 2025-09-03 16:07:57 UTC | doublezero0 | 149.28.38.64 | 64.86.249.22 | 149.28.38.64  | IBRL
-```
 
 #### 7. Check Latency
 Command: 
@@ -125,34 +131,16 @@ Output:
 ```
 [comment]: # ()
 
-# Trouble shooting Examples
+# Troubleshooting Examples
 Now that we have examined basic outputs, and what is expected ina healthy deployment we can examine some common troubleshooting examples.
-## Issue: Firedancer Behind on Slots
 
-**Symptoms:**
-- The user is running FireDancer
-- DoubleZero is connected and healthy.
-
-    `doublezero status`
-
-    Returns output:
-    ```
-    Tunnel status | Last Session Update     | Tunnel Name | Tunnel src   | Tunnel dst   | Doublezero IP | User Type 
-    up            | 2025-09-03 16:07:57 UTC | doublezero0 | 149.28.38.64 | 64.86.249.22 | 149.28.38.64  | IBRL
-    ```
-- -`up`- signifies a healthy connection.
-
-- Firedancer is falling behind on slots.
-
-**Solution:**
-- Reload the Firedancer Client after connecting to DoubleZero
-
-#### Issue: ❌ Error creating user
+### Issue: ❌ Error creating user
 
 This issue is generally related to a mismatch between the expected pubkey/IP pairing and the pubkey/IP pairing the user is trying to access DoubleZero with.
 
 **Symptoms:**
 - When connecting with `doublezero connect ibrl` the user encounters `❌ Error creating user`
+
 
 **Solutions:**
 1. Check 
@@ -161,7 +149,7 @@ This issue is generally related to a mismatch between the expected pubkey/IP pai
 
     Output:
     ```
-    DZfHh2vjXFqt8zfNbT1afm8PGuCm3BrQKegC5THtKFdn
+    C6Gi3JDE8FVeBMYuLKA9s5bZuGQ4N3TkYffJ6ErNiDiW
     ```
 2. verify that this address is allow listed: 
 
@@ -177,12 +165,12 @@ This issue is generally related to a mismatch between the expected pubkey/IP pai
     ```
     The address and IP from the Access Pass must match your local machine.
 
-4. ensure `doublezero address` is in config/doublezero following the instructions in [step 6 here](https://docs.malbeclabs.com/setup/)
+4. ensure `doublezero address` is in ~/.config/doublezero/ following the instructions in [step 6 here](https://docs.malbeclabs.com/setup/)
 4. Contact support in [DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701)  if credentials are correct but access is denied.
 
 ### Performance Issues
 
-#### Issue: ❌ Error provisioning service: malformed stuff: cannot provision multiple tunnels at the same time
+### Issue: ❌ Error provisioning service: malformed stuff: cannot provision multiple tunnels at the same time
 This error signifies that a device is already connected to DoubleZero.
 
 **Symptoms:**
@@ -199,3 +187,48 @@ This error signifies that a device is already connected to DoubleZero.
      up            | 2025-09-03 16:07:57 UTC | doublezero0 | 149.28.38.64 | 64.86.249.22 | 149.28.38.64  | IBRL
     ```
 2. -`up`- signifies a healthy connection.
+3. This error exists because a tunnel to DoubleZero on this machine, with this client IP is already active. 
+
+    This error is often encountered after a DoubleZero client upgrade. DoubleZero upgrades automatically restart the DoubleZero service. If you tried to connect after an upgrade it is likely DoubleZero has automatically connected before you enter the manual command.
+
+
+### Issue: DoubleZero Status is Unkown, or Down
+This issue is often related to the GRE tunnel being successfully activated, but a firewall rule is preventing BGP session establishment. Thus, you are not receiving routes from the network or sending traffic over DoubleZero.
+
+**Symptoms:**
+- `doublezero connect ibrl` was successsful. However, `doublezero status` returns `down` or `unknown`
+    ```
+    doublezero connect ibrl                                                                                                                                                                                                                                                                                                                                  
+    DoubleZero Service Provisioning
+    🔗  Start Provisioning User...
+    Public IP detected: 149.28.38.64 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
+    🔍  Provisioning User for IP: 149.28.38.64
+    User account created
+    Connected to device: nyc-dz001
+    The user has been successfully activated
+    Service provisioned with status: ok
+    ✅  User Provisioned
+    ```
+
+    ```
+    Tunnel status | Last Session Update     | Tunnel Name | Tunnel src   | Tunnel dst   | Doublezero IP | User Type 
+    unknown            | 1970-01-01 00:00:00 UTC | doublezero0 | 149.28.38.64 | 64.86.249.22 | 149.28.38.64  | IBRL
+    ```
+
+**Solutions:**
+1. Check `sudo ufw status`
+
+    Your firewall settings could differ. However, in this example notice rule: 
+   `179/tcp (v6)               ALLOW       Anywhere`
+which permits bgp (tcp 179) above the rules which to block traffic to 169.254.0.0/16. This is required. 
+    ```
+    To                         Action      From
+    --                         ------      ----
+    179/tcp                    ALLOW       169.254.0.0/16
+
+    To                         Action      From
+    --                         ------      ----
+    ```
+    `179/tcp (v6)               ALLOW       Anywhere`
+must be included before any deny rules
+
