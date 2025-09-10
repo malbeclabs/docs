@@ -91,19 +91,19 @@ Now that we have the repo set up, we can install DoubleZero and start the Double
 
 Install and upgrade using:
 ```
-sudo apt-get install doublezero=0.6.3-1
+sudo apt-get install doublezero=0.6.4-1
 ```
 
 #### 2.2 Rocky / RHEL
 
 First time install:
 ```
-sudo yum install doublezero-0.6.3
+sudo yum install doublezero-0.6.4
 ```
 
 Upgrade:
 ```
-sudo yum update doublezero-0.6.3
+sudo yum update doublezero-0.6.4
 ```
 
 ### 3. Check the status of `doublezerod`
