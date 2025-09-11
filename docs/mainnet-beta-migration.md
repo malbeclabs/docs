@@ -54,8 +54,8 @@ sudo journalctl -u doublezerod
 
 ## 2. Create New DoubleZero Identity
 
-!!! note
-If you have an existing DoubleZero Identity skip to step 3
+!!! note inline end
+  If you have an existing DoubleZero Identity skip to step 3
 
 
 Create a DoubleZero identity on your server with the following command:
@@ -171,8 +171,9 @@ Public IP detected: 137.184.101.183 - If you want to use a different IP, you can
     Service provisioned with status: ok
 ✅  User Provisioned
 ```
+Wait one minute for the tunnel to form. Until the tunnel is formed you may return "down" or "Unknown" 
 
-Verify your connection:
+Then verify your connection:
 
 ```bash
 doublezero status
