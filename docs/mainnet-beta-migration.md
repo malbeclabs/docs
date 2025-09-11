@@ -6,13 +6,16 @@ This guide explains how to onboard a Solana validator to DoubleZero. You will cr
 
 ## Prerequisites
 
-- Supported OS: Ubuntu 20.04+ or Debian 11+, or Rocky Linux / RHEL 8+
+- Supported OS: Ubuntu 22.04+ or Debian 11+, or Rocky Linux / RHEL 8+
 - Root or sudo privileges on the server where DoubleZero will run
 - Solana CLI installed and on PATH
 - Access to the validator identity keypair file (e.g., validator-keypair.json) under the sol user
 - Outbound network egress to DoubleZero endpoints and Solana RPC for the chosen cluster
-- Firewall allows outbound connections for DoubleZero and Solana RPC as needed
+- Firewall allows outbound connections for DoubleZero and Solana RPC as needed\
+ GRE (ip proto 47) and BGP (169.254.0.0/16 on tcp/179)
 - Optional but useful: jq and curl for debugging
+
+[comment]: # (We need to link the firewall troubleshooting guide to explain the firewall rules)
 
 ## Connecting a Solana Validator to DoubleZero
 
