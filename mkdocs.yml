@@ -22,9 +22,6 @@ nav:
   - Troubleshooting: troubleshooting.md
   - Contribute: contribute.md
   - Architecture: architecture.md
-  - FAQs: faqs.md
-  - Notices:
-    - notices/20250506-testnet-upgrade.md
   - Changelog: changelog.md
 markdown_extensions:
   - admonition
