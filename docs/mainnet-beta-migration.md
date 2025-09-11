@@ -54,8 +54,10 @@ sudo journalctl -u doublezerod
 
 ## 2. Create New DoubleZero Identity
 
+
 !!! note inline end
   If you have an existing DoubleZero Identity skip to step 3
+
 
 
 Create a DoubleZero identity on your server with the following command:
