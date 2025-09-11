@@ -5,14 +5,15 @@ This guide will cover a variety of issues, and is ongoing. If you complete the g
 
 ## Common Commands and Outputs
 
-To begin troubleshooting examine the output of the following commands, and their expected output.
-These will assist you in more detailed troubleshooting. If you open a ticket, you will be asked for their output.
+To begin examine the output of the following commands, and their expected output. These will assist you in more detailed troubleshooting. 
+If you open a ticket, you may be asked for their output.
+
 #### 1. Check Version
 Command: 
 
 `doublezero --version`
 
-Output:
+Sample Output:
 ```
 DoubleZero 0.6.3
 ```
@@ -23,27 +24,25 @@ Command:
 
 `doublezero address`
 
-Output:
+Sample Output:
 ```
-DZfHh2vjXFqt8zfNbT1afm8PGuCm3BrQKegC5THtKFdn
+MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2
 ```
 [comment]: # ()
 
-#### 3. Check Allow List
+#### 3. Verify your Access Pass
 
-Sample pubkey: `C6Gi3JDE8FVeBMYuLKA9s5bZuGQ4N3TkYffJ6ErNiDiW` replace this with your pubkey when running command.
+Sample pubkey: `MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2` replace this with your pubkey when running command.
 
 Command: 
 
-`doublezero access-pass list | awk 'NR==1 || /C6Gi3JDE8FVeBMYuLKA9s5bZuGQ4N3TkYffJ6ErNiDiW/'`
+`doublezero access-pass list | grep MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2`
 
-Output:
+Output: [note we use `doublezero access-pass list | awk 'NR==1 || /MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2/'` to show you the header now in this output]
 ```
-
-doublezero access-pass list | awk 'NR==1 || /C6Gi3JDE8FVeBMYuLKA9s5bZuGQ4N3TkYffJ6ErNiDiW/'
 account                                      | accesspass_type                                                | ip              | user_payer                                   | last_access_epoch | remaining_epoch | connections | status       | owner
 
-2XHCWm8Sef1GirhAhAJVA8WTXToPT6gFYP7fA9mWMShR | prepaid                                                        | 149.28.33.124   | C6Gi3JDE8FVeBMYuLKA9s5bZuGQ4N3TkYffJ6ErNiDiW | MAX               | MAX             | 0           | requested    | DZfHh2vjXFqt8zfNbT1afm8PGuCm3BrQKegC5THtKFdn 
+2XHCWm8Sef1GirhAhAJVA8WTXToPT6gFYP7fA9mWMShR | prepaid                                                        | 141.14.14.14   | MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2 | MAX               | MAX             | 0           | requested    | DZfHh2vjXFqt8zfNbT1afm8PGuCm3BrQKegC5THtKFdn 
 ```
 [comment]: # ()
 #### 4. Check DoubleZero Ledger Credits
@@ -51,7 +50,7 @@ Command:
 
 `doublezero balance`
 
-Output:
+Sample Output:
 ```
 0.78 Credits
 ```
@@ -62,61 +61,20 @@ Command:
 
 `doublezero status`
 
-Output:
+Sample Output:
 ```
  Tunnel status | Last Session Update     | Tunnel Name | Tunnel src   | Tunnel dst   | Doublezero IP | User Type 
- up            | 2025-09-03 16:07:57 UTC | doublezero0 | 149.28.38.64 | 64.86.249.22 | 149.28.38.64  | IBRL
+ up            | 2025-09-03 16:07:57 UTC | doublezero0 | 141.14.14.14 | 64.86.249.22 | 141.14.14.14  | IBRL
 ```
 [comment]: # (in next iteration add "up" "unknown" and "down" explainers, which then link to a sectino below for troubleshooting undesired states.)
 
-#### 6. Check Firewall
-Command: 
 
-`sudo ufw status`
-
-!!! note inline end
-    Your firewall settings could differ. However, in this example notice rule: 
-   `179/tcp (v6)               ALLOW       Anywhere`
-which permits bgp (tcp 179) above the rules which to block traffic to 169.254.0.0/16. This is required.
-
-
-Sample Output:
-```
-To                         Action      From
---                         ------      ----
-22/tcp                     ALLOW       Anywhere
-8899/tcp                   ALLOW       Anywhere
-8000:10000/tcp             ALLOW       Anywhere
-8000:10000/udp             ALLOW       Anywhere
-11200:11300/udp            ALLOW       Anywhere
-11200:11300/tcp            ALLOW       Anywhere
-22/tcp (v6)                ALLOW       Anywhere (v6)
-8899/tcp (v6)              ALLOW       Anywhere (v6)
-8000:10000/tcp (v6)        ALLOW       Anywhere (v6)
-8000:10000/udp (v6)        ALLOW       Anywhere (v6)
-11200:11300/udp (v6)       ALLOW       Anywhere (v6)
-11200:11300/tcp (v6)       ALLOW       Anywhere (v6)
-179/tcp (v6)               ALLOW       Anywhere (v6)
-
-To                         Action      From
---                         ------      ----
-10.0.0.0/8                 DENY OUT    Anywhere
-172.16.0.0/12              DENY OUT    Anywhere
-192.168.0.0/16             DENY OUT    Anywhere
-100.64.0.0/10              DENY OUT    Anywhere
-198.18.0.0/15              DENY OUT    Anywhere
-169.254.0.0/16             DENY OUT    Anywhere
-```
-[comment]: # (issue also exists below, can link instead of inline note)
-
-
-
-#### 7. Check Latency
+#### 6. Check Latency
 Command: 
 
 `doublezero latency`
 
-Output:
+Sample Output:
 ```
  pubkey                                       | code         | ip             | min      | max      | avg      | reachable 
  6E1fuqbDBG5ejhYEGKHNkWG5mSTczjy4R77XCKEdUtpb | nyc-dz001    | 64.86.249.22   | 2.49ms   | 2.61ms   | 2.56ms   | true
@@ -147,34 +105,30 @@ This issue is generally related to a mismatch between the expected pubkey/IP pai
 
     `doublezero address`
 
-    Output:
+    Sample Output:
     ```
-    C6Gi3JDE8FVeBMYuLKA9s5bZuGQ4N3TkYffJ6ErNiDiW
+    MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2
     ```
 2. verify that this address is allow listed: 
 
-    `doublezero access-pass list | awk 'NR==1 || /C6Gi3JDE8FVeBMYuLKA9s5bZuGQ4N3TkYffJ6ErNiDiW/'`
+    `doublezero access-pass list | awk 'NR==1 || /MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2/'`
 
-    Output:
+    Sample Output:
     ```
-
-    doublezero access-pass list | awk 'NR==1 || /C6Gi3JDE8FVeBMYuLKA9s5bZuGQ4N3TkYffJ6ErNiDiW/'
     account                                      | accesspass_type                                                | ip              | user_payer                                   | last_access_epoch | remaining_epoch | connections | status       | owner
 
-    2XHCWm8Sef1GirhAhAJVA8WTXToPT6gFYP7fA9mWMShR | prepaid                                                        | 149.28.33.124   | C6Gi3JDE8FVeBMYuLKA9s5bZuGQ4N3TkYffJ6ErNiDiW | MAX               | MAX             | 0           | requested    | DZfHh2vjXFqt8zfNbT1afm8PGuCm3BrQKegC5THtKFdn 
+    FHyoPs7U23MuSTtepEyXUtSAEffEpFpJGoYvug8X2sWY | prepaid                                                        | 141.14.14.14   | MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2 | MAX               | MAX             | 0           | requested    | DZfHh2vjXFqt8zfNbT1afm8PGuCm3BrQKegC5THtKFdn 
     ```
-    The address and IP from the Access Pass must match your local machine.
+    The pubkey from `doublezero address` must match the user_payer pubkey and the IP Address you are trying to connect from must match the ip in the Access-Pass. 
+    `doublezero address` is sourced from the id.json file in in ~/.config/doublezero/ by default. See the [step 6 here](https://docs.malbeclabs.com/setup/)
 
-4. ensure `doublezero address` is in ~/.config/doublezero/ following the instructions in [step 6 here](https://docs.malbeclabs.com/setup/)
-4. Contact support in [DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701)  if credentials are correct but access is denied.
-
-### Performance Issues
+3. If the above looks correct and you are getting an error while connecting or if the above mapping is incorrect please contact support in [DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701)
 
 ### Issue: ❌ Error provisioning service: malformed stuff: cannot provision multiple tunnels at the same time
 This error signifies that a device is already connected to DoubleZero.
 
 **Symptoms:**
-- User connects to DoubleZero
+- User tries to connect to DoubleZero
 - `❌ Error provisioning service: malformed stuff: cannot provision multiple tunnels at the same time` is encountered.
 
 **Solutions:**
@@ -184,16 +138,16 @@ This error signifies that a device is already connected to DoubleZero.
     Output:
     ```
     Tunnel status | Last Session Update     | Tunnel Name | Tunnel src   | Tunnel dst   | Doublezero IP | User Type 
-     up            | 2025-09-03 16:07:57 UTC | doublezero0 | 149.28.38.64 | 64.86.249.22 | 149.28.38.64  | IBRL
+     up            | 2025-09-03 16:07:57 UTC | doublezero0 | 141.14.14.14 | 64.86.249.22 | 141.14.14.14  | IBRL
     ```
 2. -`up`- signifies a healthy connection.
-3. This error exists because a tunnel to DoubleZero on this machine, with this client IP is already active. 
+3. The error appears because a tunnel to DoubleZero with the specific DoubleZero IP is already active on this machine. 
 
-    This error is often encountered after a DoubleZero client upgrade. DoubleZero upgrades automatically restart the DoubleZero service. If you tried to connect after an upgrade it is likely DoubleZero has automatically connected before you enter the manual command.
+    This error is often encountered after a DoubleZero client upgrade. DoubleZero upgrades automatically restart the doublezerod service and will reconnect you if you were connected prior to the service restart.
 
 
-### Issue: DoubleZero Status is Unkown, or Down
-This issue is often related to the GRE tunnel being successfully activated, but a firewall rule is preventing BGP session establishment. Thus, you are not receiving routes from the network or sending traffic over DoubleZero.
+### Issue: DoubleZero Status is unknown, or down
+This issue is often related to the GRE tunnel being successfully activated between the server and the DoubleZero Device, but a firewall preventing BGP session establishment. Because of this you are not receiving routes from the network or sending traffic over DoubleZero.
 
 **Symptoms:**
 - `doublezero connect ibrl` was successsful. However, `doublezero status` returns `down` or `unknown`
@@ -212,22 +166,35 @@ This issue is often related to the GRE tunnel being successfully activated, but 
 
     ```
     Tunnel status | Last Session Update     | Tunnel Name | Tunnel src   | Tunnel dst   | Doublezero IP | User Type 
-    unknown            | 1970-01-01 00:00:00 UTC | doublezero0 | 149.28.38.64 | 64.86.249.22 | 149.28.38.64  | IBRL
+    unknown            | 1970-01-01 00:00:00 UTC | doublezero0 | 141.14.14.14 | 64.86.249.22 | 141.14.14.14  | IBRL
     ```
 
 **Solutions:**
-1. Check `sudo ufw status`
+1. Check your firewall rules!
 
-    Your firewall settings could differ. However, in this example notice rule: 
-   `179/tcp (v6)               ALLOW       Anywhere`
-which permits bgp (tcp 179) above rules which block traffic to 169.254.0.0/16. This is required. 
-    ```
-    To                         Action      From
-    --                         ------      ----
-    179/tcp                    ALLOW       169.254.0.0/16
+   DoubleZero uses link local address space: 169.254.0.0/16 for the GRE tunnel interfaces between your machine and the DoubleZero Device. 169.254.0.0/16 is typically "non-routable" space and thus good security practices will recommend you blocking communications to/from this space. You will need to permit a rule in your firewall which enables src 169.254.0.0/16 to communicate with dst 169.254.0.0/16 on tcp port 179. That rule will need to be place above any rules that Deny traffic to 169.254.0.0/16. 
 
-    To                         Action      From
-    --                         ------      ----
-    ```
+In a firewall like ufw you can run `sudo ufw status` to view the firewalls rules and 
 
+Sample Output which may be something similar to what a Solana validator would have. 
+```
+To                         Action      From
+--                         ------      ----
+22/tcp                     ALLOW       Anywhere
+8899/tcp                   ALLOW       Anywhere
+8000:10000/tcp             ALLOW       Anywhere
+8000:10000/udp             ALLOW       Anywhere
+11200:11300/udp            ALLOW       Anywhere
+11200:11300/tcp            ALLOW       Anywhere
 
+To                         Action      From
+--                         ------      ----
+10.0.0.0/8                 DENY OUT    Anywhere
+169.254.0.0/16             DENY OUT    Anywhere
+172.16.0.0/12              DENY OUT    Anywhere
+192.168.0.0/16             DENY OUT    Anywhere
+```
+
+In the above output you see all traffic to 169.254.0.0/16, except for the ports specified, is denied. 
+`sudo ufw insert <N> allow proto tcp from 169.254.0.0/16 to 169.254.0.0/16 port 179` to insert the rule in the <N> position. ie. if N = 1 then you will insert this rules as the first rule.
+`sudo ufw status numbered` will show you the numerical ordering of rules.
