@@ -190,4 +190,4 @@ $ doublezero latency
 If no devices are returned in the output, wait 10-20 seconds and retry.
 
 ### 9. Connect
-Once you have set up DoubleZero, you can proceed to connect to DoubleZero in [IBRL mode](connect-ibrl.md) or [multicast mode](connect-multicast.md).
+Once you have set up DoubleZero, you can proceed to connect to DoubleZero in [IBRL mode](connect-ibrl.md) or [multicast mode](connect-multicast.md). It may take up to one minute for the tunnel to connect.
