@@ -54,6 +54,10 @@ sudo journalctl -u doublezerod
 
 ## 2. Create New DoubleZero Identity
 
+!!! note
+If you have an existing DoubleZero Identity skip to step 3
+
+
 Create a DoubleZero identity on your server with the following command:
 
 ```bash
@@ -126,10 +130,16 @@ exit
 
 Use the `request-solana-validator-access` command to create an account on Solana for the connection request. The Sentinel agent detects the new account, validates its identity and signature, and creates the access pass in DoubleZero so the server can establish the connection.
 
+Check your Solana Balance
+
+```
+solana balance -u testnet
+```
+
 Use the node ID, service_key, and signature.
 
 ```bash
-doublezero-solana passport request-solana-validator-access -u t -v \
+doublezero-solana passport request-solana-validator-access -u testnet \
   --node-id ValidatorIdentity111111111111111111111111111 \
   --signature kftWCu7rCtVaB8FMqM2wEBXyV5THpKRXWrPtDQxmTjHJHiAWteVYTsc7Gjz4hdXxvYoZXGeHkrEaypn2EJgWAsJ \
   YourServiceKey11111111111111111111111111111
@@ -137,28 +147,7 @@ doublezero-solana passport request-solana-validator-access -u t -v \
 
 **Output:**
 ```
-Raw message: service_key=YourServiceKey11111111111111111111111111111
-Signature recovers node ID: ValidatorIdentity111111111111111111111111111 
 Request Solana validator access: kftWCu7rCtVaB8FMqM2wEBXyV5THpKRXWrPtDQxmTjHJHiAWteVYTsc7Gjz4hdXxvYoZXGeHkrEaypn2EJgWAsJ 
-
-Url: https://api.testnet.solana.com/
-Signer: 7xNwQDtyxmqaZ6VTJ9q4fM15WeScyo8FyeNjBCV9CK9V
-
-Transaction details for 2Xe5U56CUaDooxwiS3ykkU15fi8PhnamvgHERqMxTXWXkzRPbFSqgEhdgUdqhJaHzksho4PzbvA3vREfFyNQ1YAR
-  Fee (lamports): 5000
-  Compute units: 10366
-  Cost units: 11729
-
-  Program logs:
-    Program dzpt2dM8g9qsLxpdddnVvKfjkCLVXd82jrrQVJigCPV invoke [1]
-    Program log: Initiate access request
-    Program 11111111111111111111111111111111 invoke [2]
-    Program 11111111111111111111111111111111 success
-    Program log: Initialized user access request DZfHfcCXTLwgZeCRKQ1FL1UuwAwFAZM93g86NMYpfYan
-    Program dzpt2dM8g9qsLxpdddnVvKfjkCLVXd82jrrQVJigCPV consumed 10216 of 13000 compute units
-    Program dzpt2dM8g9qsLxpdddnVvKfjkCLVXd82jrrQVJigCPV success
-    Program ComputeBudget111111111111111111111111111111 invoke [1]
-    Program ComputeBudget111111111111111111111111111111 success
 ```
 
 ## 6. Connect in IBRL Mode
