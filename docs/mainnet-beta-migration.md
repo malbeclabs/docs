@@ -8,13 +8,11 @@ This guide explains how to onboard a Solana validator to DoubleZero. You will cr
 
 - Supported OS: Ubuntu 22.04+ or Debian 11+, or Rocky Linux / RHEL 8+
 - Root or sudo privileges on the server where DoubleZero will run
-- Solana CLI installed and on PATH
+- Solana CLI installed and on $PATH
 - Access to the validator identity keypair file (e.g., validator-keypair.json) under the sol user
-- Outbound network egress to DoubleZero endpoints and Solana RPC for the chosen cluster
 - Firewall allows outbound connections for DoubleZero and Solana RPC as needed\
  GRE (ip proto 47) and BGP (169.254.0.0/16 on tcp/179)
 - Optional but useful: jq and curl for debugging
-- run
 
 [comment]: # (We need to link the firewall troubleshooting guide to explain the firewall rules)
 
@@ -104,15 +102,6 @@ if it is `up` run:
 doublezero disconnect
 ```
 
-## 4. Disconnect from DoubleZero
-
-If you are already connected to DoubleZero run:
-
-```
-doublezero disconnect
-```
-
-
 ## 5. Attest Validator Ownership
 
 Determine the identity of the Solana validator and create a method to verify ownership. Use the identity keypair together with the standard Solana command to sign an off-chain transaction. This process only verifies ownership of the validator specified in the command.
@@ -179,9 +168,6 @@ Use the node ID, DoubleZeropID, and signature.
 !!! note inline end
       In this example we use   `-k /home/user/.config/solana/id.json` to find the SolanaID. Use the appropriate location for your local deployment.
 
-!!! note inline end
-      In this example we use   `-k /home/user/.config/solana/id.json` to find the SolanaID. Use the appropriate location for your local deployment.
-
 ```bash
 doublezero-solana passport request-solana-validator-access -u testnet \
   -k /home/user/.config/solana/id.json
@@ -201,8 +187,13 @@ Request Solana validator access: Signature2222222222VaB8FMqM2wEBXyV5THpKRXWrPtDQ
 Solana Testnet Validators should connect to DoubleZero Testnet. Testnet users can skip to step 8.
 
 
-<details open>
+<details>
   <summary>Solana Mainnet Validators should connect to DoubleZero Mainnet-Beta.</summary>
+ 
+Configure the DoubleZero Client to point to Mainnet-Beta
+```
+doublezero config set --env mainnet-beta
+```
 
 ```
 sudo systemctl edit doublezerod
