@@ -70,12 +70,10 @@ sudo yum --only-upgrade doublezero
 
 
 
-<<<<<<< HEAD
-Create a DoubleZero Identity on your server with the following command:
-=======
+
 
 Create a DoubleZero identity on your server with the following command:
->>>>>>> 584284cf3ca7d6748f7383c3ca82c5e3814bef90
+
 
 ```bash
 doublezero keygen
@@ -105,6 +103,15 @@ if it is `up` run:
 ```
 doublezero disconnect
 ```
+
+## 4. Disconnect from DoubleZero
+
+If you are already connected to DoubleZero run:
+
+```
+doublezero disconnect
+```
+
 
 ## 5. Attest Validator Ownership
 
@@ -172,12 +179,16 @@ Use the node ID, DoubleZeropID, and signature.
 !!! note inline end
       In this example we use   `-k /home/user/.config/solana/id.json` to find the SolanaID. Use the appropriate location for your local deployment.
 
+!!! note inline end
+      In this example we use   `-k /home/user/.config/solana/id.json` to find the SolanaID. Use the appropriate location for your local deployment.
+
 ```bash
 doublezero-solana passport request-solana-validator-access -u testnet \
   -k /home/user/.config/solana/id.json
   --node-id ValidatorIdentity111111111111111111111111111 \
   --signature Signature111111rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7 \
   YourDoubleZeroAddress11111111111111111111111111111
+
 ```
 
 **Sample Output:**
@@ -233,6 +244,7 @@ Mainnet output will be identical in structure, but with over 40 connections!
 </details>
 
 ## 8. Connect in IBRL Mode
+=======
 
 On the server, with the user that accesses DoubleZero, run the `connect` command to establish the connection to DoubleZero.
 
