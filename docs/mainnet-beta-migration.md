@@ -119,7 +119,7 @@ This is required because the validator's identity keypair (`validator-keypair.js
 - You have access to the validator identity keypair without permission errors.
 - The signature is generated using the correct keys that your Solana validator actually uses.
 
-In other words, this step is **only needed to sign with your validator identity** and prove ownership.
+In other words, this step **only requires you to sign a message with your validator identity** to prove ownership.
 
 ### Extract the Pubkey from your identity
 
@@ -163,7 +163,7 @@ Check your Solana Balance
 solana balance -u testnet
 ```
 
-Use the node ID, DoubleZeropID, and signature.
+Use the node ID, DoubleZeroID, and signature.
 
 !!! note inline end
       In this example we use   `-k /home/user/.config/solana/id.json` to find the SolanaID. Use the appropriate location for your local deployment.
@@ -188,7 +188,7 @@ Solana Testnet Validators should connect to DoubleZero Testnet. Testnet users ca
 
 
 <details>
-  <summary>Solana Mainnet Validators should connect to DoubleZero Mainnet-Beta.</summary>
+  <summary>Solana Mainnet Validators will connect to DoubleZero Mainnet-Beta; expand this section to continue.</summary>
  
 Configure the DoubleZero Client to point to Mainnet-Beta
 ```bash
@@ -236,7 +236,6 @@ Mainnet output will be identical in structure, but with over 40 connections!
 </details>
 
 ## 8. Connect in IBRL Mode
-=======
 
 On the server, with the user that accesses DoubleZero, run the `connect` command to establish the connection to DoubleZero.
 
