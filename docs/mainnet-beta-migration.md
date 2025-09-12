@@ -179,9 +179,6 @@ Use the node ID, DoubleZeropID, and signature.
 !!! note inline end
       In this example we use   `-k /home/user/.config/solana/id.json` to find the SolanaID. Use the appropriate location for your local deployment.
 
-!!! note inline end
-      In this example we use   `-k /home/user/.config/solana/id.json` to find the SolanaID. Use the appropriate location for your local deployment.
-
 ```bash
 doublezero-solana passport request-solana-validator-access -u testnet \
   -k /home/user/.config/solana/id.json
