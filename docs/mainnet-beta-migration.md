@@ -70,7 +70,12 @@ sudo yum --only-upgrade doublezero
 
 
 
+<<<<<<< HEAD
 Create a DoubleZero Identity on your server with the following command:
+=======
+
+Create a DoubleZero identity on your server with the following command:
+>>>>>>> 584284cf3ca7d6748f7383c3ca82c5e3814bef90
 
 ```bash
 doublezero keygen
