@@ -70,6 +70,7 @@ sudo yum --only-upgrade doublezero
 
 
 
+
 Create a DoubleZero identity on your server with the following command:
 
 ```bash
