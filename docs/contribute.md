@@ -244,7 +244,7 @@ Use these steps if your DoubleZero Agent will connect to the DoubleZero Controll
         switch# bash
         $ sudo bash
         # cd /mnt/flash
-        # wget https://dl.cloudsmith.io/public/malbeclabs/doublezero/rpm/any-version/x86_64/doublezero-agent-<X.Y.Z>_linux_amd64.rpm
+        # wget https://dl.cloudsmith.io/public/malbeclabs/doublezero/rpm/any-distro/any-version/x86_64/doublezero-agent_<X.Y.Z>_linux_amd64.rpm
         # exit
         $ exit
         ```
@@ -303,7 +303,7 @@ Use these steps if your DoubleZero Agent will connect to the DoubleZero Controll
 switch# bash
 $ sudo bash
 # cd /mnt/flash
-# wget https://dl.cloudsmith.io/public/malbeclabs/doublezero/rpm/any-distro/any-version/x86_64/doublezero-agent_<X.Y.Z>_linux_amd64.rpm
+# wget https://dl.cloudsmith.io/public/malbeclabs/doublezero/rpm/any-distro/any-version/x86_64/doublezero-agent_<X.Y.Z>_linux_amd64.rpm 
 # exit
 $ exit
 ```
@@ -384,7 +384,7 @@ Use these steps if your DoubleZero Agent will connect to the DoubleZero Controll
       switch# bash
       $ sudo bash
       # cd /mnt/flash
-      # wget https://dl.cloudsmith.io/public/malbeclabs/doublezero/rpm/any-version/x86_64/doublezero-device-telemetry-agent_<X.Y.Z>_linux_amd64.rpm
+      # wget https://dl.cloudsmith.io/public/malbeclabs/doublezero/rpm/any-distro/any-version/x86_64/doublezero-device-telemetry-agent_<X.Y.Z>_linux_amd64.rpm 
       # exit
       $ exit
       ```
@@ -446,7 +446,7 @@ Use these steps if your DoubleZero Agent will connect to the DoubleZero Controll
     switch# bash
     $ sudo bash
     # cd /mnt/flash
-    # wget https://dl.cloudsmith.io/public/malbeclabs/doublezero/rpm/any-version/x86_64/doublezero-device-telemetry-agent_<X.Y.Z>_linux_amd64.rpm
+    # wget https://dl.cloudsmith.io/public/malbeclabs/doublezero/rpm/any-distro/any-version/x86_64/doublezero-device-telemetry-agent_<X.Y.Z>_linux_amd64.rpm 
     # exit
     $ exit
     ```
