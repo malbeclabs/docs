@@ -56,7 +56,7 @@ sudo systemctl status doublezerod
 sudo journalctl -u doublezerod
 ```
 To upgrade:
-```
+```bash
 sudo yum --only-upgrade doublezero
 ```
 
@@ -86,19 +86,19 @@ doublezero address
 ```
 
 **Output:**
-```
+```bash
 YourDoubleZeroAddress11111111111111111111111111111
 ```
 
 ## 4. Disconnect from DoubleZero
 
 Check 
-```
+```bash
 doublezero status
 ``` 
 if it is `up` run:
 
-```
+```bash
 doublezero disconnect
 ```
 
@@ -128,7 +128,7 @@ solana address -k path/to/validator-keypair.json
 ```
 
 **Output:**
-```
+```bash
 ValidatorIdentity111111111111111111111111111
 ```
 
@@ -139,7 +139,7 @@ solana sign-offchain-message -k path/to/validator-keypair.json service_key=YourD
 ```
 
 **Output:**
-```
+```bash
 Signature111111rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7
 ```
 
@@ -159,7 +159,7 @@ The examples are for Solana Testnet. For Mainnet, change `testnet` flag for `mai
 
 Check your Solana Balance
 
-```
+```bash
 solana balance -u testnet
 ```
 
@@ -178,7 +178,7 @@ doublezero-solana passport request-solana-validator-access -u testnet \
 ```
 
 **Sample Output:**
-```
+```bash
 Request Solana validator access: Signature2222222222VaB8FMqM2wEBXyV5THpKRXWrPtDQxmTjHJHiAWteVYTsc7Gjz4hdXxvYoZXGeHkrEayp 
 ```
 
@@ -191,35 +191,36 @@ Solana Testnet Validators should connect to DoubleZero Testnet. Testnet users ca
   <summary>Solana Mainnet Validators should connect to DoubleZero Mainnet-Beta.</summary>
  
 Configure the DoubleZero Client to point to Mainnet-Beta
-```
+```bash
 doublezero config set --env mainnet-beta
 ```
 
-```
+```bash
 sudo systemctl edit doublezerod
 ```
 In this file add:
-```
+```bash
 [Service]
 ExecStart=
 ExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env mainnet-beta
 ```
 Reload the daemon
-```
+```bash
 sudo systemctl daemon-reload
 ```
 Restart DoubleZero
-```
+```bash
 sudo systemctl restart doublezerod
 ```
 
 After about 30 seconds you can check available network connections with:
 
-```
+```bash
 doublezero latency
 ```
 Testnet Output
-```doublezero latency
+```bash
+doublezero latency
  pubkey                                       | code         | ip             | min      | max      | avg      | reachable 
  6E1fuqbDBG5ejhYEGKHNkWG5mSTczjy4R77XCKEdUtpb | nyc-dz001    | 64.86.249.22   | 2.44ms   | 2.63ms   | 2.50ms   | true      
  CT8mP6RUoRcAB67HjKV9am7SBTCpxaJEwfQrSjVLdZfD | lax-dz001    | 207.45.216.134 | 71.97ms  | 72.01ms  | 71.99ms  | true
@@ -265,7 +266,7 @@ doublezero status
 ```
 
 **Output:**
-```
+```bash
 Tunnel status | Last Session Update     | Tunnel Name | Tunnel src      | Tunnel dst   | DoubleZero IP   | User Type
 up            | 2025-09-10 12:16:03 UTC | doublezero0 | 137.184.101.183 | 64.86.249.22 | 137.184.101.183 | IBRL
 ```
