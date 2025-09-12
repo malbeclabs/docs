@@ -14,6 +14,7 @@ This guide explains how to onboard a Solana validator to DoubleZero. You will cr
 - Firewall allows outbound connections for DoubleZero and Solana RPC as needed\
  GRE (ip proto 47) and BGP (169.254.0.0/16 on tcp/179)
 - Optional but useful: jq and curl for debugging
+- run
 
 [comment]: # (We need to link the firewall troubleshooting guide to explain the firewall rules)
 
@@ -27,22 +28,27 @@ With the service_key and node ID identified, prove ownership. Create a message t
 
 Finally, submit a **connection request to DoubleZero**. This request communicates: *"Here is my identity, here is proof of ownership, and here is how I intend to connect."* DoubleZero validates the information, accepts the proof, and provisions your validator for network access. From that moment, your validator is fully recognized and authenticated as part of the DoubleZero ecosystem.
 
-## 1. Install DoubleZero Packages
+## 1. Install or Upgrade DoubleZero Packages
 
 Follow these steps depending on your operating system:
 
 ### Ubuntu / Debian
 
+For a new install:
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
-sudo apt-get install doublezero=0.6.3-1
+sudo apt-get install doublezero=0.6.4-1
+```
+To upgrade:
+```
+apt-get install --only-upgrade doublezero
 ```
 
 ### Rocky Linux / RHEL
-
+For a new install:
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh | sudo -E bash
-sudo yum install doublezero-0.6.3
+sudo yum install doublezero-0.6.4
 ```
 
 After installation, verify the daemon is running:
@@ -51,12 +57,17 @@ After installation, verify the daemon is running:
 sudo systemctl status doublezerod
 sudo journalctl -u doublezerod
 ```
+To upgrade:
+```
+sudo yum --only-upgrade doublezero
+```
 
 ## 2. Create New DoubleZero Identity
 
 
 !!! note inline end
-  If you have an existing DoubleZero Identity skip to step 3
+    If you have an existing DoubleZero Identity skip to step 3
+
 
 
 
@@ -79,7 +90,15 @@ doublezero address
 YourServiceKey11111111111111111111111111111
 ```
 
-## 4. Attest Validator Ownership
+## 4. Disconnect from DoubleZero
+
+If you are already connected to DoubleZero run:
+
+```
+doublezero disconnect
+```
+
+## 5. Attest Validator Ownership
 
 Determine the identity of the Solana validator and create a method to verify ownership. Use the identity keypair together with the standard Solana command to sign an off-chain transaction. This process only verifies ownership of the validator specified in the command.
 
@@ -128,9 +147,11 @@ Exit the `sol` user session (or the user you used for the validator):
 exit
 ```
 
-## 5. Initiate a Connection Request in DoubleZero
+## 6. Initiate a Connection Request in DoubleZero
 
 Use the `request-solana-validator-access` command to create an account on Solana for the connection request. The Sentinel agent detects the new account, validates its identity and signature, and creates the access pass in DoubleZero so the server can establish the connection.
+
+The examples are for Solana Testnet. For Mainnet, change `testnet` flag for `mainnet`
 
 Check your Solana Balance
 
@@ -140,10 +161,14 @@ solana balance -u testnet
 
 Use the node ID, service_key, and signature.
 
+!!! note inline end
+      In this example we use   `-k /home/user/.config/solana/id.json` to find the SolanaID. Use the appropriate location for your local deployment.
+
 ```bash
 doublezero-solana passport request-solana-validator-access -u testnet \
+  -k /home/user/.config/solana/id.json
   --node-id ValidatorIdentity111111111111111111111111111 \
-  --signature kftWCu7rCtVaB8FMqM2wEBXyV5THpKRXWrPtDQxmTjHJHiAWteVYTsc7Gjz4hdXxvYoZXGeHkrEaypn2EJgWAsJ \
+  --signature 2rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7TFLdLBGsVPmqCH \
   YourServiceKey11111111111111111111111111111
 ```
 
@@ -152,7 +177,7 @@ doublezero-solana passport request-solana-validator-access -u testnet \
 Request Solana validator access: kftWCu7rCtVaB8FMqM2wEBXyV5THpKRXWrPtDQxmTjHJHiAWteVYTsc7Gjz4hdXxvYoZXGeHkrEaypn2EJgWAsJ 
 ```
 
-## 6. Connect in IBRL Mode
+## 7. Connect in IBRL Mode
 
 On the server, with the user that accesses DoubleZero, run the `connect` command to establish the connection to DoubleZero.
 

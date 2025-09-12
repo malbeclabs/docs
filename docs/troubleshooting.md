@@ -119,9 +119,9 @@ This issue is generally related to a mismatch between the expected pubkey/IP pai
 
     FHyoPs7U23MuSTtepEyXUtSAEffEpFpJGoYvug8X2sWY | prepaid                                                        | 141.14.14.14   | MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2 | MAX               | MAX             | 0           | requested    | DZfHh2vjXFqt8zfNbT1afm8PGuCm3BrQKegC5THtKFdn 
     ```
-    The pubkey from `doublezero address` must match the user_payer pubkey and the IP Address you are trying to connect from must match the ip in the Access-Pass. 
+     The pubkey from `doublezero address` must match the user_payer pubkey and the IP Address you are trying to connect from must match the ip in the Access-Pass. 
     `doublezero address` is sourced from the id.json file in in ~/.config/doublezero/ by default. See the [step 6 here](https://docs.malbeclabs.com/setup/)
-
+    
 3. If the above looks correct and you are getting an error while connecting or if the above mapping is incorrect please contact support in [DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701)
 
 ### Issue: ❌ Error provisioning service: malformed stuff: cannot provision multiple tunnels at the same time
@@ -174,27 +174,27 @@ This issue is often related to the GRE tunnel being successfully activated betwe
 
    DoubleZero uses link local address space: 169.254.0.0/16 for the GRE tunnel interfaces between your machine and the DoubleZero Device. 169.254.0.0/16 is typically "non-routable" space and thus good security practices will recommend you blocking communications to/from this space. You will need to permit a rule in your firewall which enables src 169.254.0.0/16 to communicate with dst 169.254.0.0/16 on tcp port 179. That rule will need to be place above any rules that Deny traffic to 169.254.0.0/16. 
 
-In a firewall like ufw you can run `sudo ufw status` to view the firewalls rules and 
+    In a firewall like ufw you can run `sudo ufw status` to view the firewalls rules and 
 
-Sample Output which may be something similar to what a Solana validator would have. 
-```
-To                         Action      From
---                         ------      ----
-22/tcp                     ALLOW       Anywhere
-8899/tcp                   ALLOW       Anywhere
-8000:10000/tcp             ALLOW       Anywhere
-8000:10000/udp             ALLOW       Anywhere
-11200:11300/udp            ALLOW       Anywhere
-11200:11300/tcp            ALLOW       Anywhere
+    Sample Output which may be something similar to what a Solana validator would have. 
+    ```
+    To                         Action      From
+    --                         ------      ----
+    22/tcp                     ALLOW       Anywhere
+    8899/tcp                   ALLOW       Anywhere
+    8000:10000/tcp             ALLOW       Anywhere
+    8000:10000/udp             ALLOW       Anywhere
+    11200:11300/udp            ALLOW       Anywhere
+    11200:11300/tcp            ALLOW       Anywhere
 
-To                         Action      From
---                         ------      ----
-10.0.0.0/8                 DENY OUT    Anywhere
-169.254.0.0/16             DENY OUT    Anywhere
-172.16.0.0/12              DENY OUT    Anywhere
-192.168.0.0/16             DENY OUT    Anywhere
-```
+    To                         Action      From
+    --                         ------      ----
+    10.0.0.0/8                 DENY OUT    Anywhere
+    169.254.0.0/16             DENY OUT    Anywhere
+    172.16.0.0/12              DENY OUT    Anywhere
+    192.168.0.0/16             DENY OUT    Anywhere
+    ```
 
-In the above output you see all traffic to 169.254.0.0/16, except for the ports specified, is denied. 
-`sudo ufw insert <N> allow proto tcp from 169.254.0.0/16 to 169.254.0.0/16 port 179` to insert the rule in the <N> position. ie. if N = 1 then you will insert this rules as the first rule.
-`sudo ufw status numbered` will show you the numerical ordering of rules.
+    In the above output you see all traffic to 169.254.0.0/16, except for the ports specified, is denied. 
+    `sudo ufw insert <N> allow proto tcp from 169.254.0.0/16 to 169.254.0.0/16 port 179` to insert the rule in the <N> position. ie. if N = 1 then you will insert this rules as the first rule.
+    `sudo ufw status numbered` will show you the numerical ordering of rules.
