@@ -2,7 +2,7 @@
 
 ## Abstract
 
-This guide explains how to onboard a Solana validator to DoubleZero. You will create a server identity (service_key), prove validator ownership by signing a message with the validator's identity keypair (node ID), submit a connection request on Solana that DoubleZero validates, and finally establish an IBRL connection from your server. Follow steps 1–6 to install packages, generate identities, attest ownership, request access, and verify the tunnel is up.
+This guide explains how to onboard a Solana validator to DoubleZero. You will create a server identity (DoubleZeroID), prove validator ownership by signing a message with the validator's identity keypair (node ID), submit a connection request on Solana that DoubleZero validates, and finally establish an IBRL connection from your server. Follow steps 1–6 to install packages, generate identities, attest ownership, request access, and verify the tunnel is up.
 
 ## Prerequisites
 
@@ -20,11 +20,11 @@ This guide explains how to onboard a Solana validator to DoubleZero. You will cr
 
 ## Connecting a Solana Validator to DoubleZero
 
-When onboarding a Solana validator into DoubleZero, start by establishing identities on both sides. On your server, generate a **DoubleZero identity**, represented by a public key called the **service_key**. This key is how DoubleZero recognizes your server.
+When onboarding a Solana validator into DoubleZero, start by establishing identities on both sides. On your server, generate a **DoubleZero identity**, represented by a public key called the **DoubleZero ID**. This key is how DoubleZero recognizes your server.
 
 Next, focus on the validator itself. Each Solana validator has its own **identity keypair**; from this, extract the public key known as the **node ID**. This is the validator's unique fingerprint on the Solana network.
 
-With the service_key and node ID identified, prove ownership. Create a message that includes the service_key and sign it with the validator's keypair. The resulting cryptographic signature serves as verifiable proof that you control the validator.
+With the DoubleZeroID and node ID identified, prove ownership. Create a message that includes the DoubleZeroID and sign it with the validator's keypair. The resulting cryptographic signature serves as verifiable proof that you control the validator.
 
 Finally, submit a **connection request to DoubleZero**. This request communicates: *"Here is my identity, here is proof of ownership, and here is how I intend to connect."* DoubleZero validates the information, accepts the proof, and provisions your validator for network access. From that moment, your validator is fully recognized and authenticated as part of the DoubleZero ecosystem.
 
@@ -70,7 +70,7 @@ sudo yum --only-upgrade doublezero
 
 
 
-Create a DoubleZero identity on your server with the following command:
+Create a DoubleZero Identity on your server with the following command:
 
 ```bash
 doublezero keygen
@@ -78,7 +78,7 @@ doublezero keygen
 
 ## 3. Retrieve the server's DoubleZero identity
 
-Read your new identity (service_key). This identity will be used to activate your validator on Solana and then create your connection on your server.
+Read your new identity (DoubleZeroID). This identity will be used to activate your validator on Solana and then create your connection on your server.
 
 ```bash
 doublezero address
@@ -86,12 +86,16 @@ doublezero address
 
 **Output:**
 ```
-YourServiceKey11111111111111111111111111111
+YourDoubleZeroAddress11111111111111111111111111111
 ```
 
 ## 4. Disconnect from DoubleZero
 
-If you are already connected to DoubleZero run:
+Check 
+```
+doublezero status
+``` 
+if it is `up` run:
 
 ```
 doublezero disconnect
@@ -130,12 +134,12 @@ ValidatorIdentity111111111111111111111111111
 Use the `sign-offchain-message` command to create a way to validate that you are the owner of the validator.
 
 ```bash
-solana sign-offchain-message -k path/to/validator-keypair.json service_key=YourServiceKey11111111111111111111111111111
+solana sign-offchain-message -k path/to/validator-keypair.json service_key=YourDoubleZeroAddress11111111111111111111111111111
 ```
 
 **Output:**
 ```
-2rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7TFLdLBGsVPmqCH
+Signature111111rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7
 ```
 
 ### Exit the Validator User
@@ -158,7 +162,7 @@ Check your Solana Balance
 solana balance -u testnet
 ```
 
-Use the node ID, service_key, and signature.
+Use the node ID, DoubleZeropID, and signature.
 
 !!! note inline end
       In this example we use   `-k /home/user/.config/solana/id.json` to find the SolanaID. Use the appropriate location for your local deployment.
@@ -167,16 +171,63 @@ Use the node ID, service_key, and signature.
 doublezero-solana passport request-solana-validator-access -u testnet \
   -k /home/user/.config/solana/id.json
   --node-id ValidatorIdentity111111111111111111111111111 \
-  --signature 2rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7TFLdLBGsVPmqCH \
-  YourServiceKey11111111111111111111111111111
+  --signature Signature111111rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7 \
+  YourDoubleZeroAddress11111111111111111111111111111
 ```
 
-**Output:**
+**Sample Output:**
 ```
-Request Solana validator access: kftWCu7rCtVaB8FMqM2wEBXyV5THpKRXWrPtDQxmTjHJHiAWteVYTsc7Gjz4hdXxvYoZXGeHkrEaypn2EJgWAsJ 
+Request Solana validator access: Signature2222222222VaB8FMqM2wEBXyV5THpKRXWrPtDQxmTjHJHiAWteVYTsc7Gjz4hdXxvYoZXGeHkrEayp 
 ```
 
-## 7. Connect in IBRL Mode
+## 7. Enviroment Verification
+
+Solana Testnet Validators should connect to DoubleZero Testnet. Testnet users can skip to step 8.
+
+
+<details open>
+  <summary>Solana Mainnet Validators should connect to DoubleZero Mainnet-Beta.</summary>
+
+```
+sudo systemctl edit doublezerod
+```
+In this file add:
+```
+[Service]
+ExecStart=
+ExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env mainnet-beta
+```
+Reload the daemon
+```
+sudo systemctl daemon-reload
+```
+Restart DoubleZero
+```
+sudo systemctl restart doublezerod
+```
+
+After about 30 seconds you can check available network connections with:
+
+```
+doublezero latency
+```
+Testnet Output
+```doublezero latency
+ pubkey                                       | code         | ip             | min      | max      | avg      | reachable 
+ 6E1fuqbDBG5ejhYEGKHNkWG5mSTczjy4R77XCKEdUtpb | nyc-dz001    | 64.86.249.22   | 2.44ms   | 2.63ms   | 2.50ms   | true      
+ CT8mP6RUoRcAB67HjKV9am7SBTCpxaJEwfQrSjVLdZfD | lax-dz001    | 207.45.216.134 | 71.97ms  | 72.01ms  | 71.99ms  | true
+ Cpt3doj17dCF6bEhvc7VeAuZbXLD88a1EboTyE8uj6ZL | lon-dz001    | 195.219.120.66 | 71.94ms  | 72.08ms  | 72.00ms  | true
+ 4Wr7PQr5kyqCNJo3RKa8675K7ZtQ6fBUeorcexgp49Zp | ams-dz001    | 195.219.138.50 | 76.55ms  | 76.65ms  | 76.61ms  | true
+ 29ghthsKeH2ZCUmN2sUvhJtpEXn2ZxqAuq4sZFBFZmEs | fra-dz001    | 195.219.220.58 | 83.01ms  | 83.10ms  | 83.05ms  | true
+ hWffRFpLrsZoF5r9qJS6AL2D9TEmSvPUBEbDrLc111Y  | fra-dz-001-x | 195.12.227.250 | 84.87ms  | 84.91ms  | 84.89ms  | true
+ 8jyamHfu3rumSEJt9YhtYw3J4a7aKeiztdqux17irGSj | prg-dz-001-x | 195.12.228.250 | 95.27ms  | 95.30ms  | 95.29ms  | true
+ 5tqXoiQtZmuL6CjhgAC6vA49JRUsgB9Gsqh4fNjEhftU | tyo-dz001    | 180.87.154.78  | 180.96ms | 181.08ms | 181.02ms | true
+ D3ZjDiLzvrGi5NJGzmM7b3YZg6e2DrUcBCQznJr3KfC8 | sin-dz001    | 180.87.102.98  | 220.87ms | 221.14ms | 220.97ms | true
+```
+Mainnet output will be identical in structure, but with over 40 connections!
+</details>
+
+## 8. Connect in IBRL Mode
 
 On the server, with the user that accesses DoubleZero, run the `connect` command to establish the connection to DoubleZero.
 
