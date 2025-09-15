@@ -169,11 +169,11 @@ solana balance -u mainnet-beta
 Use the node ID, DoubleZeroID, and signature.
 
 !!! note inline end
-      In this example we use   `-k /home/user/.config/solana/id.json` to find the SolanaID. Use the appropriate location for your local deployment.
+      In this example we use   `-k /home/user/.config/solana/id.json` to find the Validator Identity. Use the appropriate location for your local deployment.
 
 ```bash
 doublezero-solana passport request-solana-validator-access -u mainnet-beta \
-  -k /home/user/.config/solana/id.json
+  -k /home/user/.config/solana/id.json \
   --node-id ValidatorIdentity111111111111111111111111111 \
   --signature Signature111111rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7 \
   YourDoubleZeroAddress11111111111111111111111111111
