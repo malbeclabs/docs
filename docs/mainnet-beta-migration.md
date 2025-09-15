@@ -13,6 +13,7 @@ This guide explains how to onboard a Solana validator to DoubleZero. You will cr
 - Firewall allows outbound connections for DoubleZero and Solana RPC as needed\
  GRE (ip proto 47) and BGP (169.254.0.0/16 on tcp/179)
 - Optional but useful: jq and curl for debugging
+- Ensure the Solana ValidatorID you are connecting has at least 1 sol on it
 
 [comment]: # (We need to link the firewall troubleshooting guide to explain the firewall rules)
 
@@ -126,6 +127,8 @@ In other words, this step **only requires you to sign a message with your valida
 ```bash
 solana address -k path/to/validator-keypair.json
 ```
+!!! note inline end
+      Save the output of this Signature for step 6
 
 **Output:**
 ```bash
@@ -160,7 +163,7 @@ The examples are for Solana Testnet. For Solana Mainnet-beta, change `testnet` f
 Check your Solana Balance
 
 ```bash
-solana balance -u testnet
+solana balance -u mainnet-beta
 ```
 
 Use the node ID, DoubleZeroID, and signature.
@@ -169,7 +172,7 @@ Use the node ID, DoubleZeroID, and signature.
       In this example we use   `-k /home/user/.config/solana/id.json` to find the SolanaID. Use the appropriate location for your local deployment.
 
 ```bash
-doublezero-solana passport request-solana-validator-access -u testnet \
+doublezero-solana passport request-solana-validator-access -u mainnet-beta \
   -k /home/user/.config/solana/id.json
   --node-id ValidatorIdentity111111111111111111111111111 \
   --signature Signature111111rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7 \
