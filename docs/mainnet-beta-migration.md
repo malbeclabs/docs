@@ -185,43 +185,47 @@ doublezero-solana passport request-solana-validator-access -u mainnet-beta \
 Request Solana validator access: Signature2222222222VaB8FMqM2wEBXyV5THpKRXWrPtDQxmTjHJHiAWteVYTsc7Gjz4hdXxvYoZXGeHkrEayp 
 ```
 
-## 7. Environment Verification
+## 7. Environment Configuration
+Set your desired environment - testnet or mainnet-beta. 
 
-Solana Testnet Validators should connect to DoubleZero Testnet. Testnet users can skip to step 8.
-
-
-<details>
-  <summary>Solana Mainnet Validators will connect to DoubleZero Mainnet-Beta; expand this section to continue.</summary>
- 
-Configure the DoubleZero Client to point to Mainnet-Beta
+If you want to connect to DoubleZero testnet:
 ```bash
-doublezero config set --env mainnet-beta
+DESIRED_DOUBLEZERO_ENV=testnet
+```
+If you want to connect to DoubleZero mainnet-beta:
+```bash
+DESIRED_DOUBLEZERO_ENV=mainnet-beta
 ```
 
+Configure the DoubleZero Client CLI to use the environment specified above: 
 ```bash
-sudo systemctl edit doublezerod
-```
-In this file add:
-```bash
-[Service]
-ExecStart=
-ExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env mainnet-beta
-```
-Reload the daemon
-```bash
-sudo systemctl daemon-reload
-```
-Restart DoubleZero
-```bash
-sudo systemctl restart doublezerod
+doublezero config set --env $DESIRED_DOUBLEZERO_ENV
 ```
 
-After about 30 seconds you can check available network connections with:
+Configure the DoubleZero Client daemon to use the environment specified above by copying this script and pasting it into your shell:
+```bash
+if [ "$DESIRED_DOUBLEZERO_ENV" != "testnet" ] && [ "$DESIRED_DOUBLEZERO_ENV" != "mainnet-beta" ]; 
+then
+  echo "❌ DESIRED_DOUBLEZERO_ENV must be set to 'testnet' or 'mainnet-beta'"
+else
+	sudo mkdir -p /etc/systemd/system/doublezerod.service.d \
+	&& echo -e "[Service]\nExecStart=\nExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env $DESIRED_DOUBLEZERO_ENV" | sudo tee /etc/systemd/system/doublezerod.service.d/override.conf > /dev/null \
+	&& sudo systemctl daemon-reload \
+	&& sudo systemctl restart doublezerod \
+	&& echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV"
+fi
+```
+You should see output similar to the following:
+```
+✅ doublezerod configured for environment mainnet-beta
+```
+
+After about 30 seconds you can see the DoubleZero devices available for connection with:
 
 ```bash
 doublezero latency
 ```
-Testnet Output
+Example output (testnet)
 ```bash
 doublezero latency
  pubkey                                       | code         | ip             | min      | max      | avg      | reachable 
