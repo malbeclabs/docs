@@ -14,6 +14,7 @@ This guide explains how to onboard a Solana validator to DoubleZero. You will cr
  GRE (ip proto 47) and BGP (169.254.0.0/16 on tcp/179)
 - Optional but useful: jq and curl for debugging
 - Ensure the Solana ValidatorID you are connecting has at least 1 sol on it
+- Credits represent storage on the DZ ledger. When you connect using access pass, these credits will be provided to you.
 
 [comment]: # (We need to link the firewall troubleshooting guide to explain the firewall rules)
 
@@ -179,6 +180,7 @@ doublezero-solana passport request-solana-validator-access -u mainnet-beta \
   YourDoubleZeroAddress11111111111111111111111111111
 
 ```
+
 
 **Sample Output:**
 ```bash
