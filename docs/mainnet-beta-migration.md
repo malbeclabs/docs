@@ -155,7 +155,7 @@ exit
 
 Use the `request-solana-validator-access` command to create an account on Solana for the connection request. The Sentinel agent detects the new account, validates its identity and signature, and creates the access pass in DoubleZero so the server can establish the connection.
 
-The examples are for Solana Testnet. For Mainnet, change `testnet` flag for `mainnet`
+The examples are for Solana Testnet. For Solana Mainnet-beta, change `testnet` flag for `mainnet-beta`
 
 Check your Solana Balance
 
@@ -182,7 +182,7 @@ doublezero-solana passport request-solana-validator-access -u testnet \
 Request Solana validator access: Signature2222222222VaB8FMqM2wEBXyV5THpKRXWrPtDQxmTjHJHiAWteVYTsc7Gjz4hdXxvYoZXGeHkrEayp 
 ```
 
-## 7. Enviroment Verification
+## 7. Environment Verification
 
 Solana Testnet Validators should connect to DoubleZero Testnet. Testnet users can skip to step 8.
 
