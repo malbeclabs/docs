@@ -137,7 +137,7 @@ To connect your primary server, use the Validator Identity of your main validato
 
 <figure markdown="span">
   ![Image title](images/ConnectingBackup.png){ width="800" }
-  <figcaption>Figure 2: Connecting to DoubleZero Testnet</figcaption>
+  <figcaption>Figure 2: Connecting a backup node to DoubleZero</figcaption>
 </figure>
 
 ```bash
