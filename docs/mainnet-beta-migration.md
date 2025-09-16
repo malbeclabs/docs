@@ -278,6 +278,10 @@ Public IP detected: 137.184.101.183 - If you want to use a different IP, you can
     Service provisioned with status: ok
 ✅  User Provisioned
 ```
+
+!!! note inline end
+    If your user is not immediatly provisioned, please wait 2 minutes before trying to re-connect.
+
 Wait one minute for the tunnel to complete. Until the tunnel is completed, your status output may return "down" or "Unknown" 
 
 Verify your connection:
