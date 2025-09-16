@@ -15,6 +15,7 @@ This guide explains how to onboard a Solana validator to DoubleZero. You will cr
  GRE (ip proto 47) and BGP (169.254.0.0/16 on tcp/179)
 - Optional but useful: jq and curl for debugging
 
+
 [comment]: # (We need to link the firewall troubleshooting guide to explain the firewall rules)
 
 ## Connecting a Solana Validator to DoubleZero
@@ -124,11 +125,15 @@ This step **only requires you to sign a message with your validator Identity** t
 
 ### Identify the Pubkey from your validator Identity
 
+You may only create an access pass for the Validator Identity which is in gossip on the server requesting the access pass.
+To connect your primary server, use the Validator Identity of your main validator. To connect a backup server, use the Validator Identity configured on the backup server.
+
 ```bash
 solana address -k path/to/validator-keypair.json
 ```
 !!! note inline end
       Save the output of this Signature for step 6
+
 
 **Output:**
 ```bash
