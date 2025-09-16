@@ -5,7 +5,21 @@ This page will be deprected upon open sourcing of the doublezero repo. Until tha
 
 ## Changelog
 
+## [v0.6.4](https://github.com/malbeclabs/doublezero/compare/client/v0.6.3...client/v0.6.4) – 2025-09-10
 
+### Breaking
+
+- None for this release
+
+### Changes
+
+- Onchain programs
+    - Fix bug preventing re-opening of AccessPass after closure
+    - sc/svc: guard against empty account data
+- Device controller
+    - Support server dual listening on TLS and non-TLS ports
+- Device and Internet Latency Telemetry
+    - Create one ripeatlas measurement per exchange instead of per exchange pair to avoid concurrent measurement limit
 
 ## [v0.6.3](https://github.com/malbeclabs/doublezero/compare/client/v0.6.2...client/v0.6.3) – 2025-09-08
 
