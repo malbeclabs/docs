@@ -137,6 +137,8 @@ To connect your primary server, use the Validator Identity of your main validato
   </div>
 </div>
 
+![Connecting Mainnet](images/Connecting Mainnet.png){ width="48%" } ![Connecting Backup](images/Connecting Backup.png){ width="48%" }
+
 ```bash
 solana address -k path/to/validator-keypair.json
 ```
