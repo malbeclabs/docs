@@ -129,7 +129,9 @@ This step **only requires you to sign a message with your validator Identity** t
 You may only create an access pass for the Validator Identity which is in gossip on the server requesting the access pass.
 To connect your primary server, use the Validator Identity of your main validator. To connect a backup server, use the Validator Identity configured on the backup server.
 
-![Connecting Mainnet](images/Connecting Mainnet.png){ width="48%" } ![Connecting Backup](images/Connecting Backup.png){ width="48%" }
+<figure markdown="span">
+  ![Connecting Mainnet](images/Connecting%20Mainnet.png){ width="48%" } ![Connecting Backup](images/Connecting%20Backup.png){ width="48%" }
+</figure>
 
 ```bash
 solana address -k path/to/validator-keypair.json
@@ -166,7 +168,7 @@ exit
 
 Use the `request-solana-validator-access` command to create an account on Solana for the connection request. The DoubleZero Sentinel agent detects the new account, validates its identity and signature, and creates the access pass in DoubleZero so the server can establish a connection.
 
-The example being is for Solana Mainnet-beta. For Solana Testnet, change the `mainnet-beta` flag to `testnet`
+The example is for Solana Mainnet-beta. For Solana Testnet, change the `mainnet-beta` flag to `testnet`
 
 Check your Solana Balance
 
@@ -281,4 +283,20 @@ doublezero status
 ```bash
 Tunnel status | Last Session Update     | Tunnel Name | Tunnel src      | Tunnel dst   | DoubleZero IP   | User Type
 up            | 2025-09-10 12:16:03 UTC | doublezero0 | 137.184.101.183 | 64.86.249.22 | 137.184.101.183 | IBRL
+```
+A status of `up` means you are successfully connected.
+
+You will be able to view routes propagated by other users on DoubleZero by running:
+
+```
+ip route
+```
+
+
+```
+default via 149.28.38.1 dev enp1s0 proto dhcp src 149.28.38.64 metric 100 
+5.39.216.186 via 169.254.0.68 dev doublezero0 proto bgp src 149.28.38.64 
+5.39.251.201 via 169.254.0.68 dev doublezero0 proto bgp src 149.28.38.64 
+5.39.251.202 via 169.254.0.68 dev doublezero0 proto bgp src 149.28.38.64 
+...
 ```
