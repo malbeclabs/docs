@@ -1,31 +1,31 @@
-# Onboarding a Solana Validator into DoubleZero
+# Onboarding a Solana Validator onto DoubleZero
 
 ## Abstract
 
-This guide explains how to onboard a Solana validator to DoubleZero. You will create a server identity (DoubleZeroID), prove validator ownership by signing a message with the validator's identity keypair (node ID), submit a connection request on Solana that DoubleZero validates, and finally establish an IBRL connection from your server. Follow steps 1–6 to install packages, generate identities, attest ownership, request access, and verify the tunnel is up.
+This guide explains how to onboard a Solana validator to DoubleZero. You will create a server identity (DoubleZeroID), prove validator ownership by signing a message with the validator's Identity key (node ID), submit a connection request on Solana which DoubleZero validates, and finally establish an DoubleZero "IBRL" connection from your server. Follow steps 1–6 to install packages, generate identities, attest ownership, request access, and verify the tunnel is up.
 
 ## Prerequisites
 
 - Supported OS: Ubuntu 22.04+ or Debian 11+, or Rocky Linux / RHEL 8+
 - Root or sudo privileges on the server where DoubleZero will run
 - Solana CLI installed and on $PATH
-- Access to the validator identity keypair file (e.g., validator-keypair.json) under the sol user
-- Firewall allows outbound connections for DoubleZero and Solana RPC as needed\
+- Permission to access to the validator identity keypair file (e.g., validator-keypair.json) under the sol user
+- Verify the Identity key of Solana validator being connected has at least 1 SOL on it
+- Firewall rules permit outbound connections for DoubleZero and Solana RPC as needed including 
  GRE (ip proto 47) and BGP (169.254.0.0/16 on tcp/179)
 - Optional but useful: jq and curl for debugging
-- Ensure the Solana ValidatorID you are connecting has at least 1 sol on it
 
 [comment]: # (We need to link the firewall troubleshooting guide to explain the firewall rules)
 
 ## Connecting a Solana Validator to DoubleZero
 
-When onboarding a Solana validator into DoubleZero, start by establishing identities on both sides. On your server, generate a **DoubleZero identity**, represented by a public key called the **DoubleZero ID**. This key is how DoubleZero recognizes your server.
+When onboarding a Solana validator onto DoubleZero, start by establishing identities. On your server, generate a **DoubleZero identity**, represented by a public key called the **DoubleZero ID**. This key is how DoubleZero recognizes your server.
 
 Next, focus on the validator itself. Each Solana validator has its own **identity keypair**; from this, extract the public key known as the **node ID**. This is the validator's unique fingerprint on the Solana network.
 
-With the DoubleZeroID and node ID identified, prove ownership. Create a message that includes the DoubleZeroID and sign it with the validator's keypair. The resulting cryptographic signature serves as verifiable proof that you control the validator.
+With the DoubleZeroID and node ID identified, prove ownership. Create a message that includes the DoubleZeroID and sign it with the validator's identity key. The resulting cryptographic signature serves as verifiable proof that you control the validator.
 
-Finally, submit a **connection request to DoubleZero**. This request communicates: *"Here is my identity, here is proof of ownership, and here is how I intend to connect."* DoubleZero validates the information, accepts the proof, and provisions your validator for network access. From that moment, your validator is fully recognized and authenticated as part of the DoubleZero ecosystem.
+Finally, submit a **connection request to DoubleZero**. This request communicates: *"Here is my identity, here is proof of ownership, and here is how I intend to connect."* DoubleZero validates this information, accepts the proof, and provisions network access for the validator on DoubleZero.
 
 ## 1. Install or Upgrade DoubleZero Packages
 
@@ -71,7 +71,7 @@ sudo yum --only-upgrade doublezero
 
 
 
-Create a DoubleZero identity on your server with the following command:
+Create a DoubleZero Identity on your server with the following command:
 
 
 ```bash
@@ -80,7 +80,7 @@ doublezero keygen
 
 ## 3. Retrieve the server's DoubleZero identity
 
-Read your new identity (DoubleZeroID). This identity will be used to activate your validator on Solana and then create your connection on your server.
+Review your DoubleZero Identity. This identity will be used to create the connection between your validator and DoubleZero
 
 ```bash
 doublezero address
@@ -105,24 +105,24 @@ doublezero disconnect
 
 ## 5. Attest Validator Ownership
 
-Determine the identity of the Solana validator and create a method to verify ownership. Use the identity keypair together with the standard Solana command to sign an off-chain transaction. This process only verifies ownership of the validator specified in the command.
+Determine the identity of the Solana validator. Use the validator Identity key together to sign an off-chain transaction. This process only verifies ownership of the validator specified in the command.
 
 ### Switching to the `sol` User
 
-Before generating the validator ownership signature, you must switch to the `sol` user (or whichever user you normally use to run the validator):
+Before generating the validator ownership signature, you must switch to the `sol` user (or the user you normally use to run the validator):
 
 ```bash
 sudo su - sol
 ```
 
-This is required because the validator's identity keypair (`validator-keypair.json`) is usually stored under the `sol` user account. Running the command as `sol` ensures:
+This is required because the validator's Identity key (`validator-keypair.json`) is usually stored under the `sol` user account. Running the command as `sol` ensures:
 
-- You have access to the validator identity keypair without permission errors.
-- The signature is generated using the correct keys that your Solana validator actually uses.
+- You have permissions to access to the `validator-keypair.json`.
+- The signature is generated using the appropriate key that your Solana validator uses.
 
-In other words, this step **only requires you to sign a message with your validator identity** to prove ownership.
+This step **only requires you to sign a message with your validator Identity** to prove ownership.
 
-### Extract the Pubkey from your identity
+### Identify the Pubkey from your validator Identity
 
 ```bash
 solana address -k path/to/validator-keypair.json
@@ -135,7 +135,7 @@ solana address -k path/to/validator-keypair.json
 ValidatorIdentity111111111111111111111111111
 ```
 
-Use the `sign-offchain-message` command to create a way to validate that you are the owner of the validator.
+Use the `sign-offchain-message` command to prove you are the owner of the validator.
 
 ```bash
 solana sign-offchain-message -k path/to/validator-keypair.json service_key=YourDoubleZeroAddress11111111111111111111111111111
@@ -148,7 +148,7 @@ Signature111111rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk
 
 ### Exit the Validator User
 
-Exit the `sol` user session (or the user you used for the validator):
+Exit the `sol` user session (or the user used to run the validator):
 
 ```bash
 exit
@@ -156,9 +156,9 @@ exit
 
 ## 6. Initiate a Connection Request in DoubleZero
 
-Use the `request-solana-validator-access` command to create an account on Solana for the connection request. The Sentinel agent detects the new account, validates its identity and signature, and creates the access pass in DoubleZero so the server can establish the connection.
+Use the `request-solana-validator-access` command to create an account on Solana for the connection request. The DoubleZero Sentinel agent detects the new account, validates its identity and signature, and creates the access pass in DoubleZero so the server can establish a connection.
 
-The examples are for Solana Testnet. For Solana Mainnet-beta, change `testnet` flag for `mainnet-beta`
+The example being is for Solana Mainnet-beta. For Solana Testnet, change the `mainnet-beta` flag to `testnet`
 
 Check your Solana Balance
 
@@ -169,7 +169,7 @@ solana balance -u mainnet-beta
 Use the node ID, DoubleZeroID, and signature.
 
 !!! note inline end
-      In this example we use   `-k /home/user/.config/solana/id.json` to find the Validator Identity. Use the appropriate location for your local deployment.
+      In this example we use   `-k /home/user/.config/solana/id.json` to find the validator Identity. Use the appropriate location for your local deployment.
 
 ```bash
 doublezero-solana passport request-solana-validator-access -u mainnet-beta \
@@ -180,7 +180,7 @@ doublezero-solana passport request-solana-validator-access -u mainnet-beta \
 
 ```
 
-**Sample Output:**
+**Output:**
 ```bash
 Request Solana validator access: Signature2222222222VaB8FMqM2wEBXyV5THpKRXWrPtDQxmTjHJHiAWteVYTsc7Gjz4hdXxvYoZXGeHkrEayp 
 ```
@@ -218,7 +218,7 @@ You should see the following output:
 ✅ doublezerod configured for environment mainnet-beta
 ```
 
-After about 30 seconds you can see the DoubleZero devices available for connection with:
+After about 30 seconds you will see the DoubleZero devices available:
 
 ```bash
 doublezero latency
@@ -237,12 +237,12 @@ doublezero latency
  5tqXoiQtZmuL6CjhgAC6vA49JRUsgB9Gsqh4fNjEhftU | tyo-dz001    | 180.87.154.78  | 180.96ms | 181.08ms | 181.02ms | true
  D3ZjDiLzvrGi5NJGzmM7b3YZg6e2DrUcBCQznJr3KfC8 | sin-dz001    | 180.87.102.98  | 220.87ms | 221.14ms | 220.97ms | true
 ```
-Mainnet output will be identical in structure, but with many more devices available for connections!
+Mainnet output will be identical in structure, but with many more available devices.
 </details>
 
 ## 8. Connect in IBRL Mode
 
-On the server, with the user that accesses DoubleZero, run the `connect` command to establish the connection to DoubleZero.
+On the server, with the user which will connect to DoubleZero, run the `connect` command to establish the connection to DoubleZero.
 
 ```bash
 doublezero connect ibrl
@@ -261,9 +261,9 @@ Public IP detected: 137.184.101.183 - If you want to use a different IP, you can
     Service provisioned with status: ok
 ✅  User Provisioned
 ```
-Wait one minute for the tunnel to form. Until the tunnel is formed you may return "down" or "Unknown" 
+Wait one minute for the tunnel to complete. Until the tunnel is completed, your status output may return "down" or "Unknown" 
 
-Then verify your connection:
+Verify your connection:
 
 ```bash
 doublezero status
