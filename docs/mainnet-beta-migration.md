@@ -130,7 +130,13 @@ You may only create an access pass for the Validator Identity which is in gossip
 To connect your primary server, use the Validator Identity of your main validator. To connect a backup server, use the Validator Identity configured on the backup server.
 
 <figure markdown="span">
-  ![Connecting Mainnet](images/Connecting%20Mainnet.png){ width="48%" } ![Connecting Backup](images/Connecting%20Backup.png){ width="48%" }
+  ![Image title](images/ConnectingMainnet.png){ width="800" }
+  <figcaption>Figure 1: Connecting to DoubleZero Mainnet-Beta</figcaption>
+</figure>
+
+<figure markdown="span">
+  ![Image title](images/ConnectingBackup.png){ width="800" }
+  <figcaption>Figure 2: Connecting to DoubleZero Testnet</figcaption>
 </figure>
 
 ```bash
