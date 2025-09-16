@@ -4,6 +4,7 @@
 
 This guide explains how to onboard a Solana validator to DoubleZero. You will create a server identity (DoubleZeroID), prove validator ownership by signing a message with the validator's Identity key (node ID), submit a connection request on Solana which DoubleZero validates, and finally establish an DoubleZero "IBRL" connection from your server. Follow steps 1–6 to install packages, generate identities, attest ownership, request access, and verify the tunnel is up.
 
+
 ## Prerequisites
 
 - Supported OS: Ubuntu 22.04+ or Debian 11+, or Rocky Linux / RHEL 8+
@@ -127,6 +128,14 @@ This step **only requires you to sign a message with your validator Identity** t
 
 You may only create an access pass for the Validator Identity which is in gossip on the server requesting the access pass.
 To connect your primary server, use the Validator Identity of your main validator. To connect a backup server, use the Validator Identity configured on the backup server.
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <div style="flex: 1; margin-right: 10px;">
+    <img src="images/Connecting Mainnet.png" alt="Connecting Mainnet" style="width: 100%; height: auto;">
+  </div>
+  <div style="flex: 1; margin-left: 10px;">
+    <img src="images/Connecting Backup.png" alt="Connecting Backup" style="width: 100%; height: auto;">
+  </div>
+</div>
 
 ```bash
 solana address -k path/to/validator-keypair.json
