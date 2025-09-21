@@ -468,35 +468,35 @@ Use these steps if your DoubleZero Agent will connect to the DoubleZero Controll
 2. Download and install the current stable doublezero-agent binary package
 
     a. As admin on the EOS CLI, run the `bash` shell command and then enter the following commands:
-        ```
+    ```
         switch# bash
         $ sudo bash
         # cd /mnt/flash
         # wget https://dl.cloudsmith.io/public/malbeclabs/doublezero/rpm/any-distro/any-version/x86_64/doublezero-agent_<X.Y.Z>_linux_amd64.rpm
         # exit
         $ exit
-        ```
+    ```
 
     !!! note
         You can find more info about Arista EOS extensions [here](https://www.arista.com/en/um-eos/eos-managing-eos-extensions)
 
     b. Back on the EOS CLI, set up the agent
-        ```
+    ```
         switch# copy flash:doublezero-agent_<X.Y.Z>_linux_amd64.rpm extension:
         switch# extension doublezero-agent_<X.Y.Z>_linux_amd64.rpm
         switch# copy installed-extensions boot-extensions
-        ```
+    ```
     c. Verify the extension
 
     The Status should be "A, I, B".
-        ```
+    ```
         switch# show extensions
         Name                                        Version/Release     Status     Extension
         ------------------------------------------- ------------------- ---------- ---------
         doublezero-agent_<X.Y.Z>_linux_amd64.rpm    X.Y.Z/1             A, I, B    1
 
         A: available | NA: not available | I: installed | F: forced | B: install at boot
-        ```
+    ```
 
 3. To set up and start the agent, go back to EOS command line, add the following to the Arista EOS configuration:
     a. Configure the doublezero-agent
