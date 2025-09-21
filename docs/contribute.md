@@ -212,6 +212,234 @@ Note that quantities reflect two data centers' equipment i.e. the total required
 | Rack Space  | 4U           |
 | Power       | 4KW (recommended) |
 
+## DoubleZero Network Contributor Device and Link Provisioning
+
+
+### Onboarding Process
+
+During the onboarding process, each contributor must provide a public key called the **service key** that will be used to interact with the DoubleZero CLI. This key will serve as the primary identity for executing network operations such as:
+
+- **Creating devices**
+- **Establishing links between devices and contributors**
+
+The **service key** must be generated and securely stored by the contributor before it is submitted to the DoubleZero Foundation for authorization. This ensures that all CLI interactions can be cryptographically verified and associated with the correct contributor account.
+
+Contributors are responsible for safeguarding the private key associated with the provided service key. Loss or compromise of this key may result in service disruption and will require a re-onboarding process.
+
+These are the steps for creating the different accounts in DoubleZero to manage the network and interconnect it with other contributors.
+
+```mermaid
+flowchart LR
+    A[Create Keys] -->C[Install Device]
+    C --> D[Create Device]
+    D --> J[Install Config Agent]
+    D --> K[Install Telemetry Agent]
+    D --> E[Create Device Interfaces]
+    E --> F[Create WAN Link]
+    E --> G[Create DZX Link]
+    F --> H[Accept DZX Link]
+```
+
+### Create Keys
+
+Each contributor has a private key used to send commands to DoubleZero. They also have a keypair that the agent uses to send metrics to the smart contracts, which store them and later process them to execute the rewards process.
+
+1. Generate the service key (one-time, not per device)
+
+Use your preferred tool **or** the CLI:
+
+```bash
+doublezero keygen
+```
+
+2. Generate the metrics (telemetry) key (one-time, not per device)
+
+```bash
+doublezero keygen -o ~/.config/doublezero/metrics-publisher.json
+```
+
+### Device Installation – Physical and Logical Setup
+
+This section describes the steps for installing and configuring a device for operation within the DoubleZero network. DoubleZero provides an initial configuration recommendation, available in the official repositories, which should be reviewed and applied as part of the setup process.
+
+#### 1. Recommended Physical Installation
+
+- Install the device in the data center rack, ensuring correct airflow.
+- Connect with redundant power feeds to ensure uptime.
+
+#### 2. Initial Network Access
+
+- Establish management connectivity to the device.
+- Configure Internet access.
+
+#### 3. Apply Recommended Configuration
+
+- Discuss with DoubleZero Foundation / Malbec Labs
+
+### Device Creation
+
+An authorized contributor can create their devices using the following command:
+
+```bash
+doublezero device create [OPTIONS] --code <CODE> --contributor <CONTRIBUTOR> --location <LOCATION> --exchange <EXCHANGE> --public-ip <PUBLIC_IP> --dz-prefixes <DZ_PREFIXES>
+```
+
+**Options:**
+
+```
+--code <CODE>                            Unique device code  
+--contributor <CONTRIBUTOR>              Contributor (pubkey or code)  
+--location <LOCATION>                    Location (pubkey or code)  
+--exchange <EXCHANGE>                    Exchange (pubkey or code)  
+--public-ip <PUBLIC_IP>                  Device public IPv4 address  
+--dz-prefixes <DZ_PREFIXES>              List of DZ prefixes in CIDR format  
+--metrics-publisher <METRICS_PUBLISHER>  Metrics publisher public key (optional)  
+--mgmt-vrf <MGMT_VRF>                    Management VRF name (optional)
+```
+
+When running this command, the contributor must provide detailed information about the device to be connected to the DoubleZero Network.
+
+### Viewing Available Locations
+
+```bash
+doublezero location list
+```
+
+### Viewing Available Exchanges
+
+```bash
+doublezero exchange list
+```
+
+### Example: Creating a Device for Contributor `co01`
+
+```bash
+doublezero device create \
+  --code lax-dz001 \
+  --contributor co01 \
+  --location lax \
+  --exchange xlax \
+  --public-ip "1.2.3.4" \
+  --dz-prefixes "100.0.0.0/16" \
+  --metrics-publisher <PUBKEY>
+```
+
+### Creating Interfaces on a Device
+
+```bash
+doublezero device interface create [OPTIONS] <DEVICE> <NAME>
+```
+
+**Example:**
+
+```bash
+doublezero device interface create \
+  lax-dz01 Ethernet1/1
+```
+
+> ⚠️ **Note:**  
+> There is a current requirement to create two loopback interfaces to support internal DZ routing protocols:
+```bash
+doublezero device interface create lax-dz001 Loopback255 --loopback-type vpnv4
+doublezero device interface create lax-dz001 Loopback256 --loopback-type ipv4
+```
+
+
+### Listing Device Interfaces
+
+```bash
+doublezero device interface list <DEVICE>
+```
+
+### Deleting a Device Interface
+
+```bash
+doublezero device interface delete [OPTIONS] <DEVICE> <NAME>
+```
+
+> ⚠️ **Note:**  
+> Deleting an interface that is currently in use may cause service disruption.
+
+---
+
+## Links Between Devices
+
+Links are used to interconnect devices:
+
+- **WAN Links** – Between devices of the same contributor.
+- **DZX Links** – Between devices from different contributors.
+
+> ⚠️ DZX links must be explicitly accepted by the second contributor.
+
+### Creating a WAN Link
+
+```bash
+doublezero link create wan [OPTIONS] \
+  --code <CODE> \
+  --contributor <CONTRIBUTOR> \
+  --side-a <SIDE_A> \
+  --side-a-interface <SIDE_A_INTERFACE> \
+  --side-z <SIDE_Z> \
+  --side-z-interface <SIDE_Z_INTERFACE> \
+  --bandwidth <BANDWIDTH> \
+  --mtu <MTU> \
+  --delay-ms <DELAY_MS> \
+  --jitter-ms <JITTER_MS>
+```
+
+### Listing Links
+
+```bash
+doublezero link list
+```
+
+### Creating a DZX Link
+
+```bash
+doublezero link create dzx [OPTIONS] \
+  --code <CODE> \
+  --contributor <CONTRIBUTOR> \
+  --side-a <SIDE_A> \
+  --side-a-interface <SIDE_A_INTERFACE> \
+  --side-z <SIDE_Z> \
+  --bandwidth <BANDWIDTH> \
+  --mtu <MTU> \
+  --delay-ms <DELAY_MS> \
+  --jitter-ms <JITTER_MS>
+```
+
+### Accepting a DZX Link
+
+```bash
+doublezero link accept [OPTIONS] \
+  --code <CODE> \
+  --side-z-interface <SIDE_Z_INTERFACE>
+```
+
+### Deleting a Link
+
+```bash
+doublezero link delete --pubkey <PUBKEY>
+```
+
+> ⚠️ **Important:**  
+> - Deleting an active link will immediately terminate connectivity.  
+> - Ensure no critical traffic is routed through the link before deletion.  
+> - Both contributors lose connectivity upon deletion of a DZX link.
+
+### Edge / Transit / Hybrid Devices
+
+A device can operate in 3 modes of operation:
+- **Edge** – provides at least 1 CYOA connection and 1 DZX connection
+- **Transit** – provides at least 2 WAN links and at least 1 DZX connection
+- **Hybrid** – provides at least 1 CYOA connection and at least 1 WAN link
+
+A device can be transitioned to an edge device by setting `max-users` to 0
+
+```bash
+doublezero device update --pubkey <PUBKEY> --max-users 0
+```
+
 ### DoubleZero Config Agent Installation
 
 #### Prerequisites
