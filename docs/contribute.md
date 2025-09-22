@@ -430,9 +430,10 @@ doublezero link delete --pubkey <PUBKEY>
 ### Edge / Transit / Hybrid Devices
 
 A device can operate in 3 modes of operation:
-- **Edge** – provides at least 1 CYOA connection and 1 DZX connection
-- **Transit** – provides at least 2 WAN links and at least 1 DZX connection
-- **Hybrid** – provides at least 1 CYOA connection and at least 1 WAN link
+
+- Edge – provides at least 1 CYOA connection and 1 DZX connection
+- Transit – provides at least 2 WAN links and at least 1 DZX connection
+- Hybrid – provides at least 1 CYOA connection and at least 1 WAN link
 
 A device can be transitioned to an edge device by setting `max-users` to 0
 
