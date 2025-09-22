@@ -425,9 +425,7 @@ doublezero link delete --pubkey <PUBKEY>
 ```
 
 > ⚠️ **Important:**  
-> - Deleting an active link will immediately terminate connectivity.  
-> - Ensure no critical traffic is routed through the link before deletion.  
-> - Both contributors lose connectivity upon deletion of a DZX link.
+> - Please discuss with either DZF and/or Malbec Labs before deleting an existing production link.
 
 ### Edge / Transit / Hybrid Devices
 
