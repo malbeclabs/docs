@@ -88,7 +88,7 @@ sudo apt-get install doublezero=0.6.4-1
 ```
 To upgrade:
 ```
-apt-get install --only-upgrade doublezero
+sudo apt-get install --only-upgrade doublezero
 ```
 
 ### Rocky Linux / RHEL
