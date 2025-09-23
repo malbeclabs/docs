@@ -177,4 +177,4 @@ doublezero disconnect
 
 
 ### Up Next: Enviroment and Connection
-Once you have set up DoubleZero, you can proceed to connect to DoubleZero in [IBRL mode](connect-ibrl.md) or [multicast mode](connect-multicast.md). It may take up to one minute for the tunnel to connect, and you will need to complete some steps to register your validator on the DoubleZero Network.
+Once you have set up DoubleZero, you can proceed to connect to DoubleZero in [IBRL mode](DZ Mainnet-Beta Connection.md) or [multicast mode](connect-multicast.md). It may take up to one minute for the tunnel to connect, and you will need to complete some steps to register your validator on the DoubleZero Network.
