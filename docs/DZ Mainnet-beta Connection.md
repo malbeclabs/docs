@@ -1,5 +1,5 @@
 # How to connect to DoubleZero in IBRL Mode - for testnet Users
-??? warning "By connecting to the DoubleZero testnet I agree to the terms of the Evaluation Agreement set forth here (click to expand)"
+??? warning "By connecting to the DoubleZero Mainnet-Beta I agree to the terms of the Evaluation Agreement set forth here (click to expand)"
     <span style="font-size:14px;">DoubleZero Testnet</span>
     Evaluation Agreement
 
