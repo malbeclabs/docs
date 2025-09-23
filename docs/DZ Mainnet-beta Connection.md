@@ -1,5 +1,5 @@
-# How to set up DoubleZero - for testnet Users
-??? warning "By connecting to the DoubleZero testnet I agree to the terms of the Evaluation Agreement set forth here (click to expand)"
+# How to connect to DoubleZero in IBRL Mode - for Mainnet-Beta Users
+??? warning "By connecting to the DoubleZero Mainnet-Beta I agree to the terms of the Evaluation Agreement set forth here (click to expand)"
     <span style="font-size:14px;">DoubleZero Testnet</span>
     Evaluation Agreement
 
@@ -21,7 +21,7 @@
 
     <span style="font-size:14px;">2.1 ^^Access to Solution^^.</span> Subject to the terms and conditions of this Agreement, DZF will provide User access to the Solution through the Internet. User's access is a non-exclusive, non-transferable, limited use of the Solution to enable User to evaluate the Information Service only. With respect to any software comprising the Solution ("**DZ Software**"), DZF hereby grants User a limited, revocable license, during the Evaluation Period, to copy, download, make a reasonable number of copies of, run, and deploy (as applicable) such DZ Software solely as contemplated by the Documentation.
 
-    <span style="font-size:14px;">2.2 ^^Restrictions^^. </span>User may use the Solution in accordance with this Agreement from the Effective Date until terminated by DZF (the "**Evaluation Period**"). User understands that any rights to use the Solution beyond the Evaluation Period will be subject to a separate commercial agreement between the parties with respect thereto, including the payment of fees. User shall not, and shall not permit any third party to: (i) modify or create any derivative works based on the Solution or any portion thereof; (ii) reproduce the Solution except as expressly permitted by this Agreement; (iii) sublicense, distribute, sell, lend, rent, lease, transfer, or grant any rights in or to all or any portion of the Solution or provide access to the Solution to third parties, on a service bureau basis or otherwise, except as an offering of the Information Services through or in connection with User's platform or product and not on a standalone basis; or (iv) use the Solution other than as provided herein.
+    <span style="font-size:14px;">2.2 ^^Restrictions^^. </span>User may use the Solution in accordance with this Agreement from the Effective Date until terminated by DZF (the "**Evaluation Period**"). User understands that any rights to use the Solution beyond the Evaluation Period will be subject to a separate commercial agreement between the parties with respect thereto, including the payment of fees. User shall not, and shall not permit any third party to: (i) modify or create any derivative works based on the Solution or any portion thereof; (ii) reproduce the Solution except as expressly permitted by this Agreement; (iii) sublicense, distribute, sell, lend, rent, lease, transfer, or grant any rights in or to all or any portion of the Solution or provide access to the Solution to third parties, on a service bureau basis or otherwise, except as an offering of the Information Services through or in connection with User's platform or product and not on a standalone basis; or (iv) use the Solution other than as provided herein.
 
     <span style="font-size:14px;">2.3 ^^Ownership^^.</span> DZF retains all right, title and interest, including intellectual property rights, in and to the Solution.
 
@@ -51,130 +51,208 @@
     This Agreement may not be transferred or assigned by User without the prior written consent of DZF. DZF may freely assign this Agreement. All notices required to be sent hereunder shall be sent by email (to DZF: legal@doublezero.xyz) and deemed received the day after sending (with transmission confirmed). If any provision of this Agreement is held to be invalid or unenforceable, the remaining provisions of this Agreement will remain in full force and effect. The waiver by either party of any default or breach of this Agreement shall not constitute a waiver of any other or subsequent default or breach. Neither party shall be liable for any delay or failure in performance due to acts of God, earthquakes, shortages of supplies, transportation difficulties, labor disputes, riots, war, fire, epidemics, and similar occurrences beyond its control, whether or not foreseeable. This Agreement together with any attachments constitutes the complete agreement between the parties and supersedes all prior or contemporaneous agreements or representations, written or oral, concerning the subject matter herein. This Agreement may not be modified or amended except in writing signed by a duly authorized representative of each party.
 
 
-## Prerequisites
-!!! warning inline end
-    DoubleZero needs to be installed directly on your validator host, not in a container.
-- Supported OS: Ubuntu 22.04+ or Debian 11+, or Rocky Linux / RHEL 8+
-- Root or sudo privileges on the server where DoubleZero will run
-- Solana CLI installed and on $PATH
-- Permission to access to the validator identity keypair file (e.g., validator-keypair.json) under the sol user
-- Verify the Identity key of Solana validator being connected has at least 1 SOL on it
-- Firewall rules permit outbound connections for DoubleZero and Solana RPC as needed including 
- GRE (ip proto 47) and BGP (169.254.0.0/16 on tcp/179)
-- Optional but useful: jq and curl for debugging
+
+###  Connecting to Mainnet-Beta in IBRL Mode
+
+Solana Mainnet Validators will complete connection to DoubleZero Mainnet-beta, which is detailed on this page.
+Note that connecting in IBRL mode does not require restarting any validator clients. 
+
+This is because your existing public IP is advertised to DoubleZero so that other users on DoubleZero will route via the DoubleZero network when sending to your validator. Likewise, the routes received from DoubleZero and installed in the kernel routing table cause your validator to send to other DoubleZero-enabled validators over the DoubleZero network.
+
+## 1. Environment Configuration
+
+Please follow the [setup](setup.md) instructions before proceeding.
+
+The last step in setup was to disconnect from the network. This is to ensure that only one tunnel is open on your machine to DoubleZero, and that tunnel is on the correct network.
 
 
-## Steps
-## Connecting a Solana Validator to DoubleZero
-
-When onboarding a Solana validator onto DoubleZero, start by establishing identities. On your server, generate a **DoubleZero identity**, represented by a public key called the **DoubleZero ID**. This key is how DoubleZero recognizes your server.
-
-Next, focus on the validator itself. Each Solana validator has its own **identity keypair**; from this, extract the public key known as the **node ID**. This is the validator's unique fingerprint on the Solana network.
-
-With the DoubleZeroID and node ID identified, prove ownership. Create a message that includes the DoubleZeroID and sign it with the validator's identity key. The resulting cryptographic signature serves as verifiable proof that you control the validator.
-
-Finally, submit a **connection request to DoubleZero**. This request communicates: *"Here is my identity, here is proof of ownership, and here is how I intend to connect."* DoubleZero validates this information, accepts the proof, and provisions network access for the validator on DoubleZero.
-
-## 1. Install or Upgrade DoubleZero Packages
-
-Follow these steps depending on your operating system:
-
-### Ubuntu / Debian
-
-For a new install:
+To configure the DoubleZero Client CLI (`doublezero`) and daemon (`doublezerod`) to connect to **DoubleZero mainnet-beta**:
 ```bash
-curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
-sudo apt-get install doublezero=0.6.4-1
-```
-To upgrade:
-```
-sudo apt-get install --only-upgrade doublezero
-```
-
-### Rocky Linux / RHEL
-For a new install:
-```bash
-curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh | sudo -E bash
-sudo yum install doublezero-0.6.4
+DESIRED_DOUBLEZERO_ENV=mainnet-beta \
+	&& sudo mkdir -p /etc/systemd/system/doublezerod.service.d \
+	&& echo -e "[Service]\nExecStart=\nExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env $DESIRED_DOUBLEZERO_ENV" | sudo tee /etc/systemd/system/doublezerod.service.d/override.conf > /dev/null \
+	&& sudo systemctl daemon-reload \
+	&& sudo systemctl restart doublezerod \
+	&& doublezero config set --env $DESIRED_DOUBLEZERO_ENV  > /dev/null \
+	&& echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV"
 ```
 
-After installation, verify the daemon is running:
+You should see the following output:
+```
+✅ doublezerod configured for environment mainnet-beta
+```
+
+After about 30 seconds you will see the DoubleZero devices available:
 
 ```bash
-sudo systemctl status doublezerod
-sudo journalctl -u doublezerod
+doublezero latency
 ```
-To upgrade:
+Example output (testnet)
 ```bash
-sudo yum --only-upgrade doublezero
+doublezero latency
+ pubkey                                       | code         | ip             | min      | max      | avg      | reachable 
+ 6E1fuqbDBG5ejhYEGKHNkWG5mSTczjy4R77XCKEdUtpb | nyc-dz001    | 64.86.249.22   | 2.44ms   | 2.63ms   | 2.50ms   | true      
+ CT8mP6RUoRcAB67HjKV9am7SBTCpxaJEwfQrSjVLdZfD | lax-dz001    | 207.45.216.134 | 71.97ms  | 72.01ms  | 71.99ms  | true
+ Cpt3doj17dCF6bEhvc7VeAuZbXLD88a1EboTyE8uj6ZL | lon-dz001    | 195.219.120.66 | 71.94ms  | 72.08ms  | 72.00ms  | true
+ 4Wr7PQr5kyqCNJo3RKa8675K7ZtQ6fBUeorcexgp49Zp | ams-dz001    | 195.219.138.50 | 76.55ms  | 76.65ms  | 76.61ms  | true
+ 29ghthsKeH2ZCUmN2sUvhJtpEXn2ZxqAuq4sZFBFZmEs | fra-dz001    | 195.219.220.58 | 83.01ms  | 83.10ms  | 83.05ms  | true
+ hWffRFpLrsZoF5r9qJS6AL2D9TEmSvPUBEbDrLc111Y  | fra-dz-001-x | 195.12.227.250 | 84.87ms  | 84.91ms  | 84.89ms  | true
+ 8jyamHfu3rumSEJt9YhtYw3J4a7aKeiztdqux17irGSj | prg-dz-001-x | 195.12.228.250 | 95.27ms  | 95.30ms  | 95.29ms  | true
+ 5tqXoiQtZmuL6CjhgAC6vA49JRUsgB9Gsqh4fNjEhftU | tyo-dz001    | 180.87.154.78  | 180.96ms | 181.08ms | 181.02ms | true
+ D3ZjDiLzvrGi5NJGzmM7b3YZg6e2DrUcBCQznJr3KfC8 | sin-dz001    | 180.87.102.98  | 220.87ms | 221.14ms | 220.97ms | true
+```
+Mainnet output will be identical in structure, but with many more available devices.
+</details>
+
+
+## 2. Attest Validator Ownership
+
+With your DoubleZero Enviroment set, it is now time to attest to your Validator Ownership.
+
+In order to accomplish this you will first determine the Solana Validator ID, then use the Solana Validator ID, together with the DoubleZero ID created during setup, to sign an off-chain transaction.
+This process only verifies ownership of the validator specified in the command.
+
+
+### Switching to the `sol` User
+
+Before generating the validator ownership signature, you must switch to the `sol` user (or the user you normally use to run the validator):
+
+```bash
+sudo su - sol
 ```
 
-## 2. Create New DoubleZero Identity
+This is required because the validator's Identity key (`validator-keypair.json`) is usually stored under the `sol` user account. Running the command as `sol` ensures:
+
+- You have permissions to access to the `validator-keypair.json`.
+- The signature is generated using the appropriate key that your Solana validator uses.
+
+This step **only requires you to sign a message with your validator Identity** to prove ownership.
+
+### Identify the Pubkey from your validator Identity
+
+You may only create an access pass for the Validator Identity which is in gossip on the server requesting the access pass.
+To connect your primary server, use the Validator Identity of your main validator. To connect a backup server, use the Validator Identity configured on the backup server.
 
 
+<figure markdown="span">
+  ![Image title](images/ConnectingMainnet.png){ width="800" }
+  <figcaption>Figure 1: Connecting to DoubleZero Mainnet-Beta</figcaption>
+</figure>
+
+<figure markdown="span">
+  ![Image title](images/ConnectingBackup.png){ width="800" }
+  <figcaption>Figure 2: Connecting a backup node to DoubleZero</figcaption>
+</figure>
+
+```bash
+solana address -k path/to/validator-keypair.json
+```
 !!! note inline end
-    If you have an existing DoubleZero Identity skip to step 3
+      Save the output of this Signature for step 6
 
 
-
-
-
-Create a DoubleZero Identity on your server with the following command:
-
-
+**Output:**
 ```bash
-doublezero keygen
+ValidatorIdentity111111111111111111111111111
 ```
 
-## 3. Retrieve the server's DoubleZero identity
-
-Review your DoubleZero Identity. This identity will be used to create the connection between your validator and DoubleZero
+Use the `sign-offchain-message` command to prove you are the owner of the validator.
 
 ```bash
-doublezero address
+solana sign-offchain-message -k path/to/validator-keypair.json service_key=YourDoubleZeroAddress11111111111111111111111111111
 ```
 
 **Output:**
 ```bash
-YourDoubleZeroAddress11111111111111111111111111111
+Signature111111rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7
 ```
 
+### Exit the Validator User
 
+Exit the `sol` user session (or the user used to run the validator):
 
-
-## 4. Check that doublezerod has discovered DZ devices
-Before connecting, be sure `doublezerod` has discovered and pinged each of the available DZ testnet switches:
+```bash
+exit
 ```
-doublezero latency
-```
-Sample output:
-```
-$ doublezero latency
- pubkey                                       | name      | ip             | min      | max      | avg      | reachable
- 96AfeBT6UqUmREmPeFZxw6PbLrbfET51NxBFCCsVAnek | la2-dz01  | 207.45.216.134 |   0.38ms |   0.45ms |   0.42ms | true
- CCTSmqMkxJh3Zpa9gQ8rCzhY7GiTqK7KnSLBYrRriuan | ny5-dz01  | 64.86.249.22   |  68.81ms |  68.87ms |  68.85ms | true
- BX6DYCzJt3XKRc1Z3N8AMSSqctV6aDdJryFMGThNSxDn | ty2-dz01  | 180.87.154.78  | 112.16ms | 112.25ms | 112.22ms | true
- 55tfaZ1kRGxugv7MAuinXP4rHATcGTbNyEKrNsbuVLx2 | ld4-dz01  | 195.219.120.66 | 138.15ms | 138.21ms | 138.17ms | true
- 3uGKPEjinn74vd9LHtC4VJvAMAZZgU9qX9rPxtc6pF2k | ams-dz001 | 195.219.138.50 | 141.84ms | 141.97ms | 141.91ms | true
- 65DqsEiFucoFWPLHnwbVHY1mp3d7MNM2gNjDTgtYZtFQ | frk-dz01  | 195.219.220.58 | 143.52ms | 143.62ms | 143.58ms | true
- 9uhh2D5c14WJjbwgM7BudztdoPZYCjbvqcTPgEKtTMZE | sg1-dz01  | 180.87.102.98  | 176.66ms | 176.76ms | 176.72ms | true
-```
-If no devices are returned in the output, wait 10-20 seconds and retry.
 
-## 5. Disconnect from DoubleZero
+## 3. Initiate a Connection Request in DoubleZero
 
-In the next sections you will set your DoubleZero Enviroment. In order to ensure success, disconnect the current session. This will avoid issues related to multiple tunnels open on your machine.
+Use the `request-solana-validator-access` command to create an account on Solana for the connection request. The DoubleZero Sentinel agent detects the new account, validates its identity and signature, and creates the access pass in DoubleZero so the server can establish a connection.
 
-Check 
+The example is for Solana Mainnet-beta. For Solana Testnet, change the `mainnet-beta` flag to `testnet`
+
+Check your Solana Balance
+
+```bash
+solana balance -u mainnet-beta
+```
+
+Use the node ID, DoubleZeroID, and signature.
+
+!!! note inline end
+      In this example we use   `-k /home/user/.config/solana/id.json` to find the validator Identity. Use the appropriate location for your local deployment.
+
+```bash
+doublezero-solana passport request-solana-validator-access -u mainnet-beta \
+  -k /home/user/.config/solana/id.json \
+  --node-id ValidatorIdentity111111111111111111111111111 \
+  --signature Signature111111rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7 \
+  YourDoubleZeroAddress11111111111111111111111111111
+
+```
+
+**Output:**
+```bash
+Request Solana validator access: Signature2222222222VaB8FMqM2wEBXyV5THpKRXWrPtDQxmTjHJHiAWteVYTsc7Gjz4hdXxvYoZXGeHkrEayp 
+```
+
+## 4. Connect in IBRL Mode
+
+On the server, with the user which will connect to DoubleZero, run the `connect` command to establish the connection to DoubleZero.
+
+```bash
+doublezero connect ibrl
+```
+
+You should see output indicating provisioning, such as:
+
+```
+DoubleZero Service Provisioning
+🔗  Start Provisioning User...
+Public IP detected: 137.184.101.183 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
+🔍  Provisioning User for IP: 137.184.101.183
+    User account created
+    Connected to device: nyc-dz001
+    The user has been successfully activated
+    Service provisioned with status: ok
+✅  User Provisioned
+```
+Wait one minute for the tunnel to complete. Until the tunnel is completed, your status output may return "down" or "Unknown" 
+
+Verify your connection:
+
 ```bash
 doublezero status
-``` 
-if it is `up` run:
+```
 
+**Output:**
 ```bash
-doublezero disconnect
+Tunnel status | Last Session Update     | Tunnel Name | Tunnel src      | Tunnel dst   | DoubleZero IP   | User Type
+up            | 2025-09-10 12:16:03 UTC | doublezero0 | 137.184.101.183 | 64.86.249.22 | 137.184.101.183 | IBRL
+```
+A status of `up` means you are successfully connected.
+
+You will be able to view routes propagated by other users on DoubleZero by running:
+
+```
+ip route
 ```
 
 
-### Up Next: Enviroment and Connection
-Once you have set up DoubleZero, you can proceed to connect to DoubleZero in [IBRL mode](DZ Mainnet-Beta Connection.md) or [multicast mode](connect-multicast.md). It may take up to one minute for the tunnel to connect, and you will need to complete some steps to register your validator on the DoubleZero Network.
+```
+default via 149.28.38.1 dev enp1s0 proto dhcp src 149.28.38.64 metric 100 
+5.39.216.186 via 169.254.0.68 dev doublezero0 proto bgp src 149.28.38.64 
+5.39.251.201 via 169.254.0.68 dev doublezero0 proto bgp src 149.28.38.64 
+5.39.251.202 via 169.254.0.68 dev doublezero0 proto bgp src 149.28.38.64 
+...
+```
