@@ -17,8 +17,10 @@ theme:
 nav:
   - Welcome: index.md
   - Setup: setup.md
-  - Connect - IBRL Mode: connect-ibrl.md
+  - DZ Mainnet-Beta Connection: DZ Mainnet-beta Connection.md
+  - DZ Testnet Connection: DZ Testnet Connection.md
   - Connect - Multicast Mode: connect-multicast.md
+  - Paying Fees: paying-fees.md
   - Troubleshooting: troubleshooting.md
   - Contribute: contribute.md
   - Architecture: architecture.md
