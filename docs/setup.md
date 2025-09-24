@@ -178,3 +178,102 @@ doublezero disconnect
 
 ### Up Next: Enviroment and Connection
 Once you have set up DoubleZero, you can proceed to connect to DoubleZero in [IBRL mode](DZ Mainnet-Beta Connection.md) or [multicast mode](connect-multicast.md). It may take up to one minute for the tunnel to connect, and you will need to complete some steps to register your validator on the DoubleZero Network.
+# Optional: Enable Prometheus Metrics
+
+Operators familiar with Prometheus metrics will want to enable them for DoubleZero monitoring. This provides visibility into DoubleZero client performance, connection status, and operational health.
+
+## What Metrics Are Available
+
+DoubleZero exposes several key metrics:
+- **Build Information**: Version, commit hash, and build date
+- **Session Status**: Whether the DoubleZero session is active
+- **Connection Metrics**: Latency and connectivity information
+- **Performance Data**: Throughput and error rates
+
+## Enable Prometheus Metrics
+
+You can enable Prometheus metrics on the DoubleZero client by following these steps:
+
+### 1. Modify the doublezerod systemd service startup command
+
+Create or edit the systemd override configuration:
+
+```bash
+sudo mkdir -p /etc/systemd/system/doublezerod.service.d/
+sudo nano /etc/systemd/system/doublezerod.service.d/override.conf
+```
+
+Replace with this configuration:
+
+```ini
+[Service]
+ExecStart=
+ExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env devnet -metrics-enable -metrics-addr localhost:2113
+```
+
+### 2. Reload and restart the service
+
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart doublezerod
+sudo systemctl status doublezerod
+```
+
+### 3. Verify metrics are available
+
+Test that the metrics endpoint is responding:
+
+```bash
+curl -s localhost:2113/metrics | grep doublezero
+```
+
+Expected output:
+```
+# HELP doublezero_build_info Build information of the client
+# TYPE doublezero_build_info gauge
+doublezero_build_info{commit="0d684e1b",date="2025-09-10T16:30:25Z",version="0.6.4"} 1
+# HELP doublezero_session_is_up Status of session to doublezero
+# TYPE doublezero_session_is_up gauge
+doublezero_session_is_up 0
+```
+
+## Configure Prometheus Server
+
+Add the following job to your Prometheus configuration (`prometheus.yml`):
+
+```yaml
+scrape_configs:
+  - job_name: 'doublezero'
+    static_configs:
+      - targets: ['your-validator-ip:2113']
+    scrape_interval: 15s
+    metrics_path: /metrics
+```
+
+## Security Considerations
+
+!!! warning "Metrics Endpoint Security"
+    The metrics endpoint is exposed on localhost by default. If you need to expose it to a remote Prometheus server:
+    
+    - Change `localhost:2113` to `0.0.0.0:2113` in the systemd configuration
+    - Configure firewall rules to restrict access to the metrics port
+    - Consider using authentication or VPN for remote access
+    - Monitor access logs for unauthorized attempts
+
+## Troubleshooting
+
+If metrics are not appearing:
+
+1. **Check service status**: `sudo systemctl status doublezerod`
+2. **Verify configuration**: `sudo systemctl cat doublezerod`
+3. **Check logs**: `sudo journalctl -u doublezerod -f`
+4. **Test endpoint**: `curl -v localhost:2113/metrics`
+5. **Verify port**: `netstat -tlnp | grep 2113`
+
+## Grafana Dashboard (Optional)
+
+For visualization, you can create a Grafana dashboard using the DoubleZero metrics. Common panels include:
+- Session status over time
+- Build information
+- Connection latency trends
+- Error rate monitoring
