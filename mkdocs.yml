@@ -17,7 +17,7 @@ theme:
 nav:
   - Welcome: index.md
   - Setup: setup.md
-  - DZ Mainnet-Beta Connection: DZ Mainnet-Beta Connection.md
+  - DZ Mainnet-Beta Connection: DZ Mainnet-beta Connection.md
   - DZ Testnet Connection: DZ Testnet Connection.md
   - Connect - Multicast Mode: connect-multicast.md
   - Paying Fees: paying-fees.md
