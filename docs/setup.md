@@ -236,30 +236,6 @@ doublezero_build_info{commit="0d684e1b",date="2025-09-10T16:30:25Z",version="0.6
 # TYPE doublezero_session_is_up gauge
 doublezero_session_is_up 0
 ```
-
-## Configure Prometheus Server
-
-Add the following job to your Prometheus configuration (`prometheus.yml`):
-
-```yaml
-scrape_configs:
-  - job_name: 'doublezero'
-    static_configs:
-      - targets: ['your-validator-ip:2113']
-    scrape_interval: 15s
-    metrics_path: /metrics
-```
-
-## Security Considerations
-
-!!! warning "Metrics Endpoint Security"
-    The metrics endpoint is exposed on localhost by default. If you need to expose it to a remote Prometheus server:
-    
-    - Change `localhost:2113` to `0.0.0.0:2113` in the systemd configuration
-    - Configure firewall rules to restrict access to the metrics port
-    - Consider using authentication or VPN for remote access
-    - Monitor access logs for unauthorized attempts
-
 ## Troubleshooting
 
 If metrics are not appearing:
@@ -269,6 +245,12 @@ If metrics are not appearing:
 3. **Check logs**: `sudo journalctl -u doublezerod -f`
 4. **Test endpoint**: `curl -v localhost:2113/metrics`
 5. **Verify port**: `netstat -tlnp | grep 2113`
+
+
+## Configure Prometheus Server
+
+Configuration, and security are beyond the scope of this documentation. 
+Grafana is an excellent option for visualization, and has documentation available [here](https://grafana.com/docs/alloy/latest/collect/prometheus-metrics/) detailing how to collect Prometheus metrics.
 
 ## Grafana Dashboard (Optional)
 
