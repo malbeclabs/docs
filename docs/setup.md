@@ -205,10 +205,12 @@ sudo nano /etc/systemd/system/doublezerod.service.d/override.conf
 
 Replace with this configuration:
 
+Note that the `-env` flag needs to point to either `testnet` or `mainnet-beta` depending on which network you would like to gather data from. In the sample block `testnet` is used. You may swap this out for `mainnet-beta` if needed.
+
 ```ini
 [Service]
 ExecStart=
-ExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env devnet -metrics-enable -metrics-addr localhost:2113
+ExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env testnet -metrics-enable -metrics-addr localhost:2113
 ```
 
 ### 2. Reload and restart the service
