@@ -1,4 +1,4 @@
-# How to set up DoubleZero - for testnet Users
+# How to set up DoubleZero
 ??? warning "By connecting to the DoubleZero testnet I agree to the terms of the Evaluation Agreement set forth here (click to expand)"
     <span style="font-size:14px;">DoubleZero Testnet</span>
     Evaluation Agreement
@@ -177,7 +177,7 @@ doublezero disconnect
 
 
 ### Up Next: Enviroment and Connection
-Once you have set up DoubleZero, you can proceed to connect to DoubleZero in [IBRL mode](DZ Mainnet-Beta Connection.md) or [multicast mode](connect-multicast.md). It may take up to one minute for the tunnel to connect, and you will need to complete some steps to register your validator on the DoubleZero Network.
+Once you have set up DoubleZero, you can proceed to connect to DoubleZero in [IBRL mode](DZ%20Mainnet-beta%20Connection.md) or [multicast mode](connect-multicast.md). It may take up to one minute for the tunnel to connect, and you will need to complete some steps to register your validator on the DoubleZero Network.
 # Optional: Enable Prometheus Metrics
 
 Operators familiar with Prometheus metrics will want to enable them for DoubleZero monitoring. This provides visibility into DoubleZero client performance, connection status, and operational health.
