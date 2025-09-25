@@ -1,4 +1,4 @@
-# How to set up DoubleZero - for testnet Users
+# How to set up DoubleZero
 ??? warning "By connecting to the DoubleZero testnet I agree to the terms of the Evaluation Agreement set forth here (click to expand)"
     <span style="font-size:14px;">DoubleZero Testnet</span>
     Evaluation Agreement
@@ -177,7 +177,7 @@ doublezero disconnect
 
 
 ### Up Next: Enviroment and Connection
-Once you have set up DoubleZero, you can proceed to connect to DoubleZero in [IBRL mode](DZ Mainnet-Beta Connection.md) or [multicast mode](connect-multicast.md). It may take up to one minute for the tunnel to connect, and you will need to complete some steps to register your validator on the DoubleZero Network.
+Once you have set up DoubleZero, you can proceed to connect to DoubleZero [Testnet](docs/DZ%20Testnet%20Connection.md), [Mainnet-Beta](DZ%20Mainnet-beta%20Connection.md) or [multicast mode](connect-multicast.md). It may take up to one minute for the tunnel to connect, and you will need to complete some steps to register your validator on the DoubleZero Network.
 # Optional: Enable Prometheus Metrics
 
 Operators familiar with Prometheus metrics will want to enable them for DoubleZero monitoring. This provides visibility into DoubleZero client performance, connection status, and operational health.
@@ -205,10 +205,12 @@ sudo nano /etc/systemd/system/doublezerod.service.d/override.conf
 
 Replace with this configuration:
 
+Note that the `-env` flag needs to point to either `testnet` or `mainnet-beta` depending on which network you would like to gather data from. In the sample block `testnet` is used. You may swap this out for `mainnet-beta` if needed.
+
 ```ini
 [Service]
 ExecStart=
-ExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env devnet -metrics-enable -metrics-addr localhost:2113
+ExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env testnet -metrics-enable -metrics-addr localhost:2113
 ```
 
 ### 2. Reload and restart the service
