@@ -108,6 +108,25 @@ To upgrade:
 ```bash
 sudo yum --only-upgrade doublezero
 ```
+#### Check the status of `doublezerod`
+After the package is installed, a new systemd unit is installed, activated and started.  To see the status:
+```
+sudo systemctl status doublezerod
+```
+To see the doublezerod logs, look in the journal:
+```
+sudo journalctl -u doublezerod
+```
+
+#### Create doublezero config directory
+```
+mkdir -p ~/.config/doublezero
+```
+####Add your Solana id.json to the doublezero config directory and check balance
+Copy or link the `id.json` you want to use with DoubleZero to the doublezero config directory.
+```
+sudo cp </path/to/id.json> ~/.config/doublezero/
+```
 
 ## 2. Create New DoubleZero Identity
 
