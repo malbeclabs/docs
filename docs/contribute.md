@@ -289,13 +289,13 @@ doublezero device create [OPTIONS] --code <CODE> --contributor <CONTRIBUTOR> --l
 **Options:**
 
 ```
---code <CODE>                            Unique device code  
---contributor <CONTRIBUTOR>              Contributor (pubkey or code)  
---location <LOCATION>                    Location (pubkey or code)  
---exchange <EXCHANGE>                    Exchange (pubkey or code)  
---public-ip <PUBLIC_IP>                  Device public IPv4 address  
---dz-prefixes <DZ_PREFIXES>              List of DZ prefixes in CIDR format  
---metrics-publisher <METRICS_PUBLISHER>  Metrics publisher public key (optional)  
+--code <CODE>                            Unique device code
+--contributor <CONTRIBUTOR>              Contributor (pubkey or code)
+--location <LOCATION>                    Location (pubkey or code)
+--exchange <EXCHANGE>                    Exchange (pubkey or code)
+--public-ip <PUBLIC_IP>                  Device public IPv4 address
+--dz-prefixes <DZ_PREFIXES>              List of DZ prefixes in CIDR format
+--metrics-publisher <METRICS_PUBLISHER>  Metrics publisher public key (optional)
 --mgmt-vrf <MGMT_VRF>                    Management VRF name (optional)
 ```
 
@@ -339,7 +339,7 @@ doublezero device interface create \
   lax-dz01 Ethernet1/1
 ```
 
-> ⚠️ **Note:**  
+> ⚠️ **Note:**
 > There is a current requirement to create two loopback interfaces to support internal DZ routing protocols:
 ```bash
 doublezero device interface create lax-dz001 Loopback255 --loopback-type vpnv4
@@ -359,7 +359,7 @@ doublezero device interface list <DEVICE>
 doublezero device interface delete [OPTIONS] <DEVICE> <NAME>
 ```
 
-> ⚠️ **Note:**  
+> ⚠️ **Note:**
 > Deleting an interface that is currently in use may cause service disruption.
 
 ---
@@ -424,7 +424,7 @@ doublezero link accept [OPTIONS] \
 doublezero link delete --pubkey <PUBKEY>
 ```
 
-> ⚠️ **Important:**  
+> ⚠️ **Important:**
 > - Please discuss with either DZF and/or Malbec Labs before deleting an existing production link.
 
 ### Edge / Transit / Hybrid Devices
@@ -531,7 +531,7 @@ Use these steps if your DoubleZero Agent will connect to the DoubleZero Controll
 switch# bash
 $ sudo bash
 # cd /mnt/flash
-# wget https://dl.cloudsmith.io/public/malbeclabs/doublezero/rpm/any-distro/any-version/x86_64/doublezero-agent_<X.Y.Z>_linux_amd64.rpm 
+# wget https://dl.cloudsmith.io/public/malbeclabs/doublezero/rpm/any-distro/any-version/x86_64/doublezero-agent_<X.Y.Z>_linux_amd64.rpm
 # exit
 $ exit
 ```
@@ -612,7 +612,7 @@ Use these steps if your DoubleZero Agent will connect to the DoubleZero Controll
       switch# bash
       $ sudo bash
       # cd /mnt/flash
-      # wget https://dl.cloudsmith.io/public/malbeclabs/doublezero/rpm/any-distro/any-version/x86_64/doublezero-device-telemetry-agent_<X.Y.Z>_linux_amd64.rpm 
+      # wget https://dl.cloudsmith.io/public/malbeclabs/doublezero/rpm/any-distro/any-version/x86_64/doublezero-device-telemetry-agent_<X.Y.Z>_linux_amd64.rpm
       # exit
       $ exit
       ```
@@ -674,7 +674,7 @@ Use these steps if your DoubleZero Agent will connect to the DoubleZero Controll
     switch# bash
     $ sudo bash
     # cd /mnt/flash
-    # wget https://dl.cloudsmith.io/public/malbeclabs/doublezero/rpm/any-distro/any-version/x86_64/doublezero-device-telemetry-agent_<X.Y.Z>_linux_amd64.rpm 
+    # wget https://dl.cloudsmith.io/public/malbeclabs/doublezero/rpm/any-distro/any-version/x86_64/doublezero-device-telemetry-agent_<X.Y.Z>_linux_amd64.rpm
     # exit
     $ exit
     ```
@@ -718,4 +718,78 @@ Use these steps if your DoubleZero Agent will connect to the DoubleZero Controll
 
 ```
 show agent doublezero-telemetry log
+```
+
+## Monitoring
+
+> ⚠️ **Important:**
+>
+>  1. For the configuration examples below, please be mindful of whether your agents are using a management VRF.
+>  2. The configuration agent and telemetry agent use the same listening port (:8080) for their metrics endpoint by default. If you are enabling metrics on both, use the `-metrics-addr` flag to set unique listening ports for each agent.
+>
+
+### Configuration Agent
+The configuration agent on the DoubleZero device has the ability to expose prometheus compatible metrics by setting the `-metrics-enable` flag in the `doublezero-agent` daemon configuration. The default listening port is tcp/8080 but can be changed to suit the environment via the `-metrics-addr`:
+```
+daemon doublezero-agent
+   exec /usr/local/bin/doublezero-agent -pubkey $PUBKEY -controller $CONTROLLER_ADDR -metrics-enable -metrics-addr 10.0.0.11:2112
+   no shutdown
+```
+
+The following DoubleZero specific metrics are exposed along with go-specific runtime metrics:
+```
+$ curl -s 10.0.0.11:2112/metrics | grep doublezero
+
+# HELP doublezero_agent_apply_config_errors_total Number of errors encountered while applying config to the device
+# TYPE doublezero_agent_apply_config_errors_total counter
+doublezero_agent_apply_config_errors_total 0
+
+# HELP doublezero_agent_bgp_neighbors_errors_total Number of errors encountered while retrieving BGP neighbors from the device
+# TYPE doublezero_agent_bgp_neighbors_errors_total counter
+doublezero_agent_bgp_neighbors_errors_total 0
+
+# HELP doublezero_agent_build_info Build information of the agent
+# TYPE doublezero_agent_build_info gauge
+doublezero_agent_build_info{commit="4378018f",date="2025-09-23T14:07:48Z",version="0.6.5~git20250923140746.4378018f"} 1
+
+# HELP doublezero_agent_get_config_errors_total Number of errors encountered while getting config from the controller
+# TYPE doublezero_agent_get_config_errors_total counter
+doublezero_agent_get_config_errors_total 0
+```
+The following are high signal errors:
+- `doublezero_agent_apply_config_errors_total` - The configuration attemping to be applied by the agent failed. In this situation, users will not be able to onboard to the device and onchain configuration changes will not be applied until this is resolved.
+
+- `doublezero_agent_get_config_errors_total` - This is a signal the local configuration agent can't talk to the DoubleZero controller. In most cases, this can be due to an issue with management connectivity on the device. Similar to the metric above, users will not be able to onboard to the device and onchain configuration changes will not be applied until this is resolved.
+
+### Telemetry Agent
+
+The telemetry agent on the DoubleZero device has the ability to expose prometheus compatible metrics by setting the `-metrics-enable` flag in the `doublezero-telemetry` daemon configuration. The default listening port is tcp/8080 but can be changed to suit the environment via the `-metrics-addr`:
+```
+daemon doublezero-telemetry
+   exec /usr/local/bin/doublezero-telemetry  --local-device-pubkey $PUBKEY --env $ENV --keypair $KEY_PAIR -metrics-enable --metrics-addr 10.0.0.11:2113
+   no shutdown
+```
+
+The following DoubleZero specific metrics are exposed along with go-specific runtime metrics:
+```
+$ curl -s 10.0.0.11:2113/metrics | grep doublezero
+
+# HELP doublezero_device_telemetry_agent_build_info Build information of the device telemetry agent
+# TYPE doublezero_device_telemetry_agent_build_info gauge
+doublezero_device_telemetry_agent_build_info{commit="4378018f",date="2025-09-23T14:07:45Z",version="0.6.5~git20250923140743.4378018f"} 1
+
+# HELP doublezero_device_telemetry_agent_errors_total Number of errors encountered
+# TYPE doublezero_device_telemetry_agent_errors_total counter
+doublezero_device_telemetry_agent_errors_total{error_type="peer_discovery_program_load"} 7
+doublezero_device_telemetry_agent_errors_total{error_type="submitter_failed_to_write_samples"} 8
+doublezero_device_telemetry_agent_errors_total{error_type="collector_submit_samples_on_close"} 0
+doublezero_device_telemetry_agent_errors_total{error_type="peer_discovery_getting_local_interfaces"} 0
+doublezero_device_telemetry_agent_errors_total{error_type="peer_discovery_finding_local_tunnel"} 0
+doublezero_device_telemetry_agent_errors_total{error_type="peer_discovery_link_tunnel_net_invalid"} 0
+doublezero_device_telemetry_agent_errors_total{error_type="submitter_failed_to_initialize_account"} 0
+doublezero_device_telemetry_agent_errors_total{error_type="submitter_retries_exhausted"} 0
+
+# HELP doublezero_device_telemetry_agent_peer_discovery_not_found_tunnels Number of local tunnel interfaces not found during peer discovery
+# TYPE doublezero_device_telemetry_agent_peer_discovery_not_found_tunnels gauge
+doublezero_device_telemetry_agent_peer_discovery_not_found_tunnels{local_device_pk="8PQkip3CxWhQTdP7doCyhT2kwjSL2csRTdnRg2zbDPs1"} 0
 ```
