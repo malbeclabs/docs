@@ -86,7 +86,7 @@ Follow these steps depending on your operating system:
 For a new install:
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
-sudo apt-get install doublezero=0.6.4-1
+sudo apt-get install doublezero=0.6.6-1
 ```
 To upgrade:
 ```
@@ -97,7 +97,7 @@ sudo apt-get install --only-upgrade doublezero
 For a new install:
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh | sudo -E bash
-sudo yum install doublezero-0.6.4
+sudo yum install doublezero-0.6.6
 ```
 
 After installation, verify the daemon is running:
