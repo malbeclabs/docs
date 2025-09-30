@@ -2,7 +2,7 @@
 
 **Simple, aligned pricing for Solana validators**
 
-At mainnet-beta launch on September 30, 2025, a flat 5% seat fee on block signature rewards and priority fees unlocks DoubleZero's high-performance network and 3 million SOL stake-pool support. Additional revenue streams will phase in only after demonstrable value is delivered.
+Fees will start epoch 859, which starts Saturday Octobuer 4th at 4am ET, a flat 5% seat fee on block signature rewards and priority fees unlocks DoubleZero's high-performance network and 3 million SOL stake-pool support. Additional revenue streams will phase in only after demonstrable value is delivered.
 
 ---
 
