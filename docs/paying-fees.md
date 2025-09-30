@@ -25,7 +25,7 @@ An in depth exploration of why fees exist, and the validator pricing model can b
 
 1. Derive deposit account (PDA) using validator identity pubkey.
 2. Calculate epoch fee: 5% × total block rewards.
-3. Prefund an estimated payment (with a buffer) if desired; excess amounts can be applied to future epochs. [How to Send SOL>>](https://solana.com/tr/learn/sending-and-receiving-sol)
+3. Fund your deposit account with the amount calculated in step 2 in the next epoch. If desired; you can make excess payments and that excess SOL will be applied to future epochs. [How to Send SOL>>](https://solana.com/tr/learn/sending-and-receiving-sol)
 4. Monitor balance to ensure successful settlements.
 
 ---
