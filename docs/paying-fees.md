@@ -25,7 +25,7 @@ An in depth exploration of why fees exist, and the validator pricing model can b
 
 1. Derive deposit account (PDA) using validator identity pubkey.
 2. Calculate epoch fee: 5% × total block rewards.
-3. Fund within ~24 hours post epoch. Prefund an estimated payment (with a buffer) if desired; excess amounts can be applied to future epochs. [How to Send SOL>>](https://solana.com/tr/learn/sending-and-receiving-sol)
+3. Prefund an estimated payment (with a buffer) if desired; excess amounts can be applied to future epochs. [How to Send SOL>>](https://solana.com/tr/learn/sending-and-receiving-sol)
 4. Monitor balance to ensure successful settlements.
 
 ---
@@ -38,7 +38,7 @@ Questions? Contact Nihar Shah at nihar@doublezero.us
 
 # Developer Details
 
-This process will be added as a CLI command by Sept 30 2025. For educational purposes the backend process is provided in detail below. 
+For educational purposes the backend process is provided in detail below. 
 
 Dependency
 - [Rust](https://www.rust-lang.org/tools/install)
