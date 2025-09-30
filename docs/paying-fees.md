@@ -24,7 +24,7 @@ An in depth exploration of why fees exist, and the validator pricing model can b
 # **Payment Checklist**
 
 1. Derive deposit account (PDA) using validator identity pubkey.
-2. Calculate epoch fee: 5% × total block rewards).
+2. Calculate epoch fee: 5% × total block rewards.
 3. Fund within ~24 hours post epoch. Prefund an estimated payment (with a buffer) if desired; excess amounts can be applied to future epochs. [How to Send SOL>>](https://solana.com/tr/learn/sending-and-receiving-sol)
 4. Monitor balance to ensure successful settlements.
 
@@ -33,8 +33,6 @@ An in depth exploration of why fees exist, and the validator pricing model can b
 # **Estimating Fees**
 
 Historical estimates and per-pubkey data are available in the [Fee Estimates Repo](http://github.com/doublezerofoundation/fees). The repo does not replace on chain data. You are responsible for the balance on chain, not in the balance in this repo.
-
-In the repo `block_rewards_data.csv: epochs 830 to 849`, includes average rewards and a computed 5% column. This will be updated periodically.
 
 Questions? Contact Nihar Shah at nihar@doublezero.us
 
