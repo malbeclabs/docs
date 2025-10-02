@@ -51,10 +51,10 @@ Dependency
 const REVENUE_DISTRIBUTION_PROGRAM_ID: Pubkey =
     solana_sdk::pubkey!("dzrevZC94tBLwuHw1dyynZxaXTWyp7yocsinyEVPtt4");
 
-let (deposit_key, _) = Pubkey::find_program_address(
-    &[&[b"solana_validator_deposit"], validator_identity_pubkey.as_ref()],
-    &REVENUE_DISTRIBUTION_PROGRAM_ID,
-);
+    let (deposit_key, _) = Pubkey::find_program_address(
+        &[b"solana_validator_deposit", validator_identity_pubkey.as_ref()],
+        &REVENUE_DISTRIBUTION_PROGRAM_ID,
+    );
 ```
 
 Seed uses the validator identity public key
