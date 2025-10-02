@@ -38,21 +38,16 @@ Questions? Contact Nihar Shah at nihar@doublezero.us
 
 # Developer Details
 
-For educational purposes the backend process is provided in detail below. 
-
-
-
-
-### Deposit Account Derivation
-
 ### Command Line Interface
 
 The DoubleZero CLI provides commands to manage validator deposits and monitor balances.
 
+In these examples the flag `um` is used to denote mainnet-beta. If you need a testnet balance use the flag `ut`
+
 #### Command 1: Fetch All Validator Deposits
 
 ```bash
-doublezero-solana revenue-distribution fetch validator-deposits -ut
+doublezero-solana revenue-distribution fetch validator-deposits -um
 ```
 
 **Output:**
@@ -67,7 +62,7 @@ AReLULgb4P7ipxQJy9cheGUsGRqQCbJNTFZXmjdkGMdE | Node11111111111111111111111111111
 #### Command 2: Fetch Deposits for Specific Node
 
 ```bash
-doublezero-solana revenue-distribution fetch validator-deposits -ut --node-id Node111111111111111111111111111111111111111
+doublezero-solana revenue-distribution fetch validator-deposits -um --node-id Node111111111111111111111111111111111111111
 ```
 
 **Output:**
@@ -80,7 +75,7 @@ Solana validator deposit accounts            | Node ID                          
 #### Command 3: Fund Validator Deposit (First Transaction)
 
 ```bash
-doublezero-solana revenue-distribution validator-deposit Node111111111111111111111111111111111111111 --fund 0.000000001 -ut
+doublezero-solana revenue-distribution validator-deposit Node111111111111111111111111111111111111111 --fund 0.000000001 -um
 ```
 
 **Output:**
@@ -94,7 +89,7 @@ Balance: 0.000000002 SOL
 #### Command 4: Fund Validator Deposit (Second Transaction)
 
 ```bash
-doublezero-solana revenue-distribution validator-deposit Node111111111111111111111111111111111111111 --fund 0.000000001 -ut
+doublezero-solana revenue-distribution validator-deposit Node111111111111111111111111111111111111111 --fund 0.000000001 -um
 ```
 
 **Output:**
@@ -108,7 +103,7 @@ Balance: 0.000000003 SOL
 #### Command 5: Verify Updated Balance
 
 ```bash
-doublezero-solana revenue-distribution fetch validator-deposits -ut --node-id Node111111111111111111111111111111111111111
+doublezero-solana revenue-distribution fetch validator-deposits -um --node-id Node111111111111111111111111111111111111111
 ```
 
 **Output:**
