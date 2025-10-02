@@ -40,37 +40,81 @@ Questions? Contact Nihar Shah at nihar@doublezero.us
 
 For educational purposes the backend process is provided in detail below. 
 
-Dependency
-- [Rust](https://www.rust-lang.org/tools/install)
+
 
 
 ### Deposit Account Derivation
 
+### Command Line Interface
 
-```rust
-const REVENUE_DISTRIBUTION_PROGRAM_ID: Pubkey =
-    solana_sdk::pubkey!("dzrevZC94tBLwuHw1dyynZxaXTWyp7yocsinyEVPtt4");
+The DoubleZero CLI provides commands to manage validator deposits and monitor balances.
 
-    let (deposit_key, _) = Pubkey::find_program_address(
-        &[b"solana_validator_deposit", validator_identity_pubkey.as_ref()],
-        &REVENUE_DISTRIBUTION_PROGRAM_ID,
-    );
+#### Command 1: Fetch All Validator Deposits
+
+```bash
+doublezero-solana revenue-distribution fetch validator-deposits -ut
 ```
 
-Seed uses the validator identity public key
-deposit_key is the SOL account for fee payments
-
-### Transfer Example
-
-```rust
-let dz_payment = block_signature_rewards
-    .checked_add(priority_fees)
-    .expect("sum overflow")
-    * 5 / 100;
-
-let transfer_ix = solana_system_interface::instruction::transfer(
-    &payer_key, 
-    &deposit_key, 
-    dz_payment
-);
+**Output:**
 ```
+Solana validator deposit accounts            | Node ID                                     | Balance (SOL)
+---------------------------------------------+---------------------------------------------+--------------
+79jStiBvoxujPWfmGfRahfFJd5SU2XruSwfDmysXt3xA | Node111111111111111111111111111111111111111 | 0.000000001
+EdmeAaCNiKkkNX73vch6kibJCeLnzcSPFpNzKeoRPYxP | Node111111111111111111111111111111111111112 | 0.000000069
+AReLULgb4P7ipxQJy9cheGUsGRqQCbJNTFZXmjdkGMdE | Node111111111111111111111111111111111111113 | 0.000000420
+```
+
+#### Command 2: Fetch Deposits for Specific Node
+
+```bash
+doublezero-solana revenue-distribution fetch validator-deposits -ut --node-id Node111111111111111111111111111111111111111
+```
+
+**Output:**
+```
+Solana validator deposit accounts            | Node ID                                     | Balance (SOL)
+---------------------------------------------+---------------------------------------------+--------------
+79jStiBvoxujPWfmGfRahfFJd5SU2XruSwfDmysXt3xA | Node111111111111111111111111111111111111111 | 0.000000001
+```
+
+#### Command 3: Fund Validator Deposit (First Transaction)
+
+```bash
+doublezero-solana revenue-distribution validator-deposit Node111111111111111111111111111111111111111 --fund 0.000000001 -ut
+```
+
+**Output:**
+```
+Solana validator deposit: 79jStiBvoxujPWfmGfRahfFJd5SU2XruSwfDmysXt3xA
+Funded: 3n56AW1UXeRqCQdLhQ82tjYzHQUbw7w2NcgD31PXSSxNLNgfrtsAENrWrXS2uLS2x5CyTyNaDTQMn9nHo5dfaS3B
+Node ID: Node111111111111111111111111111111111111111
+Balance: 0.000000002 SOL
+```
+
+#### Command 4: Fund Validator Deposit (Second Transaction)
+
+```bash
+doublezero-solana revenue-distribution validator-deposit Node111111111111111111111111111111111111111 --fund 0.000000001 -ut
+```
+
+**Output:**
+```
+Solana validator deposit: 79jStiBvoxujPWfmGfRahfFJd5SU2XruSwfDmysXt3xA
+Funded: 5WEpFc7pw6Hg353giEq1zwxAq2Lw4CHAahyZfb3tAgTBjfWiExaWpMjvrEm5bb618XC42ZU2hygryUu4E2PMbRxT
+Node ID: Node111111111111111111111111111111111111111
+Balance: 0.000000003 SOL
+```
+
+#### Command 5: Verify Updated Balance
+
+```bash
+doublezero-solana revenue-distribution fetch validator-deposits -ut --node-id Node111111111111111111111111111111111111111
+```
+
+**Output:**
+```
+Solana validator deposit accounts            | Node ID                                     | Balance (SOL)
+---------------------------------------------+---------------------------------------------+--------------
+79jStiBvoxujPWfmGfRahfFJd5SU2XruSwfDmysXt3xA | Node111111111111111111111111111111111111111 | 0.000000003
+```
+
