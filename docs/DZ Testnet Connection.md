@@ -178,7 +178,7 @@ exit
 
 ## 3. Initiate a Connection Request in DoubleZero
 
-Use the `request-solana-validator-access` command to create an account on Solana for the connection request. The DoubleZero Sentinel agent detects the new account, validates its identity and signature, and creates the access pass in DoubleZero so the server can establish a connection.
+Use the `request-validator-access` command to create an account on Solana for the connection request. The DoubleZero Sentinel agent detects the new account, validates its identity and signature, and creates the access pass in DoubleZero so the server can establish a connection.
 
 The example is for Solana Testnet. For Solana Mainnet-beta, change the `testnet` flag to `mainnet-beta`
 
@@ -194,7 +194,7 @@ Use the node ID, DoubleZeroID, and signature.
       In this example we use   `-k /home/user/.config/solana/id.json` to find the validator Identity. Use the appropriate location for your local deployment.
 
 ```bash
-doublezero-solana passport request-solana-validator-access -u testnet \
+doublezero-solana passport request-validator-access -u testnet \
   -k /home/user/.config/solana/id.json \
   --node-id ValidatorIdentity111111111111111111111111111 \
   --signature Signature111111rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7 \
