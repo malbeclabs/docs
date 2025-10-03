@@ -41,14 +41,14 @@ Questions? Contact Nihar Shah at nihar@doublezero.us
 ### Command Line Interface
 
 The DoubleZero CLI provides commands to manage validator deposits and monitor balances.
-You will need sol in the account that you run these commands from to pay for gas.
+You will need Sol in the account that you run these commands from to pay for gas.
 
-In these examples the flag `um` is used to denote mainnet-beta. If you need a testnet balance use the flag `ut`
+In these examples the flag `-mainnet-beta` is used to denote mainnet-beta. If you need a testnet balance use the flag `-testnet`
 
 #### Command 1: Fetch All Validator Deposits
 
 ```bash
-doublezero-solana revenue-distribution fetch validator-deposits -um
+doublezero-solana revenue-distribution fetch validator-deposits -mainnet-beta
 ```
 
 **Output:**
@@ -63,7 +63,7 @@ AReLULgb4P7ipxQJy9cheGUsGRqQCbJNTFZXmjdkGMdE | Node11111111111111111111111111111
 #### Command 2: Fetch Deposits for Specific Node
 
 ```bash
-doublezero-solana revenue-distribution fetch validator-deposits -um --node-id Node111111111111111111111111111111111111111
+doublezero-solana revenue-distribution fetch validator-deposits -mainnet-beta --node-id Node111111111111111111111111111111111111111
 ```
 
 **Output:**
@@ -76,7 +76,7 @@ Solana validator deposit accounts            | Node ID                          
 #### Command 3: Fund Validator Deposit (First Transaction)
 
 ```bash
-doublezero-solana revenue-distribution validator-deposit Node111111111111111111111111111111111111111 --fund 0.000000001 -um
+doublezero-solana revenue-distribution validator-deposit Node111111111111111111111111111111111111111 --fund 0.000000001 -mainnet-beta
 ```
 
 **Output:**
@@ -90,7 +90,7 @@ Balance: 0.000000002 SOL
 #### Command 4: Fund Validator Deposit (Second Transaction)
 
 ```bash
-doublezero-solana revenue-distribution validator-deposit Node111111111111111111111111111111111111111 --fund 0.000000001 -um
+doublezero-solana revenue-distribution validator-deposit Node111111111111111111111111111111111111111 --fund 0.000000001 -mainnet-beta
 ```
 
 **Output:**
@@ -104,7 +104,7 @@ Balance: 0.000000003 SOL
 #### Command 5: Verify Updated Balance
 
 ```bash
-doublezero-solana revenue-distribution fetch validator-deposits -um --node-id Node111111111111111111111111111111111111111
+doublezero-solana revenue-distribution fetch validator-deposits -mainnet-beta --node-id Node111111111111111111111111111111111111111
 ```
 
 **Output:**
