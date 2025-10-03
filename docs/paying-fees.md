@@ -41,7 +41,7 @@ Questions? Contact Nihar Shah at nihar@doublezero.us
 ### Command Line Interface
 
 The DoubleZero CLI provides commands to manage validator deposits and monitor balances.
-You will need Sol in the account that you run these commands from to pay for gas.
+You will need SOL in the account that you run these commands from to pay for gas.
 
 In these examples the flag `-mainnet-beta` is used to denote mainnet-beta. If you need a testnet balance use the flag `-testnet`
 
