@@ -197,7 +197,7 @@ doublezero-solana passport request-validator-access -u mainnet-beta \
   -k /home/user/.config/solana/id.json \
   --primary-validator-id ValidatorIdentity111111111111111111111111111 \
   --signature Signature111111rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7 \
-  YourDoubleZeroAddress11111111111111111111111111111
+  --doublezero-address YourDoubleZeroAddress11111111111111111111111111111
 
 ```
 
