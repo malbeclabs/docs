@@ -155,8 +155,8 @@ This issue is often related to the GRE tunnel being successfully activated betwe
     doublezero connect ibrl                                                                                                                                                                                                                                                                                                                                  
     DoubleZero Service Provisioning
     🔗  Start Provisioning User...
-    Public IP detected: 149.28.38.64 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
-    🔍  Provisioning User for IP: 149.28.38.64
+    Public IP detected: 111.11.11.11 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
+    🔍  Provisioning User for IP: 111.11.11.11
     User account created
     Connected to device: nyc-dz001
     The user has been successfully activated
@@ -198,3 +198,114 @@ This issue is often related to the GRE tunnel being successfully activated betwe
     In the above output you see all traffic to 169.254.0.0/16, except for the ports specified, is denied. 
     `sudo ufw insert <N> allow proto tcp from 169.254.0.0/16 to 169.254.0.0/16 port 179` to insert the rule in the <N> position. ie. if N = 1 then you will insert this rules as the first rule.
     `sudo ufw status numbered` will show you the numerical ordering of rules.
+
+
+### Issue: Nearest DoubleZero device has changed
+
+This is not an error, but can be an optimization. Below is a best practice which can be run from time to time, or automated.
+
+**Solutions:**
+
+1. Check latency to the nearest device
+    - run `doublezero latency` 
+
+        output
+        ```
+         pubkey                                       | code          | ip              | min      | max      | avg      | reachable 
+         2hPMFJHh5BPX42ygBvuYYJfCv9q7g3rRR3ZRsUgtaqUi | dz-ny7-sw01   | 137.239.213.162 | 1.80ms   | 1.90ms   | 1.84ms   | true      
+         ETdwWpdQ7fXDHH5ea8feMmWxnZZvSKi4xDvuEGcpEvq3 | dz-ny5-sw01   | 137.239.213.170 | 1.83ms   | 2.10ms   | 1.92ms   | true      
+         8gisbwJnNhMNEWz587cAJMtSSFuWeNFtiufPuBTVqF2Z | dz-ny7-sw02   | 142.215.184.122 | 1.87ms   | 2.66ms   | 2.15ms   | true      
+         8J691gPwzy9FzUZQ4SmC6jJcY7By8kZXfbJwRfQ8ns31 | nyc002-dz002  | 38.122.35.137   | 2.33ms   | 2.39ms   | 2.37ms   | true      
+         FEML4XsDPN3WfmyFAXzE2xzyYqSB9kFCRrMik8JqN6kT | nyc001-dz001  | 38.104.167.29   | 2.29ms   | 2.59ms   | 2.40ms   | true   
+        ```
+        note above the nearest device is `dz-ny7-sw01 `
+
+        We want to connect to this device. :
+
+2. Determine if you are already connected to the target device
+    - run `doublezero user list --env testnet | grep 111.11.11.11` replace `111.11.11.11` with your devices public ipv4 address which is connected to DoubleZero. You may also use your validator ID, or doublezero ID.
+
+        output
+        ```
+        account                                      | user_type           | groups                        | device       | location    | cyoa_type  | client_ip       | dz_ip           | accesspass                                                      | tunnel_id | tunnel_net       | status    | owner                                        
+        6QRU1ivJnKGHpom2BdzH9PiTRkJ5WhunPNLtfYcqVisW | IBRL                |                               | dz-ny7-sw01     | New York    | GREOverDIA | 111.11.11.11    | 111.11.11.11    | Prepaid: (MAX)                                                  | 514       | 111.254.1.111/31 | activated | DZfHh2vjXFqt8zfNbT1afm8PGuCm3BrQKegC5THtKFdn 
+        ```
+        In this example, we are already connected to the nearest device. No more steps are needed, we can stop here.
+
+
+        Let us consider instead if the output was 
+         ```
+        account                                      | user_type           | groups                        | device       | location    | cyoa_type  | client_ip       | dz_ip           | accesspass                                                      | tunnel_id | tunnel_net       | status    | owner                                        
+        6QRU1ivJnKGHpom2BdzH9PiTRkJ5WhunPNLtfYcqVisW | IBRL                |                               | fra-dz-001-x     | New York    | GREOverDIA | 111.11.11.11    | 111.11.11.11    | Prepaid: (MAX)                                                  | 514       | 111.254.1.111/31 | activated | DZfHh2vjXFqt8zfNbT1afm8PGuCm3BrQKegC5THtKFdn 
+        ```
+        This would be a sub-optimal connection. Let us consider if reconnection is needed.
+
+        Prior to connection, we will check if the device has available user tunnels.
+
+3. Optional: examine the network for available devices
+
+    For educational purposes we will first: 
+    - run `doublezero device list` for a full list of devices. We have pulled 2 devices as an example to explain the output.
+
+        output:
+        ```
+        account                                      | code          | contributor | location  | exchange | device_type | public_ip       | dz_prefixes                      | users | max_users | status    | mgmt_vrf | owner                                        
+        GphgLkA7JDVtkDQZCiDrwrDvaUs8r8XczEae1KkV6CGQ | ams001-dz002  | jump_       | EQX-AM4   | ams      | switch      | 149.11.64.57    | 38.246.201.64/27                 | 69    | 128       | activated |          | H647kAwTcWsGXZUK3BTr1JyTBZmbNcYyCmRFFCEnXUVp 
+        7FfrX8YbvbzM8A1ojNynP9BjiKpK9rrmhdEdchB2myhG | dz-fr5-sw01   | glxy        | EQX-FR5   | fra      | switch      | 89.222.118.225  | 89.222.118.228/30                | 0     | 0         | activated |          | 5YbNrJHJJoiRwVEvgAWRGdFRG9gRdZ47hLCKSym8bqbp 
+        ```
+        Note above that `ams001-dz002` has 69 users, and 128 max users. This device is able to add 59 users. 
+
+        However, `dz-fr5-sw01` has 0 users, and 0 max users. You will not be able to connect to this device. With a max users of 0, the device is not accepting any connections.
+
+        Now let us return to connecting to our nearest device.
+
+4. Determine if the target device has an available connection
+    - run `doublezero device list | grep dz-ny7-sw01` replace `dz-ny7-sw01` with your target device
+
+        output
+        ```
+        2hPMFJHh5BPX42ygBvuYYJfCv9q7g3rRR3ZRsUgtaqUi | dz-ny7-sw01   | glxy        | EQX-NY7   | nyc      | switch      | 137.239.213.162 | 137.239.216.164/31               | 29    | 128       | activated |          | 5YbNrJHJJoiRwVEvgAWRGdFRG9gRdZ47hLCKSym8bqbp 
+        ```
+        here we can see that `dz-ny7-sw01` has available space for connection.
+
+5. Connect to the nearest DoubleZero Device
+
+    We will disconnect, and then reconnect to doublezero.
+
+    First run
+    - `doublezero disconnect`
+
+      output
+
+        ```
+        DoubleZero Service Provisioning
+        🔍  Decommissioning User
+        Public IP detected: 111.11.11.11 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
+        \ [00:00:00] [##########>-----------------------------] 1/4 deleting user       account...                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     🔍  Deleting User Account for: 6QRU1ivJnKGHpom2BdzH9PiTRkJ5WhunPNLtfYcqVisW
+        🔍  User Account deleted
+        ✅  Deprovisioning Complete
+        ```
+    now we check the status to confirm our disconnectoin with
+    - `doublezero status`
+
+    output
+
+    ```
+    Tunnel status | Last Session Update | Tunnel Name | Tunnel src | Tunnel dst | Doublezero IP | User Type 
+    disconnected  | no session data     |             |            |            |               |    
+    ```
+    Last we will reconnect with
+    - `doublezero connect ibrl`
+
+    output
+    ```
+    DoubleZero Service Provisioning
+    🔗  Start Provisioning User...
+    Public IP detected: 111.11.11.11 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
+    🔍  Provisioning User for IP: 111.11.11.11
+    User account created
+    Connected to device: dz-ny7-sw01 
+    Service provisioned with status: ok
+    ✅  User Provisioned
+    ```
+    notice in the above output that we `Connected to device: dz-ny7-sw01` this is the desired result from our initial investigation in step 1, where we discovered that `dz-ny7-sw01` was the device with the lowest latency.
