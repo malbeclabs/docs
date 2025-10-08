@@ -206,6 +206,40 @@ doublezero-solana passport request-validator-access -u mainnet-beta \
 Request Solana validator access: Signature2222222222VaB8FMqM2wEBXyV5THpKRXWrPtDQxmTjHJHiAWteVYTsc7Gjz4hdXxvYoZXGeHkrEayp 
 ```
 
+Now that you have created an access pass for your primary server consider the following fact so that you may use DoubleZero when you failover to backup machines.
+
+when any of the these 3 elements are changed a new pass must be made:
+```
+DoubleZero ID  
+Validator ID  
+IP
+```
+
+For example you have 2 machines:
+```
+DoubleZero ID 1.2  
+Validator ID 123  
+IP 1.1.1.  
+```
+
+When you failover to your backup you will have:
+```
+DoubleZero ID 1.2  
+Validator ID 123  
+IP 2.2.2.2  
+```
+The element changed is the IP. This will require you to complete steps 1-3 on this page again.
+
+
+when you return to:
+```
+DoubleZero ID 1.2  
+Validator ID 123  
+IP 1.1.1.1  
+```
+You will have already created a pass with this combination, so a new one will not be required for you to initiate connection to doublezero with `doublezero connect ibrl`
+
+
 ## 4. Connect in IBRL Mode
 
 On the server, with the user which will connect to DoubleZero, run the `connect` command to establish the connection to DoubleZero.
