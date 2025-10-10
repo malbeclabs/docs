@@ -1,5 +1,5 @@
 # How to connect to DoubleZero in Multicast Mode - for testnet Users
-!!! warning "By connecting to the DoubleZero I agree to the [DoubleZero Terms of Service](https://doublezero.xyz/terms-protocol)"
+!!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Service](https://doublezero.xyz/terms-protocol)"
 ### 1. Connect Multicast Mode
 DoubleZero Multicast Mode enables development teams like Anza, Firedancer and Jito to bring multicast publishers and subscribers on to the DoubleZero testnet. Multicast mode has both a `publisher` and a `subscriber` role. The publisher sends out packets across the network and subscribers are those who receive packets originating from the publisher.
 

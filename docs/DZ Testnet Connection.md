@@ -1,5 +1,5 @@
 # How to connect to DoubleZero in IBRL Mode - for Solana Testnet Users
-??? warning "By connecting to the DoubleZero testnet I agree to the terms of the Evaluation Agreement set forth here (click to expand)"
+??? warning "By connecting to DoubleZero testnet I agree to the terms of the Evaluation Agreement set forth here (click to expand)"
     <span style="font-size:14px;">DoubleZero Testnet</span>
     Evaluation Agreement
 
@@ -55,7 +55,8 @@
 ###  Connecting to Mainnet-Beta in IBRL Mode
 
 Solana Mainnet Validators will complete connection to DoubleZero Mainnet-beta, which is detailed on this page.
-Note that connecting in IBRL mode does not require restarting any validator clients. 
+!!! Note inline end
+    connecting in IBRL mode does not require restarting any validator clients. 
 
 This is because your existing public IP is advertised to DoubleZero so that other users on DoubleZero will route via the DoubleZero network when sending to your validator. Likewise, the routes received from DoubleZero and installed in the kernel routing table cause your validator to send to other DoubleZero-enabled validators over the DoubleZero network.
 

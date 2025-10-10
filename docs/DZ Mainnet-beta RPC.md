@@ -1,12 +1,13 @@
-# How to connect to DoubleZero in IBRL Mode - for Mainnet-Beta Users
-!!! warning "By connecting to the DoubleZero I agree to the [DoubleZero Terms of Service](https://doublezero.xyz/terms-protocol)"
+# How to connect to DoubleZero in IBRL Mode - for RPC nodes
+!!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Service](https://doublezero.xyz/terms-protocol)"
 
 
 
 ###  Connecting to Mainnet-Beta in IBRL Mode
 
-Solana Mainnet Validators will complete connection to DoubleZero Mainnet-beta, which is detailed on this page.
-Note that connecting in IBRL mode does not require restarting any validator clients. 
+RPCs will complete connection to DoubleZero Mainnet-beta, which is detailed on this page.
+!!! Note inline end
+    connecting in IBRL mode does not require restarting any validator clients. 
 
 This is because your existing public IP is advertised to DoubleZero so that other users on DoubleZero will route via the DoubleZero network when sending to your validator. Likewise, the routes received from DoubleZero and installed in the kernel routing table cause your validator to send to other DoubleZero-enabled validators over the DoubleZero network.
 

@@ -19,6 +19,7 @@ nav:
   - Setup: setup.md
   - DZ Mainnet-Beta Connection: DZ Mainnet-beta Connection.md
   - DZ Testnet Connection: DZ Testnet Connection.md
+  - DZ Mainnet-Beta RPC: DZ Mainnet-beta RPC.md
   - Connect - Multicast Mode: connect-multicast.md
   - Paying Fees: paying-fees.md
   - Troubleshooting: troubleshooting.md

@@ -1,12 +1,13 @@
 # How to connect to DoubleZero in IBRL Mode - for Mainnet-Beta Users
-!!! warning "By connecting to the DoubleZero I agree to the [DoubleZero Terms of Service](https://doublezero.xyz/terms-protocol)"
+!!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Service](https://doublezero.xyz/terms-protocol)"
 
 
 
 ###  Connecting to Mainnet-Beta in IBRL Mode
 
 Solana Mainnet Validators will complete connection to DoubleZero Mainnet-beta, which is detailed on this page.
-Note that connecting in IBRL mode does not require restarting any validator clients. 
+!!! Note inline end
+    connecting in IBRL mode does not require restarting any validator clients. 
 
 This is because your existing public IP is advertised to DoubleZero so that other users on DoubleZero will route via the DoubleZero network when sending to your validator. Likewise, the routes received from DoubleZero and installed in the kernel routing table cause your validator to send to other DoubleZero-enabled validators over the DoubleZero network.
 
@@ -53,7 +54,7 @@ Example output (Mainnet-Beta)
  9LFtjDzohKvCBzSquQD4YtL3HwuvkKBDE7KSzb8ztV2b | dz-mtl11-sw01 | 134.195.161.10  | 9.88ms   | 10.01ms  | 9.95ms   | true      
  9M7FfYYyjM4wGinKPofZRNmQFcCjCKRbXscGBUiXvXnG | dz-tor1-sw01  | 209.42.165.10   | 14.52ms  | 14.53ms  | 14.52ms  | true           
 ```
-Testnet output will be identical in structure, but with many more available devices.
+Testnet output will be identical in structure, but with fewer devices.
 </details>
 
 
@@ -173,7 +174,7 @@ For example you have 2 machines:
 ```
 DoubleZero ID 1.2  
 Validator ID 123  
-IP 1.1.1.  
+IP 1.1.1.1  
 ```
 
 When you failover to your backup you will have:
