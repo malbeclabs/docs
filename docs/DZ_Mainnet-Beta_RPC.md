@@ -59,7 +59,7 @@ Testnet output will be identical in structure, but with many more available devi
 
 ## 2. Contact the DoubleZero Foundation
 
-The DoubleZero foundation. You will need to provide your DoubleZeroID, your Validator ID (node ID), and the public ipv4 address you will be connecting from.
+The DoubleZero foundation. You will need to provide your `DoubleZeroID`, your `Validator ID` (node ID), and the `public ipv4 address` you will be connecting from.
 
 
 ## 3. Connect in IBRL Mode
