@@ -158,7 +158,7 @@ doublezero-solana passport request-validator-access -u mainnet-beta \
 Request Solana validator access: Signature2222222222VaB8FMqM2wEBXyV5THpKRXWrPtDQxmTjHJHiAWteVYTsc7Gjz4hdXxvYoZXGeHkrEayp 
 ```
 
-## Maintaing DoubleZero connection with your Primary Vote Account and Validator ID within across failover/ backup nodes
+## Maintaing DoubleZero connection with your Primary Vote Account and Validator ID across failover/ backup nodes
 
 Now that you have created an access pass for your primary server consider the following fact so that you may use DoubleZero when you failover to backup machines.
 
