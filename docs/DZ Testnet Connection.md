@@ -1,5 +1,5 @@
 # How to connect to DoubleZero in IBRL Mode - for Solana Testnet Users
-??? warning "By connecting to the DoubleZero testnet I agree to the terms of the Evaluation Agreement set forth here (click to expand)"
+??? warning "By connecting to DoubleZero testnet I agree to the terms of the Evaluation Agreement set forth here (click to expand)"
     <span style="font-size:14px;">DoubleZero Testnet</span>
     Evaluation Agreement
 
@@ -21,7 +21,7 @@
 
     <span style="font-size:14px;">2.1 ^^Access to Solution^^.</span> Subject to the terms and conditions of this Agreement, DZF will provide User access to the Solution through the Internet. User's access is a non-exclusive, non-transferable, limited use of the Solution to enable User to evaluate the Information Service only. With respect to any software comprising the Solution ("**DZ Software**"), DZF hereby grants User a limited, revocable license, during the Evaluation Period, to copy, download, make a reasonable number of copies of, run, and deploy (as applicable) such DZ Software solely as contemplated by the Documentation.
 
-    <span style="font-size:14px;">2.2 ^^Restrictions^^. </span>User may use the Solution in accordance with this Agreement from the Effective Date until terminated by DZF (the "**Evaluation Period**"). User understands that any rights to use the Solution beyond the Evaluation Period will be subject to a separate commercial agreement between the parties with respect thereto, including the payment of fees. User shall not, and shall not permit any third party to: (i) modify or create any derivative works based on the Solution or any portion thereof; (ii) reproduce the Solution except as expressly permitted by this Agreement; (iii) sublicense, distribute, sell, lend, rent, lease, transfer, or grant any rights in or to all or any portion of the Solution or provide access to the Solution to third parties, on a service bureau basis or otherwise, except as an offering of the Information Services through or in connection with User's platform or product and not on a standalone basis; or (iv) use the Solution other than as provided herein.
+    <span style="font-size:14px;">2.2 ^^Restrictions^^. </span>User may use the Solution in accordance with this Agreement from the Effective Date until terminated by DZF (the "**Evaluation Period**"). User understands that any rights to use the Solution beyond the Evaluation Period will be subject to a separate commercial agreement between the parties with respect thereto, including the payment of fees. User shall not, and shall not permit any third party to: (i) modify or create any derivative works based on the Solution or any portion thereof; (ii) reproduce the Solution except as expressly permitted by this Agreement; (iii) sublicense, distribute, sell, lend, rent, lease, transfer, or grant any rights in or to all or any portion of the Solution or provide access to the Solution to third parties, on a service bureau basis or otherwise, except as an offering of the Information Services through or in connection with User's platform or product and not on a standalone basis; or (iv) use the Solution other than as provided herein.
 
     <span style="font-size:14px;">2.3 ^^Ownership^^.</span> DZF retains all right, title and interest, including intellectual property rights, in and to the Solution.
 
@@ -54,10 +54,11 @@
 
 ###  Connecting to Mainnet-Beta in IBRL Mode
 
-Solana Mainnet Validators will complete connection to DoubleZero Mainnet-beta, which is detailed on this page.
-Note that connecting in IBRL mode does not require restarting any validator clients. 
 
-This is because your existing public IP is advertised to DoubleZero so that other users on DoubleZero will route via the DoubleZero network when sending to your validator. Likewise, the routes received from DoubleZero and installed in the kernel routing table cause your validator to send to other DoubleZero-enabled validators over the DoubleZero network.
+!!! Note inline end
+    IBRL mode does not require restarting validator clients, because it uses your existing public IP address.
+
+Solana Mainnet Validators will complete connection to DoubleZero Mainnet-beta, which is detailed on this page.
 
 ## 1. Environment Configuration
 
@@ -137,7 +138,7 @@ To connect your primary server, use the Validator Identity of your main validato
 
 <figure markdown="span">
   ![Image title](images/ConnectingMainnet.png){ width="800" }
-  <figcaption>Figure 1: Connecting to DoubleZero Mainnet-Beta</figcaption>
+  <figcaption>Figure 1: Connecting to DoubleZero Testnet</figcaption>
 </figure>
 
 <figure markdown="span">
@@ -206,6 +207,40 @@ doublezero-solana passport request-validator-access -u testnet \
 ```bash
 Request Solana validator access: Signature2222222222VaB8FMqM2wEBXyV5THpKRXWrPtDQxmTjHJHiAWteVYTsc7Gjz4hdXxvYoZXGeHkrEayp 
 ```
+## Maintaing DoubleZero connection with your Primary Vote Account and Validator ID across failover/ backup nodes
+
+Now that you have created an access pass for your primary server consider the following fact so that you may use DoubleZero when you failover to backup machines.
+
+when any of the these 3 elements are changed a new pass must be made:
+```
+DoubleZero ID  
+Validator ID  
+IP
+```
+
+For example you have 2 machines:
+```
+DoubleZero ID 1.2  
+Validator ID 123  
+IP 1.1.1.  
+```
+
+When you failover to your backup you will have:
+```
+DoubleZero ID 1.2  
+Validator ID 123  
+IP 2.2.2.2  
+```
+The element changed is the IP. This will require you to complete steps 1-3 on this page again.
+
+
+when you return to:
+```
+DoubleZero ID 1.2  
+Validator ID 123  
+IP 1.1.1.1  
+```
+You will have already created a pass with this combination, so a new one will not be required for you to initiate connection to doublezero with `doublezero connect ibrl`
 
 ## 4. Connect in IBRL Mode
 
