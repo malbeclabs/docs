@@ -5,11 +5,11 @@
 
 ###  Connecting to Mainnet-Beta in IBRL Mode
 
-Solana Mainnet Validators will complete connection to DoubleZero Mainnet-beta, which is detailed on this page.
 !!! Note inline end
     IBRL mode does not require restarting validator clients, because it uses your existing public IP address. 
 
-This is because your existing public IP is advertised to DoubleZero so that other users on DoubleZero will route via the DoubleZero network when sending to your validator. Likewise, the routes received from DoubleZero and installed in the kernel routing table cause your validator to send to other DoubleZero-enabled validators over the DoubleZero network.
+Solana Mainnet Validators will complete connection to DoubleZero Mainnet-beta, which is detailed on this page.
+
 
 ## 1. Environment Configuration
 
