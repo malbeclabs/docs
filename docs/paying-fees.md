@@ -44,7 +44,7 @@ The DoubleZero CLI provides commands to manage validator deposits and monitor ba
 You will need SOL in the account that you run these commands from to pay for gas.
 
 !!! note inline end
-      Do not user your `Vote Identity` or `DoubleZero ID` in this process
+      Do not use your `Vote Identity` or `DoubleZero ID` in this process
 
 In these examples the flag `-u mainnet-beta` is used to denote mainnet-beta. If you need a testnet balance use the flag `-u testnet`
 
