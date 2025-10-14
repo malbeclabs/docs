@@ -43,6 +43,9 @@ Questions? Contact Nihar Shah at nihar@doublezero.us
 The DoubleZero CLI provides commands to manage validator deposits and monitor balances.
 You will need SOL in the account that you run these commands from to pay for gas.
 
+!!! note inline end
+      Do not user your `Vote Identity` or `DoubleZero ID` in this process
+
 In these examples the flag `-u mainnet-beta` is used to denote mainnet-beta. If you need a testnet balance use the flag `-u testnet`
 
 #### Command 1: Fetch All Validator Deposits
@@ -126,9 +129,10 @@ This issue is generally caused by sending funds to a deposit account, without fi
 **Solutions:**
 1. initialize the account
 
-    `doublezero-solana revenue-distribution validator-deposit ValidatorIdentity111111111111111111111111111 --initialize -k path/to/your_keypair.json`
+ `doublezero-solana revenue-distribution validator-deposit ValidatorIdentity111111111111111111111111111 --initialize -k path/to/your_keypair.json`
 
-    Sample Output:
+ Sample Output:
+
     ```
     Solana validator deposit: Deposit1111111111111111111111111111111111111
     Funded and initialized: Signature111111rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7
