@@ -114,3 +114,37 @@ Solana validator deposit accounts            | Node ID                          
 79jStiBvoxujPWfmGfRahfFJd5SU2XruSwfDmysXt3xA | Node111111111111111111111111111111111111111 | 0.000000003
 ```
 
+## Troubleshooting:
+### Issue: `⚠️  Warning: Please use "doublezero-solana revenue-distribution validator-deposit ValidatorIdentity111111111111111111111111111 --initialize" to create
+
+This issue is generally caused by sending funds to a deposit account, without first running the fund command.
+
+**Symptoms:**
+- When executing `doublezero-solana revenue-distribution` commands the user encounters `⚠️  Warning: Please use "doublezero-solana revenue-distribution validator-deposit ValidatorIdentity111111111111111111111111111 --initialize" to create`
+
+
+**Solutions:**
+1. initialize the account
+
+    `doublezero-solana revenue-distribution validator-deposit ValidatorIdentity111111111111111111111111111 --initialize -k path/to/your_keypair.json`
+
+    Sample Output:
+    ```
+    Solana validator deposit: Deposit1111111111111111111111111111111111111
+    Funded and initialized: Signature111111rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7
+    Node ID: ValidatorIdentity111111111111111111111111111
+    Balance: YourCurrentBalanceIn SOL
+    ```
+2. re-run the command which caused the error
+
+    for example:
+
+    `revenue-distribution fetch validator-deposits -u mainnet-beta --node-id Node111111111111111111111111111111111111111'`
+
+    Sample Output:
+    ```
+    Solana validator deposit accounts            | Node ID                                     | Balance (SOL)
+    ---------------------------------------------+---------------------------------------------+--------------
+    79jStiBvoxujPWfmGfRahfFJd5SU2XruSwfDmysXt3xA | Node111111111111111111111111111111111111111 | 0.000000003
+    ```
+    The command should now return without error
