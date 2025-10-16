@@ -52,13 +52,13 @@
 
 
 
-###  Connecting to Mainnet-Beta in IBRL Mode
+###  Connecting to Testnet in IBRL Mode
 
 
 !!! Note inline end
     IBRL mode does not require restarting validator clients, because it uses your existing public IP address.
 
-Solana Mainnet Validators will complete connection to DoubleZero Mainnet-beta, which is detailed on this page.
+Solana Testnet Validators will complete connection to DoubleZero Testnet, which is detailed on this page.
 
 ## 1. Environment Configuration
 
@@ -137,7 +137,7 @@ To connect your primary server, use the Validator Identity of your main validato
 
 
 <figure markdown="span">
-  ![Image title](images/ConnectingMainnet.png){ width="800" }
+  ![Image title](images/ConnectingTestnet.png){ width="800" }
   <figcaption>Figure 1: Connecting to DoubleZero Testnet</figcaption>
 </figure>
 
