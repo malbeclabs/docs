@@ -228,6 +228,7 @@ doublezero-solana passport request-validator-access -k <path to keypair> \
 ```bash
 Request Solana validator access: Signature2222222222VaB8FMqM2wEBXyV5THpKRXWrPtDQxmTjHJHiAWteVYTsc7Gjz4hdXxvYoZXGeHkrEayp 
 ```
+✅ If successful, DoubleZero will register the primary with its backups. You may now failover between the IPs registered in the access pass. DoubleZero will maintain connectivity automatically when switching to backup nodes registered in this way.
 
 ## 5. Connect in IBRL Mode
 
