@@ -60,6 +60,8 @@
 
 Solana Testnet Validators will complete connection to DoubleZero Testnet, which is detailed on this page.
 
+This guide allows for 1 Primary Validator to register itself, and up to 3 backup/failover machines at the same time.
+
 ## 1. Environment Configuration
 
 Please follow the [setup](setup.md) instructions before proceeding.
@@ -111,138 +113,123 @@ Mainnet output will be identical in structure, but with many more available devi
 
 With your DoubleZero Enviroment set, it is now time to attest to your Validator Ownership.
 
-In order to accomplish this you will first determine the Solana Validator ID, then use the Solana Validator ID, together with the DoubleZero ID created during setup, to sign an off-chain transaction.
-This process only verifies ownership of the validator specified in the command.
+In order to accomplish this you will first verify the machine you are running the commands from is your **Primary Validator** with:
 
-
-### Switching to the `sol` User
-
-Before generating the validator ownership signature, you must switch to the `sol` user (or the user you normally use to run the validator):
-
-```bash
-sudo su - sol
+```
+doublezero-solana passport find-validator
 ```
 
-This is required because the validator's Identity key (`validator-keypair.json`) is usually stored under the `sol` user account. Running the command as `sol` ensures:
+This verifies that the validator is registered in gossip and appears in the leader schedule.
 
-- You have permissions to access to the `validator-keypair.json`.
-- The signature is generated using the appropriate key that your Solana validator uses.
+Expected output:
 
-This step **only requires you to sign a message with your validator Identity** to prove ownership.
-
-### Identify the Pubkey from your validator Identity
-
-You may only create an access pass for the Validator Identity which is in gossip on the server requesting the access pass.
-To connect your primary server, use the Validator Identity of your main validator. To connect a backup server, use the Validator Identity configured on the backup server.
-
-
-<figure markdown="span">
-  ![Image title](images/ConnectingTestnet.png){ width="800" }
-  <figcaption>Figure 1: Connecting to DoubleZero Testnet</figcaption>
-</figure>
-
-<figure markdown="span">
-  ![Image title](images/ConnectingBackup.png){ width="800" }
-  <figcaption>Figure 2: Connecting a backup node to DoubleZero</figcaption>
-</figure>
-
-```bash
-solana address -k path/to/validator-keypair.json
 ```
-!!! note inline end
-      Save the output of this Signature for step 6
+Connected to Solana: testnet
 
+DoubleZero ID: YourDoubleZeroAddress11111111111111111111111111111
+Detected public IP: 11.11.11.111
+Validator ID: ValidatorIdentity111111111111111111111111111
+Gossip IP: 11.11.11.111
+In Leader scheduler
+✅ This validator can connect as a primary in DoubleZero 🖥️  💎. It is a leader scheduled validator.
+```
+
+Now, on all bakup machines you intend to run your **Primary Validator** on run the following:
+
+```
+doublezero-solana passport find-validator
+```
+
+Expected output:
+
+```
+Connected to Solana: testnet
+
+DoubleZero ID: YourDoubleZeroAddress11111111111111111111111111111
+Detected public IP: 22.22.22.222
+Validator ID: ValidatorIdentity222222222222222222222222222
+Gossip IP: 22.22.22.222
+In Not in Leader scheduler
+ ❌ This validator can not connect as a primary in DoubleZero 🖥️  💎. It is a not a leader scheduled validator.
+```
+This is a good output, as the backup node cannot be in the leaderschedule at time of pass creation.
+
+You will now run this command on **all backup machines** you plan to use your **Primary Validator** vote account, and identity on.
+
+
+### Prepare the Connection
+
+Run the following command on the **Primary Validator** machine. This is the machine you have active stake on, that is in the leader schedule with your primary validator ID in solana gossip on the machine you are running the command from:
+
+```
+doublezero-solana passport prepare-validator-access \\
+  --doublezero-address YourDoubleZeroAddress11111111111111111111111111111
+ \\
+  --primary-validator-id <PRIMARY_ID> \\
+  --backup-validator-ids <BACKUP_ID1>,<BACKUP_ID2>,<BACKUP_ID3>
+  ```
+
+Example output:
+
+```
+DoubleZero Passport - Prepare Validator Access Request
+Connected to Solana: mainnet-beta
+
+Primary validator 🖥️  💎:
+  ID: ValidatorIdentity111111111111111111111111111
+  Gossip: ✅ OK 11.11.11.111)
+  Leader scheduler: ✅ OK (Stake: 1,050,000.00 SOL)
+
+Backup validator 🖥️ 🛡️:
+  ID: ValidatorIdentity222222222222222222222222222
+  Gossip: ✅ OK (22.22.22.222)
+  Leader scheduler: ✅ OK
+
+Backup validator 🖥️ 🛡️:
+  ID: ValidatorIdentity333333333333333333333333333
+  Gossip: ✅ OK (33.33.33.333)
+  Leader scheduler: ✅ OK
+  ```
+
+## 4 Generate Signature
+
+Run the following command on the **Primary Validator** machine.
+
+```
+solana sign-offchain-message \\
+  -u testnet \\
+  --doublezero-address=YourDoubleZeroAddress11111111111111111111111111111 \\
+  -k <identity.json>
+  ```
 
 **Output:**
-```bash
-ValidatorIdentity111111111111111111111111111
 ```
-
-Use the `sign-offchain-message` command to prove you are the owner of the validator.
-
-```bash
-solana sign-offchain-message -k path/to/validator-keypair.json service_key=YourDoubleZeroAddress11111111111111111111111111111
-```
-
-**Output:**
-```bash
 Signature111111rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7
 ```
 
-### Exit the Validator User
-
-Exit the `sol` user session (or the user used to run the validator):
-
-```bash
-exit
-```
-
-## 3. Initiate a Connection Request in DoubleZero
+## 4. Initiate a Connection Request in DoubleZero
 
 Use the `request-validator-access` command to create an account on Solana for the connection request. The DoubleZero Sentinel agent detects the new account, validates its identity and signature, and creates the access pass in DoubleZero so the server can establish a connection.
 
-The example is for Solana Testnet. For Solana Mainnet-beta, change the `testnet` flag to `mainnet-beta`
-
-Check your Solana Balance
-
-```bash
-solana balance -u testnet
-```
 
 Use the node ID, DoubleZeroID, and signature.
 
 !!! note inline end
       In this example we use   `-k /home/user/.config/solana/id.json` to find the validator Identity. Use the appropriate location for your local deployment.
 
-```bash
-doublezero-solana passport request-validator-access -u testnet \
-  -k /home/user/.config/solana/id.json \
-  --primary-validator-id ValidatorIdentity111111111111111111111111111 \
-  --signature Signature111111rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7 \
-  --doublezero-address YourDoubleZeroAddress11111111111111111111111111111
-
+```
+doublezero-solana passport request-validator-access -k <path to keypair> \
+--primary-validator-id <primary-val-id> \
+--backup-validator-ids <backup-val-id> \
+--signature <sinature> --doublezero-address <DZ-ID> 
 ```
 
 **Output:**
 ```bash
 Request Solana validator access: Signature2222222222VaB8FMqM2wEBXyV5THpKRXWrPtDQxmTjHJHiAWteVYTsc7Gjz4hdXxvYoZXGeHkrEayp 
 ```
-## Maintaing DoubleZero connection with your Primary Vote Account and Validator ID across failover/ backup nodes
 
-Now that you have created an access pass for your primary server consider the following fact so that you may use DoubleZero when you failover to backup machines.
-
-when any of the these 3 elements are changed a new pass must be made:
-```
-DoubleZero ID  
-Validator ID  
-IP
-```
-
-For example you have 2 machines:
-```
-DoubleZero ID 1.2  
-Validator ID 123  
-IP 1.1.1.  
-```
-
-When you failover to your backup you will have:
-```
-DoubleZero ID 1.2  
-Validator ID 123  
-IP 2.2.2.2  
-```
-The element changed is the IP. This will require you to complete steps 1-3 on this page again.
-
-
-when you return to:
-```
-DoubleZero ID 1.2  
-Validator ID 123  
-IP 1.1.1.1  
-```
-You will have already created a pass with this combination, so a new one will not be required for you to initiate connection to doublezero with `doublezero connect ibrl`
-
-## 4. Connect in IBRL Mode
+## 5. Connect in IBRL Mode
 
 On the server, with the user which will connect to DoubleZero, run the `connect` command to establish the connection to DoubleZero.
 
