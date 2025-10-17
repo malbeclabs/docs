@@ -189,6 +189,11 @@ Backup validator 🖥️ 🛡️:
   ID: ValidatorIdentity333333333333333333333333333
   Gossip: ✅ OK (33.33.33.333)
   Leader scheduler: ✅ OK
+
+  Backup validator 🖥️ 🛡️:
+  ID: alidatorIdentity444444444444444444444444444
+  Gossip: ✅ OK (33.33.33.333)
+  Leader scheduler: ✅ OK
   ```
 
 ## 4 Generate Signature
