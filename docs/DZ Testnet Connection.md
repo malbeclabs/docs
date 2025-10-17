@@ -165,8 +165,8 @@ Run the following command on the **Primary Validator** machine. This is the mach
 doublezero-solana passport prepare-validator-access \\
   --doublezero-address YourDoubleZeroAddress11111111111111111111111111111
  \\
-  --primary-validator-id <PRIMARY_ID> \\
-  --backup-validator-ids <BACKUP_ID1>,<BACKUP_ID2>,<BACKUP_ID3>
+  --primary-validator-id ValidatorIdentity111111111111111111111111111 \\
+  --backup-validator-ids ValidatorIdentity222222222222222222222222222,ValidatorIdentity33333333333333333333333333,ValidatorIdentity444444444444444444444444444>
   ```
 
 Example output:
