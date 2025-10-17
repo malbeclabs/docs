@@ -6,9 +6,53 @@ All notable changes to this project will be documented in this file.
 
 ### Breaking
 
-- None for this release
+### Changes
+
+## [v0.6.7](https://github.com/malbeclabs/doublezero/compare/client/v0.6.6...client/v0.6.7) – 2025-10-16
+
+### Breaking
+
+- Multicast group change: Regeneration of all multicast group allowlists required, as allowlists are now stored within each Access Pass instead of at the multicast group level.
 
 ### Changes
+
+- CLI
+    - Added a wait in the `disconnect` command to ensure the account is fully closed before returning, preventing failures during rapid disconnect/reconnect sequences.
+    - Display multicast group memberships (publisher/subscriber) in AccessPass listings to improve visibility.
+    - Allow AccessPass creation without 'client_ip'
+    - Add 'allow_multiple_ip' argument to support AccessPass connections from multiple IPs
+    - Include validator pubkey in `export` output
+    - Rename exchange.loc_id to exchange.bgp_community
+- Activator
+    - Reduce logging noise when processing snapshot events
+    - Wrap main select handler in loop to avoid shutdown on branch error
+- Onchain programs
+    - Remove user-level allowlist management from CLI and admin interfaces; manage multicast group allowlists through AccessPass.
+    - Add Validate trait for core types (AccessPass, Contributor, Interface, etc.) and enforce runtime checks before account operations.
+- Internet telemetry
+    - Add circuit label to metrics; create a new metric for missing circuit samples
+    - Create a new metric that tracks how long it takes collector tasks to run
+    - Submit partitions of samples in parallel
+    - Include circuit label on submitter error metric
+- Monitor
+    - Reduce logging noise in 2z oracle watcher
+    - Include response body on 2z oracle errors
+    - Collect contributors and exchanges into InfluxDB
+- Device controller
+    - When a device is missing required loopback interfaces, provide detailed errors to agent instead of "<pubkey> not found". Also, log these conditions as warnings instead of errors, and don't emit "unknown pubkey requested" error metrics for these conditions
+    - Add device info as labels to `controller_grpc_getconfig_requests_total` metric
+- Device agents
+    - Submit device-link telemetry partitions in parallel
+- Onchain programs
+    - Enable AccessPass with 'client_ip=0.0.0.0' to dynamically learn the user’s IP on first connection
+    - Enable AccessPass to support connections from multiple IPs (allowlist compatibility)
+    - Rename exchange.loc_id to exchange.bgp_community, and change it from u32 to u16
+- Telemetry data API
+    - Filter by contributor and link type
+- SDK/Go
+    - String serialization for exchanges status
+    - Exclude empty tags from influx serialization
+
 
 ## [v0.6.6](https://github.com/malbeclabs/doublezero/compare/client/v0.6.5...client/v0.6.6) – 2025-09-26
 
@@ -76,7 +120,6 @@ All notable changes to this project will be documented in this file.
 ### Changes
 
 - Onchain programs
-    - Add Validate trait for core types (AccessPass, Contributor, Interface, etc.) and enforce runtime checks before account operations.
     - Expand DoubleZeroError with granular variants (invalid IPs, ASN, MTU, VLAN, etc.) and derive PartialEq for easier testing.
     - Rename Config account type to GlobalConfig for clarity and consistency.
     - Fix bug in user update that caused DZ IP to be 0.0.0.0
@@ -103,7 +146,6 @@ All notable changes to this project will be documented in this file.
     - Updated unit tests and e2e tests to validate the new initialization and activation flow.
 - Contributor Operations
     - Contributors must explicitly run device update to set a valid max_users and activate a Device.
-
 
 ## [v0.6.2](https://github.com/malbeclabs/doublezero/compare/client/v0.6.0...client/v0.6.2) – 2025-09-02
 
