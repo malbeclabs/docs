@@ -103,7 +103,7 @@ You will be able to view routes propagated by other users on DoubleZero by runni
 ```
 ip route
 ```
-
+Output: 
 
 ```
 default via 149.28.38.1 dev enp1s0 proto dhcp src 149.28.38.64 metric 100 
