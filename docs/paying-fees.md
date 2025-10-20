@@ -79,7 +79,7 @@ Solana validator deposit accounts            | Node ID                          
 #### Command 3: Fund Validator Deposit (First Transaction)
 
 ```bash
-doublezero-solana revenue-distribution validator-deposit ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111 --fund 0.000000001 -u mainnet-beta
+doublezero-solana revenue-distribution validator-deposit --node-id ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111 --fund 0.000000001 -u mainnet-beta
 ```
 
 **Output:**
@@ -93,7 +93,7 @@ Balance: 0.000000002 SOL
 #### Command 4: Fund Validator Deposit (Second Transaction)
 
 ```bash
-doublezero-solana revenue-distribution validator-deposit ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111 --fund 0.000000001 -u mainnet-beta
+doublezero-solana revenue-distribution validator-deposit --node-id ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111 --fund 0.000000001 -u mainnet-beta
 ```
 
 **Output:**
@@ -116,20 +116,63 @@ Solana validator deposit accounts            | Node ID                          
 ---------------------------------------------+---------------------------------------------+--------------
 79jStiBvoxujPWfmGfRahfFJd5SU2XruSwfDmysXt3xA | ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111 | 0.000000003
 ```
+## Paying in 2z
+### Validators may pay their fees in 2z
 
+<!-- https://github.com/doublezerofoundation/doublezero-offchain/pull/159 -->
+
+Validators have the option to pay their fees in 2z via an onchain [swap program](https://github.com/doublezerofoundation/doublezero-offchain/tree/main/crates/solana-interface/sol-conversion). This section will detail the steps to complete this process. The swap is performed using 2z, and exchanging it for Sol. The Sol balance in your deposit account will be updated according to the swap.
+
+This process will **always** use incremints of 1 sol. The result of this swap will **always** be deposited directly into your deposit account. This is a one way street, you cannot retrieve the 2z or sol from this transaction. It will be sent to a distribution module onchain.
+
+#### Step 1
+First determine what the current conversion rate is
+
+```
+doublezero-solana revenue-distribution fetch sol-conversion
+```
+
+output:
+```
+| field           | description                  | value         | note                          |
+|-----------------|------------------------------|---------------|-------------------------------|
+| Swap Rate       | 2Z amount for 1 SOL          | 800.86265341  |                               |
+| Swap Rate       | 2Z amount for 1 SOL          | 797.75530631  | Includes 0.38800000% discount |
+| Journal Balance | SOL available for conversion | 438.670881289 |                               |
+```
+
+#### Step 2
+Place a limit order. You will be executing this trade at your own risk. DoubleZero does not make recomendations on risk profile, and examples provided here are for educational purposes.
+
+You may structure a limit order, based on the example above, we will now place a limit order 5% above quote price.
+797.76 * 1.05 = 837.65
+
+In this example, we will assume the deposit account has 0 sol in it.
+
+```
+doublezero-solana revenue-distribution convert-2z --limit-price 837.65
+```
+
+output:
+```
+Solana validator deposit: 79jStiBvoxujPWfmGfRahfFJd5SU2XruSwfDmysXt3xA
+Funded: 5WEpFc7pw6Hg353giEq1zwxAq2Lw4CHAahyZfb3tAgTBjfWiExaWpMjvrEm5bb618XC42ZU2hygryUu4E2PMbRxT
+Node ID: ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111
+Balance: 1 SOL
+```
 ## Troubleshooting:
 ### Issue: `⚠️  Warning: Please use "doublezero-solana revenue-distribution validator-deposit ValidatorIdentity111111111111111111111111111 --initialize" to create
 
 This issue is generally caused by sending funds to a deposit account, without first running the fund command.
 
 **Symptoms:**
-- When executing `doublezero-solana revenue-distribution` commands the user encounters `⚠️  Warning: Please use "doublezero-solana revenue-distribution validator-deposit ValidatorIdentity111111111111111111111111111 --initialize" to create`
+- When executing `doublezero-solana revenue-distribution` commands the user encounters `⚠️  Warning: Please use "doublezero-solana revenue-distribution validator-deposit --node-id ValidatorIdentity111111111111111111111111111 --initialize" to create`
 
 
 **Solutions:**
 1. initialize the account
 
- `doublezero-solana revenue-distribution validator-deposit ValidatorIdentity111111111111111111111111111 --initialize -k path/to/your_keypair.json`
+ `doublezero-solana revenue-distribution validator-deposit --node-id ValidatorIdentity111111111111111111111111111 --initialize -k path/to/your_keypair.json`
 
  Sample Output:
 
@@ -152,3 +195,5 @@ This issue is generally caused by sending funds to a deposit account, without fi
     79jStiBvoxujPWfmGfRahfFJd5SU2XruSwfDmysXt3xA | ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111 | 0.000000003
     ```
     The command should now return without error
+
+    2z 
