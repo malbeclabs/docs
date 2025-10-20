@@ -25,7 +25,6 @@ nav:
   - Troubleshooting: troubleshooting.md
   - Contribute: contribute.md
   - Architecture: architecture.md
-  - Changelog: changelog.md
 markdown_extensions:
   - admonition
   - pymdownx.details
