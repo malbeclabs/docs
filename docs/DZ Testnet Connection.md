@@ -116,7 +116,7 @@ With your DoubleZero Enviroment set, it is now time to attest to your Validator 
 In order to accomplish this you will first verify the machine you are running the commands from is your **Primary Validator** with:
 
 ```
-doublezero-solana passport find-validator
+doublezero-solana passport find-validator -ut
 ```
 
 This verifies that the validator is registered in gossip and appears in the leader schedule.
@@ -137,7 +137,7 @@ In Leader scheduler
 Now, on all bakup machines you intend to run your **Primary Validator** on run the following:
 
 ```
-doublezero-solana passport find-validator
+doublezero-solana passport find-validator -ut
 ```
 
 Expected output:
@@ -162,12 +162,12 @@ You will now run this command on **all backup machines** you plan to use your **
 Run the following command on the **Primary Validator** machine. This is the machine you have active stake on, that is in the leader schedule with your primary validator ID in solana gossip on the machine you are running the command from:
 
 ```
-doublezero-solana passport prepare-validator-access \\
-  --doublezero-address YourDoubleZeroAddress11111111111111111111111111111
- \\
-  --primary-validator-id ValidatorIdentity111111111111111111111111111 \\
+doublezero-solana passport prepare-validator-access -ut \
+  --doublezero-address YourDoubleZeroAddress11111111111111111111111111111 \
+  --primary-validator-id ValidatorIdentity111111111111111111111111111 \
   --backup-validator-ids ValidatorIdentity222222222222222222222222222,ValidatorIdentity33333333333333333333333333,ValidatorIdentity444444444444444444444444444>
-  ```
+```
+
 
 Example output:
 
@@ -183,33 +183,45 @@ Primary validator 🖥️  💎:
 Backup validator 🖥️ 🛡️:
   ID: ValidatorIdentity222222222222222222222222222
   Gossip: ✅ OK (22.22.22.222)
-  Leader scheduler: ✅ OK
+  Leader scheduler:  ✅ OK (not a leader scheduled validator)
+
 
 Backup validator 🖥️ 🛡️:
   ID: ValidatorIdentity333333333333333333333333333
   Gossip: ✅ OK (33.33.33.333)
-  Leader scheduler: ✅ OK
+  Leader scheduler:  ✅ OK (not a leader scheduled validator)
+
 
   Backup validator 🖥️ 🛡️:
   ID: alidatorIdentity444444444444444444444444444
   Gossip: ✅ OK (33.33.33.333)
-  Leader scheduler: ✅ OK
-  ```
+  Leader scheduler:  ✅ OK (not a leader scheduled validator)
 
-## 4 Generate Signature
+  To request access, sign the following message with your validator's identity key:
 
-Run the following command on the **Primary Validator** machine.
+  solana sign-offchain-message \
+     service_key=YourDoubleZeroAddress11111111111111111111111111111,backup_ids=ValidatorIdentity222222222222222222222222222,ValidatorIdentity33333333333333333333333333,ValidatorIdentity444444444444444444444444444 \
+     -k <identity-keypair-file.json>
 
 ```
-solana sign-offchain-message \\
-  -u testnet \\
-  --doublezero-address=YourDoubleZeroAddress11111111111111111111111111111 \\
-  -k <identity.json>
-  ```
+Note the output at the end of this command. It is the structure for the next step.
+
+## 3. Generate Signature
+
+At the end of the last step, we received a pre-formated output for `solana sign-offchain-message` 
+
+From the above output we will run this command on the **Primary Validator** machine.
+
+```
+  solana sign-offchain-message \
+     service_key=YourDoubleZeroAddress11111111111111111111111111111,backup_ids=ValidatorIdentity222222222222222222222222222,ValidatorIdentity33333333333333333333333333,ValidatorIdentity444444444444444444444444444 \
+     -k <identity-keypair-file.json>
+```
 
 **Output:**
+
 ```
-Signature111111rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7
+  Signature111111rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7
 ```
 
 ## 4. Initiate a Connection Request in DoubleZero
@@ -223,23 +235,27 @@ Use the node ID, DoubleZeroID, and signature.
       In this example we use   `-k /home/user/.config/solana/id.json` to find the validator Identity. Use the appropriate location for your local deployment.
 
 ```
-doublezero-solana passport request-validator-access -k <path to keypair> \
---primary-validator-id <primary-val-id> \
---backup-validator-ids <backup-val-id> \
---signature <sinature> --doublezero-address <DZ-ID> 
+doublezero-solana passport request-validator-access -k <path to keypair> -ut \
+--primary-validator-id ValidatorIdentity111111111111111111111111111 \
+--backup-validator-ids ValidatorIdentity222222222222222222222222222,ValidatorIdentity33333333333333333333333333,ValidatorIdentity444444444444444444444444444 \
+--signature Signature111111rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7 --doublezero-address YourDoubleZeroAddress11111111111111111111111111111 
 ```
 
 **Output:**
+
+This output can be used to see the transaction on a Solana explorer. Be sure to change the explorer to testnet. This verification is optional.
+
 ```bash
-Request Solana validator access: Signature2222222222VaB8FMqM2wEBXyV5THpKRXWrPtDQxmTjHJHiAWteVYTsc7Gjz4hdXxvYoZXGeHkrEayp 
+Request Solana validator access: Transaction22222222VaB8FMqM2wEBXyV5THpKRXWrPtDQxmTjHJHiAWteVYTsc7Gjz4hdXxvYoZXGeHkrEayp 
 ```
-✅ If successful, DoubleZero will register the primary with its backups. You may now failover between the IPs registered in the access pass. DoubleZero will maintain connectivity automatically when switching to backup nodes registered in this way.
+
+If successful, DoubleZero will register the primary with its backups. You may now failover between the IPs registered in the access pass. DoubleZero will maintain connectivity automatically when switching to backup nodes registered in this way.
 
 ## 5. Connect in IBRL Mode
 
 On the server, with the user which will connect to DoubleZero, run the `connect` command to establish the connection to DoubleZero.
 
-```bash
+```
 doublezero connect ibrl
 ```
 
@@ -256,7 +272,7 @@ Public IP detected: 137.184.101.183 - If you want to use a different IP, you can
     Service provisioned with status: ok
 ✅  User Provisioned
 ```
-Wait one minute for the tunnel to complete. Until the tunnel is completed, your status output may return "down" or "Unknown" 
+Wait one minute for the GRE tunnel to complete. Until the GRE tunnel is completed, your status output may return "down" or "Unknown" 
 
 Verify your connection:
 
@@ -265,9 +281,13 @@ doublezero status
 ```
 
 **Output:**
+!!! note inline end
+    Examine this output. Notice that the Tunnel src, and the DoubleZero IP match the public ipv4 address on your machine.
+    Tunnel dst is the gre Tunnel address between your machine and the DZ device you are connected to.
+
 ```bash
 Tunnel status | Last Session Update     | Tunnel Name | Tunnel src      | Tunnel dst   | DoubleZero IP   | User Type
-up            | 2025-09-10 12:16:03 UTC | doublezero0 | 137.184.101.183 | 64.86.249.22 | 137.184.101.183 | IBRL
+up            | 2025-09-10 12:16:03 UTC | doublezero0 | 11.11.11.111 | 12.34.56.78 | 11.11.11.111 | IBRL
 ```
 A status of `up` means you are successfully connected.
 
