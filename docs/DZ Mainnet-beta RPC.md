@@ -93,8 +93,8 @@ doublezero status
 
 **Output:**
 ```bash
-Tunnel status | Last Session Update     | Tunnel Name | Tunnel src      | Tunnel dst   | DoubleZero IP   | User Type
-up            | 2025-09-10 12:16:03 UTC | doublezero0 | 137.184.101.183 | 64.86.249.22 | 137.184.101.183 | IBRL
+ Tunnel status | Last Session Update     | Tunnel Name | Tunnel src    | Tunnel dst     | Doublezero IP | User Type | Current Device | Lowest Latency Device | Metro     | Network 
+ up            | 2025-10-20 12:12:55 UTC | doublezero0 | 11.11.11.111 | 12.34.56.789 | 11.11.11.111 | IBRL      | ams-dz001      | ✅ ams-dz001          | Amsterdam | testnet
 ```
 A status of `up` means you are successfully connected.
 
@@ -103,7 +103,7 @@ You will be able to view routes propagated by other users on DoubleZero by runni
 ```
 ip route
 ```
-
+Output: 
 
 ```
 default via 149.28.38.1 dev enp1s0 proto dhcp src 149.28.38.64 metric 100 

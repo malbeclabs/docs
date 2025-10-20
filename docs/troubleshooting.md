@@ -62,9 +62,10 @@ Command:
 `doublezero status`
 
 Sample Output:
-```
- Tunnel status | Last Session Update     | Tunnel Name | Tunnel src   | Tunnel dst   | Doublezero IP | User Type 
- up            | 2025-09-03 16:07:57 UTC | doublezero0 | 141.14.14.14 | 64.86.249.22 | 141.14.14.14  | IBRL
+
+```bash
+ Tunnel status | Last Session Update     | Tunnel Name | Tunnel src    | Tunnel dst     | Doublezero IP | User Type | Current Device | Lowest Latency Device | Metro     | Network 
+ up            | 2025-10-20 12:12:55 UTC | doublezero0 | 11.11.11.111 | 12.34.56.789 | 11.11.11.111 | IBRL      | ams-dz001      | ✅ ams-dz001          | Amsterdam | testnet
 ```
 [comment]: # (in next iteration add "up" "unknown" and "down" explainers, which then link to a sectino below for troubleshooting undesired states.)
 
@@ -136,9 +137,9 @@ This error signifies that a device is already connected to DoubleZero.
     `doublezero status`
 
     Output:
-    ```
-    Tunnel status | Last Session Update     | Tunnel Name | Tunnel src   | Tunnel dst   | Doublezero IP | User Type 
-     up            | 2025-09-03 16:07:57 UTC | doublezero0 | 141.14.14.14 | 64.86.249.22 | 141.14.14.14  | IBRL
+    ```bash
+    Tunnel status | Last Session Update     | Tunnel Name | Tunnel src    | Tunnel dst     | Doublezero IP | User Type | Current Device | Lowest Latency Device | Metro     | Network 
+    up            | 2025-10-20 12:12:55 UTC | doublezero0 | 11.11.11.111 | 12.34.56.789 | 11.11.11.111 | IBRL      | ams-dz001      | ✅ ams-dz001          | Amsterdam | testnet
     ```
 2. -`up`- signifies a healthy connection.
 3. The error appears because a tunnel to DoubleZero with the specific DoubleZero IP is already active on this machine. 
@@ -164,9 +165,9 @@ This issue is often related to the GRE tunnel being successfully activated betwe
     ✅  User Provisioned
     ```
 
-    ```
-    Tunnel status | Last Session Update     | Tunnel Name | Tunnel src   | Tunnel dst   | Doublezero IP | User Type 
-    unknown            | 1970-01-01 00:00:00 UTC | doublezero0 | 141.14.14.14 | 64.86.249.22 | 141.14.14.14  | IBRL
+    ```bash
+    Tunnel status | Last Session Update     | Tunnel Name | Tunnel src    | Tunnel dst     | Doublezero IP | User Type | Current Device | Lowest Latency Device | Metro     | Network 
+    up            | 2025-10-20 12:12:55 UTC | doublezero0 | 11.11.11.111 | 12.34.56.789 | 11.11.11.111 | IBRL      | ams-dz001      | ✅ ams-dz001          | Amsterdam | testnet
     ```
 
 **Solutions:**
