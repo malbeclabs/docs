@@ -282,8 +282,8 @@ doublezero status
 
 **Output:**
 !!! note inline end
-    Examine this output. Notice that the Tunnel src, and the DoubleZero IP match the public ipv4 address on your machine.
-    Tunnel dst is the gre Tunnel address between your machine and the DZ device you are connected to.
+    Examine this output. Notice that the `Tunnel src`, and the `DoubleZero IP` match the public ipv4 address on your machine.
+    <!--`Tunnel dst` is the address of the DZ device you are connected to.-->
 
 ```bash
 Tunnel status | Last Session Update     | Tunnel Name | Tunnel src      | Tunnel dst   | DoubleZero IP   | User Type
