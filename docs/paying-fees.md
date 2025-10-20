@@ -150,7 +150,19 @@ You may structure a limit order, based on the example above, we will now place a
 In this example, we will assume the deposit account has 0 sol in it.
 
 ```
-doublezero-solana revenue-distribution convert-2z --limit-price 837.65
+doublezero-solana revenue-distribution --convert-2z-limit-price 837.65 --node-id ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111 --fund 1
+```
+Notice in the above command `--fund 1` this is explicitly funding 1 sol into the deposit account.
+
+If you chose any number besides 1 you will trigger an error telling you the incorrect amount:
+```
+Error: SOL amount must be 1.000000000 for 2Z -> SOL conversion. Got 1.500000000
+```
+
+You will be prompted to confirm the transaction:
+
+```
+⚠️  By specifying --convert-2z-limit-price, you are funding 1.000000000 SOL to your deposit account. Proceed? [y/N]
 ```
 
 output:
@@ -159,6 +171,23 @@ Solana validator deposit: 79jStiBvoxujPWfmGfRahfFJd5SU2XruSwfDmysXt3xA
 Funded: 5WEpFc7pw6Hg353giEq1zwxAq2Lw4CHAahyZfb3tAgTBjfWiExaWpMjvrEm5bb618XC42ZU2hygryUu4E2PMbRxT
 Node ID: ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111
 Balance: 1 SOL
+2Z token account balance reduced by 797.76
+```
+Notice, that on successful swap the `Balance:` has been updated to 1 sol.
+
+If a price is out of your specified range you will run into an error such as:
+```
+Error: RPC response error -32002: Transaction simulation failed: Error processing Instruction 0: custom program error: 0x177f; 10 log messages:
+  Program 9DRcqsJUCo8CL2xDCXpogwzLEVKRDzSyNtVgXqsXHfDs invoke [1]
+  Program log: Instruction: BuySol
+  Program log: Signature verified successfully
+  Program log: Timestamp verified successfully
+  Program log: Bid price 79500000000
+  Program log: Ask price 79862251144
+  Program data: 1fxoRNOEulcAypo7AAAAAAC7kYISAAAAiD4pmBIAAAAsk/ZoAAAAAA4PxjWjgr+ERO7jDdvoOmT/WpgDFLfY+FGKKDdOw4PMAAAAAAAAAAA=
+  Program log: AnchorError thrown in on-chain/programs/converter-program/src/buy_sol.rs:142. Error Code: BidTooLow. Error Number: 6015. Error Message: Provided bid is too low.
+  Program 9DRcqsJUCo8CL2xDCXpogwzLEVKRDzSyNtVgXqsXHfDs consumed 50754 of 90000 compute units
+  Program 9DRcqsJUCo8CL2xDCXpogwzLEVKRDzSyNtVgXqsXHfDs failed: custom program error: 0x177f
 ```
 ## Troubleshooting:
 ### Issue: `⚠️  Warning: Please use "doublezero-solana revenue-distribution validator-deposit ValidatorIdentity111111111111111111111111111 --initialize" to create
