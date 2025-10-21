@@ -142,7 +142,7 @@ Backup validator 🖥️ 🛡️:
 
 
   Backup validator 🖥️ 🛡️:
-  ID: alidatorIdentity444444444444444444444444444
+  ID: ValidatorIdentity444444444444444444444444444
   Gossip: ✅ OK (33.33.33.333)
   Leader scheduler:  ✅ OK (not a leader scheduled validator)
 
