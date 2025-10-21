@@ -68,8 +68,6 @@ Please follow the [setup](setup.md) instructions before proceeding.
 
 The last step in setup was to disconnect from the network. This is to ensure that only one tunnel is open on your machine to DoubleZero, and that tunnel is on the correct network.
 
-
-
 To configure the DoubleZero Client CLI (`doublezero`) and daemon (`doublezerod`) to connect to **DoubleZero testnet**:
 ```bash
 DESIRED_DOUBLEZERO_ENV=testnet \

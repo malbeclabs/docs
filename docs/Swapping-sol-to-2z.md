@@ -1,4 +1,4 @@
-#Swapping SOL to 2Z
+# Swapping SOL to 2Z
 
 The DoubleZero protocol collects SOL-denominated revenue from its validator users but distributes 2Z-denominated rewards to contributors. Thus, it must convert SOL into 2Z.
 

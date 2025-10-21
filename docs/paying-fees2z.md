@@ -5,10 +5,10 @@ related materials.**
 <!-- https://github.com/doublezerofoundation/doublezero-offchain/pull/159 -->
 
 
-Validators can pay their fees in 2z via an onchain [swap program](https://github.com/doublezerofoundation/doublezero-offchain/tree/main/crates/solana-interface/sol-conversion). The swap is performed using 2z, and exchanging it for Sol. The Sol balance in your deposit account will be updated according to the swap.
+Validators can pay their fees in 2Z via an onchain [swap program](https://github.com/doublezerofoundation/doublezero-offchain/tree/main/crates/solana-interface/sol-conversion). The swap is performed using 2Z, and exchanging it for SOL. The SOL balance in your deposit account will be updated according to the swap.
 
 
-This process will **always** use increments of 1 sol. The result of this swap will **always** be deposited directly into your deposit account. This is a one way street, you cannot retrieve the 2z or sol from this transaction. It will be sent to a distribution module onchain.
+This process will **always** use increments of 1 SOL. The result of this swap will **always** be deposited directly into your deposit account. This is a one way street, you cannot retrieve the 2Z or SOL from this transaction. It will be sent to a distribution module onchain.
 
 
 #### Step 1
@@ -39,13 +39,13 @@ Based on the example above, we will now place a limit order 5% above quote price
 797.76 * 1.05 = 837.65
 
 
-In this example, we will assume the deposit account has 0 sol in it.
+In this example, we will assume the deposit account has 0 SOL in it.
 
 
 ```
 doublezero-solana revenue-distribution --convert-2z-limit-price 837.65 --node-id ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111 --fund 1
 ```
-Notice in the above command `--fund 1` this is explicitly funding 1 sol into the deposit account.
+Notice in the above command `--fund 1` this is explicitly funding 1 SOL into the deposit account.
 
 
 If you choose any number besides 1 you will trigger an error telling you the incorrect amount:
@@ -68,7 +68,7 @@ output:
 Converted 2Z to SOL: 2iaBzd4vgEeDnpfSCD9aYFMWZ3UoVzrJfUjSMhsDhfSQ6isPZKkKe3ZWQ6b5aWvV3h8Vsk8Mmde6wmCiidD4Qc6s
 Converted 837.65 2Z tokens to 1.000000000 SOL
 ```
-Notice, that on successful swap the `Balance:` has been updated to 1 sol.
+Notice, that on successful swap the `Balance:` has been updated to 1 SOL.
 
 
 If a price is out of your specified range you will run into an error such as:
