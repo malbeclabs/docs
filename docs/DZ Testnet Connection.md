@@ -68,8 +68,6 @@ Please follow the [setup](setup.md) instructions before proceeding.
 
 The last step in setup was to disconnect from the network. This is to ensure that only one tunnel is open on your machine to DoubleZero, and that tunnel is on the correct network.
 
-
-
 To configure the DoubleZero Client CLI (`doublezero`) and daemon (`doublezerod`) to connect to **DoubleZero testnet**:
 ```bash
 DESIRED_DOUBLEZERO_ENV=testnet \
@@ -152,7 +150,7 @@ Gossip IP: 22.22.22.222
 In Not in Leader scheduler
  ❌ This validator can not connect as a primary in DoubleZero 🖥️  💎. It is a not a leader scheduled validator.
 ```
-This is a good output, as the backup node cannot be in the leaderschedule at time of pass creation.
+This output is excpected. The backup node cannot be in the leader schedule at time of pass creation.
 
 You will now run this command on **all backup machines** you plan to use your **Primary Validator** vote account, and identity on.
 
@@ -272,7 +270,7 @@ Public IP detected: 137.184.101.183 - If you want to use a different IP, you can
     Service provisioned with status: ok
 ✅  User Provisioned
 ```
-Wait one minute for the GRE tunnel to complete. Until the GRE tunnel is completed, your status output may return "down" or "Unknown" 
+Wait one minute for the GRE tunnel to finish setting up. Until the GRE tunnel is done setting up, your status output may return "down" or "Unknown" 
 
 Verify your connection:
 

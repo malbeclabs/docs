@@ -58,9 +58,9 @@ doublezero-solana revenue-distribution fetch validator-deposits -u mainnet-beta
 ```
 Solana validator deposit accounts            | Node ID                                     | Balance (SOL)
 ---------------------------------------------+---------------------------------------------+--------------
-79jStiBvoxujPWfmGfRahfFJd5SU2XruSwfDmysXt3xA | ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111 | 0.000000001
-EdmeAaCNiKkkNX73vch6kibJCeLnzcSPFpNzKeoRPYxP | ValidatorIdentity11111111111111111111111111111111111111111111111111111111111112 | 0.000000069
-AReLULgb4P7ipxQJy9cheGUsGRqQCbJNTFZXmjdkGMdE | ValidatorIdentity11111111111111111111111111111111111111111111111111111111111113 | 0.000000420
+DepositAccount111111111111111111111111111111 | ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111 | 0.000000001
+DepositAccount222222222222222222222222222222 | ValidatorIdentity11111111111111111111111111111111111111111111111111111111111112 | 0.000000069
+DepositAccount333333333333333333333333333333 | ValidatorIdentity11111111111111111111111111111111111111111111111111111111111113 | 0.000000420
 ```
 
 #### Command 2: Fetch Deposits for Specific Node
@@ -73,18 +73,19 @@ doublezero-solana revenue-distribution fetch validator-deposits -u mainnet-beta 
 ```
 Solana validator deposit accounts            | Node ID                                     | Balance (SOL)
 ---------------------------------------------+---------------------------------------------+--------------
-79jStiBvoxujPWfmGfRahfFJd5SU2XruSwfDmysXt3xA | ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111 | 0.000000001
+DepositAccount111111111111111111111111111111 | ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111 | 0.000000001
 ```
 
 #### Command 3: Fund Validator Deposit (First Transaction)
 
 ```bash
-doublezero-solana revenue-distribution validator-deposit ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111 --fund 0.000000001 -u mainnet-beta
+doublezero-solana revenue-distribution validator-deposit --node-id ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111 --fund 0.000000001 -u mainnet-beta
 ```
 
 **Output:**
 ```
-Solana validator deposit: 79jStiBvoxujPWfmGfRahfFJd5SU2XruSwfDmysXt3xA
+2Z token balance: 0.0
+Solana validator deposit: DepositAccount111111111111111111111111111111
 Funded: 3n56AW1UXeRqCQdLhQ82tjYzHQUbw7w2NcgD31PXSSxNLNgfrtsAENrWrXS2uLS2x5CyTyNaDTQMn9nHo5dfaS3B
 Node ID: ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111
 Balance: 0.000000002 SOL
@@ -93,12 +94,12 @@ Balance: 0.000000002 SOL
 #### Command 4: Fund Validator Deposit (Second Transaction)
 
 ```bash
-doublezero-solana revenue-distribution validator-deposit ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111 --fund 0.000000001 -u mainnet-beta
+doublezero-solana revenue-distribution validator-deposit --node-id ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111 --fund 0.000000001 -u mainnet-beta
 ```
 
 **Output:**
 ```
-Solana validator deposit: 79jStiBvoxujPWfmGfRahfFJd5SU2XruSwfDmysXt3xA
+Solana validator deposit: DepositAccount111111111111111111111111111111
 Funded: 5WEpFc7pw6Hg353giEq1zwxAq2Lw4CHAahyZfb3tAgTBjfWiExaWpMjvrEm5bb618XC42ZU2hygryUu4E2PMbRxT
 Node ID: ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111
 Balance: 0.000000003 SOL
@@ -114,7 +115,7 @@ doublezero-solana revenue-distribution fetch validator-deposits -u mainnet-beta 
 ```
 Solana validator deposit accounts            | Node ID                                     | Balance (SOL)
 ---------------------------------------------+---------------------------------------------+--------------
-79jStiBvoxujPWfmGfRahfFJd5SU2XruSwfDmysXt3xA | ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111 | 0.000000003
+DepositAccount111111111111111111111111111111 | ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111 | 0.000000003
 ```
 
 ## Troubleshooting:
@@ -123,13 +124,13 @@ Solana validator deposit accounts            | Node ID                          
 This issue is generally caused by sending funds to a deposit account, without first running the fund command.
 
 **Symptoms:**
-- When executing `doublezero-solana revenue-distribution` commands the user encounters `⚠️  Warning: Please use "doublezero-solana revenue-distribution validator-deposit ValidatorIdentity111111111111111111111111111 --initialize" to create`
+- When executing `doublezero-solana revenue-distribution` commands the user encounters `⚠️  Warning: Please use "doublezero-solana revenue-distribution validator-deposit --node-id ValidatorIdentity111111111111111111111111111 --initialize" to create deposit account DepositAccount111111111111111111111111111111`
 
 
 **Solutions:**
 1. initialize the account
 
- `doublezero-solana revenue-distribution validator-deposit ValidatorIdentity111111111111111111111111111 --initialize -k path/to/your_keypair.json`
+ `doublezero-solana revenue-distribution validator-deposit --node-id ValidatorIdentity111111111111111111111111111 --initialize -k path/to/your_keypair.json`
 
  Sample Output:
 

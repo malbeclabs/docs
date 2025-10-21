@@ -62,144 +62,149 @@ Testnet output will be identical in structure, but with fewer devices.
 
 With your DoubleZero Enviroment set, it is now time to attest to your Validator Ownership.
 
-In order to accomplish this you will first determine the Solana Validator ID, then use the Solana Validator ID, together with the DoubleZero ID created during setup, to sign an off-chain transaction.
-This process only verifies ownership of the validator specified in the command.
+In order to accomplish this you will first verify the machine you are running the commands from is your **Primary Validator** with:
 
-
-### Switching to the `sol` User
-
-Before generating the validator ownership signature, you must switch to the `sol` user (or the user you normally use to run the validator):
-
-```bash
-sudo su - sol
+```
+doublezero-solana passport find-validator -u mainnet-beta
 ```
 
-This is required because the validator's Identity key (`validator-keypair.json`) is usually stored under the `sol` user account. Running the command as `sol` ensures:
+This verifies that the validator is registered in gossip and appears in the leader schedule.
 
-- You have permissions to access to the `validator-keypair.json`.
-- The signature is generated using the appropriate key that your Solana validator uses.
+Expected output:
 
-This step **only requires you to sign a message with your validator Identity** to prove ownership.
-
-### Identify the Pubkey from your validator Identity
-
-You may only create an access pass for the Validator Identity which is in gossip on the server requesting the access pass.
-To connect your primary server, use the Validator Identity of your main validator. To connect a backup server, use the Validator Identity configured on the backup server.
-
-
-<figure markdown="span">
-  ![Image title](images/ConnectingMainnet.png){ width="800" }
-  <figcaption>Figure 1: Connecting to DoubleZero Mainnet-Beta</figcaption>
-</figure>
-
-<figure markdown="span">
-  ![Image title](images/ConnectingBackup.png){ width="800" }
-  <figcaption>Figure 2: Connecting a backup node to DoubleZero</figcaption>
-</figure>
-
-```bash
-solana address -k path/to/validator-keypair.json
 ```
-!!! note inline end
-      Save the output of this Signature for step 6
+Connected to Solana: mainnet
 
+DoubleZero ID: YourDoubleZeroAddress11111111111111111111111111111
+Detected public IP: 11.11.11.111
+Validator ID: ValidatorIdentity111111111111111111111111111
+Gossip IP: 11.11.11.111
+In Leader scheduler
+✅ This validator can connect as a primary in DoubleZero 🖥️  💎. It is a leader scheduled validator.
+```
+
+Now, on all backup machines you intend to run your **Primary Validator** on run the following:
+
+```
+doublezero-solana passport find-validator -u mainnet-beta
+```
+
+Expected output:
+
+```
+Connected to Solana: mainnet
+
+DoubleZero ID: YourDoubleZeroAddress11111111111111111111111111111
+Detected public IP: 22.22.22.222
+Validator ID: ValidatorIdentity222222222222222222222222222
+Gossip IP: 22.22.22.222
+In Not in Leader scheduler
+ ❌ This validator can not connect as a primary in DoubleZero 🖥️  💎. It is a not a leader scheduled validator.
+```
+This output is excpected. The backup node cannot be in the leader schedule at time of pass creation.
+
+You will now run this command on **all backup machines** you plan to use your **Primary Validator** vote account, and identity on.
+
+
+### Prepare the Connection
+
+Run the following command on the **Primary Validator** machine. This is the machine you have active stake on, that is in the leader schedule with your primary validator ID in solana gossip on the machine you are running the command from:
+
+```
+doublezero-solana passport prepare-validator-access -u mainnet-beta \
+  --doublezero-address YourDoubleZeroAddress11111111111111111111111111111 \
+  --primary-validator-id ValidatorIdentity111111111111111111111111111 \
+  --backup-validator-ids ValidatorIdentity222222222222222222222222222,ValidatorIdentity33333333333333333333333333,ValidatorIdentity444444444444444444444444444>
+```
+
+
+Example output:
+
+```
+DoubleZero Passport - Prepare Validator Access Request
+Connected to Solana: mainnet-beta
+
+Primary validator 🖥️  💎:
+  ID: ValidatorIdentity111111111111111111111111111
+  Gossip: ✅ OK 11.11.11.111)
+  Leader scheduler: ✅ OK (Stake: 1,050,000.00 SOL)
+
+Backup validator 🖥️ 🛡️:
+  ID: ValidatorIdentity222222222222222222222222222
+  Gossip: ✅ OK (22.22.22.222)
+  Leader scheduler:  ✅ OK (not a leader scheduled validator)
+
+
+Backup validator 🖥️ 🛡️:
+  ID: ValidatorIdentity333333333333333333333333333
+  Gossip: ✅ OK (33.33.33.333)
+  Leader scheduler:  ✅ OK (not a leader scheduled validator)
+
+
+  Backup validator 🖥️ 🛡️:
+  ID: ValidatorIdentity444444444444444444444444444
+  Gossip: ✅ OK (33.33.33.333)
+  Leader scheduler:  ✅ OK (not a leader scheduled validator)
+
+  To request access, sign the following message with your validator's identity key:
+
+  solana sign-offchain-message \
+     service_key=YourDoubleZeroAddress11111111111111111111111111111,backup_ids=ValidatorIdentity222222222222222222222222222,ValidatorIdentity33333333333333333333333333,ValidatorIdentity444444444444444444444444444 \
+     -k <identity-keypair-file.json>
+
+```
+Note the output at the end of this command. It is the structure for the next step.
+
+## 3. Generate Signature
+
+At the end of the last step, we received a pre-formated output for `solana sign-offchain-message` 
+
+From the above output we will run this command on the **Primary Validator** machine.
+
+```
+  solana sign-offchain-message \
+     service_key=YourDoubleZeroAddress11111111111111111111111111111,backup_ids=ValidatorIdentity222222222222222222222222222,ValidatorIdentity33333333333333333333333333,ValidatorIdentity444444444444444444444444444 \
+     -k <identity-keypair-file.json>
+```
 
 **Output:**
-```bash
-ValidatorIdentity111111111111111111111111111
+
+```
+  Signature111111rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7
 ```
 
-Use the `sign-offchain-message` command to prove you are the owner of the validator.
-
-```bash
-solana sign-offchain-message -k path/to/validator-keypair.json service_key=YourDoubleZeroAddress11111111111111111111111111111
-```
-
-**Output:**
-```bash
-Signature111111rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7
-```
-
-### Exit the Validator User
-
-Exit the `sol` user session (or the user used to run the validator):
-
-```bash
-exit
-```
-
-## 3. Initiate a Connection Request in DoubleZero
+## 4. Initiate a Connection Request in DoubleZero
 
 Use the `request-validator-access` command to create an account on Solana for the connection request. The DoubleZero Sentinel agent detects the new account, validates its identity and signature, and creates the access pass in DoubleZero so the server can establish a connection.
 
-The example is for Solana Mainnet-beta. For Solana Testnet, change the `mainnet-beta` flag to `testnet`
-
-Check your Solana Balance
-
-```bash
-solana balance -u mainnet-beta
-```
 
 Use the node ID, DoubleZeroID, and signature.
 
 !!! note inline end
       In this example we use   `-k /home/user/.config/solana/id.json` to find the validator Identity. Use the appropriate location for your local deployment.
 
-```bash
-doublezero-solana passport request-validator-access -u mainnet-beta \
-  -k /home/user/.config/solana/id.json \
-  --primary-validator-id ValidatorIdentity111111111111111111111111111 \
-  --signature Signature111111rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7 \
-  --doublezero-address YourDoubleZeroAddress11111111111111111111111111111
-
+```
+doublezero-solana passport request-validator-access -k <path to keypair> -u mainnet-beta \
+--primary-validator-id ValidatorIdentity111111111111111111111111111 \
+--backup-validator-ids ValidatorIdentity222222222222222222222222222,ValidatorIdentity33333333333333333333333333,ValidatorIdentity444444444444444444444444444 \
+--signature Signature111111rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7 --doublezero-address YourDoubleZeroAddress11111111111111111111111111111 
 ```
 
 **Output:**
+
+This output can be used to see the transaction on a Solana explorer. Be sure to change the explorer to mainnet. This verification is optional.
+
 ```bash
-Request Solana validator access: Signature2222222222VaB8FMqM2wEBXyV5THpKRXWrPtDQxmTjHJHiAWteVYTsc7Gjz4hdXxvYoZXGeHkrEayp 
+Request Solana validator access: Transaction22222222VaB8FMqM2wEBXyV5THpKRXWrPtDQxmTjHJHiAWteVYTsc7Gjz4hdXxvYoZXGeHkrEayp 
 ```
 
-## Maintaing DoubleZero connection with your Primary Vote Account and Validator ID across failover/ backup nodes
+If successful, DoubleZero will register the primary with its backups. You may now failover between the IPs registered in the access pass. DoubleZero will maintain connectivity automatically when switching to backup nodes registered in this way.
 
-Now that you have created an access pass for your primary server consider the following fact so that you may use DoubleZero when you failover to backup machines.
-
-when any of the these 3 elements are changed a new pass must be made:
-```
-DoubleZero ID  
-Validator ID  
-IP
-```
-
-For example you have 2 machines:
-```
-DoubleZero ID 1.2  
-Validator ID 123  
-IP 1.1.1.1  
-```
-
-When you failover to your backup you will have:
-```
-DoubleZero ID 1.2  
-Validator ID 123  
-IP 2.2.2.2  
-```
-The element changed is the IP. This will require you to complete steps 1-3 on this page again.
-
-
-when you return to:
-```
-DoubleZero ID 1.2  
-Validator ID 123  
-IP 1.1.1.1  
-```
-You will have already created a pass with this combination, so a new one will not be required for you to initiate connection to doublezero with `doublezero connect ibrl`
-
-
-## 4. Connect in IBRL Mode
+## 5. Connect in IBRL Mode
 
 On the server, with the user which will connect to DoubleZero, run the `connect` command to establish the connection to DoubleZero.
 
-```bash
+```
 doublezero connect ibrl
 ```
 
@@ -216,7 +221,7 @@ Public IP detected: 137.184.101.183 - If you want to use a different IP, you can
     Service provisioned with status: ok
 ✅  User Provisioned
 ```
-Wait one minute for the tunnel to complete. Until the tunnel is completed, your status output may return "down" or "Unknown" 
+Wait one minute for the GRE tunnel to finish setting up. Until the GRE tunnel is done setting up, your status output may return "down" or "Unknown" 
 
 Verify your connection:
 
@@ -225,12 +230,14 @@ doublezero status
 ```
 
 **Output:**
+!!! note inline end
+    Examine this output. Notice that the `Tunnel src`, and the `DoubleZero IP` match the public ipv4 address on your machine.
+    <!--`Tunnel dst` is the address of the DZ device you are connected to.-->
 
 ```bash
-Tunnel status | Last Session Update     | Tunnel Name | Tunnel src      | Tunnel dst   | DoubleZero IP   | User Type
-up            | 2025-09-10 12:16:03 UTC | doublezero0 | 137.184.101.183 | 64.86.249.22 | 137.184.101.183 | IBRL
+ Tunnel status | Last Session Update     | Tunnel Name | Tunnel src    | Tunnel dst     | Doublezero IP | User Type | Current Device | Lowest Latency Device | Metro     | Network 
+ up            | 2025-10-20 12:12:55 UTC | doublezero0 | 11.11.11.111 | 12.34.56.789 | 11.11.11.111 | IBRL      | ams-dz001      | ✅ ams-dz001          | Amsterdam | mainnet-beta
 ```
-
 A status of `up` means you are successfully connected.
 
 You will be able to view routes propagated by other users on DoubleZero by running:
