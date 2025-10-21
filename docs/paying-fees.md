@@ -99,7 +99,6 @@ doublezero-solana revenue-distribution validator-deposit --node-id ValidatorIden
 
 **Output:**
 ```
-2Z token balance: 0.0
 Solana validator deposit: DepositAccount111111111111111111111111111111
 Funded: 5WEpFc7pw6Hg353giEq1zwxAq2Lw4CHAahyZfb3tAgTBjfWiExaWpMjvrEm5bb618XC42ZU2hygryUu4E2PMbRxT
 Node ID: ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111
