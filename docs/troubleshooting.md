@@ -332,7 +332,7 @@ This issue is generally related to a mismatch between the current daemon and cli
     up            | 2025-10-20 20:06:18 UTC | doublezero0 | 149.28.38.64 | 64.86.249.22 | 149.28.38.64  | IBRL      | N/A            | ✅ dz-ny7-sw01        | N/A   | mainnet-beta
     ```
 
-    Notice in our example output above that the `Tunnel status` is `up`. Our `Network` is `mainnet-beta` However, `Curent Device` and `Metro` are `N/A`
+    Notice in our example output above that the `Tunnel status` is `up`. Our `Network` is `mainnet-beta` However, `Current Device` and `Metro` are `N/A`
 
     This is indicative of an open tunnel on your machine which is not in your current enviroment.
     In this case the `up` status, with no found `Current Device` on `mainnet-beta` reveals to us that our tunnel is on testnet!
