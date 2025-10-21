@@ -329,7 +329,7 @@ This issue is generally related to a mismatch the current daemon and client, vs 
 
     ```
     Tunnel status | Last Session Update     | Tunnel Name | Tunnel src   | Tunnel dst   | Doublezero IP | User Type | Current Device | Lowest Latency Device | Metro | Network
-    up            | 2025-10-20 20:06:18 UTC | doublezero0 | 149.28.38.64 | 64.86.249.22 | 149.28.38.64  | IBRL      | N/A            | :white_check_mark: dz-ny7-sw01        | N/A   | mainnet-beta
+    up            | 2025-10-20 20:06:18 UTC | doublezero0 | 149.28.38.64 | 64.86.249.22 | 149.28.38.64  | IBRL      | N/A            | ✅ dz-ny7-sw01        | N/A   | mainnet-beta
     ```
 
     Notice in our example output above that the `Tunnel status` is `up`. Our `Network` is `mainnet-beta` However, `Curent Device` and `Metro` are `N/A`
