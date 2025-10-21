@@ -325,38 +325,56 @@ This issue is generally related to a mismatch the current daemon and client, vs 
 1. Run
 `doublezero status`
 
-Example:
+    Example:
 
-```
-Tunnel status | Last Session Update     | Tunnel Name | Tunnel src   | Tunnel dst   | Doublezero IP | User Type | Current Device | Lowest Latency Device | Metro | Network
-up            | 2025-10-20 20:06:18 UTC | doublezero0 | 149.28.38.64 | 64.86.249.22 | 149.28.38.64  | IBRL      | N/A            | :white_check_mark: dz-ny7-sw01        | N/A   | mainnet-beta
-```
+    ```
+    Tunnel status | Last Session Update     | Tunnel Name | Tunnel src   | Tunnel dst   | Doublezero IP | User Type | Current Device | Lowest Latency Device | Metro | Network
+    up            | 2025-10-20 20:06:18 UTC | doublezero0 | 149.28.38.64 | 64.86.249.22 | 149.28.38.64  | IBRL      | N/A            | :white_check_mark: dz-ny7-sw01        | N/A   | mainnet-beta
+    ```
 
-Notice in our example output above that the `Tunnel status` is `up`. Our `Network` is `mainnet-beta` However, `Curent Device` and `Metro` are `N/A`
+    Notice in our example output above that the `Tunnel status` is `up`. Our `Network` is `mainnet-beta` However, `Curent Device` and `Metro` are `N/A`
 
-This is indicative of an open tunnel on your machine which is not in your current enviroment.
-In this case the `up` status, with no found `Current Device` on `mainnet-beta` reveals to us that our tunnel is on testnet!
-    ``
+    This is indicative of an open tunnel on your machine which is not in your current enviroment.
+I   n this case the `up` status, with no found `Current Device` on `mainnet-beta` reveals to us that our tunnel is on testnet!
+ 
+2. Change your enviroment.
 
-    Sample Output:
+    In order to rectify the mismatch you will change your enviroment to the oposite of the enviroment returning the `N/A`
+
+    ```bash
+    DESIRED_DOUBLEZERO_ENV=testnet \
+	    && sudo mkdir -p /etc/systemd/system/doublezerod.service.d \
+	    && echo -e "[Service]\nExecStart=\nExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env $DESIRED_DOUBLEZERO_ENV" | sudo tee /etc/systemd/system/doublezerod.service.d/override.conf > /dev/null \
+	    && sudo systemctl daemon-reload \
+	    && sudo systemctl restart doublezerod \
+	    && doublezero config set --env $DESIRED_DOUBLEZERO_ENV  > /dev/null \
+	    && echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV"
+    ```
+
+    To configure the DoubleZero Client CLI (`doublezero`) and daemon (`doublezerod`) to connect to **DoubleZero mainnet-beta**:
+
+    ```bash
+    DESIRED_DOUBLEZERO_ENV=mainnet-beta \
+	    && sudo mkdir -p /etc/systemd/system/doublezerod.service.d \
+	    && echo -e "[Service]\nExecStart=\nExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env $DESIRED_DOUBLEZERO_ENV" | sudo tee /etc/systemd/system/doublezerod.service.d/override.conf > /dev/null \
+	    && sudo systemctl daemon-reload \
+	    && sudo systemctl restart doublezerod \
+	    && doublezero config set --env $DESIRED_DOUBLEZERO_ENV  > /dev/null \
+	    && echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV"
     ```
     
+3. Check your status
+
+    After switching enviroments run:
+
     ```
-2. : 
-
-    ``
-
-    Sample Output:
+    doublezero status
     ```
-   
+
+    The expected output should be similiar to:
+
+    ``` 
+    Tunnel status | Last Session Update     | Tunnel Name | Tunnel src   | Tunnel dst   | Doublezero IP | User Type | Current Device | Lowest Latency Device | Metro    | Network 
+    up            | 2025-10-21 12:32:12 UTC | doublezero0 | 149.28.38.64 | 64.86.249.22 | 149.28.38.64  | IBRL      | nyc-dz001      | ✅ nyc-dz001          | New York | testnet 
     ```
-     The pubkey from `doublezero address` must match the user_payer pubkey and the IP Address you are trying to connect from must match the ip in the Access-Pass. 
-    `doublezero address` is sourced from the id.json file in in ~/.config/doublezero/ by default. See the [step 6 here](https://docs.malbeclabs.com/setup/)
-    
-3. 
-
-
-```
-Tunnel status | Last Session Update     | Tunnel Name | Tunnel src   | Tunnel dst   | Doublezero IP | User Type | Current Device | Lowest Latency Device | Metro | Network
-up            | 2025-10-20 20:06:18 UTC | doublezero0 | 149.28.38.64 | 64.86.249.22 | 149.28.38.64  | IBRL      | N/A            | :white_check_mark: dz-ny7-sw01        | N/A   | mainnet-beta
-```
+With all fields populated you are now in the correct enviroment.

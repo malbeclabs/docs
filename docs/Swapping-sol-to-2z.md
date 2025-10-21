@@ -1,20 +1,22 @@
-# Swapping SOL to 2Z
+#Swapping SOL to 2Z
 
 The DoubleZero protocol collects SOL-denominated revenue from its validator users but distributes 2Z-denominated rewards to contributors. Thus, it must convert SOL into 2Z.
 
-**To do so, users can trade against a DoubleZero swap contract, purchasing SOL from the contract and selling it 2Z. The swap contract incentivizes those trades by facilitating the swap at favorable rates to users.**
+**To do so, eligible participants can trade against a DoubleZero swap contract, purchasing SOL from the contract and selling it 2Z. Pricing is based on Pyth price feeds with a programmatic discount mechanism.** 
 
 This short guide explains how to use the program.
 
+***Review the Disclaimer at the end of this document before accessing or using the code or any related materials.***
+
 ## Program Design
 
-The swap program is effectively a one-sided liquidity pool that sells SOL in a fixed batch size of 1 SOL per trade. Any user can withdraw SOL from the program by depositing 2Z, at a price that is determined by an oracle price from Python and a dynamic discount. Over time, this executes the program’s goal of turning native tokens into 2Z.
+The swap program is effectively a one-sided liquidity pool that sells SOL in a fixed batch size of 1 SOL per trade. Any eligible participant can withdraw SOL from the program by depositing 2Z, at a price that is determined by an oracle price from Pyth and a dynamic discount. Over time, this executes the program’s goal of turning native tokens into 2Z.
 
-Currently, a trader provides two recent Pyth prices (SOL/USD and 2Z/USD) and a quantity of 2Z. The program then calculates the 2Z needed to purchase that 1 SOL based on the implied SOL/2Z price. It then takes a few additional steps:
+To utilize, a trader must provide two recent Pyth prices (SOL/USD and 2Z/USD) and a quantity of 2Z. The program then calculates the 2Z needed to purchase that 1 SOL based on the implied SOL/2Z price. It then takes a few additional steps:
 
 - It checks that the Pyth prices are sufficiently fresh, i.e. they are no more than 5 seconds stale.
 - It checks that the confidence intervals of the two prices are sufficiently small. That is, the sum of two Laplacing standard deviations (i.e. parameter `conf` in the Pyth price) for the two prices, normalized by their levels, must be less than or equal to 30 basis points.
-- It adjusts the SOL/2Z price by a dynamic discount, expressed as a percent of the Pyth price. This discount is a function of the time since the last trade. Specifically, assume the last trade was made at slot $s_{\text{last}}$ and the current slot is $s_{\text{now}}$. (For instance, if 200 slots have elapsed since the last trade, the discount is 40 basis points.)
+- It adjusts the SOL/2Z price by a dynamic discount, expressed as a percent of the Pyth price. This discount is a function of the time since the last trade. The formula below specifies the discount, assuming the last trade was made at slot $s_{\text{last}}$ and the current slot is $s_{\text{now}}$. (For instance, if 200 slots have elapsed since the last trade, the discount is 40 basis points.)
 
 $$
 \text{discount} = \min\{0.00002 \times \left(s_{\text{now}} - s_{\text{last}}\right), 0.01\}
@@ -26,7 +28,7 @@ The contract then permits no more trades for that slot. This is to prevent the c
 
 ## Program Usage
 
-This section discusses checking conversion rates and executing the conversion using the `doublezero-solana` CLI. And at the end, we discuss the interface for custom-built integrations with the SOL Conversion program.
+This section discusses checking conversion rates and executing the conversion using the `doublezero-solana` CLI. And at the end, we discuss the interface for custom-built integrations with the DoubleZero swap contract.
 
 ### How to check the SOL/2Z conversion price via `doublezero-solana`
 
@@ -46,7 +48,7 @@ And the output you would see will resemble:
 | Journal Balance | SOL available for conversion | 438.670881289 |                               |
 ```
 
-The Journal Balance informs the user how much SOL liquidity there is in the Revenue Distribution program. A user can trade as long as the Journal Balance exceeds the fixed trade size of 1 SOL. 
+The Journal Balance informs the user how much SOL liquidity there is in the Revenue Distribution smart contract. A user can trade as long as the Journal Balance exceeds the fixed trade size of 1 SOL. 
 
 The first row displays the "true" SOL/2Z conversion price via an offchain oracle. The second row is the conversion price used on-chain for the swap, which simply adjusts the true price for the algorithmic discount.
 
@@ -74,7 +76,7 @@ Optionally, you may specify the checked SOL amount to the standard fill size (se
 
 ### Interface to Buy SOL
 
-The interface and `doublezero-solana` CLI live in [this repo](https://github.com/doublezerofoundation/doublezero-offchain). The source code for the SOL Conversion program interface can be found [here](https://github.com/doublezerofoundation/doublezero-offchain/tree/b3f606a91326baf64b475a37d612981b63243b09). The program ID is `9DRcqsJUCo8CL2xDCXpogwzLEVKRDzSyNtVgXqsXHfDs`.
+The interface and `doublezero-solana` CLI live in [this repo](https://github.com/doublezerofoundation/doublezero-offchain). The source code for the DoubleZero swap contract interface can be found [here](https://github.com/doublezerofoundation/doublezero-offchain/tree/b3f606a91326baf64b475a37d612981b63243b09). The program ID is `9DRcqsJUCo8CL2xDCXpogwzLEVKRDzSyNtVgXqsXHfDs`.
 
 A convenient way of generating the accounts needed for the buy SOL instruction is using the `new` method (found in *instruction/account.rs*).
 
@@ -153,4 +155,22 @@ pub async fn try_request_oracle_conversion_price(oracle_endpoint: &str) -> Resul
 }
 ```
 
-With the program ID, accounts and instruction data, you should be able to build the instruction to buy SOL from the SOL Conversion program.
+With the program ID, accounts and instruction data, you should be able to build the instruction to buy SOL from the DoubleZero swap contract.
+
+## **Disclaimer**
+
+This document and the associated code are provided for informational and technical purposes only. The token conversion functionality described herein is non-custodial — users interact directly with the underlying smart contracts and retain full control of their assets at all times.
+
+The system may rely on or interact with third-party code, data sources, or pricing and fee mechanisms (for example, smart contracts, APIs, or decentralized exchanges) that are not developed, controlled, or reviewed by the developer(s) or publisher(s). No representation or warranty is made as to the accuracy, functionality, or security of any third-party component.
+
+The developer(s) and publisher(s) of this code do not guarantee its accuracy, completeness, or continued availability. The code and related materials are provided “as is”, and may contain bugs, errors, or vulnerabilities. Use is entirely at your own risk.
+
+The developer(s) and publisher(s) do not receive any fees in connection with the use of these contracts. They are under no obligation to maintain, update, or support the code or related documentation.
+
+This document does not constitute an offer to sell, a solicitation to buy, or a recommendation to participate in any token conversion, swap or other transaction. No legal, financial, or investment advice is provided.
+
+Users are solely responsible for determining the legality of their activities. They should review the laws and regulations applicable in their jurisdiction and consult independent advisors before using the code or participating in any conversion. Use is prohibited where it would be unlawful, including by persons or entities subject to sanctions or in restricted jurisdictions.
+
+To the maximum extent permitted by law, the developer(s) and publisher(s) disclaim all liability for any loss, damage, or claim arising from or in connection with use of the code or participation in the conversion.
+
+Use of the conversion functionality is limited to [Eligible Contract Participants](https://share.google/dXO473u1lUjKvUH6t) only. Review and use of this document and the associated code are subject to the [Website Terms and Conditions](https://doublezero.xyz/terms) and [Protocol Terms and Conditions](https://doublezero.xyz/terms-protocol).
