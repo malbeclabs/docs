@@ -58,9 +58,9 @@ doublezero-solana revenue-distribution fetch validator-deposits -u mainnet-beta
 ```
 Solana validator deposit accounts            | Node ID                                     | Balance (SOL)
 ---------------------------------------------+---------------------------------------------+--------------
-79jStiBvoxujPWfmGfRahfFJd5SU2XruSwfDmysXt3xA | ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111 | 0.000000001
-EdmeAaCNiKkkNX73vch6kibJCeLnzcSPFpNzKeoRPYxP | ValidatorIdentity11111111111111111111111111111111111111111111111111111111111112 | 0.000000069
-AReLULgb4P7ipxQJy9cheGUsGRqQCbJNTFZXmjdkGMdE | ValidatorIdentity11111111111111111111111111111111111111111111111111111111111113 | 0.000000420
+DepositAccount111111111111111111111111111111 | ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111 | 0.000000001
+DepositAccount222222222222222222222222222222 | ValidatorIdentity11111111111111111111111111111111111111111111111111111111111112 | 0.000000069
+DepositAccount333333333333333333333333333333 | ValidatorIdentity11111111111111111111111111111111111111111111111111111111111113 | 0.000000420
 ```
 
 #### Command 2: Fetch Deposits for Specific Node
@@ -73,7 +73,7 @@ doublezero-solana revenue-distribution fetch validator-deposits -u mainnet-beta 
 ```
 Solana validator deposit accounts            | Node ID                                     | Balance (SOL)
 ---------------------------------------------+---------------------------------------------+--------------
-79jStiBvoxujPWfmGfRahfFJd5SU2XruSwfDmysXt3xA | ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111 | 0.000000001
+DepositAccount111111111111111111111111111111 | ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111 | 0.000000001
 ```
 
 #### Command 3: Fund Validator Deposit (First Transaction)
@@ -84,7 +84,8 @@ doublezero-solana revenue-distribution validator-deposit --node-id ValidatorIden
 
 **Output:**
 ```
-Solana validator deposit: 79jStiBvoxujPWfmGfRahfFJd5SU2XruSwfDmysXt3xA
+2Z token balance: 0.0
+Solana validator deposit: DepositAccount111111111111111111111111111111
 Funded: 3n56AW1UXeRqCQdLhQ82tjYzHQUbw7w2NcgD31PXSSxNLNgfrtsAENrWrXS2uLS2x5CyTyNaDTQMn9nHo5dfaS3B
 Node ID: ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111
 Balance: 0.000000002 SOL
@@ -98,7 +99,8 @@ doublezero-solana revenue-distribution validator-deposit --node-id ValidatorIden
 
 **Output:**
 ```
-Solana validator deposit: 79jStiBvoxujPWfmGfRahfFJd5SU2XruSwfDmysXt3xA
+2Z token balance: 0.0
+Solana validator deposit: DepositAccount111111111111111111111111111111
 Funded: 5WEpFc7pw6Hg353giEq1zwxAq2Lw4CHAahyZfb3tAgTBjfWiExaWpMjvrEm5bb618XC42ZU2hygryUu4E2PMbRxT
 Node ID: ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111
 Balance: 0.000000003 SOL
@@ -114,7 +116,7 @@ doublezero-solana revenue-distribution fetch validator-deposits -u mainnet-beta 
 ```
 Solana validator deposit accounts            | Node ID                                     | Balance (SOL)
 ---------------------------------------------+---------------------------------------------+--------------
-79jStiBvoxujPWfmGfRahfFJd5SU2XruSwfDmysXt3xA | ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111 | 0.000000003
+DepositAccount111111111111111111111111111111 | ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111 | 0.000000003
 ```
 ## Paying in 2z
 ### Validators may pay their fees in 2z
@@ -167,11 +169,9 @@ You will be prompted to confirm the transaction:
 
 output:
 ```
-Solana validator deposit: 79jStiBvoxujPWfmGfRahfFJd5SU2XruSwfDmysXt3xA
-Funded: 5WEpFc7pw6Hg353giEq1zwxAq2Lw4CHAahyZfb3tAgTBjfWiExaWpMjvrEm5bb618XC42ZU2hygryUu4E2PMbRxT
-Node ID: ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111
-Balance: 1 SOL
-2Z token account balance reduced by 797.76
+2Z token balance: 987241.76579348
+Converted 2Z to SOL: 2iaBzd4vgEeDnpfSCD9aYFMWZ3UoVzrJfUjSMhsDhfSQ6isPZKkKe3ZWQ6b5aWvV3h8Vsk8Mmde6wmCiidD4Qc6s
+Converted 837.65 2Z tokens to 1.000000000 SOL
 ```
 Notice, that on successful swap the `Balance:` has been updated to 1 sol.
 
