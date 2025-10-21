@@ -310,3 +310,53 @@ This is not an error, but can be an optimization. Below is a best practice which
     ✅  User Provisioned
     ```
     notice in the above output that we `Connected to device: dz-ny7-sw01` this is the desired result from our initial investigation in step 1, where we discovered that `dz-ny7-sw01` was the device with the lowest latency.
+
+### Issue: `doublezero status` returns some fields with N/A
+
+This issue is generally related to a mismatch the current daemon and client, vs the daemon and client the connected DZ tunnel was established in.
+
+**Symptoms:**
+- When running `doublezero status` the user encounters `N/A` in some fields
+
+
+
+
+**Solutions:**
+1. Run
+`doublezero status`
+
+Example:
+
+```
+Tunnel status | Last Session Update     | Tunnel Name | Tunnel src   | Tunnel dst   | Doublezero IP | User Type | Current Device | Lowest Latency Device | Metro | Network
+up            | 2025-10-20 20:06:18 UTC | doublezero0 | 149.28.38.64 | 64.86.249.22 | 149.28.38.64  | IBRL      | N/A            | :white_check_mark: dz-ny7-sw01        | N/A   | mainnet-beta
+```
+
+Notice in our example output above that the `Tunnel status` is `up`. Our `Network` is `mainnet-beta` However, `Curent Device` and `Metro` are `N/A`
+
+This is indicative of an open tunnel on your machine which is not in your current enviroment.
+In this case the `up` status, with no found `Current Device` on `mainnet-beta` reveals to us that our tunnel is on testnet!
+    ``
+
+    Sample Output:
+    ```
+    
+    ```
+2. : 
+
+    ``
+
+    Sample Output:
+    ```
+   
+    ```
+     The pubkey from `doublezero address` must match the user_payer pubkey and the IP Address you are trying to connect from must match the ip in the Access-Pass. 
+    `doublezero address` is sourced from the id.json file in in ~/.config/doublezero/ by default. See the [step 6 here](https://docs.malbeclabs.com/setup/)
+    
+3. 
+
+
+```
+Tunnel status | Last Session Update     | Tunnel Name | Tunnel src   | Tunnel dst   | Doublezero IP | User Type | Current Device | Lowest Latency Device | Metro | Network
+up            | 2025-10-20 20:06:18 UTC | doublezero0 | 149.28.38.64 | 64.86.249.22 | 149.28.38.64  | IBRL      | N/A            | :white_check_mark: dz-ny7-sw01        | N/A   | mainnet-beta
+```
