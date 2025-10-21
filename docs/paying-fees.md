@@ -153,5 +153,3 @@ This issue is generally caused by sending funds to a deposit account, without fi
     79jStiBvoxujPWfmGfRahfFJd5SU2XruSwfDmysXt3xA | ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111 | 0.000000003
     ```
     The command should now return without error
-
-    2z 
