@@ -334,12 +334,12 @@ This issue is generally related to a mismatch between the current daemon and cli
 
     Notice in our example output above that the `Tunnel status` is `up`. Our `Network` is `mainnet-beta` However, `Current Device` and `Metro` are `N/A`
 
-    This is indicative of an open tunnel on your machine which is not in your current enviroment.
-    In this case the `up` status, with no found `Current Device` on `mainnet-beta` reveals to us that our tunnel is on testnet!
+    This is indicative of an open tunnel on your machine which is not in your current environment.
+I   n this case the `up` status, with no found `Current Device` on `mainnet-beta` reveals to us that our tunnel is on testnet!
  
-2. Change your enviroment.
+2. Change your environment.
 
-    In order to rectify the mismatch you will change your enviroment to the oposite of the enviroment returning the `N/A`
+    In order to rectify the mismatch you will change your environment to the oposite of the environment returning the `N/A`
 
     ```bash
     DESIRED_DOUBLEZERO_ENV=testnet \
