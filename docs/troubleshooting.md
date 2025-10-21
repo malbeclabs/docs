@@ -313,7 +313,7 @@ This is not an error, but can be an optimization. Below is a best practice which
 
 ### Issue: `doublezero status` returns some fields with N/A
 
-This issue is generally related to a mismatch the current daemon and client, vs the daemon and client the connected DZ tunnel was established in.
+This issue is generally related to a mismatch between the current daemon and client, vs the daemon and client the connected DZ tunnel was established in.
 
 **Symptoms:**
 - When running `doublezero status` the user encounters `N/A` in some fields
@@ -335,7 +335,7 @@ This issue is generally related to a mismatch the current daemon and client, vs 
     Notice in our example output above that the `Tunnel status` is `up`. Our `Network` is `mainnet-beta` However, `Curent Device` and `Metro` are `N/A`
 
     This is indicative of an open tunnel on your machine which is not in your current enviroment.
-I   n this case the `up` status, with no found `Current Device` on `mainnet-beta` reveals to us that our tunnel is on testnet!
+    In this case the `up` status, with no found `Current Device` on `mainnet-beta` reveals to us that our tunnel is on testnet!
  
 2. Change your enviroment.
 

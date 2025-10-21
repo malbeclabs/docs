@@ -83,7 +83,7 @@ In Leader scheduler
 ✅ This validator can connect as a primary in DoubleZero 🖥️  💎. It is a leader scheduled validator.
 ```
 
-Now, on all bakup machines you intend to run your **Primary Validator** on run the following:
+Now, on all backup machines you intend to run your **Primary Validator** on run the following:
 
 ```
 doublezero-solana passport find-validator -u mainnet-beta
@@ -101,7 +101,7 @@ Gossip IP: 22.22.22.222
 In Not in Leader scheduler
  ❌ This validator can not connect as a primary in DoubleZero 🖥️  💎. It is a not a leader scheduled validator.
 ```
-This is a good output, as the backup node cannot be in the leaderschedule at time of pass creation.
+This output is excpected. The backup node cannot be in the leader schedule at time of pass creation.
 
 You will now run this command on **all backup machines** you plan to use your **Primary Validator** vote account, and identity on.
 
@@ -221,7 +221,7 @@ Public IP detected: 137.184.101.183 - If you want to use a different IP, you can
     Service provisioned with status: ok
 ✅  User Provisioned
 ```
-Wait one minute for the GRE tunnel to complete. Until the GRE tunnel is completed, your status output may return "down" or "Unknown" 
+Wait one minute for the GRE tunnel to finish setting up. Until the GRE tunnel is done setting up, your status output may return "down" or "Unknown" 
 
 Verify your connection:
 
