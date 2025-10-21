@@ -123,6 +123,9 @@ DepositAccount111111111111111111111111111111 | ValidatorIdentity1111111111111111
 
 <!-- https://github.com/doublezerofoundation/doublezero-offchain/pull/159 -->
 
+!!! warning
+    Use of the swap functionality is limited to Eligible Contract Participants only. Review and use of this document and the associated code are subjet to the [Website Terms and Conditions](https://doublezero.xyz/terms) and [Protocol Terms and Conditions](http://doublezero.xyz/terms-protocol)
+
 Validators have the option to pay their fees in 2z via an onchain [swap program](https://github.com/doublezerofoundation/doublezero-offchain/tree/main/crates/solana-interface/sol-conversion). This section will detail the steps to complete this process. The swap is performed using 2z, and exchanging it for Sol. The Sol balance in your deposit account will be updated according to the swap.
 
 This process will **always** use incremints of 1 sol. The result of this swap will **always** be deposited directly into your deposit account. This is a one way street, you cannot retrieve the 2z or sol from this transaction. It will be sent to a distribution module onchain.
