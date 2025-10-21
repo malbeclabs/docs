@@ -125,7 +125,7 @@ DepositAccount111111111111111111111111111111 | ValidatorIdentity1111111111111111
 This issue is generally caused by sending funds to a deposit account, without first running the fund command.
 
 **Symptoms:**
-- When executing `doublezero-solana revenue-distribution` commands the user encounters `⚠️  Warning: Please use "doublezero-solana revenue-distribution validator-deposit --node-id ValidatorIdentity111111111111111111111111111 --initialize" to create`
+- When executing `doublezero-solana revenue-distribution` commands the user encounters `⚠️  Warning: Please use "doublezero-solana revenue-distribution validator-deposit --node-id ValidatorIdentity111111111111111111111111111 --initialize" to create deposit account DepositAccount111111111111111111111111111111`
 
 
 **Solutions:**
