@@ -173,5 +173,5 @@ Users are solely responsible for determining the legality of their activities. T
 
 To the maximum extent permitted by law, the developer(s) and publisher(s) disclaim all liability for any loss, damage, or claim arising from or in connection with use of the code or participation in the conversion.
 
-!!! warning
+!!! warning ""
     Use of the conversion functionality is limited to [Eligible Contract Participants](https://share.google/dXO473u1lUjKvUH6t) only. Review and use of this document and the associated code are subject to the [Website Terms and Conditions](https://doublezero.xyz/terms) and [Protocol Terms and Conditions](https://doublezero.xyz/terms-protocol).
