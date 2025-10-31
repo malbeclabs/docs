@@ -4,6 +4,20 @@ related materials.**
 
 <!-- https://github.com/doublezerofoundation/doublezero-offchain/pull/159 -->
 
+??? warning "Disclaimer"
+    
+    This document and the associated code are provided for informational and technical purposes only. The token conversion functionality described herein is non-custodial—users interact directly with the underlying smart contracts and retain full control of their assets at all times.
+
+    The system may rely on or interact with third-party code, data sources, or pricing and fee mechanisms (for example, smart contracts, APIs, or decentralized exchanges) that are not developed, controlled, or reviewed by the developer(s) or publisher(s). No representation or warranty is made as to the accuracy, functionality, or security of any third-party component.
+    The developer(s) and publisher(s) of this code do not guarantee its accuracy, completeness, or continued availability. The code and related materials are provided “as is”, and may contain bugs, errors, or vulnerabilities. Use is entirely at your own risk.
+    The developer(s) and publisher(s) do not receive any fees in connection with the use of these contracts. They are under no obligation to maintain, update, or support the code or related documentation.
+
+    This document does not constitute an offer to sell, a solicitation to buy, or a recommendation to participate in any token conversion, swap or other transaction. No legal, financial, or investment advice is provided.
+    Users are solely responsible for determining the legality of their activities. They should review the laws and regulations applicable in their jurisdiction and consult independent advisors before using the code or participating in any conversion. Use is prohibited where it would be unlawful, including by persons or entities subject to sanctions or in restricted jurisdictions.
+
+    To the maximum extent permitted by law, the developer(s) and publisher(s) disclaim all liability for any loss, damage, or claim arising from or in connection with use of the code or participation in the conversion.
+
+    Review and use of this document and the associated code are subject to the [Website Terms and Conditions](https://doublezero.xyz/terms) and [Protocol Terms and Conditions](https://doublezero.xyz/terms-protocol).
 
 Validators can pay their fees in 2Z via an onchain [swap program](https://github.com/doublezerofoundation/doublezero-offchain/tree/main/crates/solana-interface/sol-conversion). The swap is performed by swapping 2Z for SOL. The SOL balance in your deposit account will be updated according to the swap.
 
@@ -86,17 +100,3 @@ Error: RPC response error -32002: Transaction simulation failed: Error processin
  Program 9DRcqsJUCo8CL2xDCXpogwzLEVKRDzSyNtVgXqsXHfDs failed: custom program error: 0x177f
 ```
 
-??? warning "Disclaimer"
-    
-    This document and the associated code are provided for informational and technical purposes only. The token conversion functionality described herein is non-custodial—users interact directly with the underlying smart contracts and retain full control of their assets at all times.
-
-    The system may rely on or interact with third-party code, data sources, or pricing and fee mechanisms (for example, smart contracts, APIs, or decentralized exchanges) that are not developed, controlled, or reviewed by the developer(s) or publisher(s). No representation or warranty is made as to the accuracy, functionality, or security of any third-party component.
-    The developer(s) and publisher(s) of this code do not guarantee its accuracy, completeness, or continued availability. The code and related materials are provided “as is”, and may contain bugs, errors, or vulnerabilities. Use is entirely at your own risk.
-    The developer(s) and publisher(s) do not receive any fees in connection with the use of these contracts. They are under no obligation to maintain, update, or support the code or related documentation.
-
-    This document does not constitute an offer to sell, a solicitation to buy, or a recommendation to participate in any token conversion, swap or other transaction. No legal, financial, or investment advice is provided.
-    Users are solely responsible for determining the legality of their activities. They should review the laws and regulations applicable in their jurisdiction and consult independent advisors before using the code or participating in any conversion. Use is prohibited where it would be unlawful, including by persons or entities subject to sanctions or in restricted jurisdictions.
-
-    To the maximum extent permitted by law, the developer(s) and publisher(s) disclaim all liability for any loss, damage, or claim arising from or in connection with use of the code or participation in the conversion.
-
-    Review and use of this document and the associated code are subject to the [Website Terms and Conditions](https://doublezero.xyz/terms) and [Protocol Terms and Conditions](https://doublezero.xyz/terms-protocol).

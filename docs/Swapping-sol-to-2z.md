@@ -1,5 +1,8 @@
 # Swapping SOL to 2Z
 
+!!! warning ""
+    Use of the conversion functionality is limited to [Eligible Contract Participants](https://share.google/dXO473u1lUjKvUH6t) only. Review and use of this document and the associated code are subject to the [Website Terms and Conditions](https://doublezero.xyz/terms) and [Protocol Terms and Conditions](https://doublezero.xyz/terms-protocol).
+
 The DoubleZero protocol collects SOL-denominated revenue from its validator users but distributes 2Z-denominated rewards to contributors. Thus, it must convert SOL into 2Z.
 
 **To do so, eligible participants can trade against a DoubleZero swap contract, purchasing SOL from the contract and selling it 2Z. Pricing is based on Pyth price feeds with a programmatic discount mechanism.** 
@@ -173,5 +176,3 @@ Users are solely responsible for determining the legality of their activities. T
 
 To the maximum extent permitted by law, the developer(s) and publisher(s) disclaim all liability for any loss, damage, or claim arising from or in connection with use of the code or participation in the conversion.
 
-!!! warning ""
-    Use of the conversion functionality is limited to [Eligible Contract Participants](https://share.google/dXO473u1lUjKvUH6t) only. Review and use of this document and the associated code are subject to the [Website Terms and Conditions](https://doublezero.xyz/terms) and [Protocol Terms and Conditions](https://doublezero.xyz/terms-protocol).
