@@ -1,5 +1,8 @@
 # Swapping SOL to 2Z
 
+!!! warning ""
+    Use of the conversion functionality is limited to [Eligible Contract Participants](https://share.google/dXO473u1lUjKvUH6t) only. Review and use of this document and the associated code are subject to the [Website Terms and Conditions](https://doublezero.xyz/terms) and [Protocol Terms and Conditions](https://doublezero.xyz/terms-protocol).
+
 The DoubleZero protocol collects SOL-denominated revenue from its validator users but distributes 2Z-denominated rewards to contributors. Thus, it must convert SOL into 2Z.
 
 **To do so, eligible participants can trade against a DoubleZero swap contract, purchasing SOL from the contract and selling it 2Z. Pricing is based on Pyth price feeds with a programmatic discount mechanism.** 
@@ -156,22 +159,3 @@ pub async fn try_request_oracle_conversion_price(oracle_endpoint: &str) -> Resul
 ```
 
 With the program ID, accounts and instruction data, you should be able to build the instruction to buy SOL from the DoubleZero swap contract.
-
-## **Disclaimer**
-
-This document and the associated code are provided for informational and technical purposes only. The token conversion functionality described herein is non-custodial — users interact directly with the underlying smart contracts and retain full control of their assets at all times.
-
-The system may rely on or interact with third-party code, data sources, or pricing and fee mechanisms (for example, smart contracts, APIs, or decentralized exchanges) that are not developed, controlled, or reviewed by the developer(s) or publisher(s). No representation or warranty is made as to the accuracy, functionality, or security of any third-party component.
-
-The developer(s) and publisher(s) of this code do not guarantee its accuracy, completeness, or continued availability. The code and related materials are provided “as is”, and may contain bugs, errors, or vulnerabilities. Use is entirely at your own risk.
-
-The developer(s) and publisher(s) do not receive any fees in connection with the use of these contracts. They are under no obligation to maintain, update, or support the code or related documentation.
-
-This document does not constitute an offer to sell, a solicitation to buy, or a recommendation to participate in any token conversion, swap or other transaction. No legal, financial, or investment advice is provided.
-
-Users are solely responsible for determining the legality of their activities. They should review the laws and regulations applicable in their jurisdiction and consult independent advisors before using the code or participating in any conversion. Use is prohibited where it would be unlawful, including by persons or entities subject to sanctions or in restricted jurisdictions.
-
-To the maximum extent permitted by law, the developer(s) and publisher(s) disclaim all liability for any loss, damage, or claim arising from or in connection with use of the code or participation in the conversion.
-
-!!! warning ""
-    Use of the conversion functionality is limited to [Eligible Contract Participants](https://share.google/dXO473u1lUjKvUH6t) only. Review and use of this document and the associated code are subject to the [Website Terms and Conditions](https://doublezero.xyz/terms) and [Protocol Terms and Conditions](https://doublezero.xyz/terms-protocol).
