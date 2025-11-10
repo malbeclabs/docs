@@ -1,6 +1,4 @@
-**Review the Disclaimer at the end of this document before accessing or using the code or any
-related materials.**
-
+**Review the Disclaimer before accessing or using the code or any related materials.**
 
 <!-- https://github.com/doublezerofoundation/doublezero-offchain/pull/159 -->
 
