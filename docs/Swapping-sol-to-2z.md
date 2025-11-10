@@ -33,7 +33,7 @@ The contract then permits no more trades for that slot. This is to prevent the c
 
 ---
 
-## Risk-Free Execution
+## Gassless Atomic Execution
 
 This section will detail how to use the command `harvest-dz`. This command will atomically perform 2 actions. 
 1. The command requests a quote from Jupiter vs the native SOL <> 2Z conversion program. 
