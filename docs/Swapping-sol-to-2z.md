@@ -11,6 +11,8 @@ This short guide explains how to use the program.
 
 ***Review the Disclaimer at the end of this document before accessing or using the code or any related materials.***
 
+---
+
 ## Program Design
 
 The swap program is effectively a one-sided liquidity pool that sells SOL in a fixed batch size of 1 SOL per trade. Any eligible participant can withdraw SOL from the program by depositing 2Z, at a price that is determined by an oracle price from Pyth and a dynamic discount. Over time, this executes the program’s goal of turning native tokens into 2Z.
@@ -29,7 +31,33 @@ At this point, if the trader has provided enough 2Z to execute the transaction a
 
 The contract then permits no more trades for that slot. This is to prevent the contract from paying excessively high slippage should the Pyth price be far from the true price at any given point in time in ways that the existing filters do not catch issues.
 
-## Program Usage
+---
+
+## Risk-Free Execution
+
+This section will detail how to use the command `harvest-dz`. This command will atomically perform 2 actions. 
+1. The command requests a quote from Jupiter vs the native SOL <> 2Z conversion program. 
+2. When the Jupiter route yields more 2Z per SOL than the native conversion program requires, `harvest-2z` executes a swap, returning to your wallet 1 SOL plus the difference in 2Z.
+
+### Harvest 2Z
+
+To execute, run the following:
+```
+doublezero-solana revenue-distribution harvest-2z
+```
+Output will resemble:
+```
+Harvested 5.98151278 2Z tokens with 1.000000000 SOL
+```
+The command can also be simulated with the `--dry-run` argument. Dry-run will produce program logs and an output resembling:
+
+```
+Simulated harvesting 5.98151278 2Z tokens with 1.000000000 SOL
+```
+
+---
+
+## Protocol Conversion
 
 This section discusses checking conversion rates and executing the conversion using the `doublezero-solana` CLI. And at the end, we discuss the interface for custom-built integrations with the DoubleZero swap contract.
 
@@ -159,3 +187,4 @@ pub async fn try_request_oracle_conversion_price(oracle_endpoint: &str) -> Resul
 ```
 
 With the program ID, accounts and instruction data, you should be able to build the instruction to buy SOL from the DoubleZero swap contract.
+
