@@ -34,12 +34,19 @@ Follow these steps depending on your operating system:
 
 ### Ubuntu / Debian
 
-For a new install:
+The current recomended deployment for Mainnet-Beta is:
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
-sudo apt-get install doublezero=0.6.6-1
+sudo apt-get install doublezero=0.6.9-1
 ```
-To upgrade:
+
+The current recomended deployment for Testnet is:
+```bash
+curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
+sudo apt-get install doublezero=0.6.10-1
+```
+
+To upgrade either Mainnet-Beta or Testnet:
 ```
 sudo apt-get install --only-upgrade doublezero
 ```
@@ -48,7 +55,7 @@ sudo apt-get install --only-upgrade doublezero
 For a new install:
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh | sudo -E bash
-sudo yum install doublezero-0.6.6
+sudo yum install doublezero-0.6.9
 ```
 
 After installation, verify the daemon is running:
