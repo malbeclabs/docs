@@ -43,7 +43,7 @@ sudo apt-get install doublezero=0.6.9-1
 The current recomended deployment for Testnet is:
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
-sudo apt-get install doublezero=0.6.11-1
+sudo apt-get install doublezero=0.7.0-1
 ```
 
 To upgrade either Mainnet-Beta or Testnet:
