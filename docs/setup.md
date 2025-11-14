@@ -28,7 +28,7 @@ With the DoubleZeroID and node ID identified, prove ownership. Create a message 
 
 Finally, submit a **connection request to DoubleZero**. This request communicates: *"Here is my identity, here is proof of ownership, and here is how I intend to connect."* DoubleZero validates this information, accepts the proof, and provisions network access for the validator on DoubleZero.
 
-## 1. Install or Upgrade DoubleZero Packages
+## 1. Install DoubleZero Packages
 
 Follow these steps depending on your operating system:
 
@@ -46,10 +46,6 @@ curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | 
 sudo apt-get install doublezero=0.7.0-1
 ```
 
-To upgrade either Mainnet-Beta or Testnet:
-```
-sudo apt-get install --only-upgrade doublezero
-```
 
 ### Rocky Linux / RHEL
 
@@ -70,11 +66,6 @@ After installation, verify the daemon is running:
 ```bash
 sudo systemctl status doublezerod
 sudo journalctl -u doublezerod
-```
-
-To upgrade:
-```bash
-sudo yum upgrade doublezero
 ```
 
 #### Check the status of `doublezerod`
