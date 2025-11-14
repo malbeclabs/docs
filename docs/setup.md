@@ -68,11 +68,6 @@ sudo systemctl status doublezerod
 sudo journalctl -u doublezerod
 ```
 
-To upgrade:
-```bash
-sudo yum upgrade doublezero
-```
-
 #### Check the status of `doublezerod`
 
 After the package is installed, a new systemd unit is installed, activated and started.  To see the status:
