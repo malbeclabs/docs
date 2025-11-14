@@ -52,10 +52,17 @@ sudo apt-get install --only-upgrade doublezero
 ```
 
 ### Rocky Linux / RHEL
-For a new install:
+
+The current recomended deployment for Mainnet-Beta is:
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh | sudo -E bash
 sudo yum install doublezero-0.6.9
+```
+
+The current recomended deployment for Testnet is:
+```bash
+curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh | sudo -E bash
+sudo yum install doublezero-0.7.0
 ```
 
 After installation, verify the daemon is running:
@@ -64,11 +71,14 @@ After installation, verify the daemon is running:
 sudo systemctl status doublezerod
 sudo journalctl -u doublezerod
 ```
+
 To upgrade:
 ```bash
 sudo yum --only-upgrade doublezero
 ```
+
 #### Check the status of `doublezerod`
+
 After the package is installed, a new systemd unit is installed, activated and started.  To see the status:
 ```
 sudo systemctl status doublezerod
@@ -79,11 +89,15 @@ sudo journalctl -u doublezerod
 ```
 
 #### Create doublezero config directory
+
 ```
 mkdir -p ~/.config/doublezero
 ```
+
 ####Add your Solana id.json to the doublezero config directory and check balance
+
 Copy or link the `id.json` you want to use with DoubleZero to the doublezero config directory.
+
 ```
 sudo cp </path/to/id.json> ~/.config/doublezero/
 ```
@@ -122,11 +136,15 @@ YourDoubleZeroAddress11111111111111111111111111111
 
 
 ## 4. Check that doublezerod has discovered DZ devices
+
 Before connecting, be sure `doublezerod` has discovered and pinged each of the available DZ testnet switches:
+
 ```
 doublezero latency
 ```
+
 Sample output:
+
 ```
 $ doublezero latency
  pubkey                                       | name      | ip             | min      | max      | avg      | reachable
@@ -138,6 +156,7 @@ $ doublezero latency
  65DqsEiFucoFWPLHnwbVHY1mp3d7MNM2gNjDTgtYZtFQ | frk-dz01  | 195.219.220.58 | 143.52ms | 143.62ms | 143.58ms | true
  9uhh2D5c14WJjbwgM7BudztdoPZYCjbvqcTPgEKtTMZE | sg1-dz01  | 180.87.102.98  | 176.66ms | 176.76ms | 176.72ms | true
 ```
+
 If no devices are returned in the output, wait 10-20 seconds and retry.
 
 ## 5. Disconnect from DoubleZero
@@ -145,9 +164,11 @@ If no devices are returned in the output, wait 10-20 seconds and retry.
 In the next sections you will set your DoubleZero Enviroment. In order to ensure success, disconnect the current session. This will avoid issues related to multiple tunnels open on your machine.
 
 Check 
+
 ```bash
 doublezero status
 ``` 
+
 if it is `up` run:
 
 ```bash
@@ -156,7 +177,9 @@ doublezero disconnect
 
 
 ### Up Next: Enviroment and Connection
+
 You may proceed to connecting to DoubleZero [Testnet](DZ%20Testnet%20Connection.md), [Mainnet-Beta](DZ%20Mainnet-beta%20Connection.md) or [multicast mode](connect-multicast.md). It may take up to one minute for the tunnel to connect, and you will need to complete some steps to register your validator on the DoubleZero Network.
+
 # Optional: Enable Prometheus Metrics
 
 Operators familiar with Prometheus metrics may want to enable them for DoubleZero monitoring. This provides visibility into DoubleZero client performance, connection status, and operational health.
@@ -209,6 +232,7 @@ curl -s localhost:2113/metrics | grep doublezero
 ```
 
 Expected output:
+
 ```
 # HELP doublezero_build_info Build information of the client
 # TYPE doublezero_build_info gauge
