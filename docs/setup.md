@@ -74,7 +74,7 @@ sudo journalctl -u doublezerod
 
 To upgrade:
 ```bash
-sudo yum --only-upgrade doublezero
+sudo yum upgrade doublezero
 ```
 
 #### Check the status of `doublezerod`
