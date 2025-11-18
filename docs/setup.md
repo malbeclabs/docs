@@ -43,7 +43,7 @@ sudo apt-get install doublezero=0.6.9-1
 The current recomended deployment for Testnet is:
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
-sudo apt-get install doublezero=0.7.0-1
+sudo apt-get install doublezero=0.7.1-1
 ```
 
 
@@ -58,7 +58,7 @@ sudo yum install doublezero-0.6.9
 The current recomended deployment for Testnet is:
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh | sudo -E bash
-sudo yum install doublezero-0.7.0
+sudo yum install doublezero-0.7.1
 ```
 
 After installation, verify the daemon is running:
