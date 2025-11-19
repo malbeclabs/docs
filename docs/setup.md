@@ -37,7 +37,7 @@ Follow these steps depending on your operating system:
 The current recomended deployment for Mainnet-Beta is:
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
-sudo apt-get install doublezero=0.6.9-1
+sudo apt-get install doublezero=0.7.1-1
 ```
 
 The current recomended deployment for Testnet is:
@@ -52,7 +52,7 @@ sudo apt-get install doublezero=0.7.1-1
 The current recomended deployment for Mainnet-Beta is:
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh | sudo -E bash
-sudo yum install doublezero-0.6.9
+sudo yum install doublezero-0.7.1
 ```
 
 The current recomended deployment for Testnet is:
