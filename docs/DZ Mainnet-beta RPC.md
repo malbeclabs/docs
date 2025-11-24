@@ -1,6 +1,16 @@
-# How to connect to DoubleZero in IBRL Mode - for RPC nodes
+# Connection to DoubleZero in IBRL Mode - for RPC nodes
 !!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Service](https://doublezero.xyz/terms-protocol)"
 
+### RPC Onboarding Overview
+
+RPC onboarding is currently permissioned. To begin you will fill out [this form](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z). Here is what to expect during this process:
+
+- There may be fees associated with RPC usage in the future. At this time we are requesting data in place of fees.
+- After form submission monitor your primary Telegram contact.
+- You must submit two geoghraphically distinct IPs. These first two addresses will be monitored for up to a week on DoubleZero Testnet. All nodes must first pass this preliminary testing phase.
+  - For testnet connection use the enviroment configuration on [this page](https://docs.malbeclabs.com/DZ%20Testnet%20Connection/)
+- After data is shared, and testnet phase is complete you will be given Mainnet-Beta access passes.
+  - You will then be expected to share post-connection data
 
 
 ###  Connecting to Mainnet-Beta in IBRL Mode
