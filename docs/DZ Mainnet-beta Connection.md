@@ -101,7 +101,7 @@ Gossip IP: 22.22.22.222
 In Not in Leader scheduler
  ❌ This validator can not connect as a primary in DoubleZero 🖥️  💎. It is a not a leader scheduled validator.
 ```
-This output is excpected. The backup node cannot be in the leader schedule at time of pass creation.
+This output is expected. The backup node cannot be in the leader schedule at time of pass creation.
 
 You will now run this command on **all backup machines** you plan to use your **Primary Validator** vote account, and identity on.
 
