@@ -60,6 +60,12 @@
 
 Solana Testnet Validators will complete connection to DoubleZero Testnet, which is detailed on this page.
 
+Each Solana validator has its own **identity keypair**; from this, extract the public key known as the **node ID**. This is the validator's unique fingerprint on the Solana network.
+
+With the DoubleZeroID and node ID identified, you will prove ownership of your machine. This is done by creating a message which includes the DoubleZeroID signed with the validator's identity key. The resulting cryptographic signature serves as verifiable proof that you control the validator.
+
+Finally, you will submit a **connection request to DoubleZero**. This request communicates: *"Here is my identity, here is proof of ownership, and here is how I intend to connect."* DoubleZero validates this information, accepts the proof, and provisions network access for the validator on DoubleZero.
+
 This guide allows for 1 Primary Validator to register itself, and up to 3 backup/failover machines at the same time.
 
 ## 1. Environment Configuration

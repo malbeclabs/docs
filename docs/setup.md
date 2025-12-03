@@ -4,29 +4,23 @@
 
 ## Prerequisites
 !!! warning inline end
-    DoubleZero needs to be installed directly on your validator host, not in a container.
+    For validators: DoubleZero needs to be installed directly on your validator host, not in a container.
 - Internet connectivity with a public IP address (no NAT)
 - x86_64 server 
 - Supported OS: Ubuntu 22.04+ or Debian 11+, or Rocky Linux / RHEL 8+
 - Root or sudo privileges on the server where DoubleZero will run
 - Solana CLI installed and on $PATH
-- Permission to access to the validator identity keypair file (e.g., validator-keypair.json) under the sol user
-- Verify the Identity key of Solana validator being connected has at least 1 SOL on it
+- For validators: Permission to access to the validator identity keypair file (e.g., validator-keypair.json) under the sol user
+- For validators: Verify the Identity key of Solana validator being connected has at least 1 SOL on it
 - Firewall rules permit outbound connections for DoubleZero and Solana RPC as needed including 
  GRE (ip proto 47) and BGP (169.254.0.0/16 on tcp/179)
 - Optional but useful: jq and curl for debugging
 
 
 ## Steps
-## Connecting a Solana Validator to DoubleZero
+## Connecting to DoubleZero
 
-When onboarding a Solana validator onto DoubleZero, start by establishing identities. On your server, generate a **DoubleZero identity**, represented by a public key called the **DoubleZero ID**. This key is how DoubleZero recognizes your server.
-
-Next, focus on the validator itself. Each Solana validator has its own **identity keypair**; from this, extract the public key known as the **node ID**. This is the validator's unique fingerprint on the Solana network.
-
-With the DoubleZeroID and node ID identified, prove ownership. Create a message that includes the DoubleZeroID and sign it with the validator's identity key. The resulting cryptographic signature serves as verifiable proof that you control the validator.
-
-Finally, submit a **connection request to DoubleZero**. This request communicates: *"Here is my identity, here is proof of ownership, and here is how I intend to connect."* DoubleZero validates this information, accepts the proof, and provisions network access for the validator on DoubleZero.
+When onboarding to DoubleZero, start by establishing identities. On your server, generate a **DoubleZero identity**, represented by a public key called the **DoubleZero ID**. This key is how DoubleZero recognizes your machine.
 
 ## 1. Install DoubleZero Packages
 
@@ -112,7 +106,7 @@ doublezero keygen
 
 ## 3. Retrieve the server's DoubleZero identity
 
-Review your DoubleZero Identity. This identity will be used to create the connection between your validator and DoubleZero
+Review your DoubleZero Identity. This identity will be used to create the connection between your machine and DoubleZero
 
 ```bash
 doublezero address
@@ -169,7 +163,7 @@ doublezero disconnect
 
 ### Up Next: Enviroment and Connection
 
-You may proceed to connecting to DoubleZero [Testnet](DZ%20Testnet%20Connection.md), [Mainnet-Beta](DZ%20Mainnet-beta%20Connection.md) or [multicast mode](connect-multicast.md). It may take up to one minute for the tunnel to connect, and you will need to complete some steps to register your validator on the DoubleZero Network.
+You may proceed to connecting to DoubleZero [Testnet](DZ%20Testnet%20Connection.md), [Mainnet-Beta](DZ%20Mainnet-beta%20Connection.md),[multicast mode](connect-multicast.md), or [RPC Connection](DZ%20Mainnet-Beta%20RPC.md). It may take up to one minute for the tunnel to connect, and you will need to complete some steps to register your validator on the DoubleZero Network.
 
 # Optional: Enable Prometheus Metrics
 
