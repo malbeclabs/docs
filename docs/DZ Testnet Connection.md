@@ -111,6 +111,10 @@ Mainnet output will be identical in structure, but with many more available devi
 
 With your DoubleZero Enviroment set, it is now time to attest to your Validator Ownership.
 
+The DoubleZero ID you created in the [setup](setup.md) of your primary validator must be used on all backup machines.
+
+The ID on your primary machine can be found with `doublezero address` The same ID must be in `~/.config/doublezero/id.json` on all machines in the cluster.
+
 In order to accomplish this you will first verify the machine you are running the commands from is your **Primary Validator** with:
 
 ```
@@ -150,7 +154,7 @@ Gossip IP: 22.22.22.222
 In Not in Leader scheduler
  ❌ This validator can not connect as a primary in DoubleZero 🖥️  💎. It is a not a leader scheduled validator.
 ```
-This output is excpected. The backup node cannot be in the leader schedule at time of pass creation.
+This output is expected. The backup node cannot be in the leader schedule at time of pass creation.
 
 You will now run this command on **all backup machines** you plan to use your **Primary Validator** vote account, and identity on.
 
