@@ -62,6 +62,10 @@ Testnet output will be identical in structure, but with fewer devices.
 
 With your DoubleZero Enviroment set, it is now time to attest to your Validator Ownership.
 
+The DoubleZero ID you created in the [setup](setup.md) of your primary validator must be used on all backup machines.
+
+The ID on your primary machine can be found with `doublezero address` The same ID must be in `~/.config/doublezero/id.json` on all machines in the cluster.
+
 In order to accomplish this you will first verify the machine you are running the commands from is your **Primary Validator** with:
 
 ```
