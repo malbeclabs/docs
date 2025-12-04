@@ -18,6 +18,11 @@ Finally, you will submit a **connection request to DoubleZero**. This request co
 
 This guide allows for 1 Primary Validator to register itself, and up to 3 backup/failover machines at the same time.
 
+!!! info
+    The Validator ID will be checked against Solana gossip to determine the target IP. The target IP, and the DoubleZero ID will then be used when opening a GRE tunnel between your machine and the target DoubleZero Device. 
+    
+    Consider: In the case where you have a junk ID and Primary ID on at the same IP, only the Primary ID will be used in registration of the machine. This is because the junk ID will not appear in gossip, and therefore cannot be used to verify the IP of the target machine.
+
 ## 1. Environment Configuration
 
 Please follow the [setup](setup.md) instructions before proceeding.
@@ -67,7 +72,7 @@ Testnet output will be identical in structure, but with fewer devices.
 
 ## 2. Attest Validator Ownership
 
-With your DoubleZero Enviroment set, it is now time to attest to your Validator Ownership.
+With your DoubleZero Environment set, it is now time to attest to your Validator Ownership.
 
 The DoubleZero ID you created in the [setup](setup.md) of your primary validator must be used on all backup machines.
 
@@ -94,8 +99,11 @@ In Leader scheduler
 ✅ This validator can connect as a primary in DoubleZero 🖥️  💎. It is a leader scheduled validator.
 ```
 
-Now, on all backup machines you intend to run your **Primary Validator** on run the following:
+!!! info
+    The same workflow is used for one, or many machines.
+    To register one machine exclude the arguments "--backup-validator-ids" or "backup_ids=" from any commands on this page. 
 
+Now, on all backup machines you intend to run your **Primary Validator** on execute the following:
 ```
 doublezero-solana passport find-validator -u mainnet-beta
 ```
@@ -168,7 +176,7 @@ Note the output at the end of this command. It is the structure for the next ste
 
 ## 3. Generate Signature
 
-At the end of the last step, we received a pre-formated output for `solana sign-offchain-message` 
+At the end of the last step, we received a pre-formatted output for `solana sign-offchain-message` 
 
 From the above output we will run this command on the **Primary Validator** machine.
 

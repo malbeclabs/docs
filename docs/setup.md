@@ -28,13 +28,13 @@ Follow these steps depending on your operating system:
 
 ### Ubuntu / Debian
 
-The current recomended deployment for Mainnet-Beta is:
+The current recommended deployment for Mainnet-Beta is:
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
 sudo apt-get install doublezero=0.8.0-1
 ```
 
-The current recomended deployment for Testnet is:
+The current recommended deployment for Testnet is:
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
 sudo apt-get install doublezero=0.8.0-1
@@ -43,13 +43,13 @@ sudo apt-get install doublezero=0.8.0-1
 
 ### Rocky Linux / RHEL
 
-The current recomended deployment for Mainnet-Beta is:
+The current recommended deployment for Mainnet-Beta is:
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh | sudo -E bash
 sudo yum install doublezero-0.8.0
 ```
 
-The current recomended deployment for Testnet is:
+The current recommended deployment for Testnet is:
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh | sudo -E bash
 sudo yum install doublezero-0.8.0
@@ -146,7 +146,7 @@ If no devices are returned in the output, wait 10-20 seconds and retry.
 
 ## 5. Disconnect from DoubleZero
 
-In the next sections you will set your DoubleZero Enviroment. In order to ensure success, disconnect the current session. This will avoid issues related to multiple tunnels open on your machine.
+In the next sections you will set your DoubleZero Environment. In order to ensure success, disconnect the current session. This will avoid issues related to multiple tunnels open on your machine.
 
 Check 
 
@@ -161,7 +161,7 @@ doublezero disconnect
 ```
 
 
-### Up Next: Enviroment and Connection
+### Up Next: Environment and Connection
 
 You may proceed to connecting to DoubleZero [Testnet](DZ%20Testnet%20Connection.md), [Mainnet-Beta](DZ%20Mainnet-beta%20Connection.md),[multicast mode](connect-multicast.md), or [RPC Connection](DZ%20Mainnet-Beta%20RPC.md). It may take up to one minute for the tunnel to connect, and you will need to complete some steps to register your validator on the DoubleZero Network.
 

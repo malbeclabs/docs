@@ -7,8 +7,8 @@ RPC onboarding is currently permissioned. To begin you will fill out [this form]
 
 - There may be fees associated with RPC usage in the future. At this time we are requesting data in place of fees.
 - After form submission monitor your primary Telegram contact.
-- You must submit two geoghraphically distinct IPs. These first two addresses will be monitored for up to a week on DoubleZero Testnet. All nodes must first pass this preliminary testing phase.
-  - For testnet connection use the enviroment configuration on [this page](https://docs.malbeclabs.com/DZ%20Testnet%20Connection/)
+- You must submit two geographically distinct IPs. These first two addresses will be monitored for up to a week on DoubleZero Testnet. All nodes must first pass this preliminary testing phase.
+  - For testnet connection use the environment configuration on [this page](https://docs.malbeclabs.com/DZ%20Testnet%20Connection/)
 - After data is shared, and testnet phase is complete you will be given Mainnet-Beta access passes.
   - You will then be expected to share post-connection data
 
