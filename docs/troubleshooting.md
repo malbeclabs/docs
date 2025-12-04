@@ -91,7 +91,7 @@ Sample Output:
 [comment]: # ()
 
 # Troubleshooting Examples
-Now that we have examined basic outputs, and what is expected ina healthy deployment we can examine some common troubleshooting examples.
+Now that we have examined basic outputs, and what is expected in a healthy deployment we can examine some common troubleshooting examples.
 
 ### Issue: ❌ Error creating user
 
@@ -151,7 +151,7 @@ This error signifies that a device is already connected to DoubleZero.
 This issue is often related to the GRE tunnel being successfully activated between the server and the DoubleZero Device, but a firewall preventing BGP session establishment. Because of this you are not receiving routes from the network or sending traffic over DoubleZero.
 
 **Symptoms:**
-- `doublezero connect ibrl` was successsful. However, `doublezero status` returns `down` or `unknown`
+- `doublezero connect ibrl` was successful. However, `doublezero status` returns `down` or `unknown`
     ```
     doublezero connect ibrl                                                                                                                                                                                                                                                                                                                                  
     DoubleZero Service Provisioning
@@ -286,7 +286,7 @@ This is not an error, but can be an optimization. Below is a best practice which
         🔍  User Account deleted
         ✅  Deprovisioning Complete
         ```
-    now we check the status to confirm our disconnectoin with
+    now we check the status to confirm our disconnection with
     - `doublezero status`
 
     output
@@ -335,11 +335,11 @@ This issue is generally related to a mismatch between the current daemon and cli
     Notice in our example output above that the `Tunnel status` is `up`. Our `Network` is `mainnet-beta` However, `Current Device` and `Metro` are `N/A`
 
     This is indicative of an open tunnel on your machine which is not in your current environment.
-I   n this case the `up` status, with no found `Current Device` on `mainnet-beta` reveals to us that our tunnel is on testnet!
+    In this case the `up` status, with no found `Current Device` on `mainnet-beta` reveals to us that our tunnel is on testnet!
  
 2. Change your environment.
 
-    In order to rectify the mismatch you will change your environment to the oposite of the environment returning the `N/A`
+    In order to rectify the mismatch you will change your environment to the opposite of the environment returning the `N/A`
 
     ```bash
     DESIRED_DOUBLEZERO_ENV=testnet \
@@ -365,16 +365,16 @@ I   n this case the `up` status, with no found `Current Device` on `mainnet-beta
     
 3. Check your status
 
-    After switching enviroments run:
+    After switching environments run:
 
     ```
     doublezero status
     ```
 
-    The expected output should be similiar to:
+    The expected output should be similar to:
 
     ``` 
     Tunnel status | Last Session Update     | Tunnel Name | Tunnel src   | Tunnel dst   | Doublezero IP | User Type | Current Device | Lowest Latency Device | Metro    | Network 
     up            | 2025-10-21 12:32:12 UTC | doublezero0 | 149.28.38.64 | 64.86.249.22 | 149.28.38.64  | IBRL      | nyc-dz001      | ✅ nyc-dz001          | New York | testnet 
     ```
-With all fields populated you are now in the correct enviroment.
+With all fields populated you are now in the correct environment.
