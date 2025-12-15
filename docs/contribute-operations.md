@@ -1,4 +1,4 @@
-# Operations Guide
+# Operations Guide for Contributors
 
 This guide covers the ongoing operational tasks for maintaining your DoubleZero Devices (DZDs), including agent upgrades and monitoring.
 

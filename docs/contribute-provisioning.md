@@ -1,4 +1,4 @@
-# Device Provisioning Guide
+# Device Provisioning Guide for Contributors
 
 This is the complete A-Z guide for provisioning a DoubleZero Device (DZD) from initial setup to full operation.
 
@@ -74,8 +74,8 @@ doublezero keygen -o ~/.config/doublezero/metrics-publisher.json
 
 ## Step 3: Request Access to Private Configuration Repository
 
-!!! warning "Required: Access to Private Configuration"
-    Before proceeding with device configuration, you must request access to the private contributors repository containing sensitive configuration files.
+> ⚠️ **Note:** 
+> Contributor managed configuration and additional steps for DZD provisioning is available within a dedicated gitub repository. Please complete these tasks during new DZD and link onboarding.
 
 The [malbeclabs/contributors](https://github.com/malbeclabs/contributors) repository contains:
 
@@ -90,7 +90,7 @@ The [malbeclabs/contributors](https://github.com/malbeclabs/contributors) reposi
 3. Confirm your service key has been registered
 4. Wait for access confirmation
 
-Once granted access, follow the intrstuctions in this repository.
+Once granted access, follow the instructions in this repository.
 
 ---
 
