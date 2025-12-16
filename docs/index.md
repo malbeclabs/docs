@@ -29,6 +29,6 @@ For more details, see the [DoubleZero Protocol](https://doublezero.xyz/whitepape
 
 ## Next Steps
 
-* *For Users* Learn how to perform [initial setup](setup.md), connect to DoubleZero in [IBRL mode](DZ Mainnet-Beta Connection.md), and in [multicast mode](connect-multicast.md) to start using the network.
+* *For Users* Learn how to perform [initial setup](setup.md), connect to DoubleZero in [IBRL mode](DZ%20Mainnet-beta%20Connection.md), and in [multicast mode](connect-multicast.md) to start using the network.
 * *For Contributors* See how to [Contribute](contribute.md) additional capacity to grow the DoubleZero network further.
 * *More Information* Read more about what makes up the [Architecture](architecture.md) of the DoubleZero network.
