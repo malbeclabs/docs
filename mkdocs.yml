@@ -13,19 +13,24 @@ theme:
     - navigation.indexes
     - toc.integrate
     - header.autohide
-    - navigation.expand
 nav:
   - Welcome: index.md
   - Setup: setup.md
-  - DZ Mainnet-Beta Connection: DZ Mainnet-beta Connection.md
-  - DZ Testnet Connection: DZ Testnet Connection.md
-  - DZ Mainnet-Beta RPC: DZ RPC-Connection.md
-  - Connect - Multicast Mode: connect-multicast.md
-  - Paying Fees: paying-fees.md
-  - Paying Validator Fees With 2Z: paying-fees2z.md
-  - Swapping SOL to 2Z: Swapping-sol-to-2z.md
-  - Troubleshooting: troubleshooting.md
-  - Contribute: contribute.md
+  - Users:
+    - Overview: users-overview.md
+    - Mainnet-Beta Connection: DZ Mainnet-beta Connection.md
+    - Testnet Connection: DZ Testnet Connection.md
+    - Mainnet-Beta RPC: DZ Mainnet-beta RPC.md
+    - Multicast Mode: connect-multicast.md
+    - Paying Fees: paying-fees.md
+    - Paying Fees with 2Z: paying-fees2z.md
+    - Swapping SOL to 2Z: Swapping-sol-to-2z.md
+    - Troubleshooting: troubleshooting.md
+  - Contributors:
+    - Overview: contribute-overview.md
+    - Requirements & Architecture: contribute.md
+    - Device Provisioning: contribute-provisioning.md
+    - Operations: contribute-operations.md
   - Architecture: architecture.md
 markdown_extensions:
   - admonition
