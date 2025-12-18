@@ -74,8 +74,8 @@ doublezero keygen -o ~/.config/doublezero/metrics-publisher.json
 
 ## Step 3: Request Access to Private Configuration Repository
 
-> ⚠️ **Note:** 
-> Contributor managed configuration and additional steps for DZD provisioning is available within a dedicated gitub repository. Please complete these tasks during new DZD and link onboarding.
+> ⚠️ **Note:**
+> Contributor managed configuration and additional steps for DZD provisioning is available within a dedicated GitHub repository. Please complete these tasks during new DZD and link onboarding.
 
 The [malbeclabs/contributors](https://github.com/malbeclabs/contributors) repository contains:
 
@@ -117,6 +117,18 @@ This section describes the steps for installing and configuring a device for ope
 
 ## Step 5: Device Creation
 
+### Device Types
+
+Before creating a device, determine which type best fits your deployment:
+
+| Device Type | Description | Requirements |
+|-------------|-------------|--------------|
+| **Edge** | Provides user connectivity to the DoubleZero network. Edge devices terminate CYOA connections from users (validators, RPC operators) and connect them to the fabric. | At least 1 CYOA connection and 1 DZX connection |
+| **Transit** | Provides backbone connectivity within the DoubleZero network. Transit devices move traffic between locations but do not terminate user connections directly. | At least 2 WAN links and at least 1 DZX connection |
+| **Hybrid** | Combines both edge and transit functionality. Hybrid devices can terminate user connections while also providing backbone transit. | At least 1 CYOA connection and at least 1 WAN link |
+
+### Create Command
+
 An authorized contributor can create their devices using the following command:
 
 ```bash
@@ -128,6 +140,7 @@ doublezero device create [OPTIONS] --code <CODE> --contributor <CONTRIBUTOR> --l
 ```
 --code <CODE>                            Unique device code
 --contributor <CONTRIBUTOR>              Contributor (pubkey or code)
+--device-type <DEVICE_TYPE>              Device type: hybrid (default), transit, edge
 --location <LOCATION>                    Location (pubkey or code)
 --exchange <EXCHANGE>                    Exchange (pubkey or code)
 --public-ip <PUBLIC_IP>                  Device public IPv4 address
@@ -150,12 +163,13 @@ doublezero location list
 doublezero exchange list
 ```
 
-### Example: Creating a Device for Contributor `co01`
+### Example: Creating a Hybrid Device
 
 ```bash
 doublezero device create \
   --code lax-dz001 \
   --contributor co01 \
+  --device-type hybrid \
   --location lax \
   --exchange xlax \
   --public-ip "1.2.3.4" \
@@ -171,11 +185,23 @@ doublezero device create \
 doublezero device interface create [OPTIONS] <DEVICE> <NAME>
 ```
 
+**Options:**
+
+```
+<DEVICE>                Device pubkey or code
+<NAME>                  Interface name
+--loopback-type         Loopback type: vpnv4, ipv4, pim-rp-addr
+--cir                   Committed Information Rate in Mbps (default: 0)
+--vlan-id               VLAN ID (default: 0, range: 0-4094)
+--user-tunnel-endpoint  Interface can terminate user tunnels
+-w, --wait              Wait for on-chain confirmation before returning
+```
+
 **Example:**
 
 ```bash
 doublezero device interface create \
-  lax-dz01 Ethernet1/1
+  lax-dz001 Ethernet1/1
 ```
 
 > ⚠️ **Note:**
@@ -184,6 +210,76 @@ doublezero device interface create \
 doublezero device interface create lax-dz001 Loopback255 --loopback-type vpnv4
 doublezero device interface create lax-dz001 Loopback256 --loopback-type ipv4
 ```
+
+### Creating CYOA Interfaces
+
+CYOA (Choose Your Own Adventure) interfaces allow contributors to register connectivity options for users to connect to the DoubleZero network. This includes DIA (Direct Internet Access) interfaces.
+
+**Additional CYOA/DIA Options:**
+
+```
+--interface-cyoa        CYOA type (see table below)
+--interface-dia         DIA type: none, dia
+--bandwidth             Bandwidth in Mbps (default: 0)
+--mtu                   MTU (default: 1500)
+--routing-mode          Routing mode: static (default), bgp
+```
+
+**CYOA Interface Types:**
+
+| Type | Description |
+|------|-------------|
+| `gre-over-dia` | GRE tunnel over Direct Internet Access |
+| `gre-over-fabric` | GRE tunnel over fabric |
+| `gre-over-private-peering` | GRE tunnel over private peering |
+| `gre-over-public-peering` | GRE tunnel over public peering |
+| `gre-over-cable` | GRE tunnel over cable |
+
+**DIA Interface Types:**
+
+| Type | Description |
+|------|-------------|
+| `none` | Not a DIA interface (default) |
+| `dia` | Direct Internet Access interface |
+
+**Example - Create a CYOA interface with GRE over DIA:**
+
+```bash
+doublezero device interface create lax-dz001 Ethernet1/2 \
+  --interface-cyoa gre-over-dia \
+  --interface-dia dia \
+  --bandwidth 10000 \
+  --cir 1000 \
+  --vlan-id 100 \
+  --user-tunnel-endpoint \
+  --wait
+```
+
+**Example - Create a DIA interface:**
+
+```bash
+doublezero device interface create lax-dz001 Ethernet1/3 \
+  --interface-dia dia \
+  --bandwidth 10000 \
+  --cir 1000 \
+  --user-tunnel-endpoint \
+  --wait
+```
+
+**Example - Create a CYOA interface for private peering:**
+
+```bash
+doublezero device interface create lax-dz001 Ethernet1/4 \
+  --interface-cyoa gre-over-private-peering \
+  --bandwidth 10000 \
+  --cir 5000 \
+  --routing-mode bgp \
+  --user-tunnel-endpoint \
+  --wait
+```
+
+> ⚠️ **Note:**
+> When registering CYOA/DIA interfaces, ensure you specify accurate bandwidth and CIR values as these are used for capacity planning and user onboarding.
 
 ### Listing Device Interfaces
 
@@ -267,23 +363,7 @@ doublezero link delete --pubkey <PUBKEY>
 
 ---
 
-## Step 8: Edge / Transit / Hybrid Devices
-
-A device can operate in 3 modes of operation:
-
-- **Edge** – provides at least 1 CYOA connection and 1 DZX connection
-- **Transit** – provides at least 2 WAN links and at least 1 DZX connection
-- **Hybrid** – provides at least 1 CYOA connection and at least 1 WAN link
-
-A device can be transitioned to an edge device by setting `max-users` to 0
-
-```bash
-doublezero device update --pubkey <PUBKEY> --max-users 0
-```
-
----
-
-## Step 9: Install Config Agent
+## Step 8: Install Config Agent
 
 The Config Agent manages device configuration, applying changes from the DoubleZero controller to your DZD.
 
@@ -377,7 +457,7 @@ show agent doublezero-agent log
 
 ---
 
-## Step 10: Install Telemetry Agent
+## Step 9: Install Telemetry Agent
 
 The Telemetry Agent collects and submits performance metrics from your DZD to the DoubleZero ledger.
 
@@ -397,7 +477,7 @@ Use these steps if your DoubleZero Agent will connect to the DoubleZero Controll
     a. Outside of the device, generate a keypair:
 
       ```sh
-      doublezero keygen -o -o ~/.config/doublezero/metrics-publisher.json
+      doublezero keygen -o ~/.config/doublezero/metrics-publisher.json
       ```
 
     b. Save the keypair on the device at `/mnt/flash/metrics-publisher-keypair.json`

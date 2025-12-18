@@ -12,7 +12,7 @@ Before connecting to DoubleZero, complete the [Setup](setup.md) guide to install
 |-------|-------------|
 | [Mainnet-Beta Connection](DZ%20Mainnet-beta%20Connection.md) | Connect your validator to DoubleZero Mainnet-Beta |
 | [Testnet Connection](DZ%20Testnet%20Connection.md) | Connect to DoubleZero Testnet for testing |
-| [Mainnet-Beta RPC](DZ%20Mainnet-beta%20RPC.md) | RPC connection guide for Mainnet-Beta |
+| [Mainnet-Beta RPC](DZ%20RPC-Connection.md) | RPC connection guide for Mainnet-Beta |
 | [Multicast Mode](connect-multicast.md) | Connect using multicast mode |
 | [Paying Fees](paying-fees.md) | How to pay for DoubleZero usage |
 | [Paying Fees with 2Z](paying-fees2z.md) | Pay validator fees using 2Z tokens |

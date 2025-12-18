@@ -1,6 +1,8 @@
 # How to set up DoubleZero
 !!! warning "By connecting to the DoubleZero I agree to the [DoubleZero Terms of Service](https://doublezero.xyz/terms-protocol)"
 
+> ⚠️ **Note for Contributors:**
+> This setup guide is for **users** (validators, RPC operators) who want to connect to the DoubleZero network. The prerequisites below (public IP, firewall rules, etc.) are required for establishing a network connection. If you are a **contributor** only performing administrative CLI tasks (creating devices, links, interfaces), these network prerequisites do not apply.
 
 ## Prerequisites
 !!! warning inline end
@@ -163,7 +165,7 @@ doublezero disconnect
 
 ### Up Next: Environment and Connection
 
-You may proceed to connecting to DoubleZero [Testnet](DZ%20Testnet%20Connection.md), [Mainnet-Beta](DZ%20Mainnet-beta%20Connection.md),[multicast mode](connect-multicast.md), or [RPC Connection](DZ%20Mainnet-beta%20RPC.md). It may take up to one minute for the tunnel to connect, and you will need to complete some steps to register your validator on the DoubleZero Network.
+You may proceed to connecting to DoubleZero [Testnet](DZ%20Testnet%20Connection.md), [Mainnet-Beta](DZ%20Mainnet-beta%20Connection.md),[multicast mode](connect-multicast.md), or [RPC Connection](DZ%20RPC-Connection.md). It may take up to one minute for the tunnel to connect, and you will need to complete some steps to register your validator on the DoubleZero Network.
 
 # Optional: Enable Prometheus Metrics
 

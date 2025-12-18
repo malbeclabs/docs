@@ -12,7 +12,7 @@ Before provisioning devices, complete the [Setup](setup.md) guide to install the
 |-------|-------------|
 | [Requirements & Architecture](contribute.md) | Contributor requirements, network architecture concepts, bandwidth options, and hardware specifications |
 | [Device Provisioning](contribute-provisioning.md) | Complete A-Z guide to provision your first DZD - from key generation to agent installation |
-| [Operations](contribute-operations.md) | Ongoing operational tasks: agent upgrades and monitoring |
+| [Operations](contribute-operations.md) | Ongoing operational tasks: device/interface updates, agent upgrades, link management, and monitoring |
 
 ## Getting Started
 
