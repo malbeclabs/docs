@@ -215,6 +215,9 @@ doublezero device interface create lax-dz001 Loopback256 --loopback-type ipv4
 
 CYOA (Choose Your Own Adventure) interfaces allow contributors to register connectivity options for users to connect to the DoubleZero network. This includes DIA (Direct Internet Access) interfaces.
 
+> ⚠️ **Note:**
+> Onchain CYOA interface registration currently enables capacity planning and visibility only. Future releases will extend this to include automated configuration management.
+
 **Additional CYOA/DIA Options:**
 
 ```
@@ -227,13 +230,13 @@ CYOA (Choose Your Own Adventure) interfaces allow contributors to register conne
 
 **CYOA Interface Types:**
 
-| Type | Description |
-|------|-------------|
-| `gre-over-dia` | GRE tunnel over Direct Internet Access |
-| `gre-over-fabric` | GRE tunnel over fabric |
-| `gre-over-private-peering` | GRE tunnel over private peering |
-| `gre-over-public-peering` | GRE tunnel over public peering |
-| `gre-over-cable` | GRE tunnel over cable |
+| Type | Description | Example Use Case |
+|------|-------------|------------------|
+| `gre-over-dia` | GRE tunnel over Direct Internet Access | Connection via ISP |
+| `gre-over-fabric` | GRE tunnel over fabric | Connection to local LAN |
+| `gre-over-private-peering` | GRE tunnel over private peering | Connection via Private Network Interconnect (PNI) |
+| `gre-over-public-peering` | GRE tunnel over public peering | Connection via Internet Exchange Point (IXP) |
+| `gre-over-cable` | GRE tunnel over cable | Connection to single end host |
 
 **DIA Interface Types:**
 
