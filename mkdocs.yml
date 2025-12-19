@@ -20,7 +20,7 @@ nav:
     - Overview: users-overview.md
     - Mainnet-Beta Connection: DZ Mainnet-beta Connection.md
     - Testnet Connection: DZ Testnet Connection.md
-    - Mainnet-Beta RPC: DZ Mainnet-beta RPC.md
+    - Mainnet-Beta RPC: DZ RPC-Connection.md
     - Multicast Mode: connect-multicast.md
     - Paying Fees: paying-fees.md
     - Paying Fees with 2Z: paying-fees2z.md
