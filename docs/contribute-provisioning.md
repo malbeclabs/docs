@@ -123,8 +123,8 @@ Before creating a device, determine which type best fits your deployment:
 
 | Device Type | Description | Requirements |
 |-------------|-------------|--------------|
-| **Edge** | Provides user connectivity to the DoubleZero network. Edge devices terminate CYOA connections from users (validators, RPC operators) and connect them to the fabric. | At least 1 CYOA connection and 1 DZX connection |
-| **Transit** | Provides backbone connectivity within the DoubleZero network. Transit devices move traffic between locations but do not terminate user connections directly. | At least 2 WAN links and at least 1 DZX connection |
+| **Edge** | Provides user connectivity to the DoubleZero network. Edge devices terminate CYOA connections from users (validators, RPC operators) and connect them to the fabric. | At least 1 CYOA connection, 0 WAN links, and at least 1 DZX connection |
+| **Transit** | Provides backbone connectivity within the DoubleZero network. Transit devices move traffic between locations but do not terminate user connections directly. | 0 CYOA connections, at least 1 WAN link, and at least 1 DZX connection |
 | **Hybrid** | Combines both edge and transit functionality. Hybrid devices can terminate user connections while also providing backbone transit. | At least 1 CYOA connection and at least 1 WAN link |
 
 ### Create Command
