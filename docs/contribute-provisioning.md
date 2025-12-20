@@ -123,9 +123,9 @@ Before creating a device, determine which type best fits your deployment:
 
 | Device Type | Description | Requirements |
 |-------------|-------------|--------------|
-| **Edge** | Provides user connectivity to the DoubleZero network. Edge devices leverage CYOA interfaces to terminate users (validators, RPC operators) and connect them to the network. | - 1 or more CYOA interfaces<br>- Zero WAN links<br>- 1 or more DZX links<br> - 1x out-of-band management with Internet (can reuse CYOA) |
-| **Transit** | Provides backbone connectivity within the DoubleZero network. Transit devices move traffic between DZDs but do not terminate user connections directly. | - Zero CYOA interfaces<br>- 2 or more WAN links (single contributor metro)<br>- 1x WAN link and 1 or more DZX link (multi-contributor metro)<br> - 1x out-of-band management with Internet |
-| **Hybrid** | Combines both edge and transit functionality. | - 1 or more CYOA interfaces<br>- 1 or more WAN links (single contributor metro)<br>- 1 or more WAN links and 1 or more DZX links (multi-contributor metro)<br>- 1x out-of-band management with Internet (can reuse CYOA) |
+| **Edge** | Provides user connectivity to the DoubleZero network. Edge devices leverage CYOA interfaces to terminate users (validators, RPC operators) and connect them to the network. | - 1 or more CYOA interfaces<br>- Zero WAN links<br>- 1 or more DZX links<br> - 1x out-of-band management with Internet access (can reuse CYOA) |
+| **Transit** | Provides backbone connectivity within the DoubleZero network. Transit devices move traffic between DZDs but do not terminate user connections directly. | - Zero CYOA interfaces<br>- 2 or more WAN links (single contributor metro)<br>- 1x WAN link and 1 or more DZX link (multi-contributor metro)<br> - 1x out-of-band management with Internet access |
+| **Hybrid** | Combines both edge and transit functionality. | - 1 or more CYOA interfaces<br>- 1 or more WAN links (single contributor metro)<br>- 1 or more WAN links and 1 or more DZX links (multi-contributor metro)<br>- 1x out-of-band management with Internet access (can reuse CYOA) |
 
 ### Create Command
 
