@@ -21,15 +21,6 @@ An in depth exploration of why fees exist, and the validator pricing model can b
 
 ---
 
-# **Payment Checklist**
-
-1. Derive deposit account (PDA) using validator identity pubkey.
-2. Calculate epoch fee: 5% × total block rewards.
-3. Fund your deposit account with the amount calculated in step 2 in the next epoch. If desired; you can make excess payments and that excess SOL will be applied to future epochs. [How to Send SOL>>](https://solana.com/tr/learn/sending-and-receiving-sol)
-4. Monitor balance to ensure successful settlements.
-
----
-
 # **Estimating Fees**
 
 Historical estimates and per-pubkey data are available in the [Fee Estimates Repo](http://github.com/doublezerofoundation/fees). The repo does not replace on chain data. You are responsible for the balance on chain, not in the balance in this repo.
@@ -39,117 +30,50 @@ Questions? Contact Nihar Shah at nihar@doublezero.us
 # Developer Details
 
 ### Command Line Interface
-
 The DoubleZero CLI provides commands to manage validator deposits and monitor balances.
 You will need SOL in the account that you run these commands from to pay for gas.
 
+### Step 1: Understanding Debt Owed
+
+To view debt at a specific address you may use this format:
+```
+doublezero-solana revenue-distribution fetch validator-debts --node-id ValidatorIdentity111111111111111111111111111
+```
+We will examine a example output below:
+
+```
+| node_id                                      |    total_amount | deposit_balance | note                   |
+|----------------------------------------------|-----------------|-----------------|------------------------|
+| ValidatorIdentity111111111111111111111111111 | 0.632736605 SOL | 0.000220966 SOL | 0.632515639 SOL needed |
+| ValidatorIdentity111111111111111111111111111 | 24.520162479 SOL| 0.000000000 SOL | Not funded             |
+```
+In the sample output there are two different outputs possible under `note`. `Not funded` means the account has not been funded. In the example `0.632515639 SOL needed` is the outstanding amount of Sol needed to pay all currently owed debts associated with the target Validator ID.
+
+### Step 2: Paying Debt Owed
+
 !!! note inline end
-      Do not use your `Vote Identity` or `DoubleZero ID` in this process
+      You may schedule this command to run at a regular interval.
 
-In these examples the flag `-u mainnet-beta` is used to denote mainnet-beta. If you need a testnet balance use the flag `-u testnet`
+To pay down debt owed you may use the following command. This will automatically use the default keypair in `$HOME/.config/solana/id.json` 
 
-#### Command 1: Fetch All Validator Deposits
+You may specify the keypair you want to pay your debt with by adding the argument `-k path/to/keypair.json` at the end of the command.
 
-```bash
-doublezero-solana revenue-distribution fetch validator-deposits -u mainnet-beta
+```
+doublezero-solana revenue-distribution validator-deposit --fund-outstanding-debt --node-id ValidatorIdentity111111111111111111111111111
+```
+An example output is provided below
+
+```
+Solana validator deposit: DZ_PDA_MvFTgPku3dUrw2W3dbeK5dhxmXYKKYETDUK1V
+Funded: TransactionHashHVxSobvdY2r14CkEwsBDhwf2dBmFatyeftisrdfSocMM2tXPjFvXPRmVs1xagiqKSX4b92fgt
+Node ID: ValidatorIdentity111111111111111111111111111
+Balance: 0.309294915 SOL
 ```
 
-**Output:**
-```
-Solana validator deposit accounts            | Node ID                                     | Balance (SOL)
----------------------------------------------+---------------------------------------------+--------------
-DepositAccount111111111111111111111111111111 | ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111 | 0.000000001
-DepositAccount222222222222222222222222222222 | ValidatorIdentity11111111111111111111111111111111111111111111111111111111111112 | 0.000000069
-DepositAccount333333333333333333333333333333 | ValidatorIdentity11111111111111111111111111111111111111111111111111111111111113 | 0.000000420
-```
+`Solana validator deposit:` returns the deposit account which was funded
 
-#### Command 2: Fetch Deposits for Specific Node
+`Funded:` returns the transaction hash, which you may look up in your favorite solana explorer
 
-```bash
-doublezero-solana revenue-distribution fetch validator-deposits -u mainnet-beta --node-id ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111
-```
+`Node ID:` returns the Validator ID which was paid for
 
-**Output:**
-```
-Solana validator deposit accounts            | Node ID                                     | Balance (SOL)
----------------------------------------------+---------------------------------------------+--------------
-DepositAccount111111111111111111111111111111 | ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111 | 0.000000001
-```
-
-#### Command 3: Fund Validator Deposit (First Transaction)
-
-```bash
-doublezero-solana revenue-distribution validator-deposit --node-id ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111 --fund 0.000000001 -u mainnet-beta
-```
-
-**Output:**
-```
-2Z token balance: 0.0
-Solana validator deposit: DepositAccount111111111111111111111111111111
-Funded: 3n56AW1UXeRqCQdLhQ82tjYzHQUbw7w2NcgD31PXSSxNLNgfrtsAENrWrXS2uLS2x5CyTyNaDTQMn9nHo5dfaS3B
-Node ID: ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111
-Balance: 0.000000002 SOL
-```
-
-#### Command 4: Fund Validator Deposit (Second Transaction)
-
-```bash
-doublezero-solana revenue-distribution validator-deposit --node-id ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111 --fund 0.000000001 -u mainnet-beta
-```
-
-**Output:**
-```
-Solana validator deposit: DepositAccount111111111111111111111111111111
-Funded: 5WEpFc7pw6Hg353giEq1zwxAq2Lw4CHAahyZfb3tAgTBjfWiExaWpMjvrEm5bb618XC42ZU2hygryUu4E2PMbRxT
-Node ID: ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111
-Balance: 0.000000003 SOL
-```
-
-#### Command 5: Verify Updated Balance
-
-```bash
-doublezero-solana revenue-distribution fetch validator-deposits -u mainnet-beta --node-id ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111
-```
-
-**Output:**
-```
-Solana validator deposit accounts            | Node ID                                     | Balance (SOL)
----------------------------------------------+---------------------------------------------+--------------
-DepositAccount111111111111111111111111111111 | ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111 | 0.000000003
-```
-
-## Troubleshooting:
-### Issue: `⚠️  Warning: Please use "doublezero-solana revenue-distribution validator-deposit ValidatorIdentity111111111111111111111111111 --initialize" to create
-
-This issue is generally caused by sending funds to a deposit account, without first running the fund command.
-
-**Symptoms:**
-- When executing `doublezero-solana revenue-distribution` commands the user encounters `⚠️  Warning: Please use "doublezero-solana revenue-distribution validator-deposit --node-id ValidatorIdentity111111111111111111111111111 --initialize" to create deposit account DepositAccount111111111111111111111111111111`
-
-
-**Solutions:**
-1. initialize the account
-
- `doublezero-solana revenue-distribution validator-deposit --node-id ValidatorIdentity111111111111111111111111111 --initialize -k path/to/your_keypair.json`
-
- Sample Output:
-
-    ```
-    Solana validator deposit: Deposit1111111111111111111111111111111111111
-    Funded and initialized: Signature111111rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7
-    Node ID: ValidatorIdentity111111111111111111111111111
-    Balance: YourCurrentBalanceIn SOL
-    ```
-2. re-run the command which caused the error
-
-    for example:
-
-    `revenue-distribution fetch validator-deposits -u mainnet-beta --node-id ValidatorIdentity111111111111111111111111111'`
-
-    Sample Output:
-    ```
-    Solana validator deposit accounts            | Node ID                                     | Balance (SOL)
-    ---------------------------------------------+---------------------------------------------+--------------
-    79jStiBvoxujPWfmGfRahfFJd5SU2XruSwfDmysXt3xA | ValidatorIdentity11111111111111111111111111111111111111111111111111111111111111 | 0.000000003
-    ```
-    The command should now return without error
+`Balance:` returns the amount of Sol which is in the deposit account, after the transfer is complete
