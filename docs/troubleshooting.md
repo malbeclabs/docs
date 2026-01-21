@@ -202,7 +202,7 @@ This issue is often related to the GRE tunnel being successfully activated betwe
     
     ---
 
-    Additionally users are able to open port 44880 to utalize some [routing features](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc7-client-route-liveness.md).
+    Additionally users are able to open port 44880 to utilize some [routing features](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc7-client-route-liveness.md).
 
     To open port 44880 you could update IP tables such as:
     ```
