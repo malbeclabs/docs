@@ -33,13 +33,13 @@ Follow these steps depending on your operating system:
 The current recommended deployment for Mainnet-Beta is:
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
-sudo apt-get install doublezero=0.8.0-1
+sudo apt-get install doublezero=0.8.2-1
 ```
 
 The current recommended deployment for Testnet is:
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
-sudo apt-get install doublezero=0.8.1-1
+sudo apt-get install doublezero=0.8.2-1
 ```
 
 
@@ -48,13 +48,13 @@ sudo apt-get install doublezero=0.8.1-1
 The current recommended deployment for Mainnet-Beta is:
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh | sudo -E bash
-sudo yum install doublezero-0.8.0
+sudo yum install doublezero-0.8.2
 ```
 
 The current recommended deployment for Testnet is:
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh | sudo -E bash
-sudo yum install doublezero-0.8.1
+sudo yum install doublezero-0.8.2
 ```
 
 After installation, verify the daemon is running:
