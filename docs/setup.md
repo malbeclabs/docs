@@ -57,7 +57,7 @@ sudo yum install doublezero-0.8.1
 ```
 
 !!! info
-    When you install from one of the packages above it is specific to DoubleZero Testnet or DoubleZero Mainnet Beta. If you swap networks at any point you will need to remove the previously installed package and update to the target package.
+    When you install from one of the package repositories above it is specific to DoubleZero Testnet or DoubleZero Mainnet Beta. If you swap networks at any point you will need to remove the previously installed package repositories and update to the target repo.
 
     This example will walk through Testnet to Mainnet-Beta Migration
 
