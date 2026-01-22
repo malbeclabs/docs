@@ -121,7 +121,7 @@ sudo cp </path/to/id.json> ~/.config/doublezero/
 ```
 ## 2. Open port 44880
 
-Additionally users need to open port 44880 to utilize some [routing features](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc7-client-route-liveness.md).
+Users need to open port 44880 to utilize some [routing features](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc7-client-route-liveness.md).
 
 To open port 44880 you could update IP tables such as:
 ```
