@@ -42,7 +42,6 @@ curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | 
 sudo apt-get install doublezero=0.8.1-1
 ```
 
-
 ### Rocky Linux / RHEL
 
 The current recommended deployment for Mainnet-Beta is:
@@ -56,6 +55,18 @@ The current recommended deployment for Testnet is:
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh | sudo -E bash
 sudo yum install doublezero-0.8.1
 ```
+
+!!! info
+    When you install from one of the packages above it is specific to DoubleZero Testnet or DoubleZero Mainnet Beta. If you swap networks at any point you will need to remove the previously installed package with something like `sudo rm /etc/apt/sources.list.d/doublezero-mainnet-beta.list /usr/share/keyrings/malbeclabs-doublezero-mainnet-archive-keyring.gpg`
+    
+    You are able to find your specific paths with:
+
+    `find /etc/apt | grep doublezero` and
+
+    `find /usr/share/keyrings/ | grep doublezero`
+
+    Use these paths to replace `/etc/apt/sources.list.d/doublezero-mainnet-beta.list` and `/usr/share/keyrings/malbeclabs-doublezero-mainnet-archive-keyring.gpg` in the example command.
+
 
 After installation, verify the daemon is running:
 
