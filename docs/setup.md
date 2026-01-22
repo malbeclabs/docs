@@ -121,21 +121,21 @@ sudo cp </path/to/id.json> ~/.config/doublezero/
 ```
 ## 2. Open port 44880
 
-    Additionally users need to open port 44880 to utilize some [routing features](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc7-client-route-liveness.md).
+Additionally users need to open port 44880 to utilize some [routing features](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc7-client-route-liveness.md).
 
-    To open port 44880 you could update IP tables such as:
-    ```
-    sudo iptables -A INPUT -i doublezero0 -p udp --dport 44880 -j ACCEPT
-    sudo iptables -A OUTPUT -o doublezero0 -p udp --dport 44880 -j ACCEPT
-    ```
-    note the `-i doublezero0`, `-o doublezero0` flags which restrict this rule to only the DoubleZero interface 
+To open port 44880 you could update IP tables such as:
+```
+sudo iptables -A INPUT -i doublezero0 -p udp --dport 44880 -j ACCEPT
+sudo iptables -A OUTPUT -o doublezero0 -p udp --dport 44880 -j ACCEPT
+```
+note the `-i doublezero0`, `-o doublezero0` flags which restrict this rule to only the DoubleZero interface 
 
-    Or UFW such as:
-    ```
-    sudo ufw allow in on dobulezero0 to any port 44880 proto udp
-    sudo ufw allow out on doublezero0 to any port 44880 proto udp
-    ```
-    note the `in on dobulezero0`, `out on doublezero0` flags which restrict this rule to only the DoubleZero interface 
+Or UFW such as:
+```
+sudo ufw allow in on dobulezero0 to any port 44880 proto udp
+sudo ufw allow out on doublezero0 to any port 44880 proto udp
+```
+note the `in on dobulezero0`, `out on doublezero0` flags which restrict this rule to only the DoubleZero interface 
 
 ## 3. Create New DoubleZero Identity
 
