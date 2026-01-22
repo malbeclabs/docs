@@ -57,15 +57,35 @@ sudo yum install doublezero-0.8.1
 ```
 
 !!! info
-    When you install from one of the packages above it is specific to DoubleZero Testnet or DoubleZero Mainnet Beta. If you swap networks at any point you will need to remove the previously installed package with something like `sudo rm /etc/apt/sources.list.d/doublezero-mainnet-beta.list /usr/share/keyrings/malbeclabs-doublezero-mainnet-archive-keyring.gpg`
+    When you install from one of the packages above it is specific to DoubleZero Testnet or DoubleZero Mainnet Beta. If you swap networks at any point you will need to remove the previously installed package and update to the target package.
+
+    This example will walk through Testnet to Mainnet-Beta Migration
+
+    1. Find Old Repository Files
+        
+        First, locate any existing DoubleZero repository configuration files on your system:
+
+        `find /etc/apt | grep doublezero`
+
+        `find /usr/share/keyrings/ | grep doublezero`
+
+    2. Remove Old Repository Files
+        
+        Remove the old repository files found in the previous step, for example
+
+        ```
+        sudo rm /etc/apt/sources.list.d/malbeclabs-doublezero.list
+        sudo rm /usr/share/keyrings/malbeclabs-doublezero-archive-keyring.gpg
+        ```
+    3. Install from New Repository
     
-    You are able to find your specific paths with:
+        Add the new Mainnet-Beta repository and install the latest package:
 
-    `find /etc/apt | grep doublezero` and
-
-    `find /usr/share/keyrings/ | grep doublezero`
-
-    Use these paths to replace `/etc/apt/sources.list.d/doublezero-mainnet-beta.list` and `/usr/share/keyrings/malbeclabs-doublezero-mainnet-archive-keyring.gpg` in the example command.
+        ```
+        curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
+        sudo apt-get install doublezero=<current_recomended_version_above>
+        ```
+    The same steps may be completed to move a Mainnet-Beta machine to Testnet, by replacing the step 3 with the appropriate install command above.
 
 
 After installation, verify the daemon is running:
