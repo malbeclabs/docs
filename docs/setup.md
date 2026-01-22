@@ -42,7 +42,6 @@ curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero-testnet/setup.d
 sudo apt-get install doublezero=0.8.3-1
 ```
 
-
 ### Rocky Linux / RHEL
 
 The current recommended deployment for Mainnet-Beta is:
@@ -56,6 +55,38 @@ The current recommended deployment for Testnet is:
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero-testnet/setup.rpm.sh | sudo -E bash
 sudo yum install doublezero-0.8.3
 ```
+
+!!! info
+    When you install from one of the package repositories above it is specific to DoubleZero Testnet or DoubleZero Mainnet Beta. If you swap networks at any point you will need to remove the previously installed package repositories and update to the target repo.
+
+    This example will walk through Testnet to Mainnet-Beta Migration
+
+    1. Find Old Repository Files
+        
+        First, locate any existing DoubleZero repository configuration files on your system:
+
+        `find /etc/apt | grep doublezero`
+
+        `find /usr/share/keyrings/ | grep doublezero`
+
+    2. Remove Old Repository Files
+        
+        Remove the old repository files found in the previous step, for example
+
+        ```
+        sudo rm /etc/apt/sources.list.d/malbeclabs-doublezero.list
+        sudo rm /usr/share/keyrings/malbeclabs-doublezero-archive-keyring.gpg
+        ```
+    3. Install from New Repository
+    
+        Add the new Mainnet-Beta repository and install the latest package:
+
+        ```
+        curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
+        sudo apt-get install doublezero=<current_recomended_version_above>
+        ```
+    The same steps may be completed to move a Mainnet-Beta machine to Testnet, by replacing the step 3 with the appropriate install command above.
+
 
 After installation, verify the daemon is running:
 
@@ -88,25 +119,36 @@ Copy or link the `id.json` you want to use with DoubleZero to the doublezero con
 ```
 sudo cp </path/to/id.json> ~/.config/doublezero/
 ```
+## 2. Open port 44880
 
-## 2. Create New DoubleZero Identity
+Users need to open port 44880 to utilize some [routing features](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc7-client-route-liveness.md).
 
+To open port 44880 you could update IP tables such as:
+```
+sudo iptables -A INPUT -i doublezero0 -p udp --dport 44880 -j ACCEPT
+sudo iptables -A OUTPUT -o doublezero0 -p udp --dport 44880 -j ACCEPT
+```
+note the `-i doublezero0`, `-o doublezero0` flags which restrict this rule to only the DoubleZero interface 
+
+Or UFW such as:
+```
+sudo ufw allow in on dobulezero0 to any port 44880 proto udp
+sudo ufw allow out on doublezero0 to any port 44880 proto udp
+```
+note the `in on dobulezero0`, `out on doublezero0` flags which restrict this rule to only the DoubleZero interface 
+
+## 3. Create New DoubleZero Identity
 
 !!! note inline end
     If you have an existing DoubleZero Identity skip to step 3
 
-
-
-
-
 Create a DoubleZero Identity on your server with the following command:
-
 
 ```bash
 doublezero keygen
 ```
 
-## 3. Retrieve the server's DoubleZero identity
+## 4. Retrieve the server's DoubleZero identity
 
 Review your DoubleZero Identity. This identity will be used to create the connection between your machine and DoubleZero
 
@@ -119,10 +161,7 @@ doublezero address
 YourDoubleZeroAddress11111111111111111111111111111
 ```
 
-
-
-
-## 4. Check that doublezerod has discovered DZ devices
+## 5. Check that doublezerod has discovered DZ devices
 
 Before connecting, be sure `doublezerod` has discovered and pinged each of the available DZ testnet switches:
 
@@ -146,7 +185,7 @@ $ doublezero latency
 
 If no devices are returned in the output, wait 10-20 seconds and retry.
 
-## 5. Disconnect from DoubleZero
+## 6. Disconnect from DoubleZero
 
 In the next sections you will set your DoubleZero Environment. In order to ensure success, disconnect the current session. This will avoid issues related to multiple tunnels open on your machine.
 
@@ -161,7 +200,6 @@ if it is `up` run:
 ```bash
 doublezero disconnect
 ```
-
 
 ### Up Next: Environment and Connection
 

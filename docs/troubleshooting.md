@@ -199,8 +199,7 @@ This issue is often related to the GRE tunnel being successfully activated betwe
     In the above output you see all traffic to 169.254.0.0/16, except for the ports specified, is denied. 
     `sudo ufw insert <N> allow proto tcp from 169.254.0.0/16 to 169.254.0.0/16 port 179` to insert the rule in the <N> position. ie. if N = 1 then you will insert this rules as the first rule.
     `sudo ufw status numbered` will show you the numerical ordering of rules.
-
-
+    
 ### Issue: Nearest DoubleZero device has changed
 
 This is not an error, but can be an optimization. Below is a best practice which can be run from time to time, or automated.
