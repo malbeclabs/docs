@@ -200,25 +200,6 @@ This issue is often related to the GRE tunnel being successfully activated betwe
     `sudo ufw insert <N> allow proto tcp from 169.254.0.0/16 to 169.254.0.0/16 port 179` to insert the rule in the <N> position. ie. if N = 1 then you will insert this rules as the first rule.
     `sudo ufw status numbered` will show you the numerical ordering of rules.
     
-    ---
-
-    Additionally users are able to open port 44880 to utilize some [routing features](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc7-client-route-liveness.md).
-
-    To open port 44880 you could update IP tables such as:
-    ```
-    sudo iptables -A INPUT -i doublezero0 -p udp --dport 44880 -j ACCEPT
-    sudo iptables -A OUTPUT -o doublezero0 -p udp --dport 44880 -j ACCEPT
-    ```
-    note the `-i doublezero0`, `-o doublezero0` flags which restrict this rule to only the DoubleZero interface 
-
-    Or UFW such as:
-    ```
-    sudo ufw allow in on dobulezero0 to any port 44880 proto udp
-    sudo ufw allow out on doublezero0 to any port 44880 proto udp
-    ```
-    note the `in on dobulezero0`, `out on doublezero0` flags which restrict this rule to only the DoubleZero interface 
-
-
 ### Issue: Nearest DoubleZero device has changed
 
 This is not an error, but can be an optimization. Below is a best practice which can be run from time to time, or automated.

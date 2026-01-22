@@ -99,25 +99,36 @@ Copy or link the `id.json` you want to use with DoubleZero to the doublezero con
 ```
 sudo cp </path/to/id.json> ~/.config/doublezero/
 ```
+## 2. Open port 44880
 
-## 2. Create New DoubleZero Identity
+    Additionally users need to open port 44880 to utilize some [routing features](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc7-client-route-liveness.md).
 
+    To open port 44880 you could update IP tables such as:
+    ```
+    sudo iptables -A INPUT -i doublezero0 -p udp --dport 44880 -j ACCEPT
+    sudo iptables -A OUTPUT -o doublezero0 -p udp --dport 44880 -j ACCEPT
+    ```
+    note the `-i doublezero0`, `-o doublezero0` flags which restrict this rule to only the DoubleZero interface 
+
+    Or UFW such as:
+    ```
+    sudo ufw allow in on dobulezero0 to any port 44880 proto udp
+    sudo ufw allow out on doublezero0 to any port 44880 proto udp
+    ```
+    note the `in on dobulezero0`, `out on doublezero0` flags which restrict this rule to only the DoubleZero interface 
+
+## 3. Create New DoubleZero Identity
 
 !!! note inline end
     If you have an existing DoubleZero Identity skip to step 3
 
-
-
-
-
 Create a DoubleZero Identity on your server with the following command:
-
 
 ```bash
 doublezero keygen
 ```
 
-## 3. Retrieve the server's DoubleZero identity
+## 4. Retrieve the server's DoubleZero identity
 
 Review your DoubleZero Identity. This identity will be used to create the connection between your machine and DoubleZero
 
@@ -130,10 +141,7 @@ doublezero address
 YourDoubleZeroAddress11111111111111111111111111111
 ```
 
-
-
-
-## 4. Check that doublezerod has discovered DZ devices
+## 5. Check that doublezerod has discovered DZ devices
 
 Before connecting, be sure `doublezerod` has discovered and pinged each of the available DZ testnet switches:
 
@@ -157,7 +165,7 @@ $ doublezero latency
 
 If no devices are returned in the output, wait 10-20 seconds and retry.
 
-## 5. Disconnect from DoubleZero
+## 6. Disconnect from DoubleZero
 
 In the next sections you will set your DoubleZero Environment. In order to ensure success, disconnect the current session. This will avoid issues related to multiple tunnels open on your machine.
 
@@ -172,7 +180,6 @@ if it is `up` run:
 ```bash
 doublezero disconnect
 ```
-
 
 ### Up Next: Environment and Connection
 
