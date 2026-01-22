@@ -38,8 +38,8 @@ sudo apt-get install doublezero=0.8.2-1
 
 The current recommended deployment for Testnet is:
 ```bash
-curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
-sudo apt-get install doublezero=0.8.2-1
+curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero-testnet/setup.deb.sh | sudo -E bash
+sudo apt-get install doublezero=0.8.3-1
 ```
 
 
@@ -53,8 +53,8 @@ sudo yum install doublezero-0.8.2
 
 The current recommended deployment for Testnet is:
 ```bash
-curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh | sudo -E bash
-sudo yum install doublezero-0.8.2
+curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero-testnet/setup.rpm.sh | sudo -E bash
+sudo yum install doublezero-0.8.3
 ```
 
 After installation, verify the daemon is running:
