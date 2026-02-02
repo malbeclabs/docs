@@ -33,13 +33,13 @@ Follow these steps depending on your operating system:
 The current recommended deployment for Mainnet-Beta is:
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
-sudo apt-get install doublezero=0.8.2-1
+sudo apt-get install doublezero
 ```
 
 The current recommended deployment for Testnet is:
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero-testnet/setup.deb.sh | sudo -E bash
-sudo apt-get install doublezero=0.8.4-1
+sudo apt-get install doublezero
 ```
 
 ### Rocky Linux / RHEL
@@ -47,13 +47,13 @@ sudo apt-get install doublezero=0.8.4-1
 The current recommended deployment for Mainnet-Beta is:
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh | sudo -E bash
-sudo yum install doublezero-0.8.2
+sudo yum install doublezero
 ```
 
 The current recommended deployment for Testnet is:
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero-testnet/setup.rpm.sh | sudo -E bash
-sudo yum install doublezero-0.8.4
+sudo yum install doublezero
 ```
 
 !!! info
