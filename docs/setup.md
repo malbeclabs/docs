@@ -132,10 +132,10 @@ note the `-i doublezero0`, `-o doublezero0` flags which restrict this rule to on
 
 Or UFW such as:
 ```
-sudo ufw allow in on dobulezero0 to any port 44880 proto udp
+sudo ufw allow in on doublezero0 to any port 44880 proto udp
 sudo ufw allow out on doublezero0 to any port 44880 proto udp
 ```
-note the `in on dobulezero0`, `out on doublezero0` flags which restrict this rule to only the DoubleZero interface 
+note the `in on doublezero0`, `out on doublezero0` flags which restrict this rule to only the DoubleZero interface 
 
 ## 3. Create New DoubleZero Identity
 
