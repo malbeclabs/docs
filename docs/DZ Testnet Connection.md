@@ -166,7 +166,7 @@ Detected public IP: 22.22.22.222
 Validator ID: ValidatorIdentity222222222222222222222222222
 Gossip IP: 22.22.22.222
 In Not in Leader scheduler
- ❌ This validator can not connect as a primary in DoubleZero 🖥️  💎. It is a not a leader scheduled validator.
+ ✅ This validator can only connect as a backup in DoubleZero 🖥️  🛟. It is not leader scheduled and cannot act as a primary validator.
 ```
 This output is expected. The backup node cannot be in the leader schedule at time of pass creation.
 
