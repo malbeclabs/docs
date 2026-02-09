@@ -1,575 +1,839 @@
-# Device Provisioning Guide for Contributors
+# Device Provisioning Guide
 
-This is the complete A-Z guide for provisioning a DoubleZero Device (DZD) from initial setup to full operation.
-
-**Prerequisites**: Before starting this guide, ensure you have:
-
-- Reviewed the [Contribute to DoubleZero](contribute.md) overview
-- Confirmed your hardware meets the [requirements](contribute.md#hardware-requirements)
-- Physically installed your DZD hardware in your data centers
-- Established management connectivity to your devices
-
-**What you'll accomplish**:
-
-1. Generate keypairs for service and telemetry operations
-2. Request access to private configuration repository
-3. Apply base device configuration
-4. Create device records onchain
-5. Configure device interfaces
-6. Establish WAN and DZX links
-7. Install Config and Telemetry agents
-8. Verify full device operation
+This guide walks you through provisioning a DoubleZero Device (DZD) from start to finish. Each phase matches the [Onboarding Checklist](contribute-overview.md#onboarding-checklist).
 
 ---
 
-## Provisioning Workflow
+## How It All Fits Together
+
+Before diving into the steps, here's the big picture of what you're building:
 
 ```mermaid
-flowchart LR
-    A[Create Keys] -->B[Request Repo Access]
-    B --> C[Install Device]
-    C --> D[Create Device]
-    D --> E[Create Device Interfaces]
-    E --> F[Create WAN Link]
-    E --> G[Create DZX Link]
-    G --> H[Accept DZX Link]
-    D --> J[Install Config Agent]
-    D --> K[Install Telemetry Agent]
+flowchart TB
+    subgraph Onchain
+        SC[DoubleZero Ledger]
+    end
+
+    subgraph Your Infrastructure
+        MGMT[Management Server<br/>DoubleZero CLI]
+        DZD[Your DZD<br/>Arista Switch]
+        DZD ---|WAN Link| DZD2[Your other DZD]
+    end
+
+    subgraph Other Contributor
+        OtherDZD[Their DZD]
+    end
+
+    subgraph Users
+        VAL[Validators]
+        RPC[RPC Nodes]
+    end
+
+    MGMT -.->|Registers devices,<br/>links, interfaces| SC
+    DZD ---|DZX Link| OtherDZD
+    VAL ---|Connect via Internet| DZD
+    RPC ---|Connect via Internet| DZD
 ```
 
 ---
 
-## Step 1: Onboarding Process
+## Phase 1: Prerequisites
 
-During the onboarding process, each contributor must provide a public key called the **service key** that will be used to interact with the DoubleZero CLI. This key will serve as the primary identity for executing network operations such as:
+Before you can provision a device, you need the physical hardware set up and some IP addresses allocated.
 
-- **Creating devices**
-- **Establishing links between devices and contributors**
+### What You Need
 
-The **service key** must be generated and securely stored by the contributor before it is submitted to the DoubleZero Foundation for authorization. This ensures that all CLI interactions can be cryptographically verified and associated with the correct contributor account.
+| Requirement | Why It's Needed |
+|-------------|-----------------|
+| **DZD Hardware** | Arista 7280CR3A switch (see [hardware specs](contribute.md#hardware-requirements)) |
+| **Rack Space** | 4U with proper airflow |
+| **Power** | Redundant feeds, ~4KW recommended |
+| **Management Access** | SSH/console access to configure the switch |
+| **Internet Connectivity** | For metrics publishing and to fetch configuration from the controller |
+| **Public IPv4 Block** | Minimum /29 for the DZ prefix pool (see below) |
 
-Contributors are responsible for safeguarding the private key associated with the provided service key.
+### Understanding Your DZ Prefix
+
+Your DZ prefix is a block of public IP addresses that the DoubleZero protocol manages for IP allocation.
+
+```mermaid
+flowchart LR
+    subgraph "Your /29 Block (8 IPs)"
+        IP1["First IP<br/>Reserved for<br/>your device"]
+        IP2["IP 2"]
+        IP3["IP 3"]
+        IP4["..."]
+        IP8["IP 8"]
+    end
+
+    IP1 -->|Assigned to| LO[Loopback100<br/>on your DZD]
+    IP2 -->|Allocated to| U1[User 1]
+    IP3 -->|Allocated to| U2[User 2]
+```
+
+**How DZ prefixes are used:**
+
+- **First IP**: Reserved for your device (assigned to Loopback100 interface)
+- **Remaining IPs**: Allocated to specific user types connecting to your DZD:
+    - `IBRLWithAllocatedIP` users
+    - `EdgeFiltering` users
+    - Multicast publishers
+- **IBRL users**: Do NOT consume from this pool (they use their own public IP)
+
+!!! warning "DZ Prefix Rules"
+    **You CANNOT use these addresses for:**
+
+    - Your own network equipment
+    - Point-to-point links on DIA interfaces
+    - Management interfaces
+    - Any infrastructure outside the DZ protocol
+
+    **Requirements:**
+
+    - Must be **globally routable (public)** IPv4 addresses
+    - Private IP ranges (10.x, 172.16-31.x, 192.168.x) are rejected by the smart contract
+    - **Minimum size: /29** (8 addresses), larger prefixes preferred (e.g., /28, /27)
+    - The entire block must be available — do not pre-allocate any addresses
+
+    If you need addresses for your own equipment (DIA interface IPs, management, etc.), use a **separate address pool**.
 
 ---
 
-## Step 2: Create Keys
+## Phase 2: Account Setup
 
-Each contributor has a private key used to send commands to DoubleZero. They also have a keypair that the agent uses to send metrics to the smart contracts, which store them and later process them to execute the rewards process.
+In this phase, you create the cryptographic keys that identify you and your devices on the network.
 
-### Generate the service key (one-time, not per device)
+### Where to Run the CLI
 
-Use your preferred tool **or** the CLI:
+!!! warning "Do NOT install the CLI on your switch"
+    The DoubleZero CLI (`doublezero`) should be installed on a **management server or VM**, not on your Arista switch.
+
+    ```mermaid
+    flowchart LR
+        subgraph "Management Server/VM"
+            CLI[DoubleZero CLI]
+            KEYS[Your Keypairs]
+        end
+
+        subgraph "Your DZD Switch"
+            CA[Config Agent]
+            TA[Telemetry Agent]
+        end
+
+        CLI -->|Creates devices, links| BC[Blockchain]
+        CA -->|Pulls config| CTRL[Controller]
+        TA -->|Submits metrics| BC
+    ```
+
+    | Install on Management Server | Install on Switch |
+    |-----------------------------|-------------------|
+    | `doublezero` CLI | Config Agent |
+    | Your service keypair | Telemetry Agent |
+    | Your metrics publisher keypair | Metrics publisher keypair (copy) |
+
+### What Are Keys?
+
+Think of keys like secure login credentials:
+
+- **Service Key**: Your contributor identity - used to run CLI commands
+- **Metrics Publisher Key**: Your device's identity for submitting telemetry data
+
+Both are cryptographic keypairs (a public key you share, a private key you keep secret).
+
+```mermaid
+flowchart LR
+    subgraph "Your Keys"
+        SK[Service Key<br/>~/.config/solana/id.json]
+        MK[Metrics Publisher Key<br/>~/.config/doublezero/metrics-publisher.json]
+    end
+
+    SK -->|Used for| CLI[CLI Commands<br/>doublezero device create<br/>doublezero link create]
+    MK -->|Used for| TEL[Telemetry Agent<br/>Submits metrics onchain]
+```
+
+### Step 2.1: Generate Your Service Key
+
+This is your main identity for interacting with DoubleZero.
 
 ```bash
 doublezero keygen
 ```
 
-### Generate the metrics (telemetry) key (one-time, not per device)
+This creates a keypair at the default location. The output shows your **public key** - this is what you'll share with DZF.
+
+### Step 2.2: Generate Your Metrics Publisher Key
+
+This key is used by the Telemetry Agent to sign metric submissions.
 
 ```bash
 doublezero keygen -o ~/.config/doublezero/metrics-publisher.json
 ```
 
----
+### Step 2.3: Submit Keys to DZF
 
-## Step 3: Request Access to Private Configuration Repository
+Contact the DoubleZero Foundation or Malbec Labs and provide:
 
-> ⚠️ **Note:**
-> Contributor managed configuration and additional steps for DZD provisioning is available within a dedicated GitHub repository. Please complete these tasks during new DZD and link onboarding.
+1. Your **service key public key**
+2. Your **GitHub username** (for repo access)
+
+They will:
+
+- Create your **contributor account** onchain
+- Grant access to the private **contributors repository**
+
+### Step 2.4: Verify Your Account
+
+Once confirmed, verify your contributor account exists:
+
+```bash
+doublezero contributor list
+```
+
+You should see your contributor code in the list.
+
+### Step 2.5: Access the Contributors Repository
 
 The [malbeclabs/contributors](https://github.com/malbeclabs/contributors) repository contains:
 
-- TCAM profile configurations
-- Access control lists (ACLs)
-- Security-sensitive documentation
+- Base device configurations
+- TCAM profiles
+- ACL configurations
+- Additional setup instructions
 
-**To request access:**
-
-1. Contact the DoubleZero Foundation or Malbec Labs
-2. Provide your GitHub username
-3. Confirm your service key has been registered
-4. Wait for access confirmation
-
-Once granted access, follow the instructions in this repository.
+Follow the instructions there for device-specific configuration.
 
 ---
 
-## Step 4: Device Installation – Physical and Logical Setup
+## Phase 3: Device Provisioning
 
-This section describes the steps for installing and configuring a device for operation within the DoubleZero network.
+Now you'll register your physical device on the blockchain and configure its interfaces.
 
-### 4.1 Recommended Physical Installation
+### Understanding Device Types
 
-- Install the device in the data center rack, ensuring correct airflow.
-- Connect with redundant power feeds to ensure uptime.
+```mermaid
+flowchart TB
+    subgraph "Edge Device"
+        E[Edge DZD]
+        EU[Users connect here]
+        EU --> E
+        E <-->|DZX Link| ED[Other DZD]
+    end
 
-### 4.2 Initial Network Access
+    subgraph "Transit Device"
+        T[Transit DZD]
+        T <-->|WAN Link| T2[Another DZD]
+        T <-->|DZX Link| TD[Other DZD]
+    end
 
-- Establish management connectivity to the device.
-- Configure Internet access.
+    subgraph "Hybrid Device"
+        H[Hybrid DZD]
+        HU[Users connect here]
+        HU --> H
+        H <-->|WAN Link| H2[Another DZD]
+        H <-->|DZX Link| HD[Other DZD]
+    end
+```
 
-### 4.3 Apply Recommended Configuration
+| Type | What It Does | When to Use |
+|------|--------------|-------------|
+| **Edge** | Accepts user connections only | Single location, user-facing only |
+| **Transit** | Moves traffic between devices | Backbone connectivity, no users |
+| **Hybrid** | Both user connections AND backbone | Most common - does everything |
 
-- Follow the configuration guides in the private contributors repository
-- Discuss any questions with DoubleZero Foundation / Malbec Labs
+### Step 3.1: Find Your Location and Exchange
 
----
-
-## Step 5: Device Creation
-
-### Device Types
-
-Before creating a device, determine which type best fits your deployment:
-
-| Device Type | Description | Requirements |
-|-------------|-------------|--------------|
-| **Edge** | Provides user connectivity to the DoubleZero network. Edge devices leverage CYOA interfaces to terminate users (validators, RPC operators) and connect them to the network. | - 1 or more CYOA interfaces<br>- Zero WAN links<br>- 1 or more DZX links<br> - 1x out-of-band management with Internet access (can reuse CYOA) |
-| **Transit** | Provides backbone connectivity within the DoubleZero network. Transit devices move traffic between DZDs but do not terminate user connections directly. | - Zero CYOA interfaces<br>- 2 or more WAN links (single contributor metro)<br>- 1x WAN link and 1 or more DZX link (multi-contributor metro)<br> - 1x out-of-band management with Internet access |
-| **Hybrid** | Combines both edge and transit functionality. | - 1 or more CYOA interfaces<br>- 1 or more WAN links (single contributor metro)<br>- 1 or more WAN links and 1 or more DZX links (multi-contributor metro)<br>- 1x out-of-band management with Internet access (can reuse CYOA) |
-
-### Create Command
-
-An authorized contributor can create their devices using the following command:
+Before creating your device, look up the codes for your data center location and nearest exchange:
 
 ```bash
-doublezero device create [OPTIONS] --code <CODE> --contributor <CONTRIBUTOR> --location <LOCATION> --exchange <EXCHANGE> --public-ip <PUBLIC_IP> --dz-prefixes <DZ_PREFIXES>
-```
-
-**Options:**
-
-```
---code <CODE>                            Unique device code
---contributor <CONTRIBUTOR>              Contributor (pubkey or code)
---device-type <DEVICE_TYPE>              Device type: hybrid (default), transit, edge
---location <LOCATION>                    Location (pubkey or code)
---exchange <EXCHANGE>                    Exchange (pubkey or code)
---public-ip <PUBLIC_IP>                  Device public IPv4 address
---dz-prefixes <DZ_PREFIXES>              List of DZ prefixes in CIDR format
---metrics-publisher <METRICS_PUBLISHER>  Metrics publisher public key (optional)
---mgmt-vrf <MGMT_VRF>                    Management VRF name (optional)
-```
-
-When running this command, the contributor must provide detailed information about the device to be connected to the DoubleZero Network.
-
-### Viewing Available Locations
-
-```bash
+# List available locations (data centers)
 doublezero location list
-```
 
-### Viewing Available Exchanges
-
-```bash
+# List available exchanges (interconnect points)
 doublezero exchange list
 ```
 
-### Example: Creating a Hybrid Device
+### Step 3.2: Create Your Device Onchain
+
+Register your device on the blockchain:
 
 ```bash
 doublezero device create \
-  --code lax-dz001 \
-  --contributor co01 \
+  --code <YOUR_DEVICE_CODE> \
+  --contributor <YOUR_CONTRIBUTOR_CODE> \
   --device-type hybrid \
-  --location lax \
-  --exchange xlax \
-  --public-ip "1.2.3.4" \
-  --dz-prefixes "100.0.0.0/16" \
-  --metrics-publisher <PUBKEY>
-```
-
----
-
-## Step 6: Creating Interfaces on a Device
-
-```bash
-doublezero device interface create [OPTIONS] <DEVICE> <NAME>
-```
-
-**Options:**
-
-```
-<DEVICE>                Device pubkey or code
-<NAME>                  Interface name
---loopback-type         Loopback type: vpnv4, ipv4, pim-rp-addr
---cir                   Committed Information Rate in Mbps (default: 0)
---vlan-id               VLAN ID (default: 0, range: 0-4094)
---user-tunnel-endpoint  Interface can terminate user tunnels
--w, --wait              Wait for on-chain confirmation before returning
+  --location <LOCATION_CODE> \
+  --exchange <EXCHANGE_CODE> \
+  --public-ip <DEVICE_PUBLIC_IP> \
+  --dz-prefixes <YOUR_DZ_PREFIX>
 ```
 
 **Example:**
 
 ```bash
-doublezero device interface create \
-  lax-dz001 Ethernet1/1
+doublezero device create \
+  --code nyc-dz001 \
+  --contributor acme \
+  --device-type hybrid \
+  --location EQX-NY5 \
+  --exchange nyc \
+  --public-ip "203.0.113.10" \
+  --dz-prefixes "198.51.100.0/28"
 ```
 
-> ⚠️ **Note:**
-> There is a current requirement to create two loopback interfaces to support internal DZ routing protocols:
-```bash
-doublezero device interface create lax-dz001 Loopback255 --loopback-type vpnv4
-doublezero device interface create lax-dz001 Loopback256 --loopback-type ipv4
-```
-
-### Creating CYOA Interfaces
-
-CYOA (Choose Your Own Adventure) interfaces allow contributors to register connectivity options for users to connect to the DoubleZero network. This includes DIA (Direct Internet Access) interfaces.
-
-> ⚠️ **Note:**
-> Onchain CYOA interface registration currently enables capacity planning and visibility only. Future releases will extend this to include automated configuration management.
-
-**Additional CYOA/DIA Options:**
+**Expected output:**
 
 ```
---interface-cyoa        CYOA type (see table below)
---interface-dia         DIA type: none, dia
---bandwidth             Bandwidth in Mbps (default: 0)
---mtu                   MTU (default: 1500)
---routing-mode          Routing mode: static (default), bgp
+Signature: 4vKz8H...truncated...7xPq2
 ```
 
-**CYOA Interface Types:**
-
-| Type | Description | Example Use Case |
-|------|-------------|------------------|
-| `gre-over-dia` | GRE tunnel over Direct Internet Access | Connection via ISP |
-| `gre-over-fabric` | GRE tunnel over fabric | Connection to local LAN |
-| `gre-over-private-peering` | GRE tunnel over private peering | Connection via Private Network Interconnect (PNI) |
-| `gre-over-public-peering` | GRE tunnel over public peering | Connection via Internet Exchange Point (IXP) |
-| `gre-over-cable` | GRE tunnel over cable | Connection to single end host |
-
-**DIA Interface Types:**
-
-| Type | Description |
-|------|-------------|
-| `none` | Not a DIA interface (default) |
-| `dia` | Direct Internet Access interface |
-
-**Example - Create a CYOA interface with GRE over DIA:**
+Verify your device was created:
 
 ```bash
-doublezero device interface create lax-dz001 Ethernet1/2 \
+doublezero device list | grep nyc-dz001
+```
+
+**Parameters explained:**
+
+| Parameter | What It Means |
+|-----------|---------------|
+| `--code` | A unique name for your device (e.g., `nyc-dz001`) |
+| `--contributor` | Your contributor code (given by DZF) |
+| `--device-type` | `hybrid`, `transit`, or `edge` |
+| `--location` | Data center code from `location list` |
+| `--exchange` | Nearest exchange code from `exchange list` |
+| `--public-ip` | The public IP where users connect to your device via internet |
+| `--dz-prefixes` | Your allocated IP block for users |
+
+### Step 3.3: Create Required Loopback Interfaces
+
+Every device needs two loopback interfaces for internal routing:
+
+```bash
+# VPNv4 loopback
+doublezero device interface create <DEVICE_CODE> Loopback255 --loopback-type vpnv4
+
+# IPv4 loopback
+doublezero device interface create <DEVICE_CODE> Loopback256 --loopback-type ipv4
+```
+
+**Expected output (for each command):**
+
+```
+Signature: 3mNx9K...truncated...8wRt5
+```
+
+### Step 3.4: Create Physical Interfaces
+
+Register the physical ports you'll use:
+
+```bash
+# Basic interface
+doublezero device interface create <DEVICE_CODE> Ethernet1/1
+```
+
+**Expected output:**
+
+```
+Signature: 7pQw2R...truncated...4xKm9
+```
+
+### Step 3.5: Create CYOA Interface (for Edge/Hybrid devices)
+
+If your device accepts user connections, you need a CYOA (Choose Your Own Adventure) interface. This tells the system how users connect to you.
+
+**CYOA Types Explained:**
+
+| Type | Plain English | Use When |
+|------|--------------|----------|
+| `gre-over-dia` | Users connect via regular internet | Most common - users connect via the dia to your DZD |
+| `gre-over-private-peering` | Users connect via private link | Users have direct connection to your network |
+| `gre-over-public-peering` | Users connect via IX | Users peer with you at an internet exchange |
+| `gre-over-fabric` | Users on same local network | Users in same data center |
+| `gre-over-cable` | Direct cable to user | Single dedicated user |
+
+**Example - Standard internet users:**
+
+```bash
+doublezero device interface create <DEVICE_CODE> Ethernet1/2 \
   --interface-cyoa gre-over-dia \
   --interface-dia dia \
   --bandwidth 10000 \
   --cir 1000 \
-  --vlan-id 100 \
   --user-tunnel-endpoint \
   --wait
 ```
 
-**Example - Create a DIA interface:**
+**Expected output:**
 
-```bash
-doublezero device interface create lax-dz001 Ethernet1/3 \
-  --interface-dia dia \
-  --bandwidth 10000 \
-  --cir 1000 \
-  --user-tunnel-endpoint \
-  --wait
+```
+Signature: 2wLp8N...truncated...5vHt3
 ```
 
-**Example - Create a CYOA interface for private peering:**
+**Parameters explained:**
+
+| Parameter | What It Means |
+|-----------|---------------|
+| `--interface-cyoa` | How users connect (see table above) |
+| `--interface-dia` | `dia` if this is an internet-facing port |
+| `--bandwidth` | Port speed in Mbps (10000 = 10Gbps) |
+| `--cir` | Committed rate in Mbps (guaranteed bandwidth) |
+| `--user-tunnel-endpoint` | This port accepts user tunnels |
+
+### Step 3.6: Verify Your Device
 
 ```bash
-doublezero device interface create lax-dz001 Ethernet1/4 \
-  --interface-cyoa gre-over-private-peering \
-  --bandwidth 10000 \
-  --cir 5000 \
-  --routing-mode bgp \
-  --user-tunnel-endpoint \
-  --wait
+doublezero device list
 ```
 
-> ⚠️ **Note:**
-> When registering CYOA/DIA interfaces, ensure you specify accurate bandwidth and CIR values as these are used for capacity planning and user onboarding.
+**Example output:**
 
-### Listing Device Interfaces
-
-```bash
-doublezero device interface list <DEVICE>
+```
+ account                                      | code      | contributor | location | exchange | device_type | public_ip    | dz_prefixes     | users | max_users | status    | health  | mgmt_vrf | owner
+ 7xKm9pQw2R4vHt3...                          | nyc-dz001 | acme        | EQX-NY5  | nyc      | hybrid      | 203.0.113.10 | 198.51.100.0/28 | 0     | 14        | activated | pending |          | 5FMtd5Woq5XAAg54...
 ```
 
-### Deleting a Device Interface
-
-```bash
-doublezero device interface delete [OPTIONS] <DEVICE> <NAME>
-```
-
-> ⚠️ **Note:**
-> Deleting an interface that is currently in use may cause service disruption.
+Your device should appear with status `activated`.
 
 ---
 
-## Step 7: Links Between Devices
+## Phase 4: Link Establishment & Agent Installation
 
-Links are used to interconnect devices:
+Links connect your device to the rest of the DoubleZero network.
 
-- **WAN Links** – Between devices of the same contributor.
-- **DZX Links** – Between devices from different contributors.
+### Understanding Links
 
-> ⚠️ DZX links must be explicitly accepted by the second contributor.
+```mermaid
+flowchart LR
+    subgraph "Your Network"
+        D1[Your DZD 1<br/>NYC]
+        D2[Your DZD 2<br/>LAX]
+    end
 
-### Creating a WAN Link
+    subgraph "Other Contributor"
+        O1[Their DZD<br/>NYC]
+    end
 
-```bash
-doublezero link create wan [OPTIONS] \
-  --code <CODE> \
-  --contributor <CONTRIBUTOR> \
-  --side-a <SIDE_A> \
-  --side-a-interface <SIDE_A_INTERFACE> \
-  --side-z <SIDE_Z> \
-  --side-z-interface <SIDE_Z_INTERFACE> \
-  --bandwidth <BANDWIDTH> \
-  --mtu <MTU> \
-  --delay-ms <DELAY_MS> \
-  --jitter-ms <JITTER_MS>
+    D1 ---|WAN Link<br/>Same contributor| D2
+    D1 ---|DZX Link<br/>Different contributors| O1
 ```
 
-### Listing Links
+| Link Type | Connects | Acceptance |
+|-----------|----------|------------|
+| **WAN Link** | Two of YOUR devices | Automatic (you own both) |
+| **DZX Link** | Your device to ANOTHER contributor | Requires their acceptance |
+
+### Step 4.1: Create WAN Links (if you have multiple devices)
+
+WAN links connect your own devices:
+
+```bash
+doublezero link create wan \
+  --code <LINK_CODE> \
+  --contributor <YOUR_CONTRIBUTOR> \
+  --side-a <DEVICE_1_CODE> \
+  --side-a-interface <INTERFACE_ON_DEVICE_1> \
+  --side-z <DEVICE_2_CODE> \
+  --side-z-interface <INTERFACE_ON_DEVICE_2> \
+  --bandwidth 10000 \
+  --mtu 9000 \
+  --delay-ms 20 \
+  --jitter-ms 1
+```
+
+**Example:**
+
+```bash
+doublezero link create wan \
+  --code nyc-lax-wan01 \
+  --contributor acme \
+  --side-a nyc-dz001 \
+  --side-a-interface Ethernet3/1 \
+  --side-z lax-dz001 \
+  --side-z-interface Ethernet3/1 \
+  --bandwidth 10000 \
+  --mtu 9000 \
+  --delay-ms 65 \
+  --jitter-ms 1
+```
+
+**Expected output:**
+
+```
+Signature: 5tNm7K...truncated...9pRw2
+```
+
+### Step 4.2: Create DZX Links
+
+DZX links connect your device directly to another contributor's DZD:
+
+```bash
+doublezero link create dzx \
+  --code <DEVICE_CODE_A:DEVICE_CODE_Z> \
+  --contributor <YOUR_CONTRIBUTOR> \
+  --side-a <YOUR_DEVICE_CODE> \
+  --side-a-interface <YOUR_INTERFACE> \
+  --side-z <OTHER_DEVICE_CODE> \
+  --bandwidth <BANDWIDTH in Kbps, Mbps, or Gbps> \
+  --mtu <MTU> \
+  --delay-ms <DELAY> \
+  --jitter-ms <JITTER>
+```
+
+**Expected output:**
+
+```
+Signature: 8mKp3W...truncated...2nRx7
+```
+
+After creating a DZX link, the other contributor must accept it:
+
+```bash
+# The OTHER contributor runs this
+doublezero link accept \
+  --code <LINK_CODE> \
+  --side-z-interface <THEIR_INTERFACE>
+```
+
+**Expected output (for the accepting contributor):**
+
+```
+Signature: 6vQt9L...truncated...3wPm4
+```
+
+### Step 4.3: Verify Links
 
 ```bash
 doublezero link list
 ```
 
-### Creating a DZX Link
+**Example output:**
 
-```bash
-doublezero link create dzx [OPTIONS] \
-  --code <CODE> \
-  --contributor <CONTRIBUTOR> \
-  --side-a <SIDE_A> \
-  --side-a-interface <SIDE_A_INTERFACE> \
-  --side-z <SIDE_Z> \
-  --bandwidth <BANDWIDTH> \
-  --mtu <MTU> \
-  --delay-ms <DELAY_MS> \
-  --jitter-ms <JITTER_MS>
+```
+ account                                      | code          | contributor | side_a_name | side_a_iface_name | side_z_name | side_z_iface_name | link_type | bandwidth | mtu  | delay_ms | jitter_ms | delay_override_ms | tunnel_id | tunnel_net      | status    | health  | owner
+ 8vkYpXaBW8RuknJq...                         | nyc-dz001:lax-dz001 | acme        | nyc-dz001   | Ethernet3/1       | lax-dz001   | Ethernet3/1       | WAN       | 10Gbps    | 9000 | 65.00ms  | 1.00ms    | 0.00ms            | 42        | 172.16.0.84/31  | activated | pending | 5FMtd5Woq5XAAg54...
 ```
 
-### Accepting a DZX Link
-
-```bash
-doublezero link accept [OPTIONS] \
-  --code <CODE> \
-  --side-z-interface <SIDE_Z_INTERFACE>
-```
-
-### Deleting a Link
-
-```bash
-doublezero link delete --pubkey <PUBKEY>
-```
-
-> ⚠️ **Important:**
-> - Please discuss with either DZF and/or Malbec Labs before deleting an existing production link.
+Links should show status `activated` once both sides are configured.
 
 ---
 
-## Step 8: Install Config Agent
+### Agent Installation
 
-The Config Agent manages device configuration, applying changes from the DoubleZero controller to your DZD.
+Two software agents run on your DZD:
 
-### Prerequisites
+```mermaid
+flowchart TB
+    subgraph "Your DZD"
+        CA[Config Agent]
+        TA[Telemetry Agent]
+        HW[Switch Hardware/Software]
+    end
 
-1. Supported network hardware: Arista Networks 7130LBR and 7280CR3A switches (see [hardware requirements](contribute.md#hardware-requirements)).
-2. Admin access to the Arista switch(es) that will be joining the DoubleZero network.
-3. Each device's DoubleZero public key, generated by running the command `doublezero device create`.
-4. Determine which Arista routing instance the agent will use to connect to the DoubleZero Controller. If you can ping the controller with `ping <W.X.Y.Z>` where W.X.Y.Z is the IP address of the DoubleZero Controller, you will use the default routing instance, named `default`. If you need to specify a VRF, for example with `ping vrf management <W.X.Y.Z>`, then your routing instance would be `management`.
+    CA -->|Polls for config| CTRL[Controller Service]
+    CA -->|Applies config| HW
 
-### Installation
+    HW -->|Metrics| TA
+    TA -->|Submits onchain| BC[DoubleZero Ledger]
+```
 
-Use these steps if your DoubleZero Agent will connect to the DoubleZero Controller using Arista's default routing instance.
+| Agent | What It Does |
+|-------|--------------|
+| **Config Agent** | Pulls configuration from controller, applies it to your switch |
+| **Telemetry Agent** | Measures latency/loss to other devices, reports metrics onchain |
 
-1. To allow agents running on the local devices, including doublezero-agent, to call the local device's API, enter the following into the EOS configuration:
-    ```
-    !
-    ! Replace the word "default" with the VRF name identified in prerequisites step 4
-    !
-    management api eos-sdk-rpc
-        transport grpc eapilocal
-            localhost loopback vrf default
-            service all
-            no disabled
-    ```
+### Step 4.4: Install Config Agent
 
-2. Download and install the current stable doublezero-agent binary package
+#### Enable the API on your switch
 
-    a. As admin on the EOS CLI, run the `bash` shell command and then enter the following commands:
-    ```
-        switch# bash
-        $ sudo bash
-        # cd /mnt/flash
-        # wget https://dl.cloudsmith.io/public/malbeclabs/doublezero/rpm/any-distro/any-version/x86_64/doublezero-agent_<X.Y.Z>_linux_amd64.rpm
-        # exit
-        $ exit
-    ```
+Add to EOS configuration:
 
-    !!! note
-        You can find more info about Arista EOS extensions [here](https://www.arista.com/en/um-eos/eos-managing-eos-extensions)
+```
+management api eos-sdk-rpc
+    transport grpc eapilocal
+        localhost loopback vrf default
+        service all
+        no disabled
+```
 
-    b. Back on the EOS CLI, set up the agent
-    ```
-        switch# copy flash:doublezero-agent_<X.Y.Z>_linux_amd64.rpm extension:
-        switch# extension doublezero-agent_<X.Y.Z>_linux_amd64.rpm
-        switch# copy installed-extensions boot-extensions
-    ```
-    c. Verify the extension
+!!! note "VRF Note"
+    Replace `default` with your management VRF name if different (e.g., `management`).
 
-    The Status should be "A, I, B".
-    ```
-        switch# show extensions
-        Name                                        Version/Release     Status     Extension
-        ------------------------------------------- ------------------- ---------- ---------
-        doublezero-agent_<X.Y.Z>_linux_amd64.rpm    X.Y.Z/1             A, I, B    1
+#### Download and install the agent
 
-        A: available | NA: not available | I: installed | F: forced | B: install at boot
-    ```
+```bash
+# Enter bash on the switch
+switch# bash
+$ sudo bash
+# cd /mnt/flash
+# wget AGENT_DOWNLOAD_URL
+# exit
+$ exit
 
-3. To set up and start the agent, go back to EOS command line, add the following to the Arista EOS configuration:
-    a. Configure the doublezero-agent
-    ```
-    !
-    ! If the VRF name identified in prerequisites step 4 is not "ns-default", prefix the following
-    ! exec command with `exec /sbin/ip netns exec <vrf>`
-    ! For example:
-    ! exec /sbin/ip netns exec ns-management /usr/local/bin/doublezero-agent -pubkey <PUBKEY>
-    !
-    daemon doublezero-agent
-    exec /usr/local/bin/doublezero-agent -pubkey <PUBKEY>
+# Install as EOS extension
+switch# copy flash:AGENT_FILENAME extension:
+switch# extension AGENT_FILENAME
+switch# copy installed-extensions boot-extensions
+```
+
+#### Verify the extension
+
+```bash
+switch# show extensions
+```
+
+The Status should be "A, I, B":
+
+```
+Name                                        Version/Release     Status     Extension
+------------------------------------------- ------------------- ---------- ---------
+AGENT_FILENAME    MAINNET_CLIENT_VERSION/1             A, I, B    1
+
+A: available | NA: not available | I: installed | F: forced | B: install at boot
+```
+
+#### Configure and start the agent
+
+Add to EOS configuration:
+
+```
+daemon doublezero-agent
+    exec /usr/local/bin/doublezero-agent -pubkey <YOUR_DEVICE_PUBKEY>
     no shut
-    ```
-    b. Verify that the agent is working
-    When the agent is up and running you should see the following log entries:
-    ```
-    switch# ceos2#show agent doublezero-agent logs
-    2025/01/21 18:17:52 main.go:71: Starting doublezero-agent
-    2025/01/21 18:17:52 main.go:72: doublezero-agent controller: 18.116.166.35:7000
-    2025/01/21 18:17:52 main.go:73: doublezero-agent sleep-interval-in-seconds: 5.000000
-    2025/01/21 18:17:52 main.go:74: doublezero-agent controller-timeout-in-seconds: 2.000000
-    2025/01/21 18:17:52 main.go:75: doublezero-agent pubkey: 111111G5zfGFHe9aek69vLPkXTZnkozyBm468PhitD7U
-    2025/01/21 18:17:52 main.go:76: doublezero-agent device: 127.0.0.1:9543
-    2025/01/21 18:17:52 dzclient.go:32: controllerAddressAndPort 18.116.166.35:7000
-    ```
-
-### Verify Config Agent Log Output
-
-```
-show agent doublezero-agent log
 ```
 
----
-
-## Step 9: Install Telemetry Agent
-
-The Telemetry Agent collects and submits performance metrics from your DZD to the DoubleZero ledger.
-
-### Prerequisites
-
-1. Supported network hardware: Arista Networks 7130 and 7280 switches (see [hardware requirements](contribute.md#hardware-requirements)).
-2. Admin access to the Arista switch(es) that will be joining the DoubleZero network.
-3. Each device's DoubleZero account. This is visible in `doublezero device list` following the device's creation.
-4. Determine which Arista routing instance the agent will use to connect to the DoubleZero Ledger. If you can ping the ledger with `ping doublezero-mainnet-beta.rpcpool.com`, you will use the default routing instance, named `default`. If you need to specify a VRF, for example with `ping vrf management doublezero-mainnet-beta.rpcpool.com`, then your routing instance would be `management`.
-
-### Installation
-
-Use these steps if your DoubleZero Agent will connect to the DoubleZero Controller using Arista's default routing instance.
-
-1. Install a metrics publisher keypair
-
-    a. Outside of the device, generate a keypair:
-
-      ```sh
-      doublezero keygen -o ~/.config/doublezero/metrics-publisher.json
-      ```
-
-    b. Save the keypair on the device at `/mnt/flash/metrics-publisher-keypair.json`
-
-      ```sh
-      scp ~/.config/doublezero/metrics-publisher.json <DZD>:/mnt/flash/metrics-publisher-keypair.json
-      ```
-
-    c. Register it onchain on the DoubleZero ledger:
-
-      ```sh
-      doublezero device update --pubkey <DEVICE_ACCOUNT> --metrics-publisher <METRICS_PUBLISHER_PUBKEY>
-      ```
-
-2. Download and install the current stable doublezero-telemetry binary package
-
-    a. As admin on the EOS CLI, run the `bash` shell command and then enter the following commands:
-
-      ```
-      switch# bash
-      $ sudo bash
-      # cd /mnt/flash
-      # wget https://dl.cloudsmith.io/public/malbeclabs/doublezero/rpm/any-distro/any-version/x86_64/doublezero-device-telemetry-agent_<X.Y.Z>_linux_amd64.rpm
-      # exit
-      $ exit
-      ```
-
-    !!! note
-        You can find more info about Arista EOS extensions [here](https://www.arista.com/en/um-eos/eos-managing-eos-extensions)
-
-    b. Back on the EOS CLI, set up the agent
-
-      ```
-      switch# copy flash:doublezero-device-telemetry-agent_<X.Y.Z>_linux_amd64.rpm extension:
-      switch# extension doublezero-device-telemetry-agent_<X.Y.Z>_linux_amd64.rpm
-      switch# copy installed-extensions boot-extensions
-      ```
-
-    c. Verify the extension
-
-    The Status should be "A, I, B".
-
-      ```
-      switch# show extensions
-      Name                                                      Version/Release     Status     Extension
-      --------------------------------------------------------- ------------------- ---------- ---------
-      doublezero-device-telemetry-agent_<X.Y.Z>_linux_amd64.rpm    X.Y.Z/1             A, I, B    1
-
-      A: available | NA: not available | I: installed | F: forced | B: install at boot
-      ```
-
-3. To set up and start the agent, go back to EOS command line, add the following to the Arista EOS configuration:
-    a. Configure the doublezero-telemetry
-
+!!! note "VRF Note"
+    If your management VRF is not `default` (i.e. the namespace is not `ns-default`), prefix the exec command with `exec /sbin/ip netns exec ns-<VRF>`. For example, if your VRF is `management`:
     ```
-    !
-    ! If the VRF name identified in prerequisites step 4 is not "ns-default", include a CLI arg of
-    ! `--management-namespace <vrf>` on the following `exec` command.
-    ! For example:
-    ! exec /usr/local/bin/doublezero-telemetry --management-namespace ns-management ...
-    !
-    daemon doublezero-telemetry
+    daemon doublezero-agent
+        exec /sbin/ip netns exec ns-management /usr/local/bin/doublezero-agent -pubkey <YOUR_DEVICE_PUBKEY>
+        no shut
+    ```
+
+Get your device pubkey from `doublezero device list` (the `account` column).
+
+#### Verify it's running
+
+```bash
+switch# show agent doublezero-agent logs
+```
+
+You should see "Starting doublezero-agent" and successful controller connections.
+
+### Step 4.5: Install Telemetry Agent
+
+#### Copy the metrics publisher key to your device
+
+```bash
+scp ~/.config/doublezero/metrics-publisher.json <SWITCH_IP>:/mnt/flash/metrics-publisher-keypair.json
+```
+
+#### Register the metrics publisher onchain
+
+```bash
+doublezero device update \
+  --pubkey <DEVICE_ACCOUNT> \
+  --metrics-publisher <METRICS_PUBLISHER_PUBKEY>
+```
+
+Get the pubkey from your metrics-publisher.json file.
+
+#### Download and install the agent
+
+```bash
+switch# bash
+$ sudo bash
+# cd /mnt/flash
+# wget TELEMETRY_DOWNLOAD_URL
+# exit
+$ exit
+
+# Install as EOS extension
+switch# copy flash:TELEMETRY_FILENAME extension:
+switch# extension TELEMETRY_FILENAME
+switch# copy installed-extensions boot-extensions
+```
+
+#### Verify the extension
+
+```bash
+switch# show extensions
+```
+
+The Status should be "A, I, B":
+
+```
+Name                                        Version/Release     Status     Extension
+------------------------------------------- ------------------- ---------- ---------
+TELEMETRY_FILENAME    MAINNET_CLIENT_VERSION/1             A, I, B    1
+
+A: available | NA: not available | I: installed | F: forced | B: install at boot
+```
+
+#### Configure and start the agent
+
+Add to EOS configuration:
+
+```
+daemon doublezero-telemetry
     exec /usr/local/bin/doublezero-telemetry --local-device-pubkey <DEVICE_ACCOUNT> --env mainnet --keypair /mnt/flash/metrics-publisher-keypair.json
     no shut
+```
+
+!!! note "VRF Note"
+    If your management VRF is not `default` (i.e. the namespace is not `ns-default`), add `--management-namespace ns-<VRF>` to the exec command. For example, if your VRF is `management`:
     ```
-    b. Verify that the agent is working
-    When the agent is up and running you should see the following log entries:
-    ```
-    switch# ceos2#show agent doublezero-telemetry logs
-    time=2025-08-18T18:54:04.341Z level=INFO msg="Starting telemetry collector" twampReflector=0.0.0.0:862 localDevicePK=<DEVICE_ACCOUNT> probeInterval=10s submissionInterval=1m0s
-    time=2025-08-18T18:54:04.342Z level=INFO msg="Starting peer discovery" refreshInterval=10s
-    time=2025-08-18T18:54:04.342Z level=INFO msg="Starting submission loop" interval=1m0s maxRetries=5 metricsPublisherPK=<METRICS_PUBLISHER_PUBKEY>
-    time=2025-08-18T18:54:04.342Z level=INFO msg="Starting probe loop"
-    time=2025-08-18T18:54:14.363Z level=DEBUG msg="Refreshed peers" devic
+    daemon doublezero-telemetry
+        exec /usr/local/bin/doublezero-telemetry --management-namespace ns-management --local-device-pubkey <DEVICE_ACCOUNT> --env mainnet --keypair /mnt/flash/metrics-publisher-keypair.json
+        no shut
     ```
 
-### Verify Telemetry Agent Log Output
+#### Verify it's running
+
+```bash
+switch# show agent doublezero-telemetry logs
+```
+
+You should see "Starting telemetry collector" and "Starting submission loop".
+
+---
+
+## Phase 5: Link Burn-in
+
+!!! warning "All new links must burn in before carrying traffic"
+    New links must be **drained for at least 24 hours** before being activated for production traffic. This burn-in requirement is defined in [RFC12: Network Provisioning](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc12-network-provisioning.md), which specifies ~200,000 DZ Ledger slots (~20 hours) of clean metrics before a link is ready for service.
+
+With agents installed and running, monitor your links on [metrics.doublezero.xyz](https://metrics.doublezero.xyz) for at least 24 consecutive hours:
+
+- **"DoubleZero Device-Link Latencies"** dashboard — verify **zero packet loss** on the link over time
+- **"DoubleZero Network Metrics"** dashboard — verify **zero errors** on your links
+
+Only undrain the link once the burn-in period shows a clean link with zero loss and zero errors.
+
+---
+
+## Phase 6: Verification & Activation
+
+Run through this checklist to confirm everything is working.
+
+!!! warning "Your device starts locked (`max_users = 0`)"
+    When a device is created, `max_users` is set to **0** by default. This means no users can connect to it yet. This is intentional — you must verify everything works before accepting user traffic.
+
+    **Before setting `max_users` above 0, you must:**
+
+    1. Confirm all links have completed their **24-hour burn-in** with zero loss/errors on [metrics.doublezero.xyz](https://metrics.doublezero.xyz)
+    2. **Coordinate with DZ/Malbec Labs** to run a connectivity test:
+        - Can a test user connect to your device?
+        - Does the user receive routes over the DZ network?
+        - Can the user route traffic over the DZ network end-to-end?
+    3. Only after DZ/ML confirms the tests pass, set max_users to 96:
+
+    ```bash
+    doublezero device update --pubkey <DEVICE_ACCOUNT> --max-users 96
+    ```
+
+### Device Checks
+
+```bash
+# Your device should appear with status "activated"
+doublezero device list | grep <YOUR_DEVICE_CODE>
+```
+
+**Expected output:**
 
 ```
-show agent doublezero-telemetry log
+ 7xKm9pQw2R4vHt3... | nyc-dz001 | acme | EQX-NY5 | nyc | hybrid | 203.0.113.10 | 198.51.100.0/28 | 0 | 14 | activated | pending | | 5FMtd5Woq5XAAg54...
+```
+
+```bash
+# Your interfaces should be listed
+doublezero device interface list | grep <YOUR_DEVICE_CODE>
+```
+
+**Expected output:**
+
+```
+ nyc-dz001 | Loopback255 | loopback | vpnv4 | none | none | 0 | 0 | 1500 | static | 0 | 172.16.1.91/32  | 56 | false | activated
+ nyc-dz001 | Loopback256 | loopback | ipv4  | none | none | 0 | 0 | 1500 | static | 0 | 172.16.1.100/32 | 0  | false | activated
+ nyc-dz001 | Ethernet1/1 | physical | none  | none | none | 0 | 0 | 1500 | static | 0 |                 | 0  | false | activated
+```
+
+### Link Checks
+
+```bash
+# Links should show status "activated"
+doublezero link list | grep <YOUR_DEVICE_CODE>
+```
+
+**Expected output:**
+
+```
+ 8vkYpXaBW8RuknJq... | nyc-lax-wan01 | acme | nyc-dz001 | Ethernet3/1 | lax-dz001 | Ethernet3/1 | WAN | 10Gbps | 9000 | 65.00ms | 1.00ms | 0.00ms | 42 | 172.16.0.84/31 | activated | pending | 5FMtd5Woq5XAAg54...
+```
+
+### Agent Checks
+
+On the switch:
+
+```bash
+# Config agent should show successful config pulls
+switch# show agent doublezero-agent logs | tail -20
+
+# Telemetry agent should show successful submissions
+switch# show agent doublezero-telemetry logs | tail -20
+```
+
+### Final Verification Diagram
+
+```mermaid
+flowchart TB
+    subgraph "Verification Checklist"
+        D[Device Status: activated?]
+        I[Interfaces: registered?]
+        L[Links: activated?]
+        CA[Config Agent: pulling config?]
+        TA[Telemetry Agent: submitting metrics?]
+    end
+
+    D --> PASS
+    I --> PASS
+    L --> PASS
+    CA --> PASS
+    TA --> PASS
+
+    PASS[All Checks Pass] --> NOTIFY[Notify DZF/Malbec Labs<br/>You are technically ready!]
 ```
 
 ---
 
-## Provisioning Complete
+## Troubleshooting
 
-Once you have completed all steps above, your DZD is fully provisioned and operational on the DoubleZero network.
+### Device creation fails
 
-**Next Steps:**
+- Verify your service key is authorized (`doublezero contributor list`)
+- Check location and exchange codes are valid
+- Ensure DZ prefix is a valid public IP range
 
-- Review the [Operations Guide](contribute-operations.md) for agent upgrades and monitoring
-- Contact DoubleZero Foundation / Malbec Labs if you encounter any issues
+### Link stuck in "requested" status
+
+- DZX links require acceptance by the other contributor
+- Contact them to run `doublezero link accept`
+
+### Config Agent not connecting
+
+- Verify management network has internet access
+- Check VRF configuration matches your setup
+- Ensure device pubkey is correct
+
+### Telemetry Agent not submitting
+
+- Verify metrics publisher key is registered onchain
+- Check the keypair file exists on the switch
+- Ensure device account pubkey is correct
+
+---
+
+## Next Steps
+
+- Review the [Operations Guide](contribute-operations.md) for agent upgrades and link management
+- Check the [Glossary](glossary.md) for term definitions
+- Contact DZF/Malbec Labs if you encounter issues

@@ -1,5 +1,6 @@
 # Operations Guide for Contributors
 
+
 This guide covers the ongoing operational tasks for maintaining your DoubleZero Devices (DZDs), including agent upgrades, device/interface updates, and link management.
 
 **Prerequisites**: Before using this guide, ensure you have:
@@ -21,7 +22,7 @@ doublezero device update --pubkey <DEVICE_PUBKEY> [OPTIONS]
 
 | Option | Description |
 |--------|-------------|
-| `--device-type <TYPE>` | Change operating mode: `hybrid`, `transit`, `edge` (see [Device Types](contribute-provisioning.md#device-types)) |
+| `--device-type <TYPE>` | Change operating mode: `hybrid`, `transit`, `edge` (see [Device Types](contribute-provisioning.md#understanding-device-types)) |
 | `--location <LOCATION>` | Move device to a different location |
 | `--metrics-publisher <PUBKEY>` | Change the metrics publisher key |
 
@@ -35,7 +36,7 @@ Use `doublezero device interface update` to modify existing interfaces. This com
 doublezero device interface update <DEVICE> <NAME> [OPTIONS]
 ```
 
-For the full list of interface options including CYOA/DIA settings, see [Creating Interfaces](contribute-provisioning.md#step-6-creating-interfaces-on-a-device).
+For the full list of interface options including CYOA/DIA settings, see [Creating Interfaces](contribute-provisioning.md#step-35-create-cyoa-interface-for-edgehybrid-devices).
 
 **Example - Add CYOA settings to an existing interface:**
 
@@ -66,7 +67,7 @@ When a new version of the Config Agent is released, follow these steps to upgrad
 switch# bash
 $ sudo bash
 # cd /mnt/flash
-# wget https://dl.cloudsmith.io/public/malbeclabs/doublezero/rpm/any-distro/any-version/x86_64/doublezero-agent_<X.Y.Z>_linux_amd64.rpm
+# wget AGENT_DOWNLOAD_URL
 # exit
 $ exit
 ```
@@ -78,17 +79,17 @@ First, find the filename of the old version:
 switch# show extensions
 ```
 
-Run the following commands to remove the old version. Replace `<W.X.Y>` with the old version from the output above:
+Run the following commands to remove the old version. Replace `<OLD_VERSION>` with the old version from the output above:
 ```
-switch# delete flash:doublezero-agent_<W.X.Y>_linux_amd64.rpm
-switch# delete extension:doublezero-agent_<W.X.Y>_linux_amd64.rpm
+switch# delete flash:doublezero-agent_<OLD_VERSION>_linux_amd64.rpm
+switch# delete extension:doublezero-agent_<OLD_VERSION>_linux_amd64.rpm
 ```
 
 ### 3. Install the new version
 
 ```
-switch# copy flash:doublezero-agent_<X.Y.Z>_linux_amd64.rpm extension:
-switch# extension doublezero-agent_<X.Y.Z>_linux_amd64.rpm
+switch# copy flash:AGENT_FILENAME extension:
+switch# extension AGENT_FILENAME
 switch# copy installed-extensions boot-extensions
 ```
 
@@ -97,11 +98,6 @@ switch# copy installed-extensions boot-extensions
 The Status should be "A, I, B".
 ```
 switch# show extensions
-Name                                        Version/Release    Status     Extension
-------------------------------------------- ------------------ ---------- ---------
-doublezero-agent_<X.Y.Z>_linux_amd64.rpm    <X.Y.Z>/1          A, I, B    1
-
-A: available | NA: not available | I: installed | F: forced | B: install at boot
 ```
 
 ### Verify Config Agent Log Output
@@ -122,7 +118,7 @@ When a new version of the Telemetry Agent is released, follow these steps to upg
 switch# bash
 $ sudo bash
 # cd /mnt/flash
-# wget https://dl.cloudsmith.io/public/malbeclabs/doublezero/rpm/any-distro/any-version/x86_64/doublezero-device-telemetry-agent_<X.Y.Z>_linux_amd64.rpm
+# wget TELEMETRY_DOWNLOAD_URL
 # exit
 $ exit
 ```
@@ -134,17 +130,17 @@ First, find the filename of the old version:
 switch# show extensions
 ```
 
-Run the following commands to remove the old version. Replace `<W.X.Y>` with the old version from the output above:
+Run the following commands to remove the old version. Replace `<OLD_VERSION>` with the old version from the output above:
 ```
-switch# delete flash:doublezero-device-telemetry-agent_<W.X.Y>_linux_amd64.rpm
-switch# delete extension:doublezero-device-telemetry-agent_<W.X.Y>_linux_amd64.rpm
+switch# delete flash:doublezero-device-telemetry-agent_<OLD_VERSION>_linux_amd64.rpm
+switch# delete extension:doublezero-device-telemetry-agent_<OLD_VERSION>_linux_amd64.rpm
 ```
 
 ### 3. Install the new version
 
 ```
-switch# copy flash:doublezero-device-telemetry-agent_<X.Y.Z>_linux_amd64.rpm extension:
-switch# extension doublezero-device-telemetry-agent_<X.Y.Z>_linux_amd64.rpm
+switch# copy flash:TELEMETRY_FILENAME extension:
+switch# extension TELEMETRY_FILENAME
 switch# copy installed-extensions boot-extensions
 ```
 
@@ -153,11 +149,6 @@ switch# copy installed-extensions boot-extensions
 The Status should be "A, I, B".
 ```
 switch# show extensions
-Name                                                      Version/Release    Status     Extension
---------------------------------------------------------- ------------------ ---------- ---------
-doublezero-device-telemetry-agent_<X.Y.Z>_linux_amd64.rpm    <X.Y.Z>/1          A, I, B    1
-
-A: available | NA: not available | I: installed | F: forced | B: install at boot
 ```
 
 ### Verify Telemetry Agent Log Output

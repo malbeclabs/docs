@@ -1,8 +1,12 @@
 # How to set up DoubleZero
+
+!!! info "Terminology"
+    New to DoubleZero? See the [Glossary](glossary.md) for definitions of terms like [doublezerod](glossary.md#doublezerod), [IBRL](glossary.md#ibrl-increase-bandwidth-reduce-latency), and [DZD](glossary.md#dzd-doublezero-device).
+
 !!! warning "By connecting to the DoubleZero I agree to the [DoubleZero Terms of Service](https://doublezero.xyz/terms-protocol)"
 
-> ⚠️ **Note for Contributors:**
-> This setup guide is for **users** (validators, RPC operators) who want to connect to the DoubleZero network. The prerequisites below (public IP, firewall rules, etc.) are required for establishing a network connection. If you are a **contributor** only performing administrative CLI tasks (creating devices, links, interfaces), these network prerequisites do not apply.
+!!! info "Note for Contributors"
+    This setup guide is for **users** (validators, RPC operators) who want to connect to the DoubleZero network. The prerequisites below (public IP, firewall rules, etc.) are required for establishing a network connection. If you are a **contributor** only performing administrative CLI tasks (creating devices, links, interfaces), these network prerequisites do not apply.
 
 ## Prerequisites
 !!! warning inline end
@@ -25,6 +29,11 @@
 When onboarding to DoubleZero, start by establishing identities. On your server, generate a **DoubleZero identity**, represented by a public key called the **DoubleZero ID**. This key is how DoubleZero recognizes your machine.
 
 ## 1. Install DoubleZero Packages
+
+!!! info "Current Versions"
+    | Package | Mainnet-Beta | Testnet |
+    |---------|-------------|---------|
+    | `doublezero` | `MAINNET_CLIENT_VERSION` | `TESTNET_CLIENT_VERSION` |
 
 Follow these steps depending on your operating system:
 
