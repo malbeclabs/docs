@@ -22,11 +22,11 @@ nav:
       - Solana:
         - Mainnet-Beta Connection: DZ Mainnet-beta Connection.md
         - Testnet Connection: DZ Testnet Connection.md
-        - Non-Validator Connection: Non-Validator Connection.md
         - Multicast Mode: connect-multicast.md
         - Paying Fees: paying-fees.md
         - Paying Fees with 2Z: paying-fees2z.md
         - Troubleshooting: troubleshooting.md
+      - Non-Validator Connection: Non-Validator Connection.md
       - New Tenant: New Tenant.md
   - Contributors:
     - Overview: contribute-overview.md
