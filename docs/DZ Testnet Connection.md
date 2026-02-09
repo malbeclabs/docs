@@ -68,6 +68,14 @@ Finally, you will submit a **connection request to DoubleZero**. This request co
 
 This guide allows for 1 Primary Validator to register itself, and up to 3 backup/failover machines at the same time.
 
+## Prerequisites
+
+- Solana CLI installed and on $PATH
+- For validators: Permission to access to the validator identity keypair file (e.g., validator-keypair.json) under the sol user
+- For validators: Verify the Identity key of Solana validator being connected has at least 1 SOL on it
+- Firewall rules permit outbound connections for DoubleZero and Solana RPC as needed including 
+ GRE (ip proto 47) and BGP (169.254.0.0/16 on tcp/179)
+
 !!! info
     The Validator ID will be checked against Solana gossip to determine the target IP. The target IP, and the DoubleZero ID will then be used when opening a GRE tunnel between your machine and the target DoubleZero Device. 
     
@@ -117,8 +125,25 @@ doublezero latency
 Mainnet output will be identical in structure, but with many more available devices.
 </details>
 
+ ## 2. Open port 44880
 
-## 2. Attest Validator Ownership
+Users need to open port 44880 to utilize some [routing features](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc7-client-route-liveness.md).
+
+To open port 44880 you could update IP tables such as:
+```
+sudo iptables -A INPUT -i doublezero0 -p udp --dport 44880 -j ACCEPT
+sudo iptables -A OUTPUT -o doublezero0 -p udp --dport 44880 -j ACCEPT
+```
+note the `-i doublezero0`, `-o doublezero0` flags which restrict this rule to only the DoubleZero interface 
+
+Or UFW such as:
+```
+sudo ufw allow in on doublezero0 to any port 44880 proto udp
+sudo ufw allow out on doublezero0 to any port 44880 proto udp
+```
+note the `in on doublezero0`, `out on doublezero0` flags which restrict this rule to only the DoubleZero interface 
+
+## 3. Attest Validator Ownership
 
 With your DoubleZero Environment set, it is now time to attest to your Validator Ownership.
 
@@ -222,7 +247,7 @@ Backup validator 🖥️ 🛡️:
 ```
 Note the output at the end of this command. It is the structure for the next step.
 
-## 3. Generate Signature
+## 4. Generate Signature
 
 At the end of the last step, we received a pre-formatted output for `solana sign-offchain-message` 
 
@@ -240,7 +265,7 @@ From the above output we will run this command on the **Primary Validator** mach
   Signature111111rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7
 ```
 
-## 4. Initiate a Connection Request in DoubleZero
+## 5. Initiate a Connection Request in DoubleZero
 
 Use the `request-validator-access` command to create an account on Solana for the connection request. The DoubleZero Sentinel agent detects the new account, validates its identity and signature, and creates the access pass in DoubleZero so the server can establish a connection.
 
@@ -267,7 +292,7 @@ Request Solana validator access: Transaction22222222VaB8FMqM2wEBXyV5THpKRXWrPtDQ
 
 If successful, DoubleZero will register the primary with its backups. You may now failover between the IPs registered in the access pass. DoubleZero will maintain connectivity automatically when switching to backup nodes registered in this way.
 
-## 5. Connect in IBRL Mode
+## 6. Connect in IBRL Mode
 
 On the server, with the user which will connect to DoubleZero, run the `connect` command to establish the connection to DoubleZero.
 
