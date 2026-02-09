@@ -32,11 +32,14 @@ nav:
     - Device Provisioning: contribute-provisioning.md
     - Operations: contribute-operations.md
   - Architecture: architecture.md
+  - Glossary: glossary.md
 markdown_extensions:
   - admonition
   - pymdownx.details
   - pymdownx.snippets
   - pymdownx.caret
+  - pymdownx.tasklist:
+      custom_checkbox: true
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
@@ -48,6 +51,7 @@ markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
 extra_javascript:
+  - javascripts/cloudsmith-versions.js
   - javascripts/mathjax.js
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
