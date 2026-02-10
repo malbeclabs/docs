@@ -5,8 +5,6 @@
 
 !!! warning "By connecting to the DoubleZero I agree to the [DoubleZero Terms of Service](https://doublezero.xyz/terms-protocol)"
 
-!!! info "Note for Contributors"
-    This setup guide is for **users** (validators, RPC operators) who want to connect to the DoubleZero network. The prerequisites below (public IP, firewall rules, etc.) are required for establishing a network connection. If you are a **contributor** only performing administrative CLI tasks (creating devices, links, interfaces), these network prerequisites do not apply.
 
 ## Prerequisites
 !!! warning inline end
@@ -15,18 +13,13 @@
 - x86_64 server 
 - Supported OS: Ubuntu 22.04+ or Debian 11+, or Rocky Linux / RHEL 8+
 - Root or sudo privileges on the server where DoubleZero will run
-- Solana CLI installed and on $PATH
-- For validators: Permission to access to the validator identity keypair file (e.g., validator-keypair.json) under the sol user
-- For validators: Verify the Identity key of Solana validator being connected has at least 1 SOL on it
-- Firewall rules permit outbound connections for DoubleZero and Solana RPC as needed including 
- GRE (ip proto 47) and BGP (169.254.0.0/16 on tcp/179)
 - Optional but useful: jq and curl for debugging
 
-
-## Steps
 ## Connecting to DoubleZero
 
-When onboarding to DoubleZero, start by establishing identities. On your server, generate a **DoubleZero identity**, represented by a public key called the **DoubleZero ID**. This key is how DoubleZero recognizes your machine.
+DoubleZero Testnet and DoubleZero Mainnet-Beta are physically distinct networks. Please choose the appropriate network during install.
+
+When onboarding to DoubleZero you will establish a **DoubleZero identity**, represented by a public key called the **DoubleZero ID**. This key is pat of how DoubleZero recognizes your machine.
 
 ## 1. Install DoubleZero Packages
 
@@ -96,60 +89,14 @@ sudo yum install doublezero
         ```
     The same steps may be completed to move a Mainnet-Beta machine to Testnet, by replacing the step 3 with the appropriate install command above.
 
-
-After installation, verify the daemon is running:
-
-```bash
-sudo systemctl status doublezerod
-sudo journalctl -u doublezerod
-```
-
 #### Check the status of `doublezerod`
 
-After the package is installed, a new systemd unit is installed, activated and started.  To see the status:
+After the package is installed, a new systemd unit is installed, activated and started. To see the status you may run:
 ```
 sudo systemctl status doublezerod
 ```
-To see the doublezerod logs, look in the journal:
-```
-sudo journalctl -u doublezerod
-```
 
-#### Create doublezero config directory
-
-```
-mkdir -p ~/.config/doublezero
-```
-
-####Add your Solana id.json to the doublezero config directory and check balance
-
-Copy or link the `id.json` you want to use with DoubleZero to the doublezero config directory.
-
-```
-sudo cp </path/to/id.json> ~/.config/doublezero/
-```
-## 2. Open port 44880
-
-Users need to open port 44880 to utilize some [routing features](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc7-client-route-liveness.md).
-
-To open port 44880 you could update IP tables such as:
-```
-sudo iptables -A INPUT -i doublezero0 -p udp --dport 44880 -j ACCEPT
-sudo iptables -A OUTPUT -o doublezero0 -p udp --dport 44880 -j ACCEPT
-```
-note the `-i doublezero0`, `-o doublezero0` flags which restrict this rule to only the DoubleZero interface 
-
-Or UFW such as:
-```
-sudo ufw allow in on doublezero0 to any port 44880 proto udp
-sudo ufw allow out on doublezero0 to any port 44880 proto udp
-```
-note the `in on doublezero0`, `out on doublezero0` flags which restrict this rule to only the DoubleZero interface 
-
-## 3. Create New DoubleZero Identity
-
-!!! note inline end
-    If you have an existing DoubleZero Identity skip to step 3
+## 2. Create New DoubleZero Identity
 
 Create a DoubleZero Identity on your server with the following command:
 
@@ -157,7 +104,21 @@ Create a DoubleZero Identity on your server with the following command:
 doublezero keygen
 ```
 
-## 4. Retrieve the server's DoubleZero identity
+!!! info
+    If you have an existing ID you would like to use, you may follow these optional steps.
+
+    Create doublezero config directory
+
+    ```
+    mkdir -p ~/.config/doublezero
+    ```
+
+    Copy or link the `id.json` you want to use with DoubleZero to the doublezero config directory.
+
+    ```
+    sudo cp </path/to/id.json> ~/.config/doublezero/
+    ```
+## 3. Retrieve the server's DoubleZero identity
 
 Review your DoubleZero Identity. This identity will be used to create the connection between your machine and DoubleZero
 
@@ -170,7 +131,7 @@ doublezero address
 YourDoubleZeroAddress11111111111111111111111111111
 ```
 
-## 5. Check that doublezerod has discovered DZ devices
+## 4. Check that doublezerod has discovered DZ devices
 
 Before connecting, be sure `doublezerod` has discovered and pinged each of the available DZ testnet switches:
 
@@ -194,7 +155,7 @@ $ doublezero latency
 
 If no devices are returned in the output, wait 10-20 seconds and retry.
 
-## 6. Disconnect from DoubleZero
+## 5. Disconnect from DoubleZero
 
 In the next sections you will set your DoubleZero Environment. In order to ensure success, disconnect the current session. This will avoid issues related to multiple tunnels open on your machine.
 
@@ -210,9 +171,12 @@ if it is `up` run:
 doublezero disconnect
 ```
 
-### Up Next: Environment and Connection
+### Up Next: Tenant
 
-You may proceed to connecting to DoubleZero [Testnet](DZ%20Testnet%20Connection.md), [Mainnet-Beta](DZ%20Mainnet-beta%20Connection.md),[multicast mode](connect-multicast.md), or [RPC Connection](DZ%20RPC-Connection.md). It may take up to one minute for the tunnel to connect, and you will need to complete some steps to register your validator on the DoubleZero Network.
+Connection to DoubleZero will differ based on your use case. On DoubleZero, Tenants are groups which have similiar user profiles. Examples include Blockchains, Data Transfer Layers, etc.
+
+### [Proceed to chose your tenant here](tenant.md)
+
 
 # Optional: Enable Prometheus Metrics
 

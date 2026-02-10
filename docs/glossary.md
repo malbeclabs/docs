@@ -48,7 +48,7 @@ A standard networking term for connectivity provided over the public internet. I
 A connection mode that allows validators and RPC nodes to connect to DoubleZero without restarting their blockchain clients. IBRL uses the existing public IP address and establishes an overlay tunnel to the nearest [DZD](#dzd-doublezero-device). See [Mainnet-Beta Connection](DZ%20Mainnet-beta%20Connection.md) for setup instructions.
 
 ### Multicast
-A one-to-many packet delivery method supported by DoubleZero. Multicast mode has two roles: **publisher** (sends packets across the network) and **subscriber** (receives packets from the publisher). Used by development teams for efficient data distribution. See [Multicast Mode](connect-multicast.md) for connection details.
+A one-to-many packet delivery method supported by DoubleZero. Multicast mode has two roles: **publisher** (sends packets across the network) and **subscriber** (receives packets from the publisher). Used by development teams for efficient data distribution. See [Multicast Connection](Multicast%20Connection.md) for connection details.
 
 ---
 

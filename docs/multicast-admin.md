@@ -205,4 +205,4 @@ This command displays all subscribers currently allowed to connect to the specif
 
 ---
 
-For more information about connecting and using multicast, see [connect-multicast.md](connect-multicast.md).
+For more information about connecting and using multicast, see [Multicast Connection](Multicast%20Connection.md).

@@ -12,7 +12,7 @@ Welcome to the DoubleZero contributor documentation. This section covers everyth
 Use this checklist to track your progress. **All items must be complete before your contribution is technically operational.**
 
 ### Phase 1: Prerequisites
-- [ ] DoubleZero CLI installed on a management server (only step 1 of the [Setup Guide](setup.md))
+- [ ] DoubleZero CLI installed on a management server
 - [ ] Hardware procured and meets [requirements](contribute.md#hardware-requirements)
 - [ ] Data center rack space and power available (4U, 4KW recommended)
 - [ ] DZD physically installed with management connectivity

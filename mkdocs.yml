@@ -15,17 +15,21 @@ theme:
     - header.autohide
 nav:
   - Welcome: index.md
-  - Setup: setup.md
   - Users:
-    - Overview: users-overview.md
-    - Mainnet-Beta Connection: DZ Mainnet-beta Connection.md
-    - Testnet Connection: DZ Testnet Connection.md
-    - Mainnet-Beta RPC: DZ RPC-Connection.md
-    - Multicast Mode: connect-multicast.md
-    - Paying Fees: paying-fees.md
-    - Paying Fees with 2Z: paying-fees2z.md
-    - Swapping SOL to 2Z: Swapping-sol-to-2z.md
-    - Troubleshooting: troubleshooting.md
+    - Setup: setup.md
+    - Tenants:
+      - Overview: tenant.md
+      - Solana:
+        - Mainnet-Beta Connection: DZ Mainnet-beta Connection.md
+        - Testnet Connection: DZ Testnet Connection.md
+        - Permissioned Connection: Shelby Permissioned Connection.md
+        - Multicast Connection: Multicast Connection.md
+        - Paying Fees: paying-fees.md
+        - Paying Fees with 2Z: paying-fees2z.md
+        - Troubleshooting: troubleshooting.md
+      - Shelby:
+        - Shelby Connection: Shelby Permissioned Connection.md
+      - New Tenant: New Tenant.md
   - Contributors:
     - Overview: contribute-overview.md
     - Requirements & Architecture: contribute.md
