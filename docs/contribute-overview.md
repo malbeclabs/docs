@@ -5,6 +5,9 @@
 
 Welcome to the DoubleZero contributor documentation. This section covers everything you need to become a network contributor.
 
+!!! tip "Interested in becoming a network contributor?"
+    Review the [Requirements & Architecture](contribute.md) page to understand the hardware, bandwidth, and connectivity needed to contribute to the DoubleZero network.
+
 ---
 
 ## Onboarding Checklist

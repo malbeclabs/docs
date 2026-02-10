@@ -52,6 +52,27 @@ Before you can provision a device, you need the physical hardware set up and som
 | **Internet Connectivity** | For metrics publishing and to fetch configuration from the controller |
 | **Public IPv4 Block** | Minimum /29 for the DZ prefix pool (see below) |
 
+### Install the DoubleZero CLI
+
+The DoubleZero CLI (`doublezero`) is used throughout provisioning to register devices, create links, and manage your contribution. It should be installed on a **management server or VM** — not on the DZD switch itself. The switch only runs the Config Agent and Telemetry Agent (installed in [Phase 4](#phase-4-link-establishment-agent-installation)).
+
+**Ubuntu / Debian:**
+```bash
+curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
+sudo apt-get install doublezero
+```
+
+**Rocky Linux / RHEL:**
+```bash
+curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh | sudo -E bash
+sudo yum install doublezero
+```
+
+Verify the daemon is running:
+```bash
+sudo systemctl status doublezerod
+```
+
 ### Understanding Your DZ Prefix
 
 Your DZ prefix is a block of public IP addresses that the DoubleZero protocol manages for IP allocation.

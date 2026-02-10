@@ -1,13 +1,16 @@
 # Connection to DoubleZero in IBRL Mode - for Permissioned Users
 !!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Service](https://doublezero.xyz/terms-protocol)"
 
+<div data-wizard-step="rpc-onboarding" markdown>
+
 ### Permissioned User Onboarding Overview
 
 Permissioned User onboarding is currently permissioned. To begin you will fill out [this form](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z). Here is what to expect during this process:
 
 - There may be fees associated with Permissioned User usage in the future.
 - After form submission monitor your primary Telegram contact.
-- At this moment Shelby is only able to connect to DoubleZero Testnet.
+
+</div>
 
 ###  Connecting to Testnet in IBRL Mode
 
@@ -66,6 +69,8 @@ Testnet output will be identical in structure, but with many more available devi
 The DoubleZero foundation. You will need to provide your `DoubleZeroID`, your `Validator ID` (node ID), and the `public ipv4 address` you will be connecting from.
 
 
+<div data-wizard-step="rpc-connect-ibrl" markdown>
+
 ## 3. Connect in IBRL Mode
 
 On the server, with the user which will connect to DoubleZero, run the `connect` command to establish the connection to DoubleZero.
@@ -117,6 +122,8 @@ default via 149.28.38.1 dev enp1s0 proto dhcp src 149.28.38.64 metric 100
 ...
 ```
 
+</div>
+
 ### Up Next: Multicast
 
-If you have completed this setup and plan to use Multicast, proceed to the [next page](Multicast%Connection.md).
+If you have completed this setup and plan to use Multicast, proceed to the [next page](Multicast%20Connection.md).
