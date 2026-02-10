@@ -22,7 +22,7 @@ nav:
       - Solana:
         - Mainnet-Beta Connection: DZ Mainnet-beta Connection.md
         - Testnet Connection: DZ Testnet Connection.md
-        - Permissioned Connection: Shelby Permissioned Connection.md
+        - Permissioned Connection: Permissioned Connection.md
         - Multicast Connection: Multicast Connection.md
         - Paying Fees: paying-fees.md
         - Paying Fees with 2Z: paying-fees2z.md

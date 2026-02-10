@@ -10,7 +10,7 @@ Solana
 |-------------|---------|
 | Solana Mainnet Validator, including backups | [DoubleZero Mainnet-Beta Connection](https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/) |
 | Solana Testnet Validator, including backups | [DoubleZero Testnet Connection](https://docs.malbeclabs.com/DZ%20Testnet%20Connection/) |
-| Non-Validators - RPCs, and others. | [DoubleZero Mainnet-Beta and Testnet Connection](Shelby%20Permissioned%20Connection.md) |
+| Non-Validators - RPCs, and others. | [DoubleZero Mainnet-Beta and Testnet Connection](Permissioned%20Connection.md) |
 
 Shelby
 
