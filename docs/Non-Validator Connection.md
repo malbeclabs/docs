@@ -1,11 +1,11 @@
-# Connection to DoubleZero in IBRL Mode - for RPC nodes
+# Connection to DoubleZero in IBRL Mode - for Non-Validator nodes
 !!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Service](https://doublezero.xyz/terms-protocol)"
 
-### RPC Onboarding Overview
+### Non-Validator Onboarding Overview
 
-RPC onboarding is currently permissioned. To begin you will fill out [this form](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z). Here is what to expect during this process:
+Non-Validator onboarding is currently permissioned. To begin you will fill out [this form](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z). Here is what to expect during this process:
 
-- There may be fees associated with RPC usage in the future. At this time we are requesting data in place of fees.
+- There may be fees associated with Non-Validator usage in the future. At this time we are requesting data in place of fees.
 - After form submission monitor your primary Telegram contact.
 - You must submit two geographically distinct IPs. These first two addresses will be monitored for up to a week on DoubleZero Testnet. All nodes must first pass this preliminary testing phase.
   - For testnet connection use the environment configuration on [this page](https://docs.malbeclabs.com/DZ%20Testnet%20Connection/)
@@ -18,7 +18,7 @@ RPC onboarding is currently permissioned. To begin you will fill out [this form]
 !!! Note inline end
     IBRL mode does not require restarting validator clients, because it uses your existing public IP address.
 
-RPCs will complete connection to DoubleZero Mainnet-beta, which is detailed on this page.
+Non-Validators will complete connection to DoubleZero Mainnet-beta, which is detailed on this page.
 
 ## 1. Environment Configuration
 
