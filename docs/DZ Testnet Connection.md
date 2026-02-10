@@ -346,3 +346,6 @@ default via 149.28.38.1 dev enp1s0 proto dhcp src 149.28.38.64 metric 100
 5.39.251.202 via 169.254.0.68 dev doublezero0 proto bgp src 149.28.38.64 
 ...
 ```
+### Up Next: Multicast
+
+If you have completed this setup and plan to use Multicast, proceed to the [next page](Multicast%Connection.md).
