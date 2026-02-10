@@ -89,23 +89,11 @@ sudo yum install doublezero
         ```
     The same steps may be completed to move a Mainnet-Beta machine to Testnet, by replacing the step 3 with the appropriate install command above.
 
-
-After installation, verify the daemon is running:
-
-```bash
-sudo systemctl status doublezerod
-sudo journalctl -u doublezerod
-```
-
 #### Check the status of `doublezerod`
 
-After the package is installed, a new systemd unit is installed, activated and started.  To see the status:
+After the package is installed, a new systemd unit is installed, activated and started. To see the status you may run:
 ```
 sudo systemctl status doublezerod
-```
-To see the doublezerod logs, look in the journal:
-```
-sudo journalctl -u doublezerod
 ```
 
 ## 2. Create New DoubleZero Identity
