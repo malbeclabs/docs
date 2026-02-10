@@ -125,7 +125,7 @@ doublezero latency
 Mainnet output will be identical in structure, but with many more available devices.
 </details>
 
- ## 2. Open port 44880
+## 2. Open port 44880
 
 Users need to open port 44880 to utilize some [routing features](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc7-client-route-liveness.md).
 
