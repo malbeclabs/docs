@@ -1,24 +1,20 @@
-# Connection to DoubleZero in IBRL Mode - for Non-Validator nodes
+# Connection to DoubleZero in IBRL Mode - for Permissioned Users
 !!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Service](https://doublezero.xyz/terms-protocol)"
 
-### Non-Validator Onboarding Overview
+### Permissioned User Onboarding Overview
 
-Non-Validator onboarding is currently permissioned. To begin you will fill out [this form](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z). Here is what to expect during this process:
+Permissioned User onboarding is currently permissioned. To begin you will fill out [this form](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z). Here is what to expect during this process:
 
-- There may be fees associated with Non-Validator usage in the future. At this time we are requesting data in place of fees.
+- There may be fees associated with Permissioned User usage in the future.
 - After form submission monitor your primary Telegram contact.
-- You must submit two geographically distinct IPs. These first two addresses will be monitored for up to a week on DoubleZero Testnet. All nodes must first pass this preliminary testing phase.
-  - For testnet connection use the environment configuration on [this page](https://docs.malbeclabs.com/DZ%20Testnet%20Connection/)
-- After data is shared, and testnet phase is complete you will be given Mainnet-Beta access passes.
-  - You will then be expected to share post-connection data
+- At this moment Shelby is only able to connect to DoubleZero Testnet.
 
-
-###  Connecting to Mainnet-Beta in IBRL Mode
+###  Connecting to Testnet in IBRL Mode
 
 !!! Note inline end
     IBRL mode does not require restarting validator clients, because it uses your existing public IP address.
 
-Non-Validators will complete connection to DoubleZero Mainnet-beta, which is detailed on this page.
+Permissioned Users will complete connection to DoubleZero Mainnet-beta, which is detailed on this page.
 
 ## 1. Environment Configuration
 
@@ -26,10 +22,9 @@ Please follow the [setup](setup.md) instructions before proceeding.
 
 The last step in setup was to disconnect from the network. This is to ensure that only one tunnel is open on your machine to DoubleZero, and that tunnel is on the correct network.
 
-
-To configure the DoubleZero Client CLI (`doublezero`) and daemon (`doublezerod`) to connect to **DoubleZero mainnet-beta**:
+To configure the DoubleZero Client CLI (`doublezero`) and daemon (`doublezerod`) to connect to **DoubleZero testnet**:
 ```bash
-DESIRED_DOUBLEZERO_ENV=mainnet-beta \
+DESIRED_DOUBLEZERO_ENV=testnet \
 	&& sudo mkdir -p /etc/systemd/system/doublezerod.service.d \
 	&& echo -e "[Service]\nExecStart=\nExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env $DESIRED_DOUBLEZERO_ENV" | sudo tee /etc/systemd/system/doublezerod.service.d/override.conf > /dev/null \
 	&& sudo systemctl daemon-reload \
@@ -37,10 +32,9 @@ DESIRED_DOUBLEZERO_ENV=mainnet-beta \
 	&& doublezero config set --env $DESIRED_DOUBLEZERO_ENV  > /dev/null \
 	&& echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV"
 ```
-
 You should see the following output:
 ```
-✅ doublezerod configured for environment mainnet-beta
+✅ doublezerod configured for environment testnet
 ```
 
 After about 30 seconds you will see the DoubleZero devices available:
@@ -48,7 +42,7 @@ After about 30 seconds you will see the DoubleZero devices available:
 ```bash
 doublezero latency
 ```
-Example output (Mainnet-Beta)
+Example output (Testnet)
 ```bash
  pubkey                                       | code          | ip              | min      | max      | avg      | reachable 
  2hPMFJHh5BPX42ygBvuYYJfCv9q7g3rRR3ZRsUgtaqUi | dz-ny7-sw01   | 137.239.213.162 | 1.74ms   | 1.92ms   | 1.84ms   | true      

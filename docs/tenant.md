@@ -8,12 +8,18 @@ Solana
 
 | Use Case | Next Stop |
 |-------------|---------|
-| Mainnet- Beta Validator, including backups | [Mainnet-Beta Connection](https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/) |
-| Testnet Validator, including backups | [Testnet Connection](https://docs.malbeclabs.com/DZ%20Testnet%20Connection/) |
-| Non-Validators - RPCs, and others. | [Mainnet-Beta and Testnet Connection](Non-Validator%20Connection.md) |
+| Solana Mainnet Validator, including backups | [DoubleZero Mainnet-Beta Connection](https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/) |
+| Solana Testnet Validator, including backups | [DoubleZero Testnet Connection](https://docs.malbeclabs.com/DZ%20Testnet%20Connection/) |
+| Non-Validators - RPCs, and others. | [DoubleZero Mainnet-Beta and Testnet Connection](Shelby%20Permissioned%20Connection.md) |
+
+Shelby
+
+| Use Case | Next Stop |
+|-------------|---------|
+| Shelby Testnet RPCs and Storage Nodes | [DoubleZero Testnet Conection](Shelby%20Permissioned%20Connection.md) |
 
 New Tenant
 
 | Use Case | Next Stop |
 -------------|---------|
-| You are a foundation trying to connect a Blockchain, or service | [Add A New Tenant](Non-Validator%20Connection.md) |
+| You are a foundation trying to connect a Blockchain, or service | [Add A New Tenant](Shelby%20Permissioned%20Connection.md) |
