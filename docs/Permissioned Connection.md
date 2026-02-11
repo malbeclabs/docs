@@ -5,7 +5,7 @@
 
 ### Permissioned User Onboarding Overview
 
-Permissioned User onboarding is currently permissioned. To begin you will fill out [this form](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z). Here is what to expect during this process:
+User onboarding is currently permissioned for non-validators and RPCs. To begin the permissioned flow, please fill out [this form](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z). Here is what to expect during this process:
 
 - There may be fees associated with Permissioned User usage in the future.
 - After form submission monitor your primary Telegram contact.

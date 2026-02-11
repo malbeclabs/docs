@@ -124,10 +124,11 @@ doublezero latency
  5tqXoiQtZmuL6CjhgAC6vA49JRUsgB9Gsqh4fNjEhftU | tyo-dz001    | 180.87.154.78  | 180.96ms | 181.08ms | 181.02ms | true
  D3ZjDiLzvrGi5NJGzmM7b3YZg6e2DrUcBCQznJr3KfC8 | sin-dz001    | 180.87.102.98  | 220.87ms | 221.14ms | 220.97ms | true
 ```
+</div>
 Mainnet output will be identical in structure, but with many more available devices.
 </details>
 
-</div>
+
 
 ## 2. Open port 44880
 
