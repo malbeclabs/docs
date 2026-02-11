@@ -16,10 +16,10 @@ Shelby
 
 | Use Case | Next Stop |
 |-------------|---------|
-| Shelby Testnet RPCs and Storage Nodes | [DoubleZero Testnet Conection](Shelby%20Permissioned%20Connection.md) |
+| Shelby Testnet RPCs and Storage Nodes | [DoubleZero Testnet Connection](Shelby%20Permissioned%20Connection.md) |
 
 New Tenant
 
 | Use Case | Next Stop |
 -------------|---------|
-| You are a foundation trying to connect a Blockchain, or service | [Add A New Tenant](Shelby%20Permissioned%20Connection.md) |
+| You have a new protocol, application, or other use case for leveraging DoubleZero | [Add A New Tenant](New%20Tenant.md) |
