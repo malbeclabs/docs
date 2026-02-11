@@ -135,8 +135,8 @@ Allow GRE and BGP through iptables:
 ```bash
 sudo iptables -A INPUT -p gre -j ACCEPT
 sudo iptables -A OUTPUT -p gre -j ACCEPT
-sudo iptables -A INPUT -i doublezero0 -s 169.254.0.0/16 -p tcp --dport 179 -j ACCEPT
-sudo iptables -A OUTPUT -o doublezero0 -d 169.254.0.0/16 -p tcp --dport 179 -j ACCEPT
+sudo iptables -A INPUT -i doublezero0 -s 169.254.0.0/16 -d 169.254.0.0/16 -p tcp --dport 179 -j ACCEPT
+sudo iptables -A OUTPUT -o doublezero0 -s 169.254.0.0/16 -d 169.254.0.0/16 -p tcp --dport 179 -j ACCEPT
 ```
 
 </div>
@@ -147,8 +147,8 @@ Or allow GRE and BGP through UFW:
 
 ```bash
 sudo ufw allow proto gre from any to any
-sudo ufw allow in on doublezero0 from 169.254.0.0/16 to any port 179 proto tcp
-sudo ufw allow out on doublezero0 to 169.254.0.0/16 port 179 proto tcp
+sudo ufw allow in on doublezero0 from 169.254.0.0/16 to 169.254.0.0/16 port 179 proto tcp
+sudo ufw allow out on doublezero0 from 169.254.0.0/16 to 169.254.0.0/16 port 179 proto tcp
 ```
 
 </div>

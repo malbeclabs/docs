@@ -160,7 +160,14 @@
       console.warn('Wizard: section "' + stepId + '" not found');
       return null;
     }
-    return el.innerHTML;
+    // Strip leading numbers (e.g. "2. " or "3. ") from headings so they
+    // don't clash with the wizard's own step numbering.
+    var clone = el.cloneNode(true);
+    var headings = clone.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    for (var i = 0; i < headings.length; i++) {
+      headings[i].innerHTML = headings[i].innerHTML.replace(/^\s*(?:\d+\.\s+|Step\s+\d+:\s*)/i, '');
+    }
+    return clone.innerHTML;
   }
 
   function rewriteLinks(container, sourcePage) {
@@ -210,8 +217,7 @@
         return [
           { page: '../setup/', section: 'install-version-info' },
           { page: '../setup/', section: 'install-' + s.os + '-' + s.network },
-          { page: '../setup/', section: 'install-verify-daemon' },
-          { page: '../setup/', section: 'install-network-warning' }
+          { page: '../setup/', section: 'install-verify-daemon' }
         ];
       }
     },
@@ -233,10 +239,10 @@
       show: function() { return true; },
       sources: function(s) {
         var sources = [];
-        if (s.tenant !== 'shelby') {
+        sources.push({ page: '../setup/', section: 'firewall-gre-bgp-' + s.firewall });
+        if (s.tenant == 'solana') {
           sources.push({ page: connectionPage(s).page, section: 'firewall-' + s.firewall });
         }
-        sources.push({ page: '../setup/', section: 'firewall-gre-bgp-' + s.firewall });
         return sources;
       }
     },
