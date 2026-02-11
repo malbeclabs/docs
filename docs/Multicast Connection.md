@@ -8,6 +8,8 @@ Please follow the [setup](setup.md) instructions before proceeding.
 !!! note inline end
     As of v0.2.0, only a single tunnel can be provisioned at a time. In addition, a user can be only a subscriber or a publisher. If you want to switch between publisher or subscriber, you'll have to disconnect and reconnect.
 
+<div data-wizard-step="multicast-connect-publisher" markdown>
+
 #### Publisher
 
 ```
@@ -38,6 +40,10 @@ doublezero multicast group list
  account                                      | code | multicast_ip | max_bandwidth | publishers | subscribers | status    | owner
  52ieY9ydcJsms5rYMdsYtH6SnpMvWT2GcvAa8UydRdgi | mg01 | <multicast_ip> | 10Gbps        | 1          | 0           | activated | Dc3LFdWwKGJvJcVkXhAr14kh1HS6pN7oCWrvHfQtsHGe
 ```
+
+</div>
+
+<div data-wizard-step="multicast-connect-subscriber" markdown>
 
 #### Subscriber
 
@@ -70,12 +76,15 @@ account                                      | code | multicast_ip   | max_bandw
 52ieY9ydcJsms5rYMdsYtH6SnpMvWT2GcvAa8UydRdgi | mg01 | <multicast_ip> | 10Gbps        | 0          | 1           | activated | Dc3LFdWwKGJvJcVkXhAr14kh1HS6pN7oCWrvHfQtsHGe
 ```
 
+</div>
+
 
 Congratulations, your DoubleZero connection is up and running! We hope. Let's run a few more commands to make sure everything is working.
 
+<div data-wizard-step="multicast-verify-publisher" markdown>
+
 ### 2. Verify doublezero tunnel
 
-#### Publisher
 ```
 doublezero status
 ```
@@ -87,8 +96,25 @@ Expected result:
  up            | <Timestamp>         | doublezero1 | <Your public IP> | <Doublezero IP> | <Your public IP>  | Multicast
 ```
 
+### 3. Verify routing link address in routing table
 
-#### Subscriber
+In multicast mode, you should see a single 169.254/31 route, plus a static route for the multicast group you are connected to.
+
+```
+$ ip route show dev doublezero1
+```
+
+```
+169.254.0.0/31 proto kernel scope link src 169.254.0.1
+<multicast_ip> via 169.254.0.0 proto static src 64.86.249.81
+```
+
+</div>
+
+<div data-wizard-step="multicast-verify-subscriber" markdown>
+
+### 2. Verify doublezero tunnel
+
 ```
 doublezero status
 ```
@@ -104,18 +130,6 @@ Expected result:
 
 In multicast mode, you should see a single 169.254/31 route, plus a static route for the multicast group you are connected to.
 
-#### Publisher
-```
-$ ip route show dev doublezero1
-```
-
-```
-169.254.0.0/31 proto kernel scope link src 169.254.0.1
-<multicast_ip> via 169.254.0.0 proto static src 64.86.249.81
-```
-
-#### Subscriber
-
 ```
 $ ip route show dev doublezero1
 ```
@@ -124,3 +138,5 @@ $ ip route show dev doublezero1
 169.254.0.0/31 proto kernel scope link src 169.254.0.1
 <multicast_ip> via 169.254.0.0 proto static
 ```
+
+</div>

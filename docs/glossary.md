@@ -61,10 +61,10 @@ The DoubleZero daemon service that runs on user servers (validators, RPC nodes).
 The command-line interface for interacting with the DoubleZero network. Used for connecting, managing identities, checking status, and administrative operations. Communicates with the [`doublezerod`](#doublezerod) daemon.
 
 ### Config Agent
-Software agent running on [DZDs](#dzd-doublezero-device) that manages device configuration. Reads configuration from the [Controller](#controller) service and applies changes to the device. See [Config Agent Installation](contribute-provisioning.md#step-51-install-config-agent) for setup.
+Software agent running on [DZDs](#dzd-doublezero-device) that manages device configuration. Reads configuration from the [Controller](#controller) service and applies changes to the device. See [Config Agent Installation](contribute-provisioning.md#step-44-install-config-agent) for setup.
 
 ### Telemetry Agent
-Software agent running on [DZDs](#dzd-doublezero-device) that collects performance metrics (latency, jitter, packet loss) and submits them to the DoubleZero ledger. See [Telemetry Agent Installation](contribute-provisioning.md#step-52-install-telemetry-agent) for setup.
+Software agent running on [DZDs](#dzd-doublezero-device) that collects performance metrics (latency, jitter, packet loss) and submits them to the DoubleZero ledger. See [Telemetry Agent Installation](contribute-provisioning.md#step-45-install-telemetry-agent) for setup.
 
 ### Controller
 A service that provides configuration to [DZD](#dzd-doublezero-device) agents. The Controller derives device configurations from [onchain](#onchain) state on the DoubleZero ledger.

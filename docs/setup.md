@@ -10,7 +10,7 @@
 !!! warning inline end
     For validators: DoubleZero needs to be installed directly on your validator host, not in a container.
 - Internet connectivity with a public IP address (no NAT)
-- x86_64 server 
+- x86_64 server
 - Supported OS: Ubuntu 22.04+ or Debian 11+, or Rocky Linux / RHEL 8+
 - Root or sudo privileges on the server where DoubleZero will run
 - Optional but useful: jq and curl for debugging
@@ -23,14 +23,20 @@ When onboarding to DoubleZero you will establish a **DoubleZero identity**, repr
 
 ## 1. Install DoubleZero Packages
 
+<div data-wizard-step="install-version-info" markdown>
+
 !!! info "Current Versions"
     | Package | Mainnet-Beta | Testnet |
     |---------|-------------|---------|
     | `doublezero` | `MAINNET_CLIENT_VERSION` | `TESTNET_CLIENT_VERSION` |
 
+</div>
+
 Follow these steps depending on your operating system:
 
 ### Ubuntu / Debian
+
+<div data-wizard-step="install-deb-mainnet-beta" markdown>
 
 The current recommended deployment for Mainnet-Beta is:
 ```bash
@@ -38,13 +44,21 @@ curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | 
 sudo apt-get install doublezero
 ```
 
+</div>
+
+<div data-wizard-step="install-deb-testnet" markdown>
+
 The current recommended deployment for Testnet is:
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero-testnet/setup.deb.sh | sudo -E bash
 sudo apt-get install doublezero
 ```
 
+</div>
+
 ### Rocky Linux / RHEL
+
+<div data-wizard-step="install-rpm-mainnet-beta" markdown>
 
 The current recommended deployment for Mainnet-Beta is:
 ```bash
@@ -52,11 +66,19 @@ curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh | 
 sudo yum install doublezero
 ```
 
+</div>
+
+<div data-wizard-step="install-rpm-testnet" markdown>
+
 The current recommended deployment for Testnet is:
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero-testnet/setup.rpm.sh | sudo -E bash
 sudo yum install doublezero
 ```
+
+</div>
+
+<div data-wizard-step="install-network-warning" markdown>
 
 !!! info
     When you install from one of the package repositories above it is specific to DoubleZero Testnet or DoubleZero Mainnet Beta. If you swap networks at any point you will need to remove the previously installed package repositories and update to the target repo.
@@ -64,7 +86,7 @@ sudo yum install doublezero
     This example will walk through Testnet to Mainnet-Beta Migration
 
     1. Find Old Repository Files
-        
+
         First, locate any existing DoubleZero repository configuration files on your system:
 
         `find /etc/apt | grep doublezero`
@@ -72,7 +94,7 @@ sudo yum install doublezero
         `find /usr/share/keyrings/ | grep doublezero`
 
     2. Remove Old Repository Files
-        
+
         Remove the old repository files found in the previous step, for example
 
         ```
@@ -80,7 +102,7 @@ sudo yum install doublezero
         sudo rm /usr/share/keyrings/malbeclabs-doublezero-archive-keyring.gpg
         ```
     3. Install from New Repository
-    
+
         Add the new Mainnet-Beta repository and install the latest package:
 
         ```
@@ -89,12 +111,47 @@ sudo yum install doublezero
         ```
     The same steps may be completed to move a Mainnet-Beta machine to Testnet, by replacing the step 3 with the appropriate install command above.
 
+</div>
+
+<div data-wizard-step="install-verify-daemon" markdown>
+
 #### Check the status of `doublezerod`
 
 After the package is installed, a new systemd unit is installed, activated and started. To see the status you may run:
 ```
 sudo systemctl status doublezerod
 ```
+
+</div>
+
+### Configure Firewall for GRE and BGP
+
+DoubleZero uses GRE tunneling (IP protocol 47) and BGP routing (tcp/179 on link-local addresses). Ensure your firewall allows these protocols:
+
+Allow GRE and BGP through iptables:
+
+<div data-wizard-step="firewall-gre-bgp-iptables" markdown>
+
+```bash
+sudo iptables -A INPUT -p gre -j ACCEPT
+sudo iptables -A OUTPUT -p gre -j ACCEPT
+sudo iptables -A INPUT -i doublezero0 -s 169.254.0.0/16 -p tcp --dport 179 -j ACCEPT
+sudo iptables -A OUTPUT -o doublezero0 -d 169.254.0.0/16 -p tcp --dport 179 -j ACCEPT
+```
+
+</div>
+
+Or allow GRE and BGP through UFW:
+
+<div data-wizard-step="firewall-gre-bgp-ufw" markdown>
+
+```bash
+sudo ufw allow proto gre from any to any
+sudo ufw allow in on doublezero0 from 169.254.0.0/16 to any port 179 proto tcp
+sudo ufw allow out on doublezero0 to 169.254.0.0/16 port 179 proto tcp
+```
+
+</div>
 
 ## 2. Create New DoubleZero Identity
 
@@ -159,11 +216,11 @@ If no devices are returned in the output, wait 10-20 seconds and retry.
 
 In the next sections you will set your DoubleZero Environment. In order to ensure success, disconnect the current session. This will avoid issues related to multiple tunnels open on your machine.
 
-Check 
+Check
 
 ```bash
 doublezero status
-``` 
+```
 
 if it is `up` run:
 
@@ -252,7 +309,7 @@ If metrics are not appearing:
 
 ## Configure Prometheus Server
 
-Configuration, and security are beyond the scope of this documentation. 
+Configuration, and security are beyond the scope of this documentation.
 Grafana is an excellent option for visualization, and has documentation available [here](https://grafana.com/docs/alloy/latest/collect/prometheus-metrics/) detailing how to collect Prometheus metrics.
 
 ## Grafana Dashboard (Optional)

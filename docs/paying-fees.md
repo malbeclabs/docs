@@ -33,6 +33,8 @@ Questions? Contact Nihar Shah at nihar@doublezero.us
 The DoubleZero CLI provides commands to manage validator deposits and monitor balances.
 You will need SOL in the account that you run these commands from to pay for gas.
 
+<div data-wizard-step="fee-check" markdown>
+
 ### Step 1: Understanding Debt Owed
 
 To view debt at a specific address you may use this format:
@@ -48,6 +50,10 @@ We will examine a example output below:
 | ValidatorIdentity111111111111111111111111111 | 24.520162479 SOL| 0.000000000 SOL | Not funded             |
 ```
 In the sample output there are two different outputs possible under `note`. `Not funded` means the account has not been funded. In the example `0.632515639 SOL needed` is the outstanding amount of Sol needed to pay all currently owed debts associated with the target Validator ID.
+
+</div>
+
+<div data-wizard-step="fee-pay" markdown>
 
 ### Step 2: Paying Debt Owed
 
@@ -77,3 +83,5 @@ Balance: 0.309294915 SOL
 `Node ID:` returns the Validator ID which was paid for
 
 `Balance:` returns the amount of Sol which is in the deposit account, after the transfer is complete
+
+</div>

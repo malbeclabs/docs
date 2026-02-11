@@ -73,12 +73,12 @@ This guide allows for 1 Primary Validator to register itself, and up to 3 backup
 - Solana CLI installed and on $PATH
 - For validators: Permission to access to the validator identity keypair file (e.g., validator-keypair.json) under the sol user
 - For validators: Verify the Identity key of Solana validator being connected has at least 1 SOL on it
-- Firewall rules permit outbound connections for DoubleZero and Solana RPC as needed including 
+- Firewall rules permit outbound connections for DoubleZero and Solana RPC as needed including
  GRE (ip proto 47) and BGP (169.254.0.0/16 on tcp/179)
 
 !!! info
-    The Validator ID will be checked against Solana gossip to determine the target IP. The target IP, and the DoubleZero ID will then be used when opening a GRE tunnel between your machine and the target DoubleZero Device. 
-    
+    The Validator ID will be checked against Solana gossip to determine the target IP. The target IP, and the DoubleZero ID will then be used when opening a GRE tunnel between your machine and the target DoubleZero Device.
+
     Consider: In the case where you have a junk ID and Primary ID on at the same IP, only the Primary ID will be used in registration of the machine. This is because the junk ID will not appear in gossip, and therefore cannot be used to verify the IP of the target machine.
 
 ## 1. Environment Configuration
@@ -86,6 +86,8 @@ This guide allows for 1 Primary Validator to register itself, and up to 3 backup
 Please follow the [setup](setup.md) instructions before proceeding.
 
 The last step in setup was to disconnect from the network. This is to ensure that only one tunnel is open on your machine to DoubleZero, and that tunnel is on the correct network.
+
+<div data-wizard-step="testnet-env-config" markdown>
 
 To configure the DoubleZero Client CLI (`doublezero`) and daemon (`doublezerod`) to connect to **DoubleZero testnet**:
 ```bash
@@ -111,8 +113,8 @@ doublezero latency
 Example output (testnet)
 ```bash
 doublezero latency
- pubkey                                       | code         | ip             | min      | max      | avg      | reachable 
- 6E1fuqbDBG5ejhYEGKHNkWG5mSTczjy4R77XCKEdUtpb | nyc-dz001    | 64.86.249.22   | 2.44ms   | 2.63ms   | 2.50ms   | true      
+ pubkey                                       | code         | ip             | min      | max      | avg      | reachable
+ 6E1fuqbDBG5ejhYEGKHNkWG5mSTczjy4R77XCKEdUtpb | nyc-dz001    | 64.86.249.22   | 2.44ms   | 2.63ms   | 2.50ms   | true
  CT8mP6RUoRcAB67HjKV9am7SBTCpxaJEwfQrSjVLdZfD | lax-dz001    | 207.45.216.134 | 71.97ms  | 72.01ms  | 71.99ms  | true
  Cpt3doj17dCF6bEhvc7VeAuZbXLD88a1EboTyE8uj6ZL | lon-dz001    | 195.219.120.66 | 71.94ms  | 72.08ms  | 72.00ms  | true
  4Wr7PQr5kyqCNJo3RKa8675K7ZtQ6fBUeorcexgp49Zp | ams-dz001    | 195.219.138.50 | 76.55ms  | 76.65ms  | 76.61ms  | true
@@ -125,25 +127,41 @@ doublezero latency
 Mainnet output will be identical in structure, but with many more available devices.
 </details>
 
+</div>
+
 ## 2. Open port 44880
 
 Users need to open port 44880 to utilize some [routing features](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc7-client-route-liveness.md).
 
 To open port 44880 you could update IP tables such as:
+
+<div data-wizard-step="firewall-iptables" markdown>
+
 ```
 sudo iptables -A INPUT -i doublezero0 -p udp --dport 44880 -j ACCEPT
 sudo iptables -A OUTPUT -o doublezero0 -p udp --dport 44880 -j ACCEPT
 ```
-note the `-i doublezero0`, `-o doublezero0` flags which restrict this rule to only the DoubleZero interface 
+
+</div>
+
+note the `-i doublezero0`, `-o doublezero0` flags which restrict this rule to only the DoubleZero interface
 
 Or UFW such as:
+
+<div data-wizard-step="firewall-ufw" markdown>
+
 ```
 sudo ufw allow in on doublezero0 to any port 44880 proto udp
 sudo ufw allow out on doublezero0 to any port 44880 proto udp
 ```
-note the `in on doublezero0`, `out on doublezero0` flags which restrict this rule to only the DoubleZero interface 
+
+</div>
+
+note the `in on doublezero0`, `out on doublezero0` flags which restrict this rule to only the DoubleZero interface
 
 ## 3. Attest Validator Ownership
+
+<div data-wizard-step="testnet-find-validator" markdown>
 
 With your DoubleZero Environment set, it is now time to attest to your Validator Ownership.
 
@@ -173,7 +191,7 @@ In Leader scheduler
 ```
 !!! info
     The same workflow is used for one, or many machines.
-    To register one machine exclude the arguments "--backup-validator-ids" or "backup_ids=" from any commands on this page. 
+    To register one machine exclude the arguments "--backup-validator-ids" or "backup_ids=" from any commands on this page.
 
 Now, on all backup machines you intend to run your **Primary Validator** on execute the following:
 
@@ -197,6 +215,10 @@ This output is expected. The backup node cannot be in the leader schedule at tim
 
 You will now run this command on **all backup machines** you plan to use your **Primary Validator** vote account, and identity on.
 
+</div>
+
+
+<div data-wizard-step="testnet-prepare-access" markdown>
 
 ### Prepare the Connection
 
@@ -247,9 +269,13 @@ Backup validator 🖥️ 🛡️:
 ```
 Note the output at the end of this command. It is the structure for the next step.
 
+</div>
+
 ## 4. Generate Signature
 
-At the end of the last step, we received a pre-formatted output for `solana sign-offchain-message` 
+<div data-wizard-step="testnet-sign-message" markdown>
+
+At the end of the last step, we received a pre-formatted output for `solana sign-offchain-message`
 
 From the above output we will run this command on the **Primary Validator** machine.
 
@@ -265,7 +291,11 @@ From the above output we will run this command on the **Primary Validator** mach
   Signature111111rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7
 ```
 
+</div>
+
 ## 5. Initiate a Connection Request in DoubleZero
+
+<div data-wizard-step="testnet-request-access" markdown>
 
 Use the `request-validator-access` command to create an account on Solana for the connection request. The DoubleZero Sentinel agent detects the new account, validates its identity and signature, and creates the access pass in DoubleZero so the server can establish a connection.
 
@@ -279,7 +309,7 @@ Use the node ID, DoubleZeroID, and signature.
 doublezero-solana passport request-validator-access -k <path to keypair> -ut \
 --primary-validator-id ValidatorIdentity111111111111111111111111111 \
 --backup-validator-ids ValidatorIdentity222222222222222222222222222,ValidatorIdentity33333333333333333333333333,ValidatorIdentity444444444444444444444444444 \
---signature Signature111111rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7 --doublezero-address YourDoubleZeroAddress11111111111111111111111111111 
+--signature Signature111111rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7 --doublezero-address YourDoubleZeroAddress11111111111111111111111111111
 ```
 
 **Output:**
@@ -287,12 +317,16 @@ doublezero-solana passport request-validator-access -k <path to keypair> -ut \
 This output can be used to see the transaction on a Solana explorer. Be sure to change the explorer to testnet. This verification is optional.
 
 ```bash
-Request Solana validator access: Transaction22222222VaB8FMqM2wEBXyV5THpKRXWrPtDQxmTjHJHiAWteVYTsc7Gjz4hdXxvYoZXGeHkrEayp 
+Request Solana validator access: Transaction22222222VaB8FMqM2wEBXyV5THpKRXWrPtDQxmTjHJHiAWteVYTsc7Gjz4hdXxvYoZXGeHkrEayp
 ```
 
 If successful, DoubleZero will register the primary with its backups. You may now failover between the IPs registered in the access pass. DoubleZero will maintain connectivity automatically when switching to backup nodes registered in this way.
 
+</div>
+
 ## 6. Connect in IBRL Mode
+
+<div data-wizard-step="testnet-connect-ibrl" markdown>
 
 On the server, with the user which will connect to DoubleZero, run the `connect` command to establish the connection to DoubleZero.
 
@@ -313,7 +347,7 @@ Public IP detected: 137.184.101.183 - If you want to use a different IP, you can
     Service provisioned with status: ok
 ✅  User Provisioned
 ```
-Wait one minute for the GRE tunnel to finish setting up. Until the GRE tunnel is done setting up, your status output may return "down" or "Unknown" 
+Wait one minute for the GRE tunnel to finish setting up. Until the GRE tunnel is done setting up, your status output may return "down" or "Unknown"
 
 Verify your connection:
 
@@ -327,7 +361,7 @@ doublezero status
     <!--`Tunnel dst` is the address of the DZ device you are connected to.-->
 
 ```bash
- Tunnel status | Last Session Update     | Tunnel Name | Tunnel src    | Tunnel dst     | Doublezero IP | User Type | Current Device | Lowest Latency Device | Metro     | Network 
+ Tunnel status | Last Session Update     | Tunnel Name | Tunnel src    | Tunnel dst     | Doublezero IP | User Type | Current Device | Lowest Latency Device | Metro     | Network
  up            | 2025-10-20 12:12:55 UTC | doublezero0 | 11.11.11.111 | 12.34.56.789 | 11.11.11.111 | IBRL      | ams-dz001      | ✅ ams-dz001          | Amsterdam | testnet
 ```
 A status of `up` means you are successfully connected.
@@ -340,12 +374,15 @@ ip route
 
 
 ```
-default via 149.28.38.1 dev enp1s0 proto dhcp src 149.28.38.64 metric 100 
-5.39.216.186 via 169.254.0.68 dev doublezero0 proto bgp src 149.28.38.64 
-5.39.251.201 via 169.254.0.68 dev doublezero0 proto bgp src 149.28.38.64 
-5.39.251.202 via 169.254.0.68 dev doublezero0 proto bgp src 149.28.38.64 
+default via 149.28.38.1 dev enp1s0 proto dhcp src 149.28.38.64 metric 100
+5.39.216.186 via 169.254.0.68 dev doublezero0 proto bgp src 149.28.38.64
+5.39.251.201 via 169.254.0.68 dev doublezero0 proto bgp src 149.28.38.64
+5.39.251.202 via 169.254.0.68 dev doublezero0 proto bgp src 149.28.38.64
 ...
 ```
+
+</div>
+
 ### Up Next: Multicast
 
-If you have completed this setup and plan to use Multicast, proceed to the [next page](Multicast%Connection.md).
+If you have completed this setup and plan to use Multicast, proceed to the [next page](Multicast%20Connection.md).

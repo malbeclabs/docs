@@ -3,6 +3,9 @@
   var CLOUDSMITH_API_MAINNET = 'https://api.cloudsmith.io/v1/packages/malbeclabs/doublezero/';
   var CLOUDSMITH_API_TESTNET = 'https://api.cloudsmith.io/v1/packages/malbeclabs/doublezero-testnet/';
 
+  // Cache fetched values so dynamically generated content can be updated
+  var versionCache = {};
+
   var packages = [
     // Mainnet packages
     {
@@ -70,16 +73,19 @@
 
             // Replace URL placeholder
             if (pkg.urlPlaceholder && info.cdn_url) {
+              versionCache[pkg.urlPlaceholder] = info.cdn_url;
               replaceInCodeBlocks(pkg.urlPlaceholder, info.cdn_url);
             }
 
             // Replace filename placeholder
             if (pkg.filenamePlaceholder && info.filename) {
+              versionCache[pkg.filenamePlaceholder] = info.filename;
               replaceInCodeBlocks(pkg.filenamePlaceholder, info.filename);
             }
 
             // Replace version placeholder (extract version from package)
             if (pkg.versionPlaceholder && info.version) {
+              versionCache[pkg.versionPlaceholder] = info.version;
               replaceInCodeBlocks(pkg.versionPlaceholder, info.version);
             }
           }
@@ -89,6 +95,14 @@
         });
     });
   }
+
+  // Expose refresh function for dynamically generated content (e.g., connection wizard)
+  window.__dzRefreshVersions = function() {
+    var keys = Object.keys(versionCache);
+    for (var i = 0; i < keys.length; i++) {
+      replaceInCodeBlocks(keys[i], versionCache[keys[i]]);
+    }
+  };
 
   if (document.readyState === 'complete') {
     fetchAndUpdate();
