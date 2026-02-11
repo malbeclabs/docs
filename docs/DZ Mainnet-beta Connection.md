@@ -1,4 +1,4 @@
-# How to connect to DoubleZero in IBRL Mode - for Mainnet-Beta Users
+# Validator Mainnet-Beta Connection in IBRL Mode
 !!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Service](https://doublezero.xyz/terms-protocol)"
 
 
@@ -51,9 +51,9 @@ DESIRED_DOUBLEZERO_ENV=mainnet-beta \
 ```
 
 You should see the following output:
-```
+`
 ✅ doublezerod configured for environment mainnet-beta
-```
+`
 
 After about 30 seconds you will see the DoubleZero devices available:
 
