@@ -1,4 +1,4 @@
-# How to connect to DoubleZero in IBRL Mode - for Solana Testnet Users
+# Validator Testnet Connection in IBRL Mode
 ??? warning "By connecting to DoubleZero testnet I agree to the terms of the Evaluation Agreement set forth here (click to expand)"
     <span style="font-size:14px;">DoubleZero Testnet</span>
     Evaluation Agreement

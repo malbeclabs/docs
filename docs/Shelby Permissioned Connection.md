@@ -37,9 +37,9 @@ DESIRED_DOUBLEZERO_ENV=testnet \
 	&& echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV"
 ```
 You should see the following output:
-```
+`
 ✅ doublezerod configured for environment testnet
-```
+`
 
 After about 30 seconds you will see the DoubleZero devices available:
 

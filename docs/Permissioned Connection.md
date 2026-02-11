@@ -1,4 +1,4 @@
-# Connection to DoubleZero in IBRL Mode - for Permissioned Users
+# Non-Validator Permissioned Connection to DoubleZero in IBRL Mode
 !!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Service](https://doublezero.xyz/terms-protocol)"
 
 <div data-wizard-step="rpc-onboarding" markdown>
@@ -12,7 +12,7 @@ User onboarding is currently permissioned for non-validators and RPCs. To begin 
 
 </div>
 
-###  Connecting to Testnet in IBRL Mode
+###  Connecting to Mainnet-Beta and Testnet in IBRL Mode
 
 !!! Note inline end
     IBRL mode does not require restarting validator clients, because it uses your existing public IP address.
@@ -35,10 +35,25 @@ DESIRED_DOUBLEZERO_ENV=testnet \
 	&& doublezero config set --env $DESIRED_DOUBLEZERO_ENV  > /dev/null \
 	&& echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV"
 ```
+To configure the DoubleZero Client CLI (`doublezero`) and daemon (`doublezerod`) to connect to **DoubleZero mainnet-beta**:
+```bash
+DESIRED_DOUBLEZERO_ENV=mainnet-beta \
+	&& sudo mkdir -p /etc/systemd/system/doublezerod.service.d \
+	&& echo -e "[Service]\nExecStart=\nExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env $DESIRED_DOUBLEZERO_ENV" | sudo tee /etc/systemd/system/doublezerod.service.d/override.conf > /dev/null \
+	&& sudo systemctl daemon-reload \
+	&& sudo systemctl restart doublezerod \
+	&& doublezero config set --env $DESIRED_DOUBLEZERO_ENV  > /dev/null \
+	&& echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV"
+```
+
 You should see the following output:
 ```
-✅ doublezerod configured for environment testnet
+✅ doublezerod configured for environment mainnet-beta
 ```
+You should see the following output:
+`
+✅ doublezerod configured for environment testnet
+`
 
 After about 30 seconds you will see the DoubleZero devices available:
 
