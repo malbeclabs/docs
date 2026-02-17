@@ -80,10 +80,13 @@ sudo yum install doublezero
 
 <div data-wizard-step="install-network-warning" markdown>
 
-!!! info
-    When you install from one of the package repositories above it is specific to DoubleZero Testnet or DoubleZero Mainnet Beta. If you swap networks at any point you will need to remove the previously installed package repositories and update to the target repo.
+??? info "Changing packege from *Testnet to Mainnet-Beta*, or *Mainnet-Beta to Testnet*"
+    When you install from one of the package repositories above it is specific to DoubleZero **Testnet** or **DoubleZero Mainnet Beta**. If you swap networks at any point you will need to remove the previously installed package repositories and update to the target repo.
 
     This example will walk through Testnet to Mainnet-Beta Migration
+
+    The same steps may be completed to move from Mainnet-Beta to Testnet, by replacing the step 3 with the the install command for Testnet above.
+
 
     1. Find Old Repository Files
 
@@ -109,7 +112,7 @@ sudo yum install doublezero
         curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
         sudo apt-get install doublezero=<current_recomended_version_above>
         ```
-    The same steps may be completed to move a Mainnet-Beta machine to Testnet, by replacing the step 3 with the appropriate install command above.
+
 
 </div>
 
