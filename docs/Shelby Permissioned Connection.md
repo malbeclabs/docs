@@ -18,7 +18,7 @@ Shelby user onboarding is currently permissioned. To begin the permissioned flow
 !!! Note inline end
     IBRL mode does not require restarting validator clients, because it uses your existing public IP address.
 
-Permissioned Users will complete connection to DoubleZero Mainnet-beta, which is detailed on this page.
+Shelby permissioned Users will complete connection to DoubleZero Testnet, which is detailed on this page.
 
 ## 1. Environment Configuration
 
