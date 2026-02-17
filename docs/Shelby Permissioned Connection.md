@@ -29,12 +29,13 @@ The last step in setup was to disconnect from the network. This is to ensure tha
 To configure the DoubleZero Client CLI (`doublezero`) and daemon (`doublezerod`) to connect to **DoubleZero testnet**:
 ```bash
 DESIRED_DOUBLEZERO_ENV=testnet \
-	&& sudo mkdir -p /etc/systemd/system/doublezerod.service.d \
-	&& echo -e "[Service]\nExecStart=\nExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env $DESIRED_DOUBLEZERO_ENV" | sudo tee /etc/systemd/system/doublezerod.service.d/override.conf > /dev/null \
-	&& sudo systemctl daemon-reload \
-	&& sudo systemctl restart doublezerod \
-	&& doublezero config set --env $DESIRED_DOUBLEZERO_ENV  > /dev/null \
-	&& echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV"
+DESIRED_TENANT=shelby \
+    && sudo mkdir -p /etc/systemd/system/doublezerod.service.d \
+    && echo -e "[Service]\nExecStart=\nExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env $DESIRED_DOUBLEZERO_ENV -tenant $DESIRED_TENANT" | sudo tee /etc/systemd/system/doublezerod.service.d/override.conf > /dev/null \
+    && sudo systemctl daemon-reload \
+    && sudo systemctl restart doublezerod \
+    && doublezero config set --env $DESIRED_DOUBLEZERO_ENV --tenant $DESIRED_TENANT > /dev/null \
+    && echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV and tenant $DESIRED_TENANT"
 ```
 You should see the following output:
 `
@@ -67,7 +68,7 @@ Testnet output will be identical in structure, but with many more available devi
 
 ## 2. Contact the DoubleZero Foundation
 
-The DoubleZero foundation. You will need to provide your `DoubleZeroID`, your `Validator ID` (node ID), and the `public ipv4 address` you will be connecting from.
+The DoubleZero foundation. You will need to provide your `DoubleZeroID`, and the `public ipv4 address` you will be connecting from.
 
 
 <div data-wizard-step="rpc-connect-ibrl" markdown>
