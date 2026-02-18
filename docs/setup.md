@@ -80,7 +80,7 @@ sudo yum install doublezero
 
 <div data-wizard-step="install-network-warning" markdown>
 
-??? info "Changing packege from *Testnet to Mainnet-Beta*, or *Mainnet-Beta to Testnet*"
+??? info "Existing Users Only: Chang a package from *Testnet to Mainnet-Beta*, or *Mainnet-Beta to Testnet*"
     When you install from one of the package repositories above it is specific to DoubleZero **Testnet** or **DoubleZero Mainnet Beta**. If you swap networks at any point you will need to remove the previously installed package repositories and update to the target repo.
 
     This example will walk through Testnet to Mainnet-Beta Migration

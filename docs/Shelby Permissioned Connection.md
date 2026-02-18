@@ -16,7 +16,7 @@ Shelby user onboarding is currently permissioned. To begin the permissioned flow
 ###  Connecting to Testnet in IBRL Mode
 
 !!! Note inline end
-    IBRL mode does not require restarting validator clients, because it uses your existing public IP address.
+    Connection to DoubleZero does not require restarting clients, because it uses your existing public IP address.
 
 Shelby permissioned Users will complete connection to DoubleZero Testnet, which is detailed on this page.
 
@@ -65,6 +65,19 @@ Example output (Testnet)
 Testnet output will be identical in structure, but with many more available devices.
 </details>
 
+Set up Firewall
+
+IP tables:
+```
+sudo iptables -A INPUT -i doublezero0 -p tcp --dport 39431 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 39431 -j DROP
+```
+
+UFW:
+```
+sudo ufw allow in on doublezero0 to any port 39431 proto tcp
+sudo ufw deny in to any port 39431 proto tcp
+```
 
 ## 2. Contact the DoubleZero Foundation
 
