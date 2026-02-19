@@ -15,10 +15,7 @@ Shelby user onboarding is currently permissioned. To begin the permissioned flow
 
 ###  Connecting to Testnet in IBRL Mode
 
-!!! Note inline end
-    IBRL mode does not require restarting validator clients, because it uses your existing public IP address.
-
-Permissioned Users will complete connection to DoubleZero Mainnet-beta, which is detailed on this page.
+Shelby permissioned users will complete connection to DoubleZero Testnet, which is detailed on this page.
 
 ## 1. Environment Configuration
 
@@ -29,12 +26,9 @@ The last step in setup was to disconnect from the network. This is to ensure tha
 To configure the DoubleZero Client CLI (`doublezero`) and daemon (`doublezerod`) to connect to **DoubleZero testnet**:
 ```bash
 DESIRED_DOUBLEZERO_ENV=testnet \
-	&& sudo mkdir -p /etc/systemd/system/doublezerod.service.d \
-	&& echo -e "[Service]\nExecStart=\nExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env $DESIRED_DOUBLEZERO_ENV" | sudo tee /etc/systemd/system/doublezerod.service.d/override.conf > /dev/null \
-	&& sudo systemctl daemon-reload \
-	&& sudo systemctl restart doublezerod \
-	&& doublezero config set --env $DESIRED_DOUBLEZERO_ENV  > /dev/null \
-	&& echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV"
+DESIRED_TENANT=shelby \
+    && doublezero config set --env $DESIRED_DOUBLEZERO_ENV --tenant $DESIRED_TENANT > /dev/null \
+    && echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV and tenant $DESIRED_TENANT"
 ```
 You should see the following output:
 `
@@ -61,13 +55,25 @@ Example output (Testnet)
  9LFtjDzohKvCBzSquQD4YtL3HwuvkKBDE7KSzb8ztV2b | dz-mtl11-sw01 | 134.195.161.10  | 9.88ms   | 10.01ms  | 9.95ms   | true
  9M7FfYYyjM4wGinKPofZRNmQFcCjCKRbXscGBUiXvXnG | dz-tor1-sw01  | 209.42.165.10   | 14.52ms  | 14.53ms  | 14.52ms  | true
 ```
-Testnet output will be identical in structure, but with many more available devices.
 </details>
 
+Set up Firewall
+
+IP tables:
+```
+sudo iptables -A INPUT -i doublezero0 -p tcp --dport 39431 -j ACCEPT
+sudo iptables -A INPUT -p tcp --dport 39431 -j DROP
+```
+
+UFW:
+```
+sudo ufw allow in on doublezero0 to any port 39431 proto tcp
+sudo ufw deny in to any port 39431 proto tcp
+```
 
 ## 2. Contact the DoubleZero Foundation
 
-The DoubleZero foundation. You will need to provide your `DoubleZeroID`, your `Validator ID` (node ID), and the `public ipv4 address` you will be connecting from.
+The DoubleZero foundation. You will need to provide your `DoubleZeroID`, and the `public ipv4 address` you will be connecting from.
 
 
 <div data-wizard-step="rpc-connect-ibrl" markdown>
@@ -125,7 +131,3 @@ default via 149.28.38.1 dev enp1s0 proto dhcp src 149.28.38.64 metric 100
 
 
 </div>
-
-### Up Next: Multicast
-
-If you have completed this setup and plan to use Multicast, proceed to the [next page](Multicast%20Connection.md).
