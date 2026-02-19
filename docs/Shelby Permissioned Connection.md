@@ -15,10 +15,7 @@ Shelby user onboarding is currently permissioned. To begin the permissioned flow
 
 ###  Connecting to Testnet in IBRL Mode
 
-!!! Note inline end
-    Connection to DoubleZero does not require restarting clients, because it uses your existing public IP address.
-
-Shelby permissioned Users will complete connection to DoubleZero Testnet, which is detailed on this page.
+Shelby permissioned users will complete connection to DoubleZero Testnet, which is detailed on this page.
 
 ## 1. Environment Configuration
 
@@ -30,7 +27,6 @@ To configure the DoubleZero Client CLI (`doublezero`) and daemon (`doublezerod`)
 ```bash
 DESIRED_DOUBLEZERO_ENV=testnet \
 DESIRED_TENANT=shelby \
-    && sudo mkdir -p /etc/systemd/system/doublezerod.service.d \
     && echo -e "[Service]\nExecStart=\nExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env $DESIRED_DOUBLEZERO_ENV -tenant $DESIRED_TENANT" | sudo tee /etc/systemd/system/doublezerod.service.d/override.conf > /dev/null \
     && sudo systemctl daemon-reload \
     && sudo systemctl restart doublezerod \
@@ -62,7 +58,6 @@ Example output (Testnet)
  9LFtjDzohKvCBzSquQD4YtL3HwuvkKBDE7KSzb8ztV2b | dz-mtl11-sw01 | 134.195.161.10  | 9.88ms   | 10.01ms  | 9.95ms   | true
  9M7FfYYyjM4wGinKPofZRNmQFcCjCKRbXscGBUiXvXnG | dz-tor1-sw01  | 209.42.165.10   | 14.52ms  | 14.53ms  | 14.52ms  | true
 ```
-Testnet output will be identical in structure, but with many more available devices.
 </details>
 
 Set up Firewall
