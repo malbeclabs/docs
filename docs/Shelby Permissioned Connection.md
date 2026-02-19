@@ -27,9 +27,6 @@ To configure the DoubleZero Client CLI (`doublezero`) and daemon (`doublezerod`)
 ```bash
 DESIRED_DOUBLEZERO_ENV=testnet \
 DESIRED_TENANT=shelby \
-    && echo -e "[Service]\nExecStart=\nExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env $DESIRED_DOUBLEZERO_ENV -tenant $DESIRED_TENANT" | sudo tee /etc/systemd/system/doublezerod.service.d/override.conf > /dev/null \
-    && sudo systemctl daemon-reload \
-    && sudo systemctl restart doublezerod \
     && doublezero config set --env $DESIRED_DOUBLEZERO_ENV --tenant $DESIRED_TENANT > /dev/null \
     && echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV and tenant $DESIRED_TENANT"
 ```
