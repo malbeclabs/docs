@@ -1,142 +1,73 @@
-# How to connect to DoubleZero in Multicast Mode
+# Multicast Connections
 !!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Service](https://doublezero.xyz/terms-protocol)"
-### 1. Connect Multicast Mode
-DoubleZero Multicast Mode enables development teams like Anza, Firedancer and Jito to bring multicast publishers and subscribers on to the DoubleZero. Multicast mode has both a `publisher` and a `subscriber` role. The publisher sends out packets across the network and subscribers are those who receive packets originating from the publisher.
 
-Please follow the [setup](setup.md) instructions before proceeding.
+The DoubleZero Network supports public and private Multicast services. Using Multicast, data published from one source can be efficiently distributed to multiple consumers (subscribers). Publishers do not need to send individual streams to each subscriber. Multicast is a capability which is not available on the Internet.  
 
-!!! note inline end
-    As of v0.2.0, only a single tunnel can be provisioned at a time. In addition, a user can be only a subscriber or a publisher. If you want to switch between publisher or subscriber, you'll have to disconnect and reconnect.
+|Use Case | First Step | When Approve, connect via:| 
+|---------|------------|---------------------------| 
+|Subscribe to Jito Shredstream | Contact Jito for approval. | ```doublezero connect multicast --subscribe jito-shredstream``` |
+|Publish to a Private Service | If you'd like to publish to a private service, please contact the DZ Foundation here. When approved, you connect via | ```doublezero connect multicast --publish <feed name>``` [optional additional feed names space separated] |
+|Subscribe to a Private Service	| If you'd like to subscribe to a private service, please contact the owner of that Service or fill in this form to be directed. | ```doublezero connect multicast --subscribe <feed name>``` [optional additional feed names space separated] |
 
-<div data-wizard-step="multicast-connect-publisher" markdown>
+Detailed connection information: 
 
-#### Publisher
+### 1. DoubleZero Client Installation
+Please follow the [setup](setup.md) instructions to Install and configure the DoubleZero client.
 
-```
- doublezero --keypair $SOLANA_KEYPAIR connect multicast publisher <multicast_group> --client-ip <client_ip>
-```
+### 2. Connection Instructions 
 
-You should see output similar to the following:
-```
+Connect to DoubleZero in Multicast Mode
+As a publisher: 
 
-🔗  Start Provisioning User...
-    Using Public IP: <Your public IP>
-🔍  Provisioning User for IP: <Your public IP>
-    Creating an account for the IP: <Your public IP>
-    The Device has been selected: <selected DoubleZero device IP>
-|  Waiting for user activation..
-    User activated with dz_ip: <Your public IP>
-    Provisioning: status: ok
-/  Connected
-```
+```doublezero connect multicast --publish <feed name>```
 
-You should also notice the `publishers` column count increase by one.
+or as a subscriber: 
 
-```
-doublezero multicast group list
-```
+```doublezero connect multicast --subscribe <feed name>```
 
-```
- account                                      | code | multicast_ip | max_bandwidth | publishers | subscribers | status    | owner
- 52ieY9ydcJsms5rYMdsYtH6SnpMvWT2GcvAa8UydRdgi | mg01 | <multicast_ip> | 10Gbps        | 1          | 0           | activated | Dc3LFdWwKGJvJcVkXhAr14kh1HS6pN7oCWrvHfQtsHGe
-```
+or to publish and subscribe: 
 
-</div>
+```doublezero connect multicast --publish <feed name> --subscribe <feed name>```
 
-<div data-wizard-step="multicast-connect-subscriber" markdown>
-
-#### Subscriber
-
-```
-  doublezero --keypair $SOLANA_KEYPAIR connect multicast subscriber <multicast_group> --client-ip <client_ip>
-```
+To publish or subscribe to multiple feeds you can include multiple feed names space separated.
+This can also be use to publish and subscribe to publish feeds.
+For example 
+```doublezero connect multicast --subscribe feed1 feed2 feed3```
 
 You should see output similar to the following:
-
 ```
-🔗  Start Provisioning User...
-    Using Public IP: <Your public IP>
-🔍  Provisioning User for IP: <Your public IP>
-    Creating an account for the IP: <Your public IP>
-    The Device has been selected: <selected DoubleZero device IP>
-|  Waiting for user activation...
-    User activated with dz_ip: <Your public IP>
-    Provisioning: status: ok
-/  Connected
+DoubleZero Service Provisioning
+🔗  Start Provisioning User to devnet...
+Public IP detected: 137.174.145.145 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
+    DoubleZero ID: <your dz_id>
+🔍  Provisioning User for IP: <your public ip>
+    Creating an account for the IP: <your public ip>
+    The Device has been selected: <the doublezero device you are connecting to>
+    Service provisioned with status: ok
+✅  User Provisioned
 ```
-
-You should also see the number of `subscribers` increase by one.
-
-```
-doublezero multicast group list
-```
-
-```
-account                                      | code | multicast_ip   | max_bandwidth | publishers | subscribers | status    | owner
-52ieY9ydcJsms5rYMdsYtH6SnpMvWT2GcvAa8UydRdgi | mg01 | <multicast_ip> | 10Gbps        | 0          | 1           | activated | Dc3LFdWwKGJvJcVkXhAr14kh1HS6pN7oCWrvHfQtsHGe
-```
-
-</div>
-
-
-Congratulations, your DoubleZero connection is up and running! We hope. Let's run a few more commands to make sure everything is working.
-
-<div data-wizard-step="multicast-verify-publisher" markdown>
-
-### 2. Verify doublezero tunnel
+### 3. Verify your active multicast connection. 
+Wait for 60 seconds and then run
 
 ```
 doublezero status
 ```
-
 Expected result:
+- BGP Session Up on the correct DoubleZero Network 
+- If you are a publisher, your DoubleZero IP will be different than your Tunnel Src IP. This is expected. 
+- If you are a subscriber only, your DoubleZero IP will be the same as your Tunnel Src IP. 
 
 ```
- Tunnel status | Last Session Update | Tunnel Name | Tunnel src       | Tunnel dst      | Doublezero IP     | User Type
- up            | <Timestamp>         | doublezero1 | <Your public IP> | <Doublezero IP> | <Your public IP>  | Multicast
+~$ doublezero status
+ Tunnel Status  | Last Session Update     | Tunnel Name | Tunnel Src      | Tunnel Dst | Doublezero IP | User Type | Current Device | Lowest Latency Device | Metro   | Network
+ BGP Session Up | 2026-02-11 20:46:20 UTC | doublezero1 | 137.174.145.145 | 100.0.0.1  | 198.18.0.1    | Multicast | ams-dz001      | ✅ ams-dz001         | Amsterdam | Testnet
 ```
 
-### 3. Verify routing link address in routing table
-
-In multicast mode, you should see a single 169.254/31 route, plus a static route for the multicast group you are connected to.
-
+Verify the groups you're connected to: 
 ```
-$ ip route show dev doublezero1
+doublezero user list --client-ip <your ip>
 ```
 
-```
-169.254.0.0/31 proto kernel scope link src 169.254.0.1
-<multicast_ip> via 169.254.0.0 proto static src 64.86.249.81
-```
-
-</div>
-
-<div data-wizard-step="multicast-verify-subscriber" markdown>
-
-### 2. Verify doublezero tunnel
-
-```
-doublezero status
-```
-
-Expected result:
-
-```
- Tunnel status | Last Session Update | Tunnel Name | Tunnel src       | Tunnel dst      | Doublezero IP | User Type
- up            | <Timestamp>         | doublezero1 | <Your public IP> | <Doublezero IP> |               | Multicast
-```
-
-### 3. Verify routing link address in routing table
-
-In multicast mode, you should see a single 169.254/31 route, plus a static route for the multicast group you are connected to.
-
-```
-$ ip route show dev doublezero1
-```
-
-```
-169.254.0.0/31 proto kernel scope link src 169.254.0.1
-<multicast_ip> via 169.254.0.0 proto static
-```
-
-</div>
+|account                                      | user_type | groups | device    | location    | cyoa_type  | client_ip       | dz_ip       | accesspass     | tunnel_id | tunnel_net       | status    | owner |
+|----|----|----|----|----|----|----|----|----|----|----|----|----|
+|wQWmt7L6mTyszhyLywJeTk85KJhe8BGW4oCcmxbhaxJ  | Multicast | P:mg02 | ams-dz001 | Amsterdam   | GREOverDIA | 137.174.145.145 | 198.18.0.1  | Prepaid: (MAX) | 515       | 169.254.3.58/31  | activated | DZfHfcCXTLwgZeCRKQ1FL1UuwAwFAZM93g86NMYpfYan|
