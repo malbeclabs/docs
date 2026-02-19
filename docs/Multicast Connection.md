@@ -25,7 +25,12 @@ or as a subscriber:
 
 ```doublezero connect multicast --subscribe <feed name>```
 
-To publish or subscribe to multiple feeds you can include multiple feed names space separated. 
+or to publish and subscribe: 
+
+```doublezero connect multicast --publish <feed name> --subscribe <feed name>```
+
+To publish or subscribe to multiple feeds you can include multiple feed names space separated.
+This can also be use to publish and subscribe to publish feeds.
 For example 
 ```doublezero connect multicast --subscribe feed1 feed2 feed3```
 
@@ -50,7 +55,7 @@ doublezero status
 Expected result:
 - BGP Session Up on the correct DoubleZero Network 
 - If you are a publisher, your DoubleZero IP will be different than your Tunnel Src IP. This is expected. 
-- If you are a subscriber, your DoubleZero IP will be the same as your Tunnel Src IP. 
+- If you are a subscriber only, your DoubleZero IP will be the same as your Tunnel Src IP. 
 
 ```
 ~$ doublezero status
