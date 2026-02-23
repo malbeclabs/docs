@@ -28,24 +28,22 @@ The last step in setup was to disconnect from the network. This is to ensure tha
 To configure the DoubleZero Client CLI (`doublezero`) and daemon (`doublezerod`) to connect to **DoubleZero testnet**:
 ```bash
 DESIRED_DOUBLEZERO_ENV=testnet \
-DESIRED_TENANT=solana \
-    && sudo mkdir -p /etc/systemd/system/doublezerod.service.d \
-    && echo -e "[Service]\nExecStart=\nExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env $DESIRED_DOUBLEZERO_ENV -tenant $DESIRED_TENANT" | sudo tee /etc/systemd/system/doublezerod.service.d/override.conf > /dev/null \
-    && sudo systemctl daemon-reload \
-    && sudo systemctl restart doublezerod \
-    && doublezero config set --env $DESIRED_DOUBLEZERO_ENV --tenant $DESIRED_TENANT > /dev/null \
-    && echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV and tenant $DESIRED_TENANT"
+	&& sudo mkdir -p /etc/systemd/system/doublezerod.service.d \
+	&& echo -e "[Service]\nExecStart=\nExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env $DESIRED_DOUBLEZERO_ENV" | sudo tee /etc/systemd/system/doublezerod.service.d/override.conf > /dev/null \
+	&& sudo systemctl daemon-reload \
+	&& sudo systemctl restart doublezerod \
+	&& doublezero config set --env $DESIRED_DOUBLEZERO_ENV  > /dev/null \
+	&& echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV"
 ```
 To configure the DoubleZero Client CLI (`doublezero`) and daemon (`doublezerod`) to connect to **DoubleZero mainnet-beta**:
 ```bash
 DESIRED_DOUBLEZERO_ENV=mainnet-beta \
-DESIRED_TENANT=solana \
-    && sudo mkdir -p /etc/systemd/system/doublezerod.service.d \
-    && echo -e "[Service]\nExecStart=\nExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env $DESIRED_DOUBLEZERO_ENV -tenant $DESIRED_TENANT" | sudo tee /etc/systemd/system/doublezerod.service.d/override.conf > /dev/null \
-    && sudo systemctl daemon-reload \
-    && sudo systemctl restart doublezerod \
-    && doublezero config set --env $DESIRED_DOUBLEZERO_ENV --tenant $DESIRED_TENANT > /dev/null \
-    && echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV and tenant $DESIRED_TENANT"
+	&& sudo mkdir -p /etc/systemd/system/doublezerod.service.d \
+	&& echo -e "[Service]\nExecStart=\nExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env $DESIRED_DOUBLEZERO_ENV" | sudo tee /etc/systemd/system/doublezerod.service.d/override.conf > /dev/null \
+	&& sudo systemctl daemon-reload \
+	&& sudo systemctl restart doublezerod \
+	&& doublezero config set --env $DESIRED_DOUBLEZERO_ENV  > /dev/null \
+	&& echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV"
 ```
 
 You should see the following output:
