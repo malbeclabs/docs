@@ -72,7 +72,17 @@ $ sudo bash
 $ exit
 ```
 
-### 2. Remove the old version
+### 2. Shutdown the agent
+
+```
+switch# configure
+switch(config)# daemon doublezero-agent
+switch(config-daemon-doublezero-agent)# shutdown
+switch(config-daemon-doublezero-agent)# exit
+switch(config)# exit
+```
+
+### 3. Remove the old version
 
 First, find the filename of the old version:
 ```
@@ -85,7 +95,7 @@ switch# delete flash:doublezero-agent_<OLD_VERSION>_linux_amd64.rpm
 switch# delete extension:doublezero-agent_<OLD_VERSION>_linux_amd64.rpm
 ```
 
-### 3. Install the new version
+### 4. Install the new version
 
 ```
 switch# copy flash:AGENT_FILENAME extension:
@@ -93,14 +103,24 @@ switch# extension AGENT_FILENAME
 switch# copy installed-extensions boot-extensions
 ```
 
-### 4. Verify the upgrade
+### 5. Unshut the agent
+
+```
+switch# configure
+switch(config)# daemon doublezero-agent
+switch(config-daemon-doublezero-agent)# no shutdown
+switch(config-daemon-doublezero-agent)# exit
+switch(config)# exit
+```
+
+### 6. Verify the upgrade
 
 The Status should be "A, I, B".
 ```
 switch# show extensions
 ```
 
-### Verify Config Agent Log Output
+### 7. Verify Config Agent Log Output
 
 ```
 show agent doublezero-agent log
@@ -123,7 +143,17 @@ $ sudo bash
 $ exit
 ```
 
-### 2. Remove the old version
+### 2. Shutdown the agent
+
+```
+switch# configure
+switch(config)# daemon doublezero-telemetry
+switch(config-daemon-doublezero-telemetry)# shutdown
+switch(config-daemon-doublezero-telemetry)# exit
+switch(config)# exit
+```
+
+### 3. Remove the old version
 
 First, find the filename of the old version:
 ```
@@ -136,7 +166,7 @@ switch# delete flash:doublezero-device-telemetry-agent_<OLD_VERSION>_linux_amd64
 switch# delete extension:doublezero-device-telemetry-agent_<OLD_VERSION>_linux_amd64.rpm
 ```
 
-### 3. Install the new version
+### 4. Install the new version
 
 ```
 switch# copy flash:TELEMETRY_FILENAME extension:
@@ -144,14 +174,24 @@ switch# extension TELEMETRY_FILENAME
 switch# copy installed-extensions boot-extensions
 ```
 
-### 4. Verify the upgrade
+### 5. Unshut the agent
+
+```
+switch# configure
+switch(config)# daemon doublezero-telemetry
+switch(config-daemon-doublezero-telemetry)# no shutdown
+switch(config-daemon-doublezero-telemetry)# exit
+switch(config)# exit
+```
+
+### 6. Verify the upgrade
 
 The Status should be "A, I, B".
 ```
 switch# show extensions
 ```
 
-### Verify Telemetry Agent Log Output
+### 7. Verify Telemetry Agent Log Output
 
 ```
 show agent doublezero-telemetry log
