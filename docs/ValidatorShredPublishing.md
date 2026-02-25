@@ -1,4 +1,4 @@
-# Validator Shred Publishing
+# DoubleZero Validator Multicast
 !!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Service](https://doublezero.xyz/terms-protocol)"
 
 
@@ -6,7 +6,7 @@
 
 ### Publishing shreds to bebop (validators)
 
-After following [setup](), and the relevant [testnet], or [mainnet-beta] validator connection documentation you may publish shreds to the DoubleZero multicast group. Validators can publish shreds to the **bebop** multicast group. The multicast destination is `233.84.178.1:7733`. Configure your validator client as follows:
+After following [setup](setup.md), and the relevant [testnet](DZ%20Testnet%20Connection.md) or [mainnet-beta](DZ%20Mainnet-beta%20Connection.md) validator connection documentation you may publish shreds to the DoubleZero multicast group. Validators can publish shreds to the **bebop** multicast group. The multicast destination is `233.84.178.1:7733`. Configure your validator client as follows:
 
 #### Jito Agave (version x.x.x or higher)
 

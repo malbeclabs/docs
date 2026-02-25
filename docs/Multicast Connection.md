@@ -1,4 +1,4 @@
-# Multicast Connections
+# Other Multicast
 !!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Service](https://doublezero.xyz/terms-protocol)"
  
 
