@@ -339,13 +339,15 @@ You should see output indicating provisioning, such as:
 
 ```
 DoubleZero Service Provisioning
-🔗  Start Provisioning User...
-Public IP detected: 137.184.101.183 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
-🔍  Provisioning User for IP: 137.184.101.183
-    User account created
-    Connected to device: nyc-dz001
-    The user has been successfully activated
-    Service provisioned with status: ok
+🔗  Start Provisioning User to testnet...
+    DoubleZero ID: DZfHfcCXTLwgZeCRKQ1FL1UuwAwFAZM93g86NMYpfYan
+🔍  Provisioning User for IP: 64.225.32.240
+    Creating user account...
+    Device selected: lax-dz001
+    Tunnel Src: 64.225.32.240
+    Tunnel Dst: 207.45.216.134
+    DoubleZero IP: 64.225.32.240
+    Session: Pending BGP Session
 ✅  User Provisioned
 ```
 Wait one minute for the GRE tunnel to finish setting up. Until the GRE tunnel is done setting up, your status output may return "down" or "Unknown"

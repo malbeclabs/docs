@@ -153,15 +153,17 @@ This issue is often related to the GRE tunnel being successfully activated betwe
 **Symptoms:**
 - `doublezero connect ibrl` was successful. However, `doublezero status` returns `down` or `unknown`
     ```
-    doublezero connect ibrl                                                                                                                                                                                                                                                                                                                                  
+    doublezero connect ibrl
     DoubleZero Service Provisioning
-    🔗  Start Provisioning User...
-    Public IP detected: 111.11.11.11 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
+    🔗  Start Provisioning User to testnet...
+        DoubleZero ID: DZfHfcCXTLwgZeCRKQ1FL1UuwAwFAZM93g86NMYpfYan
     🔍  Provisioning User for IP: 111.11.11.11
-    User account created
-    Connected to device: nyc-dz001
-    The user has been successfully activated
-    Service provisioned with status: ok
+        Creating user account...
+        Device selected: nyc-dz001
+        Tunnel Src: 111.11.11.11
+        Tunnel Dst: 64.86.249.22
+        DoubleZero IP: 111.11.11.11
+        Session: Pending BGP Session
     ✅  User Provisioned
     ```
 
@@ -274,17 +276,6 @@ This is not an error, but can be an optimization. Below is a best practice which
 
     First run
     - `doublezero disconnect`
-
-      output
-
-        ```
-        DoubleZero Service Provisioning
-        🔍  Decommissioning User
-        Public IP detected: 111.11.11.11 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
-        \ [00:00:00] [##########>-----------------------------] 1/4 deleting user       account...                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     🔍  Deleting User Account for: 6QRU1ivJnKGHpom2BdzH9PiTRkJ5WhunPNLtfYcqVisW
-        🔍  User Account deleted
-        ✅  Deprovisioning Complete
-        ```
     now we check the status to confirm our disconnection with
     - `doublezero status`
 
@@ -300,15 +291,18 @@ This is not an error, but can be an optimization. Below is a best practice which
     output
     ```
     DoubleZero Service Provisioning
-    🔗  Start Provisioning User...
-    Public IP detected: 111.11.11.11 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
+    🔗  Start Provisioning User to mainnet-beta...
+        DoubleZero ID: DZfHfcCXTLwgZeCRKQ1FL1UuwAwFAZM93g86NMYpfYan
     🔍  Provisioning User for IP: 111.11.11.11
-    User account created
-    Connected to device: dz-ny7-sw01 
-    Service provisioned with status: ok
+        Creating user account...
+        Device selected: dz-ny7-sw01
+        Tunnel Src: 111.11.11.11
+        Tunnel Dst: 137.239.213.162
+        DoubleZero IP: 111.11.11.11
+        Session: Pending BGP Session
     ✅  User Provisioned
     ```
-    notice in the above output that we `Connected to device: dz-ny7-sw01` this is the desired result from our initial investigation in step 1, where we discovered that `dz-ny7-sw01` was the device with the lowest latency.
+    notice in the above output that `Device selected: dz-ny7-sw01` this is the desired result from our initial investigation in step 1, where we discovered that `dz-ny7-sw01` was the device with the lowest latency.
 
 ### Issue: `doublezero status` returns some fields with N/A
 

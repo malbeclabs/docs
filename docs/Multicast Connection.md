@@ -37,13 +37,15 @@ For example
 You should see output similar to the following:
 ```
 DoubleZero Service Provisioning
-🔗  Start Provisioning User to devnet...
-Public IP detected: 137.174.145.145 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
+🔗  Start Provisioning User to testnet...
     DoubleZero ID: <your dz_id>
 🔍  Provisioning User for IP: <your public ip>
-    Creating an account for the IP: <your public ip>
-    The Device has been selected: <the doublezero device you are connecting to>
-    Service provisioned with status: ok
+    Creating user account...
+    Device selected: <the doublezero device you are connecting to>
+    Tunnel Src: <your public ip>
+    Tunnel Dst: <device ip>
+    DoubleZero IP: <your public ip>
+    Session: Pending BGP Session
 ✅  User Provisioned
 ```
 ### 3. Verify your active multicast connection. 
