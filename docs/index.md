@@ -1,6 +1,8 @@
 # Welcome to DoubleZero
 
-DoubleZero is a decentralized framework for creating and managing high-performance decentralized networks, optimized for distributed systems like blockchains. Users of DoubleZero enjoy an integrated service for highly-optimized transmission and pre-processing for distributed systems data.
+DoubleZero is a high-performance decentralized protocol and network, optimized for distributed systems, like blockchains. Users of DoubleZero enjoy an integrated service for highly- optimized transmission and pre-processing of distributed systems data.
+
+First, inbound transactions can be edge-filtered in a non-discretionary way at the network contributor hardware level (i.e. removal of spam and duplicates) prior to being sent over to users (e.g., blockchain nodes) of the DoubleZero network. This allows blockchains to benefit from shared system-wide filtration resources rather than needing each individual validator to provision sufficient resources. As a result, validators can reallocate their resources towards directly revenue-generating activities. This feature is not yet functional.
 
 ## Who is DoubleZero for?
 

@@ -1,13 +1,12 @@
-# Multicast Connections
+# Other Multicast Connection
 !!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Service](https://doublezero.xyz/terms-protocol)"
+ 
 
-The DoubleZero Network supports public and private Multicast services. Using Multicast, data published from one source can be efficiently distributed to multiple consumers (subscribers). Publishers do not need to send individual streams to each subscriber. Multicast is a capability which is not available on the Internet.  
-
-|Use Case | First Step | When Approve, connect via:| 
-|---------|------------|---------------------------| 
+|Use Case | First Step | When Approve, connect via:|
+|---------|------------|---------------------------|
 |Subscribe to Jito Shredstream | Contact Jito for approval. | ```doublezero connect multicast --subscribe jito-shredstream``` |
 |Publish to a Private Service | If you'd like to publish to a private service, please contact the DZ Foundation here. When approved, you connect via | ```doublezero connect multicast --publish <feed name>``` [optional additional feed names space separated] |
-|Subscribe to a Private Service	| If you'd like to subscribe to a private service, please contact the owner of that Service or fill in this form to be directed. | ```doublezero connect multicast --subscribe <feed name>``` [optional additional feed names space separated] |
+|Subscribe to a Private Service | If you'd like to subscribe to a private service, please contact the owner of that Service or fill in this form to be directed. | ```doublezero connect multicast --subscribe <feed name>``` [optional additional feed names space separated] |
 
 Detailed connection information: 
 

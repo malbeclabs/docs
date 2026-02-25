@@ -24,7 +24,8 @@ nav:
         - Validator Mainnet-Beta Connection: DZ Mainnet-beta Connection.md
         - Validator Testnet Connection: DZ Testnet Connection.md
         - Permissioned Connection: Permissioned Connection.md
-        - Multicast Connection: Multicast Connection.md
+        - Validator Multicast Connection: Validator Multicast Connection.md
+        - Other Multicast Connection: Other Multicast Connection.md
         - Paying Fees: paying-fees.md
         - Paying Fees with 2Z: paying-fees2z.md
         - Troubleshooting: troubleshooting.md
@@ -61,6 +62,7 @@ extra_css:
 extra_javascript:
   - javascripts/cloudsmith-versions.js
   - javascripts/connection-wizard.js
+  - javascripts/page-toolbar.js
   - javascripts/mathjax.js
   - path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
   - javascripts/page-toolbar.js

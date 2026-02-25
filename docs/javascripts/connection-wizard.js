@@ -316,7 +316,7 @@
       },
       show: function(s) { return s.connection === 'multicast' || s.connection === 'both'; },
       sources: function(s) {
-        return [{ page: '../Multicast%20Connection/', section: 'multicast-connect-' + s.multicastrole }];
+        return [{ page: '../Other%20Multicast%20Connection/', section: 'multicast-connect-' + s.multicastrole }];
       },
       beforeContent: function(s) {
         if (s.connection === 'both') {
@@ -332,7 +332,7 @@
       title: 'Verify Multicast Connection',
       show: function(s) { return s.connection === 'multicast' || s.connection === 'both'; },
       sources: function(s) {
-        return [{ page: '../Multicast%20Connection/', section: 'multicast-verify-' + s.multicastrole }];
+        return [{ page: '../Other%20Multicast%20Connection/', section: 'multicast-verify-' + s.multicastrole }];
       }
     },
     {
@@ -384,7 +384,7 @@
       (state.usertype === 'rpc' && state.tenant !== 'shelby'
         ? '<li><a href="../Permissioned%20Connection/">Permissioned Connection</a></li>' : '') +
       (state.connection !== 'unicast'
-        ? '<li><a href="../Multicast%20Connection/">Multicast Connection</a></li>' : '') +
+        ? '<li><a href="../Other%20Multicast%20Connection/">Other Multicast Connection</a></li>' : '') +
       (state.usertype === 'validator' && state.network === 'mainnet-beta'
         ? '<li><a href="../paying-fees/">Paying Fees</a></li>' : '') +
       '</ul></div>';

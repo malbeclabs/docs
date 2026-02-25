@@ -141,4 +141,4 @@ default via 149.28.38.1 dev enp1s0 proto dhcp src 149.28.38.64 metric 100
 
 ### Up Next: Multicast
 
-If you have completed this setup and plan to use Multicast, proceed to the [next page](Multicast%20Connection.md).
+If you have completed this setup and plan to use Multicast, proceed to the [next page](Other%20Multicast%20Connection.md).
