@@ -1,4 +1,4 @@
-# Connection to DoubleZero in IBRL Mode - for Permissioned Users
+# Connection to DoubleZero in IBRL Mode for Shelby Testnet Users
 !!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Service](https://doublezero.xyz/terms-protocol)"
 
 <div data-wizard-step="rpc-onboarding" markdown>
