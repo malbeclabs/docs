@@ -24,6 +24,7 @@ nav:
         - Validator Mainnet-Beta Connection: DZ Mainnet-beta Connection.md
         - Validator Testnet Connection: DZ Testnet Connection.md
         - Permissioned Connection: Permissioned Connection.md
+        - Validator Shred Publishing: ValidatorShredPublishing.md
         - Multicast Connection: Multicast Connection.md
         - Paying Fees: paying-fees.md
         - Paying Fees with 2Z: paying-fees2z.md
