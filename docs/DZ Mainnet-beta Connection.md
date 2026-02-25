@@ -336,4 +336,4 @@ default via 149.28.38.1 dev enp1s0 proto dhcp src 149.28.38.64 metric 100
 
 ### Up Next: Publishing Shreds via Multicast
 
-If you have completed this setup and plan publishing shreds via multicast, proceed to the [next page](ValidatorShredPublishing.md).
+If you have completed this setup and plan publishing shreds via multicast, proceed to the [next page](DoubleZero%20Validator%20Multicast.md).
