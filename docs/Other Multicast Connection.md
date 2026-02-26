@@ -5,8 +5,6 @@
 |Use Case | First Step | When Approve, connect via:|
 |---------|------------|---------------------------|
 |Subscribe to Jito Shredstream | Contact Jito for approval. | ```doublezero connect multicast --subscribe jito-shredstream``` |
-|Publish to a Private Service | If you'd like to publish to a private service, please contact the DZ Foundation here. When approved, you connect via | ```doublezero connect multicast --publish <feed name>``` [optional additional feed names space separated] |
-|Subscribe to a Private Service | If you'd like to subscribe to a private service, please contact the owner of that Service or fill in this form to be directed. | ```doublezero connect multicast --subscribe <feed name>``` [optional additional feed names space separated] |
 
 Detailed connection information: 
 
