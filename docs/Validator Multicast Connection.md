@@ -1,7 +1,7 @@
 # Validator Multicast Connection
 !!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Service](https://doublezero.xyz/terms-protocol)"
 
-If are not already connected to DoubleZero please complete [Setup](setup.md), and [Mainnet-Beta](DZ%20Mainnet-beta%20Connection.md) validator connection documentation.
+If you are not already connected to DoubleZero please complete [Setup](setup.md), and [Mainnet-Beta](DZ%20Mainnet-beta%20Connection.md) validator connection documentation.
 
 If you are a validator who is already connected to DoubleZero you may continue this guide.
 
