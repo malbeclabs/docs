@@ -48,7 +48,7 @@ A standard networking term for connectivity provided over the public internet. I
 A connection mode that allows validators and RPC nodes to connect to DoubleZero without restarting their blockchain clients. IBRL uses the existing public IP address and establishes an overlay tunnel to the nearest [DZD](#dzd-doublezero-device). See [Mainnet-Beta Connection](DZ%20Mainnet-beta%20Connection.md) for setup instructions.
 
 ### Multicast
-A one-to-many packet delivery method supported by DoubleZero. Multicast mode has two roles: **publisher** (sends packets across the network) and **subscriber** (receives packets from the publisher). Used by development teams for efficient data distribution. See [Multicast Connection](Multicast%20Connection.md) for connection details.
+A one-to-many packet delivery method supported by DoubleZero. Multicast mode has two roles: **publisher** (sends packets across the network) and **subscriber** (receives packets from the publisher). Used by development teams for efficient data distribution. See [Other Multicast Connection](Other%20Multicast%20Connection.md) for connection details.
 
 ---
 
@@ -87,7 +87,7 @@ A maintenance state where the link is completely removed from service. No traffi
 ## Organizations & Tokens
 
 ### DZF (DoubleZero Foundation)
-The DoubleZero Foundation, the organization overseeing the development and governance of the DoubleZero protocol.
+DoubleZero Foundation is a memberless nonprofit Cayman Islands foundation company that was formed to support the development, decentralization, security and adoption of the DoubleZero network.
 
 ### 2Z Token
 The native token of the DoubleZero network. Used for paying validator fees and distributed as rewards to [contributors](#contributor). Validators can pay fees in 2Z via an onchain swap program. See [Paying Fees with 2Z](paying-fees2z.md) and [Swapping SOL to 2Z](Swapping-sol-to-2z.md).

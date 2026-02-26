@@ -3,9 +3,10 @@
 
 <div data-wizard-step="rpc-onboarding" markdown>
 
-### Permissioned User Onboarding Overview
+### Get your DoubleZeroID
 
-Shelby user onboarding is currently permissioned. To begin the permissioned flow, please fill out [this form](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z). Here is what to expect during this process:
+You will need to provide your `DoubleZeroID`, and the `public ipv4 address` on this [form](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z)
+
 
 - There may be fees associated with Permissioned User usage in the future.
 - After form submission monitor your primary Telegram contact.

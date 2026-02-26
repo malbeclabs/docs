@@ -119,7 +119,7 @@ This option is attractive as it ensures dedicated bandwidth for DoubleZero, is s
 
 Note that quantities below reflect equipment needed in two data centers, i.e. the total required hardware necessary to deploy 1 fiber optic cable for bandwidth contribution.
 
-??? warning "*All FPGAs are subject to final testing.  10G contributions may be supported using Arista 7130LBR switches with inbuilt dual Virtex® UltraScale+™ FPGAs (please discuss with the DoubleZero Foundation / Malbec Labs)."
+??? warning "*All FPGAs are subject to final testing.  10G contributions may be supported using Arista 7130LBR switches with inbuilt dual Virtex® UltraScale+™ FPGAs (if you have any questions, DoubleZero Foundation / Malbec Labs are happy to provide more information)."
 
 #### Function & Port Requirements
 
