@@ -25,9 +25,13 @@ In `config.toml`, add:
    `doublezero connect multicast --publish bebop`
 3. Restart your validator.
 
+
+!!! note inline end
+    Frankendancer users in XDP driver mode cannot use tcpdump. There is currently no way to confirm you are publishing, but a solution will be available soon.
+
 #### Confirm you are publishing
 
-During your next leader slot, confirm you are publishing to the multicast group, use tcpdump during your next leader slot. You should see a heartbeat every 30 seconds.
+During your next leader slot, use `tcpdump` to confirm you are publishing to the multicast group. You should see a heartbeat every 10 seconds to verify you are publishing shreds.
 
 Run: `sudo tcpdump -vv -c5 -ni doublezero1 port 7733 or port 5765`
 
