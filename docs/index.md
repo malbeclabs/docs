@@ -2,8 +2,6 @@
 
 DoubleZero is a high-performance decentralized protocol and network, optimized for distributed systems, like blockchains. Users of DoubleZero enjoy an integrated service for highly- optimized transmission and pre-processing of distributed systems data.
 
-First, inbound transactions can be edge-filtered in a non-discretionary way at the network contributor hardware level (i.e. removal of spam and duplicates) prior to being sent over to users (e.g., blockchain nodes) of the DoubleZero network. This allows blockchains to benefit from shared system-wide filtration resources rather than needing each individual validator to provision sufficient resources. As a result, validators can reallocate their resources towards directly revenue-generating activities. This feature is not yet functional.
-
 ## Who is DoubleZero for?
 
 ### Contributors
@@ -20,7 +18,9 @@ In its initial implementation, the DoubleZero network is compatible with blockch
 
 The only alternative to DoubleZero is the public internet. Compared to the public internet, the DoubleZero network offers two improvements to blockchains.
 
-*First*, inbound transactions can be edge-filtered in a non-discretionary way at the network contributor hardware level (i.e. removal of spam and duplicates) prior to being sent over to users (e.g., blockchain nodes) of the DoubleZero network. This allows blockchains to benefit from shared system-wide filtration resources rather than needing each individual validator to provision sufficient resources. As a result, validators can reallocate their resources towards directly revenue-generating activities.
+*First*, inbound transactions can be edge-filtered in a non-discretionary way at the network 
+contributor hardware level (i.e. removal of spam and duplicates) prior to being sent over to users (e.g., blockchain nodes) of the DoubleZero network. This allows blockchains to benefit from shared system-wide filtration resources rather than needing each individual validator to provision sufficient resources. As a result, validators can reallocate their resources towards directly revenue-generating activities. This feature is not yet functional.
+
 
 *Second*, outbound messages are routed more directly and prioritized to improve efficiency. This is possible since in DoubleZero the routing logic of global data movement is optimized for speed, unlike the public internet. Thus, validators benefit from reduced jitter, which is defined as the amount of variation in latency between two data cable endpoints. In essence, blockchain nodes can send and receive blocks faster.
 
