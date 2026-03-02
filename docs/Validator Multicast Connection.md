@@ -7,23 +7,41 @@ If you are a validator who is already connected to DoubleZero you may continue t
 
 #### Jito-Agave (version 3.1.9 or higher)
 
-1. In your validator start script, add:
-   `--shred-receiver-address 233.84.178.1:7733`
-2. Connect to the DoubleZero multicast group `bebop` as a publisher:
+1. In your validator start script, add: `--shred-receiver-address 233.84.178.1:7733`
+
+    You are able to send to Jito, and the `bebop` group at the same time.
+
+    example:
+
+    ```json
+    #!/bin/bash
+    export PATH="/home/sol/.local/share/solana/install/releases/v3.1.9-jito/bin:$PATH"
+    BLOCK_ENGINE_URL=https://ny.mainnet.block-engine.jito.wtf
+    RELAYER_URL=http://ny.mainnet.relayer.jito.wtf:8100
+    SHRED_RECEIVER_ADDR=<JitoBlockEngineAddress>
+    <...The rest of your config...>
+    --shred-receiver-address 233.84.178.1:7733.xyz:1002
+    ```
+
+2. Restart your validator.
+
+3. Connect to the DoubleZero multicast group `bebop` as a publisher:
    `doublezero connect multicast --publish bebop`
-3. Restart your validator.
+
+
 
 #### Frankendancer
 
-1. 
-In `config.toml`, add:
+1. In `config.toml`, add:
    ```toml
    [tiles.shred]
    additional_shred_destinations_leader = [ "233.84.178.1:7733", ]
    ```
-2. Connect to the DoubleZero multicast group `bebop` as a publisher:
+2. Restart your validator.s
+
+3. Connect to the DoubleZero multicast group `bebop` as a publisher:
    `doublezero connect multicast --publish bebop`
-3. Restart your validator.
+
 
 
 !!! note inline end
