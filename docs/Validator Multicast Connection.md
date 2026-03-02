@@ -37,7 +37,7 @@ If you are a validator who is already connected to DoubleZero you may continue t
    [tiles.shred]
    additional_shred_destinations_leader = [ "233.84.178.1:7733", ]
    ```
-2. Restart your validator.s
+2. Restart your validator.
 
 3. Connect to the DoubleZero multicast group `bebop` as a publisher:
    `doublezero connect multicast --publish bebop`
