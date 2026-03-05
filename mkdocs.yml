@@ -13,6 +13,36 @@ theme:
     - navigation.indexes
     - toc.integrate
     - header.autohide
+plugins:
+  - search
+  - i18n:
+      docs_structure: suffix
+      languages:
+        - locale: en
+          default: true
+          name: English
+          build: true
+        - locale: zh
+          name: 中文
+          build: true
+        - locale: ja
+          name: 日本語
+          build: true
+        - locale: ko
+          name: 한국어
+          build: true
+        - locale: pt
+          name: Português
+          build: true
+        - locale: es
+          name: Español
+          build: true
+        - locale: fr
+          name: Français
+          build: true
+        - locale: it
+          name: Italiano
+          build: true
 nav:
   - Welcome: index.md
   - Quick Connect: quick-connect.md
