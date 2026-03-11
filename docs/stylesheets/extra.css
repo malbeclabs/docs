@@ -2,6 +2,11 @@
       --md-accent-fg-color:        #16B5F4;
     }
 
+  /* 50px buffer at bottom of content when fully scrolled, before footer */
+  .md-content__inner {
+    padding-bottom: 50px;
+  }
+
   /* Page toolbar styles - text-based links like Pyth docs */
   .page-toolbar-footer {
     position: fixed;

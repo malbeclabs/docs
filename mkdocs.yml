@@ -13,6 +13,15 @@ theme:
     - navigation.indexes
     - toc.integrate
     - header.autohide
+plugins:
+  - search
+  - i18n:
+      docs_structure: suffix
+      languages:
+        - locale: en
+          default: true
+          name: English
+          build: true
 nav:
   - Welcome: index.md
   - Quick Connect: quick-connect.md
@@ -26,8 +35,6 @@ nav:
         - Permissioned Connection: Permissioned Connection.md
         - Validator Multicast Connection: Validator Multicast Connection.md
         - Other Multicast Connection: Other Multicast Connection.md
-        - Paying Fees: paying-fees.md
-        - Paying Fees with 2Z: paying-fees2z.md
         - Troubleshooting: troubleshooting.md
       - Shelby:
         - Shelby Connection: Shelby Permissioned Connection.md
