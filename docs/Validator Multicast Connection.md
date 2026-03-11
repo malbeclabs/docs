@@ -8,8 +8,9 @@ If you are not already connected to DoubleZero please complete [Setup](https://d
 
 If you are a validator who is already connected to DoubleZero you may continue this guide.
 
+## 1. Client Configuration
 
-### **Jito-Agave (v3.1.9+)**
+### Jito-Agave (v3.1.9+)
 
 1. In your validator start script, add: `--shred-receiver-address 233.84.178.1:7733`
 
@@ -30,7 +31,7 @@ If you are a validator who is already connected to DoubleZero you may continue t
 2. Restart your validator.
 3. Connect to the DoubleZero multicast group `bebop` as a publisher: `doublezero connect ibrl && doublezero connect multicast --publish bebop`
 
-### **Frankendancer**
+### Frankendancer
 
 1. In `config.toml`, add:
 
@@ -42,11 +43,11 @@ If you are a validator who is already connected to DoubleZero you may continue t
 2. Restart your validator.
 3. Connect to the DoubleZero multicast group `bebop` as a publisher: `doublezero connect ibrl && doublezero connect multicast --publish bebop`
 
-### Confirm you're publishing leader shreds
+## 2. Confirm you're publishing leader shreds
 
 Once you are connected you may check [this dashboard](https://data.malbeclabs.com/dz/publisher-check) to confirm you are publishing shreds. You will not see confirmation until after you have published leader shreds for at least one slot.
 
-### Set up an Associated Token Account (ATA) for 2Z Token
+## 3. Set up an Associated Token Account (ATA) for 2Z Token
 
 Ensure there is a DoubleZero "2Z" token ATA linked to your validator identity.
 
@@ -61,6 +62,6 @@ You may replace `--fee-payer <path/to/payer.json>` with the default keypair whic
 
 This command may be run on your validator, or another machine.
 
-### Validator Rewards
+## 4. Validator Rewards
 
 For each epoch where validators publish leader shreds, they will be proportionately rewarded for their contribution based on subscriptions. Rewards are automatically distributed to the ATA roughly 10 epochs later.
