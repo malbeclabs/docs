@@ -53,6 +53,8 @@ Ensure there is a DoubleZero "2Z" token ATA linked to your validator identity.
 
 For refrence, the 2Z token mint address is: `J6pQQ3FAcJQeWPPGppWRb4nM8jU3wLyYbRrLh7feMfvd`
 
+First, intall SPL with `cargo install spl-token-cli`
+
 Run the following command, replacing `VALIDATOR_IDENTITY_PUBKEY` with your validator identity public key:
 
 ```bash
