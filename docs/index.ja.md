@@ -1,4 +1,6 @@
 # DoubleZeroへようこそ
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 DoubleZeroは、ブロックチェーンのような分散システム向けに最適化された、高性能な分散型プロトコルとネットワークです。DoubleZeroのユーザーは、分散システムデータの高度に最適化された送信と前処理のための統合サービスを享受できます。
 

@@ -1,4 +1,6 @@
 # Tenant
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 I tenant su DoubleZero sono gruppi di utenti con profili e requisiti di connessione simili, che tipicamente rappresentano diversi ecosistemi blockchain, livelli di trasferimento dati o sistemi distribuiti.
 

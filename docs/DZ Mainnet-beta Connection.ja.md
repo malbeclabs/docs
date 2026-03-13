@@ -1,4 +1,6 @@
 # IBRLモードでのバリデーターメインネットベータ接続
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 !!! warning "DoubleZeroに接続することで、[DoubleZeroサービス利用規約](https://doublezero.xyz/terms-protocol)に同意します"
 
 

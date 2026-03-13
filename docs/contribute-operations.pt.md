@@ -1,4 +1,6 @@
 # Guia de Operações para Contribuidores
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 
 Este guia cobre as tarefas operacionais contínuas para manter seus Dispositivos DoubleZero (DZDs), incluindo atualizações de agentes, atualizações de dispositivos/interfaces e gerenciamento de links.

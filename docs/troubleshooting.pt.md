@@ -1,4 +1,6 @@
 # Solução de Problemas
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 Este guia cobrirá uma variedade de problemas, e está em andamento. Se você completar o guia, pode buscar suporte adicional no Discord [DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701).
 

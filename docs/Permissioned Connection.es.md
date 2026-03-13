@@ -1,4 +1,6 @@
 # Conexión con Permisos a DoubleZero en modo IBRL para no validadores
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 !!! warning "Al conectarme a DoubleZero acepto los [Términos de Servicio de DoubleZero](https://doublezero.xyz/terms-protocol)"
 
 <div data-wizard-step="rpc-onboarding" markdown>

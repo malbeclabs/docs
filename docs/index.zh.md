@@ -1,4 +1,6 @@
 # 欢迎来到DoubleZero
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 DoubleZero是一个高性能去中心化协议和网络，专为分布式系统（如区块链）优化。DoubleZero的用户享有一体化服务，用于分布式系统数据的高度优化传输和预处理。
 

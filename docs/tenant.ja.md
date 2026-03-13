@@ -1,4 +1,6 @@
 # テナント
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 DoubleZeroのテナントは、類似したプロフィールと接続要件を持つユーザーグループで、通常は異なるブロックチェーンエコシステム、データ転送レイヤー、または分散システムを表しています。
 

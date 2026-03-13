@@ -1,4 +1,6 @@
 # アーキテクチャ
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 DoubleZeroネットワークのさまざまなアクターとコンポーネントは何で構成されていますか？
 

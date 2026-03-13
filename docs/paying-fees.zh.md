@@ -1,4 +1,6 @@
 # 验证器定价与费用
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 **为Solana验证器提供简单、一致的定价**
 

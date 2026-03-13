@@ -1,4 +1,6 @@
 **코드 또는 관련 자료에 액세스하거나 사용하기 전에 면책 조항을 검토하세요.**
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 <!-- https://github.com/doublezerofoundation/doublezero-offchain/pull/159 -->
 

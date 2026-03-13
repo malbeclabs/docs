@@ -1,4 +1,6 @@
 # Shelby 테스트넷 사용자를 위한 IBRL 모드 DoubleZero 연결
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 !!! warning "DoubleZero에 연결함으로써 [DoubleZero 서비스 약관](https://doublezero.xyz/terms-protocol)에 동의합니다"
 
 <div data-wizard-step="rpc-onboarding" markdown>

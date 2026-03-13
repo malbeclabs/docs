@@ -1,4 +1,6 @@
 # DoubleZero에 오신 것을 환영합니다
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 DoubleZero는 블록체인과 같은 분산 시스템에 최적화된 고성능 분산 프로토콜 및 네트워크입니다. DoubleZero 사용자는 분산 시스템 데이터의 고도로 최적화된 전송 및 전처리를 위한 통합 서비스를 이용합니다.
 

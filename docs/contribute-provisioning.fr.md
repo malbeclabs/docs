@@ -1,4 +1,6 @@
 # Guide de Provisionnement des Dispositifs
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 Ce guide vous accompagne dans le provisionnement d'un DoubleZero Device (DZD) du début à la fin. Chaque phase correspond à la [Liste de Contrôle d'Intégration](contribute-overview.md#onboarding-checklist).
 

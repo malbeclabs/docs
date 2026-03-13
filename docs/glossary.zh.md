@@ -1,4 +1,6 @@
 # 词汇表
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 本页面定义了文档中使用的DoubleZero专用术语。
 

@@ -1,4 +1,6 @@
 # 기여자를 위한 운영 가이드
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 
 이 가이드는 에이전트 업그레이드, 장치/인터페이스 업데이트 및 링크 관리를 포함하여 DoubleZero 장치(DZD)를 유지하기 위한 지속적인 운영 작업을 다룹니다.

@@ -1,4 +1,6 @@
 # コントリビューターのドキュメント
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 !!! info "用語"
     DoubleZeroを初めて利用しますか？[用語集](glossary.md)で[DZD](glossary.md#dzd-doublezero-device)、[DZX](glossary.md#dzx-doublezero-exchange)、[CYOA](glossary.md#cyoa-choose-your-own-adventure)などの主要な用語の定義を確認してください。

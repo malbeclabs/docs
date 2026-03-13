@@ -1,4 +1,6 @@
 # 테넌트
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 DoubleZero의 테넌트는 유사한 프로필과 연결 요구사항을 가진 사용자 그룹으로, 일반적으로 서로 다른 블록체인 에코시스템, 데이터 전송 레이어 또는 분산 시스템을 나타냅니다.
 

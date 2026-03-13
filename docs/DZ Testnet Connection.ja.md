@@ -1,4 +1,6 @@
 # IBRLモードでのバリデーターテストネット接続
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 ??? warning "DoubleZeroテストネットに接続することで、こちらに記載の評価契約の条件に同意します（クリックして展開）"
     <span style="font-size:14px;">DoubleZeroテストネット</span>
     評価契約

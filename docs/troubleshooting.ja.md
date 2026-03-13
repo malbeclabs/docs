@@ -1,4 +1,6 @@
 # トラブルシューティング
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 このガイドではさまざまな問題を取り上げており、継続的に更新されています。ガイドを完了した後にさらなるサポートが必要な場合は、[DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701) Discordにてご支援を求めることができます。
 

@@ -1,4 +1,6 @@
 # DoubleZeroのセットアップ方法
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 !!! info "用語"
     DoubleZeroを初めて利用しますか？[用語集](glossary.md)で[doublezerod](glossary.md#doublezerod)、[IBRL](glossary.md#ibrl-increase-bandwidth-reduce-latency)、[DZD](glossary.md#dzd-doublezero-device)などの用語の定義を確認してください。

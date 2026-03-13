@@ -1,4 +1,6 @@
 
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 # Gerenciamento de Grupos Multicast no DoubleZero
 
 Um **grupo multicast** é uma coleção lógica de dispositivos ou nós de rede que compartilham um identificador comum (tipicamente um endereço IP multicast) para transmitir dados eficientemente para múltiplos destinatários. Ao contrário da comunicação unicast (um para um) ou broadcast (um para todos), o multicast permite que um remetente transmita um único fluxo de dados que é replicado pela rede apenas para os receptores que ingressaram no grupo.

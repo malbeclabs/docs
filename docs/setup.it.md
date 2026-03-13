@@ -1,4 +1,6 @@
 # Configurazione di DoubleZero
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 !!! info "Terminologia"
     Nuovo a DoubleZero? Consulta il [Glossario](glossary.md) per le definizioni di termini come [doublezerod](glossary.md#doublezerod), [IBRL](glossary.md#ibrl-increase-bandwidth-reduce-latency), [DZD](glossary.md#dzd-doublezero-device) e altri.

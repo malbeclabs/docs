@@ -1,4 +1,6 @@
 # 贡献者运营指南
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 
 本指南涵盖维护DoubleZero设备（DZD）的持续运营任务，包括代理升级、设备/接口更新和链路管理。

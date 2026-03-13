@@ -1,4 +1,6 @@
 # デバイスプロビジョニングガイド
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 このガイドでは、DoubleZeroデバイス（DZD）を最初から最後までプロビジョニングする手順を説明します。各フェーズは[オンボーディングチェックリスト](contribute-overview.md#onboarding-checklist)に対応しています。
 

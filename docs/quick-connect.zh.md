@@ -1,4 +1,6 @@
 # 快速连接
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 回答几个问题，我们将为您的设置生成包含确切步骤和命令的个性化连接指南。
 

@@ -1,4 +1,6 @@
 # コントリビューター向け運用ガイド
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 
 このガイドでは、エージェントのアップグレード、デバイス/インターフェースの更新、リンク管理など、DoubleZeroデバイス（DZD）を維持するための継続的な運用タスクについて説明します。

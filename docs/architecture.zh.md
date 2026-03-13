@@ -1,4 +1,6 @@
 # 架构
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 DoubleZero网络的不同参与者和组件是什么？
 

@@ -1,4 +1,6 @@
 # Connessione Rapida
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 Rispondi ad alcune domande e genereremo una guida di connessione personalizzata con i passaggi esatti e i comandi per la tua configurazione.
 

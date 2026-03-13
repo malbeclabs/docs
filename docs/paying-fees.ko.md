@@ -1,4 +1,6 @@
 # 검증자 가격 및 수수료
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 **Solana 검증자를 위한 간단하고 투명한 가격**
 

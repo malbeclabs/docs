@@ -1,4 +1,6 @@
 # 기여자 문서
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 !!! info "용어"
     DoubleZero가 처음이신가요? [DZD](glossary.md#dzd-doublezero-device), [DZX](glossary.md#dzx-doublezero-exchange), [CYOA](glossary.md#cyoa-choose-your-own-adventure)와 같은 핵심 용어의 정의는 [용어집](glossary.md)을 참조하세요.

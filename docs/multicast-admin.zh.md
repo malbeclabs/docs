@@ -1,4 +1,6 @@
 
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 # DoubleZero中的多播组管理
 
 **多播组**是共享公共标识符（通常是多播IP地址）的设备或网络节点的逻辑集合，用于高效地向多个接收者传输数据。与单播（一对一）或广播（一对全部）通信不同，多播使发送方能够传输单个数据流，网络仅为已加入该组的接收者复制该数据流。

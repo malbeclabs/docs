@@ -1,4 +1,6 @@
 # Inquilinos
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 Los inquilinos en DoubleZero son grupos de usuarios con perfiles similares y requisitos de conexión, que típicamente representan diferentes ecosistemas blockchain, capas de transferencia de datos u otros sistemas distribuidos.
 

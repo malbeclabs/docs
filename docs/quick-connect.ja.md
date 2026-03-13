@@ -1,4 +1,6 @@
 # クイックコネクト
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 いくつかの質問に回答すると、セットアップに合わせた正確な手順とコマンドを含むパーソナライズされた接続ガイドを生成します。
 

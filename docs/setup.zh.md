@@ -1,4 +1,6 @@
 # DoubleZero设置方法
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 !!! info "术语"
     初次使用DoubleZero？请在[词汇表](glossary.md)中查看[doublezerod](glossary.md#doublezerod)、[IBRL](glossary.md#ibrl-increase-bandwidth-reduce-latency)、[DZD](glossary.md#dzd-doublezero-device)等术语的定义。

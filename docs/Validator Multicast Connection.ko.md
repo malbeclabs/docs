@@ -1,4 +1,6 @@
 # 검증자 멀티캐스트 연결
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 !!! warning "DoubleZero에 연결함으로써 [DoubleZero 서비스 약관](https://doublezero.xyz/terms-protocol)에 동의합니다"
 
 아직 DoubleZero에 연결되지 않았다면 [설정](setup.md) 및 [Mainnet-Beta](DZ%20Mainnet-beta%20Connection.md) 검증자 연결 문서를 완료하세요.

@@ -1,4 +1,6 @@
 # 故障排除
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 本指南将涵盖各种问题，并持续更新。如果您完成了本指南仍需进一步支持，可以在[DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701) Discord中寻求帮助。
 

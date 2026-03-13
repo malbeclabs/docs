@@ -1,4 +1,6 @@
 **Prima di accedere o utilizzare il codice o i materiali correlati, si prega di leggere il disclaimer.**
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 <!-- https://github.com/doublezerofoundation/doublezero-offchain/pull/159 -->
 

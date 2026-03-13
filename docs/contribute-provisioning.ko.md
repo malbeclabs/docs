@@ -1,4 +1,6 @@
 # 장치 프로비저닝 가이드
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 이 가이드는 처음부터 끝까지 DoubleZero 장치(DZD) 프로비저닝을 안내합니다. 각 단계는 [온보딩 체크리스트](contribute-overview.md#onboarding-checklist)와 일치합니다.
 

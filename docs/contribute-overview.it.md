@@ -1,4 +1,6 @@
 # Documentazione Contributori
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 !!! info "Terminologia"
     Nuovo a DoubleZero? Consulta il [Glossario](glossary.md) per le definizioni dei termini chiave come [DZD](glossary.md#dzd-doublezero-device), [DZX](glossary.md#dzx-doublezero-exchange) e [CYOA](glossary.md#cyoa-choose-your-own-adventure).

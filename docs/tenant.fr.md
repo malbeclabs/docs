@@ -1,4 +1,6 @@
 # Tenants
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 Les tenants sur DoubleZero sont des groupes d'utilisateurs aux profils et aux exigences de connexion similaires, représentant généralement différents écosystèmes blockchain, couches de transfert de données ou systèmes distribués.
 

@@ -1,4 +1,6 @@
 # 아키텍처
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 DoubleZero 네트워크의 다양한 행위자와 구성 요소는 무엇인가요?
 

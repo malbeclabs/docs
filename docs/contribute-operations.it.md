@@ -1,4 +1,6 @@
 # Guida Operativa per i Contributori
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 
 Questa guida descrive le attività operative continuative per la manutenzione dei DoubleZero Device (DZD), inclusi gli aggiornamenti degli agent, gli aggiornamenti di dispositivi/interfacce e la gestione dei link.

@@ -1,4 +1,6 @@
 # 验证器以IBRL模式连接测试网
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 ??? warning "通过连接到DoubleZero测试网，我同意此处规定的评估协议条款（点击展开）"
     <span style="font-size:14px;">DoubleZero测试网</span>
     评估协议

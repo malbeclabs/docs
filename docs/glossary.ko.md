@@ -1,4 +1,6 @@
 # 용어집
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 이 페이지는 문서 전반에 사용되는 DoubleZero 전용 용어를 정의합니다.
 

@@ -1,4 +1,6 @@
 # Guide des Opérations pour les Contributeurs
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 
 Ce guide couvre les tâches opérationnelles courantes pour maintenir vos DoubleZero Devices (DZD), notamment les mises à niveau des agents, les mises à jour des dispositifs/interfaces, et la gestion des liens.

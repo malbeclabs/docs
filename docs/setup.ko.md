@@ -1,4 +1,6 @@
 # DoubleZero 설정 방법
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 !!! info "용어"
     DoubleZero가 처음이신가요? [doublezerod](glossary.md#doublezerod), [IBRL](glossary.md#ibrl-increase-bandwidth-reduce-latency), [DZD](glossary.md#dzd-doublezero-device)와 같은 용어의 정의는 [용어집](glossary.md)을 참조하세요.

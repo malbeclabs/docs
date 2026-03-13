@@ -1,4 +1,6 @@
 # Arquitectura
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 ¿Qué compone los diferentes actores y componentes de la red DoubleZero?
 

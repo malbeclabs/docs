@@ -1,4 +1,6 @@
 # Connessione Multicast Validatore
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 !!! warning "Connettendomi a DoubleZero accetto i [Termini di Servizio DoubleZero](https://doublezero.xyz/terms-protocol)"
 
 Se non sei ancora connesso a DoubleZero, completa prima la documentazione di [Setup](setup.md) e di connessione [Mainnet-Beta](DZ%20Mainnet-beta%20Connection.md) per validatori.

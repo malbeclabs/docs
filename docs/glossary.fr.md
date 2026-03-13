@@ -1,4 +1,6 @@
 # Glossaire
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 Cette page définit la terminologie spécifique à DoubleZero utilisée dans toute la documentation.
 

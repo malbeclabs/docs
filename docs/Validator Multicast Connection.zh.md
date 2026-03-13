@@ -1,4 +1,6 @@
 # 验证器多播连接
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 !!! warning "通过连接到DoubleZero，我同意[DoubleZero服务条款](https://doublezero.xyz/terms-protocol)"
 
 如果您尚未连接到DoubleZero，请先完成[设置](setup.md)和[主网Beta](DZ%20Mainnet-beta%20Connection.md)验证器连接文档。

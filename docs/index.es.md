@@ -1,4 +1,6 @@
 # Bienvenido a DoubleZero
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 DoubleZero es un protocolo y red descentralizada de alto rendimiento, optimizado para sistemas distribuidos como las blockchains. Los usuarios de DoubleZero disfrutan de un servicio integrado para la transmisión y preprocesamiento altamente optimizados de datos de sistemas distribuidos.
 

@@ -1,4 +1,6 @@
 # 빠른 연결
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 몇 가지 질문에 답하면 설정에 맞는 정확한 단계와 명령이 포함된 맞춤형 연결 가이드를 생성해 드립니다.
 

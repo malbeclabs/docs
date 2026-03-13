@@ -1,4 +1,6 @@
 # Nuovo Tenant
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 Se desideri che il tuo sistema distribuito sfrutti la rete DoubleZero, siamo lieti di assisterti con qualsiasi domanda tecnica tu possa avere.
 

@@ -1,4 +1,6 @@
 # 租户
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 DoubleZero上的租户是具有相似配置和连接需求的用户群组，通常代表不同的区块链生态系统、数据传输层或分布式系统。
 

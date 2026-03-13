@@ -1,4 +1,6 @@
 # 贡献者文档
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 !!! info "术语"
     初次使用DoubleZero？请参阅[词汇表](glossary.md)了解[DZD](glossary.md#dzd-doublezero-device)、[DZX](glossary.md#dzx-doublezero-exchange)和[CYOA](glossary.md#cyoa-choose-your-own-adventure)等关键术语的定义。

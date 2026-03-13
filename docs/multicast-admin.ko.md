@@ -1,4 +1,6 @@
 
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 # DoubleZero 멀티캐스트 그룹 관리
 
 **멀티캐스트 그룹**은 공통 식별자(일반적으로 멀티캐스트 IP 주소)를 공유하여 여러 수신자에게 데이터를 효율적으로 전송하는 장치 또는 네트워크 노드의 논리적 집합입니다. 유니캐스트(1:1) 또는 브로드캐스트(1:전체) 통신과 달리 멀티캐스트는 송신자가 단일 데이터 스트림을 전송하면 네트워크가 그룹에 가입한 수신자에게만 이를 복제하여 전달합니다.

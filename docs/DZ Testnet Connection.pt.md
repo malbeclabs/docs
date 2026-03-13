@@ -1,4 +1,6 @@
 # Conexão do Validador ao Testnet no Modo IBRL
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 ??? warning "Ao conectar ao testnet DoubleZero, concordo com os termos do Acordo de Avaliação estabelecido aqui (clique para expandir)"
     <span style="font-size:14px;">Testnet DoubleZero</span>
     Acordo de Avaliação

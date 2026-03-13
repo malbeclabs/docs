@@ -1,4 +1,6 @@
 
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 # DoubleZeroにおけるマルチキャストグループ管理
 
 **マルチキャストグループ**は、データを複数の受信者に効率的に送信するために共通の識別子（通常はマルチキャストIPアドレス）を共有するデバイスやネットワークノードの論理的な集合体です。ユニキャスト（1対1）やブロードキャスト（1対全）通信とは異なり、マルチキャストではグループに参加した受信者に対してのみ、ネットワークによって複製される単一のデータストリームを送信者が送信できます。

@@ -1,4 +1,6 @@
 # 设备配置指南
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 本指南将引导您从头到尾完成DoubleZero设备（DZD）的配置。每个阶段与[入驻清单](contribute-overview.md#onboarding-checklist)相对应。
 

@@ -1,4 +1,6 @@
 # 非验证器以IBRL模式的Permissioned连接到DoubleZero
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 !!! warning "通过连接到DoubleZero，我同意[DoubleZero服务条款](https://doublezero.xyz/terms-protocol)"
 
 <div data-wizard-step="rpc-onboarding" markdown>

@@ -1,4 +1,6 @@
 # IBRL 모드 검증자 테스트넷 연결
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 ??? warning "DoubleZero 테스트넷에 연결함으로써 여기에 명시된 평가 계약 조건에 동의합니다 (클릭하여 확장)"
     <span style="font-size:14px;">DoubleZero 테스트넷</span>
     평가 계약

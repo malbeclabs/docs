@@ -1,4 +1,6 @@
 # Prezzi e Commissioni per Validatori
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 **Prezzi semplici e allineati per i validatori Solana**
 

@@ -1,4 +1,6 @@
 # 문제 해결
+!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+
 
 이 가이드는 다양한 문제를 다루며 계속 업데이트됩니다. 가이드를 완료한 후에도 추가 지원이 필요하다면 [DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701) Discord에서 도움을 받을 수 있습니다.
 
