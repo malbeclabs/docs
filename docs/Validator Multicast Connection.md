@@ -67,3 +67,32 @@ This command may be run on your validator, or another machine.
 ## 4. Validator Rewards
 
 For each epoch where validators publish leader shreds, they will be proportionately rewarded for their contribution based on subscriptions. Rewards are automatically distributed to the ATA roughly 10 epochs later.
+
+## 5. Retransmit troubleshooting
+
+1. A common cause of shred retramsission is a simple config. You may have the flag enabled to send retransmit shreds in your startup script; you will need to disable it. 
+
+    The flag to remove is: `--shred-retransmit-receiver-address`.
+
+1. Check the [publisher dashboard](https://data.malbeclabs.com/dz/publisher-check) and see if you have any retransmitted shreds. In the table, look at the **No Retransmit Shreds** column—a red X means you are retransmitting.
+
+    ![Publisher check dashboard](images/publisher-check-dashboard.png)
+
+2. Find your client IP and look up your user in [DoubleZero Data](https://data.malbeclabs.com/dz/users).
+
+    ![DoubleZero Data users](images/doublezero-data-users.png)
+
+3. Click on **Multicast** to open your multicast view.
+
+    **Retransmitting** (undesirable): steady outbound traffic with no leader-slot pattern.
+
+    ![User multicast view — retransmit example](images/user-multicast-view-retransmit.png)
+
+    **Healthy** (publishing only leader shreds): outbound traffic in spikes that line up with your leader slots.
+
+    ![User multicast view — healthy publisher example](images/user-multicast-view-healthy.png)
+
+The chart shows whether you are sending only leader shreds. Traffic spikes should line up with when you have a leader slot. When you have no leader slot there should be no traffic. If you are retransmitting, you will see a steady flow of traffic instead of slot-aligned spikes.
+
+!!! note "Current epoch view"
+    In the **current epoch** view, the publisher dashboard shows retransmit status for the full epoch. If you fix your retransmit issue during the current epoch, the dashboard will not change from the red X until the following epoch. In the **2-epoch** view, you must not have retransmitted for two full epochs for the status to clear.
