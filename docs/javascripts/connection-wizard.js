@@ -335,18 +335,6 @@
         return [{ page: '../Other%20Multicast%20Connection/', section: 'multicast-verify-' + s.multicastrole }];
       }
     },
-    {
-      id: 'fees',
-      title: 'Set Up Fee Payments',
-      show: function(s) { return s.usertype === 'validator' && s.network === 'mainnet-beta'; },
-      sources: function() {
-        return [
-          { page: '../paying-fees/', section: 'fee-check' },
-          { page: '../paying-fees/', section: 'fee-pay' }
-        ];
-      },
-      afterContent: '<p>See <a href="../paying-fees/">Paying Fees</a> and <a href="../paying-fees2z/">Paying with 2Z</a> for more details.</p>'
-    }
   ];
 
   // --- Plan Rendering ---
@@ -385,8 +373,6 @@
         ? '<li><a href="../Permissioned%20Connection/">Permissioned Connection</a></li>' : '') +
       (state.connection !== 'unicast'
         ? '<li><a href="../Other%20Multicast%20Connection/">Other Multicast Connection</a></li>' : '') +
-      (state.usertype === 'validator' && state.network === 'mainnet-beta'
-        ? '<li><a href="../paying-fees/">Paying Fees</a></li>' : '') +
       '</ul></div>';
   }
 

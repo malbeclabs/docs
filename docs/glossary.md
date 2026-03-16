@@ -90,7 +90,7 @@ A maintenance state where the link is completely removed from service. No traffi
 DoubleZero Foundation is a memberless nonprofit Cayman Islands foundation company that was formed to support the development, decentralization, security and adoption of the DoubleZero network.
 
 ### 2Z Token
-The native token of the DoubleZero network. Used for paying validator fees and distributed as rewards to [contributors](#contributor). Validators can pay fees in 2Z via an onchain swap program. See [Paying Fees with 2Z](paying-fees2z.md) and [Swapping SOL to 2Z](Swapping-sol-to-2z.md).
+The native token of the DoubleZero network. Used for paying validator fees and distributed as rewards to [contributors](#contributor). Validators can pay fees in 2Z via an onchain swap program. See [Swapping SOL to 2Z](Swapping-sol-to-2z.md).
 
 ### Contributor
 A network infrastructure provider who contributes bandwidth and hardware to the DoubleZero network. Contributors operate [DZDs](#dzd-doublezero-device), provide [WAN](#wan-link) and [DZX](#dzx-link) links, and receive [2Z](#2z-token) token incentives for their contribution. See [Contributor Documentation](contribute-overview.md) to get started.
