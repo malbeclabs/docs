@@ -80,7 +80,7 @@ For each epoch where validators publish leader shreds, they will be proportionat
 1. Check the [publisher dashboard](https://data.malbeclabs.com/dz/publisher-check) and see if you have any retransmitted shreds. In the table, look at the **No Retransmit Shreds** column—a red X means you are retransmitting.
 
     !!! note "epoch view"
-        Note that there are different time windows to view the publisher dashboard. If you see retransmit in the **2 epoch view**, but have made a recent change. Try switching to the **recent slot** view.
+        Note that there are different time windows to view the publisher dashboard. If you see retransmit in the **2 epoch view**, but have made a recent change, try switching to the **recent slot** view.
 
 
     ![Publisher check dashboard](images/publisher-check-dashboard.png)
