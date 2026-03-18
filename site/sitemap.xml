@@ -1,0 +1,2355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+    <url>
+        <loc>https://docs.malbeclabs.com/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/DZ%20Mainnet-beta%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/DZ%20Testnet%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/DZ%20Testnet%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/New%20Tenant/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/New%20Tenant/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/Other%20Multicast%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Other%20Multicast%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/Permissioned%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Permissioned%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/Shelby%20Permissioned%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Shelby%20Permissioned%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/Swapping-sol-to-2z/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Swapping-sol-to-2z/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/Validator%20Multicast%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Validator%20Multicast%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/architecture/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/architecture/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/connect/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/connect/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/connect/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/connect/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/connect/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/connect/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/connect/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/connect/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/connect/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/contribute-operations/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/contribute-operations/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/contribute-overview/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/contribute-overview/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/contribute-provisioning/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/contribute-provisioning/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/contribute/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/contribute/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/glossary/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/glossary/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/multicast-admin/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/multicast-admin/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/quick-connect/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/quick-connect/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/setup/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/setup/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/setup/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/setup/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/setup/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/setup/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/setup/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/setup/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/setup/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/tenant/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/tenant/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/troubleshooting/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/troubleshooting/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/zh/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/zh/DZ%20Mainnet-beta%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/DZ%20Mainnet-beta%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/zh/DZ%20Testnet%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/DZ%20Testnet%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/zh/New%20Tenant/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/New%20Tenant/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/zh/Other%20Multicast%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Other%20Multicast%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/zh/Permissioned%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Permissioned%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/zh/Shelby%20Permissioned%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Shelby%20Permissioned%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/zh/Swapping-sol-to-2z/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Swapping-sol-to-2z/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/zh/Validator%20Multicast%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Validator%20Multicast%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/zh/architecture/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/architecture/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/zh/connect/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/connect/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/connect/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/connect/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/connect/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/connect/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/connect/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/connect/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/connect/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/zh/contribute-operations/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/contribute-operations/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/zh/contribute-overview/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/contribute-overview/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/zh/contribute-provisioning/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/contribute-provisioning/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/zh/contribute/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/contribute/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/zh/glossary/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/glossary/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/zh/multicast-admin/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/multicast-admin/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/zh/paying-fees/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/paying-fees/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/zh/paying-fees2z/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/paying-fees2z/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/zh/quick-connect/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/quick-connect/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/zh/setup/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/setup/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/setup/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/setup/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/setup/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/setup/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/setup/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/setup/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/setup/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/zh/tenant/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/tenant/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/zh/troubleshooting/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/troubleshooting/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ja/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ja/DZ%20Mainnet-beta%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/DZ%20Mainnet-beta%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ja/DZ%20Testnet%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/DZ%20Testnet%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ja/New%20Tenant/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/New%20Tenant/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ja/Other%20Multicast%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Other%20Multicast%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ja/Permissioned%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Permissioned%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ja/Shelby%20Permissioned%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Shelby%20Permissioned%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ja/Swapping-sol-to-2z/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Swapping-sol-to-2z/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ja/Validator%20Multicast%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Validator%20Multicast%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ja/architecture/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/architecture/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ja/connect/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/connect/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/connect/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/connect/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/connect/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/connect/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/connect/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/connect/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/connect/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ja/contribute-operations/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/contribute-operations/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ja/contribute-overview/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/contribute-overview/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ja/contribute-provisioning/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/contribute-provisioning/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ja/contribute/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/contribute/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ja/glossary/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/glossary/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ja/multicast-admin/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/multicast-admin/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ja/paying-fees/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/paying-fees/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ja/paying-fees2z/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/paying-fees2z/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ja/quick-connect/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/quick-connect/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ja/setup/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/setup/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/setup/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/setup/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/setup/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/setup/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/setup/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/setup/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/setup/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ja/tenant/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/tenant/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ja/troubleshooting/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/troubleshooting/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ko/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ko/DZ%20Mainnet-beta%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/DZ%20Mainnet-beta%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ko/DZ%20Testnet%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/DZ%20Testnet%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ko/New%20Tenant/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/New%20Tenant/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ko/Other%20Multicast%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Other%20Multicast%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ko/Permissioned%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Permissioned%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ko/Shelby%20Permissioned%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Shelby%20Permissioned%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ko/Swapping-sol-to-2z/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Swapping-sol-to-2z/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ko/Validator%20Multicast%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Validator%20Multicast%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ko/architecture/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/architecture/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ko/connect/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/connect/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/connect/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/connect/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/connect/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/connect/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/connect/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/connect/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/connect/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ko/contribute-operations/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/contribute-operations/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ko/contribute-overview/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/contribute-overview/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ko/contribute-provisioning/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/contribute-provisioning/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ko/contribute/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/contribute/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ko/glossary/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/glossary/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ko/multicast-admin/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/multicast-admin/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ko/paying-fees/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/paying-fees/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ko/paying-fees2z/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/paying-fees2z/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ko/quick-connect/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/quick-connect/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ko/setup/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/setup/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/setup/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/setup/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/setup/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/setup/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/setup/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/setup/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/setup/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ko/tenant/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/tenant/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/ko/troubleshooting/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/troubleshooting/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/pt/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/pt/DZ%20Mainnet-beta%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/DZ%20Mainnet-beta%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/pt/DZ%20Testnet%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/DZ%20Testnet%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/pt/New%20Tenant/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/New%20Tenant/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/pt/Other%20Multicast%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Other%20Multicast%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/pt/Permissioned%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Permissioned%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/pt/Shelby%20Permissioned%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Shelby%20Permissioned%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/pt/Swapping-sol-to-2z/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Swapping-sol-to-2z/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/pt/Validator%20Multicast%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Validator%20Multicast%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/pt/architecture/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/architecture/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/pt/connect/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/connect/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/connect/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/connect/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/connect/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/connect/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/connect/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/connect/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/connect/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/pt/contribute-operations/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/contribute-operations/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/pt/contribute-overview/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/contribute-overview/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/pt/contribute-provisioning/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/contribute-provisioning/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/pt/contribute/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/contribute/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/pt/glossary/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/glossary/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/pt/multicast-admin/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/multicast-admin/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/pt/paying-fees/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/paying-fees/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/pt/paying-fees2z/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/paying-fees2z/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/pt/quick-connect/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/quick-connect/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/pt/setup/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/setup/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/setup/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/setup/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/setup/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/setup/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/setup/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/setup/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/setup/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/pt/tenant/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/tenant/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/pt/troubleshooting/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/troubleshooting/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/es/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/es/DZ%20Mainnet-beta%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/DZ%20Mainnet-beta%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/es/DZ%20Testnet%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/DZ%20Testnet%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/es/New%20Tenant/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/New%20Tenant/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/es/Other%20Multicast%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Other%20Multicast%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/es/Permissioned%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Permissioned%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/es/Shelby%20Permissioned%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Shelby%20Permissioned%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/es/Swapping-sol-to-2z/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Swapping-sol-to-2z/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/es/Validator%20Multicast%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Validator%20Multicast%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/es/architecture/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/architecture/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/es/connect/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/connect/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/connect/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/connect/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/connect/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/connect/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/connect/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/connect/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/connect/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/es/contribute-operations/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/contribute-operations/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/es/contribute-overview/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/contribute-overview/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/es/contribute-provisioning/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/contribute-provisioning/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/es/contribute/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/contribute/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/es/glossary/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/glossary/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/es/multicast-admin/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/multicast-admin/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/es/paying-fees/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/paying-fees/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/es/paying-fees2z/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/paying-fees2z/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/es/quick-connect/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/quick-connect/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/es/setup/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/setup/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/setup/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/setup/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/setup/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/setup/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/setup/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/setup/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/setup/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/es/tenant/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/tenant/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/es/troubleshooting/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/troubleshooting/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/fr/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/fr/DZ%20Mainnet-beta%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/DZ%20Mainnet-beta%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/fr/DZ%20Testnet%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/DZ%20Testnet%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/fr/New%20Tenant/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/New%20Tenant/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/fr/Other%20Multicast%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Other%20Multicast%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/fr/Permissioned%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Permissioned%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/fr/Shelby%20Permissioned%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Shelby%20Permissioned%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/fr/Swapping-sol-to-2z/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Swapping-sol-to-2z/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/fr/Validator%20Multicast%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Validator%20Multicast%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/fr/architecture/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/architecture/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/fr/connect/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/connect/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/connect/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/connect/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/connect/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/connect/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/connect/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/connect/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/connect/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/fr/contribute-operations/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/contribute-operations/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/fr/contribute-overview/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/contribute-overview/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/fr/contribute-provisioning/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/contribute-provisioning/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/fr/contribute/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/contribute/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/fr/glossary/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/glossary/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/fr/multicast-admin/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/multicast-admin/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/fr/paying-fees/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/paying-fees/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/fr/paying-fees2z/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/paying-fees2z/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/fr/quick-connect/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/quick-connect/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/fr/setup/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/setup/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/setup/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/setup/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/setup/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/setup/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/setup/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/setup/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/setup/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/fr/tenant/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/tenant/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/fr/troubleshooting/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/troubleshooting/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/it/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/it/DZ%20Mainnet-beta%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/DZ%20Mainnet-beta%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/DZ%20Mainnet-beta%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/it/DZ%20Testnet%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/DZ%20Testnet%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/DZ%20Testnet%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/it/New%20Tenant/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/New%20Tenant/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/New%20Tenant/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/it/Other%20Multicast%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Other%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Other%20Multicast%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/it/Permissioned%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Permissioned%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/it/Shelby%20Permissioned%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Shelby%20Permissioned%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Shelby%20Permissioned%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/it/Swapping-sol-to-2z/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Swapping-sol-to-2z/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Swapping-sol-to-2z/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/it/Validator%20Multicast%20Connection/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/Validator%20Multicast%20Connection/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/Validator%20Multicast%20Connection/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/it/architecture/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/architecture/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/architecture/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/it/connect/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/connect/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/connect/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/connect/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/connect/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/connect/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/connect/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/connect/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/connect/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/it/contribute-operations/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/contribute-operations/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/contribute-operations/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/it/contribute-overview/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/contribute-overview/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/contribute-overview/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/it/contribute-provisioning/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/contribute-provisioning/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/contribute-provisioning/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/it/contribute/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/contribute/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/contribute/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/it/glossary/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/glossary/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/glossary/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/it/multicast-admin/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/multicast-admin/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/multicast-admin/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/it/paying-fees/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/paying-fees/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/paying-fees/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/it/paying-fees2z/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/paying-fees2z/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/paying-fees2z/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/it/quick-connect/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/quick-connect/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/quick-connect/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/it/setup/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/setup/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/setup/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/setup/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/setup/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/setup/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/setup/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/setup/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/setup/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/it/tenant/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/tenant/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/tenant/"/>
+    </url>
+    <url>
+        <loc>https://docs.malbeclabs.com/it/troubleshooting/</loc>
+        <lastmod>2026-03-18</lastmod>
+        <changefreq>daily</changefreq>
+        <xhtml:link rel="alternate" hreflang="it" href="https://docs.malbeclabs.com/it/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://docs.malbeclabs.com/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="es" href="https://docs.malbeclabs.com/es/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="fr" href="https://docs.malbeclabs.com/fr/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="ja" href="https://docs.malbeclabs.com/ja/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="ko" href="https://docs.malbeclabs.com/ko/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="pt" href="https://docs.malbeclabs.com/pt/troubleshooting/"/>
+        <xhtml:link rel="alternate" hreflang="zh" href="https://docs.malbeclabs.com/zh/troubleshooting/"/>
+    </url>
+</urlset>

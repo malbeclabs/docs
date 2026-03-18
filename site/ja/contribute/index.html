@@ -1,0 +1,1815 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.malbeclabs.com/ja/contribute/">
+      
+      
+        <link rel="prev" href="../contribute-overview/">
+      
+      
+        <link rel="next" href="../contribute-provisioning/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Requirements & Architecture - Malbec Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/wizard.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="grey" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../" title="Malbec Labs" class="md-header__button md-logo" aria-label="Malbec Labs" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Malbec Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Requirements & Architecture
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      
+
+
+<div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="言語切り替え">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../contribute/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../zh/contribute/" hreflang="zh" class="md-select__link">
+              Chinese
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="ja" class="md-select__link">
+              Japanese
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../ko/contribute/" hreflang="ko" class="md-select__link">
+              Korean
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../pt/contribute/" hreflang="pt" class="md-select__link">
+              Portuguese
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../es/contribute/" hreflang="es" class="md-select__link">
+              Spanish
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../fr/contribute/" hreflang="fr" class="md-select__link">
+              French
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../it/contribute/" hreflang="it" class="md-select__link">
+              Italian
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../" title="Malbec Labs" class="md-nav__button md-logo" aria-label="Malbec Labs" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    Malbec Labs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-connect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Connect
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Users
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Users
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tenants
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Tenants
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tenant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_2" id="__nav_3_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Solana
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Solana
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DZ%20Mainnet-beta%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Validator Mainnet-Beta Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DZ%20Testnet%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Validator Testnet Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Permissioned%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Permissioned Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Validator%20Multicast%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Validator Multicast Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Other%20Multicast%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Other Multicast Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_3" id="__nav_3_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Shelby
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Shelby
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Shelby%20Permissioned%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shelby Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../New%20Tenant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    New Tenant
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Contributors
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Contributors
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Requirements & Architecture
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Requirements & Architecture
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      概要
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#doublezero" class="md-nav__link">
+    <span class="md-ellipsis">
+      DoubleZeroネットワークコントリビューターになる要件
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      クイックスタートガイド
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="クイックスタートガイド">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      貢献の例
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="貢献の例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#132" class="md-nav__link">
+    <span class="md-ellipsis">
+      例1：単一コントリビューター、3データセンター、2リンク
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#233" class="md-nav__link">
+    <span class="md-ellipsis">
+      例2：単一コントリビューター、3データセンター、3リンク
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#doublezero-exchange" class="md-nav__link">
+    <span class="md-ellipsis">
+      DoubleZero Exchange
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      帯域幅貢献オプション
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="帯域幅貢献オプション">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      レイヤー1帯域幅
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      パケットスイッチド帯域幅
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="パケットスイッチド帯域幅">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#l2" class="md-nav__link">
+    <span class="md-ellipsis">
+      L2拡張
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      専用サードパーティ帯域幅
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      ハードウェア要件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ハードウェア要件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#100gbps" class="md-nav__link">
+    <span class="md-ellipsis">
+      100Gbps帯域幅貢献
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="100Gbps帯域幅貢献">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      機能とポート要件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dzd" class="md-nav__link">
+    <span class="md-ellipsis">
+      DZDネットワークハードウェア
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-100g" class="md-nav__link">
+    <span class="md-ellipsis">
+      光学部品 - 100G
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-10g" class="md-nav__link">
+    <span class="md-ellipsis">
+      光学部品 - 10G
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      IPアドレッシング
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10gbps" class="md-nav__link">
+    <span class="md-ellipsis">
+      10Gbps帯域幅貢献
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="10Gbps帯域幅貢献">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      機能とポート要件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      ハードウェア
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-100g_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      光学部品 - 100G
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-10g_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      光学部品 - 10G
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      IPアドレッシング
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      データセンター要件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="データセンター要件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      ラックと電力要件
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      次のステップ
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute-provisioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Device Provisioning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute-operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Operations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Glossary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">コントリビューターの要件とアーキテクチャ</h1>
+<div class="admonition warning">
+<p class="admonition-title">This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon.</p>
+</div>
+<h2 id="_2">概要</h2>
+<p>未活用の光ファイバーケーブルとネットワークハードウェアを収益化したい方はどなたでもDoubleZeroネットワークに貢献できます。ネットワークコントリビューターは、2点間に専用帯域幅を提供し、各端でDoubleZero互換デバイス（DZD）を運用し、各端でパブリックインターネットへの接続が必要です。ネットワークコントリビューターはまた、マルチキャスト、ユーザー検索、エッジフィルタリングなどのサービスを提供するために各DZDでDoubleZeroソフトウェアを実行する必要があります。</p>
+<p>DoubleZeroスマートコントラクトは、ネットワークが測定可能でトポロジーに統合できる高品質のリンクを維持することを保証するための礎です。これにより、ネットワークコントローラーが異なるユーザーとエンドポイント間で最も効率的なエンドツーエンドパスを開発できます。スマートコントラクトの実行とネットワーク機器と帯域幅のデプロイメント後、エンティティはネットワークコントリビューターとして分類されます。DoubleZeroネットワークコントリビューターとしての参加背後の経済学をさらに理解するには、<a href="https://economics.doublezero.xyz/overview">DoubleZero Economics</a>を参照してください。</p>
+<hr />
+<h2 id="doublezero">DoubleZeroネットワークコントリビューターになる要件</h2>
+<ul>
+<li>2つのデータセンター間でIPv4接続とMTU 2048バイトを提供できる専用帯域幅</li>
+<li>DoubleZeroプロトコルと互換性のあるDoubleZeroデバイス（DZD）ハードウェア</li>
+<li>インターネットおよびその他のDoubleZeroネットワークコントリビューターへの接続性</li>
+<li>DZDへのDoubleZeroソフトウェアのインストール</li>
+</ul>
+<h2 id="_3">クイックスタートガイド</h2>
+<p>ネットワークコントリビューターとして、DoubleZeroを開始する最も簡単な方法は、DoubleZero専用に利用できる容量をネットワーク内で特定することです。特定したら、DZDをデプロイし、コントリビューターのネットワークからIPv4到達可能性と最低MTU 2048バイトのみを依存関係として必要とするDoubleZeroオーバーレイネットワークを促進する必要があります。</p>
+<p>図1は帯域幅とパケット送信・処理サービスを貢献するための最もシンプルなモデルを示しています。DZDは各データセンターに配備され、コントリビューターの内部ネットワークとインターフェースしてDoubleZero WAN接続を提供します。これはローカルインターネット（通常はDirect Internet Access（DIA）ソリューション）によって補完され、DoubleZeroユーザーのオンランプとして使用されます。DIAがDoubleZeroのユーザーアクセスを促進する優先オプションになることが予想されますが、物理ケーブリングからサーバーへ、ネットワークファブリック拡張など、さまざまな接続モデルが可能です。これらのオプションをChoose Your Own Adventure（CYOA）と呼び、コントリビューターが内部ネットワークポリシーに最も適した方法でローカルまたはリモートユーザーを接続する柔軟性を提供します。</p>
+<p>あらゆるネットワークと同様に、到達可能性はアーキテクチャの基本的な部分であり、ネットワークコントリビューターは孤立して存在できません。そのため、DZDは参加者間で連続したネットワークを作成するためにDoubleZero Exchange（DZX）へのリンクを<strong>持たなければなりません</strong>。</p>
+<figure>
+  <img alt="Image title" src="../../images/figure1.png" width="800" />
+<br />
+<figcaption>図1：2つのデータセンター間のDoubleZeroネットワーク帯域幅貢献 - 単一コントリビューター</figcaption>
+</figure>
+<h3 id="_4">貢献の例</h3>
+<p>ネットワークコントリビューターがDoubleZeroへの貢献を拡大できる方法は多数あります。例えば：</p>
+<ul>
+<li>既存の貢献のパフォーマンス特性を改善する：帯域幅を増やし、レイテンシを減らす</li>
+<li>同じデータセンター間に複数のリンクを追加する</li>
+<li>既存のデータセンターから新しいデータセンターへの新しいリンクを追加する</li>
+<li>2つの新しいデータセンター間に新しい独立したリンクを追加する</li>
+</ul>
+<h4 id="132">例1：単一コントリビューター、3データセンター、2リンク</h4>
+<figure>
+  <img alt="Image title" src="../../images/figure2.png" width="800" />
+<br />
+<figcaption>図2：3つのデータセンター間のDoubleZeroネットワーク帯域幅貢献 - 単一コントリビューター</figcaption>
+</figure>
+<p>単一のDZDはDoubleZeroに提供される複数のリンクをサポートできます。図2は、データセンター1とそれぞれ異なるリモートデータセンター2と3の間の帯域幅を単一のデータセンターが終端する場合の潜在的なトポロジーを示しています。このシナリオでは、各データセンターには1つのDZDのみが含まれています。すべてのDZDはCYOAインターフェースとしてDIAをユーザーオンランプに使用しています。</p>
+<h4 id="233">例2：単一コントリビューター、3データセンター、3リンク</h4>
+<p>図3は単一のコントリビューターが3つのデータセンター間のトライアングルトポロジーに3つのリンクを展開した場合のDoubleZeroトポロジーを説明しています。例1に似たシナリオで、単一のDZDがデータセンター1、2、3に展開され、それぞれ2つの独立したネットワークリンクをサポートします。結果として得られるトポロジーはデータセンター間のトライアングルまたはリングです。</p>
+<figure>
+  <img alt="Image title" src="../../images/figure3.png" width="800" />
+<br />
+<figcaption>図3：3つのデータセンター間のDoubleZeroネットワーク帯域幅貢献 - 単一コントリビューター</figcaption>
+</figure>
+<h3 id="doublezero-exchange">DoubleZero Exchange</h3>
+<p>連続したネットワークの作成はDoubleZeroアーキテクチャの基本的な構成要素です。コントリビューターはニューヨーク（NYC）、ロンドン（LON）、東京（TYO）などの都市である大都市圏内のDoubleZero Exchange（DZX）を通じてインターフェースします。DZXはインターネットエクスチェンジに似たネットワークファブリックであり、ピアリングとルート交換を可能にします。</p>
+<p>図4では、ネットワークコントリビューター1はデータセンター1、2、3で運用し、ネットワークコントリビューター2はデータセンター2、4、5で運用しています。データセンター2で相互接続することで、DoubleZeroネットワークの到達範囲は5つの連続したデータセンターに拡大されます。</p>
+<figure>
+  <img alt="Image title" src="../../images/figure4.png" width="1000" />
+<br />
+<figcaption>図4：2つのネットワーク帯域幅コントリビューター間のDoubleZeroネットワーク帯域幅貢献</figcaption>
+</figure>
+<h3 id="_5">帯域幅貢献オプション</h3>
+<p>DoubleZeroはネットワークコントリビューターに対し、スマートコントラクトを通じて表現される2つの終端データセンターのDZD間の保証された帯域幅、レイテンシ、ジッタープロファイルによる統合接続性を提供することを要求します。DoubleZeroはネットワークコントリビューターが貢献を実装する方法を義務付けていませんが、以下のセクションではそれぞれの判断で使用するための指示的オプションを提供します。</p>
+<p>ネットワークコントリビューターにとって考慮すべき重要な分野：</p>
+<ul>
+<li>DoubleZeroサービスのネットワークパフォーマンスを保証する能力：帯域幅、レイテンシ、ジッター</li>
+<li>既存の内部ネットワークサービスからの分離</li>
+<li>トンネルアンダーレイアドレス空間とのIPv4アドレッシングの衝突</li>
+<li>アップタイムと可用性</li>
+<li>CAPEXとOPEXの考慮事項</li>
+</ul>
+<h4 id="1">レイヤー1帯域幅</h4>
+<figure>
+  <img alt="Image title" src="../../images/figure5.png" width="800" />
+<br />
+<figcaption>図5：レイヤー1光学サービス</figcaption>
+</figure>
+<p>レイヤー1帯域幅（より正式には波長サービスとも呼ばれる）は、DWDM、CWDMまたは光マルチプレクサー（MUX）などの既存の光学インフラに専用容量をプロビジョニングする場合があります。図5では、DZDはL1 MUXにケーブル接続されたカラードオプティクスを使用し、DZDの波長を既存のダークファイバーに多重化します。</p>
+<p>このソリューションには、既存のコアネットワークを運用しているネットワークコントリビューターにとって多くの利点があります。反復的な運用上の変更、および追加のCAPEXとOPEXの要件は控えめです。このオプションはネットワークコントリビューターのネットワークサービスからの分離を提供する上で特に堅牢です。</p>
+<h4 id="_6">パケットスイッチド帯域幅</h4>
+<p>パケットスイッチドネットワークは、ビジネスアプリケーションをサポートする標準的なルーティングおよびスイッチングプロトコルを実行する典型的なエンタープライズネットワークと考えられます。VLANタグを使用したレイヤー2（L2）拡張など、接続を実現するさまざまなネットワーキング技術があります。</p>
+<h5 id="l2">L2拡張</h5>
+<figure>
+  <img alt="Image title" src="../../images/figure6.png" width="800" />
+<br />
+<figcaption>図6：パケットスイッチドネットワーク - L2拡張</figcaption>
+</figure>
+<p>図6に示すL2拡張はVLANタギングを通じて実現できます。DZDのポートはコントリビューターの内部ネットワークスイッチにケーブル接続でき、スイッチポートは例えばVLAN 10のアクセスポートとして設定されます。802.1qタギングを通じて、このVLANはコントリビューターのネットワーク上の複数のスイッチホップを通じて運搬され、リモートDZDとインターフェースするスイッチで終端されます。</p>
+<p>このソリューションは広くサポートされていて比較的実装が容易であり、DoubleZeroと内部レイヤー3サービス間のセグメンテーションを作成します。帯域幅はコントリビューターの内部スイッチまたはルーターのインターフェース速度に基づいて制御できます。Quality of Service（QoS）やその他のトラフィック管理ポリシーなどの技術を通じて、共有内部L2ネットワーク全体のパフォーマンスに慎重に考慮する必要があります。ただし、コントリビューターのコアネットワーク内に既存の容量がある場合、追加のCAPEXとOPEXの投資は控えめなはずです。</p>
+<h4 id="_7">専用サードパーティ帯域幅</h4>
+<figure>
+  <img alt="Image title" src="../../images/figure7.png" width="800" />
+<br />
+<figcaption>図7：専用サードパーティ帯域幅</figcaption>
+</figure>
+<p>利用可能な容量を再利用することは多くのネットワークコントリビューターにとって魅力的ですが、新たに取得した帯域幅をDoubleZeroに専用することもできます。このようなシナリオでは、DZDはコントリビューターの内部デバイスをインラインに配置することなく、サードパーティキャリアに直接接続されます（図7）。</p>
+<p>このオプションはDoubleZero専用の帯域幅を確保し、運用がシンプルで、他のネットワークサービスからの完全な分離を確保するため魅力的です。このオプションはおそらく最も高いOPEXの増加をもたらし、サードパーティキャリアとの新しいサービス契約が必要です。</p>
+<hr />
+<h2 id="_8">ハードウェア要件</h2>
+<h3 id="100gbps">100Gbps帯域幅貢献</h3>
+<p>以下の数量は2つのデータセンターで必要な機器、すなわち1本の光ファイバーケーブルの帯域幅貢献を展開するために必要な合計ハードウェアを反映しています。</p>
+<details class="warning">
+<summary>*すべてのFPGAは最終テスト次第です。10G貢献は組み込みデュアルVirtex® UltraScale+™ FPGAを持つArista 7130LBRスイッチを使用してサポートされる場合があります（ご質問があれば、DoubleZero Foundation / Malbec Labsが喜んで詳細情報を提供します）。</summary>
+</details>
+<h4 id="_9">機能とポート要件</h4>
+<table>
+<thead>
+<tr>
+<th>機能</th>
+<th>ポート速度</th>
+<th>DZ要件</th>
+<th>QTY</th>
+<th>注意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>プライベート帯域幅</td>
+<td>100G</td>
+<td>はい</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>Direct Internet Access (DIA)</td>
+<td>10G</td>
+<td>はい</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>DoubleZero eXchange (DZX)</td>
+<td>100G</td>
+<td>はい*</td>
+<td>1</td>
+<td>同じ大都市圏で3社以上のプロバイダーが運営する場合にサポートする必要があります。それ以前は、クロスコネクトまたは他のピアリング手配を使用して他のプロバイダーと相互接続できます。</td>
+</tr>
+<tr>
+<td>管理</td>
+<td></td>
+<td>いいえ</td>
+<td>1</td>
+<td>コントリビューター独自の内部管理ポリシーによって決定されます。</td>
+</tr>
+<tr>
+<td>コンソール</td>
+<td></td>
+<td>いいえ</td>
+<td>1</td>
+<td>コントリビューター独自の内部管理ポリシーによって決定されます。</td>
+</tr>
+</tbody>
+</table>
+<h4 id="dzd">DZDネットワークハードウェア</h4>
+<table>
+<thead>
+<tr>
+<th>メーカー</th>
+<th>モデル</th>
+<th>部品番号</th>
+<th>DZ要件</th>
+<th>QTY</th>
+<th>注意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AMD*</td>
+<td>V80*</td>
+<td>24540474</td>
+<td>はい</td>
+<td>4</td>
+<td></td>
+</tr>
+<tr>
+<td>Arista</td>
+<td>7280CR3A</td>
+<td>DCS-7280CR3A-32S</td>
+<td>はい</td>
+<td>2</td>
+<td>リードタイムが困難な場合は代替品も可能な場合があります。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="-100g">光学部品 - 100G</h4>
+<table>
+<thead>
+<tr>
+<th>メーカー</th>
+<th>モデル</th>
+<th>部品番号</th>
+<th>DZ要件</th>
+<th>QTY</th>
+<th>注意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arista</td>
+<td>100GBASE-LR</td>
+<td>QSFP-100G-LR</td>
+<td>いいえ</td>
+<td>16</td>
+<td>ケーブリングと光学部品の選択はコントリビューターの裁量で利用可能です。FPGAの接続には100Gが必要です。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="-10g">光学部品 - 10G</h4>
+<table>
+<thead>
+<tr>
+<th>メーカー</th>
+<th>モデル</th>
+<th>部品番号</th>
+<th>DZ要件</th>
+<th>QTY</th>
+<th>注意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arista</td>
+<td>10GBASE-LR</td>
+<td>SFP-10G-LR</td>
+<td>いいえ</td>
+<td>2</td>
+<td>ケーブリングと光学部品の選択はコントリビューターの裁量で利用可能です。</td>
+</tr>
+<tr>
+<td>Finisar</td>
+<td>DynamiX QSA™</td>
+<td>MAM1Q00A-QSA</td>
+<td>いいえ</td>
+<td>2</td>
+<td>ケーブリングと光学部品の選択はコントリビューターの裁量で利用可能です。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="ip">IPアドレッシング</h4>
+<table>
+<thead>
+<tr>
+<th>IPアドレッシング</th>
+<th>最小サブネットサイズ</th>
+<th>DZ要件</th>
+<th>注意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>パブリックIPv4</td>
+<td>/29</td>
+<td>はい（エッジ/ハイブリッドDZDの場合）</td>
+<td>DIA経由でルーティング可能である必要があります。将来的にはこの必要性をなくす可能性があります。</td>
+</tr>
+</tbody>
+</table>
+<p>DZプロトコル用に完全な/29プールが利用可能であることを確認してください。DIAインターフェース上のポイントツーポイントアドレッシングなどの要件は、別のアドレスプールで管理する必要があります。</p>
+<h3 id="10gbps">10Gbps帯域幅貢献</h3>
+<p>以下の数量は2つのデータセンターの機器、すなわち1つの帯域幅貢献を展開するために必要な合計ハードウェアを反映しています。</p>
+<h4 id="_10">機能とポート要件</h4>
+<table>
+<thead>
+<tr>
+<th>機能</th>
+<th>ポート速度</th>
+<th>DZ要件</th>
+<th>QTY</th>
+<th>注意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>プライベート帯域幅</td>
+<td>10G</td>
+<td>はい</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>Direct Internet Access (DIA)</td>
+<td>10G</td>
+<td>はい</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>DoubleZero eXchange (DZX)</td>
+<td>100G</td>
+<td>はい*</td>
+<td>1</td>
+<td>同じ大都市圏で3社以上のプロバイダーが運営する場合にサポートする必要があります。それ以前は、クロスコネクトまたは他のピアリング手配を使用して他のプロバイダーと相互接続できます。</td>
+</tr>
+<tr>
+<td>管理</td>
+<td></td>
+<td>いいえ</td>
+<td>1</td>
+<td>コントリビューター独自の内部管理ポリシーによって決定されます。</td>
+</tr>
+<tr>
+<td>コンソール</td>
+<td></td>
+<td>いいえ</td>
+<td>1</td>
+<td>コントリビューター独自の内部管理ポリシーによって決定されます。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="_11">ハードウェア</h4>
+<table>
+<thead>
+<tr>
+<th>メーカー</th>
+<th>モデル</th>
+<th>部品番号</th>
+<th>DZ要件</th>
+<th>QTY</th>
+<th>注意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AMD*</td>
+<td>V80*</td>
+<td>24540474*</td>
+<td>はい</td>
+<td>4</td>
+<td></td>
+</tr>
+<tr>
+<td>Arista</td>
+<td>7280CR3A</td>
+<td>DCS-7280CR3A-32S</td>
+<td>はい</td>
+<td>2</td>
+<td>リードタイムが困難な場合は代替品も可能な場合があります。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="-100g_1">光学部品 - 100G</h4>
+<table>
+<thead>
+<tr>
+<th>メーカー</th>
+<th>モデル</th>
+<th>部品番号</th>
+<th>DZ要件</th>
+<th>QTY</th>
+<th>注意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arista</td>
+<td>100GBASE-LR</td>
+<td>QSFP-100G-LR</td>
+<td>いいえ</td>
+<td>14</td>
+<td>ケーブリングと光学部品の選択はコントリビューターの裁量で利用可能です。FPGAの接続には100Gが必要です。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="-10g_1">光学部品 - 10G</h4>
+<table>
+<thead>
+<tr>
+<th>メーカー</th>
+<th>モデル</th>
+<th>部品番号</th>
+<th>DZ要件</th>
+<th>QTY</th>
+<th>注意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arista</td>
+<td>10GBASE-LR</td>
+<td>SFP-10G-LR</td>
+<td>いいえ</td>
+<td>4</td>
+<td>ケーブリングと光学部品の選択はコントリビューターの裁量で利用可能です。</td>
+</tr>
+<tr>
+<td>Finisar</td>
+<td>DynamiX QSA™</td>
+<td>MAM1Q00A-QSA</td>
+<td>いいえ</td>
+<td>4</td>
+<td>ケーブリングと光学部品の選択はコントリビューターの裁量で利用可能です。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="ip_1">IPアドレッシング</h4>
+<table>
+<thead>
+<tr>
+<th>IPアドレッシング</th>
+<th>最小サブネットサイズ</th>
+<th>DZ要件</th>
+<th>注意</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>パブリックIPv4</td>
+<td>/29</td>
+<td>はい（エッジ/ハイブリッドDZDの場合）</td>
+<td>DIA経由でルーティング可能である必要があります。将来的にはこの必要性をなくす可能性があります。</td>
+</tr>
+</tbody>
+</table>
+<p>DZプロトコル用に完全な/29プールが利用可能であることを確認してください。DIAインターフェース上のポイントツーポイントアドレッシングなどの要件は、別のアドレスプールで管理する必要があります。</p>
+<h3 id="_12">データセンター要件</h3>
+<h4 id="_13">ラックと電力要件</h4>
+<table>
+<thead>
+<tr>
+<th>要件</th>
+<th>仕様</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ラックスペース</td>
+<td>4U</td>
+</tr>
+<tr>
+<td>電力</td>
+<td>4KW（推奨）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_14">次のステップ</h2>
+<p>最初のDZDをプロビジョニングする準備ができましたか？<a href="../contribute-provisioning/">デバイスプロビジョニングガイド</a>に進んでください。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "navigation.indexes", "toc.integrate", "header.autohide"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../javascripts/cloudsmith-versions.js"></script>
+      
+        <script src="../../javascripts/connection-wizard.js"></script>
+      
+        <script src="../../javascripts/page-toolbar.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/page-toolbar.js"></script>
+      
+    
+  </body>
+</html>

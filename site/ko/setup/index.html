@@ -1,0 +1,1445 @@
+
+<!doctype html>
+<html lang="ko" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.malbeclabs.com/ko/setup/">
+      
+      
+        <link rel="prev" href="../quick-connect/">
+      
+      
+        <link rel="next" href="../tenant/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Setup - Malbec Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/wizard.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="grey" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#doublezero" class="md-skip">
+          콘텐츠로 이동
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="상단/헤더">
+    <a href="../" title="Malbec Labs" class="md-header__button md-logo" aria-label="Malbec Labs" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Malbec Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Setup
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      
+
+
+<div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="언어설정">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../setup/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../zh/setup/" hreflang="zh" class="md-select__link">
+              Chinese
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../ja/setup/" hreflang="ja" class="md-select__link">
+              Japanese
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="ko" class="md-select__link">
+              Korean
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../pt/setup/" hreflang="pt" class="md-select__link">
+              Portuguese
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../es/setup/" hreflang="es" class="md-select__link">
+              Spanish
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../fr/setup/" hreflang="fr" class="md-select__link">
+              French
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../it/setup/" hreflang="it" class="md-select__link">
+              Italian
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="검색" placeholder="검색" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="검색">
+        
+        <button type="reset" class="md-search__icon md-icon" title="지우기" aria-label="지우기" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            검색 초기화
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="네비게이션" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../" title="Malbec Labs" class="md-nav__button md-logo" aria-label="Malbec Labs" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    Malbec Labs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-connect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Connect
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Users
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Users
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Setup
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="목차">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      목차
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      사전 요구사항
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#doublezero_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      DoubleZero에 연결
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-doublezero" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. DoubleZero 패키지 설치
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. DoubleZero 패키지 설치">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ubuntu-debian" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ubuntu / Debian
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rocky-linux-rhel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rocky Linux / RHEL
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rocky Linux / RHEL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#doublezerod" class="md-nav__link">
+    <span class="md-ellipsis">
+      doublezerod 상태 확인
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gre-bgp" class="md-nav__link">
+    <span class="md-ellipsis">
+      GRE 및 BGP를 위한 방화벽 구성
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-doublezero" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 새 DoubleZero 신원 생성
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-doublezero" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 서버의 DoubleZero 신원 확인
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-doublezerod-dz" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. doublezerod가 DZ 장치를 발견했는지 확인
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-doublezero" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. DoubleZero에서 연결 해제
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. DoubleZero에서 연결 해제">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      다음 단계: 테넌트
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      여기서 테넌트를 선택하세요
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tenants
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Tenants
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tenant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_2" id="__nav_3_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Solana
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Solana
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DZ%20Mainnet-beta%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Validator Mainnet-Beta Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DZ%20Testnet%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Validator Testnet Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Permissioned%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Permissioned Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Validator%20Multicast%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Validator Multicast Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Other%20Multicast%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Other Multicast Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_3" id="__nav_3_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Shelby
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Shelby
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Shelby%20Permissioned%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shelby Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../New%20Tenant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    New Tenant
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Contributors
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Contributors
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Requirements & Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute-provisioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Device Provisioning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute-operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Operations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Glossary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="doublezero">DoubleZero 설정 방법</h1>
+<div class="admonition warning">
+<p class="admonition-title">This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon.</p>
+</div>
+<div class="admonition info">
+<p class="admonition-title">용어</p>
+<p>DoubleZero가 처음이신가요? <a href="../glossary/#doublezerod">doublezerod</a>, <a href="../glossary/#ibrl-increase-bandwidth-reduce-latency">IBRL</a>, <a href="../glossary/#dzd-doublezero-device">DZD</a>와 같은 용어의 정의는 <a href="../glossary/">용어집</a>을 참조하세요.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">DoubleZero에 연결함으로써 <a href="https://doublezero.xyz/terms-protocol">DoubleZero 서비스 약관</a>에 동의합니다</p>
+</div>
+<h2 id="_1">사전 요구사항</h2>
+<div class="admonition warning inline end">
+<p class="admonition-title">Warning</p>
+<p>검증자의 경우: DoubleZero는 컨테이너가 아닌 검증자 호스트에 직접 설치해야 합니다.</p>
+</div>
+<ul>
+<li>공개 IP 주소(NAT 없음)를 가진 인터넷 연결</li>
+<li>x86_64 서버</li>
+<li>지원 OS: Ubuntu 22.04+ 또는 Debian 11+, 또는 Rocky Linux / RHEL 8+</li>
+<li>DoubleZero가 실행될 서버의 루트 또는 sudo 권한</li>
+<li>선택 사항이지만 유용함: 디버깅을 위한 jq 및 curl</li>
+</ul>
+<h2 id="doublezero_1">DoubleZero에 연결</h2>
+<p>DoubleZero 테스트넷과 DoubleZero 메인넷-베타는 물리적으로 별개의 네트워크입니다. 설치 시 적절한 네트워크를 선택하세요.</p>
+<p>DoubleZero에 온보딩할 때 공개 키인 <strong>DoubleZero ID</strong>로 표현되는 <strong>DoubleZero 신원</strong>을 설정합니다. 이 키는 DoubleZero가 기계를 인식하는 방법의 일부입니다.</p>
+<h2 id="1-doublezero">1. DoubleZero 패키지 설치</h2>
+<div data-wizard-step="install-version-info">
+<div class="admonition info">
+<p class="admonition-title">현재 버전</p>
+<table>
+<thead>
+<tr>
+<th>패키지</th>
+<th>메인넷-베타</th>
+<th>테스트넷</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>doublezero</code></td>
+<td><code>MAINNET_CLIENT_VERSION</code></td>
+<td><code>TESTNET_CLIENT_VERSION</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>운영 체제에 따라 다음 단계를 따르세요:</p>
+<h3 id="ubuntu-debian">Ubuntu / Debian</h3>
+<div data-wizard-step="install-deb-mainnet-beta">
+<p>메인넷-베타에 권장되는 현재 배포:
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-1sLf<span class="w"> </span>https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>-E<span class="w"> </span>bash
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>doublezero
+</code></pre></div></p>
+</div>
+<div data-wizard-step="install-deb-testnet">
+<p>테스트넷에 권장되는 현재 배포:
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-1sLf<span class="w"> </span>https://dl.cloudsmith.io/public/malbeclabs/doublezero-testnet/setup.deb.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>-E<span class="w"> </span>bash
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>doublezero
+</code></pre></div></p>
+</div>
+<h3 id="rocky-linux-rhel">Rocky Linux / RHEL</h3>
+<div data-wizard-step="install-rpm-mainnet-beta">
+<p>메인넷-베타에 권장되는 현재 배포:
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-1sLf<span class="w"> </span>https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>-E<span class="w"> </span>bash
+sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>doublezero
+</code></pre></div></p>
+</div>
+<div data-wizard-step="install-rpm-testnet">
+<p>테스트넷에 권장되는 현재 배포:
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-1sLf<span class="w"> </span>https://dl.cloudsmith.io/public/malbeclabs/doublezero-testnet/setup.rpm.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>-E<span class="w"> </span>bash
+sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>doublezero
+</code></pre></div></p>
+</div>
+<div data-wizard-step="install-network-warning">
+<details class="info">
+<summary>기존 사용자 전용: <em>테스트넷에서 메인넷-베타로</em> 또는 <em>메인넷-베타에서 테스트넷으로</em> 패키지 변경</summary>
+<p>위의 패키지 저장소 중 하나에서 설치하면 DoubleZero <strong>테스트넷</strong> 또는 <strong>DoubleZero 메인넷-베타</strong>에 특정됩니다. 어느 시점에서든 네트워크를 변경하는 경우 이전에 설치된 패키지 저장소를 제거하고 대상 저장소로 업데이트해야 합니다.</p>
+<p>이 예시는 테스트넷에서 메인넷-베타 마이그레이션을 안내합니다.</p>
+<p>동일한 단계를 완료하여 메인넷-베타에서 테스트넷으로 이동할 수 있습니다. 단, 3단계를 위의 테스트넷 설치 명령으로 교체하세요.</p>
+<ol>
+<li>
+<p>이전 저장소 파일 찾기</p>
+<p>먼저 시스템에서 기존 DoubleZero 저장소 구성 파일을 찾습니다:</p>
+<p><code>find /etc/apt | grep doublezero</code></p>
+<p><code>find /usr/share/keyrings/ | grep doublezero</code></p>
+</li>
+<li>
+<p>이전 저장소 파일 제거</p>
+<p>이전 단계에서 찾은 이전 저장소 파일을 제거합니다. 예를 들어:</p>
+<div class="highlight"><pre><span></span><code>sudo rm /etc/apt/sources.list.d/malbeclabs-doublezero.list
+sudo rm /usr/share/keyrings/malbeclabs-doublezero-archive-keyring.gpg
+</code></pre></div>
+</li>
+<li>
+<p>새 저장소에서 설치</p>
+<p>새 메인넷-베타 저장소를 추가하고 최신 패키지를 설치합니다:</p>
+<div class="highlight"><pre><span></span><code>curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
+sudo apt-get install doublezero=&lt;current_recomended_version_above&gt;
+</code></pre></div>
+</li>
+</ol>
+</details>
+</div>
+<div data-wizard-step="install-verify-daemon">
+<h4 id="doublezerod"><code>doublezerod</code> 상태 확인</h4>
+<p>패키지가 설치되면 새 systemd 유닛이 설치, 활성화 및 시작됩니다. 상태를 확인하려면 다음을 실행하세요:
+<div class="highlight"><pre><span></span><code>sudo systemctl status doublezerod
+</code></pre></div></p>
+</div>
+<h3 id="gre-bgp">GRE 및 BGP를 위한 방화벽 구성</h3>
+<p>DoubleZero는 GRE 터널링(IP 프로토콜 47) 및 BGP 라우팅(링크-로컬 주소의 tcp/179)을 사용합니다. 방화벽이 이 프로토콜을 허용하는지 확인하세요:</p>
+<p>iptables를 통해 GRE 및 BGP 허용:</p>
+<div data-wizard-step="firewall-gre-bgp-iptables">
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>gre<span class="w"> </span>-j<span class="w"> </span>ACCEPT
+sudo<span class="w"> </span>iptables<span class="w"> </span>-A<span class="w"> </span>OUTPUT<span class="w"> </span>-p<span class="w"> </span>gre<span class="w"> </span>-j<span class="w"> </span>ACCEPT
+sudo<span class="w"> </span>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-i<span class="w"> </span>doublezero0<span class="w"> </span>-s<span class="w"> </span><span class="m">169</span>.254.0.0/16<span class="w"> </span>-d<span class="w"> </span><span class="m">169</span>.254.0.0/16<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--dport<span class="w"> </span><span class="m">179</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
+sudo<span class="w"> </span>iptables<span class="w"> </span>-A<span class="w"> </span>OUTPUT<span class="w"> </span>-o<span class="w"> </span>doublezero0<span class="w"> </span>-s<span class="w"> </span><span class="m">169</span>.254.0.0/16<span class="w"> </span>-d<span class="w"> </span><span class="m">169</span>.254.0.0/16<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--dport<span class="w"> </span><span class="m">179</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
+</code></pre></div>
+</div>
+<p>또는 UFW를 통해 GRE 및 BGP 허용:</p>
+<div data-wizard-step="firewall-gre-bgp-ufw">
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span>proto<span class="w"> </span>gre<span class="w"> </span>from<span class="w"> </span>any<span class="w"> </span>to<span class="w"> </span>any
+sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="k">in</span><span class="w"> </span>on<span class="w"> </span>doublezero0<span class="w"> </span>from<span class="w"> </span><span class="m">169</span>.254.0.0/16<span class="w"> </span>to<span class="w"> </span><span class="m">169</span>.254.0.0/16<span class="w"> </span>port<span class="w"> </span><span class="m">179</span><span class="w"> </span>proto<span class="w"> </span>tcp
+sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span>out<span class="w"> </span>on<span class="w"> </span>doublezero0<span class="w"> </span>from<span class="w"> </span><span class="m">169</span>.254.0.0/16<span class="w"> </span>to<span class="w"> </span><span class="m">169</span>.254.0.0/16<span class="w"> </span>port<span class="w"> </span><span class="m">179</span><span class="w"> </span>proto<span class="w"> </span>tcp
+</code></pre></div>
+</div>
+<h2 id="2-doublezero">2. 새 DoubleZero 신원 생성</h2>
+<p>다음 명령으로 서버에 DoubleZero 신원을 생성합니다:</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>keygen
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>사용하고 싶은 기존 ID가 있는 경우 다음 선택적 단계를 따를 수 있습니다.</p>
+<p>doublezero 구성 디렉토리 생성</p>
+<div class="highlight"><pre><span></span><code>mkdir -p ~/.config/doublezero
+</code></pre></div>
+<p>DoubleZero와 함께 사용하려는 <code>id.json</code>을 doublezero 구성 디렉토리에 복사하거나 링크합니다.</p>
+<div class="highlight"><pre><span></span><code>sudo cp &lt;/path/to/id.json&gt; ~/.config/doublezero/
+</code></pre></div>
+</div>
+<h2 id="3-doublezero">3. 서버의 DoubleZero 신원 확인</h2>
+<p>DoubleZero 신원을 확인합니다. 이 신원은 기계와 DoubleZero 간의 연결을 생성하는 데 사용됩니다.</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>address
+</code></pre></div>
+<p><strong>출력:</strong>
+<div class="highlight"><pre><span></span><code>YourDoubleZeroAddress11111111111111111111111111111
+</code></pre></div></p>
+<h2 id="4-doublezerod-dz">4. doublezerod가 DZ 장치를 발견했는지 확인</h2>
+<p>연결하기 전에 <code>doublezerod</code>가 사용 가능한 DZ 테스트넷 스위치를 각각 발견하고 핑했는지 확인합니다:</p>
+<div class="highlight"><pre><span></span><code>doublezero latency
+</code></pre></div>
+<p>샘플 출력:</p>
+<div class="highlight"><pre><span></span><code>$ doublezero latency
+ pubkey                                       | name      | ip             | min      | max      | avg      | reachable
+ 96AfeBT6UqUmREmPeFZxw6PbLrbfET51NxBFCCsVAnek | la2-dz01  | 207.45.216.134 |   0.38ms |   0.45ms |   0.42ms | true
+ CCTSmqMkxJh3Zpa9gQ8rCzhY7GiTqK7KnSLBYrRriuan | ny5-dz01  | 64.86.249.22   |  68.81ms |  68.87ms |  68.85ms | true
+ BX6DYCzJt3XKRc1Z3N8AMSSqctV6aDdJryFMGThNSxDn | ty2-dz01  | 180.87.154.78  | 112.16ms | 112.25ms | 112.22ms | true
+ 55tfaZ1kRGxugv7MAuinXP4rHATcGTbNyEKrNsbuVLx2 | ld4-dz01  | 195.219.120.66 | 138.15ms | 138.21ms | 138.17ms | true
+ 3uGKPEjinn74vd9LHtC4VJvAMAZZgU9qX9rPxtc6pF2k | ams-dz001 | 195.219.138.50 | 141.84ms | 141.97ms | 141.91ms | true
+ 65DqsEiFucoFWPLHnwbVHY1mp3d7MNM2gNjDTgtYZtFQ | frk-dz01  | 195.219.220.58 | 143.52ms | 143.62ms | 143.58ms | true
+ 9uhh2D5c14WJjbwgM7BudztdoPZYCjbvqcTPgEKtTMZE | sg1-dz01  | 180.87.102.98  | 176.66ms | 176.76ms | 176.72ms | true
+</code></pre></div>
+<p>출력에 장치가 반환되지 않으면 10-20초 기다린 후 다시 시도하세요.</p>
+<h2 id="5-doublezero">5. DoubleZero에서 연결 해제</h2>
+<p>다음 섹션에서 DoubleZero 환경을 설정합니다. 성공적인 설정을 위해 현재 세션의 연결을 해제하세요. 이렇게 하면 기계에 열려 있는 여러 터널과 관련된 문제를 방지할 수 있습니다.</p>
+<p>확인</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>status
+</code></pre></div>
+<p><code>up</code> 상태이면 다음을 실행합니다:</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>disconnect
+</code></pre></div>
+<h3 id="_2">다음 단계: 테넌트</h3>
+<p>DoubleZero 연결은 사용 사례에 따라 다릅니다. DoubleZero에서 테넌트는 유사한 사용자 프로필을 가진 그룹입니다. 예를 들어 블록체인, 데이터 전송 레이어 등이 있습니다.</p>
+<h3 id="_3"><a href="../tenant/">여기서 테넌트를 선택하세요</a></h3>
+<h1 id="prometheus">선택 사항: Prometheus 메트릭 활성화</h1>
+<p>Prometheus 메트릭에 익숙한 운영자는 DoubleZero 모니터링을 위해 활성화할 수 있습니다. 이를 통해 DoubleZero 클라이언트 성능, 연결 상태 및 운영 상태에 대한 가시성을 제공합니다.</p>
+<h2 id="_4">사용 가능한 메트릭</h2>
+<p>DoubleZero는 다음과 같은 주요 메트릭을 노출합니다:
+- <strong>빌드 정보</strong>: 버전, 커밋 해시 및 빌드 날짜
+- <strong>세션 상태</strong>: DoubleZero 세션의 활성 여부
+- <strong>연결 메트릭</strong>: 대기 시간 및 연결 정보
+- <strong>성능 데이터</strong>: 처리량 및 오류율</p>
+<h2 id="prometheus_1">Prometheus 메트릭 활성화</h2>
+<p>DoubleZero 클라이언트에서 Prometheus 메트릭을 활성화하려면 다음 단계를 따르세요:</p>
+<h3 id="1-doublezerod-systemd">1. doublezerod systemd 서비스 시작 명령 수정</h3>
+<p>systemd 재정의 구성을 생성하거나 편집합니다:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/etc/systemd/system/doublezerod.service.d/
+sudo<span class="w"> </span>nano<span class="w"> </span>/etc/systemd/system/doublezerod.service.d/override.conf
+</code></pre></div>
+<p>다음 구성으로 교체합니다:</p>
+<p><code>-env</code> 플래그는 데이터를 수집하려는 네트워크에 따라 <code>testnet</code> 또는 <code>mainnet-beta</code>를 가리켜야 합니다. 샘플 블록에서는 <code>testnet</code>이 사용됩니다. 필요한 경우 <code>mainnet-beta</code>로 교체할 수 있습니다.</p>
+<div class="highlight"><pre><span></span><code><span class="k">[Service]</span>
+<span class="na">ExecStart</span><span class="o">=</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env testnet -metrics-enable -metrics-addr localhost:2113</span>
+</code></pre></div>
+<h3 id="2">2. 서비스 다시 로드 및 재시작</h3>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload
+sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>doublezerod
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>doublezerod
+</code></pre></div>
+<h3 id="3">3. 메트릭 사용 가능 여부 확인</h3>
+<p>메트릭 엔드포인트가 응답하는지 테스트합니다:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-s<span class="w"> </span>localhost:2113/metrics<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>doublezero
+</code></pre></div>
+<p>예상 출력:</p>
+<div class="highlight"><pre><span></span><code># HELP doublezero_build_info Build information of the client
+# TYPE doublezero_build_info gauge
+doublezero_build_info{commit=&quot;0d684e1b&quot;,date=&quot;2025-09-10T16:30:25Z&quot;,version=&quot;0.6.4&quot;} 1
+# HELP doublezero_session_is_up Status of session to doublezero
+# TYPE doublezero_session_is_up gauge
+doublezero_session_is_up 0
+</code></pre></div>
+<h2 id="_5">문제 해결</h2>
+<p>메트릭이 표시되지 않는 경우:</p>
+<ol>
+<li><strong>서비스 상태 확인</strong>: <code>sudo systemctl status doublezerod</code></li>
+<li><strong>구성 확인</strong>: <code>sudo systemctl cat doublezerod</code></li>
+<li><strong>로그 확인</strong>: <code>sudo journalctl -u doublezerod -f</code></li>
+<li><strong>엔드포인트 테스트</strong>: <code>curl -v localhost:2113/metrics</code></li>
+<li><strong>포트 확인</strong>: <code>netstat -tlnp | grep 2113</code></li>
+</ol>
+<h2 id="prometheus_2">Prometheus 서버 구성</h2>
+<p>구성 및 보안은 이 문서의 범위를 벗어납니다.
+Grafana는 시각화에 탁월한 옵션이며 Prometheus 메트릭을 수집하는 방법에 대한 문서가 <a href="https://grafana.com/docs/alloy/latest/collect/prometheus-metrics/">여기</a>에 있습니다.</p>
+<h2 id="grafana">Grafana 대시보드 (선택 사항)</h2>
+<p>시각화를 위해 DoubleZero 메트릭을 사용하는 Grafana 대시보드를 만들 수 있습니다. 일반적인 패널에는 다음이 포함됩니다:
+- 시간 경과에 따른 세션 상태
+- 빌드 정보
+- 연결 대기 시간 추세
+- 오류율 모니터링</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "navigation.indexes", "toc.integrate", "header.autohide"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\ud074\ub9bd\ubcf4\ub4dc\uc5d0 \ubcf5\uc0ac\ub428", "clipboard.copy": "\ud074\ub9bd\ubcf4\ub4dc\ub85c \ubcf5\uc0ac", "search.result.more.one": "\uc774 \ubb38\uc11c\uc5d0\uc11c 1\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.more.other": "\uc774 \ubb38\uc11c\uc5d0\uc11c #\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.none": "\uac80\uc0c9\uc5b4\uc640 \uc77c\uce58\ud558\ub294 \ubb38\uc11c\uac00 \uc5c6\uc2b5\ub2c8\ub2e4", "search.result.one": "1\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.other": "#\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.placeholder": "\uac80\uc0c9\uc5b4\ub97c \uc785\ub825\ud558\uc138\uc694", "search.result.term.missing": "\ud3ec\ud568\ub418\uc9c0 \uc54a\uc740 \uac80\uc0c9\uc5b4", "select.version": "\ubc84\uc804 \uc120\ud0dd"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../javascripts/cloudsmith-versions.js"></script>
+      
+        <script src="../../javascripts/connection-wizard.js"></script>
+      
+        <script src="../../javascripts/page-toolbar.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/page-toolbar.js"></script>
+      
+    
+  </body>
+</html>

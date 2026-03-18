@@ -1,0 +1,1705 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.malbeclabs.com/zh/contribute-operations/">
+      
+      
+        <link rel="prev" href="../contribute-provisioning/">
+      
+      
+        <link rel="next" href="../architecture/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Operations - Malbec Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/wizard.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="grey" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../" title="Malbec Labs" class="md-header__button md-logo" aria-label="Malbec Labs" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Malbec Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Operations
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      
+
+
+<div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="选择当前语言">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../contribute-operations/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="zh" class="md-select__link">
+              Chinese
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../ja/contribute-operations/" hreflang="ja" class="md-select__link">
+              Japanese
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../ko/contribute-operations/" hreflang="ko" class="md-select__link">
+              Korean
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../pt/contribute-operations/" hreflang="pt" class="md-select__link">
+              Portuguese
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../es/contribute-operations/" hreflang="es" class="md-select__link">
+              Spanish
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../fr/contribute-operations/" hreflang="fr" class="md-select__link">
+              French
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../it/contribute-operations/" hreflang="it" class="md-select__link">
+              Italian
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../" title="Malbec Labs" class="md-nav__button md-logo" aria-label="Malbec Labs" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    Malbec Labs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-connect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Connect
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Users
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Users
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tenants
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Tenants
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tenant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_2" id="__nav_3_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Solana
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Solana
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DZ%20Mainnet-beta%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Validator Mainnet-Beta Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DZ%20Testnet%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Validator Testnet Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Permissioned%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Permissioned Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Validator%20Multicast%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Validator Multicast Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Other%20Multicast%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Other Multicast Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_3" id="__nav_3_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Shelby
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Shelby
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Shelby%20Permissioned%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shelby Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../New%20Tenant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    New Tenant
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Contributors
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Contributors
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Requirements & Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute-provisioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Device Provisioning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Operations
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Operations
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      设备更新
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      接口更新
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="接口更新">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      列出接口
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#config-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Config Agent升级
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Config Agent升级">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 下载最新版本
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 关闭代理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 删除旧版本
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 安装新版本
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 启动代理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 验证升级
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-config-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 验证Config Agent日志输出
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#telemetry-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Telemetry Agent升级
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Telemetry Agent升级">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 下载最新版本
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 关闭代理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 删除旧版本
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 安装新版本
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 启动代理
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 验证升级
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-telemetry-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 验证Telemetry Agent日志输出
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      监控
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="监控">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#config-agent_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Config Agent指标
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Config Agent指标">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      高信号错误
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#telemetry-agent_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Telemetry Agent指标
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Telemetry Agent指标">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      高信号错误
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      链路管理
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="链路管理">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      链路排水
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      状态转换
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      软排水链路
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      硬排水链路
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      将链路恢复为活跃状态
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      延迟覆盖
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      设置延迟覆盖
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      清除延迟覆盖
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Glossary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">贡献者运营指南</h1>
+<div class="admonition warning">
+<p class="admonition-title">This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon.</p>
+</div>
+<p>本指南涵盖维护DoubleZero设备（DZD）的持续运营任务，包括代理升级、设备/接口更新和链路管理。</p>
+<p><strong>前提条件</strong>：使用本指南前，请确保您已：</p>
+<ul>
+<li>完成<a href="../contribute-provisioning/">设备配置指南</a></li>
+<li>您的DZD已完全运行，Config和Telemetry代理均在运行</li>
+</ul>
+<hr />
+<h2 id="_2">设备更新</h2>
+<p>使用<code>doublezero device update</code>在初始配置后修改设备设置。</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>device<span class="w"> </span>update<span class="w"> </span>--pubkey<span class="w"> </span>&lt;DEVICE_PUBKEY&gt;<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</code></pre></div>
+<p><strong>常用更新选项：</strong></p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--device-type &lt;TYPE&gt;</code></td>
+<td>更改运行模式：<code>hybrid</code>、<code>transit</code>、<code>edge</code>（参见<a href="../contribute-provisioning/#understanding-device-types">设备类型</a>）</td>
+</tr>
+<tr>
+<td><code>--location &lt;LOCATION&gt;</code></td>
+<td>将设备移至不同位置</td>
+</tr>
+<tr>
+<td><code>--metrics-publisher &lt;PUBKEY&gt;</code></td>
+<td>更改指标发布者密钥</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_3">接口更新</h2>
+<p>使用<code>doublezero device interface update</code>修改现有接口。此命令接受与<code>interface create</code>相同的选项。</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>device<span class="w"> </span>interface<span class="w"> </span>update<span class="w"> </span>&lt;DEVICE&gt;<span class="w"> </span>&lt;NAME&gt;<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</code></pre></div>
+<p>有关接口选项（包括CYOA/DIA设置）的完整列表，请参见<a href="../contribute-provisioning/#step-35-create-cyoa-interface-for-edgehybrid-devices">创建接口</a>。</p>
+<p><strong>示例——为现有接口添加CYOA设置：</strong></p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>device<span class="w"> </span>interface<span class="w"> </span>update<span class="w"> </span>lax-dz001<span class="w"> </span>Ethernet1/2<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--interface-cyoa<span class="w"> </span>gre-over-dia<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--interface-dia<span class="w"> </span>dia<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--bandwidth<span class="w"> </span><span class="m">10000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cir<span class="w"> </span><span class="m">1000</span>
+</code></pre></div>
+<h3 id="_4">列出接口</h3>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>device<span class="w"> </span>interface<span class="w"> </span>list<span class="w">              </span><span class="c1"># 所有设备的所有接口</span>
+doublezero<span class="w"> </span>device<span class="w"> </span>interface<span class="w"> </span>list<span class="w"> </span>&lt;DEVICE&gt;<span class="w">     </span><span class="c1"># 特定设备的接口</span>
+</code></pre></div>
+<hr />
+<h2 id="config-agent">Config Agent升级</h2>
+<p>当Config Agent新版本发布时，请按照以下步骤升级。</p>
+<h3 id="1">1. 下载最新版本</h3>
+<div class="highlight"><pre><span></span><code>switch# bash
+$ sudo bash
+# cd /mnt/flash
+# wget AGENT_DOWNLOAD_URL
+# exit
+$ exit
+</code></pre></div>
+<h3 id="2">2. 关闭代理</h3>
+<div class="highlight"><pre><span></span><code>switch# configure
+switch(config)# daemon doublezero-agent
+switch(config-daemon-doublezero-agent)# shutdown
+switch(config-daemon-doublezero-agent)# exit
+switch(config)# exit
+</code></pre></div>
+<h3 id="3">3. 删除旧版本</h3>
+<p>首先，找到旧版本的文件名：
+<div class="highlight"><pre><span></span><code>switch# show extensions
+</code></pre></div></p>
+<p>运行以下命令删除旧版本。将<code>&lt;OLD_VERSION&gt;</code>替换为上面输出中的旧版本：
+<div class="highlight"><pre><span></span><code>switch# delete flash:doublezero-agent_&lt;OLD_VERSION&gt;_linux_amd64.rpm
+switch# delete extension:doublezero-agent_&lt;OLD_VERSION&gt;_linux_amd64.rpm
+</code></pre></div></p>
+<h3 id="4">4. 安装新版本</h3>
+<div class="highlight"><pre><span></span><code>switch# copy flash:AGENT_FILENAME extension:
+switch# extension AGENT_FILENAME
+switch# copy installed-extensions boot-extensions
+</code></pre></div>
+<h3 id="5">5. 启动代理</h3>
+<div class="highlight"><pre><span></span><code>switch# configure
+switch(config)# daemon doublezero-agent
+switch(config-daemon-doublezero-agent)# no shutdown
+switch(config-daemon-doublezero-agent)# exit
+switch(config)# exit
+</code></pre></div>
+<h3 id="6">6. 验证升级</h3>
+<p>状态应为"A, I, B"。
+<div class="highlight"><pre><span></span><code>switch# show extensions
+</code></pre></div></p>
+<h3 id="7-config-agent">7. 验证Config Agent日志输出</h3>
+<div class="highlight"><pre><span></span><code>show agent doublezero-agent log
+</code></pre></div>
+<hr />
+<h2 id="telemetry-agent">Telemetry Agent升级</h2>
+<p>当Telemetry Agent新版本发布时，请按照以下步骤升级。</p>
+<h3 id="1_1">1. 下载最新版本</h3>
+<div class="highlight"><pre><span></span><code>switch# bash
+$ sudo bash
+# cd /mnt/flash
+# wget TELEMETRY_DOWNLOAD_URL
+# exit
+$ exit
+</code></pre></div>
+<h3 id="2_1">2. 关闭代理</h3>
+<div class="highlight"><pre><span></span><code>switch# configure
+switch(config)# daemon doublezero-telemetry
+switch(config-daemon-doublezero-telemetry)# shutdown
+switch(config-daemon-doublezero-telemetry)# exit
+switch(config)# exit
+</code></pre></div>
+<h3 id="3_1">3. 删除旧版本</h3>
+<p>首先，找到旧版本的文件名：
+<div class="highlight"><pre><span></span><code>switch# show extensions
+</code></pre></div></p>
+<p>运行以下命令删除旧版本。将<code>&lt;OLD_VERSION&gt;</code>替换为上面输出中的旧版本：
+<div class="highlight"><pre><span></span><code>switch# delete flash:doublezero-device-telemetry-agent_&lt;OLD_VERSION&gt;_linux_amd64.rpm
+switch# delete extension:doublezero-device-telemetry-agent_&lt;OLD_VERSION&gt;_linux_amd64.rpm
+</code></pre></div></p>
+<h3 id="4_1">4. 安装新版本</h3>
+<div class="highlight"><pre><span></span><code>switch# copy flash:TELEMETRY_FILENAME extension:
+switch# extension TELEMETRY_FILENAME
+switch# copy installed-extensions boot-extensions
+</code></pre></div>
+<h3 id="5_1">5. 启动代理</h3>
+<div class="highlight"><pre><span></span><code>switch# configure
+switch(config)# daemon doublezero-telemetry
+switch(config-daemon-doublezero-telemetry)# no shutdown
+switch(config-daemon-doublezero-telemetry)# exit
+switch(config)# exit
+</code></pre></div>
+<h3 id="6_1">6. 验证升级</h3>
+<p>状态应为"A, I, B"。
+<div class="highlight"><pre><span></span><code>switch# show extensions
+</code></pre></div></p>
+<h3 id="7-telemetry-agent">7. 验证Telemetry Agent日志输出</h3>
+<div class="highlight"><pre><span></span><code>show agent doublezero-telemetry log
+</code></pre></div>
+<hr />
+<h2 id="_5">监控</h2>
+<blockquote>
+<p>⚠️ <strong>重要：</strong></p>
+<ol>
+<li>对于以下配置示例，请注意您的代理是否使用了管理VRF。</li>
+<li>Config Agent和Telemetry Agent默认使用相同的监听端口（:8080）作为其指标端点。如果两者都启用了指标，请使用<code>-metrics-addr</code>标志为每个代理设置唯一的监听端口。</li>
+</ol>
+</blockquote>
+<h3 id="config-agent_1">Config Agent指标</h3>
+<p>DoubleZero设备上的Config Agent可以通过在<code>doublezero-agent</code>守护进程配置中设置<code>-metrics-enable</code>标志来公开Prometheus兼容指标。默认监听端口为tcp/8080，但可以通过<code>-metrics-addr</code>更改以适应环境：
+<div class="highlight"><pre><span></span><code>daemon doublezero-agent
+   exec /usr/local/bin/doublezero-agent -pubkey $PUBKEY -controller $CONTROLLER_ADDR -metrics-enable -metrics-addr 10.0.0.11:2112
+   no shutdown
+</code></pre></div></p>
+<p>除go特定的运行时指标外，还公开以下DoubleZero特定指标：
+<div class="highlight"><pre><span></span><code>$ curl -s 10.0.0.11:2112/metrics | grep doublezero
+
+# HELP doublezero_agent_apply_config_errors_total Number of errors encountered while applying config to the device
+# TYPE doublezero_agent_apply_config_errors_total counter
+doublezero_agent_apply_config_errors_total 0
+
+# HELP doublezero_agent_bgp_neighbors_errors_total Number of errors encountered while retrieving BGP neighbors from the device
+# TYPE doublezero_agent_bgp_neighbors_errors_total counter
+doublezero_agent_bgp_neighbors_errors_total 0
+
+# HELP doublezero_agent_build_info Build information of the agent
+# TYPE doublezero_agent_build_info gauge
+doublezero_agent_build_info{commit=&quot;4378018f&quot;,date=&quot;2025-09-23T14:07:48Z&quot;,version=&quot;0.6.5~git20250923140746.4378018f&quot;} 1
+
+# HELP doublezero_agent_get_config_errors_total Number of errors encountered while getting config from the controller
+# TYPE doublezero_agent_get_config_errors_total counter
+doublezero_agent_get_config_errors_total 0
+</code></pre></div></p>
+<h4 id="_6">高信号错误</h4>
+<ul>
+<li><code>up</code> — 这是Prometheus在抓取实例健康且可达时自动生成的时间序列指标。如果不可达，则代理不可访问或代理未运行。</li>
+<li><code>doublezero_agent_apply_config_errors_total</code> — 代理尝试应用的配置失败。在此情况下，用户将无法接入设备，并且在解决此问题之前，链上配置更改将不会被应用。</li>
+<li><code>doublezero_agent_get_config_errors_total</code> — 这表示本地Config Agent无法与DoubleZero控制器通信。在大多数情况下，这可能是由于设备上的管理连接问题。与上述指标类似，用户将无法接入设备，并且在解决此问题之前，链上配置更改将不会被应用。</li>
+</ul>
+<h3 id="telemetry-agent_1">Telemetry Agent指标</h3>
+<p>DoubleZero设备上的Telemetry Agent可以通过在<code>doublezero-telemetry</code>守护进程配置中设置<code>-metrics-enable</code>标志来公开Prometheus兼容指标。默认监听端口为tcp/8080，但可以通过<code>-metrics-addr</code>更改以适应环境：
+<div class="highlight"><pre><span></span><code>daemon doublezero-telemetry
+   exec /usr/local/bin/doublezero-telemetry  --local-device-pubkey $PUBKEY --env $ENV --keypair $KEY_PAIR -metrics-enable --metrics-addr 10.0.0.11:2113
+   no shutdown
+</code></pre></div></p>
+<p>除go特定的运行时指标外，还公开以下DoubleZero特定指标：
+<div class="highlight"><pre><span></span><code>$ curl -s 10.0.0.11:2113/metrics | grep doublezero
+
+# HELP doublezero_device_telemetry_agent_build_info Build information of the device telemetry agent
+# TYPE doublezero_device_telemetry_agent_build_info gauge
+doublezero_device_telemetry_agent_build_info{commit=&quot;4378018f&quot;,date=&quot;2025-09-23T14:07:45Z&quot;,version=&quot;0.6.5~git20250923140743.4378018f&quot;} 1
+
+# HELP doublezero_device_telemetry_agent_errors_total Number of errors encountered
+# TYPE doublezero_device_telemetry_agent_errors_total counter
+doublezero_device_telemetry_agent_errors_total{error_type=&quot;peer_discovery_program_load&quot;} 7
+doublezero_device_telemetry_agent_errors_total{error_type=&quot;submitter_failed_to_write_samples&quot;} 8
+doublezero_device_telemetry_agent_errors_total{error_type=&quot;collector_submit_samples_on_close&quot;} 0
+doublezero_device_telemetry_agent_errors_total{error_type=&quot;peer_discovery_getting_local_interfaces&quot;} 0
+doublezero_device_telemetry_agent_errors_total{error_type=&quot;peer_discovery_finding_local_tunnel&quot;} 0
+doublezero_device_telemetry_agent_errors_total{error_type=&quot;peer_discovery_link_tunnel_net_invalid&quot;} 0
+doublezero_device_telemetry_agent_errors_total{error_type=&quot;submitter_failed_to_initialize_account&quot;} 0
+doublezero_device_telemetry_agent_errors_total{error_type=&quot;submitter_retries_exhausted&quot;} 0
+
+# HELP doublezero_device_telemetry_agent_peer_discovery_not_found_tunnels Number of local tunnel interfaces not found during peer discovery
+# TYPE doublezero_device_telemetry_agent_peer_discovery_not_found_tunnels gauge
+doublezero_device_telemetry_agent_peer_discovery_not_found_tunnels{local_device_pk=&quot;8PQkip3CxWhQTdP7doCyhT2kwjSL2csRTdnRg2zbDPs1&quot;} 0
+</code></pre></div></p>
+<h4 id="_7">高信号错误</h4>
+<ul>
+<li><code>up</code> — 这是Prometheus在抓取实例健康且可达时自动生成的时间序列指标。如果不可达，则代理不可访问或代理未运行。</li>
+<li><code>doublezero_device_telemetry_agent_errors_total</code>中<code>error_type</code>为<code>submitter_failed_to_write_samples</code> — 这表示Telemetry Agent无法将样本写入链上，可能是由于设备上的管理连接问题。</li>
+</ul>
+<hr />
+<h2 id="_8">链路管理</h2>
+<h3 id="_9">链路排水</h3>
+<p>链路排水允许贡献者优雅地从活跃服务中移除链路，以进行维护或故障排除。有两种排水状态：</p>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>IS-IS行为</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>soft-drained</code></td>
+<td>指标设置为1,000,000</td>
+<td>链路降低优先级。流量将在有备用路径时使用备用路径，但如果此链路是唯一选项，仍会使用它。</td>
+</tr>
+<tr>
+<td><code>hard-drained</code></td>
+<td>设置为被动模式</td>
+<td>链路从路由中完全移除。不会有流量经过此链路。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_10">状态转换</h3>
+<p>允许以下状态转换：</p>
+<div class="highlight"><pre><span></span><code>activated → soft-drained ✓
+activated → hard-drained ✓
+soft-drained → hard-drained ✓
+hard-drained → soft-drained ✓
+soft-drained → activated ✓
+hard-drained → activated ✗ （必须先经过soft-drained）
+</code></pre></div>
+<blockquote>
+<p>⚠️ <strong>注意：</strong>
+您不能直接从<code>hard-drained</code>转到<code>activated</code>。必须先转换到<code>soft-drained</code>，再转换到<code>activated</code>。</p>
+</blockquote>
+<h3 id="_11">软排水链路</h3>
+<p>软排水通过将IS-IS指标设置为1,000,000来降低链路优先级。流量将优先选择备用路径，但在必要时仍可使用此链路。</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>link<span class="w"> </span>update<span class="w"> </span>--pubkey<span class="w"> </span>&lt;LINK_PUBKEY&gt;<span class="w"> </span>--status<span class="w"> </span>soft-drained
+</code></pre></div>
+<h3 id="_12">硬排水链路</h3>
+<p>硬排水通过将IS-IS设置为被动模式，将链路从路由中完全移除。不会有流量经过此链路。</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>link<span class="w"> </span>update<span class="w"> </span>--pubkey<span class="w"> </span>&lt;LINK_PUBKEY&gt;<span class="w"> </span>--status<span class="w"> </span>hard-drained
+</code></pre></div>
+<h3 id="_13">将链路恢复为活跃状态</h3>
+<p>将已排水的链路恢复为正常运行：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 从soft-drained恢复</span>
+doublezero<span class="w"> </span>link<span class="w"> </span>update<span class="w"> </span>--pubkey<span class="w"> </span>&lt;LINK_PUBKEY&gt;<span class="w"> </span>--status<span class="w"> </span>activated
+
+<span class="c1"># 从hard-drained恢复（必须先经过soft-drained）</span>
+doublezero<span class="w"> </span>link<span class="w"> </span>update<span class="w"> </span>--pubkey<span class="w"> </span>&lt;LINK_PUBKEY&gt;<span class="w"> </span>--status<span class="w"> </span>soft-drained
+doublezero<span class="w"> </span>link<span class="w"> </span>update<span class="w"> </span>--pubkey<span class="w"> </span>&lt;LINK_PUBKEY&gt;<span class="w"> </span>--status<span class="w"> </span>activated
+</code></pre></div>
+<h3 id="_14">延迟覆盖</h3>
+<p>延迟覆盖功能允许贡献者临时更改链路的有效延迟，而无需修改实际测量的延迟值。这对于临时将链路从主路径降级为备用路径非常有用。</p>
+<h3 id="_15">设置延迟覆盖</h3>
+<p>覆盖链路延迟（使其在路由中不太被优先选择）：</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>link<span class="w"> </span>update<span class="w"> </span>--pubkey<span class="w"> </span>&lt;LINK_PUBKEY&gt;<span class="w"> </span>--delay-override-ms<span class="w"> </span><span class="m">100</span>
+</code></pre></div>
+<p>有效值为<code>0.01</code>到<code>1000</code>毫秒。</p>
+<h3 id="_16">清除延迟覆盖</h3>
+<p>移除覆盖并恢复使用实际测量的延迟：</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>link<span class="w"> </span>update<span class="w"> </span>--pubkey<span class="w"> </span>&lt;LINK_PUBKEY&gt;<span class="w"> </span>--delay-override-ms<span class="w"> </span><span class="m">0</span>
+</code></pre></div>
+<blockquote>
+<p>⚠️ <strong>注意：</strong>
+当链路处于soft-drained状态时，<code>delay_ms</code>和<code>delay_override_ms</code>都会被覆盖为1000ms（1秒）以确保降低优先级。</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "navigation.indexes", "toc.integrate", "header.autohide"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../javascripts/cloudsmith-versions.js"></script>
+      
+        <script src="../../javascripts/connection-wizard.js"></script>
+      
+        <script src="../../javascripts/page-toolbar.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/page-toolbar.js"></script>
+      
+    
+  </body>
+</html>

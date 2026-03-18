@@ -2,18 +2,6 @@
       --md-accent-fg-color:        #16B5F4;
     }
 
-  /* Current language name next to the language selector icon */
-  button[aria-label="Select language"] {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-  }
-  .md-header__language-label {
-    font-size: 0.8rem;
-    font-weight: 500;
-    white-space: nowrap;
-  }
-
   /* 50px buffer at bottom of content when fully scrolled, before footer */
   .md-content__inner {
     padding-bottom: 50px;

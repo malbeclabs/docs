@@ -1,0 +1,1822 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.malbeclabs.com/es/contribute/">
+      
+      
+        <link rel="prev" href="../contribute-overview/">
+      
+      
+        <link rel="next" href="../contribute-provisioning/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Requirements & Architecture - Malbec Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/wizard.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="grey" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#requisitos-y-arquitectura-para-contribuidores" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../" title="Malbec Labs" class="md-header__button md-logo" aria-label="Malbec Labs" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Malbec Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Requirements & Architecture
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      
+
+
+<div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Seleccionar idioma">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../contribute/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../zh/contribute/" hreflang="zh" class="md-select__link">
+              Chinese
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../ja/contribute/" hreflang="ja" class="md-select__link">
+              Japanese
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../ko/contribute/" hreflang="ko" class="md-select__link">
+              Korean
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../pt/contribute/" hreflang="pt" class="md-select__link">
+              Portuguese
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="es" class="md-select__link">
+              Spanish
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../fr/contribute/" hreflang="fr" class="md-select__link">
+              French
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../it/contribute/" hreflang="it" class="md-select__link">
+              Italian
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../" title="Malbec Labs" class="md-nav__button md-logo" aria-label="Malbec Labs" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    Malbec Labs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-connect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Connect
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Users
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Users
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tenants
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Tenants
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tenant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_2" id="__nav_3_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Solana
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Solana
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DZ%20Mainnet-beta%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Validator Mainnet-Beta Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DZ%20Testnet%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Validator Testnet Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Permissioned%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Permissioned Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Validator%20Multicast%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Validator Multicast Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Other%20Multicast%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Other Multicast Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_3" id="__nav_3_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Shelby
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Shelby
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Shelby%20Permissioned%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shelby Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../New%20Tenant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    New Tenant
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Contributors
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Contributors
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Requirements & Architecture
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Requirements & Architecture
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#resumen" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resumen
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requisitos-para-ser-contribuidor-de-red-doublezero" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requisitos para ser Contribuidor de Red DoubleZero
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#guia-de-inicio-rapido" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guía de Inicio Rápido
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Guía de Inicio Rápido">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplos-de-contribuciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplos de Contribuciones
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ejemplos de Contribuciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-1-contribuidor-unico-3-centros-de-datos-dos-enlaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo 1: Contribuidor Único, 3 Centros de Datos, Dos Enlaces
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo-2-contribuidor-unico-3-centros-de-datos-tres-enlaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo 2: Contribuidor Único, 3 Centros de Datos, Tres Enlaces
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exchange-doublezero" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exchange DoubleZero
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opciones-de-contribucion-de-ancho-de-banda" class="md-nav__link">
+    <span class="md-ellipsis">
+      Opciones de Contribución de Ancho de Banda
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Opciones de Contribución de Ancho de Banda">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ancho-de-banda-de-capa-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ancho de Banda de Capa 1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ancho-de-banda-de-red-conmutada-por-paquetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ancho de Banda de Red Conmutada por Paquetes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ancho de Banda de Red Conmutada por Paquetes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#extension-l2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Extensión L2
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ancho-de-banda-dedicado-de-terceros" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ancho de Banda Dedicado de Terceros
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requisitos-de-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requisitos de Hardware
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Requisitos de Hardware">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contribucion-de-ancho-de-banda-de-100-gbps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contribución de Ancho de Banda de 100 Gbps
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Contribución de Ancho de Banda de 100 Gbps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requisitos-de-funcion-y-puerto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requisitos de Función y Puerto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hardware-de-red-dzd" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware de Red DZD
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optica-100g" class="md-nav__link">
+    <span class="md-ellipsis">
+      Óptica - 100G
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optica-10g" class="md-nav__link">
+    <span class="md-ellipsis">
+      Óptica - 10G
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#direccionamiento-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      Direccionamiento IP
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contribucion-de-ancho-de-banda-de-10-gbps" class="md-nav__link">
+    <span class="md-ellipsis">
+      Contribución de Ancho de Banda de 10 Gbps
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Contribución de Ancho de Banda de 10 Gbps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requisitos-de-funcion-y-puerto_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requisitos de Función y Puerto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hardware
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optica-100g_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Óptica - 100G
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optica-10g_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Óptica - 10G
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#direccionamiento-ip_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Direccionamiento IP
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requisitos-del-centro-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requisitos del Centro de Datos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Requisitos del Centro de Datos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#requisitos-de-rack-y-energia" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requisitos de Rack y Energía
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proximos-pasos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Próximos Pasos
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute-provisioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Device Provisioning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute-operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Operations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Glossary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="requisitos-y-arquitectura-para-contribuidores">Requisitos y Arquitectura para Contribuidores</h1>
+<div class="admonition warning">
+<p class="admonition-title">This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon.</p>
+</div>
+<h2 id="resumen">Resumen</h2>
+<p>Cualquier persona que desee monetizar sus cables de fibra óptica y hardware de red subutilizados puede contribuir a la red DoubleZero. Los contribuidores de red deben proporcionar ancho de banda dedicado entre dos puntos, operar dispositivos compatibles con DoubleZero (DZDs) en cada extremo, y una conexión a internet pública en cada extremo. Los contribuidores de red también deben ejecutar software DoubleZero en cada DZD para proporcionar servicios como multicast, búsqueda de usuarios y filtrado de borde.</p>
+<p>El contrato inteligente de DoubleZero es la piedra angular para garantizar que la red mantenga enlaces de alta calidad que puedan medirse e integrarse en la topología, permitiendo a nuestros controladores de red desarrollar la ruta más eficiente de extremo a extremo entre nuestros diferentes usuarios y puntos finales. Tras la ejecución del contrato inteligente y el despliegue del equipo de red y el ancho de banda, una entidad se clasifica como contribuidor de red. Consulte <a href="https://economics.doublezero.xyz/overview">Economía de DoubleZero</a> para comprender mejor la economía detrás de participar en DoubleZero como contribuidor de red.</p>
+<hr />
+<h2 id="requisitos-para-ser-contribuidor-de-red-doublezero">Requisitos para ser Contribuidor de Red DoubleZero</h2>
+<ul>
+<li>Ancho de banda dedicado que pueda proporcionar conectividad IPv4 y un MTU de 2048 bytes entre dos centros de datos</li>
+<li>Hardware de Dispositivo DoubleZero (DZD) compatible con el protocolo DoubleZero</li>
+<li>Conectividad a internet y a otros contribuidores de red DoubleZero</li>
+<li>Instalación del software DoubleZero en el DZD</li>
+</ul>
+<h2 id="guia-de-inicio-rapido">Guía de Inicio Rápido</h2>
+<p>Como contribuidor de red, la forma más sencilla de comenzar en DoubleZero es identificando capacidad en su red que pueda dedicarse a DoubleZero. Una vez identificados, los DZDs deben desplegarse, facilitando la red superpuesta DoubleZero que solo requiere alcanzabilidad IPv4 y un MTU mínimo de 2048 bytes como dependencias de la red del contribuidor.</p>
+<p>La Figura 1 destaca el modelo más simple para contribuir con ancho de banda y servicios de envío y procesamiento de paquetes. Se despliega un DZD en cada centro de datos, interactuando con la red interna del contribuidor de red para proporcionar conectividad WAN de DoubleZero. Esto se complementa con internet local, típicamente una solución de Acceso Directo a Internet (DIA), que se usa como rampas de acceso para los usuarios de DoubleZero. Si bien se espera que DIA sea la opción preferida para facilitar el acceso a los usuarios de DoubleZero, son posibles numerosos modelos de conectividad, por ejemplo, cableado físico a servidores, extensión de fabric de red, etc. Nos referimos a estas opciones como Elige Tu Propia Aventura (CYOA), proporcionando al contribuidor flexibilidad para conectar usuarios locales o remotos de una manera que mejor se adapte a sus políticas de red internas.</p>
+<p>Como con cualquier red, la alcanzabilidad es una parte fundamental de la arquitectura, ya que los contribuidores de red no pueden vivir en aislamiento. Como tal, el DZD <em>debe</em> tener un enlace a un Exchange DoubleZero (DZX) para crear una red contigua entre los participantes.</p>
+<figure>
+  <img alt="Image title" src="../../images/figure1.png" width="800" />
+<br />
+<figcaption>Figura 1: Contribución de Ancho de Banda de Red DoubleZero Entre 2 Centros de Datos - Contribuidor Único</figcaption>
+</figure>
+<h3 id="ejemplos-de-contribuciones">Ejemplos de Contribuciones</h3>
+<p>Las formas en que un contribuidor de red puede hacer crecer sus contribuciones a DoubleZero son muchas, incluyendo:</p>
+<ul>
+<li>Mejorar las características de rendimiento de sus contribuciones existentes: aumentar el ancho de banda, reducir la latencia</li>
+<li>Agregar múltiples enlaces entre los mismos centros de datos</li>
+<li>Agregar un nuevo enlace desde un centro de datos existente a un nuevo centro de datos</li>
+<li>Agregar un nuevo enlace independiente entre dos nuevos centros de datos</li>
+</ul>
+<h4 id="ejemplo-1-contribuidor-unico-3-centros-de-datos-dos-enlaces">Ejemplo 1: Contribuidor Único, 3 Centros de Datos, Dos Enlaces</h4>
+<figure>
+  <img alt="Image title" src="../../images/figure2.png" width="800" />
+<br />
+<figcaption>Figura 2: Contribución de Ancho de Banda de Red DoubleZero Entre 3 Centros de Datos - Contribuidor Único</figcaption>
+</figure>
+<p>Un solo DZD puede soportar múltiples enlaces contribuidos a DoubleZero. La Figura 2 ilustra una topología potencial si un solo centro de datos, denominado 1, termina el ancho de banda hacia dos centros de datos remotos diferentes, 2 y 3. En este escenario, cada centro de datos contiene solo 1 DZD. Todos los DZDs utilizan DIA para las rampas de acceso de usuarios como su interfaz CYOA.</p>
+<h4 id="ejemplo-2-contribuidor-unico-3-centros-de-datos-tres-enlaces">Ejemplo 2: Contribuidor Único, 3 Centros de Datos, Tres Enlaces</h4>
+<p>La Figura 3 describe la topología de DoubleZero cuando un único contribuidor despliega tres enlaces en una topología triangular entre 3 centros de datos. En un escenario similar al ejemplo 1, se despliega un único DZD en los centros de datos 1, 2 y 3, cada uno soportando 2 enlaces de red independientes. La topología resultante es un triángulo o anillo entre los centros de datos.</p>
+<figure>
+  <img alt="Image title" src="../../images/figure3.png" width="800" />
+<br />
+<figcaption>Figura 3: Contribución de Ancho de Banda de Red DoubleZero Entre 3 Centros de Datos - Contribuidor Único </figcaption>
+</figure>
+<h3 id="exchange-doublezero">Exchange DoubleZero</h3>
+<p>La creación de una red contigua es un elemento fundamental de la arquitectura DoubleZero. Los contribuidores se interconectan a través de un Exchange DoubleZero (DZX) dentro de un área metropolitana, que es una ciudad como Nueva York (NYC), Londres (LON) o Tokio (TYO). Un DZX es un fabric de red similar a un Exchange de Internet, que permite el peering y el intercambio de rutas.</p>
+<p>En la figura 4, el contribuidor de red 1 opera en los centros de datos 1, 2 y 3, mientras que el contribuidor de red 2 opera en los centros de datos 2, 4 y 5. Al interconectarse en el centro de datos 2, el alcance de la red DoubleZero aumenta a 5 centros de datos contiguos.</p>
+<figure>
+  <img alt="Image title" src="../../images/figure4.png" width="1000" />
+<br />
+<figcaption>Figura 4: Contribución de Ancho de Banda de Red DoubleZero Entre 2 Contribuidores de Ancho de Banda de Red </figcaption>
+</figure>
+<h3 id="opciones-de-contribucion-de-ancho-de-banda">Opciones de Contribución de Ancho de Banda</h3>
+<p>DoubleZero requiere que un contribuidor de red ofrezca conectividad integrada mediante un perfil garantizado de ancho de banda, latencia y jitter entre DZDs en dos centros de datos terminales expresado a través de un contrato inteligente. DoubleZero no exige cómo un contribuidor de red implementa su contribución; sin embargo, en las siguientes secciones proporcionamos opciones indicativas para su uso a su sola discreción.</p>
+<p>Las áreas importantes a considerar para un contribuidor de red podrían ser:</p>
+<ul>
+<li>Capacidad de garantizar el rendimiento de la red del servicio DoubleZero: ancho de banda, latencia y jitter</li>
+<li>Segregación de sus servicios de red interna existentes</li>
+<li>Conflictos de direccionamiento IPv4, específicamente con el espacio de direcciones del underlay del túnel</li>
+<li>Tiempo de actividad y disponibilidad</li>
+<li>Consideraciones de CAPEX y OPEX</li>
+</ul>
+<h4 id="ancho-de-banda-de-capa-1">Ancho de Banda de Capa 1</h4>
+<figure>
+  <img alt="Image title" src="../../images/figure5.png" width="800" />
+<br />
+<figcaption>Figura 5: Servicios Ópticos de Capa 1 </figcaption>
+</figure>
+<p>El ancho de banda de Capa 1, descrito más formalmente como servicios de longitud de onda, puede ver capacidad dedicada aprovisionada en una infraestructura óptica existente, como DWDM, CWDM o mediante multiplexores ópticos (MUX). En la figura 5, los DZDs utilizan una óptica de color que se conecta a un MUX L1, que intercala la longitud de onda del DZD en una fibra oscura existente.</p>
+<p>Esta solución tiene numerosos beneficios para los contribuidores de red que ya operan una red troncal existente. Los cambios operativos iterativos, así como los requisitos adicionales de CAPEX y OPEX, son modestos. Esta opción es particularmente robusta para ofrecer segregación de los servicios de red del contribuidor.</p>
+<h4 id="ancho-de-banda-de-red-conmutada-por-paquetes">Ancho de Banda de Red Conmutada por Paquetes</h4>
+<p>Las redes conmutadas por paquetes pueden considerarse una red empresarial típica, ejecutando protocolos estándar de enrutamiento y conmutación para soportar aplicaciones de negocios. Hay numerosas tecnologías de red que logran conectividad, por ejemplo, extensiones de capa 2 (L2) usando etiquetas VLAN.</p>
+<h5 id="extension-l2">Extensión L2</h5>
+<figure>
+  <img alt="Image title" src="../../images/figure6.png" width="800" />
+<br />
+<figcaption>Figura 6: Redes Conmutadas por Paquetes - Extensión L2 </figcaption>
+</figure>
+<p>Una extensión L2 como se muestra en la Figura 6 puede facilitarse mediante el etiquetado de VLAN. El puerto de un DZD puede conectarse al switch de red interna de un contribuidor, con el puerto del switch configurado como puerto de acceso en, por ejemplo, VLAN 10. Mediante el etiquetado 802.1q, esta VLAN puede llevarse a través de múltiples saltos de switch en la red del contribuidor, terminando en el switch que interactúa con el DZD remoto.</p>
+<p>Esta solución se beneficia de ser ampliamente compatible y relativamente fácil de implementar, al tiempo que crea segmentación entre DoubleZero y los servicios de capa 3 internos. El ancho de banda puede controlarse según la velocidad de interfaz del switch o enrutador interno del contribuidor. Se debe prestar especial atención al rendimiento a través de la red L2 interna compartida mediante tecnologías como Calidad de Servicio (QoS) u otras políticas de gestión de tráfico. Sin embargo, las inversiones adicionales de CAPEX y OPEX deberían ser modestas si hay capacidad disponible dentro de la red troncal del contribuidor.</p>
+<h4 id="ancho-de-banda-dedicado-de-terceros">Ancho de Banda Dedicado de Terceros</h4>
+<figure>
+  <img alt="Image title" src="../../images/figure7.png" width="800" />
+<br />
+<figcaption>Figura 7: Ancho de Banda Dedicado de Terceros </figcaption>
+</figure>
+<p>Si bien reutilizar la capacidad disponible será atractivo para muchos contribuidores de red, también se puede dedicar ancho de banda recién adquirido a DoubleZero. En tal escenario, el DZD se conectaría directamente al operador de terceros sin ningún dispositivo interno del contribuidor en línea (figura 7).</p>
+<p>Esta opción es atractiva ya que garantiza ancho de banda dedicado para DoubleZero, es operativamente simple y asegura una segmentación completa de cualquier otro servicio de red. Esta opción probablemente tendrá el mayor aumento de OPEX y requiere nuevos contratos de servicio con operadores de terceros.</p>
+<hr />
+<h2 id="requisitos-de-hardware">Requisitos de Hardware</h2>
+<h3 id="contribucion-de-ancho-de-banda-de-100-gbps">Contribución de Ancho de Banda de 100 Gbps</h3>
+<p>Tenga en cuenta que las cantidades a continuación reflejan el equipo necesario en dos centros de datos, es decir, el hardware total necesario para desplegar 1 cable de fibra óptica para la contribución de ancho de banda.</p>
+<details class="warning">
+<summary>*Todas las FPGAs están sujetas a pruebas finales. Las contribuciones de 10G pueden ser compatibles usando switches Arista 7130LBR con FPGAs Virtex® UltraScale+™ integradas duales (si tiene alguna pregunta, la Fundación DoubleZero / Malbec Labs están felices de proporcionar más información).</summary>
+</details>
+<h4 id="requisitos-de-funcion-y-puerto">Requisitos de Función y Puerto</h4>
+<table>
+<thead>
+<tr>
+<th>Función</th>
+<th>Velocidad de Puerto</th>
+<th>Requisito DZ</th>
+<th>CANT</th>
+<th>Nota</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ancho de Banda Privado</td>
+<td>100G</td>
+<td>Sí</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>Acceso Directo a Internet (DIA)</td>
+<td>10G</td>
+<td>Sí</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>DoubleZero eXchange (DZX)</td>
+<td>100G</td>
+<td>Sí*</td>
+<td>1</td>
+<td>Debe ser compatible cuando más de 3 proveedores operan en la misma área metropolitana; antes de esto, se pueden usar conexiones cruzadas u otros acuerdos de peering para interconectarse con otros proveedores.</td>
+</tr>
+<tr>
+<td>Gestión</td>
+<td></td>
+<td>No</td>
+<td>1</td>
+<td>Determinado por las propias políticas de gestión interna del contribuidor.</td>
+</tr>
+<tr>
+<td>Consola</td>
+<td></td>
+<td>No</td>
+<td>1</td>
+<td>Determinado por las propias políticas de gestión interna del contribuidor.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="hardware-de-red-dzd">Hardware de Red DZD</h4>
+<table>
+<thead>
+<tr>
+<th>Fabricante</th>
+<th>Modelo</th>
+<th>Número de Parte</th>
+<th>Requisito DZ</th>
+<th>CANT</th>
+<th>Nota</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AMD*</td>
+<td>V80*</td>
+<td>24540474</td>
+<td>Sí</td>
+<td>4</td>
+<td></td>
+</tr>
+<tr>
+<td>Arista</td>
+<td>7280CR3A</td>
+<td>DCS-7280CR3A-32S</td>
+<td>Sí</td>
+<td>2</td>
+<td>Pueden ser posibles alternativas si los tiempos de entrega son desafiantes.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="optica-100g">Óptica - 100G</h4>
+<table>
+<thead>
+<tr>
+<th>Fabricante</th>
+<th>Modelo</th>
+<th>Número de Parte</th>
+<th>Requisito DZ</th>
+<th>CANT</th>
+<th>Nota</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arista</td>
+<td>100GBASE-LR</td>
+<td>QSFP-100G-LR</td>
+<td>No</td>
+<td>16</td>
+<td>La elección de cableado y óptica está disponible a discreción del contribuidor. Se requieren 100G para conectar FPGAs.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="optica-10g">Óptica - 10G</h4>
+<table>
+<thead>
+<tr>
+<th>Fabricante</th>
+<th>Modelo</th>
+<th>Número de Parte</th>
+<th>Requisito DZ</th>
+<th>CANT</th>
+<th>Nota</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arista</td>
+<td>10GBASE-LR</td>
+<td>SFP-10G-LR</td>
+<td>No</td>
+<td>2</td>
+<td>La elección de cableado y óptica está disponible a discreción del contribuidor.</td>
+</tr>
+<tr>
+<td>Finisar</td>
+<td>DynamiX QSA™</td>
+<td>MAM1Q00A-QSA</td>
+<td>No</td>
+<td>2</td>
+<td>La elección de cableado y óptica está disponible a discreción del contribuidor.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="direccionamiento-ip">Direccionamiento IP</h4>
+<table>
+<thead>
+<tr>
+<th>Direccionamiento IP</th>
+<th>Tamaño Mínimo de Subred</th>
+<th>Requisito DZ</th>
+<th>Nota</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IPv4 Pública</td>
+<td>/29</td>
+<td>Sí (para DZDs de borde/híbridos)</td>
+<td>Debe ser enrutable a través de DIA. Podemos eliminar la necesidad de esto con el tiempo.</td>
+</tr>
+</tbody>
+</table>
+<p>Asegúrese de que el pool /29 completo esté disponible para el protocolo DZ. Cualquier requisito de direccionamiento punto a punto, por ejemplo, en interfaces DIA, debe gestionarse mediante un pool de direcciones diferente.</p>
+<h3 id="contribucion-de-ancho-de-banda-de-10-gbps">Contribución de Ancho de Banda de 10 Gbps</h3>
+<p>Tenga en cuenta que las cantidades reflejan el equipo de dos centros de datos, es decir, el hardware total necesario para desplegar 1 contribución de ancho de banda.</p>
+<h4 id="requisitos-de-funcion-y-puerto_1">Requisitos de Función y Puerto</h4>
+<table>
+<thead>
+<tr>
+<th>Función</th>
+<th>Velocidad de Puerto</th>
+<th>Requisito DZ</th>
+<th>CANT</th>
+<th>Nota</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ancho de Banda Privado</td>
+<td>10G</td>
+<td>Sí</td>
+<td>1</td>
+<td></td>
+</tr>
+<tr>
+<td>Acceso Directo a Internet (DIA)</td>
+<td>10G</td>
+<td>Sí</td>
+<td>2</td>
+<td></td>
+</tr>
+<tr>
+<td>DoubleZero eXchange (DZX)</td>
+<td>100G</td>
+<td>Sí*</td>
+<td>1</td>
+<td>Debe ser compatible cuando más de 3 proveedores operan en la misma área metropolitana; antes de esto, se pueden usar conexiones cruzadas u otros acuerdos de peering para interconectarse con otros proveedores.</td>
+</tr>
+<tr>
+<td>Gestión</td>
+<td></td>
+<td>No</td>
+<td>1</td>
+<td>Determinado por las propias políticas de gestión interna del contribuidor.</td>
+</tr>
+<tr>
+<td>Consola</td>
+<td></td>
+<td>No</td>
+<td>1</td>
+<td>Determinado por las propias políticas de gestión interna del contribuidor.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="hardware">Hardware</h4>
+<table>
+<thead>
+<tr>
+<th>Fabricante</th>
+<th>Modelo</th>
+<th>Número de Parte</th>
+<th>Requisito DZ</th>
+<th>CANT</th>
+<th>Nota</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AMD*</td>
+<td>V80*</td>
+<td>24540474*</td>
+<td>Sí</td>
+<td>4</td>
+<td></td>
+</tr>
+<tr>
+<td>Arista</td>
+<td>7280CR3A</td>
+<td>DCS-7280CR3A-32S</td>
+<td>Sí</td>
+<td>2</td>
+<td>Pueden ser posibles alternativas si los tiempos de entrega son desafiantes.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="optica-100g_1">Óptica - 100G</h4>
+<table>
+<thead>
+<tr>
+<th>Fabricante</th>
+<th>Modelo</th>
+<th>Número de Parte</th>
+<th>Requisito DZ</th>
+<th>CANT</th>
+<th>Nota</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arista</td>
+<td>100GBASE-LR</td>
+<td>QSFP-100G-LR</td>
+<td>No</td>
+<td>14</td>
+<td>La elección de cableado y óptica está disponible a discreción del contribuidor. Se requieren 100G para conectar FPGAs.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4 id="optica-10g_1">Óptica - 10G</h4>
+<table>
+<thead>
+<tr>
+<th>Fabricante</th>
+<th>Modelo</th>
+<th>Número de Parte</th>
+<th>Requisito DZ</th>
+<th>CANT</th>
+<th>Nota</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arista</td>
+<td>10GBASE-LR</td>
+<td>SFP-10G-LR</td>
+<td>No</td>
+<td>4</td>
+<td>La elección de cableado y óptica está disponible a discreción del contribuidor.</td>
+</tr>
+<tr>
+<td>Finisar</td>
+<td>DynamiX QSA™</td>
+<td>MAM1Q00A-QSA</td>
+<td>No</td>
+<td>4</td>
+<td>La elección de cableado y óptica está disponible a discreción del contribuidor.</td>
+</tr>
+<tr>
+<td>---</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h4 id="direccionamiento-ip_1">Direccionamiento IP</h4>
+<table>
+<thead>
+<tr>
+<th>Direccionamiento IP</th>
+<th>Tamaño Mínimo de Subred</th>
+<th>Requisito DZ</th>
+<th>Nota</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IPv4 Pública</td>
+<td>/29</td>
+<td>Sí (para DZDs de borde/híbridos)</td>
+<td>Debe ser enrutable a través de DIA. Podemos eliminar la necesidad de esto con el tiempo.</td>
+</tr>
+</tbody>
+</table>
+<p>Asegúrese de que el pool /29 completo esté disponible para el protocolo DZ. Cualquier requisito de direccionamiento punto a punto, por ejemplo, en interfaces DIA, debe gestionarse mediante un pool de direcciones diferente.</p>
+<h3 id="requisitos-del-centro-de-datos">Requisitos del Centro de Datos</h3>
+<h4 id="requisitos-de-rack-y-energia">Requisitos de Rack y Energía</h4>
+<table>
+<thead>
+<tr>
+<th>Requisito</th>
+<th>Especificación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Espacio en Rack</td>
+<td>4U</td>
+</tr>
+<tr>
+<td>Energía</td>
+<td>4KW (recomendado)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="proximos-pasos">Próximos Pasos</h2>
+<p>¿Listo para aprovisionar su primer DZD? Continúe a la <a href="../contribute-provisioning/">Guía de Aprovisionamiento de Dispositivos</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "navigation.indexes", "toc.integrate", "header.autohide"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../javascripts/cloudsmith-versions.js"></script>
+      
+        <script src="../../javascripts/connection-wizard.js"></script>
+      
+        <script src="../../javascripts/page-toolbar.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/page-toolbar.js"></script>
+      
+    
+  </body>
+</html>

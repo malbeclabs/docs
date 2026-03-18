@@ -1,0 +1,1442 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.malbeclabs.com/setup/">
+      
+      
+        <link rel="prev" href="../quick-connect/">
+      
+      
+        <link rel="next" href="../tenant/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Setup - Malbec Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../stylesheets/wizard.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="grey" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#how-to-set-up-doublezero" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Malbec Labs" class="md-header__button md-logo" aria-label="Malbec Labs" data-md-component="logo">
+      
+  <img src="../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Malbec Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Setup
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      
+
+
+<div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../zh/setup/" hreflang="zh" class="md-select__link">
+              Chinese
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../ja/setup/" hreflang="ja" class="md-select__link">
+              Japanese
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../ko/setup/" hreflang="ko" class="md-select__link">
+              Korean
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../pt/setup/" hreflang="pt" class="md-select__link">
+              Portuguese
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../es/setup/" hreflang="es" class="md-select__link">
+              Spanish
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../fr/setup/" hreflang="fr" class="md-select__link">
+              French
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../it/setup/" hreflang="it" class="md-select__link">
+              Italian
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Malbec Labs" class="md-nav__button md-logo" aria-label="Malbec Labs" data-md-component="logo">
+      
+  <img src="../logo.png" alt="logo">
+
+    </a>
+    Malbec Labs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-connect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Connect
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Users
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Users
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Setup
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connecting-to-doublezero" class="md-nav__link">
+    <span class="md-ellipsis">
+      Connecting to DoubleZero
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-install-doublezero-packages" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Install DoubleZero Packages
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Install DoubleZero Packages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ubuntu-debian" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ubuntu / Debian
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rocky-linux-rhel" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rocky Linux / RHEL
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rocky Linux / RHEL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-the-status-of-doublezerod" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check the status of doublezerod
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configure-firewall-for-gre-and-bgp" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configure Firewall for GRE and BGP
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-create-new-doublezero-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Create New DoubleZero Identity
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-retrieve-the-servers-doublezero-identity" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Retrieve the server's DoubleZero identity
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-check-that-doublezerod-has-discovered-dz-devices" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Check that doublezerod has discovered DZ devices
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-disconnect-from-doublezero" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Disconnect from DoubleZero
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Disconnect from DoubleZero">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#up-next-tenant" class="md-nav__link">
+    <span class="md-ellipsis">
+      Up Next: Tenant
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proceed-to-chose-your-tenant-here" class="md-nav__link">
+    <span class="md-ellipsis">
+      Proceed to chose your tenant here
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tenants
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Tenants
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tenant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_2" id="__nav_3_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Solana
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Solana
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DZ%20Mainnet-beta%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Validator Mainnet-Beta Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DZ%20Testnet%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Validator Testnet Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Permissioned%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Permissioned Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Validator%20Multicast%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Validator Multicast Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Other%20Multicast%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Other Multicast Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_3" id="__nav_3_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Shelby
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Shelby
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Shelby%20Permissioned%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shelby Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../New%20Tenant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    New Tenant
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Contributors
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Contributors
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Requirements & Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute-provisioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Device Provisioning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute-operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Operations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Glossary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="how-to-set-up-doublezero">How to set up DoubleZero</h1>
+<div class="admonition info">
+<p class="admonition-title">Terminology</p>
+<p>New to DoubleZero? See the <a href="../glossary/">Glossary</a> for definitions of terms like <a href="../glossary/#doublezerod">doublezerod</a>, <a href="../glossary/#ibrl-increase-bandwidth-reduce-latency">IBRL</a>, and <a href="../glossary/#dzd-doublezero-device">DZD</a>.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">By connecting to the DoubleZero I agree to the <a href="https://doublezero.xyz/terms-protocol">DoubleZero Terms of Service</a></p>
+</div>
+<h2 id="prerequisites">Prerequisites</h2>
+<div class="admonition warning inline end">
+<p class="admonition-title">Warning</p>
+<p>For validators: DoubleZero needs to be installed directly on your validator host, not in a container.</p>
+</div>
+<ul>
+<li>Internet connectivity with a public IP address (no NAT)</li>
+<li>x86_64 server</li>
+<li>Supported OS: Ubuntu 22.04+ or Debian 11+, or Rocky Linux / RHEL 8+</li>
+<li>Root or sudo privileges on the server where DoubleZero will run</li>
+<li>Optional but useful: jq and curl for debugging</li>
+</ul>
+<h2 id="connecting-to-doublezero">Connecting to DoubleZero</h2>
+<p>DoubleZero Testnet and DoubleZero Mainnet-Beta are physically distinct networks. Please choose the appropriate network during install.</p>
+<p>When onboarding to DoubleZero you will establish a <strong>DoubleZero identity</strong>, represented by a public key called the <strong>DoubleZero ID</strong>. This key is pat of how DoubleZero recognizes your machine.</p>
+<h2 id="1-install-doublezero-packages">1. Install DoubleZero Packages</h2>
+<div data-wizard-step="install-version-info">
+<div class="admonition info">
+<p class="admonition-title">Current Versions</p>
+<table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Mainnet-Beta</th>
+<th>Testnet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>doublezero</code></td>
+<td><code>MAINNET_CLIENT_VERSION</code></td>
+<td><code>TESTNET_CLIENT_VERSION</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Follow these steps depending on your operating system:</p>
+<h3 id="ubuntu-debian">Ubuntu / Debian</h3>
+<div data-wizard-step="install-deb-mainnet-beta">
+<p>The current recommended deployment for Mainnet-Beta is:
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-1sLf<span class="w"> </span>https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>-E<span class="w"> </span>bash
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>doublezero
+</code></pre></div></p>
+</div>
+<div data-wizard-step="install-deb-testnet">
+<p>The current recommended deployment for Testnet is:
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-1sLf<span class="w"> </span>https://dl.cloudsmith.io/public/malbeclabs/doublezero-testnet/setup.deb.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>-E<span class="w"> </span>bash
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>doublezero
+</code></pre></div></p>
+</div>
+<h3 id="rocky-linux-rhel">Rocky Linux / RHEL</h3>
+<div data-wizard-step="install-rpm-mainnet-beta">
+<p>The current recommended deployment for Mainnet-Beta is:
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-1sLf<span class="w"> </span>https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>-E<span class="w"> </span>bash
+sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>doublezero
+</code></pre></div></p>
+</div>
+<div data-wizard-step="install-rpm-testnet">
+<p>The current recommended deployment for Testnet is:
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-1sLf<span class="w"> </span>https://dl.cloudsmith.io/public/malbeclabs/doublezero-testnet/setup.rpm.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>-E<span class="w"> </span>bash
+sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>doublezero
+</code></pre></div></p>
+</div>
+<div data-wizard-step="install-network-warning">
+<details class="info">
+<summary>Existing Users Only: Chang a package from <em>Testnet to Mainnet-Beta</em>, or <em>Mainnet-Beta to Testnet</em></summary>
+<p>When you install from one of the package repositories above it is specific to DoubleZero <strong>Testnet</strong> or <strong>DoubleZero Mainnet Beta</strong>. If you swap networks at any point you will need to remove the previously installed package repositories and update to the target repo.</p>
+<p>This example will walk through Testnet to Mainnet-Beta Migration</p>
+<p>The same steps may be completed to move from Mainnet-Beta to Testnet, by replacing the step 3 with the the install command for Testnet above.</p>
+<ol>
+<li>
+<p>Find Old Repository Files</p>
+<p>First, locate any existing DoubleZero repository configuration files on your system:</p>
+<p><code>find /etc/apt | grep doublezero</code></p>
+<p><code>find /usr/share/keyrings/ | grep doublezero</code></p>
+</li>
+<li>
+<p>Remove Old Repository Files</p>
+<p>Remove the old repository files found in the previous step, for example</p>
+<div class="highlight"><pre><span></span><code>sudo rm /etc/apt/sources.list.d/malbeclabs-doublezero.list
+sudo rm /usr/share/keyrings/malbeclabs-doublezero-archive-keyring.gpg
+</code></pre></div>
+</li>
+<li>
+<p>Install from New Repository</p>
+<p>Add the new Mainnet-Beta repository and install the latest package:</p>
+<div class="highlight"><pre><span></span><code>curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
+sudo apt-get install doublezero=&lt;current_recomended_version_above&gt;
+</code></pre></div>
+</li>
+</ol>
+</details>
+</div>
+<div data-wizard-step="install-verify-daemon">
+<h4 id="check-the-status-of-doublezerod">Check the status of <code>doublezerod</code></h4>
+<p>After the package is installed, a new systemd unit is installed, activated and started. To see the status you may run:
+<div class="highlight"><pre><span></span><code>sudo systemctl status doublezerod
+</code></pre></div></p>
+</div>
+<h3 id="configure-firewall-for-gre-and-bgp">Configure Firewall for GRE and BGP</h3>
+<p>DoubleZero uses GRE tunneling (IP protocol 47) and BGP routing (tcp/179 on link-local addresses). Ensure your firewall allows these protocols:</p>
+<p>Allow GRE and BGP through iptables:</p>
+<div data-wizard-step="firewall-gre-bgp-iptables">
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-p<span class="w"> </span>gre<span class="w"> </span>-j<span class="w"> </span>ACCEPT
+sudo<span class="w"> </span>iptables<span class="w"> </span>-A<span class="w"> </span>OUTPUT<span class="w"> </span>-p<span class="w"> </span>gre<span class="w"> </span>-j<span class="w"> </span>ACCEPT
+sudo<span class="w"> </span>iptables<span class="w"> </span>-A<span class="w"> </span>INPUT<span class="w"> </span>-i<span class="w"> </span>doublezero0<span class="w"> </span>-s<span class="w"> </span><span class="m">169</span>.254.0.0/16<span class="w"> </span>-d<span class="w"> </span><span class="m">169</span>.254.0.0/16<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--dport<span class="w"> </span><span class="m">179</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
+sudo<span class="w"> </span>iptables<span class="w"> </span>-A<span class="w"> </span>OUTPUT<span class="w"> </span>-o<span class="w"> </span>doublezero0<span class="w"> </span>-s<span class="w"> </span><span class="m">169</span>.254.0.0/16<span class="w"> </span>-d<span class="w"> </span><span class="m">169</span>.254.0.0/16<span class="w"> </span>-p<span class="w"> </span>tcp<span class="w"> </span>--dport<span class="w"> </span><span class="m">179</span><span class="w"> </span>-j<span class="w"> </span>ACCEPT
+</code></pre></div>
+</div>
+<p>Or allow GRE and BGP through UFW:</p>
+<div data-wizard-step="firewall-gre-bgp-ufw">
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span>proto<span class="w"> </span>gre<span class="w"> </span>from<span class="w"> </span>any<span class="w"> </span>to<span class="w"> </span>any
+sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="k">in</span><span class="w"> </span>on<span class="w"> </span>doublezero0<span class="w"> </span>from<span class="w"> </span><span class="m">169</span>.254.0.0/16<span class="w"> </span>to<span class="w"> </span><span class="m">169</span>.254.0.0/16<span class="w"> </span>port<span class="w"> </span><span class="m">179</span><span class="w"> </span>proto<span class="w"> </span>tcp
+sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span>out<span class="w"> </span>on<span class="w"> </span>doublezero0<span class="w"> </span>from<span class="w"> </span><span class="m">169</span>.254.0.0/16<span class="w"> </span>to<span class="w"> </span><span class="m">169</span>.254.0.0/16<span class="w"> </span>port<span class="w"> </span><span class="m">179</span><span class="w"> </span>proto<span class="w"> </span>tcp
+</code></pre></div>
+</div>
+<h2 id="2-create-new-doublezero-identity">2. Create New DoubleZero Identity</h2>
+<p>Create a DoubleZero Identity on your server with the following command:</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>keygen
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>If you have an existing ID you would like to use, you may follow these optional steps.</p>
+<p>Create doublezero config directory</p>
+<div class="highlight"><pre><span></span><code>mkdir -p ~/.config/doublezero
+</code></pre></div>
+<p>Copy or link the <code>id.json</code> you want to use with DoubleZero to the doublezero config directory.</p>
+<div class="highlight"><pre><span></span><code>sudo cp &lt;/path/to/id.json&gt; ~/.config/doublezero/
+</code></pre></div>
+</div>
+<h2 id="3-retrieve-the-servers-doublezero-identity">3. Retrieve the server's DoubleZero identity</h2>
+<p>Review your DoubleZero Identity. This identity will be used to create the connection between your machine and DoubleZero</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>address
+</code></pre></div>
+<p><strong>Output:</strong>
+<div class="highlight"><pre><span></span><code>YourDoubleZeroAddress11111111111111111111111111111
+</code></pre></div></p>
+<h2 id="4-check-that-doublezerod-has-discovered-dz-devices">4. Check that doublezerod has discovered DZ devices</h2>
+<p>Before connecting, be sure <code>doublezerod</code> has discovered and pinged each of the available DZ testnet switches:</p>
+<div class="highlight"><pre><span></span><code>doublezero latency
+</code></pre></div>
+<p>Sample output:</p>
+<div class="highlight"><pre><span></span><code>$ doublezero latency
+ pubkey                                       | name      | ip             | min      | max      | avg      | reachable
+ 96AfeBT6UqUmREmPeFZxw6PbLrbfET51NxBFCCsVAnek | la2-dz01  | 207.45.216.134 |   0.38ms |   0.45ms |   0.42ms | true
+ CCTSmqMkxJh3Zpa9gQ8rCzhY7GiTqK7KnSLBYrRriuan | ny5-dz01  | 64.86.249.22   |  68.81ms |  68.87ms |  68.85ms | true
+ BX6DYCzJt3XKRc1Z3N8AMSSqctV6aDdJryFMGThNSxDn | ty2-dz01  | 180.87.154.78  | 112.16ms | 112.25ms | 112.22ms | true
+ 55tfaZ1kRGxugv7MAuinXP4rHATcGTbNyEKrNsbuVLx2 | ld4-dz01  | 195.219.120.66 | 138.15ms | 138.21ms | 138.17ms | true
+ 3uGKPEjinn74vd9LHtC4VJvAMAZZgU9qX9rPxtc6pF2k | ams-dz001 | 195.219.138.50 | 141.84ms | 141.97ms | 141.91ms | true
+ 65DqsEiFucoFWPLHnwbVHY1mp3d7MNM2gNjDTgtYZtFQ | frk-dz01  | 195.219.220.58 | 143.52ms | 143.62ms | 143.58ms | true
+ 9uhh2D5c14WJjbwgM7BudztdoPZYCjbvqcTPgEKtTMZE | sg1-dz01  | 180.87.102.98  | 176.66ms | 176.76ms | 176.72ms | true
+</code></pre></div>
+<p>If no devices are returned in the output, wait 10-20 seconds and retry.</p>
+<h2 id="5-disconnect-from-doublezero">5. Disconnect from DoubleZero</h2>
+<p>In the next sections you will set your DoubleZero Environment. In order to ensure success, disconnect the current session. This will avoid issues related to multiple tunnels open on your machine.</p>
+<p>Check</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>status
+</code></pre></div>
+<p>if it is <code>up</code> run:</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>disconnect
+</code></pre></div>
+<h3 id="up-next-tenant">Up Next: Tenant</h3>
+<p>Connection to DoubleZero will differ based on your use case. On DoubleZero, Tenants are groups which have similiar user profiles. Examples include Blockchains, Data Transfer Layers, etc.</p>
+<h3 id="proceed-to-chose-your-tenant-here"><a href="../tenant/">Proceed to chose your tenant here</a></h3>
+<h1 id="optional-enable-prometheus-metrics">Optional: Enable Prometheus Metrics</h1>
+<p>Operators familiar with Prometheus metrics may want to enable them for DoubleZero monitoring. This provides visibility into DoubleZero client performance, connection status, and operational health.</p>
+<h2 id="what-metrics-are-available">What Metrics Are Available</h2>
+<p>DoubleZero exposes several key metrics:
+- <strong>Build Information</strong>: Version, commit hash, and build date
+- <strong>Session Status</strong>: Whether the DoubleZero session is active
+- <strong>Connection Metrics</strong>: Latency and connectivity information
+- <strong>Performance Data</strong>: Throughput and error rates</p>
+<h2 id="enable-prometheus-metrics">Enable Prometheus Metrics</h2>
+<p>To enable Prometheus metrics on the DoubleZero client follow these steps:</p>
+<h3 id="1-modify-the-doublezerod-systemd-service-startup-command">1. Modify the doublezerod systemd service startup command</h3>
+<p>Create or edit the systemd override configuration:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/etc/systemd/system/doublezerod.service.d/
+sudo<span class="w"> </span>nano<span class="w"> </span>/etc/systemd/system/doublezerod.service.d/override.conf
+</code></pre></div>
+<p>Replace with this configuration:</p>
+<p>Note that the <code>-env</code> flag needs to point to either <code>testnet</code> or <code>mainnet-beta</code> depending on which network you would like to gather data from. In the sample block <code>testnet</code> is used. You may swap this out for <code>mainnet-beta</code> if needed.</p>
+<div class="highlight"><pre><span></span><code><span class="k">[Service]</span>
+<span class="na">ExecStart</span><span class="o">=</span>
+<span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env testnet -metrics-enable -metrics-addr localhost:2113</span>
+</code></pre></div>
+<h3 id="2-reload-and-restart-the-service">2. Reload and restart the service</h3>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload
+sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>doublezerod
+sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>doublezerod
+</code></pre></div>
+<h3 id="3-verify-metrics-are-available">3. Verify metrics are available</h3>
+<p>Test that the metrics endpoint is responding:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-s<span class="w"> </span>localhost:2113/metrics<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>doublezero
+</code></pre></div>
+<p>Expected output:</p>
+<div class="highlight"><pre><span></span><code># HELP doublezero_build_info Build information of the client
+# TYPE doublezero_build_info gauge
+doublezero_build_info{commit=&quot;0d684e1b&quot;,date=&quot;2025-09-10T16:30:25Z&quot;,version=&quot;0.6.4&quot;} 1
+# HELP doublezero_session_is_up Status of session to doublezero
+# TYPE doublezero_session_is_up gauge
+doublezero_session_is_up 0
+</code></pre></div>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p>If metrics are not appearing:</p>
+<ol>
+<li><strong>Check service status</strong>: <code>sudo systemctl status doublezerod</code></li>
+<li><strong>Verify configuration</strong>: <code>sudo systemctl cat doublezerod</code></li>
+<li><strong>Check logs</strong>: <code>sudo journalctl -u doublezerod -f</code></li>
+<li><strong>Test endpoint</strong>: <code>curl -v localhost:2113/metrics</code></li>
+<li><strong>Verify port</strong>: <code>netstat -tlnp | grep 2113</code></li>
+</ol>
+<h2 id="configure-prometheus-server">Configure Prometheus Server</h2>
+<p>Configuration, and security are beyond the scope of this documentation.
+Grafana is an excellent option for visualization, and has documentation available <a href="https://grafana.com/docs/alloy/latest/collect/prometheus-metrics/">here</a> detailing how to collect Prometheus metrics.</p>
+<h2 id="grafana-dashboard-optional">Grafana Dashboard (Optional)</h2>
+<p>For visualization, you can create a Grafana dashboard using the DoubleZero metrics. Common panels include:
+- Session status over time
+- Build information
+- Connection latency trends
+- Error rate monitoring</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["content.code.copy", "navigation.indexes", "toc.integrate", "header.autohide"], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../javascripts/cloudsmith-versions.js"></script>
+      
+        <script src="../javascripts/connection-wizard.js"></script>
+      
+        <script src="../javascripts/page-toolbar.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../javascripts/page-toolbar.js"></script>
+      
+    
+  </body>
+</html>

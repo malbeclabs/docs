@@ -4,6 +4,9 @@ theme:
   name: material
   logo: logo.png
   faviron: assets/favicon.png
+  # Use a language-style globe icon for the language selector
+  icon:
+    alternate: fontawesome/solid/language
   palette:
     scheme: slate
     primary: grey
@@ -91,6 +94,7 @@ extra_javascript:
   - javascripts/cloudsmith-versions.js
   - javascripts/connection-wizard.js
   - javascripts/page-toolbar.js
+  - javascripts/language-selector-label.js
   - javascripts/mathjax.js
   - path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
   - javascripts/page-toolbar.js
