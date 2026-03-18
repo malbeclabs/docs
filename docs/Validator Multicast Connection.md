@@ -47,26 +47,9 @@ If you are a validator who is already connected to DoubleZero you may continue t
 
 Once you are connected you may check [this dashboard](https://data.malbeclabs.com/dz/publisher-check) to confirm you are publishing shreds. You will not see confirmation until after you have published leader shreds for at least one slot.
 
-## 3. Set up an Associated Token Account (ATA) for 2Z Token
-
-Ensure there is a DoubleZero "2Z" token ATA linked to your validator identity.
-
-For refrence, the 2Z token mint address is: `J6pQQ3FAcJQeWPPGppWRb4nM8jU3wLyYbRrLh7feMfvd`
-
-First, intall SPL with `cargo install spl-token-cli`
-
-Run the following command, replacing `VALIDATOR_IDENTITY_PUBKEY` with your validator identity public key:
-
-```bash
-spl-token create-account J6pQQ3FAcJQeWPPGppWRb4nM8jU3wLyYbRrLh7feMfvd --owner VALIDATOR_IDENTITY_PUBKEY --fee-payer <path/to/payer.json>
-```
-You may replace `--fee-payer <path/to/payer.json>` with the default keypair which could be found somewhere like `~/.config/solana/id.json`. Any wallet which has Sol to pay the transaction may be placed in this argument.
-
-This command may be run on your validator, or another machine.
-
 ## 4. Validator Rewards
 
-For each epoch where validators publish leader shreds, they will be proportionately rewarded for their contribution based on subscriptions. Rewards are automatically distributed to the ATA roughly 10 epochs later.
+For each epoch where validators publish leader shreds, they will be proportionately rewarded for their contribution based on subscriptions. The specifics of this system will be announced, and detailed at a later date.
 
 ## Troubleshooting
 
