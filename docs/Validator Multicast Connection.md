@@ -47,14 +47,14 @@ If you are a validator who is already connected to DoubleZero you may continue t
 
 Once you are connected you may check [this dashboard](https://data.malbeclabs.com/dz/publisher-check) to confirm you are publishing shreds. You will not see confirmation until after you have published leader shreds for at least one slot.
 
-## 4. Validator Rewards
+## 3. Validator Rewards
 
 For each epoch where validators publish leader shreds, they will be proportionately rewarded for their contribution based on subscriptions. The specifics of this system will be announced, and detailed at a later date.
 
 ## Troubleshooting
 
 
-### Retransmiting:
+### Retransmitting:
 
 1. A common cause of shred retransmission is a simple config. You may have the flag enabled to send retransmit shreds in your startup script; you will need to disable it. 
 
