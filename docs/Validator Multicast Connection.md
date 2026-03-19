@@ -47,23 +47,41 @@ If you are a validator who is already connected to DoubleZero you may continue t
 
 Once you are connected you may check [this dashboard](https://data.malbeclabs.com/dz/publisher-check) to confirm you are publishing shreds. You will not see confirmation until after you have published leader shreds for at least one slot.
 
-## 3. Set up an Associated Token Account (ATA) for 2Z Token
+## 3. Validator Rewards
 
-Ensure there is a DoubleZero "2Z" token ATA linked to your validator identity.
+For each epoch where validators publish leader shreds, they will be proportionately rewarded for their contribution based on subscriptions. The specifics of this system will be announced, and detailed at a later date.
 
-For refrence, the 2Z token mint address is: `J6pQQ3FAcJQeWPPGppWRb4nM8jU3wLyYbRrLh7feMfvd`
+## Troubleshooting
 
-First, intall SPL with `cargo install spl-token-cli`
 
-Run the following command, replacing `VALIDATOR_IDENTITY_PUBKEY` with your validator identity public key:
+### Retransmitting:
 
-```bash
-spl-token create-account J6pQQ3FAcJQeWPPGppWRb4nM8jU3wLyYbRrLh7feMfvd --owner VALIDATOR_IDENTITY_PUBKEY --fee-payer <path/to/payer.json>
-```
-You may replace `--fee-payer <path/to/payer.json>` with the default keypair which could be found somewhere like `~/.config/solana/id.json`. Any wallet which has Sol to pay the transaction may be placed in this argument.
+1. A common cause of shred retransmission is a simple config. You may have the flag enabled to send retransmit shreds in your startup script; you will need to disable it. 
 
-This command may be run on your validator, or another machine.
+    The flag to remove in Jito-Agave is: `--shred-retransmit-receiver-address`.
 
-## 4. Validator Rewards
+1. Check the [publisher dashboard](https://data.malbeclabs.com/dz/publisher-check) and see if you have any retransmitted shreds. In the table, look at the **No Retransmit Shreds** column—a red X means you are retransmitting.
 
-For each epoch where validators publish leader shreds, they will be proportionately rewarded for their contribution based on subscriptions. Rewards are automatically distributed to the ATA roughly 10 epochs later.
+    !!! note "epoch view"
+        Note that there are different time windows to view the publisher dashboard. If you see retransmit in the **2 epoch view**, but have made a recent change, try switching to the **recent slot** view.
+
+
+    ![Publisher check dashboard](images/publisher-check-dashboard.png)
+
+2. Find your client IP and look up your user in [DoubleZero Data](https://data.malbeclabs.com/dz/users).
+
+    ![DoubleZero Data users](images/doublezero-data-users.png)
+
+3. Click on **Multicast** to open your multicast view.
+
+    The screenshot below shows: **Retransmitting** (undesirable) steady outbound traffic with no leader-slot pattern.
+
+    ![User multicast view — retransmit example](images/user-multicast-view-retransmit.png)
+
+    The screenshot below shows: **Healthy** (publishing only leader shreds) outbound traffic in spikes, known as a sawtooth pattern, which line up with your leader slots.
+
+    ![User multicast view — healthy publisher example](images/user-multicast-view-healthy.png)
+
+The chart shows whether you are sending only leader shreds. Traffic spikes should line up with when you have a leader slot. When you have no leader slot there should be no traffic. If you are retransmitting, you will see a steady flow of traffic instead of slot-aligned spikes.
+
+

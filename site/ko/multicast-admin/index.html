@@ -1,0 +1,1174 @@
+
+<!doctype html>
+<html lang="ko" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.malbeclabs.com/ko/multicast-admin/">
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Multicast admin - Malbec Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/wizard.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="grey" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#doublezero" class="md-skip">
+          콘텐츠로 이동
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="상단/헤더">
+    <a href="../" title="Malbec Labs" class="md-header__button md-logo" aria-label="Malbec Labs" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Malbec Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Multicast admin
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      
+
+
+<div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="언어설정">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../multicast-admin/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../zh/multicast-admin/" hreflang="zh" class="md-select__link">
+              Chinese
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../ja/multicast-admin/" hreflang="ja" class="md-select__link">
+              Japanese
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="ko" class="md-select__link">
+              Korean
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../pt/multicast-admin/" hreflang="pt" class="md-select__link">
+              Portuguese
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../es/multicast-admin/" hreflang="es" class="md-select__link">
+              Spanish
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../fr/multicast-admin/" hreflang="fr" class="md-select__link">
+              French
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../it/multicast-admin/" hreflang="it" class="md-select__link">
+              Italian
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="검색" placeholder="검색" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="검색">
+        
+        <button type="reset" class="md-search__icon md-icon" title="지우기" aria-label="지우기" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            검색 초기화
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="네비게이션" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../" title="Malbec Labs" class="md-nav__button md-logo" aria-label="Malbec Labs" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    Malbec Labs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-connect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Connect
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Users
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Users
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tenants
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Tenants
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tenant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_2" id="__nav_3_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Solana
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Solana
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DZ%20Mainnet-beta%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Validator Mainnet-Beta Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DZ%20Testnet%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Validator Testnet Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Permissioned%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Permissioned Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Validator%20Multicast%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Validator Multicast Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Other%20Multicast%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Other Multicast Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_3" id="__nav_3_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Shelby
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Shelby
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Shelby%20Permissioned%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shelby Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../New%20Tenant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    New Tenant
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Contributors
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Contributors
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Requirements & Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute-provisioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Device Provisioning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute-operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Operations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Glossary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<div class="admonition warning">
+<p class="admonition-title">This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon.</p>
+</div>
+<h1 id="doublezero">DoubleZero 멀티캐스트 그룹 관리</h1>
+<p><strong>멀티캐스트 그룹</strong>은 공통 식별자(일반적으로 멀티캐스트 IP 주소)를 공유하여 여러 수신자에게 데이터를 효율적으로 전송하는 장치 또는 네트워크 노드의 논리적 집합입니다. 유니캐스트(1:1) 또는 브로드캐스트(1:전체) 통신과 달리 멀티캐스트는 송신자가 단일 데이터 스트림을 전송하면 네트워크가 그룹에 가입한 수신자에게만 이를 복제하여 전달합니다.</p>
+<p>이 방식은 패킷이 링크당 한 번만 전송되고 여러 구독자에게 도달하기 위해 필요할 때만 복제되므로 대역폭 사용을 최적화하고 송신자 및 네트워크 인프라의 부하를 줄입니다. 멀티캐스트 그룹은 라이브 비디오 스트리밍, 회의, 금융 데이터 배포, 실시간 메시징 시스템 등의 시나리오에서 일반적으로 사용됩니다.</p>
+<p>DoubleZero에서 멀티캐스트 그룹은 각 그룹 내에서 데이터를 보낼 수 있는 사람(발행자)과 받을 수 있는 사람(구독자)을 관리하는 안전하고 제어된 메커니즘을 제공하여 효율적이고 관리되는 정보 배포를 보장합니다.</p>
+<pre class="mermaid"><code>flowchart LR
+    subgraph Publishers
+        P1[발행자 1]
+        P2[발행자 2]
+        P3[발행자 3]
+    end
+    subgraph Subscribers
+        S1[구독자 1]
+        S2[구독자 2]
+        S3[구독자 3]
+        S4[구독자 4]
+    end
+    P1 --&gt; B[멀티캐스트 그룹]
+    P2 --&gt; B
+    P3 --&gt; B
+    B --&gt; S1
+    B --&gt; S2
+    B --&gt; S3
+    B --&gt; S4</code></pre>
+<p>위 다이어그램은 여러 사용자가 멀티캐스트 그룹에 메시지를 발행하고 여러 사용자가 해당 메시지를 수신하기 위해 구독할 수 있는 방법을 보여줍니다. DoubleZero 네트워크는 패킷을 효율적으로 복제하여 모든 구독자가 불필요한 전송 오버헤드 없이 메시지를 받을 수 있도록 합니다.</p>
+<h2 id="1">1. 멀티캐스트 그룹 생성 및 목록 조회</h2>
+<p>멀티캐스트 그룹은 DoubleZero의 안전하고 효율적인 데이터 배포를 위한 기반입니다. 각 그룹은 고유하게 식별되며 특정 대역폭과 소유자로 구성됩니다. 새 멀티캐스트 그룹은 DoubleZero Foundation 관리자만 생성할 수 있어 적절한 거버넌스와 리소스 할당을 보장합니다.</p>
+<p>생성된 멀티캐스트 그룹은 모든 사용 가능한 그룹, 그 구성 및 현재 상태에 대한 개요를 제공하기 위해 목록 조회가 가능합니다. 이는 네트워크 운영자와 그룹 소유자가 리소스를 모니터링하고 액세스를 관리하는 데 필수적입니다.</p>
+<p><strong>멀티캐스트 그룹 생성:</strong></p>
+<p>새 멀티캐스트 그룹은 DoubleZero Foundation만 생성할 수 있습니다. 생성 명령에는 고유 코드, 최대 대역폭, 소유자 공개 키(또는 현재 지불자의 경우 'me')가 필요합니다.</p>
+<div class="highlight"><pre><span></span><code>doublezero multicast group create --code &lt;CODE&gt; --max-bandwidth &lt;MAX_BANDWIDTH&gt; --owner &lt;OWNER&gt;
+</code></pre></div>
+<ul>
+<li><code>--code &lt;CODE&gt;</code>: 멀티캐스트 그룹의 고유 코드 (예: mg01)</li>
+<li><code>--max-bandwidth &lt;MAX_BANDWIDTH&gt;</code>: 그룹의 최대 대역폭 (예: 10Gbps, 100Mbps)</li>
+<li><code>--owner &lt;OWNER&gt;</code>: 소유자 공개 키</li>
+</ul>
+<p><strong>모든 멀티캐스트 그룹 목록 조회:</strong></p>
+<p>모든 멀티캐스트 그룹과 요약 정보(그룹 코드, 멀티캐스트 IP, 대역폭, 발행자 및 구독자 수, 상태, 소유자 포함)를 조회하려면:</p>
+<div class="highlight"><pre><span></span><code>doublezero multicast group list
+</code></pre></div>
+<p>샘플 출력:</p>
+<div class="highlight"><pre><span></span><code> account                                      | code             | multicast_ip | max_bandwidth | publishers | subscribers | status    | owner
+ 3eUvZvcpCtsfJ8wqCZvhiyBhbY2Sjn56JcQWpDwsESyX | jito-shredstream | 233.84.178.2 | 200Mbps       | 8          | 0           | activated | 44NdeuZfjhHg61grggBUBpCvPSs96ogXFDo1eRNSKj42
+ 8ZmH3bx4k1JNYLyEviNAsCFxRoDoG3Y4ntVCUxu24fUF | mg01             | 233.84.178.0 | 1Gbps         | 0          | 0           | activated | DZfHfcCXTLwgZeCRKQ1FL1UuwAwFAZM93g86NMYpfYan
+ 2CuZeqMrQsrJ4h4PaAuTEpL3ETHQNkSC2XDo66vbDoxw | reserve          | 233.84.178.1 | 100Kbps       | 0          | 0           | activated | DZfPq5hgfwrSB3aKAvcbua9MXE3CABZ233yj6ymncmnd
+ 4LezgDr5WZs9XNTgajkJYBsUqfJYSd19rCHekNFCcN5D | turbine          | 233.84.178.3 | 1Gbps         | 0          | 4           | activated | DZfHfcCXTLwgZeCRKQ1FL1UuwAwFAZM93g86NMYpfYan
+</code></pre></div>
+<p>이 명령은 모든 멀티캐스트 그룹과 주요 속성이 포함된 표를 표시합니다:
+- <code>account</code>: 그룹 계정 주소
+- <code>code</code>: 멀티캐스트 그룹 코드
+- <code>multicast_ip</code>: 그룹에 할당된 멀티캐스트 IP 주소
+- <code>max_bandwidth</code>: 그룹의 최대 허용 대역폭
+- <code>publishers</code>: 그룹의 발행자 수
+- <code>subscribers</code>: 그룹의 구독자 수
+- <code>status</code>: 현재 상태 (예: activated)
+- <code>owner</code>: 소유자 공개 키</p>
+<p>그룹이 생성되면 소유자는 발행자 또는 구독자로 연결할 수 있는 사용자를 관리할 수 있습니다.</p>
+<h2 id="2">2. 발행자/구독자 허용 목록 관리</h2>
+<p>발행자 및 구독자 허용 목록은 DoubleZero의 멀티캐스트 그룹에 대한 액세스를 제어하는 데 필수적입니다. 이 목록은 특정 멀티캐스트 그룹 내에서 데이터를 발행(전송)하거나 구독(수신)할 수 있는 사용자를 명시적으로 정의합니다.</p>
+<ul>
+<li><strong>발행자 허용 목록:</strong> 발행자 허용 목록에 추가된 사용자만 멀티캐스트 그룹으로 데이터를 보낼 수 있습니다. 이는 승인된 소스만 정보를 배포할 수 있도록 하여 무단 또는 악의적인 발행을 방지합니다.</li>
+<li><strong>구독자 허용 목록:</strong> 구독자 허용 목록에 있는 사용자만 멀티캐스트 그룹에서 데이터를 구독하고 수신할 수 있습니다. 이는 전송된 정보에 대한 액세스를 보호하여 승인된 수신자만 메시지를 받을 수 있도록 합니다.</li>
+</ul>
+<p>이 목록 관리는 그룹 소유자의 책임이며, DoubleZero CLI를 사용하여 승인된 발행자와 구독자를 추가, 제거하거나 볼 수 있습니다. 적절한 허용 목록 관리는 멀티캐스트 통신의 보안, 무결성 및 추적 가능성을 유지하는 데 중요합니다.</p>
+<blockquote>
+<p><strong>참고:</strong> 멀티캐스트 그룹에 구독하거나 발행하려면 사용자가 먼저 표준 연결 절차를 따라 DoubleZero에 연결하도록 승인되어야 합니다. 여기에 설명된 허용 목록 명령은 이미 승인된 DoubleZero 사용자를 멀티캐스트 그룹과 연결하기만 합니다. 멀티캐스트 그룹의 허용 목록에 새 IP를 추가하는 것 자체로는 DoubleZero에 대한 액세스가 부여되지 않습니다. 사용자는 멀티캐스트 그룹과 상호 작용하기 전에 이미 일반 승인 프로세스를 완료했어야 합니다.</p>
+</blockquote>
+<h3 id="_1">허용 목록에 발행자 추가</h3>
+<div class="highlight"><pre><span></span><code>doublezero multicast group allowlist publisher add --code &lt;CODE&gt; --client-ip &lt;CLIENT_IP&gt; --user-payer &lt;USER_PAYER&gt;
+</code></pre></div>
+<ul>
+<li><code>--code &lt;CODE&gt;</code>: 발행자를 추가할 멀티캐스트 그룹 코드</li>
+<li><code>--client-ip &lt;CLIENT_IP&gt;</code>: IPv4 형식의 클라이언트 IP 주소</li>
+<li><code>--user-payer &lt;USER_PAYER&gt;</code>: 발행자 공개 키 또는 현재 지불자의 경우 'me'</li>
+</ul>
+<h3 id="_2">허용 목록에서 발행자 제거</h3>
+<div class="highlight"><pre><span></span><code>doublezero multicast group allowlist publisher remove --code &lt;CODE&gt; --client-ip &lt;CLIENT_IP&gt; --user-payer &lt;USER_PAYER&gt;
+</code></pre></div>
+<ul>
+<li><code>--code &lt;CODE&gt;</code>: 발행자 허용 목록을 제거할 멀티캐스트 그룹 코드 또는 공개 키</li>
+<li><code>--client-ip &lt;CLIENT_IP&gt;</code>: IPv4 형식의 클라이언트 IP 주소</li>
+<li><code>--user-payer &lt;USER_PAYER&gt;</code>: 발행자 공개 키 또는 현재 지불자의 경우 'me'</li>
+</ul>
+<h3 id="_3">그룹의 발행자 허용 목록 조회</h3>
+<p>특정 멀티캐스트 그룹의 허용 목록에 있는 모든 발행자를 조회하려면 다음을 사용합니다:</p>
+<div class="highlight"><pre><span></span><code>doublezero multicast group allowlist publisher list --code &lt;CODE&gt;
+</code></pre></div>
+<ul>
+<li><code>--code &lt;CODE&gt;</code>: 발행자 허용 목록을 보려는 멀티캐스트 그룹의 코드.</li>
+</ul>
+<p><strong>예시:</strong></p>
+<div class="highlight"><pre><span></span><code>doublezero multicast group allowlist publisher list --code mg01
+</code></pre></div>
+<p>샘플 출력:</p>
+<div class="highlight"><pre><span></span><code> account                                      | multicast_group | client_ip       | user_payer
+ 8ZmH3bx4k1JNYLyEviNAsCFxRoDoG3Y4ntVCUxu24fUF | mg01            | 206.189.166.187 | DZfHfcCXTLwgZeCRKQ1FL1UuwAwFAZM93g86NMYpfYan
+ 8ZmH3bx4k1JNYLyEviNAsCFxRoDoG3Y4ntVCUxu24fUF | mg01            | 164.92.244.134  | DZfHfcCXTLwgZeCRKQ1FL1UuwAwFAZM93g86NMYpfYan
+ 8ZmH3bx4k1JNYLyEviNAsCFxRoDoG3Y4ntVCUxu24fUF | mg01            | 186.233.185.50  | DZfHfcCXTLwgZeCRKQ1FL1UuwAwFAZM93g86NMYpfYan
+ 8ZmH3bx4k1JNYLyEviNAsCFxRoDoG3Y4ntVCUxu24fUF | mg01            | 161.35.58.190   | DZfHfcCXTLwgZeCRKQ1FL1UuwAwFAZM93g86NMYpfYan
+ 8ZmH3bx4k1JNYLyEviNAsCFxRoDoG3Y4ntVCUxu24fUF | mg01            | 159.223.46.72   | DZfHfcCXTLwgZeCRKQ1FL1UuwAwFAZM93g86NMYpfYan
+ 8ZmH3bx4k1JNYLyEviNAsCFxRoDoG3Y4ntVCUxu24fUF | mg01            | 204.74.232.130  | DZfHfcCXTLwgZeCRKQ1FL1UuwAwFAZM93g86NMYpfYan
+</code></pre></div>
+<p>이 명령은 지정된 그룹에 연결할 수 있는 현재 승인된 모든 발행자(계정, 그룹 코드, 클라이언트 IP, 사용자 지불자 포함)를 표시합니다.</p>
+<h3 id="_4">허용 목록에 구독자 추가</h3>
+<div class="highlight"><pre><span></span><code>doublezero multicast group allowlist subscriber add --code &lt;CODE&gt; --client-ip &lt;CLIENT_IP&gt; --user-payer &lt;USER_PAYER&gt;
+</code></pre></div>
+<ul>
+<li><code>--code &lt;CODE&gt;</code>: 구독자 허용 목록을 추가할 멀티캐스트 그룹 코드 또는 공개 키</li>
+<li><code>--client-ip &lt;CLIENT_IP&gt;</code>: IPv4 형식의 클라이언트 IP 주소</li>
+<li><code>--user-payer &lt;USER_PAYER&gt;</code>: 구독자 공개 키 또는 현재 지불자의 경우 'me'</li>
+</ul>
+<h3 id="_5">허용 목록에서 구독자 제거</h3>
+<div class="highlight"><pre><span></span><code>doublezero multicast group allowlist subscriber remove --code &lt;CODE&gt; --client-ip &lt;CLIENT_IP&gt; --user-payer &lt;USER_PAYER&gt;
+</code></pre></div>
+<ul>
+<li><code>--code &lt;CODE&gt;</code>: 구독자 허용 목록을 제거할 멀티캐스트 그룹 코드 또는 공개 키</li>
+<li><code>--client-ip &lt;CLIENT_IP&gt;</code>: IPv4 형식의 클라이언트 IP 주소</li>
+<li><code>--user-payer &lt;USER_PAYER&gt;</code>: 구독자 공개 키 또는 현재 지불자의 경우 'me'</li>
+</ul>
+<h3 id="_6">그룹의 구독자 허용 목록 조회</h3>
+<p>특정 멀티캐스트 그룹의 허용 목록에 있는 모든 구독자를 조회하려면 다음을 사용합니다:</p>
+<div class="highlight"><pre><span></span><code>doublezero multicast group allowlist subscriber list --code &lt;CODE&gt;
+</code></pre></div>
+<ul>
+<li><code>--code &lt;CODE&gt;</code>: 구독자 허용 목록을 보려는 멀티캐스트 그룹의 코드.</li>
+</ul>
+<p><strong>예시:</strong></p>
+<div class="highlight"><pre><span></span><code>doublezero multicast group allowlist subscriber list --code mg01
+</code></pre></div>
+<p>샘플 출력:</p>
+<div class="highlight"><pre><span></span><code> account                                      | multicast_group | client_ip       | user_payer
+ 8ZmH3bx4k1JNYLyEviNAsCFxRoDoG3Y4ntVCUxu24fUF | mg01            | 186.233.185.50  | DZfHfcCXTLwgZeCRKQ1FL1UuwAwFAZM93g86NMYpfYan
+ 8ZmH3bx4k1JNYLyEviNAsCFxRoDoG3Y4ntVCUxu24fUF | mg01            | 206.189.166.187 | DZfHfcCXTLwgZeCRKQ1FL1UuwAwFAZM93g86NMYpfYan
+ 8ZmH3bx4k1JNYLyEviNAsCFxRoDoG3Y4ntVCUxu24fUF | mg01            | 164.92.244.134  | DZfHfcCXTLwgZeCRKQ1FL1UuwAwFAZM93g86NMYpfYan
+ 8ZmH3bx4k1JNYLyEviNAsCFxRoDoG3Y4ntVCUxu24fUF | mg01            | 204.74.232.130  | DZfHfcCXTLwgZeCRKQ1FL1UuwAwFAZM93g86NMYpfYan
+ 8ZmH3bx4k1JNYLyEviNAsCFxRoDoG3Y4ntVCUxu24fUF | mg01            | 161.35.58.190   | DZfHfcCXTLwgZeCRKQ1FL1UuwAwFAZM93g86NMYpfYan
+ 8ZmH3bx4k1JNYLyEviNAsCFxRoDoG3Y4ntVCUxu24fUF | mg01            | 159.223.46.72   | DZfHfcCXTLwgZeCRKQ1FL1UuwAwFAZM93g86NMYpfYan
+</code></pre></div>
+<p>이 명령은 지정된 그룹에 연결할 수 있는 현재 승인된 모든 구독자(계정, 그룹 코드, 클라이언트 IP, 사용자 지불자 포함)를 표시합니다.</p>
+<hr />
+<p>멀티캐스트 연결 및 사용에 대한 자세한 내용은 <a href="../Other%20Multicast%20Connection/">기타 멀티캐스트 연결</a>을 참조하세요.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "navigation.indexes", "toc.integrate", "header.autohide"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\ud074\ub9bd\ubcf4\ub4dc\uc5d0 \ubcf5\uc0ac\ub428", "clipboard.copy": "\ud074\ub9bd\ubcf4\ub4dc\ub85c \ubcf5\uc0ac", "search.result.more.one": "\uc774 \ubb38\uc11c\uc5d0\uc11c 1\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.more.other": "\uc774 \ubb38\uc11c\uc5d0\uc11c #\uac1c\uc758 \uac80\uc0c9 \uacb0\uacfc \ub354 \ubcf4\uae30", "search.result.none": "\uac80\uc0c9\uc5b4\uc640 \uc77c\uce58\ud558\ub294 \ubb38\uc11c\uac00 \uc5c6\uc2b5\ub2c8\ub2e4", "search.result.one": "1\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.other": "#\uac1c\uc758 \uc77c\uce58\ud558\ub294 \ubb38\uc11c", "search.result.placeholder": "\uac80\uc0c9\uc5b4\ub97c \uc785\ub825\ud558\uc138\uc694", "search.result.term.missing": "\ud3ec\ud568\ub418\uc9c0 \uc54a\uc740 \uac80\uc0c9\uc5b4", "select.version": "\ubc84\uc804 \uc120\ud0dd"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../javascripts/cloudsmith-versions.js"></script>
+      
+        <script src="../../javascripts/connection-wizard.js"></script>
+      
+        <script src="../../javascripts/page-toolbar.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/page-toolbar.js"></script>
+      
+    
+  </body>
+</html>

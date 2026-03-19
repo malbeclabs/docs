@@ -1,0 +1,1443 @@
+
+<!doctype html>
+<html lang="es" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.malbeclabs.com/es/DZ%20Testnet%20Connection/">
+      
+      
+        <link rel="prev" href="../DZ%20Mainnet-beta%20Connection/">
+      
+      
+        <link rel="next" href="../Permissioned%20Connection/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Validator Testnet Connection - Malbec Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/wizard.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="grey" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#conexion-de-validador-a-testnet-en-modo-ibrl" class="md-skip">
+          Saltar a contenido
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabecera">
+    <a href="../" title="Malbec Labs" class="md-header__button md-logo" aria-label="Malbec Labs" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Malbec Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Validator Testnet Connection
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      
+
+
+<div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Seleccionar idioma">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../DZ%20Testnet%20Connection/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../zh/DZ%20Testnet%20Connection/" hreflang="zh" class="md-select__link">
+              Chinese
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../ja/DZ%20Testnet%20Connection/" hreflang="ja" class="md-select__link">
+              Japanese
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../ko/DZ%20Testnet%20Connection/" hreflang="ko" class="md-select__link">
+              Korean
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../pt/DZ%20Testnet%20Connection/" hreflang="pt" class="md-select__link">
+              Portuguese
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="es" class="md-select__link">
+              Spanish
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../fr/DZ%20Testnet%20Connection/" hreflang="fr" class="md-select__link">
+              French
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../it/DZ%20Testnet%20Connection/" hreflang="it" class="md-select__link">
+              Italian
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Búsqueda" placeholder="Búsqueda" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Buscar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpiar" aria-label="Limpiar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando búsqueda
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navegación" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../" title="Malbec Labs" class="md-nav__button md-logo" aria-label="Malbec Labs" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    Malbec Labs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-connect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Connect
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Users
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Users
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tenants
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Tenants
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tenant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_2" id="__nav_3_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Solana
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Solana
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DZ%20Mainnet-beta%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Validator Mainnet-Beta Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Validator Testnet Connection
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Validator Testnet Connection
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Tabla de contenidos">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Tabla de contenidos
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#conexion-a-testnet-en-modo-ibrl" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conexión a Testnet en modo IBRL
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#requisitos-previos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Requisitos Previos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-configuracion-del-entorno" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Configuración del Entorno
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-abrir-el-puerto-44880" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Abrir el puerto 44880
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-atestar-la-propiedad-del-validador" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Atestar la Propiedad del Validador
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Atestar la Propiedad del Validador">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preparar-la-conexion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preparar la Conexión
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-generar-firma" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Generar Firma
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-iniciar-una-solicitud-de-conexion-en-doublezero" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Iniciar una Solicitud de Conexión en DoubleZero
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-conectarse-en-modo-ibrl" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Conectarse en modo IBRL
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Conectarse en modo IBRL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#siguiente-paso-publicar-shreds-mediante-multicast" class="md-nav__link">
+    <span class="md-ellipsis">
+      Siguiente Paso: Publicar Shreds mediante Multicast
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Permissioned%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Permissioned Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Validator%20Multicast%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Validator Multicast Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Other%20Multicast%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Other Multicast Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_3" id="__nav_3_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Shelby
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Shelby
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Shelby%20Permissioned%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shelby Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../New%20Tenant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    New Tenant
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Contributors
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Contributors
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Requirements & Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute-provisioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Device Provisioning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute-operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Operations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Glossary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="conexion-de-validador-a-testnet-en-modo-ibrl">Conexión de Validador a Testnet en modo IBRL</h1>
+<div class="admonition warning">
+<p class="admonition-title">This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon.</p>
+</div>
+<details class="warning">
+<summary>Al conectarme a DoubleZero testnet acepto los términos del Acuerdo de Evaluación establecido aquí (haga clic para expandir)</summary>
+<p><span style="font-size:14px;">DoubleZero Testnet</span>
+Acuerdo de Evaluación</p>
+<p>Al acceder o usar la Solución (definida a continuación), usted acepta a partir de la primera fecha de dicho acceso (la "<strong>Fecha de Vigencia</strong>") que este Acuerdo de Evaluación (el "<strong>Acuerdo</strong>") establece los términos y condiciones bajo los cuales la Fundación DoubleZero ("<strong>DZF</strong>") le proporcionará acceso a la Solución en base de evaluación. En consideración de las promesas mutuas aquí contenidas, usted acepta lo siguiente:</p>
+<p><span style="font-size:14px;">1. DEFINICIONES.</span></p>
+<p><span style="font-size:14px;">1.1 "<strong>Información Confidencial</strong>"</span> significa cualquier y toda la información divulgada por cualquiera de las partes a la otra que esté designada como confidencial, o que de otra manera deba entenderse como confidencial, incluyendo pero no limitado a, la Solución, planes de productos, planes de negocios, secretos comerciales, tecnología, u otra información propietaria.</p>
+<p><span style="font-size:14px;">1.2 "<strong>Solución</strong>" </span> significa la versión testnet de la infraestructura de red de alto rendimiento de DoubleZero para proyectos web3 ("<strong>Testnet</strong>") y el servicio de filtrado de borde integrado con ancho de banda ("<strong>Servicio de Información</strong>") el Software DZ (definido a continuación), todos y cada uno de los materiales proporcionados por DZF en relación con el Software DZ ("<strong>Documentación</strong>"), y otros materiales que DZF proporciona al Usuario en virtud del presente.</p>
+<p><span style="font-size:14px;">2. ACCESO. </span></p>
+<p><span style="font-size:14px;">2.1 <ins>Acceso a la Solución</ins>.</span> Sujeto a los términos y condiciones de este Acuerdo, DZF proporcionará al Usuario acceso a la Solución a través de Internet. El acceso del Usuario es un uso no exclusivo, no transferible y limitado de la Solución para permitir al Usuario evaluar el Servicio de Información únicamente. Con respecto a cualquier software que comprenda la Solución ("<strong>Software DZ</strong>"), DZF otorga al Usuario una licencia limitada y revocable, durante el Período de Evaluación, para copiar, descargar, hacer un número razonable de copias, ejecutar y desplegar (según corresponda) dicho Software DZ únicamente según lo contemplado en la Documentación.</p>
+<p><span style="font-size:14px;">2.2 <ins>Restricciones</ins>. </span>El Usuario puede usar la Solución de acuerdo con este Acuerdo desde la Fecha de Vigencia hasta que DZF lo termine (el "<strong>Período de Evaluación</strong>"). El Usuario entiende que cualquier derecho a usar la Solución más allá del Período de Evaluación estará sujeto a un acuerdo comercial separado entre las partes al respecto, incluyendo el pago de tarifas. El Usuario no deberá, y no permitirá que ningún tercero: (i) modifique o cree obras derivadas basadas en la Solución o cualquier parte de ella; (ii) reproduzca la Solución excepto según lo permitido expresamente por este Acuerdo; (iii) sublicencie, distribuya, venda, preste, arriende, transfiera o conceda cualquier derecho sobre toda o cualquier parte de la Solución o proporcione acceso a la Solución a terceros, ya sea mediante servicios o de otra manera, excepto como oferta de los Servicios de Información a través de o en conexión con la plataforma o producto del Usuario y no de forma independiente; o (iv) use la Solución de otra forma que no sea la prevista en el presente.</p>
+<p><span style="font-size:14px;">2.3 <ins>Propiedad</ins>.</span> DZF conserva todos los derechos, títulos e intereses, incluidos los derechos de propiedad intelectual, sobre la Solución.</p>
+<p><span style="font-size:14px;">3 COMENTARIOS.</span>
+DZF puede solicitar periódicamente que el Usuario proporcione, y el Usuario acepta proporcionar a DZF, comentarios sobre el uso, operación y funcionalidad de la Solución ("Comentarios"). El Usuario otorga a DZF un derecho y licencia no exclusivos, mundiales, perpetuos, irrevocables, libres de regalías, totalmente pagados, completamente sublicenciables y transferibles para usar e incorporar los Comentarios en cualquier producto y servicio, para fabricar, usar, vender, ofrecer en venta, importar y explotar de otra manera dichos productos y servicios, y para usar, copiar, distribuir y explotar de otra manera los Comentarios sin restricción.</p>
+<p><span style="font-size:14px;">4. PLAZO Y RESCISIÓN.</span></p>
+<p><span style="font-size:14px;">4.1 <ins>Plazo</ins>.</span> Este Acuerdo comenzará a partir de la Fecha de Vigencia y permanecerá en pleno vigor y efecto durante el Período de Evaluación. Cualquiera de las partes puede rescindir este Acuerdo de inmediato por conveniencia, por cualquier razón o sin razón alguna, mediante notificación escrita a la otra parte (el correo electrónico será suficiente).</p>
+<p><span style="font-size:14px;">4.1 <ins>Efectos de la Rescisión</ins>.</span> Al momento de la rescisión de este Acuerdo por cualquier razón: (i) los derechos otorgados al Usuario en el presente terminarán de inmediato; (ii) el Usuario deberá cesar de inmediato cualquier uso de la Solución y deberá devolver o destruir toda la Documentación y cualquier Software DZ bajo su control; (iii) cada parte devolverá o destruirá de inmediato toda la Información Confidencial y propiedad de la otra parte; y (iv) las Secciones 2.2, 2.3, 3, 4.2 y 5 a 8 sobrevivirán.</p>
+<p><span style="font-size:14px;">5. CONFIDENCIALIDAD.</span>
+Cada parte acepta que usará la Información Confidencial de la otra parte únicamente para cumplir con sus obligaciones y ejercer sus derechos bajo este Acuerdo y no divulgará, ni permitirá que se divulgue, la misma, excepto según se permita de otra manera en el presente. Sin embargo, cualquiera de las partes puede divulgar Información Confidencial a su personal, abogados y otros representantes que tengan necesidad de conocerla y estén sujetos a obligaciones de confidencialidad no menos protectoras que las establecidas en este Acuerdo; y según lo requiera la ley (en cuyo caso la parte receptora proporcionará a la parte divulgadora notificación previa al respecto y oportunidad de impugnar dicha divulgación, y minimizará dicha divulgación en la medida permitida por la ley aplicable). Las obligaciones de confidencialidad en esta Sección 5 no se aplicarán a la información que: (a) sea o se vuelva generalmente conocida o esté disponible públicamente sin culpa de la parte receptora; (b) era conocida apropiadamente por la parte receptora, sin restricción, antes de la divulgación por la parte divulgadora; (c) fue apropiadamente divulgada a la parte receptora, sin restricción, por otra persona con la autoridad legal para hacerlo; o (d) es desarrollada de forma independiente por la parte receptora sin uso de ni referencia a la Información Confidencial de la parte divulgadora.</p>
+<p><span style="font-size:14px;">6. DESCARGO DE GARANTÍAS; LIMITACIÓN DE RESPONSABILIDAD.</span></p>
+<p><span style="font-size:14px;">6.1 <ins>DESCARGO DE GARANTÍAS</ins>.</span> LA SOLUCIÓN SE PROPORCIONA "TAL CUAL" SIN GARANTÍA DE NINGÚN TIPO. DZF NO OFRECE GARANTÍAS, YA SEAN EXPRESAS, IMPLÍCITAS, ESTATUTARIAS O DE OTRO TIPO CON RESPECTO A LA SOLUCIÓN Y LA DOCUMENTACIÓN, INCLUYENDO SU CONDICIÓN, CONFORMIDAD CON CUALQUIER REPRESENTACIÓN O DESCRIPCIÓN, Y DZF RECHAZA ESPECÍFICAMENTE TODAS LAS GARANTÍAS IMPLÍCITAS DE COMERCIABILIDAD, IDONEIDAD PARA UN PROPÓSITO PARTICULAR, TÍTULO Y NO INFRACCIÓN.</p>
+<p><span style="font-size:14px;">6.2 <ins>LIMITACIÓN DE RESPONSABILIDAD</ins>.</span>
+EXCEPTO POR UNA VIOLACIÓN DE LAS SECCIONES 2.1, 2.2 Y 5, EN NINGÚN CASO NINGUNA DE LAS PARTES SERÁ RESPONSABLE ANTE LA OTRA POR DAÑOS INDIRECTOS, INCIDENTALES, ESPECIALES U OTROS DAÑOS CONSECUENTES, INCLUYENDO SIN LIMITACIÓN DAÑOS POR PÉRDIDA DE GANANCIAS O USO O PÉRDIDA DE DATOS, INCURRIDOS POR USTED O CUALQUIER TERCERO, QUE SURJAN DE O ESTÉN RELACIONADOS CON ESTE ACUERDO, YA SEA EN UNA ACCIÓN CONTRACTUAL, POR AGRAVIO O DE OTRO MODO, INCLUSO SI LA OTRA PARTE HA SIDO ADVERTIDA DE LA POSIBILIDAD DE DICHOS DAÑOS. EN NINGÚN CASO LA RESPONSABILIDAD AGREGADA DE DZF QUE SURJA DE O ESTÉ RELACIONADA CON ESTE ACUERDO EXCEDERÁ CIEN DÓLARES ($100), YA SEA EN UNA ACCIÓN CONTRACTUAL, POR AGRAVIO O DE OTRO MODO.</p>
+<p><span style="font-size:14px;">7. LEY APLICABLE.</span>
+Este Acuerdo y todos los asuntos que surjan de o estén relacionados con este Acuerdo se regirán, interpretarán y construirán de acuerdo con las leyes de las Islas Caimán.</p>
+<p><span style="font-size:14px;">8. DISPOSICIONES GENERALES.</span>
+Este Acuerdo no puede ser transferido o cedido por el Usuario sin el consentimiento previo por escrito de DZF. DZF puede ceder libremente este Acuerdo. Todos los avisos que deban enviarse en virtud del presente se enviarán por correo electrónico (a DZF: legal@doublezero.xyz) y se considerarán recibidos el día siguiente al envío (con confirmación de transmisión).</p>
+</details>
+<h3 id="conexion-a-testnet-en-modo-ibrl">Conexión a Testnet en modo IBRL</h3>
+<div class="admonition note inline end">
+<p class="admonition-title">Note</p>
+<p>El modo IBRL no requiere reiniciar los clientes de validadores, ya que usa su dirección IP pública existente.</p>
+</div>
+<p>Los Validadores de Testnet de Solana completarán la conexión a DoubleZero Testnet, que se detalla en esta página.</p>
+<p>Cada validador Solana tiene su propio <strong>keypair de identidad</strong>; de él se extrae la clave pública conocida como el <strong>node ID</strong>. Esta es la huella digital única del validador en la red Solana.</p>
+<p>Con el DoubleZeroID y el node ID identificados, demostrará la propiedad de su máquina. Esto se hace creando un mensaje que incluye el DoubleZeroID firmado con la clave de identidad del validador. La firma criptográfica resultante sirve como prueba verificable de que controla el validador.</p>
+<p>Finalmente, enviará una <strong>solicitud de conexión a DoubleZero</strong>. Esta solicitud comunica: <em>"Aquí está mi identidad, aquí está la prueba de propiedad y aquí está cómo pretendo conectarme."</em> DoubleZero valida esta información, acepta la prueba y provisiona acceso a la red para el validador en DoubleZero.</p>
+<p>Esta guía permite que 1 Validador Primario se registre a sí mismo, y hasta 3 máquinas de respaldo/failover al mismo tiempo.</p>
+<h2 id="requisitos-previos">Requisitos Previos</h2>
+<ul>
+<li>CLI de Solana instalada y en $PATH</li>
+<li>Para validadores: Permiso para acceder al archivo keypair de identidad del validador (por ejemplo, validator-keypair.json) bajo el usuario sol</li>
+<li>Para validadores: Verificar que la clave de identidad del validador Solana que se conecta tiene al menos 1 SOL</li>
+<li>Las reglas del firewall permiten conexiones salientes para DoubleZero y Solana RPC según sea necesario, incluyendo GRE (ip proto 47) y BGP (169.254.0.0/16 en tcp/179)</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>El ID del Validador se verificará contra el gossip de Solana para determinar la IP objetivo. La IP objetivo y el ID DoubleZero se utilizarán luego para abrir un túnel GRE entre su máquina y el Dispositivo DoubleZero objetivo.</p>
+<p>Considere: En el caso en que tenga un ID junk y un ID Primario en la misma IP, solo el ID Primario se usará en el registro de la máquina. Esto se debe a que el ID junk no aparecerá en el gossip y, por lo tanto, no puede usarse para verificar la IP de la máquina objetivo.</p>
+</div>
+<h2 id="1-configuracion-del-entorno">1. Configuración del Entorno</h2>
+<p>Siga las instrucciones de <a href="../setup/">configuración</a> antes de continuar.</p>
+<p>El último paso en la configuración fue desconectarse de la red. Esto es para asegurar que solo un túnel esté abierto en su máquina hacia DoubleZero, y que ese túnel esté en la red correcta.</p>
+<div data-wizard-step="testnet-env-config">
+<p>Para configurar el CLI DoubleZero (<code>doublezero</code>) y el daemon (<code>doublezerod</code>) para conectarse a <strong>DoubleZero testnet</strong>:
+<div class="highlight"><pre><span></span><code><span class="nv">DESIRED_DOUBLEZERO_ENV</span><span class="o">=</span>testnet<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/etc/systemd/system/doublezerod.service.d<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span>-e<span class="w"> </span><span class="s2">&quot;[Service]\nExecStart=\nExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env </span><span class="nv">$DESIRED_DOUBLEZERO_ENV</span><span class="s2">&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/systemd/system/doublezerod.service.d/override.conf<span class="w"> </span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>daemon-reload<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>doublezerod<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span>doublezero<span class="w"> </span>config<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--env<span class="w"> </span><span class="nv">$DESIRED_DOUBLEZERO_ENV</span><span class="w">  </span>&gt;<span class="w"> </span>/dev/null<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;✅ doublezerod configured for environment </span><span class="nv">$DESIRED_DOUBLEZERO_ENV</span><span class="s2">&quot;</span>
+</code></pre></div>
+Debería ver la siguiente salida:
+<div class="highlight"><pre><span></span><code>✅ doublezerod configured for environment testnet
+</code></pre></div></p>
+<p>Después de aproximadamente 30 segundos verá los dispositivos DoubleZero disponibles:</p>
+<p><div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>latency
+</code></pre></div>
+Ejemplo de salida (testnet)
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>latency
+<span class="w"> </span>pubkey<span class="w">                                       </span><span class="p">|</span><span class="w"> </span>code<span class="w">         </span><span class="p">|</span><span class="w"> </span>ip<span class="w">             </span><span class="p">|</span><span class="w"> </span>min<span class="w">      </span><span class="p">|</span><span class="w"> </span>max<span class="w">      </span><span class="p">|</span><span class="w"> </span>avg<span class="w">      </span><span class="p">|</span><span class="w"> </span>reachable
+<span class="w"> </span>6E1fuqbDBG5ejhYEGKHNkWG5mSTczjy4R77XCKEdUtpb<span class="w"> </span><span class="p">|</span><span class="w"> </span>nyc-dz001<span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="m">64</span>.86.249.22<span class="w">   </span><span class="p">|</span><span class="w"> </span><span class="m">2</span>.44ms<span class="w">   </span><span class="p">|</span><span class="w"> </span><span class="m">2</span>.63ms<span class="w">   </span><span class="p">|</span><span class="w"> </span><span class="m">2</span>.50ms<span class="w">   </span><span class="p">|</span><span class="w"> </span><span class="nb">true</span>
+<span class="w"> </span>CT8mP6RUoRcAB67HjKV9am7SBTCpxaJEwfQrSjVLdZfD<span class="w"> </span><span class="p">|</span><span class="w"> </span>lax-dz001<span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="m">207</span>.45.216.134<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">71</span>.97ms<span class="w">  </span><span class="p">|</span><span class="w"> </span><span class="m">72</span>.01ms<span class="w">  </span><span class="p">|</span><span class="w"> </span><span class="m">71</span>.99ms<span class="w">  </span><span class="p">|</span><span class="w"> </span><span class="nb">true</span>
+<span class="w"> </span>Cpt3doj17dCF6bEhvc7VeAuZbXLD88a1EboTyE8uj6ZL<span class="w"> </span><span class="p">|</span><span class="w"> </span>lon-dz001<span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="m">195</span>.219.120.66<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">71</span>.94ms<span class="w">  </span><span class="p">|</span><span class="w"> </span><span class="m">72</span>.08ms<span class="w">  </span><span class="p">|</span><span class="w"> </span><span class="m">72</span>.00ms<span class="w">  </span><span class="p">|</span><span class="w"> </span><span class="nb">true</span>
+<span class="w"> </span>4Wr7PQr5kyqCNJo3RKa8675K7ZtQ6fBUeorcexgp49Zp<span class="w"> </span><span class="p">|</span><span class="w"> </span>ams-dz001<span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="m">195</span>.219.138.50<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">76</span>.55ms<span class="w">  </span><span class="p">|</span><span class="w"> </span><span class="m">76</span>.65ms<span class="w">  </span><span class="p">|</span><span class="w"> </span><span class="m">76</span>.61ms<span class="w">  </span><span class="p">|</span><span class="w"> </span><span class="nb">true</span>
+<span class="w"> </span>29ghthsKeH2ZCUmN2sUvhJtpEXn2ZxqAuq4sZFBFZmEs<span class="w"> </span><span class="p">|</span><span class="w"> </span>fra-dz001<span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="m">195</span>.219.220.58<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">83</span>.01ms<span class="w">  </span><span class="p">|</span><span class="w"> </span><span class="m">83</span>.10ms<span class="w">  </span><span class="p">|</span><span class="w"> </span><span class="m">83</span>.05ms<span class="w">  </span><span class="p">|</span><span class="w"> </span><span class="nb">true</span>
+<span class="w"> </span>hWffRFpLrsZoF5r9qJS6AL2D9TEmSvPUBEbDrLc111Y<span class="w">  </span><span class="p">|</span><span class="w"> </span>fra-dz-001-x<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">195</span>.12.227.250<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">84</span>.87ms<span class="w">  </span><span class="p">|</span><span class="w"> </span><span class="m">84</span>.91ms<span class="w">  </span><span class="p">|</span><span class="w"> </span><span class="m">84</span>.89ms<span class="w">  </span><span class="p">|</span><span class="w"> </span><span class="nb">true</span>
+<span class="w"> </span>8jyamHfu3rumSEJt9YhtYw3J4a7aKeiztdqux17irGSj<span class="w"> </span><span class="p">|</span><span class="w"> </span>prg-dz-001-x<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">195</span>.12.228.250<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">95</span>.27ms<span class="w">  </span><span class="p">|</span><span class="w"> </span><span class="m">95</span>.30ms<span class="w">  </span><span class="p">|</span><span class="w"> </span><span class="m">95</span>.29ms<span class="w">  </span><span class="p">|</span><span class="w"> </span><span class="nb">true</span>
+<span class="w"> </span>5tqXoiQtZmuL6CjhgAC6vA49JRUsgB9Gsqh4fNjEhftU<span class="w"> </span><span class="p">|</span><span class="w"> </span>tyo-dz001<span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="m">180</span>.87.154.78<span class="w">  </span><span class="p">|</span><span class="w"> </span><span class="m">180</span>.96ms<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">181</span>.08ms<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">181</span>.02ms<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nb">true</span>
+<span class="w"> </span>D3ZjDiLzvrGi5NJGzmM7b3YZg6e2DrUcBCQznJr3KfC8<span class="w"> </span><span class="p">|</span><span class="w"> </span>sin-dz001<span class="w">    </span><span class="p">|</span><span class="w"> </span><span class="m">180</span>.87.102.98<span class="w">  </span><span class="p">|</span><span class="w"> </span><span class="m">220</span>.87ms<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">221</span>.14ms<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">220</span>.97ms<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nb">true</span>
+</code></pre></div></p>
+</div>
+<p>La salida de mainnet tendrá la misma estructura, pero con muchos más dispositivos disponibles.
+</details></p>
+<h2 id="2-abrir-el-puerto-44880">2. Abrir el puerto 44880</h2>
+<p>Los usuarios necesitan abrir el puerto 44880 para utilizar algunas <a href="https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc7-client-route-liveness.md">funciones de enrutamiento</a>.</p>
+<p>Para abrir el puerto 44880 puede actualizar IP tables de la siguiente manera:</p>
+<div data-wizard-step="firewall-iptables">
+<div class="highlight"><pre><span></span><code>sudo iptables -A INPUT -i doublezero0 -p udp --dport 44880 -j ACCEPT
+sudo iptables -A OUTPUT -o doublezero0 -p udp --dport 44880 -j ACCEPT
+</code></pre></div>
+</div>
+<p>note los flags <code>-i doublezero0</code>, <code>-o doublezero0</code> que restringen esta regla únicamente a la interfaz DoubleZero</p>
+<p>O UFW de la siguiente manera:</p>
+<div data-wizard-step="firewall-ufw">
+<div class="highlight"><pre><span></span><code>sudo ufw allow in on doublezero0 to any port 44880 proto udp
+sudo ufw allow out on doublezero0 to any port 44880 proto udp
+</code></pre></div>
+</div>
+<p>note los flags <code>in on doublezero0</code>, <code>out on doublezero0</code> que restringen esta regla únicamente a la interfaz DoubleZero</p>
+<h2 id="3-atestar-la-propiedad-del-validador">3. Atestar la Propiedad del Validador</h2>
+<div data-wizard-step="testnet-find-validator">
+<p>Con su Entorno DoubleZero configurado, es hora de atestar la Propiedad de su Validador.</p>
+<p>El ID DoubleZero que creó en la <a href="../setup/">configuración</a> de su validador primario debe usarse en todas las máquinas de respaldo.</p>
+<p>El ID en su máquina primaria se puede encontrar con <code>doublezero address</code>. El mismo ID debe estar en <code>~/.config/doublezero/id.json</code> en todas las máquinas del clúster.</p>
+<p>Para lograr esto, primero verificará que la máquina desde la que ejecuta los comandos sea su <strong>Validador Primario</strong> con:</p>
+<div class="highlight"><pre><span></span><code>doublezero-solana passport find-validator -ut
+</code></pre></div>
+<p>Esto verifica que el validador esté registrado en el gossip y aparezca en el cronograma de líderes.</p>
+<p>Salida esperada:</p>
+<div class="highlight"><pre><span></span><code>Connected to Solana: testnet
+
+DoubleZero ID: YourDoubleZeroAddress11111111111111111111111111111
+Detected public IP: 11.11.11.111
+Validator ID: ValidatorIdentity111111111111111111111111111
+Gossip IP: 11.11.11.111
+In Leader scheduler
+✅ This validator can connect as a primary in DoubleZero 🖥️  💎. It is a leader scheduled validator.
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>El mismo flujo de trabajo se usa para una o muchas máquinas.
+Para registrar una máquina, excluya los argumentos "--backup-validator-ids" o "backup_ids=" de cualquier comando en esta página.</p>
+</div>
+<p>Ahora, en todas las máquinas de respaldo en las que planea ejecutar su <strong>Validador Primario</strong>, ejecute lo siguiente:</p>
+<div class="highlight"><pre><span></span><code>doublezero-solana passport find-validator -ut
+</code></pre></div>
+<p>Salida esperada:</p>
+<p><div class="highlight"><pre><span></span><code>Connected to Solana: testnet
+
+DoubleZero ID: YourDoubleZeroAddress11111111111111111111111111111
+Detected public IP: 22.22.22.222
+Validator ID: ValidatorIdentity222222222222222222222222222
+Gossip IP: 22.22.22.222
+In Not in Leader scheduler
+ ✅ This validator can only connect as a backup in DoubleZero 🖥️  🛟. It is not leader scheduled and cannot act as a primary validator.
+</code></pre></div>
+Esta salida es esperada. El nodo de respaldo no puede estar en el cronograma de líderes en el momento de la creación del pase.</p>
+<p>Ahora ejecutará este comando en <strong>todas las máquinas de respaldo</strong> que planea usar con la cuenta de votación e identidad de su <strong>Validador Primario</strong>.</p>
+</div>
+<div data-wizard-step="testnet-prepare-access">
+<h3 id="preparar-la-conexion">Preparar la Conexión</h3>
+<p>Ejecute el siguiente comando en la máquina del <strong>Validador Primario</strong>. Esta es la máquina en la que tiene stake activo, que está en el cronograma de líderes con su ID de validador primario en el gossip de Solana en la máquina desde la que ejecuta el comando:</p>
+<div class="highlight"><pre><span></span><code>doublezero-solana passport prepare-validator-access -ut \
+  --doublezero-address YourDoubleZeroAddress11111111111111111111111111111 \
+  --primary-validator-id ValidatorIdentity111111111111111111111111111 \
+  --backup-validator-ids ValidatorIdentity222222222222222222222222222,ValidatorIdentity33333333333333333333333333,ValidatorIdentity444444444444444444444444444&gt;
+</code></pre></div>
+<p>Ejemplo de salida:</p>
+<p><div class="highlight"><pre><span></span><code>DoubleZero Passport - Prepare Validator Access Request
+Connected to Solana: testnet
+
+Primary validator 🖥️  💎:
+  ID: ValidatorIdentity111111111111111111111111111
+  Gossip: ✅ OK 11.11.11.111)
+  Leader scheduler: ✅ OK (Stake: 1,050,000.00 SOL)
+
+Backup validator 🖥️ 🛡️:
+  ID: ValidatorIdentity222222222222222222222222222
+  Gossip: ✅ OK (22.22.22.222)
+  Leader scheduler:  ✅ OK (not a leader scheduled validator)
+
+
+Backup validator 🖥️ 🛡️:
+  ID: ValidatorIdentity333333333333333333333333333
+  Gossip: ✅ OK (33.33.33.333)
+  Leader scheduler:  ✅ OK (not a leader scheduled validator)
+
+
+  Backup validator 🖥️ 🛡️:
+  ID: ValidatorIdentity444444444444444444444444444
+  Gossip: ✅ OK (33.33.33.333)
+  Leader scheduler:  ✅ OK (not a leader scheduled validator)
+
+  To request access, sign the following message with your validator&#39;s identity key:
+
+  solana sign-offchain-message \
+     service_key=YourDoubleZeroAddress11111111111111111111111111111,backup_ids=ValidatorIdentity222222222222222222222222222,ValidatorIdentity33333333333333333333333333,ValidatorIdentity444444444444444444444444444 \
+     -k &lt;identity-keypair-file.json&gt;
+</code></pre></div>
+Note la salida al final de este comando. Es la estructura para el siguiente paso.</p>
+</div>
+<h2 id="4-generar-firma">4. Generar Firma</h2>
+<div data-wizard-step="testnet-sign-message">
+<p>Al final del último paso, recibimos una salida preformateada para <code>solana sign-offchain-message</code>.</p>
+<p>Desde la salida anterior ejecutaremos este comando en la máquina del <strong>Validador Primario</strong>.</p>
+<div class="highlight"><pre><span></span><code>  solana sign-offchain-message \
+     service_key=YourDoubleZeroAddress11111111111111111111111111111,backup_ids=ValidatorIdentity222222222222222222222222222,ValidatorIdentity33333333333333333333333333,ValidatorIdentity444444444444444444444444444 \
+     -k &lt;identity-keypair-file.json&gt;
+</code></pre></div>
+<p><strong>Salida:</strong></p>
+<div class="highlight"><pre><span></span><code>  Signature111111rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7
+</code></pre></div>
+</div>
+<h2 id="5-iniciar-una-solicitud-de-conexion-en-doublezero">5. Iniciar una Solicitud de Conexión en DoubleZero</h2>
+<div data-wizard-step="testnet-request-access">
+<p>Use el comando <code>request-validator-access</code> para crear una cuenta en Solana para la solicitud de conexión. El agente Sentinel de DoubleZero detecta la nueva cuenta, valida su identidad y firma, y crea el pase de acceso en DoubleZero para que el servidor pueda establecer una conexión.</p>
+<p>Use el node ID, el DoubleZeroID y la firma.</p>
+<div class="admonition note inline end">
+<p class="admonition-title">Note</p>
+<p>En este ejemplo usamos <code>-k /home/user/.config/solana/id.json</code> para encontrar la Identidad del validador. Use la ubicación apropiada para su despliegue local.</p>
+</div>
+<div class="highlight"><pre><span></span><code>doublezero-solana passport request-validator-access -k &lt;path to keypair&gt; -ut \
+--primary-validator-id ValidatorIdentity111111111111111111111111111 \
+--backup-validator-ids ValidatorIdentity222222222222222222222222222,ValidatorIdentity33333333333333333333333333,ValidatorIdentity444444444444444444444444444 \
+--signature Signature111111rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7 --doublezero-address YourDoubleZeroAddress11111111111111111111111111111
+</code></pre></div>
+<p><strong>Salida:</strong></p>
+<p>Esta salida puede usarse para ver la transacción en un explorador Solana. Asegúrese de cambiar el explorador a testnet. Esta verificación es opcional.</p>
+<div class="highlight"><pre><span></span><code>Request<span class="w"> </span>Solana<span class="w"> </span>validator<span class="w"> </span>access:<span class="w"> </span>Transaction22222222VaB8FMqM2wEBXyV5THpKRXWrPtDQxmTjHJHiAWteVYTsc7Gjz4hdXxvYoZXGeHkrEayp
+</code></pre></div>
+<p>Si tiene éxito, DoubleZero registrará el primario con sus respaldos. Ahora puede hacer failover entre las IPs registradas en el pase de acceso. DoubleZero mantendrá la conectividad automáticamente al cambiar a nodos de respaldo registrados de esta manera.</p>
+</div>
+<h2 id="6-conectarse-en-modo-ibrl">6. Conectarse en modo IBRL</h2>
+<div data-wizard-step="testnet-connect-ibrl">
+<p>En el servidor, con el usuario que se conectará a DoubleZero, ejecute el comando <code>connect</code> para establecer la conexión a DoubleZero.</p>
+<div class="highlight"><pre><span></span><code>doublezero connect ibrl
+</code></pre></div>
+<p>Debería ver una salida que indique el aprovisionamiento, como:</p>
+<p><div class="highlight"><pre><span></span><code>DoubleZero Service Provisioning
+🔗  Start Provisioning User...
+Public IP detected: 137.184.101.183 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
+🔍  Provisioning User for IP: 137.184.101.183
+    User account created
+    Connected to device: nyc-dz001
+    The user has been successfully activated
+    Service provisioned with status: ok
+✅  User Provisioned
+</code></pre></div>
+Espere un minuto para que el túnel GRE termine de configurarse. Hasta que el túnel GRE esté configurado, su salida de estado puede devolver "down" o "Unknown".</p>
+<p>Verifique su conexión:</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>status
+</code></pre></div>
+<p><strong>Salida:</strong></p>
+<div class="admonition note inline end">
+<p class="admonition-title">Note</p>
+<p>Examine esta salida. Note que <code>Tunnel src</code> y <code>DoubleZero IP</code> coinciden con la dirección IPv4 pública de su máquina.</p>
+</div>
+<p><div class="highlight"><pre><span></span><code><span class="w"> </span>Tunnel<span class="w"> </span>status<span class="w"> </span><span class="p">|</span><span class="w"> </span>Last<span class="w"> </span>Session<span class="w"> </span>Update<span class="w">     </span><span class="p">|</span><span class="w"> </span>Tunnel<span class="w"> </span>Name<span class="w"> </span><span class="p">|</span><span class="w"> </span>Tunnel<span class="w"> </span>src<span class="w">    </span><span class="p">|</span><span class="w"> </span>Tunnel<span class="w"> </span>dst<span class="w">     </span><span class="p">|</span><span class="w"> </span>Doublezero<span class="w"> </span>IP<span class="w"> </span><span class="p">|</span><span class="w"> </span>User<span class="w"> </span>Type<span class="w"> </span><span class="p">|</span><span class="w"> </span>Current<span class="w"> </span>Device<span class="w"> </span><span class="p">|</span><span class="w"> </span>Lowest<span class="w"> </span>Latency<span class="w"> </span>Device<span class="w"> </span><span class="p">|</span><span class="w"> </span>Metro<span class="w">     </span><span class="p">|</span><span class="w"> </span>Network
+<span class="w"> </span>up<span class="w">            </span><span class="p">|</span><span class="w"> </span><span class="m">2025</span>-10-20<span class="w"> </span><span class="m">12</span>:12:55<span class="w"> </span>UTC<span class="w"> </span><span class="p">|</span><span class="w"> </span>doublezero0<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">11</span>.11.11.111<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">12</span>.34.56.789<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="m">11</span>.11.11.111<span class="w"> </span><span class="p">|</span><span class="w"> </span>IBRL<span class="w">      </span><span class="p">|</span><span class="w"> </span>ams-dz001<span class="w">      </span><span class="p">|</span><span class="w"> </span>✅<span class="w"> </span>ams-dz001<span class="w">          </span><span class="p">|</span><span class="w"> </span>Amsterdam<span class="w"> </span><span class="p">|</span><span class="w"> </span>testnet
+</code></pre></div>
+Un estado de <code>up</code> significa que está conectado correctamente.</p>
+<p>Podrá ver las rutas propagadas por otros usuarios en DoubleZero ejecutando:</p>
+<div class="highlight"><pre><span></span><code>ip route
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>default via 149.28.38.1 dev enp1s0 proto dhcp src 149.28.38.64 metric 100
+5.39.216.186 via 169.254.0.68 dev doublezero0 proto bgp src 149.28.38.64
+5.39.251.201 via 169.254.0.68 dev doublezero0 proto bgp src 149.28.38.64
+5.39.251.202 via 169.254.0.68 dev doublezero0 proto bgp src 149.28.38.64
+...
+</code></pre></div>
+</div>
+<h3 id="siguiente-paso-publicar-shreds-mediante-multicast">Siguiente Paso: Publicar Shreds mediante Multicast</h3>
+<p>Si ha completado esta configuración y planea publicar shreds mediante multicast, continúe a la <a href="../Validator%20Multicast%20Connection/">siguiente página</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "navigation.indexes", "toc.integrate", "header.autohide"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copiado al portapapeles", "clipboard.copy": "Copiar al portapapeles", "search.result.more.one": "1 m\u00e1s en esta p\u00e1gina", "search.result.more.other": "# m\u00e1s en esta p\u00e1gina", "search.result.none": "No se encontraron documentos", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Teclee para comenzar b\u00fasqueda", "search.result.term.missing": "Falta", "select.version": "Seleccionar versi\u00f3n"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../javascripts/cloudsmith-versions.js"></script>
+      
+        <script src="../../javascripts/connection-wizard.js"></script>
+      
+        <script src="../../javascripts/page-toolbar.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/page-toolbar.js"></script>
+      
+    
+  </body>
+</html>

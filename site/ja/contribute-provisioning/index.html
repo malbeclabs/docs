@@ -1,0 +1,2398 @@
+
+<!doctype html>
+<html lang="ja" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.malbeclabs.com/ja/contribute-provisioning/">
+      
+      
+        <link rel="prev" href="../contribute/">
+      
+      
+        <link rel="next" href="../contribute-operations/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Device Provisioning - Malbec Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/wizard.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="grey" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          コンテンツにスキップ
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="ヘッダー">
+    <a href="../" title="Malbec Labs" class="md-header__button md-logo" aria-label="Malbec Labs" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Malbec Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Device Provisioning
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      
+
+
+<div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="言語切り替え">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../contribute-provisioning/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../zh/contribute-provisioning/" hreflang="zh" class="md-select__link">
+              Chinese
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="ja" class="md-select__link">
+              Japanese
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../ko/contribute-provisioning/" hreflang="ko" class="md-select__link">
+              Korean
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../pt/contribute-provisioning/" hreflang="pt" class="md-select__link">
+              Portuguese
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../es/contribute-provisioning/" hreflang="es" class="md-select__link">
+              Spanish
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../fr/contribute-provisioning/" hreflang="fr" class="md-select__link">
+              French
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../it/contribute-provisioning/" hreflang="it" class="md-select__link">
+              Italian
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="検索" placeholder="検索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="検索">
+        
+        <button type="reset" class="md-search__icon md-icon" title="クリア" aria-label="クリア" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            検索を初期化
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="ナビゲーション" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../" title="Malbec Labs" class="md-nav__button md-logo" aria-label="Malbec Labs" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    Malbec Labs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-connect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Connect
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Users
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Users
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tenants
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Tenants
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tenant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_2" id="__nav_3_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Solana
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Solana
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DZ%20Mainnet-beta%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Validator Mainnet-Beta Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DZ%20Testnet%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Validator Testnet Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Permissioned%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Permissioned Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Validator%20Multicast%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Validator Multicast Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Other%20Multicast%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Other Multicast Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_3" id="__nav_3_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Shelby
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Shelby
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Shelby%20Permissioned%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shelby Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../New%20Tenant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    New Tenant
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Contributors
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Contributors
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Requirements & Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Device Provisioning
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Device Provisioning
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目次">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目次
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      全体像
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      フェーズ1：前提条件
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="フェーズ1：前提条件">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      必要なもの
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#doublezero-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      DoubleZero CLIのインストール
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dz" class="md-nav__link">
+    <span class="md-ellipsis">
+      DZプレフィックスについて
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      フェーズ2：アカウントのセットアップ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="フェーズ2：アカウントのセットアップ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      CLIを実行する場所
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      キーとは？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      ステップ2.1：サービスキーの生成
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      ステップ2.2：メトリクスパブリッシャーキーの生成
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23dzf" class="md-nav__link">
+    <span class="md-ellipsis">
+      ステップ2.3：DZFへのキーの提出
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24" class="md-nav__link">
+    <span class="md-ellipsis">
+      ステップ2.4：アカウントの確認
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25contributors" class="md-nav__link">
+    <span class="md-ellipsis">
+      ステップ2.5：Contributorsリポジトリへのアクセス
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      フェーズ3：デバイスプロビジョニング
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="フェーズ3：デバイスプロビジョニング">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      デバイスタイプについて
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      ステップ3.1：ロケーションとエクスチェンジを調べる
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32" class="md-nav__link">
+    <span class="md-ellipsis">
+      ステップ3.2：デバイスをオンチェーンで作成する
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33" class="md-nav__link">
+    <span class="md-ellipsis">
+      ステップ3.3：必要なループバックインターフェースを作成する
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34" class="md-nav__link">
+    <span class="md-ellipsis">
+      ステップ3.4：物理インターフェースを作成する
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#35cyoa" class="md-nav__link">
+    <span class="md-ellipsis">
+      ステップ3.5：CYOAインターフェースを作成する（エッジ/ハイブリッドデバイスの場合）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#36" class="md-nav__link">
+    <span class="md-ellipsis">
+      ステップ3.6：デバイスを確認する
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      フェーズ4：リンク確立とエージェントインストール
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="フェーズ4：リンク確立とエージェントインストール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      リンクについて
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#41wan" class="md-nav__link">
+    <span class="md-ellipsis">
+      ステップ4.1：WANリンクを作成する（複数のデバイスがある場合）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42dzx" class="md-nav__link">
+    <span class="md-ellipsis">
+      ステップ4.2：DZXリンクを作成する
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    <span class="md-ellipsis">
+      ステップ4.3：リンクを確認する
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      エージェントのインストール
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44config-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      ステップ4.4：Config Agentのインストール
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ステップ4.4：Config Agentのインストール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      スイッチでAPIを有効にする
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      エージェントのダウンロードとインストール
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      拡張機能を確認する
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      エージェントを設定して起動する
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      実行中であることを確認する
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#45telemetry-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      ステップ4.5：Telemetry Agentのインストール
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ステップ4.5：Telemetry Agentのインストール">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      メトリクスパブリッシャーキーをデバイスにコピーする
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      メトリクスパブリッシャーをオンチェーンに登録する
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      エージェントのダウンロードとインストール
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      拡張機能を確認する
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      エージェントを設定して起動する
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      実行中であることを確認する
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      フェーズ5：リンクのバーンイン
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      フェーズ6：確認とアクティベーション
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="フェーズ6：確認とアクティベーション">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      デバイスの確認
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      リンクの確認
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      エージェントの確認
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      最終確認図
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      トラブルシューティング
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="トラブルシューティング">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      デバイス作成に失敗する
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requested" class="md-nav__link">
+    <span class="md-ellipsis">
+      リンクが"requested"ステータスから動かない
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#config-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Config Agentが接続しない
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#telemetry-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Telemetry Agentが送信しない
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      次のステップ
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute-operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Operations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Glossary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="_1">デバイスプロビジョニングガイド</h1>
+<div class="admonition warning">
+<p class="admonition-title">This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon.</p>
+</div>
+<p>このガイドでは、DoubleZeroデバイス（DZD）を最初から最後までプロビジョニングする手順を説明します。各フェーズは<a href="../contribute-overview/#onboarding-checklist">オンボーディングチェックリスト</a>に対応しています。</p>
+<hr />
+<h2 id="_2">全体像</h2>
+<p>手順に入る前に、構築するものの全体像を確認しましょう：</p>
+<pre class="mermaid"><code>flowchart TB
+    subgraph Onchain
+        SC[DoubleZeroレジャー]
+    end
+
+    subgraph Your Infrastructure
+        MGMT[管理サーバー&lt;br/&gt;DoubleZero CLI]
+        DZD[あなたのDZD&lt;br/&gt;Aristaスイッチ]
+        DZD ---|WANリンク| DZD2[もう一台のDZD]
+    end
+
+    subgraph Other Contributor
+        OtherDZD[他のDZD]
+    end
+
+    subgraph Users
+        VAL[バリデーター]
+        RPC[RPCノード]
+    end
+
+    MGMT -.-&gt;|デバイス、リンク、&lt;br/&gt;インターフェースを登録| SC
+    DZD ---|DZXリンク| OtherDZD
+    VAL ---|インターネット経由で接続| DZD
+    RPC ---|インターネット経由で接続| DZD</code></pre>
+<hr />
+<h2 id="1">フェーズ1：前提条件</h2>
+<p>デバイスをプロビジョニングする前に、物理的なハードウェアをセットアップし、いくつかのIPアドレスを割り当てる必要があります。</p>
+<h3 id="_3">必要なもの</h3>
+<table>
+<thead>
+<tr>
+<th>要件</th>
+<th>必要な理由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>DZDハードウェア</strong></td>
+<td>Arista 7280CR3Aスイッチ（<a href="../contribute/#hardware-requirements">ハードウェア仕様</a>参照）</td>
+</tr>
+<tr>
+<td><strong>ラックスペース</strong></td>
+<td>適切なエアフローを持つ4U</td>
+</tr>
+<tr>
+<td><strong>電力</strong></td>
+<td>冗長フィード、約4KW推奨</td>
+</tr>
+<tr>
+<td><strong>管理アクセス</strong></td>
+<td>スイッチを設定するためのSSH/コンソールアクセス</td>
+</tr>
+<tr>
+<td><strong>インターネット接続</strong></td>
+<td>メトリクスのパブリッシュとコントローラーからの設定取得のため</td>
+</tr>
+<tr>
+<td><strong>パブリックIPv4ブロック</strong></td>
+<td>DZプレフィックスプール用の最小/29（以下参照）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="doublezero-cli">DoubleZero CLIのインストール</h3>
+<p>DoubleZero CLI（<code>doublezero</code>）はプロビジョニング全体でデバイスの登録、リンクの作成、貢献の管理に使用されます。DZDスイッチ自体ではなく、<strong>管理サーバーまたはVM</strong>にインストールする必要があります。スイッチはConfig AgentとTelemetry Agentのみを実行します（<a href="#phase-4-link-establishment-agent-installation">フェーズ4</a>でインストール）。</p>
+<p><strong>Ubuntu / Debian：</strong>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-1sLf<span class="w"> </span>https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>-E<span class="w"> </span>bash
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>doublezero
+</code></pre></div></p>
+<p><strong>Rocky Linux / RHEL：</strong>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-1sLf<span class="w"> </span>https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>-E<span class="w"> </span>bash
+sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>doublezero
+</code></pre></div></p>
+<p>デーモンが実行中であることを確認します：
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>doublezerod
+</code></pre></div></p>
+<h3 id="dz">DZプレフィックスについて</h3>
+<p>DZプレフィックスはDoubleZeroプロトコルがIP割り当てに管理するパブリックIPアドレスのブロックです。</p>
+<pre class="mermaid"><code>flowchart LR
+    subgraph "あなたの/29ブロック（8 IP）"
+        IP1["最初のIP&lt;br/&gt;デバイス用に&lt;br/&gt;予約"]
+        IP2["IP 2"]
+        IP3["IP 3"]
+        IP4["..."]
+        IP8["IP 8"]
+    end
+
+    IP1 --&gt;|割り当て先| LO[DZD上の&lt;br/&gt;Loopback100]
+    IP2 --&gt;|割り当て先| U1[ユーザー1]
+    IP3 --&gt;|割り当て先| U2[ユーザー2]</code></pre>
+<p><strong>DZプレフィックスの使用方法：</strong></p>
+<ul>
+<li><strong>最初のIP</strong>：デバイス用に予約（Loopback100インターフェースに割り当て）</li>
+<li><strong>残りのIP</strong>：DZDに接続する特定のユーザータイプに割り当て：<ul>
+<li><code>IBRLWithAllocatedIP</code>ユーザー</li>
+<li><code>EdgeFiltering</code>ユーザー</li>
+<li>マルチキャストパブリッシャー</li>
+</ul>
+</li>
+<li><strong>IBRLユーザー</strong>：このプールを消費しません（独自のパブリックIPを使用）</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">DZプレフィックスルール</p>
+<p><strong>これらのアドレスは以下に使用できません：</strong></p>
+<ul>
+<li>自社のネットワーク機器</li>
+<li>DIAインターフェースのポイントツーポイントリンク</li>
+<li>管理インターフェース</li>
+<li>DZプロトコル外のインフラ</li>
+</ul>
+<p><strong>要件：</strong></p>
+<ul>
+<li><strong>グローバルにルーティング可能（パブリック）</strong>なIPv4アドレスである必要があります</li>
+<li>プライベートIP範囲（10.x、172.16-31.x、192.168.x）はスマートコントラクトで拒否されます</li>
+<li><strong>最小サイズ：/29</strong>（8アドレス）、大きなプレフィックス推奨（例：/28、/27）</li>
+<li>ブロック全体が利用可能である必要があります — アドレスを事前に割り当てないでください</li>
+</ul>
+<p>自社の機器用にアドレスが必要な場合（DIAインターフェースIP、管理など）は、<strong>別のアドレスプール</strong>を使用してください。</p>
+</div>
+<hr />
+<h2 id="2">フェーズ2：アカウントのセットアップ</h2>
+<p>このフェーズでは、ネットワーク上でアカウントとデバイスを識別する暗号鍵を作成します。</p>
+<h3 id="cli">CLIを実行する場所</h3>
+<div class="admonition warning">
+<p class="admonition-title">スイッチにCLIをインストールしないでください</p>
+<p>DoubleZero CLI（<code>doublezero</code>）はAristaスイッチではなく、<strong>管理サーバーまたはVM</strong>にインストールする必要があります。</p>
+<pre class="mermaid"><code>flowchart LR
+    subgraph "管理サーバー/VM"
+        CLI[DoubleZero CLI]
+        KEYS[キーペア]
+    end
+
+    subgraph "DZDスイッチ"
+        CA[Config Agent]
+        TA[Telemetry Agent]
+    end
+
+    CLI --&gt;|デバイス、リンクを作成| BC[ブロックチェーン]
+    CA --&gt;|設定を取得| CTRL[コントローラー]
+    TA --&gt;|メトリクスを送信| BC</code></pre>
+<table>
+<thead>
+<tr>
+<th>管理サーバーにインストール</th>
+<th>スイッチにインストール</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>doublezero</code> CLI</td>
+<td>Config Agent</td>
+</tr>
+<tr>
+<td>サービスキーペア</td>
+<td>Telemetry Agent</td>
+</tr>
+<tr>
+<td>メトリクスパブリッシャーキーペア</td>
+<td>メトリクスパブリッシャーキーペア（コピー）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="_4">キーとは？</h3>
+<p>キーは安全なログイン認証情報のようなものです：</p>
+<ul>
+<li><strong>サービスキー</strong>：コントリビューターアイデンティティ - CLIコマンドの実行に使用</li>
+<li><strong>メトリクスパブリッシャーキー</strong>：テレメトリデータを送信するためのデバイスアイデンティティ</li>
+</ul>
+<p>どちらも暗号鍵ペア（共有する公開鍵と秘密に保持する秘密鍵）です。</p>
+<pre class="mermaid"><code>flowchart LR
+    subgraph "あなたのキー"
+        SK[サービスキー&lt;br/&gt;~/.config/solana/id.json]
+        MK[メトリクスパブリッシャーキー&lt;br/&gt;~/.config/doublezero/metrics-publisher.json]
+    end
+
+    SK --&gt;|使用先| CLI[CLIコマンド&lt;br/&gt;doublezero device create&lt;br/&gt;doublezero link create]
+    MK --&gt;|使用先| TEL[Telemetry Agent&lt;br/&gt;メトリクスをオンチェーンに送信]</code></pre>
+<h3 id="21">ステップ2.1：サービスキーの生成</h3>
+<p>これはDoubleZeroと対話するためのメインアイデンティティです。</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>keygen
+</code></pre></div>
+<p>これにより、デフォルトの場所にキーペアが作成されます。出力には<strong>公開鍵</strong>が表示されます - これをDZFと共有します。</p>
+<h3 id="22">ステップ2.2：メトリクスパブリッシャーキーの生成</h3>
+<p>このキーはTelemetry Agentがメトリクス送信に署名するために使用します。</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>keygen<span class="w"> </span>-o<span class="w"> </span>~/.config/doublezero/metrics-publisher.json
+</code></pre></div>
+<h3 id="23dzf">ステップ2.3：DZFへのキーの提出</h3>
+<p>DoubleZero FoundationまたはMalbec Labsに連絡し、以下を提供します：</p>
+<ol>
+<li><strong>サービスキーの公開鍵</strong></li>
+<li><strong>GitHubユーザー名</strong>（リポジトリアクセスのため）</li>
+</ol>
+<p>DZFは以下を行います：</p>
+<ul>
+<li><strong>コントリビューターアカウント</strong>をオンチェーンで作成</li>
+<li>プライベートな<strong>contributorsリポジトリ</strong>へのアクセスを付与</li>
+</ul>
+<h3 id="24">ステップ2.4：アカウントの確認</h3>
+<p>確認後、コントリビューターアカウントが存在することを確認します：</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>contributor<span class="w"> </span>list
+</code></pre></div>
+<p>一覧にコントリビューターコードが表示されるはずです。</p>
+<h3 id="25contributors">ステップ2.5：Contributorsリポジトリへのアクセス</h3>
+<p><a href="https://github.com/malbeclabs/contributors">malbeclabs/contributors</a>リポジトリには以下が含まれています：</p>
+<ul>
+<li>ベースデバイス設定</li>
+<li>TCAMプロファイル</li>
+<li>ACL設定</li>
+<li>追加セットアップ手順</li>
+</ul>
+<p>デバイス固有の設定については、そこの指示に従ってください。</p>
+<hr />
+<h2 id="3">フェーズ3：デバイスプロビジョニング</h2>
+<p>ここでは物理的なデバイスをブロックチェーンに登録し、インターフェースを設定します。</p>
+<h3 id="_5">デバイスタイプについて</h3>
+<pre class="mermaid"><code>flowchart TB
+    subgraph "エッジデバイス"
+        E[エッジDZD]
+        EU[ユーザーはここに接続]
+        EU --&gt; E
+        E &lt;--&gt;|DZXリンク| ED[他のDZD]
+    end
+
+    subgraph "トランジットデバイス"
+        T[トランジットDZD]
+        T &lt;--&gt;|WANリンク| T2[別のDZD]
+        T &lt;--&gt;|DZXリンク| TD[他のDZD]
+    end
+
+    subgraph "ハイブリッドデバイス"
+        H[ハイブリッドDZD]
+        HU[ユーザーはここに接続]
+        HU --&gt; H
+        H &lt;--&gt;|WANリンク| H2[別のDZD]
+        H &lt;--&gt;|DZXリンク| HD[他のDZD]
+    end</code></pre>
+<table>
+<thead>
+<tr>
+<th>タイプ</th>
+<th>機能</th>
+<th>使用するとき</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>エッジ</strong></td>
+<td>ユーザー接続のみを受け入れる</td>
+<td>単一ロケーション、ユーザー向けのみ</td>
+</tr>
+<tr>
+<td><strong>トランジット</strong></td>
+<td>デバイス間のトラフィックを移動</td>
+<td>バックボーン接続、ユーザーなし</td>
+</tr>
+<tr>
+<td><strong>ハイブリッド</strong></td>
+<td>ユーザー接続とバックボーンの両方</td>
+<td>最も一般的 - すべてを行う</td>
+</tr>
+</tbody>
+</table>
+<h3 id="31">ステップ3.1：ロケーションとエクスチェンジを調べる</h3>
+<p>デバイスを作成する前に、データセンターの場所と最寄りのエクスチェンジのコードを調べます：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 利用可能なロケーション（データセンター）を一覧表示</span>
+doublezero<span class="w"> </span>location<span class="w"> </span>list
+
+<span class="c1"># 利用可能なエクスチェンジ（相互接続ポイント）を一覧表示</span>
+doublezero<span class="w"> </span>exchange<span class="w"> </span>list
+</code></pre></div>
+<h3 id="32">ステップ3.2：デバイスをオンチェーンで作成する</h3>
+<p>ブロックチェーンにデバイスを登録します：</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>device<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--code<span class="w"> </span>&lt;デバイスコード&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--contributor<span class="w"> </span>&lt;コントリビューターコード&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--device-type<span class="w"> </span>hybrid<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--location<span class="w"> </span>&lt;ロケーションコード&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--exchange<span class="w"> </span>&lt;エクスチェンジコード&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--public-ip<span class="w"> </span>&lt;デバイスパブリックIP&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dz-prefixes<span class="w"> </span>&lt;DZプレフィックス&gt;
+</code></pre></div>
+<p><strong>例：</strong></p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>device<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--code<span class="w"> </span>nyc-dz001<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--contributor<span class="w"> </span>acme<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--device-type<span class="w"> </span>hybrid<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--location<span class="w"> </span>EQX-NY5<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--exchange<span class="w"> </span>nyc<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--public-ip<span class="w"> </span><span class="s2">&quot;203.0.113.10&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dz-prefixes<span class="w"> </span><span class="s2">&quot;198.51.100.0/28&quot;</span>
+</code></pre></div>
+<p><strong>期待される出力：</strong></p>
+<div class="highlight"><pre><span></span><code>Signature: 4vKz8H...truncated...7xPq2
+</code></pre></div>
+<p>デバイスが作成されたことを確認します：</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>device<span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>nyc-dz001
+</code></pre></div>
+<p><strong>パラメーターの説明：</strong></p>
+<table>
+<thead>
+<tr>
+<th>パラメーター</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--code</code></td>
+<td>デバイスの一意の名前（例：<code>nyc-dz001</code>）</td>
+</tr>
+<tr>
+<td><code>--contributor</code></td>
+<td>コントリビューターコード（DZFから付与）</td>
+</tr>
+<tr>
+<td><code>--device-type</code></td>
+<td><code>hybrid</code>、<code>transit</code>、または<code>edge</code></td>
+</tr>
+<tr>
+<td><code>--location</code></td>
+<td><code>location list</code>からのデータセンターコード</td>
+</tr>
+<tr>
+<td><code>--exchange</code></td>
+<td><code>exchange list</code>からの最寄りエクスチェンジコード</td>
+</tr>
+<tr>
+<td><code>--public-ip</code></td>
+<td>ユーザーがインターネット経由でデバイスに接続するパブリックIP</td>
+</tr>
+<tr>
+<td><code>--dz-prefixes</code></td>
+<td>ユーザー用の割り当てIPブロック</td>
+</tr>
+</tbody>
+</table>
+<h3 id="33">ステップ3.3：必要なループバックインターフェースを作成する</h3>
+<p>すべてのデバイスには内部ルーティング用の2つのループバックインターフェースが必要です：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># VPNv4ループバック</span>
+doublezero<span class="w"> </span>device<span class="w"> </span>interface<span class="w"> </span>create<span class="w"> </span>&lt;デバイスコード&gt;<span class="w"> </span>Loopback255<span class="w"> </span>--loopback-type<span class="w"> </span>vpnv4
+
+<span class="c1"># IPv4ループバック</span>
+doublezero<span class="w"> </span>device<span class="w"> </span>interface<span class="w"> </span>create<span class="w"> </span>&lt;デバイスコード&gt;<span class="w"> </span>Loopback256<span class="w"> </span>--loopback-type<span class="w"> </span>ipv4
+</code></pre></div>
+<p><strong>期待される出力（各コマンド）：</strong></p>
+<div class="highlight"><pre><span></span><code>Signature: 3mNx9K...truncated...8wRt5
+</code></pre></div>
+<h3 id="34">ステップ3.4：物理インターフェースを作成する</h3>
+<p>使用する物理ポートを登録します：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 基本インターフェース</span>
+doublezero<span class="w"> </span>device<span class="w"> </span>interface<span class="w"> </span>create<span class="w"> </span>&lt;デバイスコード&gt;<span class="w"> </span>Ethernet1/1
+</code></pre></div>
+<p><strong>期待される出力：</strong></p>
+<div class="highlight"><pre><span></span><code>Signature: 7pQw2R...truncated...4xKm9
+</code></pre></div>
+<h3 id="35cyoa">ステップ3.5：CYOAインターフェースを作成する（エッジ/ハイブリッドデバイスの場合）</h3>
+<p>デバイスがユーザー接続を受け入れる場合、CYOA（Choose Your Own Adventure）インターフェースが必要です。これにより、ユーザーがどのように接続するかをシステムに伝えます。</p>
+<p><strong>CYOAタイプの説明：</strong></p>
+<table>
+<thead>
+<tr>
+<th>タイプ</th>
+<th>わかりやすい説明</th>
+<th>使用する場合</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gre-over-dia</code></td>
+<td>ユーザーが通常のインターネット経由で接続</td>
+<td>最も一般的 - ユーザーがDIAを通じてDZDに接続</td>
+</tr>
+<tr>
+<td><code>gre-over-private-peering</code></td>
+<td>ユーザーがプライベートリンク経由で接続</td>
+<td>ユーザーがネットワークに直接接続</td>
+</tr>
+<tr>
+<td><code>gre-over-public-peering</code></td>
+<td>ユーザーがIX経由で接続</td>
+<td>ユーザーがインターネットエクスチェンジでピアリング</td>
+</tr>
+<tr>
+<td><code>gre-over-fabric</code></td>
+<td>ユーザーが同じローカルネットワーク上</td>
+<td>ユーザーが同じデータセンターに存在</td>
+</tr>
+<tr>
+<td><code>gre-over-cable</code></td>
+<td>ユーザーへの直接ケーブル</td>
+<td>単一専用ユーザー</td>
+</tr>
+</tbody>
+</table>
+<p><strong>例 - 標準インターネットユーザー：</strong></p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>device<span class="w"> </span>interface<span class="w"> </span>create<span class="w"> </span>&lt;デバイスコード&gt;<span class="w"> </span>Ethernet1/2<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--interface-cyoa<span class="w"> </span>gre-over-dia<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--interface-dia<span class="w"> </span>dia<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--bandwidth<span class="w"> </span><span class="m">10000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cir<span class="w"> </span><span class="m">1000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--user-tunnel-endpoint<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--wait
+</code></pre></div>
+<p><strong>期待される出力：</strong></p>
+<div class="highlight"><pre><span></span><code>Signature: 2wLp8N...truncated...5vHt3
+</code></pre></div>
+<p><strong>パラメーターの説明：</strong></p>
+<table>
+<thead>
+<tr>
+<th>パラメーター</th>
+<th>意味</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--interface-cyoa</code></td>
+<td>ユーザーの接続方法（上記テーブル参照）</td>
+</tr>
+<tr>
+<td><code>--interface-dia</code></td>
+<td>これがインターネット向きポートの場合は<code>dia</code></td>
+</tr>
+<tr>
+<td><code>--bandwidth</code></td>
+<td>Mbpsのポート速度（10000 = 10Gbps）</td>
+</tr>
+<tr>
+<td><code>--cir</code></td>
+<td>Mbpsのコミット済みレート（保証帯域幅）</td>
+</tr>
+<tr>
+<td><code>--user-tunnel-endpoint</code></td>
+<td>このポートはユーザートンネルを受け入れる</td>
+</tr>
+</tbody>
+</table>
+<h3 id="36">ステップ3.6：デバイスを確認する</h3>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>device<span class="w"> </span>list
+</code></pre></div>
+<p><strong>出力例：</strong></p>
+<div class="highlight"><pre><span></span><code> account                                      | code      | contributor | location | exchange | device_type | public_ip    | dz_prefixes     | users | max_users | status    | health  | mgmt_vrf | owner
+ 7xKm9pQw2R4vHt3...                          | nyc-dz001 | acme        | EQX-NY5  | nyc      | hybrid      | 203.0.113.10 | 198.51.100.0/28 | 0     | 14        | activated | pending |          | 5FMtd5Woq5XAAg54...
+</code></pre></div>
+<p>デバイスはステータス<code>activated</code>で表示されるはずです。</p>
+<hr />
+<h2 id="4">フェーズ4：リンク確立とエージェントインストール</h2>
+<p>リンクはデバイスをDoubleZeroネットワークの残りの部分に接続します。</p>
+<h3 id="_6">リンクについて</h3>
+<pre class="mermaid"><code>flowchart LR
+    subgraph "あなたのネットワーク"
+        D1[あなたのDZD 1&lt;br/&gt;NYC]
+        D2[あなたのDZD 2&lt;br/&gt;LAX]
+    end
+
+    subgraph "他のコントリビューター"
+        O1[彼らのDZD&lt;br/&gt;NYC]
+    end
+
+    D1 ---|WANリンク&lt;br/&gt;同一コントリビューター| D2
+    D1 ---|DZXリンク&lt;br/&gt;異なるコントリビューター| O1</code></pre>
+<table>
+<thead>
+<tr>
+<th>リンクタイプ</th>
+<th>接続先</th>
+<th>承認</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>WANリンク</strong></td>
+<td>あなたの2つのデバイス</td>
+<td>自動（両方を所有）</td>
+</tr>
+<tr>
+<td><strong>DZXリンク</strong></td>
+<td>あなたのデバイスと別のコントリビューターのデバイス</td>
+<td>相手の承認が必要</td>
+</tr>
+</tbody>
+</table>
+<h3 id="41wan">ステップ4.1：WANリンクを作成する（複数のデバイスがある場合）</h3>
+<p>WANリンクは自分のデバイスを接続します：</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>link<span class="w"> </span>create<span class="w"> </span>wan<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--code<span class="w"> </span>&lt;リンクコード&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--contributor<span class="w"> </span>&lt;コントリビューター&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--side-a<span class="w"> </span>&lt;デバイス1のコード&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--side-a-interface<span class="w"> </span>&lt;デバイス1のインターフェース&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--side-z<span class="w"> </span>&lt;デバイス2のコード&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--side-z-interface<span class="w"> </span>&lt;デバイス2のインターフェース&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--bandwidth<span class="w"> </span><span class="m">10000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--mtu<span class="w"> </span><span class="m">9000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--delay-ms<span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--jitter-ms<span class="w"> </span><span class="m">1</span>
+</code></pre></div>
+<p><strong>例：</strong></p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>link<span class="w"> </span>create<span class="w"> </span>wan<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--code<span class="w"> </span>nyc-lax-wan01<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--contributor<span class="w"> </span>acme<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--side-a<span class="w"> </span>nyc-dz001<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--side-a-interface<span class="w"> </span>Ethernet3/1<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--side-z<span class="w"> </span>lax-dz001<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--side-z-interface<span class="w"> </span>Ethernet3/1<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--bandwidth<span class="w"> </span><span class="m">10000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--mtu<span class="w"> </span><span class="m">9000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--delay-ms<span class="w"> </span><span class="m">65</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--jitter-ms<span class="w"> </span><span class="m">1</span>
+</code></pre></div>
+<p><strong>期待される出力：</strong></p>
+<div class="highlight"><pre><span></span><code>Signature: 5tNm7K...truncated...9pRw2
+</code></pre></div>
+<h3 id="42dzx">ステップ4.2：DZXリンクを作成する</h3>
+<p>DZXリンクはデバイスを別のコントリビューターのDZDに直接接続します：</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>link<span class="w"> </span>create<span class="w"> </span>dzx<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--code<span class="w"> </span>&lt;デバイスコードA:デバイスコードZ&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--contributor<span class="w"> </span>&lt;コントリビューター&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--side-a<span class="w"> </span>&lt;あなたのデバイスコード&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--side-a-interface<span class="w"> </span>&lt;あなたのインターフェース&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--side-z<span class="w"> </span>&lt;他のデバイスコード&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--bandwidth<span class="w"> </span>&lt;帯域幅<span class="w"> </span>Kbps、Mbps、またはGbps&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--mtu<span class="w"> </span>&lt;MTU&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--delay-ms<span class="w"> </span>&lt;遅延&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--jitter-ms<span class="w"> </span>&lt;ジッター&gt;
+</code></pre></div>
+<p><strong>期待される出力：</strong></p>
+<div class="highlight"><pre><span></span><code>Signature: 8mKp3W...truncated...2nRx7
+</code></pre></div>
+<p>DZXリンクを作成した後、他のコントリビューターがそれを承認する必要があります：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 他のコントリビューターがこれを実行する</span>
+doublezero<span class="w"> </span>link<span class="w"> </span>accept<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--code<span class="w"> </span>&lt;リンクコード&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--side-z-interface<span class="w"> </span>&lt;彼らのインターフェース&gt;
+</code></pre></div>
+<p><strong>期待される出力（承認するコントリビューター用）：</strong></p>
+<div class="highlight"><pre><span></span><code>Signature: 6vQt9L...truncated...3wPm4
+</code></pre></div>
+<h3 id="43">ステップ4.3：リンクを確認する</h3>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>link<span class="w"> </span>list
+</code></pre></div>
+<p><strong>出力例：</strong></p>
+<div class="highlight"><pre><span></span><code> account                                      | code          | contributor | side_a_name | side_a_iface_name | side_z_name | side_z_iface_name | link_type | bandwidth | mtu  | delay_ms | jitter_ms | delay_override_ms | tunnel_id | tunnel_net      | status    | health  | owner
+ 8vkYpXaBW8RuknJq...                         | nyc-dz001:lax-dz001 | acme        | nyc-dz001   | Ethernet3/1       | lax-dz001   | Ethernet3/1       | WAN       | 10Gbps    | 9000 | 65.00ms  | 1.00ms    | 0.00ms            | 42        | 172.16.0.84/31  | activated | pending | 5FMtd5Woq5XAAg54...
+</code></pre></div>
+<p>両側が設定されるとリンクはステータス<code>activated</code>を表示するはずです。</p>
+<hr />
+<h3 id="_7">エージェントのインストール</h3>
+<p>2つのソフトウェアエージェントがDZDで実行されます：</p>
+<pre class="mermaid"><code>flowchart TB
+    subgraph "あなたのDZD"
+        CA[Config Agent]
+        TA[Telemetry Agent]
+        HW[スイッチハードウェア/ソフトウェア]
+    end
+
+    CA --&gt;|設定をポーリング| CTRL[コントローラーサービス]
+    CA --&gt;|設定を適用| HW
+
+    HW --&gt;|メトリクス| TA
+    TA --&gt;|オンチェーンに送信| BC[DoubleZeroレジャー]</code></pre>
+<table>
+<thead>
+<tr>
+<th>エージェント</th>
+<th>機能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Config Agent</strong></td>
+<td>コントローラーから設定を取得し、スイッチに適用する</td>
+</tr>
+<tr>
+<td><strong>Telemetry Agent</strong></td>
+<td>他のデバイスへのレイテンシ/ロスを測定し、メトリクスをオンチェーンに報告する</td>
+</tr>
+</tbody>
+</table>
+<h3 id="44config-agent">ステップ4.4：Config Agentのインストール</h3>
+<h4 id="api">スイッチでAPIを有効にする</h4>
+<p>EOS設定に追加します：</p>
+<div class="highlight"><pre><span></span><code>management api eos-sdk-rpc
+    transport grpc eapilocal
+        localhost loopback vrf default
+        service all
+        no disabled
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">VRFに関する注意</p>
+<p>異なる場合（例：<code>management</code>）は<code>default</code>を管理VRF名に置き換えてください。</p>
+</div>
+<h4 id="_8">エージェントのダウンロードとインストール</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># スイッチでbashに入る</span>
+switch#<span class="w"> </span>bash
+$<span class="w"> </span>sudo<span class="w"> </span>bash
+<span class="c1"># cd /mnt/flash</span>
+<span class="c1"># wget AGENT_DOWNLOAD_URL</span>
+<span class="c1"># exit</span>
+$<span class="w"> </span><span class="nb">exit</span>
+
+<span class="c1"># EOS拡張機能としてインストール</span>
+switch#<span class="w"> </span>copy<span class="w"> </span>flash:AGENT_FILENAME<span class="w"> </span>extension:
+switch#<span class="w"> </span>extension<span class="w"> </span>AGENT_FILENAME
+switch#<span class="w"> </span>copy<span class="w"> </span>installed-extensions<span class="w"> </span>boot-extensions
+</code></pre></div>
+<h4 id="_9">拡張機能を確認する</h4>
+<div class="highlight"><pre><span></span><code>switch#<span class="w"> </span>show<span class="w"> </span>extensions
+</code></pre></div>
+<p>ステータスは"A, I, B"であるべきです：</p>
+<div class="highlight"><pre><span></span><code>Name                                        Version/Release     Status     Extension
+------------------------------------------- ------------------- ---------- ---------
+AGENT_FILENAME    MAINNET_CLIENT_VERSION/1             A, I, B    1
+
+A: available | NA: not available | I: installed | F: forced | B: install at boot
+</code></pre></div>
+<h4 id="_10">エージェントを設定して起動する</h4>
+<p>EOS設定に追加します：</p>
+<div class="highlight"><pre><span></span><code>daemon doublezero-agent
+    exec /usr/local/bin/doublezero-agent -pubkey &lt;デバイス公開鍵&gt;
+    no shut
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">VRFに関する注意</p>
+<p>管理VRFが<code>default</code>でない場合（つまり名前空間が<code>ns-default</code>でない場合）、execコマンドに<code>exec /sbin/ip netns exec ns-&lt;VRF&gt;</code>をプレフィックスします。例えば、VRFが<code>management</code>の場合：
+<div class="highlight"><pre><span></span><code>daemon doublezero-agent
+    exec /sbin/ip netns exec ns-management /usr/local/bin/doublezero-agent -pubkey &lt;デバイス公開鍵&gt;
+    no shut
+</code></pre></div></p>
+</div>
+<p>デバイスの公開鍵は<code>doublezero device list</code>（<code>account</code>列）から取得します。</p>
+<h4 id="_11">実行中であることを確認する</h4>
+<div class="highlight"><pre><span></span><code>switch#<span class="w"> </span>show<span class="w"> </span>agent<span class="w"> </span>doublezero-agent<span class="w"> </span>logs
+</code></pre></div>
+<p>"Starting doublezero-agent"とコントローラー接続の成功が表示されるはずです。</p>
+<h3 id="45telemetry-agent">ステップ4.5：Telemetry Agentのインストール</h3>
+<h4 id="_12">メトリクスパブリッシャーキーをデバイスにコピーする</h4>
+<div class="highlight"><pre><span></span><code>scp<span class="w"> </span>~/.config/doublezero/metrics-publisher.json<span class="w"> </span>&lt;スイッチIP&gt;:/mnt/flash/metrics-publisher-keypair.json
+</code></pre></div>
+<h4 id="_13">メトリクスパブリッシャーをオンチェーンに登録する</h4>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>device<span class="w"> </span>update<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pubkey<span class="w"> </span>&lt;デバイスアカウント&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--metrics-publisher<span class="w"> </span>&lt;メトリクスパブリッシャー公開鍵&gt;
+</code></pre></div>
+<p>公開鍵はmetrics-publisher.jsonファイルから取得します。</p>
+<h4 id="_14">エージェントのダウンロードとインストール</h4>
+<div class="highlight"><pre><span></span><code>switch#<span class="w"> </span>bash
+$<span class="w"> </span>sudo<span class="w"> </span>bash
+<span class="c1"># cd /mnt/flash</span>
+<span class="c1"># wget TELEMETRY_DOWNLOAD_URL</span>
+<span class="c1"># exit</span>
+$<span class="w"> </span><span class="nb">exit</span>
+
+<span class="c1"># EOS拡張機能としてインストール</span>
+switch#<span class="w"> </span>copy<span class="w"> </span>flash:TELEMETRY_FILENAME<span class="w"> </span>extension:
+switch#<span class="w"> </span>extension<span class="w"> </span>TELEMETRY_FILENAME
+switch#<span class="w"> </span>copy<span class="w"> </span>installed-extensions<span class="w"> </span>boot-extensions
+</code></pre></div>
+<h4 id="_15">拡張機能を確認する</h4>
+<div class="highlight"><pre><span></span><code>switch#<span class="w"> </span>show<span class="w"> </span>extensions
+</code></pre></div>
+<p>ステータスは"A, I, B"であるべきです：</p>
+<div class="highlight"><pre><span></span><code>Name                                        Version/Release     Status     Extension
+------------------------------------------- ------------------- ---------- ---------
+TELEMETRY_FILENAME    MAINNET_CLIENT_VERSION/1             A, I, B    1
+
+A: available | NA: not available | I: installed | F: forced | B: install at boot
+</code></pre></div>
+<h4 id="_16">エージェントを設定して起動する</h4>
+<p>EOS設定に追加します：</p>
+<div class="highlight"><pre><span></span><code>daemon doublezero-telemetry
+    exec /usr/local/bin/doublezero-telemetry --local-device-pubkey &lt;デバイスアカウント&gt; --env mainnet --keypair /mnt/flash/metrics-publisher-keypair.json
+    no shut
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">VRFに関する注意</p>
+<p>管理VRFが<code>default</code>でない場合（つまり名前空間が<code>ns-default</code>でない場合）、execコマンドに<code>--management-namespace ns-&lt;VRF&gt;</code>を追加します。例えば、VRFが<code>management</code>の場合：
+<div class="highlight"><pre><span></span><code>daemon doublezero-telemetry
+    exec /usr/local/bin/doublezero-telemetry --management-namespace ns-management --local-device-pubkey &lt;デバイスアカウント&gt; --env mainnet --keypair /mnt/flash/metrics-publisher-keypair.json
+    no shut
+</code></pre></div></p>
+</div>
+<h4 id="_17">実行中であることを確認する</h4>
+<div class="highlight"><pre><span></span><code>switch#<span class="w"> </span>show<span class="w"> </span>agent<span class="w"> </span>doublezero-telemetry<span class="w"> </span>logs
+</code></pre></div>
+<p>"Starting telemetry collector"と"Starting submission loop"が表示されるはずです。</p>
+<hr />
+<h2 id="5">フェーズ5：リンクのバーンイン</h2>
+<div class="admonition warning">
+<p class="admonition-title">すべての新しいリンクはトラフィックを運ぶ前にバーンインする必要があります</p>
+<p>新しいリンクは本番トラフィックのためにアクティベートされる前に、<strong>少なくとも24時間ドレインする必要があります</strong>。このバーンイン要件は<a href="https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc12-network-provisioning.md">RFC12: Network Provisioning</a>で定義されており、リンクがサービス準備完了になる前に約200,000 DZ Ledgerスロット（約20時間）のクリーンなメトリクスが必要です。</p>
+</div>
+<p>エージェントがインストールされて実行中になったら、少なくとも24時間連続して<a href="https://metrics.doublezero.xyz">metrics.doublezero.xyz</a>でリンクを監視します：</p>
+<ul>
+<li><strong>"DoubleZero Device-Link Latencies"</strong>ダッシュボード — 時間経過によるリンクの<strong>ゼロパケットロス</strong>を確認</li>
+<li><strong>"DoubleZero Network Metrics"</strong>ダッシュボード — リンクの<strong>ゼロエラー</strong>を確認</li>
+</ul>
+<p>バーンイン期間がゼロロスとゼロエラーのクリーンなリンクを示した後にのみ、リンクのドレインを解除してください。</p>
+<hr />
+<h2 id="6">フェーズ6：確認とアクティベーション</h2>
+<p>すべてが機能していることを確認するために、このチェックリストを実行します。</p>
+<div class="admonition warning">
+<p class="admonition-title">デバイスはロック状態（<code>max_users = 0</code>）で開始します</p>
+<p>デバイスが作成されると、<code>max_users</code>はデフォルトで<strong>0</strong>に設定されます。これはまだユーザーが接続できないことを意味します。これは意図的なものです — ユーザートラフィックを受け入れる前にすべてが機能していることを確認する必要があります。</p>
+<p><strong><code>max_users</code>を0以上に設定する前に、以下を実行する必要があります：</strong></p>
+<ol>
+<li>すべてのリンクが<a href="https://metrics.doublezero.xyz">metrics.doublezero.xyz</a>でゼロロス/エラーの<strong>24時間バーンイン</strong>を完了したことを確認</li>
+<li><strong>DZ/Malbec Labsと協力</strong>して接続テストを実行：<ul>
+<li>テストユーザーはデバイスに接続できますか？</li>
+<li>ユーザーはDZネットワーク上でルートを受信しますか？</li>
+<li>ユーザーはDZネットワークエンドツーエンドでトラフィックをルーティングできますか？</li>
+</ul>
+</li>
+<li>DZ/MLがテスト合格を確認した後にのみ、max_usersを96に設定します：</li>
+</ol>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>device<span class="w"> </span>update<span class="w"> </span>--pubkey<span class="w"> </span>&lt;デバイスアカウント&gt;<span class="w"> </span>--max-users<span class="w"> </span><span class="m">96</span>
+</code></pre></div>
+</div>
+<h3 id="_18">デバイスの確認</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># デバイスはステータス&quot;activated&quot;で表示されるべき</span>
+doublezero<span class="w"> </span>device<span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>&lt;デバイスコード&gt;
+</code></pre></div>
+<p><strong>期待される出力：</strong></p>
+<div class="highlight"><pre><span></span><code> 7xKm9pQw2R4vHt3... | nyc-dz001 | acme | EQX-NY5 | nyc | hybrid | 203.0.113.10 | 198.51.100.0/28 | 0 | 14 | activated | pending | | 5FMtd5Woq5XAAg54...
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># インターフェースが一覧表示されるべき</span>
+doublezero<span class="w"> </span>device<span class="w"> </span>interface<span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>&lt;デバイスコード&gt;
+</code></pre></div>
+<p><strong>期待される出力：</strong></p>
+<div class="highlight"><pre><span></span><code> nyc-dz001 | Loopback255 | loopback | vpnv4 | none | none | 0 | 0 | 1500 | static | 0 | 172.16.1.91/32  | 56 | false | activated
+ nyc-dz001 | Loopback256 | loopback | ipv4  | none | none | 0 | 0 | 1500 | static | 0 | 172.16.1.100/32 | 0  | false | activated
+ nyc-dz001 | Ethernet1/1 | physical | none  | none | none | 0 | 0 | 1500 | static | 0 |                 | 0  | false | activated
+</code></pre></div>
+<h3 id="_19">リンクの確認</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># リンクはステータス&quot;activated&quot;を表示するべき</span>
+doublezero<span class="w"> </span>link<span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>&lt;デバイスコード&gt;
+</code></pre></div>
+<p><strong>期待される出力：</strong></p>
+<div class="highlight"><pre><span></span><code> 8vkYpXaBW8RuknJq... | nyc-lax-wan01 | acme | nyc-dz001 | Ethernet3/1 | lax-dz001 | Ethernet3/1 | WAN | 10Gbps | 9000 | 65.00ms | 1.00ms | 0.00ms | 42 | 172.16.0.84/31 | activated | pending | 5FMtd5Woq5XAAg54...
+</code></pre></div>
+<h3 id="_20">エージェントの確認</h3>
+<p>スイッチ上で：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Config Agentは設定プルの成功を表示するべき</span>
+switch#<span class="w"> </span>show<span class="w"> </span>agent<span class="w"> </span>doublezero-agent<span class="w"> </span>logs<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-20
+
+<span class="c1"># Telemetry Agentは送信の成功を表示するべき</span>
+switch#<span class="w"> </span>show<span class="w"> </span>agent<span class="w"> </span>doublezero-telemetry<span class="w"> </span>logs<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-20
+</code></pre></div>
+<h3 id="_21">最終確認図</h3>
+<pre class="mermaid"><code>flowchart TB
+    subgraph "確認チェックリスト"
+        D[デバイスステータス: activated?]
+        I[インターフェース: 登録済み?]
+        L[リンク: activated?]
+        CA[Config Agent: 設定を取得中?]
+        TA[Telemetry Agent: メトリクスを送信中?]
+    end
+
+    D --&gt; PASS
+    I --&gt; PASS
+    L --&gt; PASS
+    CA --&gt; PASS
+    TA --&gt; PASS
+
+    PASS[すべての確認に合格] --&gt; NOTIFY[DZF/Malbec Labsに通知&lt;br/&gt;技術的に準備完了です！]</code></pre>
+<hr />
+<h2 id="_22">トラブルシューティング</h2>
+<h3 id="_23">デバイス作成に失敗する</h3>
+<ul>
+<li>サービスキーが承認されていることを確認（<code>doublezero contributor list</code>）</li>
+<li>ロケーションとエクスチェンジコードが有効であることを確認</li>
+<li>DZプレフィックスが有効なパブリックIP範囲であることを確認</li>
+</ul>
+<h3 id="requested">リンクが"requested"ステータスから動かない</h3>
+<ul>
+<li>DZXリンクは他のコントリビューターの承認が必要</li>
+<li><code>doublezero link accept</code>を実行するよう連絡する</li>
+</ul>
+<h3 id="config-agent">Config Agentが接続しない</h3>
+<ul>
+<li>管理ネットワークがインターネットアクセスを持っていることを確認</li>
+<li>VRF設定がセットアップに一致していることを確認</li>
+<li>デバイスの公開鍵が正しいことを確認</li>
+</ul>
+<h3 id="telemetry-agent">Telemetry Agentが送信しない</h3>
+<ul>
+<li>メトリクスパブリッシャーキーがオンチェーンに登録されていることを確認</li>
+<li>キーペアファイルがスイッチに存在することを確認</li>
+<li>デバイスアカウントの公開鍵が正しいことを確認</li>
+</ul>
+<hr />
+<h2 id="_24">次のステップ</h2>
+<ul>
+<li>エージェントのアップグレードとリンク管理については<a href="../contribute-operations/">オペレーションガイド</a>を確認する</li>
+<li>用語の定義については<a href="../glossary/">用語集</a>を確認する</li>
+<li>問題が発生した場合はDZF/Malbec Labsに連絡する</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "navigation.indexes", "toc.integrate", "header.autohide"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u30b3\u30d4\u30fc\u3057\u307e\u3057\u305f", "clipboard.copy": "\u30af\u30ea\u30c3\u30d7\u30dc\u30fc\u30c9\u3078\u30b3\u30d4\u30fc", "search.result.more.one": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3082\u30461\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.more.other": "\u3053\u306e\u30da\u30fc\u30b8\u5185\u306b\u3042\u3068#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.none": "\u4f55\u3082\u898b\u3064\u304b\u308a\u307e\u305b\u3093\u3067\u3057\u305f", "search.result.one": "1\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.other": "#\u4ef6\u898b\u3064\u304b\u308a\u307e\u3057\u305f", "search.result.placeholder": "\u691c\u7d22\u30ad\u30fc\u30ef\u30fc\u30c9\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044", "search.result.term.missing": "\u691c\u7d22\u306b\u542b\u307e\u308c\u306a\u3044", "select.version": "\u30d0\u30fc\u30b8\u30e7\u30f3\u5207\u308a\u66ff\u3048"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../javascripts/cloudsmith-versions.js"></script>
+      
+        <script src="../../javascripts/connection-wizard.js"></script>
+      
+        <script src="../../javascripts/page-toolbar.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/page-toolbar.js"></script>
+      
+    
+  </body>
+</html>

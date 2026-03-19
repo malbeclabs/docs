@@ -1,0 +1,2398 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.malbeclabs.com/fr/contribute-provisioning/">
+      
+      
+        <link rel="prev" href="../contribute/">
+      
+      
+        <link rel="next" href="../contribute-operations/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Device Provisioning - Malbec Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/wizard.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="grey" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#guide-de-provisionnement-des-dispositifs" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../" title="Malbec Labs" class="md-header__button md-logo" aria-label="Malbec Labs" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Malbec Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Device Provisioning
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      
+
+
+<div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Sélectionner la langue">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../contribute-provisioning/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../zh/contribute-provisioning/" hreflang="zh" class="md-select__link">
+              Chinese
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../ja/contribute-provisioning/" hreflang="ja" class="md-select__link">
+              Japanese
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../ko/contribute-provisioning/" hreflang="ko" class="md-select__link">
+              Korean
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../pt/contribute-provisioning/" hreflang="pt" class="md-select__link">
+              Portuguese
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../es/contribute-provisioning/" hreflang="es" class="md-select__link">
+              Spanish
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="fr" class="md-select__link">
+              French
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../it/contribute-provisioning/" hreflang="it" class="md-select__link">
+              Italian
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../" title="Malbec Labs" class="md-nav__button md-logo" aria-label="Malbec Labs" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    Malbec Labs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-connect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Connect
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Users
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Users
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tenants
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Tenants
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tenant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_2" id="__nav_3_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Solana
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Solana
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DZ%20Mainnet-beta%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Validator Mainnet-Beta Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DZ%20Testnet%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Validator Testnet Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Permissioned%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Permissioned Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Validator%20Multicast%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Validator Multicast Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Other%20Multicast%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Other Multicast Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_3" id="__nav_3_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Shelby
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Shelby
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Shelby%20Permissioned%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shelby Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../New%20Tenant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    New Tenant
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Contributors
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Contributors
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Requirements & Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Device Provisioning
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Device Provisioning
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#vue-densemble" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vue d'Ensemble
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-1-prerequis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 1 : Prérequis
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 1 : Prérequis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ce-dont-vous-avez-besoin" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ce Dont Vous Avez Besoin
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installer-la-cli-doublezero" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installer la CLI DoubleZero
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comprendre-votre-prefixe-dz" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comprendre Votre Préfixe DZ
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-2-configuration-du-compte" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 2 : Configuration du Compte
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 2 : Configuration du Compte">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ou-executer-la-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      Où Exécuter la CLI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#quest-ce-que-les-cles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Qu'est-ce que les Clés ?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-21-generer-votre-cle-de-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Étape 2.1 : Générer Votre Clé de Service
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-22-generer-votre-cle-de-publication-de-metriques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Étape 2.2 : Générer Votre Clé de Publication de Métriques
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-23-soumettre-les-cles-a-dzf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Étape 2.3 : Soumettre les Clés à DZF
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-24-verifier-votre-compte" class="md-nav__link">
+    <span class="md-ellipsis">
+      Étape 2.4 : Vérifier Votre Compte
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-25-acceder-au-depot-des-contributeurs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Étape 2.5 : Accéder au Dépôt des Contributeurs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-3-provisionnement-du-dispositif" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 3 : Provisionnement du Dispositif
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 3 : Provisionnement du Dispositif">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comprendre-les-types-de-dispositifs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comprendre les Types de Dispositifs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-31-trouver-votre-emplacement-et-exchange" class="md-nav__link">
+    <span class="md-ellipsis">
+      Étape 3.1 : Trouver Votre Emplacement et Exchange
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-32-creer-votre-dispositif-onchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      Étape 3.2 : Créer Votre Dispositif Onchain
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-33-creer-les-interfaces-loopback-requises" class="md-nav__link">
+    <span class="md-ellipsis">
+      Étape 3.3 : Créer les Interfaces Loopback Requises
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-34-creer-les-interfaces-physiques" class="md-nav__link">
+    <span class="md-ellipsis">
+      Étape 3.4 : Créer les Interfaces Physiques
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-35-creer-linterface-cyoa-pour-les-dispositifs-peripheriqueshybrides" class="md-nav__link">
+    <span class="md-ellipsis">
+      Étape 3.5 : Créer l'Interface CYOA (pour les dispositifs Périphériques/Hybrides)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-36-verifier-votre-dispositif" class="md-nav__link">
+    <span class="md-ellipsis">
+      Étape 3.6 : Vérifier Votre Dispositif
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-4-etablissement-des-liens-et-installation-des-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 4 : Établissement des Liens et Installation des Agents
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 4 : Établissement des Liens et Installation des Agents">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comprendre-les-liens" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comprendre les Liens
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-41-creer-des-liens-wan-si-vous-avez-plusieurs-dispositifs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Étape 4.1 : Créer des Liens WAN (si vous avez plusieurs dispositifs)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-42-creer-des-liens-dzx" class="md-nav__link">
+    <span class="md-ellipsis">
+      Étape 4.2 : Créer des Liens DZX
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-43-verifier-les-liens" class="md-nav__link">
+    <span class="md-ellipsis">
+      Étape 4.3 : Vérifier les Liens
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#installation-des-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Installation des Agents
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-44-installer-lagent-de-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Étape 4.4 : Installer l'Agent de Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Étape 4.4 : Installer l&#39;Agent de Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#activer-lapi-sur-votre-commutateur" class="md-nav__link">
+    <span class="md-ellipsis">
+      Activer l'API sur votre commutateur
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#telecharger-et-installer-lagent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Télécharger et installer l'agent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verifier-lextension" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vérifier l'extension
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configurer-et-demarrer-lagent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configurer et démarrer l'agent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verifier-quil-fonctionne" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vérifier qu'il fonctionne
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-45-installer-lagent-de-telemetrie" class="md-nav__link">
+    <span class="md-ellipsis">
+      Étape 4.5 : Installer l'Agent de Télémétrie
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Étape 4.5 : Installer l&#39;Agent de Télémétrie">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#copier-la-cle-de-publication-de-metriques-sur-votre-dispositif" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copier la clé de publication de métriques sur votre dispositif
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enregistrer-la-publication-de-metriques-onchain" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enregistrer la publication de métriques onchain
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#telecharger-et-installer-lagent_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Télécharger et installer l'agent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verifier-lextension_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vérifier l'extension
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configurer-et-demarrer-lagent_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configurer et démarrer l'agent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verifier-quil-fonctionne_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vérifier qu'il fonctionne
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-5-rodage-du-lien" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 5 : Rodage du Lien
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-6-verification-et-activation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Phase 6 : Vérification et Activation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 6 : Vérification et Activation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verifications-du-dispositif" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vérifications du Dispositif
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verifications-des-liens" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vérifications des Liens
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verifications-des-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vérifications des Agents
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagramme-de-verification-finale" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagramme de Vérification Finale
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#depannage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dépannage
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dépannage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#la-creation-du-dispositif-echoue" class="md-nav__link">
+    <span class="md-ellipsis">
+      La création du dispositif échoue
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lien-bloque-dans-le-statut-requested" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lien bloqué dans le statut "requested"
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lagent-de-configuration-ne-se-connecte-pas" class="md-nav__link">
+    <span class="md-ellipsis">
+      L'Agent de Configuration ne se connecte pas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lagent-de-telemetrie-ne-soumet-pas" class="md-nav__link">
+    <span class="md-ellipsis">
+      L'Agent de Télémétrie ne soumet pas
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prochaines-etapes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prochaines Étapes
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute-operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Operations
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Glossary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="guide-de-provisionnement-des-dispositifs">Guide de Provisionnement des Dispositifs</h1>
+<div class="admonition warning">
+<p class="admonition-title">This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon.</p>
+</div>
+<p>Ce guide vous accompagne dans le provisionnement d'un DoubleZero Device (DZD) du début à la fin. Chaque phase correspond à la <a href="../contribute-overview/#onboarding-checklist">Liste de Contrôle d'Intégration</a>.</p>
+<hr />
+<h2 id="vue-densemble">Vue d'Ensemble</h2>
+<p>Avant de plonger dans les étapes, voici la vue d'ensemble de ce que vous construisez :</p>
+<pre class="mermaid"><code>flowchart TB
+    subgraph Onchain
+        SC[Registre DoubleZero]
+    end
+
+    subgraph Votre Infrastructure
+        MGMT[Serveur de Gestion&lt;br/&gt;CLI DoubleZero]
+        DZD[Votre DZD&lt;br/&gt;Commutateur Arista]
+        DZD ---|Lien WAN| DZD2[Votre autre DZD]
+    end
+
+    subgraph Autre Contributeur
+        OtherDZD[Leur DZD]
+    end
+
+    subgraph Utilisateurs
+        VAL[Validateurs]
+        RPC[Nœuds RPC]
+    end
+
+    MGMT -.-&gt;|Enregistre dispositifs,&lt;br/&gt;liens, interfaces| SC
+    DZD ---|Lien DZX| OtherDZD
+    VAL ---|Connexion via Internet| DZD
+    RPC ---|Connexion via Internet| DZD</code></pre>
+<hr />
+<h2 id="phase-1-prerequis">Phase 1 : Prérequis</h2>
+<p>Avant de pouvoir provisionner un dispositif, vous avez besoin du matériel physique configuré et de quelques adresses IP allouées.</p>
+<h3 id="ce-dont-vous-avez-besoin">Ce Dont Vous Avez Besoin</h3>
+<table>
+<thead>
+<tr>
+<th>Exigence</th>
+<th>Pourquoi C'est Nécessaire</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Matériel DZD</strong></td>
+<td>Commutateur Arista 7280CR3A (voir <a href="../contribute/#hardware-requirements">spécifications matérielles</a>)</td>
+</tr>
+<tr>
+<td><strong>Espace Baie</strong></td>
+<td>4U avec une ventilation appropriée</td>
+</tr>
+<tr>
+<td><strong>Alimentation</strong></td>
+<td>Alimentations redondantes, ~4KW recommandé</td>
+</tr>
+<tr>
+<td><strong>Accès Gestion</strong></td>
+<td>Accès SSH/console pour configurer le commutateur</td>
+</tr>
+<tr>
+<td><strong>Connectivité Internet</strong></td>
+<td>Pour la publication de métriques et pour récupérer la configuration depuis le contrôleur</td>
+</tr>
+<tr>
+<td><strong>Bloc IPv4 Public</strong></td>
+<td>Minimum /29 pour le pool de préfixes DZ (voir ci-dessous)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="installer-la-cli-doublezero">Installer la CLI DoubleZero</h3>
+<p>La CLI DoubleZero (<code>doublezero</code>) est utilisée tout au long du provisionnement pour enregistrer les dispositifs, créer des liens et gérer votre contribution. Elle doit être installée sur un <strong>serveur de gestion ou une VM</strong> — pas sur le commutateur DZD lui-même. Le commutateur n'exécute que l'Agent de Configuration et l'Agent de Télémétrie (installés dans la <a href="#phase-4-etablissement-des-liens-et-installation-des-agents">Phase 4</a>).</p>
+<p><strong>Ubuntu / Debian :</strong>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-1sLf<span class="w"> </span>https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>-E<span class="w"> </span>bash
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>doublezero
+</code></pre></div></p>
+<p><strong>Rocky Linux / RHEL :</strong>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-1sLf<span class="w"> </span>https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>-E<span class="w"> </span>bash
+sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>doublezero
+</code></pre></div></p>
+<p>Vérifiez que le démon est en cours d'exécution :
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>systemctl<span class="w"> </span>status<span class="w"> </span>doublezerod
+</code></pre></div></p>
+<h3 id="comprendre-votre-prefixe-dz">Comprendre Votre Préfixe DZ</h3>
+<p>Votre préfixe DZ est un bloc d'adresses IP publiques que le protocole DoubleZero gère pour l'allocation IP.</p>
+<pre class="mermaid"><code>flowchart LR
+    subgraph "Votre Bloc /29 (8 IPs)"
+        IP1["Première IP&lt;br/&gt;Réservée pour&lt;br/&gt;votre dispositif"]
+        IP2["IP 2"]
+        IP3["IP 3"]
+        IP4["..."]
+        IP8["IP 8"]
+    end
+
+    IP1 --&gt;|Attribuée à| LO[Loopback100&lt;br/&gt;sur votre DZD]
+    IP2 --&gt;|Allouée à| U1[Utilisateur 1]
+    IP3 --&gt;|Allouée à| U2[Utilisateur 2]</code></pre>
+<p><strong>Comment les préfixes DZ sont utilisés :</strong></p>
+<ul>
+<li><strong>Première IP</strong> : Réservée pour votre dispositif (attribuée à l'interface Loopback100)</li>
+<li><strong>IPs restantes</strong> : Allouées à des types d'utilisateurs spécifiques se connectant à votre DZD :<ul>
+<li>Utilisateurs <code>IBRLWithAllocatedIP</code></li>
+<li>Utilisateurs <code>EdgeFiltering</code></li>
+<li>Éditeurs multicast</li>
+</ul>
+</li>
+<li><strong>Utilisateurs IBRL</strong> : N'utilisent PAS ce pool (ils utilisent leur propre IP publique)</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Règles du Préfixe DZ</p>
+<p><strong>Vous NE POUVEZ PAS utiliser ces adresses pour :</strong></p>
+<ul>
+<li>Votre propre matériel réseau</li>
+<li>Les liens point à point sur les interfaces DIA</li>
+<li>Les interfaces de gestion</li>
+<li>Toute infrastructure en dehors du protocole DZ</li>
+</ul>
+<p><strong>Exigences :</strong></p>
+<ul>
+<li>Doivent être des adresses IPv4 <strong>globalement routables (publiques)</strong></li>
+<li>Les plages IP privées (10.x, 172.16-31.x, 192.168.x) sont rejetées par le contrat intelligent</li>
+<li><strong>Taille minimale : /29</strong> (8 adresses), les préfixes plus grands sont préférés (par exemple, /28, /27)</li>
+<li>Le bloc entier doit être disponible — ne pré-allouez aucune adresse</li>
+</ul>
+<p>Si vous avez besoin d'adresses pour votre propre équipement (IPs d'interface DIA, gestion, etc.), utilisez un <strong>pool d'adresses séparé</strong>.</p>
+</div>
+<hr />
+<h2 id="phase-2-configuration-du-compte">Phase 2 : Configuration du Compte</h2>
+<p>Dans cette phase, vous créez les clés cryptographiques qui vous identifient, vous et vos dispositifs, sur le réseau.</p>
+<h3 id="ou-executer-la-cli">Où Exécuter la CLI</h3>
+<div class="admonition warning">
+<p class="admonition-title">N'installez PAS la CLI sur votre commutateur</p>
+<p>La CLI DoubleZero (<code>doublezero</code>) doit être installée sur un <strong>serveur de gestion ou une VM</strong>, pas sur votre commutateur Arista.</p>
+<pre class="mermaid"><code>flowchart LR
+    subgraph "Serveur/VM de Gestion"
+        CLI[CLI DoubleZero]
+        KEYS[Vos Paires de Clés]
+    end
+
+    subgraph "Votre Commutateur DZD"
+        CA[Agent de Configuration]
+        TA[Agent de Télémétrie]
+    end
+
+    CLI --&gt;|Crée dispositifs, liens| BC[Blockchain]
+    CA --&gt;|Récupère la config| CTRL[Contrôleur]
+    TA --&gt;|Soumet les métriques| BC</code></pre>
+<table>
+<thead>
+<tr>
+<th>Installer sur le Serveur de Gestion</th>
+<th>Installer sur le Commutateur</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CLI <code>doublezero</code></td>
+<td>Agent de Configuration</td>
+</tr>
+<tr>
+<td>Votre clé de service</td>
+<td>Agent de Télémétrie</td>
+</tr>
+<tr>
+<td>Votre clé de publication de métriques</td>
+<td>Clé de publication de métriques (copie)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="quest-ce-que-les-cles">Qu'est-ce que les Clés ?</h3>
+<p>Pensez aux clés comme des identifiants de connexion sécurisés :</p>
+<ul>
+<li><strong>Clé de Service</strong> : Votre identité de contributeur — utilisée pour exécuter les commandes CLI</li>
+<li><strong>Clé de Publication de Métriques</strong> : L'identité de votre dispositif pour soumettre les données de télémétrie</li>
+</ul>
+<p>Les deux sont des paires de clés cryptographiques (une clé publique que vous partagez, une clé privée que vous gardez secrète).</p>
+<pre class="mermaid"><code>flowchart LR
+    subgraph "Vos Clés"
+        SK[Clé de Service&lt;br/&gt;~/.config/solana/id.json]
+        MK[Clé de Publication de Métriques&lt;br/&gt;~/.config/doublezero/metrics-publisher.json]
+    end
+
+    SK --&gt;|Utilisée pour| CLI[Commandes CLI&lt;br/&gt;doublezero device create&lt;br/&gt;doublezero link create]
+    MK --&gt;|Utilisée pour| TEL[Agent de Télémétrie&lt;br/&gt;Soumet les métriques onchain]</code></pre>
+<h3 id="etape-21-generer-votre-cle-de-service">Étape 2.1 : Générer Votre Clé de Service</h3>
+<p>C'est votre identité principale pour interagir avec DoubleZero.</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>keygen
+</code></pre></div>
+<p>Cela crée une paire de clés à l'emplacement par défaut. La sortie montre votre <strong>clé publique</strong> — c'est ce que vous partagerez avec DZF.</p>
+<h3 id="etape-22-generer-votre-cle-de-publication-de-metriques">Étape 2.2 : Générer Votre Clé de Publication de Métriques</h3>
+<p>Cette clé est utilisée par l'Agent de Télémétrie pour signer les soumissions de métriques.</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>keygen<span class="w"> </span>-o<span class="w"> </span>~/.config/doublezero/metrics-publisher.json
+</code></pre></div>
+<h3 id="etape-23-soumettre-les-cles-a-dzf">Étape 2.3 : Soumettre les Clés à DZF</h3>
+<p>Contactez la DoubleZero Foundation ou Malbec Labs et fournissez :</p>
+<ol>
+<li>Votre <strong>clé publique de service</strong></li>
+<li>Votre <strong>nom d'utilisateur GitHub</strong> (pour l'accès au dépôt)</li>
+</ol>
+<p>Ils vont :</p>
+<ul>
+<li>Créer votre <strong>compte de contributeur</strong> onchain</li>
+<li>Accorder l'accès au <strong>dépôt des contributeurs</strong> privé</li>
+</ul>
+<h3 id="etape-24-verifier-votre-compte">Étape 2.4 : Vérifier Votre Compte</h3>
+<p>Une fois confirmé, vérifiez que votre compte de contributeur existe :</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>contributor<span class="w"> </span>list
+</code></pre></div>
+<p>Vous devriez voir votre code de contributeur dans la liste.</p>
+<h3 id="etape-25-acceder-au-depot-des-contributeurs">Étape 2.5 : Accéder au Dépôt des Contributeurs</h3>
+<p>Le dépôt <a href="https://github.com/malbeclabs/contributors">malbeclabs/contributors</a> contient :</p>
+<ul>
+<li>Configurations de base des dispositifs</li>
+<li>Profils TCAM</li>
+<li>Configurations ACL</li>
+<li>Instructions de configuration supplémentaires</li>
+</ul>
+<p>Suivez les instructions là-bas pour la configuration spécifique au dispositif.</p>
+<hr />
+<h2 id="phase-3-provisionnement-du-dispositif">Phase 3 : Provisionnement du Dispositif</h2>
+<p>Vous allez maintenant enregistrer votre dispositif physique sur la blockchain et configurer ses interfaces.</p>
+<h3 id="comprendre-les-types-de-dispositifs">Comprendre les Types de Dispositifs</h3>
+<pre class="mermaid"><code>flowchart TB
+    subgraph "Dispositif Périphérique"
+        E[DZD Périphérique]
+        EU[Les utilisateurs se connectent ici]
+        EU --&gt; E
+        E &lt;--&gt;|Lien DZX| ED[Autre DZD]
+    end
+
+    subgraph "Dispositif de Transit"
+        T[DZD de Transit]
+        T &lt;--&gt;|Lien WAN| T2[Un autre DZD]
+        T &lt;--&gt;|Lien DZX| TD[Autre DZD]
+    end
+
+    subgraph "Dispositif Hybride"
+        H[DZD Hybride]
+        HU[Les utilisateurs se connectent ici]
+        HU --&gt; H
+        H &lt;--&gt;|Lien WAN| H2[Un autre DZD]
+        H &lt;--&gt;|Lien DZX| HD[Autre DZD]
+    end</code></pre>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Ce Qu'il Fait</th>
+<th>Quand l'Utiliser</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Périphérique</strong></td>
+<td>Accepte uniquement les connexions utilisateurs</td>
+<td>Emplacement unique, orienté utilisateurs uniquement</td>
+</tr>
+<tr>
+<td><strong>Transit</strong></td>
+<td>Déplace le trafic entre dispositifs</td>
+<td>Connectivité backbone, sans utilisateurs</td>
+</tr>
+<tr>
+<td><strong>Hybride</strong></td>
+<td>Connexions utilisateurs ET backbone</td>
+<td>Le plus courant — fait tout</td>
+</tr>
+</tbody>
+</table>
+<h3 id="etape-31-trouver-votre-emplacement-et-exchange">Étape 3.1 : Trouver Votre Emplacement et Exchange</h3>
+<p>Avant de créer votre dispositif, recherchez les codes de votre emplacement de centre de données et de l'exchange le plus proche :</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Lister les emplacements disponibles (centres de données)</span>
+doublezero<span class="w"> </span>location<span class="w"> </span>list
+
+<span class="c1"># Lister les exchanges disponibles (points d&#39;interconnexion)</span>
+doublezero<span class="w"> </span>exchange<span class="w"> </span>list
+</code></pre></div>
+<h3 id="etape-32-creer-votre-dispositif-onchain">Étape 3.2 : Créer Votre Dispositif Onchain</h3>
+<p>Enregistrez votre dispositif sur la blockchain :</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>device<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--code<span class="w"> </span>&lt;VOTRE_CODE_DISPOSITIF&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--contributor<span class="w"> </span>&lt;VOTRE_CODE_CONTRIBUTEUR&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--device-type<span class="w"> </span>hybrid<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--location<span class="w"> </span>&lt;CODE_EMPLACEMENT&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--exchange<span class="w"> </span>&lt;CODE_EXCHANGE&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--public-ip<span class="w"> </span>&lt;IP_PUBLIQUE_DISPOSITIF&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dz-prefixes<span class="w"> </span>&lt;VOTRE_PREFIXE_DZ&gt;
+</code></pre></div>
+<p><strong>Exemple :</strong></p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>device<span class="w"> </span>create<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--code<span class="w"> </span>nyc-dz001<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--contributor<span class="w"> </span>acme<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--device-type<span class="w"> </span>hybrid<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--location<span class="w"> </span>EQX-NY5<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--exchange<span class="w"> </span>nyc<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--public-ip<span class="w"> </span><span class="s2">&quot;203.0.113.10&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--dz-prefixes<span class="w"> </span><span class="s2">&quot;198.51.100.0/28&quot;</span>
+</code></pre></div>
+<p><strong>Sortie attendue :</strong></p>
+<div class="highlight"><pre><span></span><code>Signature: 4vKz8H...truncated...7xPq2
+</code></pre></div>
+<p>Vérifiez que votre dispositif a été créé :</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>device<span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>nyc-dz001
+</code></pre></div>
+<p><strong>Paramètres expliqués :</strong></p>
+<table>
+<thead>
+<tr>
+<th>Paramètre</th>
+<th>Ce Qu'il Signifie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--code</code></td>
+<td>Un nom unique pour votre dispositif (par exemple, <code>nyc-dz001</code>)</td>
+</tr>
+<tr>
+<td><code>--contributor</code></td>
+<td>Votre code de contributeur (donné par DZF)</td>
+</tr>
+<tr>
+<td><code>--device-type</code></td>
+<td><code>hybrid</code>, <code>transit</code>, ou <code>edge</code></td>
+</tr>
+<tr>
+<td><code>--location</code></td>
+<td>Code du centre de données de <code>location list</code></td>
+</tr>
+<tr>
+<td><code>--exchange</code></td>
+<td>Code de l'exchange le plus proche de <code>exchange list</code></td>
+</tr>
+<tr>
+<td><code>--public-ip</code></td>
+<td>L'IP publique où les utilisateurs se connectent à votre dispositif via internet</td>
+</tr>
+<tr>
+<td><code>--dz-prefixes</code></td>
+<td>Votre bloc IP alloué pour les utilisateurs</td>
+</tr>
+</tbody>
+</table>
+<h3 id="etape-33-creer-les-interfaces-loopback-requises">Étape 3.3 : Créer les Interfaces Loopback Requises</h3>
+<p>Chaque dispositif a besoin de deux interfaces loopback pour le routage interne :</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Loopback VPNv4</span>
+doublezero<span class="w"> </span>device<span class="w"> </span>interface<span class="w"> </span>create<span class="w"> </span>&lt;CODE_DISPOSITIF&gt;<span class="w"> </span>Loopback255<span class="w"> </span>--loopback-type<span class="w"> </span>vpnv4
+
+<span class="c1"># Loopback IPv4</span>
+doublezero<span class="w"> </span>device<span class="w"> </span>interface<span class="w"> </span>create<span class="w"> </span>&lt;CODE_DISPOSITIF&gt;<span class="w"> </span>Loopback256<span class="w"> </span>--loopback-type<span class="w"> </span>ipv4
+</code></pre></div>
+<p><strong>Sortie attendue (pour chaque commande) :</strong></p>
+<div class="highlight"><pre><span></span><code>Signature: 3mNx9K...truncated...8wRt5
+</code></pre></div>
+<h3 id="etape-34-creer-les-interfaces-physiques">Étape 3.4 : Créer les Interfaces Physiques</h3>
+<p>Enregistrez les ports physiques que vous utiliserez :</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Interface de base</span>
+doublezero<span class="w"> </span>device<span class="w"> </span>interface<span class="w"> </span>create<span class="w"> </span>&lt;CODE_DISPOSITIF&gt;<span class="w"> </span>Ethernet1/1
+</code></pre></div>
+<p><strong>Sortie attendue :</strong></p>
+<div class="highlight"><pre><span></span><code>Signature: 7pQw2R...truncated...4xKm9
+</code></pre></div>
+<h3 id="etape-35-creer-linterface-cyoa-pour-les-dispositifs-peripheriqueshybrides">Étape 3.5 : Créer l'Interface CYOA (pour les dispositifs Périphériques/Hybrides)</h3>
+<p>Si votre dispositif accepte des connexions utilisateurs, vous avez besoin d'une interface CYOA (Choose Your Own Adventure). Cela indique au système comment les utilisateurs se connectent à vous.</p>
+<p><strong>Types CYOA Expliqués :</strong></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Explication Simple</th>
+<th>Quand Utiliser</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gre-over-dia</code></td>
+<td>Les utilisateurs se connectent via internet normal</td>
+<td>Le plus courant — les utilisateurs se connectent via le DIA à votre DZD</td>
+</tr>
+<tr>
+<td><code>gre-over-private-peering</code></td>
+<td>Les utilisateurs se connectent via lien privé</td>
+<td>Les utilisateurs ont une connexion directe à votre réseau</td>
+</tr>
+<tr>
+<td><code>gre-over-public-peering</code></td>
+<td>Les utilisateurs se connectent via IX</td>
+<td>Les utilisateurs peerent avec vous à un internet exchange</td>
+</tr>
+<tr>
+<td><code>gre-over-fabric</code></td>
+<td>Les utilisateurs sur le même réseau local</td>
+<td>Les utilisateurs dans le même centre de données</td>
+</tr>
+<tr>
+<td><code>gre-over-cable</code></td>
+<td>Câble direct vers l'utilisateur</td>
+<td>Utilisateur dédié unique</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exemple - Utilisateurs internet standard :</strong></p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>device<span class="w"> </span>interface<span class="w"> </span>create<span class="w"> </span>&lt;CODE_DISPOSITIF&gt;<span class="w"> </span>Ethernet1/2<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--interface-cyoa<span class="w"> </span>gre-over-dia<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--interface-dia<span class="w"> </span>dia<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--bandwidth<span class="w"> </span><span class="m">10000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cir<span class="w"> </span><span class="m">1000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--user-tunnel-endpoint<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--wait
+</code></pre></div>
+<p><strong>Sortie attendue :</strong></p>
+<div class="highlight"><pre><span></span><code>Signature: 2wLp8N...truncated...5vHt3
+</code></pre></div>
+<p><strong>Paramètres expliqués :</strong></p>
+<table>
+<thead>
+<tr>
+<th>Paramètre</th>
+<th>Ce Qu'il Signifie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--interface-cyoa</code></td>
+<td>Comment les utilisateurs se connectent (voir tableau ci-dessus)</td>
+</tr>
+<tr>
+<td><code>--interface-dia</code></td>
+<td><code>dia</code> si c'est un port orienté internet</td>
+</tr>
+<tr>
+<td><code>--bandwidth</code></td>
+<td>Vitesse du port en Mbps (10000 = 10Gbps)</td>
+</tr>
+<tr>
+<td><code>--cir</code></td>
+<td>Débit engagé en Mbps (bande passante garantie)</td>
+</tr>
+<tr>
+<td><code>--user-tunnel-endpoint</code></td>
+<td>Ce port accepte les tunnels utilisateurs</td>
+</tr>
+</tbody>
+</table>
+<h3 id="etape-36-verifier-votre-dispositif">Étape 3.6 : Vérifier Votre Dispositif</h3>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>device<span class="w"> </span>list
+</code></pre></div>
+<p><strong>Exemple de sortie :</strong></p>
+<div class="highlight"><pre><span></span><code> account                                      | code      | contributor | location | exchange | device_type | public_ip    | dz_prefixes     | users | max_users | status    | health  | mgmt_vrf | owner
+ 7xKm9pQw2R4vHt3...                          | nyc-dz001 | acme        | EQX-NY5  | nyc      | hybrid      | 203.0.113.10 | 198.51.100.0/28 | 0     | 14        | activated | pending |          | 5FMtd5Woq5XAAg54...
+</code></pre></div>
+<p>Votre dispositif devrait apparaître avec le statut <code>activated</code>.</p>
+<hr />
+<h2 id="phase-4-etablissement-des-liens-et-installation-des-agents">Phase 4 : Établissement des Liens et Installation des Agents</h2>
+<p>Les liens connectent votre dispositif au reste du réseau DoubleZero.</p>
+<h3 id="comprendre-les-liens">Comprendre les Liens</h3>
+<pre class="mermaid"><code>flowchart LR
+    subgraph "Votre Réseau"
+        D1[Votre DZD 1&lt;br/&gt;NYC]
+        D2[Votre DZD 2&lt;br/&gt;LAX]
+    end
+
+    subgraph "Autre Contributeur"
+        O1[Leur DZD&lt;br/&gt;NYC]
+    end
+
+    D1 ---|Lien WAN&lt;br/&gt;Même contributeur| D2
+    D1 ---|Lien DZX&lt;br/&gt;Contributeurs différents| O1</code></pre>
+<table>
+<thead>
+<tr>
+<th>Type de Lien</th>
+<th>Connecte</th>
+<th>Acceptation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Lien WAN</strong></td>
+<td>Deux de VOS dispositifs</td>
+<td>Automatique (vous possédez les deux)</td>
+</tr>
+<tr>
+<td><strong>Lien DZX</strong></td>
+<td>Votre dispositif à un AUTRE contributeur</td>
+<td>Nécessite leur acceptation</td>
+</tr>
+</tbody>
+</table>
+<h3 id="etape-41-creer-des-liens-wan-si-vous-avez-plusieurs-dispositifs">Étape 4.1 : Créer des Liens WAN (si vous avez plusieurs dispositifs)</h3>
+<p>Les liens WAN connectent vos propres dispositifs :</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>link<span class="w"> </span>create<span class="w"> </span>wan<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--code<span class="w"> </span>&lt;CODE_LIEN&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--contributor<span class="w"> </span>&lt;VOTRE_CONTRIBUTEUR&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--side-a<span class="w"> </span>&lt;CODE_DISPOSITIF_1&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--side-a-interface<span class="w"> </span>&lt;INTERFACE_SUR_DISPOSITIF_1&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--side-z<span class="w"> </span>&lt;CODE_DISPOSITIF_2&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--side-z-interface<span class="w"> </span>&lt;INTERFACE_SUR_DISPOSITIF_2&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--bandwidth<span class="w"> </span><span class="m">10000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--mtu<span class="w"> </span><span class="m">9000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--delay-ms<span class="w"> </span><span class="m">20</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--jitter-ms<span class="w"> </span><span class="m">1</span>
+</code></pre></div>
+<p><strong>Exemple :</strong></p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>link<span class="w"> </span>create<span class="w"> </span>wan<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--code<span class="w"> </span>nyc-lax-wan01<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--contributor<span class="w"> </span>acme<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--side-a<span class="w"> </span>nyc-dz001<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--side-a-interface<span class="w"> </span>Ethernet3/1<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--side-z<span class="w"> </span>lax-dz001<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--side-z-interface<span class="w"> </span>Ethernet3/1<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--bandwidth<span class="w"> </span><span class="m">10000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--mtu<span class="w"> </span><span class="m">9000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--delay-ms<span class="w"> </span><span class="m">65</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--jitter-ms<span class="w"> </span><span class="m">1</span>
+</code></pre></div>
+<p><strong>Sortie attendue :</strong></p>
+<div class="highlight"><pre><span></span><code>Signature: 5tNm7K...truncated...9pRw2
+</code></pre></div>
+<h3 id="etape-42-creer-des-liens-dzx">Étape 4.2 : Créer des Liens DZX</h3>
+<p>Les liens DZX connectent votre dispositif directement au DZD d'un autre contributeur :</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>link<span class="w"> </span>create<span class="w"> </span>dzx<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--code<span class="w"> </span>&lt;CODE_DISPOSITIF_A:CODE_DISPOSITIF_Z&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--contributor<span class="w"> </span>&lt;VOTRE_CONTRIBUTEUR&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--side-a<span class="w"> </span>&lt;VOTRE_CODE_DISPOSITIF&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--side-a-interface<span class="w"> </span>&lt;VOTRE_INTERFACE&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--side-z<span class="w"> </span>&lt;CODE_AUTRE_DISPOSITIF&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--bandwidth<span class="w"> </span>&lt;BANDE_PASSANTE<span class="w"> </span>en<span class="w"> </span>Kbps,<span class="w"> </span>Mbps,<span class="w"> </span>ou<span class="w"> </span>Gbps&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--mtu<span class="w"> </span>&lt;MTU&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--delay-ms<span class="w"> </span>&lt;DELAI&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--jitter-ms<span class="w"> </span>&lt;GIGUE&gt;
+</code></pre></div>
+<p><strong>Sortie attendue :</strong></p>
+<div class="highlight"><pre><span></span><code>Signature: 8mKp3W...truncated...2nRx7
+</code></pre></div>
+<p>Après avoir créé un lien DZX, l'autre contributeur doit l'accepter :</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># L&#39;AUTRE contributeur exécute ceci</span>
+doublezero<span class="w"> </span>link<span class="w"> </span>accept<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--code<span class="w"> </span>&lt;CODE_LIEN&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--side-z-interface<span class="w"> </span>&lt;LEUR_INTERFACE&gt;
+</code></pre></div>
+<p><strong>Sortie attendue (pour le contributeur qui accepte) :</strong></p>
+<div class="highlight"><pre><span></span><code>Signature: 6vQt9L...truncated...3wPm4
+</code></pre></div>
+<h3 id="etape-43-verifier-les-liens">Étape 4.3 : Vérifier les Liens</h3>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>link<span class="w"> </span>list
+</code></pre></div>
+<p><strong>Exemple de sortie :</strong></p>
+<div class="highlight"><pre><span></span><code> account                                      | code          | contributor | side_a_name | side_a_iface_name | side_z_name | side_z_iface_name | link_type | bandwidth | mtu  | delay_ms | jitter_ms | delay_override_ms | tunnel_id | tunnel_net      | status    | health  | owner
+ 8vkYpXaBW8RuknJq...                         | nyc-dz001:lax-dz001 | acme        | nyc-dz001   | Ethernet3/1       | lax-dz001   | Ethernet3/1       | WAN       | 10Gbps    | 9000 | 65.00ms  | 1.00ms    | 0.00ms            | 42        | 172.16.0.84/31  | activated | pending | 5FMtd5Woq5XAAg54...
+</code></pre></div>
+<p>Les liens devraient afficher le statut <code>activated</code> une fois les deux côtés configurés.</p>
+<hr />
+<h3 id="installation-des-agents">Installation des Agents</h3>
+<p>Deux agents logiciels s'exécutent sur votre DZD :</p>
+<pre class="mermaid"><code>flowchart TB
+    subgraph "Votre DZD"
+        CA[Agent de Configuration]
+        TA[Agent de Télémétrie]
+        HW[Matériel/Logiciel du Commutateur]
+    end
+
+    CA --&gt;|Interroge la config| CTRL[Service Contrôleur]
+    CA --&gt;|Applique la config| HW
+
+    HW --&gt;|Métriques| TA
+    TA --&gt;|Soumet onchain| BC[Registre DoubleZero]</code></pre>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>Ce Qu'il Fait</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Agent de Configuration</strong></td>
+<td>Récupère la configuration depuis le contrôleur, l'applique à votre commutateur</td>
+</tr>
+<tr>
+<td><strong>Agent de Télémétrie</strong></td>
+<td>Mesure la latence/perte vers les autres dispositifs, rapporte les métriques onchain</td>
+</tr>
+</tbody>
+</table>
+<h3 id="etape-44-installer-lagent-de-configuration">Étape 4.4 : Installer l'Agent de Configuration</h3>
+<h4 id="activer-lapi-sur-votre-commutateur">Activer l'API sur votre commutateur</h4>
+<p>Ajouter à la configuration EOS :</p>
+<div class="highlight"><pre><span></span><code>management api eos-sdk-rpc
+    transport grpc eapilocal
+        localhost loopback vrf default
+        service all
+        no disabled
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note VRF</p>
+<p>Remplacez <code>default</code> par votre nom de VRF de gestion si différent (par exemple, <code>management</code>).</p>
+</div>
+<h4 id="telecharger-et-installer-lagent">Télécharger et installer l'agent</h4>
+<div class="highlight"><pre><span></span><code><span class="c1"># Entrer dans bash sur le commutateur</span>
+switch#<span class="w"> </span>bash
+$<span class="w"> </span>sudo<span class="w"> </span>bash
+<span class="c1"># cd /mnt/flash</span>
+<span class="c1"># wget AGENT_DOWNLOAD_URL</span>
+<span class="c1"># exit</span>
+$<span class="w"> </span><span class="nb">exit</span>
+
+<span class="c1"># Installer comme extension EOS</span>
+switch#<span class="w"> </span>copy<span class="w"> </span>flash:AGENT_FILENAME<span class="w"> </span>extension:
+switch#<span class="w"> </span>extension<span class="w"> </span>AGENT_FILENAME
+switch#<span class="w"> </span>copy<span class="w"> </span>installed-extensions<span class="w"> </span>boot-extensions
+</code></pre></div>
+<h4 id="verifier-lextension">Vérifier l'extension</h4>
+<div class="highlight"><pre><span></span><code>switch#<span class="w"> </span>show<span class="w"> </span>extensions
+</code></pre></div>
+<p>Le Statut devrait être "A, I, B" :</p>
+<div class="highlight"><pre><span></span><code>Name                                        Version/Release     Status     Extension
+------------------------------------------- ------------------- ---------- ---------
+AGENT_FILENAME    MAINNET_CLIENT_VERSION/1             A, I, B    1
+
+A: available | NA: not available | I: installed | F: forced | B: install at boot
+</code></pre></div>
+<h4 id="configurer-et-demarrer-lagent">Configurer et démarrer l'agent</h4>
+<p>Ajouter à la configuration EOS :</p>
+<div class="highlight"><pre><span></span><code>daemon doublezero-agent
+    exec /usr/local/bin/doublezero-agent -pubkey &lt;VOTRE_PUBKEY_DISPOSITIF&gt;
+    no shut
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note VRF</p>
+<p>Si votre VRF de gestion n'est pas <code>default</code> (c'est-à-dire que le namespace n'est pas <code>ns-default</code>), préfixez la commande exec avec <code>exec /sbin/ip netns exec ns-&lt;VRF&gt;</code>. Par exemple, si votre VRF est <code>management</code> :
+<div class="highlight"><pre><span></span><code>daemon doublezero-agent
+    exec /sbin/ip netns exec ns-management /usr/local/bin/doublezero-agent -pubkey &lt;VOTRE_PUBKEY_DISPOSITIF&gt;
+    no shut
+</code></pre></div></p>
+</div>
+<p>Obtenez la pubkey de votre dispositif depuis <code>doublezero device list</code> (colonne <code>account</code>).</p>
+<h4 id="verifier-quil-fonctionne">Vérifier qu'il fonctionne</h4>
+<div class="highlight"><pre><span></span><code>switch#<span class="w"> </span>show<span class="w"> </span>agent<span class="w"> </span>doublezero-agent<span class="w"> </span>logs
+</code></pre></div>
+<p>Vous devriez voir "Starting doublezero-agent" et des connexions réussies au contrôleur.</p>
+<h3 id="etape-45-installer-lagent-de-telemetrie">Étape 4.5 : Installer l'Agent de Télémétrie</h3>
+<h4 id="copier-la-cle-de-publication-de-metriques-sur-votre-dispositif">Copier la clé de publication de métriques sur votre dispositif</h4>
+<div class="highlight"><pre><span></span><code>scp<span class="w"> </span>~/.config/doublezero/metrics-publisher.json<span class="w"> </span>&lt;IP_COMMUTATEUR&gt;:/mnt/flash/metrics-publisher-keypair.json
+</code></pre></div>
+<h4 id="enregistrer-la-publication-de-metriques-onchain">Enregistrer la publication de métriques onchain</h4>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>device<span class="w"> </span>update<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--pubkey<span class="w"> </span>&lt;COMPTE_DISPOSITIF&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--metrics-publisher<span class="w"> </span>&lt;PUBKEY_PUBLICATION_METRIQUES&gt;
+</code></pre></div>
+<p>Obtenez la pubkey depuis votre fichier metrics-publisher.json.</p>
+<h4 id="telecharger-et-installer-lagent_1">Télécharger et installer l'agent</h4>
+<div class="highlight"><pre><span></span><code>switch#<span class="w"> </span>bash
+$<span class="w"> </span>sudo<span class="w"> </span>bash
+<span class="c1"># cd /mnt/flash</span>
+<span class="c1"># wget TELEMETRY_DOWNLOAD_URL</span>
+<span class="c1"># exit</span>
+$<span class="w"> </span><span class="nb">exit</span>
+
+<span class="c1"># Installer comme extension EOS</span>
+switch#<span class="w"> </span>copy<span class="w"> </span>flash:TELEMETRY_FILENAME<span class="w"> </span>extension:
+switch#<span class="w"> </span>extension<span class="w"> </span>TELEMETRY_FILENAME
+switch#<span class="w"> </span>copy<span class="w"> </span>installed-extensions<span class="w"> </span>boot-extensions
+</code></pre></div>
+<h4 id="verifier-lextension_1">Vérifier l'extension</h4>
+<div class="highlight"><pre><span></span><code>switch#<span class="w"> </span>show<span class="w"> </span>extensions
+</code></pre></div>
+<p>Le Statut devrait être "A, I, B" :</p>
+<div class="highlight"><pre><span></span><code>Name                                        Version/Release     Status     Extension
+------------------------------------------- ------------------- ---------- ---------
+TELEMETRY_FILENAME    MAINNET_CLIENT_VERSION/1             A, I, B    1
+
+A: available | NA: not available | I: installed | F: forced | B: install at boot
+</code></pre></div>
+<h4 id="configurer-et-demarrer-lagent_1">Configurer et démarrer l'agent</h4>
+<p>Ajouter à la configuration EOS :</p>
+<div class="highlight"><pre><span></span><code>daemon doublezero-telemetry
+    exec /usr/local/bin/doublezero-telemetry --local-device-pubkey &lt;COMPTE_DISPOSITIF&gt; --env mainnet --keypair /mnt/flash/metrics-publisher-keypair.json
+    no shut
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note VRF</p>
+<p>Si votre VRF de gestion n'est pas <code>default</code> (c'est-à-dire que le namespace n'est pas <code>ns-default</code>), ajoutez <code>--management-namespace ns-&lt;VRF&gt;</code> à la commande exec. Par exemple, si votre VRF est <code>management</code> :
+<div class="highlight"><pre><span></span><code>daemon doublezero-telemetry
+    exec /usr/local/bin/doublezero-telemetry --management-namespace ns-management --local-device-pubkey &lt;COMPTE_DISPOSITIF&gt; --env mainnet --keypair /mnt/flash/metrics-publisher-keypair.json
+    no shut
+</code></pre></div></p>
+</div>
+<h4 id="verifier-quil-fonctionne_1">Vérifier qu'il fonctionne</h4>
+<div class="highlight"><pre><span></span><code>switch#<span class="w"> </span>show<span class="w"> </span>agent<span class="w"> </span>doublezero-telemetry<span class="w"> </span>logs
+</code></pre></div>
+<p>Vous devriez voir "Starting telemetry collector" et "Starting submission loop".</p>
+<hr />
+<h2 id="phase-5-rodage-du-lien">Phase 5 : Rodage du Lien</h2>
+<div class="admonition warning">
+<p class="admonition-title">Tous les nouveaux liens doivent être rodés avant de transporter du trafic</p>
+<p>Les nouveaux liens doivent être <strong>drainés pendant au moins 24 heures</strong> avant d'être activés pour le trafic de production. Cette exigence de rodage est définie dans <a href="https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc12-network-provisioning.md">RFC12: Network Provisioning</a>, qui spécifie ~200 000 slots du Registre DZ (~20 heures) de métriques propres avant qu'un lien soit prêt pour le service.</p>
+</div>
+<p>Avec les agents installés et en cours d'exécution, surveillez vos liens sur <a href="https://metrics.doublezero.xyz">metrics.doublezero.xyz</a> pendant au moins 24 heures consécutives :</p>
+<ul>
+<li>Tableau de bord <strong>"DoubleZero Device-Link Latencies"</strong> — vérifiez <strong>zéro perte de paquets</strong> sur le lien au fil du temps</li>
+<li>Tableau de bord <strong>"DoubleZero Network Metrics"</strong> — vérifiez <strong>zéro erreurs</strong> sur vos liens</li>
+</ul>
+<p>Ne dédrainer le lien qu'une fois que la période de rodage montre un lien propre avec zéro perte et zéro erreurs.</p>
+<hr />
+<h2 id="phase-6-verification-et-activation">Phase 6 : Vérification et Activation</h2>
+<p>Parcourez cette liste de contrôle pour confirmer que tout fonctionne.</p>
+<div class="admonition warning">
+<p class="admonition-title">Votre dispositif commence verrouillé (<code>max_users = 0</code>)</p>
+<p>Lorsqu'un dispositif est créé, <code>max_users</code> est fixé à <strong>0</strong> par défaut. Cela signifie qu'aucun utilisateur ne peut encore s'y connecter. C'est intentionnel — vous devez vérifier que tout fonctionne avant d'accepter le trafic utilisateurs.</p>
+<p><strong>Avant de définir <code>max_users</code> au-dessus de 0, vous devez :</strong></p>
+<ol>
+<li>Confirmer que tous les liens ont complété leur <strong>rodage de 24 heures</strong> avec zéro perte/erreurs sur <a href="https://metrics.doublezero.xyz">metrics.doublezero.xyz</a></li>
+<li><strong>Coordonner avec DZ/Malbec Labs</strong> pour exécuter un test de connectivité :<ul>
+<li>Un utilisateur de test peut-il se connecter à votre dispositif ?</li>
+<li>L'utilisateur reçoit-il des routes sur le réseau DZ ?</li>
+<li>L'utilisateur peut-il router le trafic sur le réseau DZ de bout en bout ?</li>
+</ul>
+</li>
+<li>Seulement après que DZ/ML confirme que les tests réussissent, définissez max_users à 96 :</li>
+</ol>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>device<span class="w"> </span>update<span class="w"> </span>--pubkey<span class="w"> </span>&lt;COMPTE_DISPOSITIF&gt;<span class="w"> </span>--max-users<span class="w"> </span><span class="m">96</span>
+</code></pre></div>
+</div>
+<h3 id="verifications-du-dispositif">Vérifications du Dispositif</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Votre dispositif devrait apparaître avec le statut &quot;activated&quot;</span>
+doublezero<span class="w"> </span>device<span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>&lt;VOTRE_CODE_DISPOSITIF&gt;
+</code></pre></div>
+<p><strong>Sortie attendue :</strong></p>
+<div class="highlight"><pre><span></span><code> 7xKm9pQw2R4vHt3... | nyc-dz001 | acme | EQX-NY5 | nyc | hybrid | 203.0.113.10 | 198.51.100.0/28 | 0 | 14 | activated | pending | | 5FMtd5Woq5XAAg54...
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># Vos interfaces devraient être listées</span>
+doublezero<span class="w"> </span>device<span class="w"> </span>interface<span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>&lt;VOTRE_CODE_DISPOSITIF&gt;
+</code></pre></div>
+<p><strong>Sortie attendue :</strong></p>
+<div class="highlight"><pre><span></span><code> nyc-dz001 | Loopback255 | loopback | vpnv4 | none | none | 0 | 0 | 1500 | static | 0 | 172.16.1.91/32  | 56 | false | activated
+ nyc-dz001 | Loopback256 | loopback | ipv4  | none | none | 0 | 0 | 1500 | static | 0 | 172.16.1.100/32 | 0  | false | activated
+ nyc-dz001 | Ethernet1/1 | physical | none  | none | none | 0 | 0 | 1500 | static | 0 |                 | 0  | false | activated
+</code></pre></div>
+<h3 id="verifications-des-liens">Vérifications des Liens</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Les liens devraient afficher le statut &quot;activated&quot;</span>
+doublezero<span class="w"> </span>link<span class="w"> </span>list<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>&lt;VOTRE_CODE_DISPOSITIF&gt;
+</code></pre></div>
+<p><strong>Sortie attendue :</strong></p>
+<div class="highlight"><pre><span></span><code> 8vkYpXaBW8RuknJq... | nyc-lax-wan01 | acme | nyc-dz001 | Ethernet3/1 | lax-dz001 | Ethernet3/1 | WAN | 10Gbps | 9000 | 65.00ms | 1.00ms | 0.00ms | 42 | 172.16.0.84/31 | activated | pending | 5FMtd5Woq5XAAg54...
+</code></pre></div>
+<h3 id="verifications-des-agents">Vérifications des Agents</h3>
+<p>Sur le commutateur :</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># L&#39;agent de configuration devrait afficher des extractions de configuration réussies</span>
+switch#<span class="w"> </span>show<span class="w"> </span>agent<span class="w"> </span>doublezero-agent<span class="w"> </span>logs<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-20
+
+<span class="c1"># L&#39;agent de télémétrie devrait afficher des soumissions réussies</span>
+switch#<span class="w"> </span>show<span class="w"> </span>agent<span class="w"> </span>doublezero-telemetry<span class="w"> </span>logs<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-20
+</code></pre></div>
+<h3 id="diagramme-de-verification-finale">Diagramme de Vérification Finale</h3>
+<pre class="mermaid"><code>flowchart TB
+    subgraph "Liste de Vérification"
+        D[Statut Dispositif : activé ?]
+        I[Interfaces : enregistrées ?]
+        L[Liens : activés ?]
+        CA[Agent de Config : récupération de config ?]
+        TA[Agent de Télémétrie : soumission de métriques ?]
+    end
+
+    D --&gt; PASS
+    I --&gt; PASS
+    L --&gt; PASS
+    CA --&gt; PASS
+    TA --&gt; PASS
+
+    PASS[Toutes les Vérifications Réussies] --&gt; NOTIFY[Notifier DZF/Malbec Labs&lt;br/&gt;Vous êtes techniquement prêt !]</code></pre>
+<hr />
+<h2 id="depannage">Dépannage</h2>
+<h3 id="la-creation-du-dispositif-echoue">La création du dispositif échoue</h3>
+<ul>
+<li>Vérifiez que votre clé de service est autorisée (<code>doublezero contributor list</code>)</li>
+<li>Vérifiez que les codes d'emplacement et d'exchange sont valides</li>
+<li>Assurez-vous que le préfixe DZ est une plage IP publique valide</li>
+</ul>
+<h3 id="lien-bloque-dans-le-statut-requested">Lien bloqué dans le statut "requested"</h3>
+<ul>
+<li>Les liens DZX nécessitent l'acceptation de l'autre contributeur</li>
+<li>Contactez-les pour exécuter <code>doublezero link accept</code></li>
+</ul>
+<h3 id="lagent-de-configuration-ne-se-connecte-pas">L'Agent de Configuration ne se connecte pas</h3>
+<ul>
+<li>Vérifiez que le réseau de gestion a accès à internet</li>
+<li>Vérifiez que la configuration VRF correspond à votre configuration</li>
+<li>Assurez-vous que la pubkey du dispositif est correcte</li>
+</ul>
+<h3 id="lagent-de-telemetrie-ne-soumet-pas">L'Agent de Télémétrie ne soumet pas</h3>
+<ul>
+<li>Vérifiez que la clé de publication de métriques est enregistrée onchain</li>
+<li>Vérifiez que le fichier de paire de clés existe sur le commutateur</li>
+<li>Assurez-vous que la pubkey du compte du dispositif est correcte</li>
+</ul>
+<hr />
+<h2 id="prochaines-etapes">Prochaines Étapes</h2>
+<ul>
+<li>Consultez le <a href="../contribute-operations/">Guide des Opérations</a> pour les mises à niveau des agents et la gestion des liens</li>
+<li>Consultez le <a href="../glossary/">Glossaire</a> pour les définitions des termes</li>
+<li>Contactez DZF/Malbec Labs si vous rencontrez des problèmes</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "navigation.indexes", "toc.integrate", "header.autohide"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../javascripts/cloudsmith-versions.js"></script>
+      
+        <script src="../../javascripts/connection-wizard.js"></script>
+      
+        <script src="../../javascripts/page-toolbar.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/page-toolbar.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1705 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://docs.malbeclabs.com/fr/contribute-operations/">
+      
+      
+        <link rel="prev" href="../contribute-provisioning/">
+      
+      
+        <link rel="next" href="../architecture/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Operations - Malbec Labs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.e53b48f4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/wizard.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="grey" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#guide-des-operations-pour-les-contributeurs" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href="../" title="Malbec Labs" class="md-header__button md-logo" aria-label="Malbec Labs" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Malbec Labs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Operations
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+      
+
+
+<div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Sélectionner la langue">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../contribute-operations/" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../zh/contribute-operations/" hreflang="zh" class="md-select__link">
+              Chinese
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../ja/contribute-operations/" hreflang="ja" class="md-select__link">
+              Japanese
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../ko/contribute-operations/" hreflang="ko" class="md-select__link">
+              Korean
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../pt/contribute-operations/" hreflang="pt" class="md-select__link">
+              Portuguese
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../es/contribute-operations/" hreflang="es" class="md-select__link">
+              Spanish
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="./" hreflang="fr" class="md-select__link">
+              French
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../../it/contribute-operations/" hreflang="it" class="md-select__link">
+              Italian
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../" title="Malbec Labs" class="md-nav__button md-logo" aria-label="Malbec Labs" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    Malbec Labs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Welcome
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quick-connect/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quick Connect
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Users
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Users
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../setup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tenants
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            Tenants
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tenant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_2" id="__nav_3_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Solana
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            Solana
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DZ%20Mainnet-beta%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Validator Mainnet-Beta Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DZ%20Testnet%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Validator Testnet Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Permissioned%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Permissioned Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Validator%20Multicast%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Validator Multicast Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Other%20Multicast%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Other Multicast Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2_3" id="__nav_3_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Shelby
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Shelby
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Shelby%20Permissioned%20Connection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shelby Connection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../New%20Tenant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    New Tenant
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Contributors
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Contributors
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Requirements & Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribute-provisioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Device Provisioning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Operations
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Operations
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mises-a-jour-des-dispositifs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mises à Jour des Dispositifs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mises-a-jour-des-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mises à Jour des Interfaces
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mises à Jour des Interfaces">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lister-les-interfaces" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lister les Interfaces
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mise-a-niveau-de-lagent-de-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mise à Niveau de l'Agent de Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mise à Niveau de l&#39;Agent de Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-telecharger-la-derniere-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Télécharger la dernière version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-arreter-lagent" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Arrêter l'agent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-supprimer-lancienne-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Supprimer l'ancienne version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-installer-la-nouvelle-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Installer la nouvelle version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-reactiver-lagent" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Réactiver l'agent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-verifier-la-mise-a-niveau" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Vérifier la mise à niveau
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-verifier-la-sortie-de-log-de-lagent-de-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Vérifier la Sortie de Log de l'Agent de Configuration
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mise-a-niveau-de-lagent-de-telemetrie" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mise à Niveau de l'Agent de Télémétrie
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mise à Niveau de l&#39;Agent de Télémétrie">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-telecharger-la-derniere-version_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Télécharger la dernière version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-arreter-lagent_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Arrêter l'agent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-supprimer-lancienne-version_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Supprimer l'ancienne version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-installer-la-nouvelle-version_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Installer la nouvelle version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-reactiver-lagent_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Réactiver l'agent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-verifier-la-mise-a-niveau_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Vérifier la mise à niveau
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-verifier-la-sortie-de-log-de-lagent-de-telemetrie" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Vérifier la Sortie de Log de l'Agent de Télémétrie
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#surveillance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Surveillance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Surveillance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metriques-de-lagent-de-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métriques de l'Agent de Configuration
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Métriques de l&#39;Agent de Configuration">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#erreurs-a-haute-signification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Erreurs à Haute Signification
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metriques-de-lagent-de-telemetrie" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métriques de l'Agent de Télémétrie
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Métriques de l&#39;Agent de Télémétrie">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#erreurs-a-haute-signification_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Erreurs à Haute Signification
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gestion-des-liens" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gestion des Liens
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gestion des Liens">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#drainage-des-liens" class="md-nav__link">
+    <span class="md-ellipsis">
+      Drainage des Liens
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transitions-detat" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transitions d'État
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drainer-doucement-un-lien" class="md-nav__link">
+    <span class="md-ellipsis">
+      Drainer Doucement un Lien
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#drainer-fortement-un-lien" class="md-nav__link">
+    <span class="md-ellipsis">
+      Drainer Fortement un Lien
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restaurer-un-lien-en-service-actif" class="md-nav__link">
+    <span class="md-ellipsis">
+      Restaurer un Lien en Service Actif
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#remplacement-de-delai" class="md-nav__link">
+    <span class="md-ellipsis">
+      Remplacement de Délai
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#definir-un-remplacement-de-delai" class="md-nav__link">
+    <span class="md-ellipsis">
+      Définir un Remplacement de Délai
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#effacer-un-remplacement-de-delai" class="md-nav__link">
+    <span class="md-ellipsis">
+      Effacer un Remplacement de Délai
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Glossary
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="guide-des-operations-pour-les-contributeurs">Guide des Opérations pour les Contributeurs</h1>
+<div class="admonition warning">
+<p class="admonition-title">This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon.</p>
+</div>
+<p>Ce guide couvre les tâches opérationnelles courantes pour maintenir vos DoubleZero Devices (DZD), notamment les mises à niveau des agents, les mises à jour des dispositifs/interfaces, et la gestion des liens.</p>
+<p><strong>Prérequis</strong> : Avant d'utiliser ce guide, assurez-vous d'avoir :</p>
+<ul>
+<li>Complété le <a href="../contribute-provisioning/">Guide de Provisionnement des Dispositifs</a></li>
+<li>Votre DZD est entièrement opérationnel avec les deux agents de Configuration et de Télémétrie en cours d'exécution</li>
+</ul>
+<hr />
+<h2 id="mises-a-jour-des-dispositifs">Mises à Jour des Dispositifs</h2>
+<p>Utilisez <code>doublezero device update</code> pour modifier les paramètres du dispositif après le provisionnement initial.</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>device<span class="w"> </span>update<span class="w"> </span>--pubkey<span class="w"> </span>&lt;PUBKEY_DISPOSITIF&gt;<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</code></pre></div>
+<p><strong>Options de mise à jour courantes :</strong></p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--device-type &lt;TYPE&gt;</code></td>
+<td>Changer le mode de fonctionnement : <code>hybrid</code>, <code>transit</code>, <code>edge</code> (voir <a href="../contribute-provisioning/#understanding-device-types">Types de Dispositifs</a>)</td>
+</tr>
+<tr>
+<td><code>--location &lt;EMPLACEMENT&gt;</code></td>
+<td>Déplacer le dispositif vers un emplacement différent</td>
+</tr>
+<tr>
+<td><code>--metrics-publisher &lt;PUBKEY&gt;</code></td>
+<td>Changer la clé de publication de métriques</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="mises-a-jour-des-interfaces">Mises à Jour des Interfaces</h2>
+<p>Utilisez <code>doublezero device interface update</code> pour modifier les interfaces existantes. Cette commande accepte les mêmes options que <code>interface create</code>.</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>device<span class="w"> </span>interface<span class="w"> </span>update<span class="w"> </span>&lt;DISPOSITIF&gt;<span class="w"> </span>&lt;NOM&gt;<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</code></pre></div>
+<p>Pour la liste complète des options d'interface incluant les paramètres CYOA/DIA, voir <a href="../contribute-provisioning/#step-35-create-cyoa-interface-for-edgehybrid-devices">Création d'Interfaces</a>.</p>
+<p><strong>Exemple - Ajouter des paramètres CYOA à une interface existante :</strong></p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>device<span class="w"> </span>interface<span class="w"> </span>update<span class="w"> </span>lax-dz001<span class="w"> </span>Ethernet1/2<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--interface-cyoa<span class="w"> </span>gre-over-dia<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--interface-dia<span class="w"> </span>dia<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--bandwidth<span class="w"> </span><span class="m">10000</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--cir<span class="w"> </span><span class="m">1000</span>
+</code></pre></div>
+<h3 id="lister-les-interfaces">Lister les Interfaces</h3>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>device<span class="w"> </span>interface<span class="w"> </span>list<span class="w">              </span><span class="c1"># Toutes les interfaces sur tous les dispositifs</span>
+doublezero<span class="w"> </span>device<span class="w"> </span>interface<span class="w"> </span>list<span class="w"> </span>&lt;DISPOSITIF&gt;<span class="w"> </span><span class="c1"># Interfaces pour un dispositif spécifique</span>
+</code></pre></div>
+<hr />
+<h2 id="mise-a-niveau-de-lagent-de-configuration">Mise à Niveau de l'Agent de Configuration</h2>
+<p>Lorsqu'une nouvelle version de l'Agent de Configuration est publiée, suivez ces étapes pour mettre à niveau.</p>
+<h3 id="1-telecharger-la-derniere-version">1. Télécharger la dernière version</h3>
+<div class="highlight"><pre><span></span><code>switch# bash
+$ sudo bash
+# cd /mnt/flash
+# wget AGENT_DOWNLOAD_URL
+# exit
+$ exit
+</code></pre></div>
+<h3 id="2-arreter-lagent">2. Arrêter l'agent</h3>
+<div class="highlight"><pre><span></span><code>switch# configure
+switch(config)# daemon doublezero-agent
+switch(config-daemon-doublezero-agent)# shutdown
+switch(config-daemon-doublezero-agent)# exit
+switch(config)# exit
+</code></pre></div>
+<h3 id="3-supprimer-lancienne-version">3. Supprimer l'ancienne version</h3>
+<p>D'abord, trouvez le nom de fichier de l'ancienne version :
+<div class="highlight"><pre><span></span><code>switch# show extensions
+</code></pre></div></p>
+<p>Exécutez les commandes suivantes pour supprimer l'ancienne version. Remplacez <code>&lt;ANCIENNE_VERSION&gt;</code> par l'ancienne version de la sortie ci-dessus :
+<div class="highlight"><pre><span></span><code>switch# delete flash:doublezero-agent_&lt;ANCIENNE_VERSION&gt;_linux_amd64.rpm
+switch# delete extension:doublezero-agent_&lt;ANCIENNE_VERSION&gt;_linux_amd64.rpm
+</code></pre></div></p>
+<h3 id="4-installer-la-nouvelle-version">4. Installer la nouvelle version</h3>
+<div class="highlight"><pre><span></span><code>switch# copy flash:AGENT_FILENAME extension:
+switch# extension AGENT_FILENAME
+switch# copy installed-extensions boot-extensions
+</code></pre></div>
+<h3 id="5-reactiver-lagent">5. Réactiver l'agent</h3>
+<div class="highlight"><pre><span></span><code>switch# configure
+switch(config)# daemon doublezero-agent
+switch(config-daemon-doublezero-agent)# no shutdown
+switch(config-daemon-doublezero-agent)# exit
+switch(config)# exit
+</code></pre></div>
+<h3 id="6-verifier-la-mise-a-niveau">6. Vérifier la mise à niveau</h3>
+<p>Le Statut devrait être "A, I, B".
+<div class="highlight"><pre><span></span><code>switch# show extensions
+</code></pre></div></p>
+<h3 id="7-verifier-la-sortie-de-log-de-lagent-de-configuration">7. Vérifier la Sortie de Log de l'Agent de Configuration</h3>
+<div class="highlight"><pre><span></span><code>show agent doublezero-agent log
+</code></pre></div>
+<hr />
+<h2 id="mise-a-niveau-de-lagent-de-telemetrie">Mise à Niveau de l'Agent de Télémétrie</h2>
+<p>Lorsqu'une nouvelle version de l'Agent de Télémétrie est publiée, suivez ces étapes pour mettre à niveau.</p>
+<h3 id="1-telecharger-la-derniere-version_1">1. Télécharger la dernière version</h3>
+<div class="highlight"><pre><span></span><code>switch# bash
+$ sudo bash
+# cd /mnt/flash
+# wget TELEMETRY_DOWNLOAD_URL
+# exit
+$ exit
+</code></pre></div>
+<h3 id="2-arreter-lagent_1">2. Arrêter l'agent</h3>
+<div class="highlight"><pre><span></span><code>switch# configure
+switch(config)# daemon doublezero-telemetry
+switch(config-daemon-doublezero-telemetry)# shutdown
+switch(config-daemon-doublezero-telemetry)# exit
+switch(config)# exit
+</code></pre></div>
+<h3 id="3-supprimer-lancienne-version_1">3. Supprimer l'ancienne version</h3>
+<p>D'abord, trouvez le nom de fichier de l'ancienne version :
+<div class="highlight"><pre><span></span><code>switch# show extensions
+</code></pre></div></p>
+<p>Exécutez les commandes suivantes pour supprimer l'ancienne version. Remplacez <code>&lt;ANCIENNE_VERSION&gt;</code> par l'ancienne version de la sortie ci-dessus :
+<div class="highlight"><pre><span></span><code>switch# delete flash:doublezero-device-telemetry-agent_&lt;ANCIENNE_VERSION&gt;_linux_amd64.rpm
+switch# delete extension:doublezero-device-telemetry-agent_&lt;ANCIENNE_VERSION&gt;_linux_amd64.rpm
+</code></pre></div></p>
+<h3 id="4-installer-la-nouvelle-version_1">4. Installer la nouvelle version</h3>
+<div class="highlight"><pre><span></span><code>switch# copy flash:TELEMETRY_FILENAME extension:
+switch# extension TELEMETRY_FILENAME
+switch# copy installed-extensions boot-extensions
+</code></pre></div>
+<h3 id="5-reactiver-lagent_1">5. Réactiver l'agent</h3>
+<div class="highlight"><pre><span></span><code>switch# configure
+switch(config)# daemon doublezero-telemetry
+switch(config-daemon-doublezero-telemetry)# no shutdown
+switch(config-daemon-doublezero-telemetry)# exit
+switch(config)# exit
+</code></pre></div>
+<h3 id="6-verifier-la-mise-a-niveau_1">6. Vérifier la mise à niveau</h3>
+<p>Le Statut devrait être "A, I, B".
+<div class="highlight"><pre><span></span><code>switch# show extensions
+</code></pre></div></p>
+<h3 id="7-verifier-la-sortie-de-log-de-lagent-de-telemetrie">7. Vérifier la Sortie de Log de l'Agent de Télémétrie</h3>
+<div class="highlight"><pre><span></span><code>show agent doublezero-telemetry log
+</code></pre></div>
+<hr />
+<h2 id="surveillance">Surveillance</h2>
+<blockquote>
+<p>⚠️ <strong>Important :</strong></p>
+<ol>
+<li>Pour les exemples de configuration ci-dessous, veuillez tenir compte du fait que vos agents utilisent ou non un VRF de gestion.</li>
+<li>L'agent de configuration et l'agent de télémétrie utilisent le même port d'écoute (:8080) pour leur endpoint de métriques par défaut. Si vous activez les métriques sur les deux, utilisez le flag <code>-metrics-addr</code> pour définir des ports d'écoute uniques pour chaque agent.</li>
+</ol>
+</blockquote>
+<h3 id="metriques-de-lagent-de-configuration">Métriques de l'Agent de Configuration</h3>
+<p>L'agent de configuration sur le dispositif DoubleZero a la capacité d'exposer des métriques compatibles Prometheus en définissant le flag <code>-metrics-enable</code> dans la configuration du démon <code>doublezero-agent</code>. Le port d'écoute par défaut est tcp/8080 mais peut être changé pour s'adapter à l'environnement via <code>-metrics-addr</code> :
+<div class="highlight"><pre><span></span><code>daemon doublezero-agent
+   exec /usr/local/bin/doublezero-agent -pubkey $PUBKEY -controller $CONTROLLER_ADDR -metrics-enable -metrics-addr 10.0.0.11:2112
+   no shutdown
+</code></pre></div></p>
+<p>Les métriques spécifiques à DoubleZero suivantes sont exposées avec les métriques de runtime spécifiques à go :
+<div class="highlight"><pre><span></span><code>$ curl -s 10.0.0.11:2112/metrics | grep doublezero
+
+# HELP doublezero_agent_apply_config_errors_total Number of errors encountered while applying config to the device
+# TYPE doublezero_agent_apply_config_errors_total counter
+doublezero_agent_apply_config_errors_total 0
+
+# HELP doublezero_agent_bgp_neighbors_errors_total Number of errors encountered while retrieving BGP neighbors from the device
+# TYPE doublezero_agent_bgp_neighbors_errors_total counter
+doublezero_agent_bgp_neighbors_errors_total 0
+
+# HELP doublezero_agent_build_info Build information of the agent
+# TYPE doublezero_agent_build_info gauge
+doublezero_agent_build_info{commit=&quot;4378018f&quot;,date=&quot;2025-09-23T14:07:48Z&quot;,version=&quot;0.6.5~git20250923140746.4378018f&quot;} 1
+
+# HELP doublezero_agent_get_config_errors_total Number of errors encountered while getting config from the controller
+# TYPE doublezero_agent_get_config_errors_total counter
+doublezero_agent_get_config_errors_total 0
+</code></pre></div></p>
+<h4 id="erreurs-a-haute-signification">Erreurs à Haute Signification</h4>
+<ul>
+<li><code>up</code> — C'est la métrique de série temporelle générée automatiquement par Prometheus si l'instance de scrape est saine et accessible. Si ce n'est pas le cas, soit l'agent n'est pas accessible, soit l'agent n'est pas en cours d'exécution.</li>
+<li><code>doublezero_agent_apply_config_errors_total</code> — La configuration tentant d'être appliquée par l'agent a échoué. Dans cette situation, les utilisateurs ne pourront pas s'intégrer au dispositif et les modifications de configuration onchain ne seront pas appliquées jusqu'à ce que cela soit résolu.</li>
+<li><code>doublezero_agent_get_config_errors_total</code> — Cela signale que l'agent de configuration local ne peut pas communiquer avec le contrôleur DoubleZero. Dans la plupart des cas, cela peut être dû à un problème de connectivité de gestion sur le dispositif. Similaire à la métrique ci-dessus, les utilisateurs ne pourront pas s'intégrer au dispositif et les modifications de configuration onchain ne seront pas appliquées jusqu'à ce que cela soit résolu.</li>
+</ul>
+<h3 id="metriques-de-lagent-de-telemetrie">Métriques de l'Agent de Télémétrie</h3>
+<p>L'agent de télémétrie sur le dispositif DoubleZero a la capacité d'exposer des métriques compatibles Prometheus en définissant le flag <code>-metrics-enable</code> dans la configuration du démon <code>doublezero-telemetry</code>. Le port d'écoute par défaut est tcp/8080 mais peut être changé pour s'adapter à l'environnement via <code>-metrics-addr</code> :
+<div class="highlight"><pre><span></span><code>daemon doublezero-telemetry
+   exec /usr/local/bin/doublezero-telemetry  --local-device-pubkey $PUBKEY --env $ENV --keypair $KEY_PAIR -metrics-enable --metrics-addr 10.0.0.11:2113
+   no shutdown
+</code></pre></div></p>
+<p>Les métriques spécifiques à DoubleZero suivantes sont exposées avec les métriques de runtime spécifiques à go :
+<div class="highlight"><pre><span></span><code>$ curl -s 10.0.0.11:2113/metrics | grep doublezero
+
+# HELP doublezero_device_telemetry_agent_build_info Build information of the device telemetry agent
+# TYPE doublezero_device_telemetry_agent_build_info gauge
+doublezero_device_telemetry_agent_build_info{commit=&quot;4378018f&quot;,date=&quot;2025-09-23T14:07:45Z&quot;,version=&quot;0.6.5~git20250923140743.4378018f&quot;} 1
+
+# HELP doublezero_device_telemetry_agent_errors_total Number of errors encountered
+# TYPE doublezero_device_telemetry_agent_errors_total counter
+doublezero_device_telemetry_agent_errors_total{error_type=&quot;peer_discovery_program_load&quot;} 7
+doublezero_device_telemetry_agent_errors_total{error_type=&quot;submitter_failed_to_write_samples&quot;} 8
+doublezero_device_telemetry_agent_errors_total{error_type=&quot;collector_submit_samples_on_close&quot;} 0
+doublezero_device_telemetry_agent_errors_total{error_type=&quot;peer_discovery_getting_local_interfaces&quot;} 0
+doublezero_device_telemetry_agent_errors_total{error_type=&quot;peer_discovery_finding_local_tunnel&quot;} 0
+doublezero_device_telemetry_agent_errors_total{error_type=&quot;peer_discovery_link_tunnel_net_invalid&quot;} 0
+doublezero_device_telemetry_agent_errors_total{error_type=&quot;submitter_failed_to_initialize_account&quot;} 0
+doublezero_device_telemetry_agent_errors_total{error_type=&quot;submitter_retries_exhausted&quot;} 0
+
+# HELP doublezero_device_telemetry_agent_peer_discovery_not_found_tunnels Number of local tunnel interfaces not found during peer discovery
+# TYPE doublezero_device_telemetry_agent_peer_discovery_not_found_tunnels gauge
+doublezero_device_telemetry_agent_peer_discovery_not_found_tunnels{local_device_pk=&quot;8PQkip3CxWhQTdP7doCyhT2kwjSL2csRTdnRg2zbDPs1&quot;} 0
+</code></pre></div></p>
+<h4 id="erreurs-a-haute-signification_1">Erreurs à Haute Signification</h4>
+<ul>
+<li><code>up</code> — C'est la métrique de série temporelle générée automatiquement par Prometheus si l'instance de scrape est saine et accessible. Si ce n'est pas le cas, soit l'agent n'est pas accessible, soit l'agent n'est pas en cours d'exécution.</li>
+<li><code>doublezero_device_telemetry_agent_errors_total</code> avec un <code>error_type</code> de <code>submitter_failed_to_write_samples</code> — C'est un signal que l'agent de télémétrie ne peut pas écrire d'échantillons onchain, ce qui pourrait être dû à des problèmes de connectivité de gestion sur le dispositif.</li>
+</ul>
+<hr />
+<h2 id="gestion-des-liens">Gestion des Liens</h2>
+<h3 id="drainage-des-liens">Drainage des Liens</h3>
+<p>Le drainage des liens permet aux contributeurs de retirer gracieusement un lien du service actif pour la maintenance ou le dépannage. Il y a deux états de drainage :</p>
+<table>
+<thead>
+<tr>
+<th>Statut</th>
+<th>Comportement IS-IS</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>soft-drained</code></td>
+<td>Métrique fixée à 1 000 000</td>
+<td>Le lien est déprioritisé. Le trafic utilisera des chemins alternatifs si disponibles, mais utilisera encore ce lien si c'est la seule option.</td>
+</tr>
+<tr>
+<td><code>hard-drained</code></td>
+<td>Mis en passif</td>
+<td>Le lien est complètement retiré du routage. Aucun trafic ne traversera ce lien.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="transitions-detat">Transitions d'État</h3>
+<p>Les transitions d'état suivantes sont autorisées :</p>
+<div class="highlight"><pre><span></span><code>activated → soft-drained ✓
+activated → hard-drained ✓
+soft-drained → hard-drained ✓
+hard-drained → soft-drained ✓
+soft-drained → activated ✓
+hard-drained → activated ✗ (doit passer par soft-drained d&#39;abord)
+</code></pre></div>
+<blockquote>
+<p>⚠️ <strong>Note :</strong>
+Vous ne pouvez pas passer directement de <code>hard-drained</code> à <code>activated</code>. Vous devez d'abord passer à <code>soft-drained</code>, puis à <code>activated</code>.</p>
+</blockquote>
+<h3 id="drainer-doucement-un-lien">Drainer Doucement un Lien</h3>
+<p>Le drainage doux déprioritise un lien en fixant sa métrique IS-IS à 1 000 000. Le trafic préférera les chemins alternatifs mais peut encore utiliser ce lien si nécessaire.</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>link<span class="w"> </span>update<span class="w"> </span>--pubkey<span class="w"> </span>&lt;PUBKEY_LIEN&gt;<span class="w"> </span>--status<span class="w"> </span>soft-drained
+</code></pre></div>
+<h3 id="drainer-fortement-un-lien">Drainer Fortement un Lien</h3>
+<p>Le drainage fort retire le lien du routage entièrement en mettant IS-IS en mode passif. Aucun trafic ne traversera ce lien.</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>link<span class="w"> </span>update<span class="w"> </span>--pubkey<span class="w"> </span>&lt;PUBKEY_LIEN&gt;<span class="w"> </span>--status<span class="w"> </span>hard-drained
+</code></pre></div>
+<h3 id="restaurer-un-lien-en-service-actif">Restaurer un Lien en Service Actif</h3>
+<p>Pour remettre un lien drainé en fonctionnement normal :</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Depuis soft-drained</span>
+doublezero<span class="w"> </span>link<span class="w"> </span>update<span class="w"> </span>--pubkey<span class="w"> </span>&lt;PUBKEY_LIEN&gt;<span class="w"> </span>--status<span class="w"> </span>activated
+
+<span class="c1"># Depuis hard-drained (doit passer par soft-drained d&#39;abord)</span>
+doublezero<span class="w"> </span>link<span class="w"> </span>update<span class="w"> </span>--pubkey<span class="w"> </span>&lt;PUBKEY_LIEN&gt;<span class="w"> </span>--status<span class="w"> </span>soft-drained
+doublezero<span class="w"> </span>link<span class="w"> </span>update<span class="w"> </span>--pubkey<span class="w"> </span>&lt;PUBKEY_LIEN&gt;<span class="w"> </span>--status<span class="w"> </span>activated
+</code></pre></div>
+<h3 id="remplacement-de-delai">Remplacement de Délai</h3>
+<p>La fonctionnalité de remplacement de délai permet aux contributeurs de modifier temporairement le délai effectif d'un lien sans modifier la valeur de délai mesurée réelle. Ceci est utile pour démoter temporairement un lien du chemin principal au chemin secondaire.</p>
+<h3 id="definir-un-remplacement-de-delai">Définir un Remplacement de Délai</h3>
+<p>Pour remplacer le délai d'un lien (le rendant moins préféré dans le routage) :</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>link<span class="w"> </span>update<span class="w"> </span>--pubkey<span class="w"> </span>&lt;PUBKEY_LIEN&gt;<span class="w"> </span>--delay-override-ms<span class="w"> </span><span class="m">100</span>
+</code></pre></div>
+<p>Les valeurs valides sont de <code>0.01</code> à <code>1000</code> millisecondes.</p>
+<h3 id="effacer-un-remplacement-de-delai">Effacer un Remplacement de Délai</h3>
+<p>Pour supprimer le remplacement et revenir à l'utilisation du délai mesuré réel :</p>
+<div class="highlight"><pre><span></span><code>doublezero<span class="w"> </span>link<span class="w"> </span>update<span class="w"> </span>--pubkey<span class="w"> </span>&lt;PUBKEY_LIEN&gt;<span class="w"> </span>--delay-override-ms<span class="w"> </span><span class="m">0</span>
+</code></pre></div>
+<blockquote>
+<p>⚠️ <strong>Note :</strong>
+Lorsqu'un lien est soft-drained, <code>delay_ms</code> et <code>delay_override_ms</code> sont tous deux remplacés à 1000ms (1 seconde) pour assurer la déprioritisation.</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy", "navigation.indexes", "toc.integrate", "header.autohide"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="../../javascripts/cloudsmith-versions.js"></script>
+      
+        <script src="../../javascripts/connection-wizard.js"></script>
+      
+        <script src="../../javascripts/page-toolbar.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="../../javascripts/page-toolbar.js"></script>
+      
+    
+  </body>
+</html>
