@@ -6,7 +6,42 @@ This guide walks you through provisioning a DoubleZero Device (DZD) from start t
 
 ## How It All Fits Together
 
-Before diving into the steps, here's the big picture of what you're building:
+This guide walks you through registering your infrastructure on-chain so the DoubleZero network can route traffic through it. The more completely your device is registered, the more useful it is to the network. A full on-chain representation of your device enables better troubleshooting, capacity planning, and allows the controller to make informed decisions. Over time, the goal is for the controller to take on more of the configuration responsibility.
+
+### Key concepts
+
+**Interfaces**
+
+Interfaces on a DZD come in different forms: Ethernet ports, port channels (LAGs made up of multiple Ethernet ports), and loopbacks. Each interface that plays a role in the network needs to be registered on-chain with the appropriate flags so the protocol knows what it does.
+
+Ethernet ports and port channels can serve the following roles:
+
+| Flag | What it means |
+|------|---------------|
+| `--interface-dia dia` | Marks the interface as the direct internet access uplink |
+| `--interface-cyoa <subtype>` | Declares how users establish GRE tunnels through this interface (e.g. over the public internet, via a private peering link) |
+| `--user-tunnel-endpoint true` | This interface carries a public IP that users terminate GRE tunnels on |
+
+Interfaces used for WAN or DZX links do not carry a specific flag, they are registered with their bandwidth and then referenced when the link is created.
+
+Loopback interfaces serve several purposes:
+
+| Loopback | What it means |
+|----------|---------------|
+| **Loopback100 / 101** | Carry public IPs that users terminate GRE tunnels on. Registered with `--user-tunnel-endpoint true`. |
+| **Loopback255** (`vpnv4`) | Registered so the controller can assign an IP used for BGP router ID, VPN-IPv4 peering (unicast), IS-IS identity, and segment routing |
+| **Loopback256** (`ipv4`) | Registered so the controller can assign an IP used for IPv4 BGP peering (multicast) and MSDP sessions |
+
+**Links**
+
+Links are registered separately from interfaces, and interfaces must exist on-chain before a link can reference them. When you create a WAN or DZX link, you specify an already-registered interface as the link's physical endpoint. Not all interfaces are tied to a link: DIA, CYOA, and loopback interfaces are not connected to a link.
+
+| Term | What it means |
+|------|---------------|
+| **WAN Link** | A link between two of your own DZDs |
+| **DZX Link** | A link between your DZD and another contributor's DZD |
+
+### Architecture overview
 
 ```mermaid
 flowchart TB
@@ -16,23 +51,26 @@ flowchart TB
 
     subgraph Your Infrastructure
         MGMT[Management Server<br/>DoubleZero CLI]
-        DZD[Your DZD<br/>Arista Switch]
-        DZD ---|WAN Link| DZD2[Your other DZD]
+        subgraph DZD[Your DZD]
+            CYOA["DIA · CYOA interface<br/>(user-facing uplink)"]
+            WAN_INTF["WAN link interface"]
+            DZX_INTF["DZX link interface"]
+            LO100["Loopback100/101<br/>(user tunnel endpoint)"]
+        end
+        DZD2[Your other DZD]
     end
 
     subgraph Other Contributor
         OtherDZD[Their DZD]
     end
 
-    subgraph Users
-        VAL[Validators]
-        RPC[RPC Nodes]
-    end
+    USERS["Users"]
 
     MGMT -.->|Registers devices,<br/>links, interfaces| SC
-    DZD ---|DZX Link| OtherDZD
-    VAL ---|Connect via Internet| DZD
-    RPC ---|Connect via Internet| DZD
+    WAN_INTF ---|WAN Link| DZD2
+    DZX_INTF ---|DZX Link| OtherDZD
+    USERS -.|GRE tunnel|.-> CYOA
+    CYOA ---|routes to| LO100
 ```
 
 ---
@@ -231,28 +269,48 @@ Now you'll register your physical device on the blockchain and configure its int
 
 ### Understanding Device Types
 
+**Edge** — accepts user connections only
+
 ```mermaid
-flowchart TB
-    subgraph "Edge Device"
-        E[Edge DZD]
-        EU[Users connect here]
-        EU --> E
-        E <-->|DZX Link| ED[Other DZD]
+flowchart LR
+    subgraph EDZD[Edge DZD]
+        E_CYOA["DIA · CYOA interface"]
+        E_TUN["Loopback100/101
+        (user tunnel endpoint)"]
+        E_DZX["DZX link interface"]
+        E_CYOA --- E_TUN
     end
+    EU["Users"] -.|GRE tunnel|.-> E_CYOA
+    E_DZX <-->|DZX Link| ED[Other DZD]
+```
 
-    subgraph "Transit Device"
-        T[Transit DZD]
-        T <-->|WAN Link| T2[Another DZD]
-        T <-->|DZX Link| TD[Other DZD]
-    end
+**Transit** — moves traffic between devices, no user connections
 
-    subgraph "Hybrid Device"
-        H[Hybrid DZD]
-        HU[Users connect here]
-        HU --> H
-        H <-->|WAN Link| H2[Another DZD]
-        H <-->|DZX Link| HD[Other DZD]
+```mermaid
+flowchart LR
+    subgraph TDZD[Transit DZD]
+        T_WAN["WAN link interface"]
+        T_DZX["DZX link interface"]
     end
+    T_WAN <-->|WAN Link| T2[Another DZD]
+    T_DZX <-->|DZX Link| TD[Other DZD]
+```
+
+**Hybrid** — user connections and backbone, most common
+
+```mermaid
+flowchart LR
+    subgraph HDZD[Hybrid DZD]
+        H_CYOA["DIA · CYOA interface"]
+        H_TUN["Loopback100/101
+        (user tunnel endpoint)"]
+        H_WAN["WAN link interface"]
+        H_DZX["DZX link interface"]
+        H_CYOA --- H_TUN
+    end
+    HU["Users"] -.|GRE tunnel|.-> H_CYOA
+    H_WAN <-->|WAN Link| H2[Another DZD]
+    H_DZX <-->|DZX Link| HD[Other DZD]
 ```
 
 | Type | What It Does | When to Use |
@@ -345,11 +403,18 @@ Signature: 3mNx9K...truncated...8wRt5
 
 ### Step 3.4: Create Physical Interfaces
 
-Register the physical ports you'll use:
+Register the physical interfaces that will be used for WAN or DZX links. These interfaces must exist on-chain before you can create a link that references them. At this step you only register the interface and its bandwidth, the link is created in a later step.
 
 ```bash
-# Basic interface
-doublezero device interface create <DEVICE_CODE> Ethernet1/1
+doublezero device interface create <DEVICE_CODE> <INTERFACE_NAME> \
+  --bandwidth <PORT_SPEED>
+```
+
+**Example:**
+
+```bash
+doublezero device interface create nyc-dz001 Ethernet1/1 \
+  --bandwidth 10Gbps
 ```
 
 **Expected output:**
@@ -357,6 +422,8 @@ doublezero device interface create <DEVICE_CODE> Ethernet1/1
 ```
 Signature: 7pQw2R...truncated...4xKm9
 ```
+
+Repeat this for each interface that will be used as a WAN or DZX link endpoint. CYOA and DIA interfaces are registered separately in the next step.
 
 ### Step 3.5: Create CYOA Interface (for Edge/Hybrid devices)
 
@@ -394,10 +461,9 @@ flowchart LR
     subgraph DZD["DZD"]
         E1["Eth1/1
         203.0.113.1/30
-        CYOA · DIA · tunnel endpoint"]
+        CYOA · DIA · user tunnel endpoint"]
         LO["Loopback100
-        198.51.100.1/32
-        tunnel endpoint"]
+        198.51.100.1/32\n        user tunnel endpoint"]
         E1 --- LO
     end
 
@@ -445,13 +511,12 @@ flowchart LR
     end
 
     subgraph DZD["DZD"]
-        subgraph PC["Port-Channel1 · 203.0.113.1/30 · CYOA · DIA · tunnel endpoint"]
+        subgraph PC["Port-Channel1 · 203.0.113.1/30 · CYOA · DIA · user tunnel endpoint"]
             E1["Eth1/1"]
             E2["Eth2/1"]
         end
         LO["Loopback100
-        198.51.100.1/32
-        tunnel endpoint"]
+        198.51.100.1/32\n        user tunnel endpoint"]
         PC --- LO
     end
 
@@ -501,11 +566,9 @@ flowchart LR
             E2["Eth2/1"]
         end
         LO0["Loopback100
-        198.51.100.1/32
-        tunnel endpoint"]
+        198.51.100.1/32\n        user tunnel endpoint"]
         LO1["Loopback101
-        198.51.100.2/32
-        tunnel endpoint"]
+        198.51.100.2/32\n        user tunnel endpoint"]
         PC --- LO0
         PC --- LO1
     end
@@ -561,11 +624,9 @@ flowchart LR
         203.0.113.5/30
         CYOA · DIA"]
         LO0["Loopback100
-        198.51.100.1/32
-        tunnel endpoint"]
+        198.51.100.1/32\n        user tunnel endpoint"]
         LO1["Loopback101
-        198.51.100.2/32
-        tunnel endpoint"]
+        198.51.100.2/32\n        user tunnel endpoint"]
         E1 --> LO0
         E2 --> LO1
     end
