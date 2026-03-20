@@ -280,7 +280,7 @@ flowchart LR
         E_CYOA --- E_TUN
     end
     EU["Users"] -.|GRE tunnel|.-> E_CYOA
-    E_DZX <-->|DZX Link| ED[DZD (different contributor)]
+    E_DZX <-->|DZX Link| ED["DZD (different contributor)"]
 ```
 
 **Transit** — moves traffic between devices, no user connections
@@ -291,8 +291,8 @@ flowchart LR
         T_WAN["WAN link interface"]
         T_DZX["DZX link interface"]
     end
-    T_WAN <-->|WAN Link| T2[DZD (same contributor)]
-    T_DZX <-->|DZX Link| TD[DZD (different contributor)]
+    T_WAN <-->|WAN Link| T2["DZD (same contributor)"]
+    T_DZX <-->|DZX Link| TD["DZD (different contributor)"]
 ```
 
 **Hybrid** — user connections and backbone, most common
@@ -308,8 +308,8 @@ flowchart LR
         H_CYOA --- H_TUN
     end
     HU["Users"] -.|GRE tunnel|.-> H_CYOA
-    H_WAN <-->|WAN Link| H2[DZD (same contributor)]
-    H_DZX <-->|DZX Link| HD[DZD (different contributor)]
+    H_WAN <-->|WAN Link| H2["DZD (same contributor)"]
+    H_DZX <-->|DZX Link| HD["DZD (different contributor)"]
 ```
 
 | Type | What It Does | When to Use |
