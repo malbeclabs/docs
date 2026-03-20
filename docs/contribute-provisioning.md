@@ -135,8 +135,7 @@ flowchart LR
 - **First IP**: Reserved for your device (assigned to Loopback100 interface)
 - **Remaining IPs**: Allocated to specific user types connecting to your DZD:
     - `IBRLWithAllocatedIP` users
-    - `EdgeFiltering` users
-    - Multicast publishers
+    - `EdgeFiltering` users (future use-case)
 - **IBRL users**: Do NOT consume from this pool (they use their own public IP)
 
 !!! warning "DZ Prefix Rules"
@@ -281,7 +280,7 @@ flowchart LR
         E_CYOA --- E_TUN
     end
     EU["Users"] -.|GRE tunnel|.-> E_CYOA
-    E_DZX <-->|DZX Link| ED[Other DZD]
+    E_DZX <-->|DZX Link| ED[DZD (different contributor)]
 ```
 
 **Transit** — moves traffic between devices, no user connections
@@ -292,8 +291,8 @@ flowchart LR
         T_WAN["WAN link interface"]
         T_DZX["DZX link interface"]
     end
-    T_WAN <-->|WAN Link| T2[Another DZD]
-    T_DZX <-->|DZX Link| TD[Other DZD]
+    T_WAN <-->|WAN Link| T2[DZD (same contributor)]
+    T_DZX <-->|DZX Link| TD[DZD (different contributor)]
 ```
 
 **Hybrid** — user connections and backbone, most common
@@ -309,8 +308,8 @@ flowchart LR
         H_CYOA --- H_TUN
     end
     HU["Users"] -.|GRE tunnel|.-> H_CYOA
-    H_WAN <-->|WAN Link| H2[Another DZD]
-    H_DZX <-->|DZX Link| HD[Other DZD]
+    H_WAN <-->|WAN Link| H2[DZD (same contributor)]
+    H_DZX <-->|DZX Link| HD[DZD (different contributor)]
 ```
 
 | Type | What It Does | When to Use |
@@ -477,7 +476,7 @@ flowchart LR
 
 | Interface | `--interface-cyoa` | `--interface-dia` | `--ip-net` | `--bandwidth` | `--cir` | `--routing-mode` | `--user-tunnel-endpoint` |
 |-----------|-------------------|------------------|------------|---------------|---------|-----------------|--------------------------|
-| Ethernet1/1 | `gre-over-dia` | `dia` | Assigned IP/subnet | port speed | committed rate | `bgp` or `static` | `true` |
+| Ethernet1/1 | `gre-over-dia` | `dia` | contributor-assigned IP/subnet | port speed | committed rate | `bgp` or `static` | `true` |
 | Loopback100 | — | — | your public /32 | `0bps` | — | — | `true` |
 
 Example of commands to execute based on Scenario A:
@@ -497,7 +496,7 @@ doublezero device interface create mydzd-nyc01 Loopback100 \
   --user-tunnel-endpoint true
 ```
 
-#### Scenario B1: Layer 3 port channel (port channel has an IP)
+#### Scenario B: Port channel (LAG)
 
 The DZD connects to the upstream device via a port channel with an IP. The port channel carries one public IP and is the CYOA endpoint. Loopback100 carries the second public IP.
 
@@ -527,10 +526,10 @@ flowchart LR
 
 | Interface | `--interface-cyoa` | `--interface-dia` | `--ip-net` | `--bandwidth` | `--cir` | `--routing-mode` | `--user-tunnel-endpoint` |
 |-----------|-------------------|------------------|------------|---------------|---------|-----------------|--------------------------|
-| Port-Channel1 | `gre-over-dia` | `dia` | Assigned IP/subnet | combined LAG speed | committed rate | `bgp` or `static` | `true` |
+| Port-Channel1 | `gre-over-dia` | `dia` | contributor-assigned IP/subnet | combined LAG speed | committed rate | `bgp` or `static` | `true` |
 | Loopback100 | — | — | your public /32 | `0bps` | — | — | `true` |
 
-Example of commands to execute based on Scenario B1:
+Example of commands to execute based on Scenario B:
 ```bash
 doublezero device interface create mydzd-fra01 Port-Channel1 \
   --interface-cyoa gre-over-dia \
@@ -547,61 +546,6 @@ doublezero device interface create mydzd-fra01 Loopback100 \
   --user-tunnel-endpoint true
 ```
 
-#### Scenario B2: Layer 2 port channel (no IP on the DZD side)
-
-The upstream device terminates the L3 — the DZD side of the port channel has no IP. Register the port channel as the DIA interface and omit `--ip-net`. Both public IPs live on loopbacks.
-
-```mermaid
-flowchart LR
-    USERS(["End Users"])
-
-    subgraph SW["Upstream Router / Switch"]
-        SWPC(["bond0 (L3 termination)
-        203.0.113.1/30"])
-    end
-
-    subgraph DZD["DZD"]
-        subgraph PC["Port-Channel1 · CYOA · DIA (no IP)"]
-            E1["Eth1/1"]
-            E2["Eth2/1"]
-        end
-        LO0["Loopback100
-        198.51.100.1/32\n        user tunnel endpoint"]
-        LO1["Loopback101
-        198.51.100.2/32\n        user tunnel endpoint"]
-        PC --- LO0
-        PC --- LO1
-    end
-
-    SWPC -- "2x 10GbE" --- PC
-    USERS -. "GRE tunnels" .-> LO0
-    USERS -. "GRE tunnels" .-> LO1
-```
-
-| Interface | `--interface-cyoa` | `--interface-dia` | `--ip-net` | `--bandwidth` | `--cir` | `--routing-mode` | `--user-tunnel-endpoint` |
-|-----------|-------------------|------------------|------------|---------------|---------|-----------------|--------------------------|
-| Port-Channel1 | `gre-over-dia` | `dia` | — | combined LAG speed | committed rate | — | — |
-| Loopback100 | — | — | your public /32 | `0bps` | — | — | `true` |
-| Loopback101 | — | — | your public /32 | `0bps` | — | — | `true` |
-
-Example of commands to execute based on Scenario B2:
-```bash
-doublezero device interface create mydzd-fra01 Port-Channel1 \
-  --interface-cyoa gre-over-dia \
-  --interface-dia dia \
-  --bandwidth 20Gbps \
-  --cir 2Gbps
-
-doublezero device interface create mydzd-fra01 Loopback100 \
-  --ip-net 198.51.100.1/32 \
-  --bandwidth 0bps \
-  --user-tunnel-endpoint true
-
-doublezero device interface create mydzd-fra01 Loopback101 \
-  --ip-net 198.51.100.2/32 \
-  --bandwidth 0bps \
-  --user-tunnel-endpoint true
-```
 
 #### Scenario C: Dual physical uplinks to separate routers
 
@@ -639,8 +583,8 @@ flowchart LR
 
 | Interface | `--interface-cyoa` | `--interface-dia` | `--ip-net` | `--bandwidth` | `--cir` | `--routing-mode` | `--user-tunnel-endpoint` |
 |-----------|-------------------|------------------|------------|---------------|---------|-----------------|--------------------------|
-| Ethernet1/1 | `gre-over-dia` | `dia` | Assigned IP/subnet | port speed | committed rate | `bgp` or `static` | — |
-| Ethernet2/1 | `gre-over-dia` | `dia` | Assigned IP/subnet | port speed | committed rate | `bgp` or `static` | — |
+| Ethernet1/1 | `gre-over-dia` | `dia` | contributor-assigned IP/subnet | port speed | committed rate | `bgp` or `static` | — |
+| Ethernet2/1 | `gre-over-dia` | `dia` | contributor-assigned IP/subnet | port speed | committed rate | `bgp` or `static` | — |
 | Loopback100 | — | — | your public /32 | `0bps` | — | — | `true` |
 | Loopback101 | — | — | your public /32 | `0bps` | — | — | `true` |
 
