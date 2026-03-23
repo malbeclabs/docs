@@ -10,7 +10,7 @@ If you are a validator who is already connected to DoubleZero you may continue t
 
 ## 1. Client Configuration
 
-### Jito-Agave (v3.1.9+)
+### Jito-Agave (v3.1.9+) and Harmonic (3.1.11+)
 
 1. In your validator start script, add: `--shred-receiver-address 233.84.178.1:7733`
 
@@ -53,6 +53,15 @@ For each epoch where validators publish leader shreds, they will be proportionat
 
 ## Troubleshooting
 
+### Not Publishing Leader Shreds:
+
+The most common culprits in not transmitting shreds are:
+
+1. Client version: you must be running Jito-Agave 3.1.9+, JitoBam 3.1.9+, Frankendancer, or Harmonic 3.1.11+. Other client versions will not work.
+
+2. Running vanilla agave in xdp mode. Multicast is currently not supported on vanilla agave in xdp mode.
+
+3. Setting `--bind-address` in your startup script. This will prevent traffic flowing over the `doublezero1` interface.
 
 ### Retransmitting:
 
