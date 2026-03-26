@@ -1,11 +1,6 @@
 # Other Multicast Connection
 !!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Service](https://doublezero.xyz/terms-protocol)"
  
-
-|Use Case | First Step | When Approve, connect via:|
-|---------|------------|---------------------------|
-|Subscribe to Jito Shredstream | Contact Jito for approval. | ```doublezero connect multicast --subscribe jito-shredstream``` |
-
 Detailed connection information: 
 
 ### 1. DoubleZero Client Installation
