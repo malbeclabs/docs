@@ -362,45 +362,195 @@ Signature: 7pQw2R...truncated...4xKm9
 
 ### ステップ3.5：CYOAインターフェースを作成する（エッジ/ハイブリッドデバイスの場合）
 
-デバイスがユーザー接続を受け入れる場合、CYOA（Choose Your Own Adventure）インターフェースが必要です。これにより、ユーザーがどのように接続するかをシステムに伝えます。
+ハイブリッドおよびエッジDZDには、ユーザーがGREトンネルを終端する**2つのパブリックIPアドレス**が必要です。ユーザーはユニキャスト、マルチキャスト、またはその両方で接続でき、どのIPがどの目的に使用されるかはユーザーごとにローテーションされます。
 
-**CYOAタイプの説明：**
+両方のIPは、物理インターフェースまたはループバックのいずれかで`--user-tunnel-endpoint true`で登録する必要があります。これには、デバイス作成時に指定したIPも含まれます。そのIPもここで明示的に登録する必要があります。
 
-| タイプ | わかりやすい説明 | 使用する場合 |
-|------|--------------|----------|
-| `gre-over-dia` | ユーザーが通常のインターネット経由で接続 | 最も一般的 - ユーザーがDIAを通じてDZDに接続 |
-| `gre-over-private-peering` | ユーザーがプライベートリンク経由で接続 | ユーザーがネットワークに直接接続 |
-| `gre-over-public-peering` | ユーザーがIX経由で接続 | ユーザーがインターネットエクスチェンジでピアリング |
-| `gre-over-fabric` | ユーザーが同じローカルネットワーク上 | ユーザーが同じデータセンターに存在 |
-| `gre-over-cable` | ユーザーへの直接ケーブル | 単一専用ユーザー |
+IP制約がある場合は、DZプレフィックスの最初の`/32`を2つのIPの1つとして使用できます。
 
-**例 - 標準インターネットユーザー：**
+#### CYOAとDIA
 
+| タイプ | フラグ | 目的 |
+|--------|--------|------|
+| DIA | `--interface-dia dia` | ポートをダイレクトインターネットアクセスとしてマーク |
+| CYOA | `--interface-cyoa <サブタイプ>` | ユーザーがデバイスにGREトンネルを接続する方法を宣言 |
+
+CYOAフラグは常に**物理インターフェース**（イーサネットポートまたはポートチャネル）に設定されます。ループバックには設定しません。
+
+| CYOAサブタイプ | 使用場面 |
+|--------------|---------|
+| `gre-over-dia` | ユーザーがパブリックインターネット経由で接続。最も一般的。 |
+| `gre-over-private-peering` | ユーザーが直接クロスコネクトまたはプライベート回線で接続 |
+| `gre-over-public-peering` | ユーザーがインターネットエクスチェンジ（IX）でピアリング |
+| `gre-over-fabric` | ユーザーが同一施設内にありローカルファブリックで接続 |
+| `gre-over-cable` | 単一の専用ユーザーへの直接ケーブル接続 |
+
+#### シナリオA：単一物理インターフェース
+
+ISPへの1つの物理アップリンク。Ethernet1/1はCYOAおよびDIAインターフェースで、2つのパブリックIPのうちの1つを持ちます。Loopback100が2番目のパブリックIPを持ちます。
+
+```mermaid
+flowchart LR
+    USERS(["エンドユーザー"])
+
+    subgraph DZD["DZD"]
+        E1["Eth1/1
+        203.0.113.1/30
+        CYOA · DIA · user tunnel endpoint"]
+        LO["Loopback100
+        198.51.100.1/32\n        user tunnel endpoint"]
+        E1 --- LO
+    end
+
+    ISP["ISPルーター
+    203.0.113.2/30"]
+
+    ISP -- "10GbE" --- E1
+    USERS -. "GREトンネル" .-> E1
+    USERS -. "GREトンネル" .-> LO
+```
+
+| インターフェース | `--interface-cyoa` | `--interface-dia` | `--ip-net` | `--bandwidth` | `--cir` | `--routing-mode` | `--user-tunnel-endpoint` |
+|----------------|-------------------|------------------|------------|---------------|---------|-----------------|--------------------------|
+| Ethernet1/1 | `gre-over-dia` | `dia` | コントリビューター割当IP/サブネット | ポート速度 | コミットレート | `bgp`または`static` | `true` |
+| Loopback100 | — | — | パブリック/32 | `0bps` | — | — | `true` |
+
+シナリオAに基づくコマンド例：
 ```bash
-doublezero device interface create <デバイスコード> Ethernet1/2 \
+doublezero device interface create mydzd-nyc01 Ethernet1/1 \
   --interface-cyoa gre-over-dia \
   --interface-dia dia \
-  --bandwidth 10000 \
-  --cir 1000 \
-  --user-tunnel-endpoint \
-  --wait
+  --ip-net 203.0.113.1/30 \
+  --bandwidth 10Gbps \
+  --cir 1Gbps \
+  --routing-mode bgp \
+  --user-tunnel-endpoint true
+
+doublezero device interface create mydzd-nyc01 Loopback100 \
+  --ip-net 198.51.100.1/32 \
+  --bandwidth 0bps \
+  --user-tunnel-endpoint true
 ```
 
-**期待される出力：**
+#### シナリオB：ポートチャネル（LAG）
 
+DZDがIPを持つポートチャネルでアップストリームデバイスに接続します。ポートチャネルが1つのパブリックIPを持ち、CYOAエンドポイントになります。Loopback100が2番目のパブリックIPを持ちます。
+
+```mermaid
+flowchart LR
+    USERS(["エンドユーザー"])
+
+    subgraph SW["アップストリームルーター/スイッチ"]
+        SWPC(["bond0
+        203.0.113.2/30"])
+    end
+
+    subgraph DZD["DZD"]
+        subgraph PC["Port-Channel1 · 203.0.113.1/30 · CYOA · DIA · user tunnel endpoint"]
+            E1["Eth1/1"]
+            E2["Eth2/1"]
+        end
+        LO["Loopback100
+        198.51.100.1/32\n        user tunnel endpoint"]
+        PC --- LO
+    end
+
+    SWPC -- "2x 10GbE" --- PC
+    USERS -. "GREトンネル" .-> PC
+    USERS -. "GREトンネル" .-> LO
 ```
-Signature: 2wLp8N...truncated...5vHt3
+
+| インターフェース | `--interface-cyoa` | `--interface-dia` | `--ip-net` | `--bandwidth` | `--cir` | `--routing-mode` | `--user-tunnel-endpoint` |
+|----------------|-------------------|------------------|------------|---------------|---------|-----------------|--------------------------|
+| Port-Channel1 | `gre-over-dia` | `dia` | コントリビューター割当IP/サブネット | 組み合わせLAG速度 | コミットレート | `bgp`または`static` | `true` |
+| Loopback100 | — | — | パブリック/32 | `0bps` | — | — | `true` |
+
+シナリオBに基づくコマンド例：
+```bash
+doublezero device interface create mydzd-fra01 Port-Channel1 \
+  --interface-cyoa gre-over-dia \
+  --interface-dia dia \
+  --ip-net 203.0.113.1/30 \
+  --bandwidth 20Gbps \
+  --cir 2Gbps \
+  --routing-mode bgp \
+  --user-tunnel-endpoint true
+
+doublezero device interface create mydzd-fra01 Loopback100 \
+  --ip-net 198.51.100.1/32 \
+  --bandwidth 0bps \
+  --user-tunnel-endpoint true
 ```
 
-**パラメーターの説明：**
+#### シナリオC：別々のルーターへのデュアル物理アップリンク
 
-| パラメーター | 意味 |
-|-----------|---------------|
-| `--interface-cyoa` | ユーザーの接続方法（上記テーブル参照） |
-| `--interface-dia` | これがインターネット向きポートの場合は`dia` |
-| `--bandwidth` | Mbpsのポート速度（10000 = 10Gbps） |
-| `--cir` | Mbpsのコミット済みレート（保証帯域幅） |
-| `--user-tunnel-endpoint` | このポートはユーザートンネルを受け入れる |
+各物理インターフェースが異なるアップストリームルーターに接続します。2つのパブリックIPはLoopback100とLoopback101に存在し、両方ともユーザートンネルエンドポイントとして登録されます。
+
+```mermaid
+flowchart LR
+    USERS(["エンドユーザー"])
+
+    RA["ルーターA
+    203.0.113.2/30"]
+    RB["ルーターB
+    203.0.113.6/30"]
+
+    subgraph DZD["DZD"]
+        E1["Eth1/1
+        203.0.113.1/30
+        CYOA · DIA"]
+        E2["Eth2/1
+        203.0.113.5/30
+        CYOA · DIA"]
+        LO0["Loopback100
+        198.51.100.1/32\n        user tunnel endpoint"]
+        LO1["Loopback101
+        198.51.100.2/32\n        user tunnel endpoint"]
+        E1 --> LO0
+        E2 --> LO1
+    end
+
+    RA -- "10GbE" --- E1
+    RB -- "10GbE" --- E2
+    USERS -. "GREトンネル" .-> LO0
+    USERS -. "GREトンネル" .-> LO1
+```
+
+| インターフェース | `--interface-cyoa` | `--interface-dia` | `--ip-net` | `--bandwidth` | `--cir` | `--routing-mode` | `--user-tunnel-endpoint` |
+|----------------|-------------------|------------------|------------|---------------|---------|-----------------|--------------------------|
+| Ethernet1/1 | `gre-over-dia` | `dia` | コントリビューター割当IP/サブネット | ポート速度 | コミットレート | `bgp`または`static` | — |
+| Ethernet2/1 | `gre-over-dia` | `dia` | コントリビューター割当IP/サブネット | ポート速度 | コミットレート | `bgp`または`static` | — |
+| Loopback100 | — | — | パブリック/32 | `0bps` | — | — | `true` |
+| Loopback101 | — | — | パブリック/32 | `0bps` | — | — | `true` |
+
+シナリオCに基づくコマンド例：
+```bash
+doublezero device interface create mydzd-ams01 Ethernet1/1 \
+  --interface-cyoa gre-over-dia \
+  --interface-dia dia \
+  --ip-net 203.0.113.1/30 \
+  --bandwidth 10Gbps \
+  --cir 1Gbps \
+  --routing-mode bgp
+
+doublezero device interface create mydzd-ams01 Ethernet2/1 \
+  --interface-cyoa gre-over-dia \
+  --interface-dia dia \
+  --ip-net 203.0.113.5/30 \
+  --bandwidth 10Gbps \
+  --cir 1Gbps \
+  --routing-mode bgp
+
+doublezero device interface create mydzd-ams01 Loopback100 \
+  --ip-net 198.51.100.1/32 \
+  --bandwidth 0bps \
+  --user-tunnel-endpoint true
+
+doublezero device interface create mydzd-ams01 Loopback101 \
+  --ip-net 198.51.100.2/32 \
+  --bandwidth 0bps \
+  --user-tunnel-endpoint true
+```
 
 ### ステップ3.6：デバイスを確認する
 

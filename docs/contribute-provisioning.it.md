@@ -362,45 +362,195 @@ Signature: 7pQw2R...truncated...4xKm9
 
 ### Passo 3.5: Crea l'Interfaccia CYOA (per dispositivi Edge/Hybrid)
 
-Se il tuo dispositivo accetta connessioni utente, hai bisogno di un'interfaccia CYOA (Choose Your Own Adventure). Questo indica al sistema come gli utenti si connettono a te.
+I DZD ibridi e edge necessitano di **due indirizzi IP pubblici** su cui gli utenti terminano i loro tunnel GRE. Gli utenti possono connettersi tramite unicast, multicast, o entrambi, e quale IP serve quale scopo viene ruotato per utente.
 
-**Tipi CYOA Spiegati:**
+Entrambi gli IP devono essere registrati con `--user-tunnel-endpoint true`, su un'interfaccia fisica o su un loopback. Questo include l'IP fornito al momento della creazione del dispositivo; quell'IP deve ancora essere registrato esplicitamente qui.
 
-| Tipo | In Italiano Semplice | Quando Usarlo |
-|------|----------------------|---------------|
-| `gre-over-dia` | Gli utenti si connettono tramite internet normale | Il più comune - gli utenti si connettono tramite il DIA al tuo DZD |
-| `gre-over-private-peering` | Gli utenti si connettono tramite link privato | Gli utenti hanno una connessione diretta alla tua rete |
-| `gre-over-public-peering` | Gli utenti si connettono tramite IX | Gli utenti fanno peering con te a un internet exchange |
-| `gre-over-fabric` | Utenti sulla stessa rete locale | Utenti nello stesso data center |
-| `gre-over-cable` | Cavo diretto all'utente | Singolo utente dedicato |
+Se sei vincolato da IP, puoi usare il primo `/32` del tuo prefisso DZ come uno dei due IP.
 
-**Esempio - Utenti internet standard:**
+#### CYOA e DIA
 
+| Tipo | Flag | Scopo |
+|------|------|-------|
+| DIA | `--interface-dia dia` | Marca la porta come accesso internet diretto |
+| CYOA | `--interface-cyoa <sottotipo>` | Dichiara come gli utenti connettono tunnel GRE al tuo dispositivo |
+
+Il flag CYOA è sempre impostato su un'**interfaccia fisica** (porta Ethernet o port channel). Mai su un loopback.
+
+| Sottotipo CYOA | Quando usare |
+|---------------|-------------|
+| `gre-over-dia` | Gli utenti si connettono tramite internet pubblico. Il più comune. |
+| `gre-over-private-peering` | Gli utenti si connettono tramite cross-connect diretto o circuito privato |
+| `gre-over-public-peering` | Gli utenti fanno peering con te a un Internet Exchange (IX) |
+| `gre-over-fabric` | Gli utenti sono co-locati e si connettono tramite un fabric locale |
+| `gre-over-cable` | Connessione cavo diretta a un singolo utente dedicato |
+
+#### Scenario A: Interfaccia fisica singola
+
+Un uplink fisico all'ISP. Ethernet1/1 è l'interfaccia CYOA e DIA e porta uno dei due IP pubblici. Loopback100 porta il secondo IP pubblico.
+
+```mermaid
+flowchart LR
+    USERS(["Utenti Finali"])
+
+    subgraph DZD["DZD"]
+        E1["Eth1/1
+        203.0.113.1/30
+        CYOA · DIA · user tunnel endpoint"]
+        LO["Loopback100
+        198.51.100.1/32\n        user tunnel endpoint"]
+        E1 --- LO
+    end
+
+    ISP["Router ISP
+    203.0.113.2/30"]
+
+    ISP -- "10GbE" --- E1
+    USERS -. "Tunnel GRE" .-> E1
+    USERS -. "Tunnel GRE" .-> LO
+```
+
+| Interfaccia | `--interface-cyoa` | `--interface-dia` | `--ip-net` | `--bandwidth` | `--cir` | `--routing-mode` | `--user-tunnel-endpoint` |
+|-------------|-------------------|------------------|------------|---------------|---------|-----------------|--------------------------|
+| Ethernet1/1 | `gre-over-dia` | `dia` | IP/sottorete assegnata dal contributore | velocità porta | tariffa impegnata | `bgp` o `static` | `true` |
+| Loopback100 | — | — | tuo /32 pubblico | `0bps` | — | — | `true` |
+
+Esempio di comandi per lo Scenario A:
 ```bash
-doublezero device interface create <DEVICE_CODE> Ethernet1/2 \
+doublezero device interface create mydzd-nyc01 Ethernet1/1 \
   --interface-cyoa gre-over-dia \
   --interface-dia dia \
-  --bandwidth 10000 \
-  --cir 1000 \
-  --user-tunnel-endpoint \
-  --wait
+  --ip-net 203.0.113.1/30 \
+  --bandwidth 10Gbps \
+  --cir 1Gbps \
+  --routing-mode bgp \
+  --user-tunnel-endpoint true
+
+doublezero device interface create mydzd-nyc01 Loopback100 \
+  --ip-net 198.51.100.1/32 \
+  --bandwidth 0bps \
+  --user-tunnel-endpoint true
 ```
 
-**Output atteso:**
+#### Scenario B: Port channel (LAG)
 
+Il DZD si connette al dispositivo upstream tramite un port channel con un IP. Il port channel porta un IP pubblico ed è l'endpoint CYOA. Loopback100 porta il secondo IP pubblico.
+
+```mermaid
+flowchart LR
+    USERS(["Utenti Finali"])
+
+    subgraph SW["Router/Switch Upstream"]
+        SWPC(["bond0
+        203.0.113.2/30"])
+    end
+
+    subgraph DZD["DZD"]
+        subgraph PC["Port-Channel1 · 203.0.113.1/30 · CYOA · DIA · user tunnel endpoint"]
+            E1["Eth1/1"]
+            E2["Eth2/1"]
+        end
+        LO["Loopback100
+        198.51.100.1/32\n        user tunnel endpoint"]
+        PC --- LO
+    end
+
+    SWPC -- "2x 10GbE" --- PC
+    USERS -. "Tunnel GRE" .-> PC
+    USERS -. "Tunnel GRE" .-> LO
 ```
-Signature: 2wLp8N...truncated...5vHt3
+
+| Interfaccia | `--interface-cyoa` | `--interface-dia` | `--ip-net` | `--bandwidth` | `--cir` | `--routing-mode` | `--user-tunnel-endpoint` |
+|-------------|-------------------|------------------|------------|---------------|---------|-----------------|--------------------------|
+| Port-Channel1 | `gre-over-dia` | `dia` | IP/sottorete assegnata dal contributore | velocità LAG combinata | tariffa impegnata | `bgp` o `static` | `true` |
+| Loopback100 | — | — | tuo /32 pubblico | `0bps` | — | — | `true` |
+
+Esempio di comandi per lo Scenario B:
+```bash
+doublezero device interface create mydzd-fra01 Port-Channel1 \
+  --interface-cyoa gre-over-dia \
+  --interface-dia dia \
+  --ip-net 203.0.113.1/30 \
+  --bandwidth 20Gbps \
+  --cir 2Gbps \
+  --routing-mode bgp \
+  --user-tunnel-endpoint true
+
+doublezero device interface create mydzd-fra01 Loopback100 \
+  --ip-net 198.51.100.1/32 \
+  --bandwidth 0bps \
+  --user-tunnel-endpoint true
 ```
 
-**Parametri spiegati:**
+#### Scenario C: Doppi uplink fisici verso router separati
 
-| Parametro | Cosa Significa |
-|-----------|----------------|
-| `--interface-cyoa` | Come si connettono gli utenti (vedi tabella sopra) |
-| `--interface-dia` | `dia` se questa è una porta rivolta a internet |
-| `--bandwidth` | Velocità della porta in Mbps (10000 = 10Gbps) |
-| `--cir` | Velocità impegnata in Mbps (larghezza di banda garantita) |
-| `--user-tunnel-endpoint` | Questa porta accetta tunnel utente |
+Ogni interfaccia fisica si connette a un router upstream diverso. I due IP pubblici si trovano su Loopback100 e Loopback101, entrambi registrati come endpoint di tunnel utente.
+
+```mermaid
+flowchart LR
+    USERS(["Utenti Finali"])
+
+    RA["Router A
+    203.0.113.2/30"]
+    RB["Router B
+    203.0.113.6/30"]
+
+    subgraph DZD["DZD"]
+        E1["Eth1/1
+        203.0.113.1/30
+        CYOA · DIA"]
+        E2["Eth2/1
+        203.0.113.5/30
+        CYOA · DIA"]
+        LO0["Loopback100
+        198.51.100.1/32\n        user tunnel endpoint"]
+        LO1["Loopback101
+        198.51.100.2/32\n        user tunnel endpoint"]
+        E1 --> LO0
+        E2 --> LO1
+    end
+
+    RA -- "10GbE" --- E1
+    RB -- "10GbE" --- E2
+    USERS -. "Tunnel GRE" .-> LO0
+    USERS -. "Tunnel GRE" .-> LO1
+```
+
+| Interfaccia | `--interface-cyoa` | `--interface-dia` | `--ip-net` | `--bandwidth` | `--cir` | `--routing-mode` | `--user-tunnel-endpoint` |
+|-------------|-------------------|------------------|------------|---------------|---------|-----------------|--------------------------|
+| Ethernet1/1 | `gre-over-dia` | `dia` | IP/sottorete assegnata dal contributore | velocità porta | tariffa impegnata | `bgp` o `static` | — |
+| Ethernet2/1 | `gre-over-dia` | `dia` | IP/sottorete assegnata dal contributore | velocità porta | tariffa impegnata | `bgp` o `static` | — |
+| Loopback100 | — | — | tuo /32 pubblico | `0bps` | — | — | `true` |
+| Loopback101 | — | — | tuo /32 pubblico | `0bps` | — | — | `true` |
+
+Esempio di comandi per lo Scenario C:
+```bash
+doublezero device interface create mydzd-ams01 Ethernet1/1 \
+  --interface-cyoa gre-over-dia \
+  --interface-dia dia \
+  --ip-net 203.0.113.1/30 \
+  --bandwidth 10Gbps \
+  --cir 1Gbps \
+  --routing-mode bgp
+
+doublezero device interface create mydzd-ams01 Ethernet2/1 \
+  --interface-cyoa gre-over-dia \
+  --interface-dia dia \
+  --ip-net 203.0.113.5/30 \
+  --bandwidth 10Gbps \
+  --cir 1Gbps \
+  --routing-mode bgp
+
+doublezero device interface create mydzd-ams01 Loopback100 \
+  --ip-net 198.51.100.1/32 \
+  --bandwidth 0bps \
+  --user-tunnel-endpoint true
+
+doublezero device interface create mydzd-ams01 Loopback101 \
+  --ip-net 198.51.100.2/32 \
+  --bandwidth 0bps \
+  --user-tunnel-endpoint true
+```
 
 ### Passo 3.6: Verifica il Tuo Dispositivo
 

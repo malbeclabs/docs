@@ -362,45 +362,195 @@ Signature: 7pQw2R...truncated...4xKm9
 
 ### 3.5단계: CYOA 인터페이스 생성 (엣지/하이브리드 장치의 경우)
 
-장치가 사용자 연결을 허용하는 경우 CYOA(Choose Your Own Adventure) 인터페이스가 필요합니다. 이는 사용자가 귀하에게 연결하는 방법을 시스템에 알립니다.
+하이브리드 및 엣지 DZD에는 사용자가 GRE 터널을 종료하는 **두 개의 공개 IP 주소**가 필요합니다. 사용자는 유니캐스트, 멀티캐스트 또는 둘 다를 통해 연결할 수 있으며, 어떤 IP가 어떤 목적으로 사용되는지는 사용자별로 순환됩니다.
 
-**CYOA 유형 설명:**
+두 IP 모두 물리적 인터페이스 또는 루프백에서 `--user-tunnel-endpoint true`로 등록해야 합니다. 이는 장치 생성 시 제공한 IP도 포함되며, 해당 IP도 여기서 명시적으로 등록해야 합니다.
 
-| 유형 | 쉬운 설명 | 사용 시기 |
-|------|--------------|----------|
-| `gre-over-dia` | 사용자가 일반 인터넷을 통해 연결 | 가장 일반적 - 사용자가 DIA를 통해 DZD에 연결 |
-| `gre-over-private-peering` | 사용자가 전용 링크를 통해 연결 | 사용자가 귀하의 네트워크에 직접 연결 |
-| `gre-over-public-peering` | 사용자가 IX를 통해 연결 | 사용자가 인터넷 exchange에서 귀하와 피어링 |
-| `gre-over-fabric` | 사용자가 동일한 로컬 네트워크에 있음 | 사용자가 동일한 데이터 센터에 있음 |
-| `gre-over-cable` | 사용자에 대한 직접 케이블 | 단일 전용 사용자 |
+IP가 부족한 경우 DZ 프리픽스의 첫 번째 `/32`를 두 IP 중 하나로 사용할 수 있습니다.
 
-**예시 - 표준 인터넷 사용자:**
+#### CYOA 및 DIA
 
+| 유형 | 플래그 | 목적 |
+|------|--------|------|
+| DIA | `--interface-dia dia` | 포트를 직접 인터넷 접근으로 표시 |
+| CYOA | `--interface-cyoa <서브타입>` | 사용자가 장치에 GRE 터널을 연결하는 방법 선언 |
+
+CYOA 플래그는 항상 **물리적 인터페이스**(이더넷 포트 또는 포트 채널)에 설정됩니다. 루프백에는 절대 설정하지 않습니다.
+
+| CYOA 서브타입 | 사용 시기 |
+|-------------|----------|
+| `gre-over-dia` | 사용자가 공개 인터넷을 통해 연결. 가장 일반적. |
+| `gre-over-private-peering` | 사용자가 직접 크로스 커넥트 또는 전용 회선으로 연결 |
+| `gre-over-public-peering` | 사용자가 인터넷 익스체인지(IX)에서 피어링 |
+| `gre-over-fabric` | 사용자가 공동 배치되어 로컬 패브릭을 통해 연결 |
+| `gre-over-cable` | 단일 전용 사용자에 대한 직접 케이블 연결 |
+
+#### 시나리오 A: 단일 물리적 인터페이스
+
+ISP로의 물리적 업링크 하나. Ethernet1/1이 CYOA 및 DIA 인터페이스이며 두 공개 IP 중 하나를 가집니다. Loopback100이 두 번째 공개 IP를 가집니다.
+
+```mermaid
+flowchart LR
+    USERS(["최종 사용자"])
+
+    subgraph DZD["DZD"]
+        E1["Eth1/1
+        203.0.113.1/30
+        CYOA · DIA · user tunnel endpoint"]
+        LO["Loopback100
+        198.51.100.1/32\n        user tunnel endpoint"]
+        E1 --- LO
+    end
+
+    ISP["ISP 라우터
+    203.0.113.2/30"]
+
+    ISP -- "10GbE" --- E1
+    USERS -. "GRE 터널" .-> E1
+    USERS -. "GRE 터널" .-> LO
+```
+
+| 인터페이스 | `--interface-cyoa` | `--interface-dia` | `--ip-net` | `--bandwidth` | `--cir` | `--routing-mode` | `--user-tunnel-endpoint` |
+|-----------|-------------------|------------------|------------|---------------|---------|-----------------|--------------------------|
+| Ethernet1/1 | `gre-over-dia` | `dia` | 기여자 할당 IP/서브넷 | 포트 속도 | 약정 속도 | `bgp` 또는 `static` | `true` |
+| Loopback100 | — | — | 공개 /32 | `0bps` | — | — | `true` |
+
+시나리오 A 기반 명령 예시:
 ```bash
-doublezero device interface create <DEVICE_CODE> Ethernet1/2 \
+doublezero device interface create mydzd-nyc01 Ethernet1/1 \
   --interface-cyoa gre-over-dia \
   --interface-dia dia \
-  --bandwidth 10000 \
-  --cir 1000 \
-  --user-tunnel-endpoint \
-  --wait
+  --ip-net 203.0.113.1/30 \
+  --bandwidth 10Gbps \
+  --cir 1Gbps \
+  --routing-mode bgp \
+  --user-tunnel-endpoint true
+
+doublezero device interface create mydzd-nyc01 Loopback100 \
+  --ip-net 198.51.100.1/32 \
+  --bandwidth 0bps \
+  --user-tunnel-endpoint true
 ```
 
-**예상 출력:**
+#### 시나리오 B: 포트 채널 (LAG)
 
+DZD가 IP가 있는 포트 채널을 통해 업스트림 장치에 연결됩니다. 포트 채널이 공개 IP 하나를 가지며 CYOA 엔드포인트입니다. Loopback100이 두 번째 공개 IP를 가집니다.
+
+```mermaid
+flowchart LR
+    USERS(["최종 사용자"])
+
+    subgraph SW["업스트림 라우터/스위치"]
+        SWPC(["bond0
+        203.0.113.2/30"])
+    end
+
+    subgraph DZD["DZD"]
+        subgraph PC["Port-Channel1 · 203.0.113.1/30 · CYOA · DIA · user tunnel endpoint"]
+            E1["Eth1/1"]
+            E2["Eth2/1"]
+        end
+        LO["Loopback100
+        198.51.100.1/32\n        user tunnel endpoint"]
+        PC --- LO
+    end
+
+    SWPC -- "2x 10GbE" --- PC
+    USERS -. "GRE 터널" .-> PC
+    USERS -. "GRE 터널" .-> LO
 ```
-Signature: 2wLp8N...truncated...5vHt3
+
+| 인터페이스 | `--interface-cyoa` | `--interface-dia` | `--ip-net` | `--bandwidth` | `--cir` | `--routing-mode` | `--user-tunnel-endpoint` |
+|-----------|-------------------|------------------|------------|---------------|---------|-----------------|--------------------------|
+| Port-Channel1 | `gre-over-dia` | `dia` | 기여자 할당 IP/서브넷 | 결합 LAG 속도 | 약정 속도 | `bgp` 또는 `static` | `true` |
+| Loopback100 | — | — | 공개 /32 | `0bps` | — | — | `true` |
+
+시나리오 B 기반 명령 예시:
+```bash
+doublezero device interface create mydzd-fra01 Port-Channel1 \
+  --interface-cyoa gre-over-dia \
+  --interface-dia dia \
+  --ip-net 203.0.113.1/30 \
+  --bandwidth 20Gbps \
+  --cir 2Gbps \
+  --routing-mode bgp \
+  --user-tunnel-endpoint true
+
+doublezero device interface create mydzd-fra01 Loopback100 \
+  --ip-net 198.51.100.1/32 \
+  --bandwidth 0bps \
+  --user-tunnel-endpoint true
 ```
 
-**파라미터 설명:**
+#### 시나리오 C: 별도 라우터로의 이중 물리적 업링크
 
-| 파라미터 | 의미 |
-|-----------|---------------|
-| `--interface-cyoa` | 사용자 연결 방법 (위 표 참조) |
-| `--interface-dia` | 이것이 인터넷 대면 포트인 경우 `dia` |
-| `--bandwidth` | Mbps 단위 포트 속도 (10000 = 10Gbps) |
-| `--cir` | Mbps 단위 확약 요금 (보장된 대역폭) |
-| `--user-tunnel-endpoint` | 이 포트가 사용자 터널을 허용함 |
+각 물리적 인터페이스가 다른 업스트림 라우터에 연결됩니다. 두 공개 IP는 Loopback100과 Loopback101에 있으며, 모두 사용자 터널 엔드포인트로 등록됩니다.
+
+```mermaid
+flowchart LR
+    USERS(["최종 사용자"])
+
+    RA["라우터 A
+    203.0.113.2/30"]
+    RB["라우터 B
+    203.0.113.6/30"]
+
+    subgraph DZD["DZD"]
+        E1["Eth1/1
+        203.0.113.1/30
+        CYOA · DIA"]
+        E2["Eth2/1
+        203.0.113.5/30
+        CYOA · DIA"]
+        LO0["Loopback100
+        198.51.100.1/32\n        user tunnel endpoint"]
+        LO1["Loopback101
+        198.51.100.2/32\n        user tunnel endpoint"]
+        E1 --> LO0
+        E2 --> LO1
+    end
+
+    RA -- "10GbE" --- E1
+    RB -- "10GbE" --- E2
+    USERS -. "GRE 터널" .-> LO0
+    USERS -. "GRE 터널" .-> LO1
+```
+
+| 인터페이스 | `--interface-cyoa` | `--interface-dia` | `--ip-net` | `--bandwidth` | `--cir` | `--routing-mode` | `--user-tunnel-endpoint` |
+|-----------|-------------------|------------------|------------|---------------|---------|-----------------|--------------------------|
+| Ethernet1/1 | `gre-over-dia` | `dia` | 기여자 할당 IP/서브넷 | 포트 속도 | 약정 속도 | `bgp` 또는 `static` | — |
+| Ethernet2/1 | `gre-over-dia` | `dia` | 기여자 할당 IP/서브넷 | 포트 속도 | 약정 속도 | `bgp` 또는 `static` | — |
+| Loopback100 | — | — | 공개 /32 | `0bps` | — | — | `true` |
+| Loopback101 | — | — | 공개 /32 | `0bps` | — | — | `true` |
+
+시나리오 C 기반 명령 예시:
+```bash
+doublezero device interface create mydzd-ams01 Ethernet1/1 \
+  --interface-cyoa gre-over-dia \
+  --interface-dia dia \
+  --ip-net 203.0.113.1/30 \
+  --bandwidth 10Gbps \
+  --cir 1Gbps \
+  --routing-mode bgp
+
+doublezero device interface create mydzd-ams01 Ethernet2/1 \
+  --interface-cyoa gre-over-dia \
+  --interface-dia dia \
+  --ip-net 203.0.113.5/30 \
+  --bandwidth 10Gbps \
+  --cir 1Gbps \
+  --routing-mode bgp
+
+doublezero device interface create mydzd-ams01 Loopback100 \
+  --ip-net 198.51.100.1/32 \
+  --bandwidth 0bps \
+  --user-tunnel-endpoint true
+
+doublezero device interface create mydzd-ams01 Loopback101 \
+  --ip-net 198.51.100.2/32 \
+  --bandwidth 0bps \
+  --user-tunnel-endpoint true
+```
 
 ### 3.6단계: 장치 확인
 
