@@ -1,17 +1,22 @@
 # バリデーターマルチキャスト接続
 !!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
 
-!!! warning "DoubleZeroに接続することで、[DoubleZeroサービス利用規約](https://doublezero.xyz/terms-protocol)に同意します"
+!!! warning "DoubleZeroに接続することで、[DoubleZero利用規約](https://doublezero.xyz/terms-protocol)に同意します"
 
-まだDoubleZeroに接続していない場合は、[セットアップ](setup.md)と[メインネットベータ](DZ%20Mainnet-beta%20Connection.md)バリデーター接続ドキュメントを完了してください。
+!!! note inline end "トレーディングファームおよびビジネス"
+    トレーディングファームやフィードへの購読を検討している企業の方は、詳細は近日中に共有される予定です。詳細については[こちら](https://doublezero.xyz/edge-form)からご登録ください。
 
-既にDoubleZeroに接続しているバリデーターは、このガイドを続けることができます。
+DoubleZeroにまだ接続していない場合は、[セットアップ](https://docs.malbeclabs.com/setup/)と[Mainnet-Beta](https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/)バリデーター接続ドキュメントを完了してください。
 
-#### Jito-Agave（バージョン3.1.9以上）
+DoubleZeroにすでに接続しているバリデーターの方は、このガイドを続けてください。
+
+## 1. クライアント設定
+
+### Jito-Agave（v3.1.9+）および Harmonic（3.1.11+）
 
 1. バリデーターの起動スクリプトに以下を追加します：`--shred-receiver-address 233.84.178.1:7733`
 
-    JitoとBebopグループに同時に送信できます。
+    JitoとDoubleZeroの`edge-solana-shreds`グループに同時に送信できます。
 
     例：
 
@@ -21,57 +26,66 @@
     BLOCK_ENGINE_URL=https://ny.mainnet.block-engine.jito.wtf
     RELAYER_URL=http://ny.mainnet.relayer.jito.wtf:8100
     SHRED_RECEIVER_ADDR=<JitoBlockEngineAddress>
-    <...その他の設定...>
+    <...The rest of your config...>
     --shred-receiver-address 233.84.178.1:7733
     ```
 
 2. バリデーターを再起動します。
+3. パブリッシャーとしてDoubleZeroマルチキャストグループ`edge-solana-shreds`に接続します：`doublezero connect ibrl && doublezero connect multicast --publish edge-solana-shreds`
 
-3. パブリッシャーとしてDoubleZeroマルチキャストグループ`bebop`に接続します：
-   `doublezero connect multicast --publish bebop`
-
-
-
-#### Frankendancer
+### Frankendancer
 
 1. `config.toml`に以下を追加します：
-   ```toml
-   [tiles.shred]
-   additional_shred_destinations_leader = [ "233.84.178.1:7733", ]
-   ```
+
+    ```toml
+    [tiles.shred]
+    additional_shred_destinations_leader = [ "233.84.178.1:7733", ]
+    ```
+
 2. バリデーターを再起動します。
+3. パブリッシャーとしてDoubleZeroマルチキャストグループ`edge-solana-shreds`に接続します：`doublezero connect ibrl && doublezero connect multicast --publish edge-solana-shreds`
 
-3. パブリッシャーとしてDoubleZeroマルチキャストグループ`bebop`に接続します：
-   `doublezero connect multicast --publish bebop`
+## 2. リーダーシュレッドの発行確認
 
+接続後、[このダッシュボード](https://data.malbeclabs.com/dz/publisher-check)でシュレッドを発行していることを確認できます。少なくとも1スロット分のリーダーシュレッドを発行した後でないと確認は表示されません。
 
+## 3. バリデーター報酬
 
-!!! note inline end
-    XDPドライバーモードのFrankendancerユーザーはtcpdumpを使用できません。現在、公開中を確認する方法はありませんが、近いうちにソリューションが提供される予定です。
+バリデーターがリーダーシュレッドを発行した各エポックにおいて、サブスクリプションに基づいた貢献度に応じて比例的に報酬が付与されます。このシステムの詳細は後日発表・詳述される予定です。
 
-#### 公開中の確認
+## トラブルシューティング
 
-次のリーダースロット中に`tcpdump`を使用してマルチキャストグループに公開していることを確認します。シュレッドを公開していることを確認するために10秒ごとにハートビートが表示されるはずです。
+### リーダーシュレッドが発行されない場合：
 
-実行：`sudo tcpdump -vv -c5 -ni doublezero1 port 7733 or port 5765`
+シュレッドが送信されない最も一般的な原因はクライアントのバージョンです：
 
-公開中の出力例：
+Jito-Agave 3.1.9+、JitoBam 3.1.9+、Frankendancer、またはHarmonic 3.1.11+を実行している必要があります。他のクライアントバージョンは動作しません。
 
-```
-tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
-tcpdump: verbose output suppressed, use -v[v]... for full protocol decodetcpdump -vv -c5 -ni doublezero1 port 7733 or port 5765
-tcpdump: listening on doublezero1, link-type LINUX_SLL (Linux cooked v1), snapshot length 262144 bytes
-21:53:11.018243 IP (tos 0x0, ttl 32, id 47109, offset 0, flags [DF], proto UDP (17), length 32)
-    148.51.120.2.38319 > 233.84.178.1.5765: [bad udp cksum 0xa7a9 -> 0x67ba!] UDP, length 4
-21:53:21.018217 IP (tos 0x0, ttl 32, id 47558, offset 0, flags [DF], proto UDP (17), length 32)
-    148.51.120.2.38319 > 233.84.178.1.5765: [bad udp cksum 0xa7a9 -> 0x67ba!] UDP, length 4
-21:53:31.018042 IP (tos 0x0, ttl 32, id 47919, offset 0, flags [DF], proto UDP (17), length 32)
-    148.51.120.2.38319 > 233.84.178.1.5765: [bad udp cksum 0xa7a9 -> 0x67ba!] UDP, length 4
-21:53:32.822061 IP (tos 0x0, ttl 64, id 5721, offset 0, flags [DF], proto UDP (17), length 1231)
-    148.51.120.2.57512 > 233.84.178.1.7733: [bad udp cksum 0xac58 -> 0xadfc!] UDP, length 1203
-21:53:32.822110 IP (tos 0x0, ttl 64, id 5722, offset 0, flags [DF], proto UDP (17), length 1231)
-    148.51.120.2.57512 > 233.84.178.1.7733: [bad udp cksum 0xac58 -> 0x9e62!] UDP, length 1203
-5 packets captured
-204 packets received by filter
-0 packets dropped by kernel
-```
+### 再送信している場合：
+
+1. シュレッドの再送信の一般的な原因は設定の問題です。起動スクリプトで再送信シュレッドを送信するフラグが有効になっている場合は、無効にする必要があります。
+
+    Jito-Agaveで削除するフラグは：`--shred-retransmit-receiver-address`です。
+
+1. [パブリッシャーダッシュボード](https://data.malbeclabs.com/dz/publisher-check)を確認し、再送信シュレッドがあるかどうかを確認します。表の**No Retransmit Shreds**列を確認してください——赤いXは再送信していることを意味します。
+
+    !!! note "エポックビュー"
+        パブリッシャーダッシュボードには異なる時間ウィンドウがあります。**2エポックビュー**で再送信が見られるが最近変更を加えた場合は、**最近のスロット**ビューに切り替えてみてください。
+
+    ![パブリッシャーチェックダッシュボード](images/publisher-check-dashboard.png)
+
+2. クライアントIPを見つけ、[DoubleZeroデータ](https://data.malbeclabs.com/dz/users)でユーザーを検索します。
+
+    ![DoubleZeroデータユーザー](images/doublezero-data-users.png)
+
+3. **マルチキャスト**をクリックしてマルチキャストビューを開きます。
+
+    以下のスクリーンショットは：**再送信**（望ましくない）リーダースロットパターンのない安定した送信トラフィックを示しています。
+
+    ![ユーザーマルチキャストビュー — 再送信の例](images/user-multicast-view-retransmit.png)
+
+    以下のスクリーンショットは：**正常**（リーダーシュレッドのみを発行）スパイク状の送信トラフィック（鋸歯状波パターン）を示しており、リーダースロットと一致しています。
+
+    ![ユーザーマルチキャストビュー — 正常なパブリッシャーの例](images/user-multicast-view-healthy.png)
+
+チャートはリーダーシュレッドのみを送信しているかどうかを示します。トラフィックのスパイクはリーダースロットがある時と一致するはずです。リーダースロットがない場合はトラフィックがないはずです。再送信している場合は、スロットに合わせたスパイクではなく、安定したトラフィックの流れが見えます。

@@ -362,45 +362,195 @@ Signature: 7pQw2R...truncated...4xKm9
 
 ### 步骤3.5：创建CYOA接口（用于边缘/混合设备）
 
-如果您的设备接受用户连接，您需要一个CYOA（Choose Your Own Adventure）接口。这告诉系统用户如何连接到您。
+混合型和边缘型DZD需要**两个公共IP地址**，用户在这些地址上终止其GRE隧道。用户可以通过单播、多播或两者连接，哪个IP用于哪个目的会按用户轮换。
 
-**CYOA类型说明：**
+两个IP都必须使用`--user-tunnel-endpoint true`注册，可以在物理接口或环回接口上。这包括您在设备创建时提供的IP；该IP仍需在此处明确注册。
 
-| 类型 | 通俗解释 | 使用时机 |
-|------|---------|---------|
-| `gre-over-dia` | 用户通过普通互联网连接 | 最常见——用户通过DIA连接到您的DZD |
-| `gre-over-private-peering` | 用户通过私有链路连接 | 用户与您的网络有直接连接 |
-| `gre-over-public-peering` | 用户通过IX连接 | 用户在互联网交换中心与您对等 |
-| `gre-over-fabric` | 用户在同一本地网络 | 用户在同一数据中心 |
-| `gre-over-cable` | 直接电缆连接到用户 | 单个专用用户 |
+如果您受IP约束，可以使用DZ前缀的第一个`/32`作为两个IP之一。
 
-**示例——标准互联网用户：**
+#### CYOA和DIA
 
+| 类型 | 标志 | 用途 |
+|------|------|------|
+| DIA | `--interface-dia dia` | 将端口标记为直接互联网访问 |
+| CYOA | `--interface-cyoa <子类型>` | 声明用户如何将GRE隧道连接到您的设备 |
+
+CYOA标志始终设置在**物理接口**（以太网端口或端口聚合）上，从不设置在环回接口上。
+
+| CYOA子类型 | 使用场景 |
+|-----------|---------|
+| `gre-over-dia` | 用户通过公共互联网连接。最常见。 |
+| `gre-over-private-peering` | 用户通过直接交叉连接或私有电路连接 |
+| `gre-over-public-peering` | 用户在互联网交换点(IX)与您对等 |
+| `gre-over-fabric` | 用户共同托管并通过本地网络结构连接 |
+| `gre-over-cable` | 直接电缆连接到单个专用用户 |
+
+#### 场景A：单物理接口
+
+到ISP的一个物理上行链路。Ethernet1/1是CYOA和DIA接口，承载两个公共IP之一。Loopback100承载第二个公共IP。
+
+```mermaid
+flowchart LR
+    USERS(["终端用户"])
+
+    subgraph DZD["DZD"]
+        E1["Eth1/1
+        203.0.113.1/30
+        CYOA · DIA · user tunnel endpoint"]
+        LO["Loopback100
+        198.51.100.1/32\n        user tunnel endpoint"]
+        E1 --- LO
+    end
+
+    ISP["ISP路由器
+    203.0.113.2/30"]
+
+    ISP -- "10GbE" --- E1
+    USERS -. "GRE隧道" .-> E1
+    USERS -. "GRE隧道" .-> LO
+```
+
+| 接口 | `--interface-cyoa` | `--interface-dia` | `--ip-net` | `--bandwidth` | `--cir` | `--routing-mode` | `--user-tunnel-endpoint` |
+|------|-------------------|------------------|------------|---------------|---------|-----------------|--------------------------|
+| Ethernet1/1 | `gre-over-dia` | `dia` | 贡献者分配的IP/子网 | 端口速度 | 承诺速率 | `bgp`或`static` | `true` |
+| Loopback100 | — | — | 您的公共/32 | `0bps` | — | — | `true` |
+
+场景A的示例命令：
 ```bash
-doublezero device interface create <DEVICE_CODE> Ethernet1/2 \
+doublezero device interface create mydzd-nyc01 Ethernet1/1 \
   --interface-cyoa gre-over-dia \
   --interface-dia dia \
-  --bandwidth 10000 \
-  --cir 1000 \
-  --user-tunnel-endpoint \
-  --wait
+  --ip-net 203.0.113.1/30 \
+  --bandwidth 10Gbps \
+  --cir 1Gbps \
+  --routing-mode bgp \
+  --user-tunnel-endpoint true
+
+doublezero device interface create mydzd-nyc01 Loopback100 \
+  --ip-net 198.51.100.1/32 \
+  --bandwidth 0bps \
+  --user-tunnel-endpoint true
 ```
 
-**预期输出：**
+#### 场景B：端口聚合（LAG）
 
+DZD通过带有IP的端口聚合连接到上游设备。端口聚合承载一个公共IP并是CYOA端点。Loopback100承载第二个公共IP。
+
+```mermaid
+flowchart LR
+    USERS(["终端用户"])
+
+    subgraph SW["上游路由器/交换机"]
+        SWPC(["bond0
+        203.0.113.2/30"])
+    end
+
+    subgraph DZD["DZD"]
+        subgraph PC["Port-Channel1 · 203.0.113.1/30 · CYOA · DIA · user tunnel endpoint"]
+            E1["Eth1/1"]
+            E2["Eth2/1"]
+        end
+        LO["Loopback100
+        198.51.100.1/32\n        user tunnel endpoint"]
+        PC --- LO
+    end
+
+    SWPC -- "2x 10GbE" --- PC
+    USERS -. "GRE隧道" .-> PC
+    USERS -. "GRE隧道" .-> LO
 ```
-Signature: 2wLp8N...truncated...5vHt3
+
+| 接口 | `--interface-cyoa` | `--interface-dia` | `--ip-net` | `--bandwidth` | `--cir` | `--routing-mode` | `--user-tunnel-endpoint` |
+|------|-------------------|------------------|------------|---------------|---------|-----------------|--------------------------|
+| Port-Channel1 | `gre-over-dia` | `dia` | 贡献者分配的IP/子网 | 组合LAG速度 | 承诺速率 | `bgp`或`static` | `true` |
+| Loopback100 | — | — | 您的公共/32 | `0bps` | — | — | `true` |
+
+场景B的示例命令：
+```bash
+doublezero device interface create mydzd-fra01 Port-Channel1 \
+  --interface-cyoa gre-over-dia \
+  --interface-dia dia \
+  --ip-net 203.0.113.1/30 \
+  --bandwidth 20Gbps \
+  --cir 2Gbps \
+  --routing-mode bgp \
+  --user-tunnel-endpoint true
+
+doublezero device interface create mydzd-fra01 Loopback100 \
+  --ip-net 198.51.100.1/32 \
+  --bandwidth 0bps \
+  --user-tunnel-endpoint true
 ```
 
-**参数说明：**
+#### 场景C：到独立路由器的双物理上行链路
 
-| 参数 | 含义 |
-|------|------|
-| `--interface-cyoa` | 用户如何连接（参见上表） |
-| `--interface-dia` | 如果这是面向互联网的端口，则为`dia` |
-| `--bandwidth` | 端口速度（Mbps），10000 = 10Gbps |
-| `--cir` | 承诺速率（Mbps），保证带宽 |
-| `--user-tunnel-endpoint` | 此端口接受用户隧道 |
+每个物理接口连接到不同的上游路由器。两个公共IP位于Loopback100和Loopback101上，均注册为用户隧道端点。
+
+```mermaid
+flowchart LR
+    USERS(["终端用户"])
+
+    RA["路由器A
+    203.0.113.2/30"]
+    RB["路由器B
+    203.0.113.6/30"]
+
+    subgraph DZD["DZD"]
+        E1["Eth1/1
+        203.0.113.1/30
+        CYOA · DIA"]
+        E2["Eth2/1
+        203.0.113.5/30
+        CYOA · DIA"]
+        LO0["Loopback100
+        198.51.100.1/32\n        user tunnel endpoint"]
+        LO1["Loopback101
+        198.51.100.2/32\n        user tunnel endpoint"]
+        E1 --> LO0
+        E2 --> LO1
+    end
+
+    RA -- "10GbE" --- E1
+    RB -- "10GbE" --- E2
+    USERS -. "GRE隧道" .-> LO0
+    USERS -. "GRE隧道" .-> LO1
+```
+
+| 接口 | `--interface-cyoa` | `--interface-dia` | `--ip-net` | `--bandwidth` | `--cir` | `--routing-mode` | `--user-tunnel-endpoint` |
+|------|-------------------|------------------|------------|---------------|---------|-----------------|--------------------------|
+| Ethernet1/1 | `gre-over-dia` | `dia` | 贡献者分配的IP/子网 | 端口速度 | 承诺速率 | `bgp`或`static` | — |
+| Ethernet2/1 | `gre-over-dia` | `dia` | 贡献者分配的IP/子网 | 端口速度 | 承诺速率 | `bgp`或`static` | — |
+| Loopback100 | — | — | 您的公共/32 | `0bps` | — | — | `true` |
+| Loopback101 | — | — | 您的公共/32 | `0bps` | — | — | `true` |
+
+场景C的示例命令：
+```bash
+doublezero device interface create mydzd-ams01 Ethernet1/1 \
+  --interface-cyoa gre-over-dia \
+  --interface-dia dia \
+  --ip-net 203.0.113.1/30 \
+  --bandwidth 10Gbps \
+  --cir 1Gbps \
+  --routing-mode bgp
+
+doublezero device interface create mydzd-ams01 Ethernet2/1 \
+  --interface-cyoa gre-over-dia \
+  --interface-dia dia \
+  --ip-net 203.0.113.5/30 \
+  --bandwidth 10Gbps \
+  --cir 1Gbps \
+  --routing-mode bgp
+
+doublezero device interface create mydzd-ams01 Loopback100 \
+  --ip-net 198.51.100.1/32 \
+  --bandwidth 0bps \
+  --user-tunnel-endpoint true
+
+doublezero device interface create mydzd-ams01 Loopback101 \
+  --ip-net 198.51.100.2/32 \
+  --bandwidth 0bps \
+  --user-tunnel-endpoint true
+```
 
 ### 步骤3.6：验证您的设备
 

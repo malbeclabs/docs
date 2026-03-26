@@ -14,7 +14,7 @@ If you are a validator who is already connected to DoubleZero you may continue t
 
 1. In your validator start script, add: `--shred-receiver-address 233.84.178.1:7733`
 
-    You are able to send to Jito and the `bebop` group at the same time.
+    You are able to send to Jito and the `edge-solana-shreds` group at the same time.
 
     example:
 
@@ -29,7 +29,7 @@ If you are a validator who is already connected to DoubleZero you may continue t
     ```
 
 2. Restart your validator.
-3. Connect to the DoubleZero multicast group `bebop` as a publisher: `doublezero connect ibrl && doublezero connect multicast --publish bebop`
+3. Connect to the DoubleZero multicast group `edge-solana-shreds` as a publisher: `doublezero connect ibrl && doublezero connect multicast --publish edge-solana-shreds`
 
 ### Frankendancer
 
@@ -41,7 +41,7 @@ If you are a validator who is already connected to DoubleZero you may continue t
     ```
 
 2. Restart your validator.
-3. Connect to the DoubleZero multicast group `bebop` as a publisher: `doublezero connect ibrl && doublezero connect multicast --publish bebop`
+3. Connect to the DoubleZero multicast group `edge-solana-shreds` as a publisher: `doublezero connect ibrl && doublezero connect multicast --publish edge-solana-shreds`
 
 ## 2. Confirm you're publishing leader shreds
 

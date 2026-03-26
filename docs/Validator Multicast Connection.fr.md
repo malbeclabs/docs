@@ -3,17 +3,22 @@
 
 !!! warning "En me connectant à DoubleZero, j'accepte les [Conditions d'Utilisation de DoubleZero](https://doublezero.xyz/terms-protocol)"
 
-Si vous n'êtes pas encore connecté à DoubleZero, veuillez compléter la documentation [Configuration](setup.md) et de connexion validateur [Mainnet-Beta](DZ%20Mainnet-beta%20Connection.md).
+!!! note inline end "Sociétés de trading et entreprises"
+    Si vous exploitez une société de trading ou une entreprise souhaitant s'abonner au flux, plus de détails seront partagés prochainement. Enregistrez votre intérêt pour obtenir plus d'informations [ici](https://doublezero.xyz/edge-form).
+
+Si vous n'êtes pas encore connecté à DoubleZero, veuillez d'abord compléter la documentation de [Configuration](https://docs.malbeclabs.com/setup/) et de connexion validateur [Mainnet-Beta](https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/).
 
 Si vous êtes un validateur déjà connecté à DoubleZero, vous pouvez continuer ce guide.
 
-#### Jito-Agave (version 3.1.9 ou supérieure)
+## 1. Configuration du Client
+
+### Jito-Agave (v3.1.9+) et Harmonic (3.1.11+)
 
 1. Dans votre script de démarrage du validateur, ajoutez : `--shred-receiver-address 233.84.178.1:7733`
 
-    Vous pouvez envoyer à Jito et au groupe `bebop` en même temps.
+    Vous pouvez envoyer à Jito et au groupe `edge-solana-shreds` en même temps.
 
-    exemple :
+    Exemple :
 
     ```json
     #!/bin/bash
@@ -26,52 +31,61 @@ Si vous êtes un validateur déjà connecté à DoubleZero, vous pouvez continue
     ```
 
 2. Redémarrez votre validateur.
+3. Connectez-vous au groupe multicast DoubleZero `edge-solana-shreds` en tant que publicateur : `doublezero connect ibrl && doublezero connect multicast --publish edge-solana-shreds`
 
-3. Connectez-vous au groupe multicast DoubleZero `bebop` en tant qu'éditeur :
-   `doublezero connect multicast --publish bebop`
-
-
-
-#### Frankendancer
+### Frankendancer
 
 1. Dans `config.toml`, ajoutez :
-   ```toml
-   [tiles.shred]
-   additional_shred_destinations_leader = [ "233.84.178.1:7733", ]
-   ```
+
+    ```toml
+    [tiles.shred]
+    additional_shred_destinations_leader = [ "233.84.178.1:7733", ]
+    ```
+
 2. Redémarrez votre validateur.
+3. Connectez-vous au groupe multicast DoubleZero `edge-solana-shreds` en tant que publicateur : `doublezero connect ibrl && doublezero connect multicast --publish edge-solana-shreds`
 
-3. Connectez-vous au groupe multicast DoubleZero `bebop` en tant qu'éditeur :
-   `doublezero connect multicast --publish bebop`
+## 2. Confirmer que vous publiez des shreds de leader
 
+Une fois connecté, vous pouvez vérifier [ce tableau de bord](https://data.malbeclabs.com/dz/publisher-check) pour confirmer que vous publiez des shreds. Vous ne verrez pas de confirmation tant que vous n'aurez pas publié des shreds de leader pour au moins un slot.
 
+## 3. Récompenses des Validateurs
 
-!!! note inline end
-    Les utilisateurs Frankendancer en mode pilote XDP ne peuvent pas utiliser tcpdump. Il n'existe actuellement aucun moyen de confirmer que vous publiez, mais une solution sera bientôt disponible.
+Pour chaque époque où les validateurs publient des shreds de leader, ils seront récompensés proportionnellement pour leur contribution en fonction des abonnements. Les détails de ce système seront annoncés et détaillés ultérieurement.
 
-#### Confirmer que vous publiez
+## Dépannage
 
-Pendant votre prochain slot de leader, utilisez `tcpdump` pour confirmer que vous publiez vers le groupe multicast. Vous devriez voir un heartbeat toutes les 10 secondes pour vérifier que vous publiez des shreds.
+### Pas de publication de shreds de leader :
 
-Exécutez : `sudo tcpdump -vv -c5 -ni doublezero1 port 7733 or port 5765`
+La cause la plus fréquente de non-transmission des shreds est la version du client :
 
-Exemple de sortie lors de la publication :
+Vous devez utiliser Jito-Agave 3.1.9+, JitoBam 3.1.9+, Frankendancer ou Harmonic 3.1.11+. Les autres versions de client ne fonctionneront pas.
 
-```
-tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
-tcpdump: verbose output suppressed, use -v[v]... for full protocol decodetcpdump -vv -c5 -ni doublezero1 port 7733 or port 5765
-tcpdump: listening on doublezero1, link-type LINUX_SLL (Linux cooked v1), snapshot length 262144 bytes
-21:53:11.018243 IP (tos 0x0, ttl 32, id 47109, offset 0, flags [DF], proto UDP (17), length 32)
-    148.51.120.2.38319 > 233.84.178.1.5765: [bad udp cksum 0xa7a9 -> 0x67ba!] UDP, length 4
-21:53:21.018217 IP (tos 0x0, ttl 32, id 47558, offset 0, flags [DF], proto UDP (17), length 32)
-    148.51.120.2.38319 > 233.84.178.1.5765: [bad udp cksum 0xa7a9 -> 0x67ba!] UDP, length 4
-21:53:31.018042 IP (tos 0x0, ttl 32, id 47919, offset 0, flags [DF], proto UDP (17), length 32)
-    148.51.120.2.38319 > 233.84.178.1.5765: [bad udp cksum 0xa7a9 -> 0x67ba!] UDP, length 4
-21:53:32.822061 IP (tos 0x0, ttl 64, id 5721, offset 0, flags [DF], proto UDP (17), length 1231)
-    148.51.120.2.57512 > 233.84.178.1.7733: [bad udp cksum 0xac58 -> 0xadfc!] UDP, length 1203
-21:53:32.822110 IP (tos 0x0, ttl 64, id 5722, offset 0, flags [DF], proto UDP (17), length 1231)
-    148.51.120.2.57512 > 233.84.178.1.7733: [bad udp cksum 0xac58 -> 0x9e62!] UDP, length 1203
-5 packets captured
-204 packets received by filter
-0 packets dropped by kernel
-```
+### Retransmission :
+
+1. Une cause courante de retransmission de shreds est une configuration simple. Vous avez peut-être activé le flag d'envoi de shreds de retransmission dans votre script de démarrage ; vous devrez le désactiver.
+
+    Le flag à supprimer dans Jito-Agave est : `--shred-retransmit-receiver-address`.
+
+1. Vérifiez le [tableau de bord des publicateurs](https://data.malbeclabs.com/dz/publisher-check) et voyez si vous avez des shreds retransmis. Dans le tableau, regardez la colonne **No Retransmit Shreds**—une croix rouge signifie que vous retransmettez.
+
+    !!! note "Vue par époque"
+        Notez qu'il existe différentes fenêtres temporelles pour afficher le tableau de bord des publicateurs. Si vous voyez une retransmission dans la **vue 2 époques**, mais que vous avez effectué un changement récent, essayez de passer à la vue **slot récent**.
+
+    ![Tableau de bord de vérification des publicateurs](images/publisher-check-dashboard.png)
+
+2. Trouvez l'IP de votre client et cherchez votre utilisateur dans [DoubleZero Data](https://data.malbeclabs.com/dz/users).
+
+    ![Utilisateurs DoubleZero Data](images/doublezero-data-users.png)
+
+3. Cliquez sur **Multicast** pour ouvrir votre vue multicast.
+
+    La capture d'écran ci-dessous montre : **Retransmission** (indésirable) un trafic sortant constant sans motif de slot de leader.
+
+    ![Vue multicast utilisateur — exemple de retransmission](images/user-multicast-view-retransmit.png)
+
+    La capture d'écran ci-dessous montre : **Sain** (publication uniquement de shreds de leader) un trafic sortant en pics, connu sous le nom de motif en dents de scie, qui s'aligne sur vos slots de leader.
+
+    ![Vue multicast utilisateur — exemple de publicateur sain](images/user-multicast-view-healthy.png)
+
+Le graphique indique si vous envoyez uniquement des shreds de leader. Les pics de trafic doivent s'aligner avec vos slots de leader. Lorsque vous n'avez pas de slot de leader, il ne doit y avoir aucun trafic. Si vous retransmettez, vous verrez un flux de trafic constant au lieu de pics alignés sur les slots.

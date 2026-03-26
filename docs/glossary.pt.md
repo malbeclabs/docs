@@ -92,7 +92,7 @@ Um estado de manutenção onde o link é completamente removido do serviço. Nen
 A DoubleZero Foundation é uma empresa de fundação sem membros nas Ilhas Cayman, sem fins lucrativos, formada para apoiar o desenvolvimento, descentralização, segurança e adoção da rede DoubleZero.
 
 ### Token 2Z
-O token nativo da rede DoubleZero. Usado para pagar taxas de validadores e distribuído como recompensas aos [contribuidores](#contributor). Os validadores podem pagar taxas em 2Z via um programa de swap onchain. Consulte [Pagando Taxas com 2Z](paying-fees2z.md) e [Trocando SOL por 2Z](Swapping-sol-to-2z.md).
+O token nativo da rede DoubleZero. Usado para pagar taxas de validadores e distribuído como recompensas aos [contribuidores](#contributor). Os validadores podem pagar taxas em 2Z via um programa de swap onchain. [Trocando SOL por 2Z](Swapping-sol-to-2z.md).
 
 ### Contribuidor
 Um provedor de infraestrutura de rede que contribui com largura de banda e hardware para a rede DoubleZero. Os contribuidores operam [DZDs](#dzd-doublezero-device), fornecem links [WAN](#wan-link) e [DZX](#dzx-link) e recebem incentivos em tokens [2Z](#2z-token) por sua contribuição. Consulte a [Documentação para Contribuidores](contribute-overview.md) para começar.

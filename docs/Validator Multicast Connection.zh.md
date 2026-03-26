@@ -3,15 +3,20 @@
 
 !!! warning "通过连接到DoubleZero，我同意[DoubleZero服务条款](https://doublezero.xyz/terms-protocol)"
 
-如果您尚未连接到DoubleZero，请先完成[设置](setup.md)和[主网Beta](DZ%20Mainnet-beta%20Connection.md)验证器连接文档。
+!!! note inline end "交易公司和企业"
+    如果您经营交易公司或企业，希望订阅数据流，更多详情即将分享。请在[此处](https://doublezero.xyz/edge-form)注册以获取更多信息。
+
+如果您尚未连接到DoubleZero，请先完成[设置](https://docs.malbeclabs.com/setup/)和[主网Beta](https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/)验证器连接文档。
 
 如果您是已连接到DoubleZero的验证器，可以继续阅读本指南。
 
-#### Jito-Agave（3.1.9或更高版本）
+## 1. 客户端配置
+
+### Jito-Agave（v3.1.9+）和 Harmonic（3.1.11+）
 
 1. 在您的验证器启动脚本中，添加：`--shred-receiver-address 233.84.178.1:7733`
 
-    您可以同时向Jito和`bebop`组发送数据。
+    您可以同时向Jito和`edge-solana-shreds`组发送数据。
 
     示例：
 
@@ -26,52 +31,61 @@
     ```
 
 2. 重启您的验证器。
+3. 以发布者身份连接到DoubleZero多播组`edge-solana-shreds`：`doublezero connect ibrl && doublezero connect multicast --publish edge-solana-shreds`
 
-3. 以发布者身份连接到DoubleZero多播组`bebop`：
-   `doublezero connect multicast --publish bebop`
-
-
-
-#### Frankendancer
+### Frankendancer
 
 1. 在`config.toml`中，添加：
-   ```toml
-   [tiles.shred]
-   additional_shred_destinations_leader = [ "233.84.178.1:7733", ]
-   ```
+
+    ```toml
+    [tiles.shred]
+    additional_shred_destinations_leader = [ "233.84.178.1:7733", ]
+    ```
+
 2. 重启您的验证器。
+3. 以发布者身份连接到DoubleZero多播组`edge-solana-shreds`：`doublezero connect ibrl && doublezero connect multicast --publish edge-solana-shreds`
 
-3. 以发布者身份连接到DoubleZero多播组`bebop`：
-   `doublezero connect multicast --publish bebop`
+## 2. 确认您正在发布领导者碎片
 
+连接后，您可以查看[此仪表板](https://data.malbeclabs.com/dz/publisher-check)以确认您正在发布碎片。在您至少发布了一个槽位的领导者碎片之后，才能看到确认信息。
 
+## 3. 验证器奖励
 
-!!! note inline end
-    在XDP驱动模式下的Frankendancer用户无法使用tcpdump。目前没有方法确认您正在发布，但解决方案即将推出。
+对于验证器发布领导者碎片的每个纪元，将根据订阅情况按比例奖励其贡献。该系统的具体细节将于稍后公布并详细说明。
 
-#### 确认您正在发布
+## 故障排除
 
-在您的下一个领导者槽位期间，使用`tcpdump`确认您正在向多播组发布。您应该每10秒看到一次心跳以验证您正在发布碎片。
+### 未发布领导者碎片：
 
-运行：`sudo tcpdump -vv -c5 -ni doublezero1 port 7733 or port 5765`
+未传输碎片最常见的原因是客户端版本问题：
 
-发布时的示例输出：
+您必须运行 Jito-Agave 3.1.9+、JitoBam 3.1.9+、Frankendancer 或 Harmonic 3.1.11+。其他客户端版本将无法工作。
 
-```
-tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
-tcpdump: verbose output suppressed, use -v[v]... for full protocol decodetcpdump -vv -c5 -ni doublezero1 port 7733 or port 5765
-tcpdump: listening on doublezero1, link-type LINUX_SLL (Linux cooked v1), snapshot length 262144 bytes
-21:53:11.018243 IP (tos 0x0, ttl 32, id 47109, offset 0, flags [DF], proto UDP (17), length 32)
-    148.51.120.2.38319 > 233.84.178.1.5765: [bad udp cksum 0xa7a9 -> 0x67ba!] UDP, length 4
-21:53:21.018217 IP (tos 0x0, ttl 32, id 47558, offset 0, flags [DF], proto UDP (17), length 32)
-    148.51.120.2.38319 > 233.84.178.1.5765: [bad udp cksum 0xa7a9 -> 0x67ba!] UDP, length 4
-21:53:31.018042 IP (tos 0x0, ttl 32, id 47919, offset 0, flags [DF], proto UDP (17), length 32)
-    148.51.120.2.38319 > 233.84.178.1.5765: [bad udp cksum 0xa7a9 -> 0x67ba!] UDP, length 4
-21:53:32.822061 IP (tos 0x0, ttl 64, id 5721, offset 0, flags [DF], proto UDP (17), length 1231)
-    148.51.120.2.57512 > 233.84.178.1.7733: [bad udp cksum 0xac58 -> 0xadfc!] UDP, length 1203
-21:53:32.822110 IP (tos 0x0, ttl 64, id 5722, offset 0, flags [DF], proto UDP (17), length 1231)
-    148.51.120.2.57512 > 233.84.178.1.7733: [bad udp cksum 0xac58 -> 0x9e62!] UDP, length 1203
-5 packets captured
-204 packets received by filter
-0 packets dropped by kernel
-```
+### 重传：
+
+1. 碎片重传的常见原因是简单的配置问题。您的启动脚本中可能启用了发送重传碎片的标志；您需要禁用它。
+
+    在Jito-Agave中需要删除的标志是：`--shred-retransmit-receiver-address`。
+
+1. 查看[发布者仪表板](https://data.malbeclabs.com/dz/publisher-check)，检查是否有重传碎片。在表格中，查看**No Retransmit Shreds**列——红色X表示您正在重传。
+
+    !!! note "纪元视图"
+        注意发布者仪表板有不同的时间窗口可供查看。如果您在**2纪元视图**中看到重传，但最近做了更改，请尝试切换到**近期槽位**视图。
+
+    ![发布者检查仪表板](images/publisher-check-dashboard.png)
+
+2. 找到您的客户端IP，并在[DoubleZero数据](https://data.malbeclabs.com/dz/users)中查找您的用户。
+
+    ![DoubleZero数据用户](images/doublezero-data-users.png)
+
+3. 点击**多播**以打开您的多播视图。
+
+    下图显示：**重传**（不理想）稳定的出站流量，没有领导者槽位模式。
+
+    ![用户多播视图 — 重传示例](images/user-multicast-view-retransmit.png)
+
+    下图显示：**健康**（仅发布领导者碎片）出站流量呈尖峰状，称为锯齿波模式，与您的领导者槽位对齐。
+
+    ![用户多播视图 — 健康发布者示例](images/user-multicast-view-healthy.png)
+
+图表显示您是否仅发送领导者碎片。流量峰值应与您拥有领导者槽位时对齐。当您没有领导者槽位时，应该没有流量。如果您正在重传，您将看到稳定的流量流，而不是与槽位对齐的峰值。
