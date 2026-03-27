@@ -69,6 +69,7 @@ nav:
     - Device Provisioning: contribute-provisioning.md
     - Operations: contribute-operations.md
     - OPS Management: contribute-ops-management.md
+  - Geolocation: geolocation.md 
   - Architecture: architecture.md
   - Glossary: glossary.md
 markdown_extensions:
