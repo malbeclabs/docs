@@ -68,6 +68,7 @@ nav:
     - Requirements & Architecture: contribute.md
     - Device Provisioning: contribute-provisioning.md
     - Operations: contribute-operations.md
+  - Geolocation: geolocation.md 
   - Architecture: architecture.md
   - Glossary: glossary.md
 markdown_extensions:
