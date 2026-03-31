@@ -3,6 +3,17 @@
 
 This guide covers the ongoing operational tasks for maintaining your DoubleZero Devices (DZDs), including agent upgrades, device/interface updates, and link management.
 
+## Incident & Maintenance Logging
+
+Any planned maintenance or unplanned link/device issue should be logged in the [OPS Management portal](contribute-ops-management.md). This gives all contributors visibility into what is happening across the network and avoids duplicate investigation.
+
+- **Planned work** (e.g. replacing an optic, scheduled carrier maintenance): create a maintenance record before you start.
+- **Unplanned issues** (e.g. link down, interface errors, packet loss): open an incident as soon as you begin investigating.
+
+See the [OPS Management guide](contribute-ops-management.md) for onboarding steps and how to create tickets.
+
+---
+
 **Prerequisites**: Before using this guide, ensure you have:
 
 - Completed the [Device Provisioning Guide](contribute-provisioning.md)
@@ -362,3 +373,4 @@ doublezero link update --pubkey <LINK_PUBKEY> --delay-override-ms 0
 
 > ⚠️ **Note:**
 > When a link is soft-drained, both `delay_ms` and `delay_override_ms` are overridden to 1000ms (1 second) to ensure deprioritization.
+
