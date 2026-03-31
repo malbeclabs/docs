@@ -127,7 +127,7 @@ Click **Create New Record**, select Type = **Incident** on the portal, or submit
 | `internal_reference` | Your internal ticket ID (e.g. Jira, ServiceNow) |
 | `start_at` | Defaults to creation time; editable |
 
-Once created, a notification is posted to `#dz-contributor-incidents` with the ticket ID, severity, affected devices/links, and contributor name.
+Once created, a notification is posted to the contributor incidents Slack channel with the ticket ID, severity, affected devices/links, and contributor name.
 
 ### Updating an Incident
 
@@ -192,7 +192,7 @@ Click **Create New Record** > **Maintenance** on the portal, or submit via the A
 | `end_at` | Planned end time (UTC); must be after `start_at` |
 | Device and/or Link | At least one required. On the web form, select from a dropdown of your device and link codes. When using the API, pass the corresponding pubkeys as `device_pubkey` and/or `affected_link_pubkey`. |
 
-Once created, a notification is posted to `#dz-contributor-maintenance` with the ticket ID, affected devices/links, planned window, and contributor name.
+Once created, a notification is posted to the contributor maintenance Slack channel with the ticket ID, affected devices/links, planned window, and contributor name.
 
 ### Managing Maintenance Status
 
@@ -234,8 +234,10 @@ DZX links connect devices from two different contributors. The **A-side** contri
 
 **Example:** For link `deviceA:deviceB`, the contributor who owns `deviceA` owns the link.
 
-**If the issue is on the B-side:**
+**If the issue is on the Z-side:**
 
 1. A-side contributor creates a ticket for the DZX link.
 2. Assign the ticket to DZ/Malbeclabs.
-3. DZ/Malbeclabs investigates and reassigns to the B-side contributor if needed.
+3. DZ/Malbeclabs investigates and reassigns to the Z-side contributor if needed.
+
+We recognise this workflow is limited. Z-side contributors currently cannot create tickets for DZX links they don't own, which means coordination has to go through DZ/Malbeclabs. We are working to improve this so that both sides of a DZX link can declare incidents and maintenance independently.
