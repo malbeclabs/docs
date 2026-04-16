@@ -180,6 +180,8 @@ doublezero-solana shreds pay \
   --amount 500
 ```
 
+Note that the `Target_IP` must be a public ipv4 address on the machine which will be receiving shreds. You can find this by running a command like `curl -4 ifconfig.me` on the target machine.
+
 ### Monitor Seats
 
 View your active seats and escrow balances:
