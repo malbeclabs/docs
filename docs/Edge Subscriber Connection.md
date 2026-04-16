@@ -5,9 +5,9 @@
 
 ### 1. Complete Setup
 
-Intall the [Solana CLI](https://docs.anza.xyz/cli/install).
+Install the [Solana CLI](https://docs.anza.xyz/cli/install).
 
-Follow the [setup](setup.md) instructions to instal and configure the DoubleZero client.
+Follow the [setup](setup.md) instructions to install and configure the DoubleZero client.
 
 ### 2. Configure the Firewall
 
