@@ -9,6 +9,8 @@ Install the [Solana CLI](https://docs.anza.xyz/cli/install).
 
 Follow the [setup](setup.md) instructions to install and configure the DoubleZero client.
 
+If you have previously setup DoubleZero, ensure you have the latest Doublezero-Solana CLI with `sudo apt update && sudo apt install doublezero-solana`
+
 ### 2. Configure the Firewall
 
 Allow GRE, BGP, PIM, and shred traffic.
