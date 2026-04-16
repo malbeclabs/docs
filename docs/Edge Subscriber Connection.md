@@ -265,6 +265,10 @@ You can easily search your Client IP on this page for subscribed seats and view 
 
 If you run into an issue not covered here, please reach out over your existing channel before working around it. If you do not have a channel, please search [Discord](https://discord.gg/U2fEb4Jq) and open a ticket if required.
 
+### Ensure your Client is up to date:
+
+Run: `sudo apt update && sudo apt install doublezero-solana`
+
 ### Insufficient escrow balance
 
 If your escrow balance is below the epoch price at settlement, the seat is not allocated, the tunnel is torn down, and tenure is lost. Top up with `shreds pay` before the next settlement.
