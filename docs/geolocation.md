@@ -21,7 +21,7 @@ flowchart LR
      end
 
      Probe -- "RTT measurement" --> T
-     T -- "response" --> Probe
+     T -- "RTT response" --> Probe
      Probe -. "signed offset" .-> T
 ```
 
