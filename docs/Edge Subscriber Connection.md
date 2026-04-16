@@ -95,7 +95,7 @@ Before buying a seat, identify the device with the lowest latency from your mach
 doublezero latency
 ```
 
-Note the device code from the lowest-latency result (e.g., `MIA-1`). You'll use this when purchasing a seat.
+Note the device code from the lowest-latency result (e.g., `<Device_Name>`). You'll use this when purchasing a seat.
 
 ### 2. Check Pricing
 
@@ -110,7 +110,7 @@ doublezero-solana shreds price
 **Specific device:**
 
 ```bash
-doublezero-solana shreds price --device-code MIA-1
+doublezero-solana shreds price --device-code <Device_Name>
 doublezero-solana shreds price --device <PUBKEY>
 ```
 
@@ -130,9 +130,9 @@ Purchase a seat with a single command. This initializes your seat, funds the esc
 
 ```bash
 doublezero-solana shreds pay \
-  --device-code MIA-1 \
-  --client-ip 203.0.113.42 \
-  --amount 100
+  --device-code <Device_Name> \
+  --client-ip <Target_IP> \
+  --amount <Cost_Of_Seat>
 ```
 
 **Parameters:**
@@ -140,7 +140,7 @@ doublezero-solana shreds pay \
 | Flag | Description |
 |------|-------------|
 | `--device <PUBKEY>` | Target device by public key (mutually exclusive with `--device-code`) |
-| `--device-code <CODE>` | Target device by human-readable code (e.g., `MIA-1`) |
+| `--device-code <CODE>` | Target device by human-readable code (e.g., `<Device_Name>`) |
 | `--client-ip <IP>` | Your machine's public IPv4 address |
 | `--amount <USDC>` | USDC to fund (decimal format, e.g. `100` = 100 USDC). Must meet the minimum epoch price. |
 | `--source-token-account <PUBKEY>` | Custom USDC source account (defaults to your wallet's ATA) |
@@ -173,8 +173,8 @@ To top up your escrow, run `shreds pay` again at any time:
 
 ```bash
 doublezero-solana shreds pay \
-  --device-code MIA-1 \
-  --client-ip 203.0.113.42 \
+  --device-code <Device_Name> \
+  --client-ip <Target_IP> \
   --amount 500
 ```
 
@@ -191,13 +191,13 @@ doublezero-solana shreds list
 **Filter by device:**
 
 ```bash
-doublezero-solana shreds list --device-code MIA-1
+doublezero-solana shreds list --device-code <Device_Name>
 ```
 
 **Filter by client IP:**
 
 ```bash
-doublezero-solana shreds list --client-ip 203.0.113.42
+doublezero-solana shreds list --client-ip <Target_IP>
 ```
 
 **Filter by wallet:**
@@ -216,8 +216,8 @@ Close your escrow and refund remaining USDC to your wallet:
 
 ```bash
 doublezero-solana shreds withdraw \
-  --device-code MIA-1 \
-  --client-ip 203.0.113.42
+  --device-code <Device_Name> \
+  --client-ip <Target_IP>
 ```
 
 You can identify the device by either `--device <PUBKEY>` or `--device-code <CODE>`, same as other commands.
@@ -226,8 +226,8 @@ To send the refund to a different token account:
 
 ```bash
 doublezero-solana shreds withdraw \
-  --device-code MIA-1 \
-  --client-ip 203.0.113.42 \
+  --device-code <Device_Name> \
+  --client-ip <Target_IP> \
   --refund-token-account <PUBKEY>
 ```
 
