@@ -1,6 +1,6 @@
 # Geolocation
 
-DoubleZero Geolocation is a service for verifying the physical location of devices using latency measurements. [RTT](glossary.md#rtt-round-trip-time) (round-trip time) measurements between known-location infrastructure and a target device provide cryptographically-signed proof that a device is within a certain distance of a given point. Onchain recording of measurements to the DoubleZero Ledger is planned for a future release.
+DoubleZero Geolocation is a service that determines the physical location of devices using latency measurements. [RTT](glossary.md#rtt-round-trip-time) (round-trip time) measurements between known-location infrastructure and a target device provide cryptographically-signed proof that a device is within a certain distance of a given point. Onchain recording of measurements to the DoubleZero Ledger is planned for a future release.
 
 Use cases include regulatory compliance (e.g., GDPR — proving validators operate within the EU), geographic distribution audits, and any application that needs verifiable proof of where a device is running.
 
@@ -21,11 +21,8 @@ flowchart LR
      end
 
      Probe -- "RTT measurement" --> T
-     T -- "response" --> Probe
+     T -- "RTT response" --> Probe
      Probe -. "signed offset" .-> T
-
-     Ledger[("DoubleZero\nLedger (future)")]
-     Probe -. "signed measurements\n(planned)" .-> Ledger
 ```
 
 The following diagram shows the three probe flow types — Outbound, OutboundIcmp, and Inbound — which differ in how the geoProbe communicates with the target:
