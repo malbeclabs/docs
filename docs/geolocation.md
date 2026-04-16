@@ -23,9 +23,6 @@ flowchart LR
      Probe -- "RTT measurement" --> T
      T -- "response" --> Probe
      Probe -. "signed offset" .-> T
-
-     Ledger[("DoubleZero\nLedger (future)")]
-     Probe -. "signed measurements\n(planned)" .-> Ledger
 ```
 
 The following diagram shows the three probe flow types — Outbound, OutboundIcmp, and Inbound — which differ in how the geoProbe communicates with the target:
