@@ -59,6 +59,7 @@ nav:
         - Permissioned Connection: Permissioned Connection.md
         - Validator Multicast Connection: Validator Multicast Connection.md
         - Other Multicast Connection: Other Multicast Connection.md
+        - Edge Subscriber Connection: Edge Subscriber Connection.md
         - Troubleshooting: troubleshooting.md
       - Shelby:
         - Shelby Connection: Shelby Permissioned Connection.md
