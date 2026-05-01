@@ -47,6 +47,24 @@ If you are a validator who is already connected to DoubleZero you may continue t
 
 Once you are connected you may check [this dashboard](https://data.malbeclabs.com/dz/publisher-check) to confirm you are publishing shreds. You will not see confirmation until after you have published leader shreds for at least one slot.
 
+## Multicast Endpoints (IP vs Port)
+
+For shred traffic, the **IP address** selects the multicast feed and the **port** selects the UDP service.  
+All feeds below use UDP port `7733`.
+
+You can discover the current group IPs with:
+
+```bash
+doublezero multicast group list
+```
+
+- `edge-solana-shreds` (leader): `233.84.178.1:7733`
+- `edge-solana-retrans-eu`: `233.84.178.12:7733`
+- `edge-solana-retrans-apac`: `233.84.178.13:7733`
+- `edge-solana-retrans-amer`: `233.84.178.14:7733`
+
+For API references and machine-readable data endpoints, see [https://data.malbeclabs.com/api/v1/docs](https://data.malbeclabs.com/api/v1/docs).
+
 ## 3. Validator Rewards
 
 For each epoch where validators publish leader shreds, they will be proportionately rewarded for their contribution based on subscriptions. The specifics of this system will be announced, and detailed at a later date.
