@@ -184,6 +184,8 @@ Note that the `Target_IP` must be a public ipv4 address on the machine which wil
 
 ### Monitor Seats
 
+This section details how to view seats via the CLI. You may also use [https://data.malbeclabs.com/api/v1/docs](https://data.malbeclabs.com/api/v1/docs) to monitor seats, and assost in managing your escrow account.
+
 View your active seats and escrow balances:
 
 **All your seats:**
@@ -239,9 +241,29 @@ doublezero-solana shreds withdraw \
 
 ---
 
-## Expected Port
+## Shred Addresses (IP vs Port)
 
 Leader Shreds and high-stake Retransmit Shreds will arrive over port `7733`, over the `doublezero1` interface. The `doublezero0` interface is for unicast traffic. Port `5765` is a heartbeat monitor from the shred publishers — this will not contain shreds.
+
+For shred consumption, **IP address** identifies the multicast stream and **port** identifies the UDP service on that stream.  
+All shred streams below use UDP port `7733` on `doublezero1`.
+
+You examine any multicast group's IPs with:
+
+```bash
+doublezero multicast group list
+```
+
+### Leader Shreds
+
+- `edge-solana-shreds`: `233.84.178.1:7733`
+
+### Retransmit Shreds
+
+- `edge-solana-retrans-eu`: `233.84.178.12:7733`
+- `edge-solana-retrans-apac`: `233.84.178.13:7733`
+- `edge-solana-retrans-amer`: `233.84.178.14:7733`
+
 
 ## GRE Tunnel Header — XDP
 
@@ -262,6 +284,10 @@ The "Publishing Shreds" metric at the top left of the dashboard shows the total 
 ### [Edge Subscribers, Devices and Activity](https://data.malbeclabs.com/dz/shreds/subscribers)
 
 You can easily search your Client IP on this page for subscribed seats and view status. Click through specific seat subscriptions to view payment history and activity. You can also view available devices on the [Devices](https://data.malbeclabs.com/dz/shreds/devices) page and all recent activity on the [Activity](https://data.malbeclabs.com/dz/shreds/activity) page.
+
+### Data API Docs
+
+For programmatic access to data endpoints, see the API documentation: [https://data.malbeclabs.com/api/v1/docs](https://data.malbeclabs.com/api/v1/docs).
 
 ---
 
