@@ -928,6 +928,15 @@ daemon doublezero-telemetry
         no shut
     ```
 
+!!! note "BGP Status Reporting (Optional)"
+    To enable onchain BGP session status reporting, add `--bgp-status-enable` to the exec command:
+    ```
+    daemon doublezero-telemetry
+        exec /usr/local/bin/doublezero-telemetry --local-device-pubkey <DEVICE_ACCOUNT> --env mainnet --keypair /mnt/flash/metrics-publisher-keypair.json --bgp-status-enable
+        no shut
+    ```
+    The submission interval (default `60s`), refresh interval (default `6h`), and Down grace period (default `30s`) can be tuned with `--bgp-status-interval`, `--bgp-status-refresh-interval`, and `--bgp-status-down-grace-period` respectively.
+
 #### Verify it's running
 
 ```bash
