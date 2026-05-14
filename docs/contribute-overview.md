@@ -135,6 +135,7 @@ New to DoubleZero? Here are the essential terms (see [full Glossary](glossary.md
 | [Requirements & Architecture](contribute.md) | Hardware specs, network architecture, bandwidth options |
 | [Device Provisioning](contribute-provisioning.md) | Step-by-step: keys → repo access → device → links → agents |
 | [Operations](contribute-operations.md) | Agent upgrades, link management, monitoring |
+| [Geoprobe Deployment](contribute-geolocation.md) | Deploying and configuring geoProbe agents for geolocation |
 | [Glossary](glossary.md) | All DoubleZero terminology defined |
 
 ---
