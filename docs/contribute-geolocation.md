@@ -1,6 +1,6 @@
 # Geoprobe Deployment
 
-This guide covers deploying and configuring **geoProbe agents** — the bare metal servers that perform latency measurements for the DoubleZero [Geolocation](geolocation.md) service.
+This guide covers deploying and configuring **geoProbe agents** — the servers that perform latency measurements for the DoubleZero [Geolocation](geolocation.md) service.
 
 A geoProbe sits between [DZDs](glossary.md#dzd-doublezero-device) and target devices in the three-tier measurement chain. It receives signed LocationOffsets from parent DZDs and measures [RTT](glossary.md#rtt-round-trip-time) to registered targets via [TWAMP](glossary.md#twamp-two-way-active-measurement-protocol), signed TWAMP, or ICMP echo. Each geoProbe is registered onchain and linked to one or more parent DZDs.
 
@@ -15,27 +15,28 @@ For an overview of the geolocation architecture and measurement flows, see the [
 
 Before deploying a geoProbe, ensure you have:
 
-- **Bare metal Linux server** — VMs add unpredictable latency to measurements
-- **Network proximity to a DZD** — less than 1ms RTT between the probe and its parent DZD
+- **Bare metal Linux server** — A VPS can work, but are less ideal.
+- **Network proximity to a DZD** — less than 1ms RTT between the probe and its parent DZD. Ideally 0.1ms or less.
 - **`CAP_NET_RAW` capability** for the agent process (required for ICMP echo probing with raw sockets)
 - **Ed25519 keypair** for the probe's signing identity
-- **Foundation authorization** — probe registration is foundation-gated; coordinate with [DZF](glossary.md#dzf-doublezero-foundation) before proceeding
+- **Foundation authorization** — probe registration is foundation-gated at the moment; coordinate with [DZF](glossary.md#dzf-doublezero-foundation) before proceeding
 - **Parent DZD(s)** running telemetry agent v0.17.0+
 
 ---
 
 ## Installation
 
-Install both the agent daemon and the management CLI:
+Install both the agent daemon and the doublezero CLI:
 
 ```bash
-sudo apt install doublezero-geoprobe-agent doublezero-geolocation
+curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
+sudo apt install doublezero-geoprobe-agent doublezero
 ```
 
 | Package | Purpose |
 |---------|---------|
 | `doublezero-geoprobe-agent` | Agent daemon that runs on the probe server, performing latency measurements and generating signed offsets |
-| `doublezero-geolocation` | CLI tool used for probe registration and management commands |
+| `doublezero` | CLI tool used for probe registration and management commands |
 
 ---
 
@@ -46,13 +47,11 @@ Probe registration requires foundation authorization. Coordinate with DZF before
 ### Step 1: Register the probe
 
 ```bash
-doublezero-geolocation probe create \
-  --env testnet \
+doublezero geolocation probe create \
   --code <probe-code> \
   --exchange <exchange-pubkey> \
   --public-ip <probe-ip> \
-  --location-offset-port 8923 \
-  --metrics-publisher-pk <signing-key-pubkey>
+  --signing-pubkey <signing-key-pubkey>
 ```
 
 | Parameter | Description |
@@ -60,16 +59,14 @@ doublezero-geolocation probe create \
 | `--code` | Unique identifier for the probe (e.g., `ams-tn-gp1`) — max 32 characters |
 | `--exchange` | Public key of the Serviceability Exchange account this probe is associated with |
 | `--public-ip` | Public IPv4 address where the probe listens |
-| `--location-offset-port` | UDP port for receiving LocationOffsets from DZDs (default: 8923) |
-| `--metrics-publisher-pk` | Public key used to sign offsets and telemetry |
+| `--signing-pubkey` | Public key used to sign offsets and telemetry |
 
 ### Step 2: Link parent DZDs
 
 ```bash
-doublezero-geolocation probe add-parent \
-  --env testnet \
+doublezero geolocation probe add-parent \
   --probe <probe-code> \
-  --device <dzd-pubkey>
+  --device <dzd-code>
 ```
 
 Each parent DZD must be an activated device in the Serviceability Program. DZDs auto-discover child probes every 60 seconds — once linked, the DZD begins TWAMP measurements and offset generation automatically.
@@ -80,9 +77,9 @@ Each parent DZD must be an activated device in the Serviceability Program. DZDs 
 
 ```bash
 doublezero-geoprobe-agent \
+  --env mainnet-beta \
   --keypair /etc/geoprobe/keypair.json \
-  --geoprobe-pubkey <probe-onchain-pubkey> \
-  --env testnet
+  --geoprobe-pubkey <probe-onchain-pubkey>
 ```
 
 ### Required Flags
@@ -154,7 +151,7 @@ See the [Operations guide](contribute-operations.md#monitoring) for general guid
 
 ## Probe Management Commands
 
-The `doublezero-geolocation` CLI provides the following subcommands for managing probes:
+The `doublezero geolocation` CLI provides the following subcommands for managing probes:
 
 | Subcommand | Description |
 |------------|-------------|
@@ -168,10 +165,10 @@ The `doublezero-geolocation` CLI provides the following subcommands for managing
 
 All subcommands accept `--env` or `--rpc-url` to select the network. Write operations (`create`, `update`, `delete`, `add-parent`, `remove-parent`) require `--keypair`.
 
-??? note "Example: listing probes on testnet"
+??? note "Example: listing probes"
 
     ```bash
-    doublezero-geolocation probe list --env testnet
+    doublezero geolocation probe list
     ```
 
     Returns all registered probes with their codes, public IPs, parent DZDs, and current status.

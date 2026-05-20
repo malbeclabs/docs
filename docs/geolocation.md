@@ -1,8 +1,8 @@
 # Geolocation
 
-DoubleZero Geolocation is a service that determines the physical location of devices using latency measurements. [RTT](glossary.md#rtt-round-trip-time) (round-trip time) measurements between known-location infrastructure and a target device provide cryptographically-signed proof that a device is within a certain distance of a given point. Onchain recording of measurements to the DoubleZero Ledger is planned for a future release.
+The DoubleZero Geolocation service helps users determine the physical location of devices using latency measurements. [RTT](glossary.md#rtt-round-trip-time) (round-trip time) measurements between known-location infrastructure and a target device provide cryptographically-signed proof that a device is within a certain distance of a given point. Onchain recording of measurements to the DoubleZero Ledger is planned for a future release.
 
-Use cases include regulatory compliance (e.g., GDPR — proving validators operate within the EU), geographic distribution audits, and any application that needs verifiable proof of where a device is running.
+Use cases include regulatory compliance (e.g., GDPR — proving validators operate within the EU), geographic distribution audits, and any application that needs verifiable proof of where a device or IP is.
 
 ---
 
@@ -51,15 +51,15 @@ flowchart TB
 Geolocation uses a three-tier measurement chain:
 
 ```
-DZD (known location) ──TWAMP──► geoProbe ──RTT──► Target device
+DZD (known location) ◄──TWAMP──► geoProbe ◄──RTT──► Target device
 ```
 
-- **[DZD](glossary.md#dzd-doublezero-device) <-> geoProbe**: [TWAMP](glossary.md#twamp-two-way-active-measurement-protocol) continuously measures latency between the DoubleZero Device and the probe. DZDs have known, fixed geographic coordinates.
+- **[DZD](glossary.md#dzd-doublezero-device) <-> geoProbe**: [TWAMP](glossary.md#twamp-two-way-active-measurement-protocol) continuously measures latency between the DoubleZero Device and the probe. DZDs have known, fixed geographic coordinates registered on the DZ Ledger.
 - **geoProbe <-> Target**: RTT is measured between the probe and the device being located.
 
-Offset results are cryptographically signed. Onchain recording to the DoubleZero Ledger is planned for a future release.
+Offset results are cryptographically signed, and delivered via UDP to the target or a user-specified alternate destination.
 
-**Important:** Geolocation reports RTT only — not inferred distance or coordinates. A common method would be to divide the RTT by 2, and then multiply by the speed of light through glass to provide a radius around the DZD coordinates that the target is located within. How you interpret RTT (e.g., computing a maximum-distance radius) is up to you.
+**Important:** Geolocation reports RTT only — not inferred distance or coordinates. A common way to use this would be to divide the RTT by 2, and then multiply by the speed of light through glass (~200km/ms) to provide a radius around the DZD coordinates that the target is located within. How you interpret RTT (e.g., computing a maximum-distance radius) is up to you.
 
 ### Probe flow types
 
@@ -69,27 +69,9 @@ There are three ways a probe can measure a target:
 |------|---------------|----------|----------|
 | **Outbound** | Probe -> Target | [TWAMP](glossary.md#twamp-two-way-active-measurement-protocol) | Target has a public IP, open inbound port, and can run a TWAMP reflector |
 | **OutboundIcmp** | Probe -> Target | ICMP echo | Target has a public IP but cannot run a TWAMP reflector (or TWAMP is blocked by firewall) |
-| **Inbound** | Target -> Probe | Signed TWAMP | Target is behind NAT or cannot accept inbound connections |
+| **Inbound** | Target -> Probe | Signed TWAMP | Target cannot accept inbound connections, or want to verify location of a signing key |
 
 In all cases, the DZD <-> geoProbe measurement happens the same way. Only the direction and protocol of the geoProbe <-> target communication differs.
-
-### OutboundIcmp
-
-The OutboundIcmp flow uses standard ICMP echo (ping) to measure [RTT](glossary.md#rtt-round-trip-time) to the target. The geoProbe sends ICMP echo requests to the target and measures RTT from the echo reply.
-
-```mermaid
-flowchart LR
-    DZD["DZD"] -- "TWAMP" --> Probe["geoProbe"]
-    Probe -- "ICMP Echo Request" --> Target["Target"]
-    Target -- "ICMP Echo Reply" --> Probe
-    Probe -- "Signed Offset\n(with RTT)" --> Target
-```
-
-Key advantages of OutboundIcmp:
-
-- **No software installation required on the target** — it only needs to respond to ICMP pings
-- Useful when [TWAMP](glossary.md#twamp-two-way-active-measurement-protocol) traffic is blocked by firewall rules
-- Works when the target cannot run custom software (e.g., managed infrastructure)
 
 !!! info "Technical Specification"
     For the full technical specification of the geolocation verification system, including cryptographic signing details and the measurement protocol, see [RFC 16: Geolocation Verification](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc16-geolocation-verification.md).
@@ -119,24 +101,28 @@ You need a [2Z token](glossary.md#2z-token) account. Service fees are deducted f
 
 ## Installation
 
+On a management computer:
 ```bash
-sudo apt install doublezero-geolocation
+curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
+sudo apt install doublezero
 ```
 
-This installs two binaries:
+On a target for Inbound or TWAMP Outbound:
+```bash
+curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
+sudo apt install doublezero-geoprobe-target
+```
+This installs the `doublezero-geoprobe-target` (outbound) and `doublezero-geoprobe-target-sender` (inbound)
 
-- **`doublezero-geolocation`** — CLI for managing users, probes, and targets on the DoubleZero ledger
-- **`doublezero-geoprobe-target-sender`** — runs on the device being measured; used for inbound probe flows
-
-!!! note "Package contents"
-    The `doublezero-geolocation` package provides the CLI for all geolocation management commands (creating users, managing targets, listing probes). Both geolocation **users** and **contributors** use this same package.
+!!! note "ICMP Outbound"
+    `outbound-icmp` targets do not require any software installed.
 
 ---
 
 ## Check your balance
 
 ```bash
-doublezero balance --env testnet
+doublezero balance
 ```
 
 ---
@@ -146,7 +132,7 @@ doublezero balance --env testnet
 ### Step 1: Create a geolocation user
 
 ```bash
-doublezero-geolocation user create \
+doublezero geolocation user create \
   --env testnet \
   --code <your-user-code> \
   --token-account <your-2Z-token-account>
@@ -161,10 +147,10 @@ doublezero-geolocation user create \
 ### Step 2: List available probes
 
 ```bash
-doublezero-geolocation probe list --env testnet
+doublezero geolocation probe list
 ```
 
-Note the **code**, **IP address**, and **public key** of the probe you want to use.
+Note the **code** or **public_ip**, and the **signing_pubkey** (for inbound targets) of the probe you want to use.
 
 ### Step 3: Add a target
 
@@ -173,83 +159,78 @@ Note the **code**, **IP address**, and **public key** of the probe you want to u
     Use this flow if your target has a public IP, an open inbound port, and can run a [TWAMP](glossary.md#twamp-two-way-active-measurement-protocol) reflector.
 
     ```bash
-    doublezero-geolocation user add-target \
-      --env testnet \
+    doublezero geolocation user add-target \
       --user <your-user-code> \
       --type outbound \
       --probe <probe-code> \
-      --ip-address <target-public-ip> \
-      --location-offset-port <port>
+      --target-ip <target-public-ip>
     ```
 
-    - `--ip-address`: the public IPv4 address of the target device
-    - `--location-offset-port`: the port on the target that the probe will send measurements to
+    `--probe`: the code of the geoProbe that will measure the target (e.g. `ams-mn-gp1`)
+    `--ip-address`: the public IPv4 address of the target device
 
 === "OutboundIcmp (probe pings target)"
 
     Use this flow if your target has a public IP but cannot run a TWAMP reflector, or if TWAMP traffic is blocked by firewall. The target only needs to respond to ICMP echo (ping) requests — no additional software required.
 
     ```bash
-    doublezero-geolocation user add-target \
-      --env testnet \
+    doublezero geolocation user add-target \
       --user <your-user-code> \
       --type OutboundIcmp \
       --probe <probe-code> \
-      --ip-address <target-public-ip> \
-      --location-offset-port <port>
+      --ip-address <target-public-ip>
     ```
 
-    - `--ip-address`: the public IPv4 address of the target device
-    - `--location-offset-port`: the port on the target where the probe will send signed LocationOffset results
+    `--probe`: the code of the geoProbe that will measure the target (e.g. `ams-mn-gp1`)
+    `--ip-address`: the public IPv4 address of the target device
+    !!! Warning "Result Destination"
+        Outbound ICMP targets only work if your user has an alternate result destination set. (See Step 3b)
 
 === "Inbound (target sends to probe)"
 
     Use this flow if your target is behind NAT or cannot accept inbound connections.
 
     ```bash
-    doublezero-geolocation user add-target \
-      --env testnet \
+    doublezero geolocation user add-target \
       --user <your-user-code> \
       --type inbound \
       --probe <probe-code> \
       --target-pk <target-keypair-pubkey>
     ```
 
-    - `--probe`: the code of the geoProbe that will measure the target (e.g. `ams-tn-gp1`)
-    - `--target-pk`: public key of the keypair the target will use to sign messages — the probe only accepts messages from registered public keys
+    `--probe`: the code of the geoProbe that will measure the target (e.g. `ams-mn-gp1`)
+    `--target-pk`: public key of the keypair the target will use to sign messages — the probe only accepts messages from registered public keys
 
 ### Step 3b: Set a result destination (optional)
 
-Configure an alternate `host:port` where composite LocationOffset results are delivered, in addition to each target's location offset port. This is useful for aggregating results from multiple targets to a single endpoint.
+Configure an alternate `host:port` where composite LocationOffset results are delivered for any Outbound target types. This replaces sending the LocationOffset to the target and is configured on a per-user basis. If different per-target behavior is needed, it is required to set up two users, one for each desired behavior type.
+
+The alternate destination is useful for aggregating results from multiple targets to a single endpoint. It is required for ICMP probing.
 
 ```bash
-doublezero-geolocation user set-result-destination \
-  --env testnet \
+doublezero geolocation user set-result-destination \
   --user <your-user-code> \
   --destination <host:port>
 ```
 
-- `--destination`: a publicly routable IPv4 address or valid domain name with port (e.g., `203.0.113.10:9000` or `results.example.com:9000`). Pass an empty string to clear.
+`--destination`: a publicly routable IPv4 address or valid domain name with port (e.g., `203.0.113.10:9000` or `results.example.com:9000`). Pass an empty string to clear.
 
 Use `user get` to verify your result destination:
 
 ```bash
-doublezero-geolocation user get --env testnet --user <your-user-code>
+doublezero geolocation user get --user <your-user-code>
 ```
 
 ### Step 4: Run the target application
 
-Both outbound and inbound flows require running an application on the target device. Reference implementations with examples are available in Go and Rust — you can run them directly or use them as a starting point for your own integration.
+Both outbound and inbound flows require running an application on the target device. Reference implementations with examples are available in Go — you can run them directly or use them as a starting point for your own integration.
 
 === "Outbound"
 
     For outbound probing, the target device must run a [TWAMP](glossary.md#twamp-two-way-active-measurement-protocol) reflector so the geoProbe can measure RTT. Run the target application on the device being measured:
 
     ```bash
-    doublezero-geoprobe-target-sender \
-      -probe-ip <probe-ip> \
-      -probe-pk <probe-pubkey> \
-      -keypair <path-to-keypair.json>
+    doublezero-geoprobe-target
     ```
 
 === "Inbound"
@@ -265,9 +246,9 @@ Both outbound and inbound flows require running an application on the target dev
       -keypair <path-to-keypair.json>
     ```
 
-- `-probe-ip`: IP address of the geoProbe (from `probe list`)
-- `-probe-pk`: public key of the geoProbe (from `probe list`)
-- `-keypair`: path to the keypair whose public key was registered as `--target-pk` in Step 3
+`-probe-ip`: IP address of the geoProbe (from `probe list`)
+`-probe-pk`: public key of the geoProbe (from `probe list`)
+`-keypair`: path to the keypair whose public key was registered as `--target-pk` in Step 3
 
 The target sender uses a two-probe-pair mechanism: it sends two pre-signed [TWAMP](glossary.md#twamp-two-way-active-measurement-protocol) probes in quick succession. The probe's reply to the second packet includes `SinceLastRxNs` — the time between the probe sending reply 0 and receiving probe 1 — which serves as the probe-measured [RTT](glossary.md#rtt-round-trip-time). This paired approach provides an accurate RTT measurement even when the target cannot perform precise kernel-level timestamping.
 
@@ -275,7 +256,7 @@ The target sender uses a two-probe-pair mechanism: it sends two pre-signed [TWAM
 
 ## Command reference
 
-### `doublezero-geolocation user`
+### `doublezero geolocation user`
 
 | Subcommand | Description |
 |------------|-------------|
@@ -288,7 +269,7 @@ The target sender uses a two-probe-pair mechanism: it sends two pre-signed [TWAM
 | `set-result-destination` | Set an alternate host:port for offset delivery |
 | `update-payment` | Update payment status (foundation use) |
 
-### `doublezero-geolocation probe`
+### `doublezero geolocation probe`
 
 | Subcommand | Description |
 |------------|-------------|
@@ -305,5 +286,5 @@ The target sender uses a two-probe-pair mechanism: it sends two pre-signed [TWAM
 | Flag | Description |
 |------|-------------|
 | `--env` | Network environment: `testnet`, `devnet`, or `mainnet-beta` |
-| `--rpc-url` | Custom Solana RPC endpoint |
+| `--rpc-url` | Custom DoubleZero RPC endpoint |
 | `--keypair` | Path to signing keypair (required for write operations) |
