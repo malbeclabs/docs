@@ -64,12 +64,14 @@ nav:
       - Shelby:
         - Shelby Connection: Shelby Permissioned Connection.md
       - New Tenant: New Tenant.md
+    - Geolocation: geolocation.md
   - Contributors:
     - Overview: contribute-overview.md
     - Requirements & Architecture: contribute.md
     - Device Provisioning: contribute-provisioning.md
     - Operations: contribute-operations.md
     - OPS Management: contribute-ops-management.md
+    - Geolocation: contribute-geolocation.md
   - Architecture: architecture.md
   - Glossary: glossary.md
 markdown_extensions:
@@ -79,6 +81,8 @@ markdown_extensions:
   - pymdownx.caret
   - pymdownx.tasklist:
       custom_checkbox: true
+  - pymdownx.tabbed:
+      alternate_style: true
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid

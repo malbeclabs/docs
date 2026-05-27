@@ -16,3 +16,4 @@ dist/
 
 .devcontainer/
 smartcontract/.vscode/settings.json
+site/

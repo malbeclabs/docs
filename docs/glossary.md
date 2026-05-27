@@ -134,6 +134,19 @@ A link-state routing protocol used internally by the DoubleZero network. IS-IS m
 
 ---
 
+## Geolocation
+
+### Geolocation
+A DoubleZero service that verifies the physical location of devices using latency measurements. [RTT](#rtt-round-trip-time) measurements between known-location infrastructure ([DZDs](#dzd-doublezero-device)) and target devices provide cryptographically signed proof that a device is within a certain distance of a reference point. Onchain recording of measurements is planned for a future release. See [Geolocation](geolocation.md) for user documentation.
+
+### geoProbe
+A bare metal server that acts as an intermediary for latency measurements in the [Geolocation](#geolocation) system. geoProbes are located within ~1ms of a [DZD](#dzd-doublezero-device), receive signed LocationOffsets from parent DZDs, and measure [RTT](#rtt-round-trip-time) to target devices via [TWAMP](#twamp-two-way-active-measurement-protocol), signed TWAMP, or ICMP echo. Each geoProbe is registered [onchain](#onchain) and linked to one or more parent DZDs. See [Geoprobe Deployment](contribute-geolocation.md) for contributor documentation.
+
+### LocationOffset
+A signed data structure containing a [DZD's](#dzd-doublezero-device) geographic location (latitude and longitude) and a chain of latency relationships between entities (DZD↔Probe or Probe↔Target). LocationOffsets are signed with Ed25519 and sent via UDP through the measurement chain. Composite offsets include references to previous measurements, creating an auditable trail.
+
+---
+
 ## Blockchain & Keys
 
 ### Onchain
