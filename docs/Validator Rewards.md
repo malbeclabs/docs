@@ -13,7 +13,7 @@ The `configure` command will set these fields, and automatic payouts will occur 
 ## Prerequisites
 
 - Validators publishing leader shreds - see [Validator Multicast Connection](Validator%20Multicast%20Connection.md).
-- The latest `doublezero-solana` CLI: `sudo apt update && sudo apt install doublezero-solana`, at a minimum `0.5.6-rc1`.
+- The latest `doublezero-solana` CLI: `sudo apt update && sudo apt install doublezero-solana`, at a minimum `0.5.6`.
 - Access to the **validator identity keypair**, either on the same box or kept offline with the ability to sign a message.
 - A destination wallet pubkey that will own the rewards ATA.
 
