@@ -76,8 +76,7 @@ Run this anywhere — it's read-only and does not need the validator identity ke
 ```bash
 doublezero-solana shreds publisher-rewards prepare-offchain-message \
     --node-id <ValidatorIdentity111111111111111111111111111> \
-    --rewards-token-owner <REWARDS_DESTINATION_WALLET> \
-    --rewards-token-mint 2z \
+    --rewards-token-owner <Wallet567Identity111111111111111111111111111> \
     --valid-for 1h
 ```
 Example Output
