@@ -1,22 +1,32 @@
 name: Auto-translate docs
 
 on:
-  push:
-    branches: [main]
+  pull_request:
+    types: [opened, synchronize, reopened]
     paths:
       - 'docs/**.md'
+
+concurrency:
+  group: translate-${{ github.head_ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
   translate:
     runs-on: ubuntu-latest
-    # Prevent infinite loop: skip when the bot itself pushes translations
-    if: github.event.head_commit.author.name != 'github-actions[bot]'
-    permissions:
-      contents: write
+    # Skip the bot's own commits (prevents loops) and fork PRs (no secret access).
+    if: >
+      github.actor != 'github-actions[bot]' &&
+      github.event.pull_request.head.repo.full_name == github.repository
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/setup-python@v5
         with:
@@ -27,7 +37,7 @@ jobs:
       - name: Find changed source docs
         id: changed
         run: |
-          BASE=$(git rev-parse HEAD~1 2>/dev/null || git hash-object -t tree /dev/null)
+          BASE="${{ github.event.pull_request.base.sha }}"
           # Only source .md files — exclude already-translated ones (e.g. index.es.md)
           CHANGED=$(git diff --name-only "$BASE" HEAD -- docs/ \
             | grep '\.md$' \
@@ -49,11 +59,15 @@ jobs:
           LANGUAGES: "zh,ja,ko,pt,es,fr,it"
         run: python scripts/translate.py
 
-      - name: Commit translations
+      - name: Commit translations to PR branch
         if: steps.changed.outputs.files != ''
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/
-          git diff --cached --quiet || git commit -m "chore: auto-translate docs"
-          git push
+          if git diff --cached --quiet; then
+            echo "No translation changes."
+            exit 0
+          fi
+          git commit -m "chore: auto-translate docs"
+          git push origin HEAD:${{ github.head_ref }}
