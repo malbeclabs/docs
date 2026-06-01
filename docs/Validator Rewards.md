@@ -130,8 +130,7 @@ Back on the machine with your fee-payer wallet:
 ```bash
 doublezero-solana shreds publisher-rewards configure \
     --node-id <ValidatorIdentity111111111111111111111111111> \
-    --rewards-token-owner <REWARDS_OWNER_WALLET> \
-    --rewards-token-mint 2z \
+    --rewards-token-owner <Wallet567Identity111111111111111111111111111> \
     --signature <SignatureTBUwGq511mPLMCEE4f5fNsmX1PQrozXBBJeCdSrcbhqSX1MwFp8NsNZbhCNMZ1kPWakjsLL9e3GUxxp> \
     --deadline-slot <DEADLINE_SLOT>
 ```
