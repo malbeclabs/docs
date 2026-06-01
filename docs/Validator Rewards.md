@@ -37,7 +37,7 @@ Run `configure` with the validator identity keypair as `-k`.
 ```bash
 doublezero-solana shreds publisher-rewards configure \
     --node-id <ValidatorIdentity111111111111111111111111111> \
-    --rewards-token-owner <REWARDS_DESTINATION_WALLET> \
+    --rewards-token-owner <Wallet567Identity111111111111111111111111111> \
     -k <path-to-validator-identity-keypair.json>
 ```
 Example Output
