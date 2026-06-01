@@ -58,6 +58,7 @@ nav:
         - Validator Testnet Connection: DZ Testnet Connection.md
         - Permissioned Connection: Permissioned Connection.md
         - Validator Multicast Connection: Validator Multicast Connection.md
+        - Validator Rewards: Validator Rewards.md
         - Other Multicast Connection: Other Multicast Connection.md
         - Edge Subscriber Connection: Edge Subscriber Connection.md
         - Troubleshooting: troubleshooting.md
