@@ -1,6 +1,8 @@
 # Validator Rewards
 !!! warning "By connecting to DoubleZero, I agree to the [DoubleZero Terms of Use](https://doublezero.xyz/terms-protocol)"
 
+## How it Works
+
 Validators that publish leader shreds to DoubleZero Edge earn rewards each epoch. Before rewards can be paid, each validator must register **where** rewards go by configuring a `ValidatorPublisherRewards` account on Solana. That account stores:
 
 - the **rewards mint** — the token rewards are paid in 2z (unless manually changed)
@@ -17,20 +19,10 @@ The `configure` command will set these fields, and automatic payouts will occur 
 - Access to the **validator identity keypair**, either on the same box or kept offline with the ability to sign a message.
 - A destination wallet pubkey that will own the rewards ATA.
 
----
-
-## 1. Choose an Auth Path
-
-Configuring the rewards account requires authorization from the validator identity key. There are two ways to provide it:
-
-| Path | When to use |
-|---|---|
-| **Direct** | The validator identity keypair is on the box you're running commands from.|
-| **Offchain** | The validator identity keypair is kept offline or on a separate machine from the fee-payer wallet. |
 
 ---
 
-## 2a. Direct Path
+## 1. Configure to Claim Rewards
 
 Run `configure` with the validator identity keypair as `-k`. 
 
@@ -61,15 +53,28 @@ Configured validator publisher rewards: 41111111ntmoBTnvcKcP1g2a1111111HPoN3z5uf
 
 The ATA is auto-initialized in the same transaction if it doesn't yet exist.
 
-Skip ahead to [step 3](#3-verify-the-configuration).
+
+!!! note "If Error is Returned"
+    If `-k` pubkey does not match `--node-id`
+
+    The fee-payer keypair you passed isn't the validator identity. Either pass the validator identity keypair as `-k`, or switch to the [offchain path](#apendix-offchain-path-alternative).
+---
+
+## 2. Verify the Configuration
+
+```bash
+doublezero-solana shreds publisher-rewards show --node-id <NODE_ID>
+```
+
+The command prints the `Node ID`, `Rewards owner`, `Rewards mint`, the resolved ATA address, and the ATA status. The **Resolved ATA** is the deterministic address derived from the rewards owner + rewards mint — it is where rewards will be deposited each epoch.
 
 ---
 
-## 2b. Offchain Path
+## Apendix: Offchain Path Alternative
 
 Three sub-steps: prepare, sign, configure.
 
-### 2b.i. Prepare the offchain message
+### 1. Prepare the offchain message
 
 Run this anywhere — it's read-only and does not need the validator identity keypair. It prints the hex blob to sign and the absolute slot the signature expires at.
 
@@ -106,7 +111,7 @@ Then submit:
 
 The command prints the hex-encoded auth message, the resolved deadline slot, and ready-to-run shell snippets for the next two steps.
 
-### 2b.ii. Sign the message
+### 2. Sign the message
 
 On the machine that holds the validator identity keypair:
 
@@ -123,7 +128,7 @@ Example Output
 SignatureTBUwGq511mPLMCEE4f5fNsmX1PQrozXBBJeCdSrcbhqSX1MwFp8NsNZbhCNMZ1kPWakjsLL9e3GUxxp
 ```
 
-### 2b.iii. Submit `configure`
+### 3. Submit `configure`
 
 Back on the machine with your fee-payer wallet:
 
@@ -139,7 +144,6 @@ doublezero-solana shreds publisher-rewards configure \
 
 The ATA is auto-initialized in the same transaction if it doesn't yet exist.
 
-
 Example Output
 
 ```bash
@@ -154,22 +158,5 @@ Configured validator publisher rewards: 41111111ntmoBTnvcKcP1g2a1111111HPoN3z5uf
 
 ---
 
-## 3. Verify the Configuration
-
-```bash
-doublezero-solana shreds publisher-rewards show --node-id <NODE_ID>
-```
-
-The command prints the `Node ID`, `Rewards owner`, `Rewards mint`, the resolved ATA address, and the ATA status. The **Resolved ATA** is the deterministic address derived from the rewards owner + rewards mint — it is where rewards will be deposited each epoch.
-
----
-
-## Troubleshooting
-
-### Direct path: `-k` pubkey does not match `--node-id`
-
-The fee-payer keypair you passed isn't the validator identity. Either pass the validator identity keypair as `-k`, or switch to the [offchain path](#2b-offchain-path).
-
-### Signature expired
-
-Each offchain signature has a deadline slot. If too much time passes between `prepare-offchain-message` and `configure`, re-run `prepare-offchain-message`, re-sign, and re-submit. Default validity is 1 hour — extend with `--valid-for 4h` or similar if you need more time for an offline signing flow.
+!!! note "Note: If Signature is Expired"
+    Each offchain signature has a deadline slot. If too much time passes between `prepare-offchain-message` and `configure`, re-run `prepare-offchain-message`, re-sign, and re-submit. Default validity is 1 hour — extend with `--valid-for 4h` or similar if you need more time for an offline signing flow.
