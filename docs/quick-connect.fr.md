@@ -1,11 +1,9 @@
-# Connexion Rapide
-!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
-
+# Connexion rapide
 
 Répondez à quelques questions et nous générerons un guide de connexion personnalisé avec les étapes et commandes exactes pour votre configuration.
 
-!!! note "Guide Simplifié"
-    Cet assistant fournit des extraits clés de la documentation complète pour vous connecter aussi rapidement que possible. Pour des détails complets, consultez les guides [Configuration](setup.md) et [Tenant](tenant.md).
+!!! note "Guide simplifié"
+    Cet assistant fournit les extraits clés de la documentation complète pour vous connecter le plus rapidement possible. Pour tous les détails, consultez les guides [Installation](setup.md) et [Tenant](tenant.md).
 
 <div id="wizard-container">
 
@@ -44,9 +42,9 @@ Répondez à quelques questions et nous générerons un guide de connexion perso
 <span class="wizard-card-title">Solana</span>
 <span class="wizard-card-desc">Validateurs et opérateurs RPC sur Solana</span>
 </button>
-<button class="wizard-card" data-question="tenant" data-value="shelby" title="Testnet only">
+<button class="wizard-card" data-question="tenant" data-value="shelby" title="Testnet uniquement">
 <span class="wizard-card-title">Shelby</span>
-<span class="wizard-card-desc">RPC et Nœuds de Stockage sur Shelby (Testnet uniquement)</span>
+<span class="wizard-card-desc">RPCs et nœuds de stockage sur Shelby (Testnet uniquement)</span>
 </button>
 <button class="wizard-card" data-question="tenant" data-value="new-tenant">
 <span class="wizard-card-title">Nouveau Tenant</span>
@@ -74,7 +72,7 @@ Répondez à quelques questions et nous générerons un guide de connexion perso
 <div class="wizard-options">
 <button class="wizard-card" data-question="usertype" data-value="validator">
 <span class="wizard-card-title">Validateur</span>
-<span class="wizard-card-desc">Validateur Solana planifié par leader avec keypair d'identité</span>
+<span class="wizard-card-desc">Validateur Solana avec planification de leader et paire de clés d'identité</span>
 </button>
 <button class="wizard-card" data-question="usertype" data-value="rpc">
 <span class="wizard-card-title">Non-validateur (RPC)</span>
@@ -84,11 +82,11 @@ Répondez à quelques questions et nous générerons un guide de connexion perso
 </div>
 
 <div id="wiz-q-connection" class="wizard-question wizard-hidden">
-<h3>De quel mode de connexion avez-vous besoin ?</h3>
+<h3>Quel mode de connexion vous faut-il ?</h3>
 <div class="wizard-options">
 <button class="wizard-card" data-question="connection" data-value="unicast">
 <span class="wizard-card-title">Unicast (IBRL)</span>
-<span class="wizard-card-desc">Connexion point à point standard</span>
+<span class="wizard-card-desc">Connexion point-à-point standard</span>
 </button>
 <button class="wizard-card" data-question="connection" data-value="multicast">
 <span class="wizard-card-title">Multicast</span>
@@ -106,7 +104,7 @@ Répondez à quelques questions et nous générerons un guide de connexion perso
 <div class="wizard-options">
 <button class="wizard-card" data-question="multicastrole" data-value="publisher">
 <span class="wizard-card-title">Éditeur</span>
-<span class="wizard-card-desc">Envoyer des données à un groupe multicast (p. ex., producteur de blocs)</span>
+<span class="wizard-card-desc">Envoyer des données à un groupe multicast (ex. : producteur de blocs)</span>
 </button>
 <button class="wizard-card" data-question="multicastrole" data-value="subscriber">
 <span class="wizard-card-title">Abonné</span>
