@@ -13,7 +13,7 @@
     Pour les validateurs : DoubleZero doit être installé directement sur l'hôte du validateur, pas dans un conteneur.
 - Connexion internet avec adresse IP publique (sans NAT)
 - Serveur x86_64
-- Système d'exploitation pris en charge : Ubuntu 22.04+ ou Debian 11+, ou Rocky Linux / RHEL 8+
+- Système d'exploitation pris en charge : Ubuntu 22.04+ ou Debian 11+, ou Rocky Linux / RHEL 9+
 - Privilèges root ou sudo sur le serveur exécutant DoubleZero
 - Facultatif mais utile : jq et curl pour le débogage
 

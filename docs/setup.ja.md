@@ -13,7 +13,7 @@
     バリデーターの場合：DoubleZeroはコンテナではなく、バリデーターホストに直接インストールする必要があります。
 - パブリックIPアドレス（NATなし）を持つインターネット接続
 - x86_64サーバー
-- 対応OS：Ubuntu 22.04+またはDebian 11+、あるいはRocky Linux / RHEL 8+
+- 対応OS：Ubuntu 22.04+またはDebian 11+、あるいはRocky Linux / RHEL 9+
 - DoubleZeroを実行するサーバーのrootまたはsudo権限
 - オプションですが有用：デバッグ用のjqとcurl
 

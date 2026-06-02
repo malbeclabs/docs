@@ -13,7 +13,7 @@
     검증자의 경우: DoubleZero는 컨테이너가 아닌 검증자 호스트에 직접 설치해야 합니다.
 - 공개 IP 주소(NAT 없음)를 가진 인터넷 연결
 - x86_64 서버
-- 지원 OS: Ubuntu 22.04+ 또는 Debian 11+, 또는 Rocky Linux / RHEL 8+
+- 지원 OS: Ubuntu 22.04+ 또는 Debian 11+, 또는 Rocky Linux / RHEL 9+
 - DoubleZero가 실행될 서버의 루트 또는 sudo 권한
 - 선택 사항이지만 유용함: 디버깅을 위한 jq 및 curl
 

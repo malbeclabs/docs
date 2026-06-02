@@ -13,7 +13,7 @@
     对于验证器：DoubleZero必须直接安装在验证器主机上，而不是容器中。
 - 具有公共IP地址（无NAT）的互联网连接
 - x86_64服务器
-- 支持的操作系统：Ubuntu 22.04+或Debian 11+，或Rocky Linux / RHEL 8+
+- 支持的操作系统：Ubuntu 22.04+或Debian 11+，或Rocky Linux / RHEL 9+
 - 运行DoubleZero的服务器上的root或sudo权限
 - 可选但有用：用于调试的jq和curl
 

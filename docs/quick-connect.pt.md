@@ -32,7 +32,7 @@ Responda algumas perguntas e geraremos um guia de conexão personalizado com as 
 </button>
 <button class="wizard-card" data-question="os" data-value="rpm">
 <span class="wizard-card-title">Rocky Linux / RHEL</span>
-<span class="wizard-card-desc">Rocky Linux ou RHEL 8+</span>
+<span class="wizard-card-desc">Rocky Linux ou RHEL 9+</span>
 </button>
 </div>
 </div>
