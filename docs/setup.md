@@ -11,7 +11,7 @@
     For validators: DoubleZero needs to be installed directly on your validator host, not in a container.
 - Internet connectivity with a public IP address (no NAT)
 - x86_64 server
-- Supported OS: Ubuntu 22.04+ or Debian 11+, or Rocky Linux / RHEL 8+
+- Supported OS: Ubuntu 22.04+ or Debian 11+, or Rocky Linux / RHEL 9+
 - Root or sudo privileges on the server where DoubleZero will run
 - Optional but useful: jq and curl for debugging
 

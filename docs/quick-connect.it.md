@@ -1,11 +1,9 @@
 # Connessione Rapida
-!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
 
-
-Rispondi ad alcune domande e genereremo una guida di connessione personalizzata con i passaggi esatti e i comandi per la tua configurazione.
+Rispondi a qualche domanda e genereremo una guida di connessione personalizzata con i passaggi e i comandi esatti per la tua configurazione.
 
 !!! note "Guida Semplificata"
-    Questo wizard fornisce snippet chiave dalla documentazione completa per connetterti il più rapidamente possibile. Per dettagli completi, consulta le guide [Setup](setup.md) e [Tenant](tenant.md).
+    Questa procedura guidata fornisce i frammenti chiave dalla documentazione completa per consentirti di connetterti il più rapidamente possibile. Per i dettagli completi, consulta le guide [Setup](setup.md) e [Tenant](tenant.md).
 
 <div id="wizard-container">
 
@@ -32,7 +30,7 @@ Rispondi ad alcune domande e genereremo una guida di connessione personalizzata 
 </button>
 <button class="wizard-card" data-question="os" data-value="rpm">
 <span class="wizard-card-title">Rocky Linux / RHEL</span>
-<span class="wizard-card-desc">Rocky Linux o RHEL 8+</span>
+<span class="wizard-card-desc">Rocky Linux o RHEL 9+</span>
 </button>
 </div>
 </div>
@@ -46,7 +44,7 @@ Rispondi ad alcune domande e genereremo una guida di connessione personalizzata 
 </button>
 <button class="wizard-card" data-question="tenant" data-value="shelby" title="Solo Testnet">
 <span class="wizard-card-title">Shelby</span>
-<span class="wizard-card-desc">RPC e Nodi di Storage su Shelby (solo Testnet)</span>
+<span class="wizard-card-desc">RPC e nodi di archiviazione su Shelby (solo Testnet)</span>
 </button>
 <button class="wizard-card" data-question="tenant" data-value="new-tenant">
 <span class="wizard-card-title">Nuovo Tenant</span>
@@ -84,18 +82,18 @@ Rispondi ad alcune domande e genereremo una guida di connessione personalizzata 
 </div>
 
 <div id="wiz-q-connection" class="wizard-question wizard-hidden">
-<h3>Di quale modalità di connessione hai bisogno?</h3>
+<h3>Quale modalità di connessione ti serve?</h3>
 <div class="wizard-options">
 <button class="wizard-card" data-question="connection" data-value="unicast">
 <span class="wizard-card-title">Unicast (IBRL)</span>
-<span class="wizard-card-desc">Connessione punto-a-punto standard</span>
+<span class="wizard-card-desc">Connessione punto-punto standard</span>
 </button>
 <button class="wizard-card" data-question="connection" data-value="multicast">
 <span class="wizard-card-title">Multicast</span>
-<span class="wizard-card-desc">Consegna di pacchetti one-to-many (publisher/subscriber)</span>
+<span class="wizard-card-desc">Consegna pacchetti uno-a-molti (publisher/subscriber)</span>
 </button>
 <button class="wizard-card" data-question="connection" data-value="both">
-<span class="wizard-card-title">Entrambe</span>
+<span class="wizard-card-title">Entrambi</span>
 <span class="wizard-card-desc">Tunnel unicast e multicast simultanei</span>
 </button>
 </div>

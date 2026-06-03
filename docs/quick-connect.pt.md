@@ -1,11 +1,9 @@
 # Conexão Rápida
-!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
 
-
-Responda algumas perguntas e geraremos um guia de conexão personalizado com as etapas e comandos exatos para sua configuração.
+Responda algumas perguntas e geraremos um guia de conexão personalizado com os passos e comandos exatos para a sua configuração.
 
 !!! note "Guia Simplificado"
-    Este assistente fornece trechos principais da documentação completa para conectá-lo o mais rápido possível. Para detalhes completos, consulte os guias de [Configuração](setup.md) e [Tenant](tenant.md).
+    Este assistente fornece trechos-chave da documentação completa para conectar você o mais rápido possível. Para detalhes completos, consulte os guias de [Configuração](setup.md) e [Tenant](tenant.md).
 
 <div id="wizard-container">
 
@@ -14,17 +12,17 @@ Responda algumas perguntas e geraremos um guia de conexão personalizado com as 
 <div class="wizard-options">
 <button class="wizard-card" data-question="network" data-value="mainnet-beta">
 <span class="wizard-card-title">Mainnet-Beta</span>
-<span class="wizard-card-desc">Rede de produção para validadores ativos e operadores de RPC</span>
+<span class="wizard-card-desc">Rede de produção para validadores ativos e operadores RPC</span>
 </button>
 <button class="wizard-card" data-question="network" data-value="testnet">
 <span class="wizard-card-title">Testnet</span>
-<span class="wizard-card-desc">Rede de teste e desenvolvimento</span>
+<span class="wizard-card-desc">Rede de testes e desenvolvimento</span>
 </button>
 </div>
 </div>
 
 <div id="wiz-q-os" class="wizard-question wizard-hidden">
-<h3>Qual sistema operacional seu servidor está executando?</h3>
+<h3>Qual sistema operacional o seu servidor está executando?</h3>
 <div class="wizard-options">
 <button class="wizard-card" data-question="os" data-value="deb">
 <span class="wizard-card-title">Ubuntu / Debian</span>
@@ -32,7 +30,7 @@ Responda algumas perguntas e geraremos um guia de conexão personalizado com as 
 </button>
 <button class="wizard-card" data-question="os" data-value="rpm">
 <span class="wizard-card-title">Rocky Linux / RHEL</span>
-<span class="wizard-card-desc">Rocky Linux ou RHEL 8+</span>
+<span class="wizard-card-desc">Rocky Linux ou RHEL 9+</span>
 </button>
 </div>
 </div>
@@ -42,11 +40,11 @@ Responda algumas perguntas e geraremos um guia de conexão personalizado com as 
 <div class="wizard-options">
 <button class="wizard-card" data-question="tenant" data-value="solana">
 <span class="wizard-card-title">Solana</span>
-<span class="wizard-card-desc">Validadores e operadores de RPC na Solana</span>
+<span class="wizard-card-desc">Validadores e operadores RPC no Solana</span>
 </button>
-<button class="wizard-card" data-question="tenant" data-value="shelby" title="Testnet only">
+<button class="wizard-card" data-question="tenant" data-value="shelby" title="Apenas Testnet">
 <span class="wizard-card-title">Shelby</span>
-<span class="wizard-card-desc">RPCs e Nós de Armazenamento no Shelby (apenas Testnet)</span>
+<span class="wizard-card-desc">RPCs e Nós de Armazenamento no Shelby (Apenas Testnet)</span>
 </button>
 <button class="wizard-card" data-question="tenant" data-value="new-tenant">
 <span class="wizard-card-title">Novo Tenant</span>
@@ -56,11 +54,11 @@ Responda algumas perguntas e geraremos um guia de conexão personalizado com as 
 </div>
 
 <div id="wiz-q-firewall" class="wizard-question wizard-hidden">
-<h3>Qual ferramenta de firewall você usa?</h3>
+<h3>Qual ferramenta de firewall você utiliza?</h3>
 <div class="wizard-options">
 <button class="wizard-card" data-question="firewall" data-value="iptables">
 <span class="wizard-card-title">iptables</span>
-<span class="wizard-card-desc">Regras diretas de iptables</span>
+<span class="wizard-card-desc">Regras diretas do iptables</span>
 </button>
 <button class="wizard-card" data-question="firewall" data-value="ufw">
 <span class="wizard-card-title">UFW</span>
@@ -74,7 +72,7 @@ Responda algumas perguntas e geraremos um guia de conexão personalizado com as 
 <div class="wizard-options">
 <button class="wizard-card" data-question="usertype" data-value="validator">
 <span class="wizard-card-title">Validador</span>
-<span class="wizard-card-desc">Validador Solana com agendamento de líder e keypair de identidade</span>
+<span class="wizard-card-desc">Validador Solana agendado como líder com par de chaves de identidade</span>
 </button>
 <button class="wizard-card" data-question="usertype" data-value="rpc">
 <span class="wizard-card-title">Não-validador (RPC)</span>
@@ -106,7 +104,7 @@ Responda algumas perguntas e geraremos um guia de conexão personalizado com as 
 <div class="wizard-options">
 <button class="wizard-card" data-question="multicastrole" data-value="publisher">
 <span class="wizard-card-title">Publicador</span>
-<span class="wizard-card-desc">Enviar dados para um grupo multicast (por exemplo, produtor de bloco)</span>
+<span class="wizard-card-desc">Enviar dados para um grupo multicast (ex.: produtor de blocos)</span>
 </button>
 <button class="wizard-card" data-question="multicastrole" data-value="subscriber">
 <span class="wizard-card-title">Assinante</span>

@@ -1,46 +1,44 @@
-# DoubleZero设置方法
-!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
-
+# 如何设置 DoubleZero
 
 !!! info "术语"
-    初次使用DoubleZero？请在[词汇表](glossary.md)中查看[doublezerod](glossary.md#doublezerod)、[IBRL](glossary.md#ibrl-increase-bandwidth-reduce-latency)、[DZD](glossary.md#dzd-doublezero-device)等术语的定义。
+    初次接触 DoubleZero？请参阅[术语表](glossary.md)，了解 [doublezerod](glossary.md#doublezerod)、[IBRL](glossary.md#ibrl-increase-bandwidth-reduce-latency) 和 [DZD](glossary.md#dzd-doublezero-device) 等术语的定义。
 
-!!! warning "通过连接到DoubleZero，您同意[DoubleZero服务条款](https://doublezero.xyz/terms-protocol)"
+!!! warning "连接到 DoubleZero 即表示我同意 [DoubleZero 服务条款](https://doublezero.xyz/terms-protocol)"
 
 
 ## 前提条件
 !!! warning inline end
-    对于验证器：DoubleZero必须直接安装在验证器主机上，而不是容器中。
-- 具有公共IP地址（无NAT）的互联网连接
-- x86_64服务器
-- 支持的操作系统：Ubuntu 22.04+或Debian 11+，或Rocky Linux / RHEL 8+
-- 运行DoubleZero的服务器上的root或sudo权限
-- 可选但有用：用于调试的jq和curl
+    对于验证者：DoubleZero 需要直接安装在您的验证者主机上，而不是在容器中。
+- 具有公网 IP 地址的互联网连接（无 NAT）
+- x86_64 服务器
+- 支持的操作系统：Ubuntu 22.04+ 或 Debian 11+，或 Rocky Linux / RHEL 9+
+- 运行 DoubleZero 的服务器上的 root 或 sudo 权限
+- 可选但有用：用于调试的 jq 和 curl
 
-## 连接到DoubleZero
+## 连接到 DoubleZero
 
-DoubleZero测试网和DoubleZero主网Beta是物理上不同的网络。安装时请选择适当的网络。
+DoubleZero Testnet 和 DoubleZero Mainnet-Beta 是物理上独立的网络。请在安装过程中选择适当的网络。
 
-加入DoubleZero时，您将建立**DoubleZero身份**（称为**DoubleZero ID**的公钥）。此密钥是DoubleZero识别您机器的方式之一。
+加入 DoubleZero 时，您将建立一个 **DoubleZero 身份**，由一个称为 **DoubleZero ID** 的公钥表示。此密钥是 DoubleZero 识别您机器的方式之一。
 
-## 1. 安装DoubleZero软件包
+## 1. 安装 DoubleZero 软件包
 
 <div data-wizard-step="install-version-info" markdown>
 
 !!! info "当前版本"
-    | 软件包 | 主网Beta | 测试网 |
+    | 软件包 | Mainnet-Beta | Testnet |
     |---------|-------------|---------|
     | `doublezero` | `MAINNET_CLIENT_VERSION` | `TESTNET_CLIENT_VERSION` |
 
 </div>
 
-根据您的操作系统按照以下说明操作：
+请根据您的操作系统执行以下步骤：
 
 ### Ubuntu / Debian
 
 <div data-wizard-step="install-deb-mainnet-beta" markdown>
 
-主网Beta的当前推荐部署：
+当前推荐的 Mainnet-Beta 部署方式为：
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
 sudo apt-get install doublezero
@@ -50,7 +48,7 @@ sudo apt-get install doublezero
 
 <div data-wizard-step="install-deb-testnet" markdown>
 
-测试网的当前推荐部署：
+当前推荐的 Testnet 部署方式为：
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero-testnet/setup.deb.sh | sudo -E bash
 sudo apt-get install doublezero
@@ -62,7 +60,7 @@ sudo apt-get install doublezero
 
 <div data-wizard-step="install-rpm-mainnet-beta" markdown>
 
-主网Beta的当前推荐部署：
+当前推荐的 Mainnet-Beta 部署方式为：
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh | sudo -E bash
 sudo yum install doublezero
@@ -72,7 +70,7 @@ sudo yum install doublezero
 
 <div data-wizard-step="install-rpm-testnet" markdown>
 
-测试网的当前推荐部署：
+当前推荐的 Testnet 部署方式为：
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero-testnet/setup.rpm.sh | sudo -E bash
 sudo yum install doublezero
@@ -82,25 +80,25 @@ sudo yum install doublezero
 
 <div data-wizard-step="install-network-warning" markdown>
 
-??? info "仅限现有用户：将软件包从*测试网切换到主网Beta*，或从*主网Beta切换到测试网*"
-    从上述软件包仓库安装时，DoubleZero**测试网**或**DoubleZero主网Beta**各有其专用仓库。如果您在某个时候需要切换网络，则需要删除之前安装的软件包仓库并更新到目标仓库。
+??? info "仅限现有用户：将软件包从 *Testnet 切换到 Mainnet-Beta*，或从 *Mainnet-Beta 切换到 Testnet*"
+    当您从上述某个软件包仓库安装时，它特定于 DoubleZero **Testnet** 或 **DoubleZero Mainnet Beta**。如果您在任何时候切换网络，您需要移除之前安装的软件包仓库并更新到目标仓库。
 
-    此示例展示了从测试网迁移到主网Beta的过程。
+    本示例将演示从 Testnet 到 Mainnet-Beta 的迁移
 
-    通过将步骤3替换为上述测试网安装命令，也可以以相同步骤完成从主网Beta到测试网的迁移。
+    从 Mainnet-Beta 迁移到 Testnet 也可以完成相同的步骤，只需将步骤 3 替换为上述 Testnet 的安装命令即可。
 
 
-    1. 找到旧的仓库文件
+    1. 查找旧的仓库文件
 
-        首先，识别系统上现有的DoubleZero仓库配置文件：
+        首先，找到系统上所有现有的 DoubleZero 仓库配置文件：
 
         `find /etc/apt | grep doublezero`
 
         `find /usr/share/keyrings/ | grep doublezero`
 
-    2. 删除旧的仓库文件
+    2. 移除旧的仓库文件
 
-        删除上一步中找到的旧仓库文件。例如：
+        移除上一步中找到的旧仓库文件，例如
 
         ```
         sudo rm /etc/apt/sources.list.d/malbeclabs-doublezero.list
@@ -108,7 +106,7 @@ sudo yum install doublezero
         ```
     3. 从新仓库安装
 
-        添加新的主网Beta仓库并安装最新软件包：
+        添加新的 Mainnet-Beta 仓库并安装最新的软件包：
 
         ```
         curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
@@ -120,20 +118,20 @@ sudo yum install doublezero
 
 <div data-wizard-step="install-verify-daemon" markdown>
 
-#### 检查`doublezerod`状态
+#### 检查 `doublezerod` 的状态
 
-软件包安装后，将安装、激活并启动新的systemd单元。要检查状态，请运行以下命令：
+软件包安装后，将安装、激活并启动一个新的 systemd 单元。要查看状态，您可以运行：
 ```
 sudo systemctl status doublezerod
 ```
 
 </div>
 
-### GRE和BGP的防火墙配置
+### 配置 GRE 和 BGP 防火墙
 
-DoubleZero使用GRE隧道（IP协议47）和BGP路由（链路本地地址的tcp/179）。请确保您的防火墙允许这些协议：
+DoubleZero 使用 GRE 隧道（IP 协议 47）和 BGP 路由（链路本地地址上的 tcp/179）。请确保您的防火墙允许这些协议：
 
-用iptables允许GRE和BGP：
+通过 iptables 允许 GRE 和 BGP：
 
 <div data-wizard-step="firewall-gre-bgp-iptables" markdown>
 
@@ -146,7 +144,7 @@ sudo iptables -A OUTPUT -o doublezero0 -s 169.254.0.0/16 -d 169.254.0.0/16 -p tc
 
 </div>
 
-或用UFW允许GRE和BGP：
+或通过 UFW 允许 GRE 和 BGP：
 
 <div data-wizard-step="firewall-gre-bgp-ufw" markdown>
 
@@ -158,32 +156,31 @@ sudo ufw allow out on doublezero0 from 169.254.0.0/16 to 169.254.0.0/16 port 179
 
 </div>
 
-## 2. 创建新的DoubleZero身份
+## 2. 创建新的 DoubleZero 身份
 
-使用以下命令在服务器上创建DoubleZero身份：
+使用以下命令在服务器上创建 DoubleZero 身份：
 
 ```bash
 doublezero keygen
 ```
 
 !!! info
-    如果您有想要使用的现有ID，可以按照以下可选步骤操作。
+    如果您有现有的 ID 想要使用，可以按照以下可选步骤操作。
 
-    创建doublezerod配置目录
+    创建 doublezero 配置目录
 
     ```
     mkdir -p ~/.config/doublezero
     ```
 
-    将您想在DoubleZero中使用的`id.json`复制或链接到doublezero配置目录。
+    将您想要与 DoubleZero 一起使用的 `id.json` 复制或链接到 doublezero 配置目录。
 
     ```
     sudo cp </path/to/id.json> ~/.config/doublezero/
     ```
+## 3. 获取服务器的 DoubleZero 身份
 
-## 3. 获取服务器的DoubleZero身份
-
-确认您的DoubleZero身份。此身份用于在您的机器与DoubleZero之间创建连接。
+查看您的 DoubleZero 身份。此身份将用于在您的机器和 DoubleZero 之间创建连接。
 
 ```bash
 doublezero address
@@ -194,9 +191,9 @@ doublezero address
 YourDoubleZeroAddress11111111111111111111111111111
 ```
 
-## 4. 确认doublezerod已检测到DZ设备
+## 4. 检查 doublezerod 是否已发现 DZ 设备
 
-在连接之前，确认`doublezerod`已检测并ping了每个可用的DZ测试网交换机：
+在连接之前，请确保 `doublezerod` 已发现并 ping 通每个可用的 DZ 测试网交换机：
 
 ```
 doublezero latency
@@ -216,19 +213,19 @@ $ doublezero latency
  9uhh2D5c14WJjbwgM7BudztdoPZYCjbvqcTPgEKtTMZE | sg1-dz01  | 180.87.102.98  | 176.66ms | 176.76ms | 176.72ms | true
 ```
 
-如果输出中未显示设备，请等待10至20秒后重试。
+如果输出中未返回任何设备，请等待 10-20 秒后重试。
 
-## 5. 从DoubleZero断开连接
+## 5. 断开与 DoubleZero 的连接
 
-下一节将配置DoubleZero环境。为确保成功，请断开当前会话的连接。这可以避免机器上打开多个隧道的问题。
+在接下来的章节中，您将设置 DoubleZero 环境。为确保成功，请断开当前会话。这将避免因机器上打开多个隧道而导致的问题。
 
-确认
+检查
 
 ```bash
 doublezero status
 ```
 
-如果状态为`up`，请运行：
+如果状态为 `up`，运行：
 
 ```bash
 doublezero disconnect
@@ -236,39 +233,39 @@ doublezero disconnect
 
 ### 下一步：租户
 
-连接到DoubleZero因使用场景而异。在DoubleZero中，租户是具有相似用户配置文件的群组。例如：区块链、数据传输层等。
+连接到 DoubleZero 的方式将因您的使用场景而异。在 DoubleZero 上，租户是具有相似用户配置文件的组。示例包括区块链、数据传输层等。
 
-### [在此处选择租户并继续](tenant.md)
+### [点击此处选择您的租户](tenant.md)
 
 
-# 可选：启用Prometheus指标
+# 可选：启用 Prometheus 指标
 
-熟悉Prometheus指标的运营商可能希望为DoubleZero监控启用它。这将使您能够了解DoubleZero客户端的性能、连接状态和运营健康状况。
+熟悉 Prometheus 指标的运营者可能希望为 DoubleZero 监控启用这些指标。这可以提供对 DoubleZero 客户端性能、连接状态和运行健康状况的可见性。
 
-## 可用指标
+## 可用的指标
 
-DoubleZero公开几个关键指标：
-- **构建信息**：版本、提交哈希、构建日期
-- **会话状态**：DoubleZero会话是否活跃
+DoubleZero 公开了几个关键指标：
+- **构建信息**：版本、提交哈希和构建日期
+- **会话状态**：DoubleZero 会话是否处于活动状态
 - **连接指标**：延迟和连接信息
 - **性能数据**：吞吐量和错误率
 
-## 启用Prometheus指标
+## 启用 Prometheus 指标
 
-要在DoubleZero客户端上启用Prometheus指标，请按照以下步骤操作：
+要在 DoubleZero 客户端上启用 Prometheus 指标，请按照以下步骤操作：
 
-### 1. 修改doublezerod systemd服务启动命令
+### 1. 修改 doublezerod systemd 服务启动命令
 
-创建或编辑systemd覆盖配置：
+创建或编辑 systemd 覆盖配置：
 
 ```bash
 sudo mkdir -p /etc/systemd/system/doublezerod.service.d/
 sudo nano /etc/systemd/system/doublezerod.service.d/override.conf
 ```
 
-替换为此配置：
+替换为以下配置：
 
-`-env`标志应根据您想收集数据的网络指向`testnet`或`mainnet-beta`。示例块中使用了`testnet`。如有需要，可以更改为`mainnet-beta`。
+请注意，`-env` 标志需要指向 `testnet` 或 `mainnet-beta`，具体取决于您要从哪个网络收集数据。在示例代码块中使用的是 `testnet`。如果需要，您可以将其替换为 `mainnet-beta`。
 
 ```ini
 [Service]
@@ -284,9 +281,9 @@ sudo systemctl restart doublezerod
 sudo systemctl status doublezerod
 ```
 
-### 3. 确认指标可用
+### 3. 验证指标是否可用
 
-确认指标端点正在响应：
+测试指标端点是否正在响应：
 
 ```bash
 curl -s localhost:2113/metrics | grep doublezero
@@ -302,7 +299,6 @@ doublezero_build_info{commit="0d684e1b",date="2025-09-10T16:30:25Z",version="0.6
 # TYPE doublezero_session_is_up gauge
 doublezero_session_is_up 0
 ```
-
 ## 故障排除
 
 如果指标未显示：
@@ -311,18 +307,18 @@ doublezero_session_is_up 0
 2. **验证配置**：`sudo systemctl cat doublezerod`
 3. **检查日志**：`sudo journalctl -u doublezerod -f`
 4. **测试端点**：`curl -v localhost:2113/metrics`
-5. **检查端口**：`netstat -tlnp | grep 2113`
+5. **验证端口**：`netstat -tlnp | grep 2113`
 
 
-## 配置Prometheus服务器
+## 配置 Prometheus 服务器
 
-配置和安全性超出本文档的范围。
-Grafana是可视化的优秀选项，Grafana文档[此处](https://grafana.com/docs/alloy/latest/collect/prometheus-metrics/)详细介绍了如何收集Prometheus指标。
+配置和安全性超出了本文档的范围。
+Grafana 是一个出色的可视化选项，其文档可在[此处](https://grafana.com/docs/alloy/latest/collect/prometheus-metrics/)获取，详细说明了如何收集 Prometheus 指标。
 
-## Grafana仪表板（可选）
+## Grafana 仪表板（可选）
 
-对于可视化，您可以使用DoubleZero指标创建Grafana仪表板。常见面板包括：
-- 随时间变化的会话状态
+对于可视化，您可以使用 DoubleZero 指标创建 Grafana 仪表板。常见面板包括：
+- 会话状态随时间变化
 - 构建信息
 - 连接延迟趋势
 - 错误率监控
