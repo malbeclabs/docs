@@ -190,9 +190,12 @@ Click **Create New Record** > **Maintenance** on the portal, or submit via the A
 |-------|-------------|
 | `title` | Short summary (max 100 characters) |
 | `description` | Detailed explanation (max 500 characters) |
+| `severity` | `sev1`, `sev2`, or `sev3`. Set it to the expected user impact (see note below). |
 | `start_at` | Planned start time (UTC) |
 | `end_at` | Planned end time (UTC); must be after `start_at` |
 | Device and/or Link | At least one required. On the web form, select from a dropdown of your device and link codes. When using the API, pass the corresponding pubkeys as `device_pubkey` and/or `affected_link_pubkey`. |
+
+Severity applies to maintenance the same way it does to incidents. Set it to the user impact you expect during the window, using the [severity levels above](#severity-levels).
 
 Once created, a notification is posted to the contributor maintenance Slack channel with the ticket ID, affected devices/links, planned window, and contributor name.
 
