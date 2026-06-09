@@ -1,3 +1,7 @@
+---
+description: Answer a few questions to generate a personalized DoubleZero connection guide with the exact steps and commands for your setup.
+---
+
 # Quick Connect
 
 Answer a few questions and we'll generate a personalized connection guide with the exact steps and commands for your setup.

@@ -1,9 +1,13 @@
+---
+description: 몇 가지 질문에 답하면 사용자 환경에 맞는 정확한 단계와 명령어가 포함된 맞춤형 DoubleZero 연결 가이드를 생성합니다.
+---
+
 # 빠른 연결
 
-몇 가지 질문에 답하시면, 사용자의 환경에 맞는 정확한 단계와 명령어가 포함된 맞춤형 연결 가이드를 생성해 드립니다.
+몇 가지 질문에 답하시면 사용자 환경에 맞는 정확한 단계와 명령어가 포함된 맞춤형 연결 가이드를 생성해 드립니다.
 
 !!! note "간소화된 가이드"
-    이 마법사는 가능한 빠르게 연결할 수 있도록 전체 문서에서 핵심 내용만 제공합니다. 자세한 내용은 [설정](setup.md) 및 [테넌트](tenant.md) 가이드를 참조하세요.
+    이 마법사는 가능한 한 빠르게 연결할 수 있도록 전체 문서에서 핵심 내용을 발췌하여 제공합니다. 자세한 내용은 [설정](setup.md) 및 [테넌트](tenant.md) 가이드를 참조하세요.
 
 <div id="wizard-container">
 
@@ -22,7 +26,7 @@
 </div>
 
 <div id="wiz-q-os" class="wizard-question wizard-hidden">
-<h3>서버에서 실행 중인 운영체제는 무엇인가요?</h3>
+<h3>서버의 운영 체제는 무엇인가요?</h3>
 <div class="wizard-options">
 <button class="wizard-card" data-question="os" data-value="deb">
 <span class="wizard-card-title">Ubuntu / Debian</span>
@@ -90,7 +94,7 @@
 </button>
 <button class="wizard-card" data-question="connection" data-value="multicast">
 <span class="wizard-card-title">멀티캐스트</span>
-<span class="wizard-card-desc">일대다 패킷 전달 (퍼블리셔/서브스크라이버)</span>
+<span class="wizard-card-desc">일대다 패킷 전달 (퍼블리셔/구독자)</span>
 </button>
 <button class="wizard-card" data-question="connection" data-value="both">
 <span class="wizard-card-title">둘 다</span>
@@ -100,14 +104,14 @@
 </div>
 
 <div id="wiz-q-multicastrole" class="wizard-question wizard-hidden">
-<h3>멀티캐스트 역할은 무엇인가요?</h3>
+<h3>멀티캐스트에서의 역할은 무엇인가요?</h3>
 <div class="wizard-options">
 <button class="wizard-card" data-question="multicastrole" data-value="publisher">
 <span class="wizard-card-title">퍼블리셔</span>
-<span class="wizard-card-desc">멀티캐스트 그룹으로 데이터 전송 (예: 블록 프로듀서)</span>
+<span class="wizard-card-desc">멀티캐스트 그룹에 데이터 전송 (예: 블록 프로듀서)</span>
 </button>
 <button class="wizard-card" data-question="multicastrole" data-value="subscriber">
-<span class="wizard-card-title">서브스크라이버</span>
+<span class="wizard-card-title">구독자</span>
 <span class="wizard-card-desc">멀티캐스트 그룹에서 데이터 수신</span>
 </button>
 </div>

@@ -1,14 +1,18 @@
+---
+description: いくつかの質問に答えるだけで、お使いの環境に合った正確な手順とコマンドを含む、パーソナライズされたDoubleZero接続ガイドを生成します。
+---
+
 # クイックコネクト
 
-いくつかの質問に答えるだけで、お使いの環境に合わせた正確な手順とコマンドを含むパーソナライズされた接続ガイドを生成します。
+いくつかの質問に答えるだけで、お使いの環境に合った正確な手順とコマンドを含む、パーソナライズされた接続ガイドを生成します。
 
 !!! note "簡易ガイド"
-    このウィザードでは、できるだけ早く接続できるよう、完全なドキュメントから主要なスニペットを提供します。詳細については、[セットアップ](setup.md)および[テナント](tenant.md)ガイドをご覧ください。
+    このウィザードは、できるだけ早く接続できるよう、完全なドキュメントから重要なスニペットを提供します。詳細については、[セットアップ](setup.md)および[テナント](tenant.md)ガイドを参照してください。
 
 <div id="wizard-container">
 
 <div id="wiz-q-network" class="wizard-question">
-<h3>接続するネットワークはどれですか？</h3>
+<h3>どのネットワークに接続しますか？</h3>
 <div class="wizard-options">
 <button class="wizard-card" data-question="network" data-value="mainnet-beta">
 <span class="wizard-card-title">Mainnet-Beta</span>
@@ -16,7 +20,7 @@
 </button>
 <button class="wizard-card" data-question="network" data-value="testnet">
 <span class="wizard-card-title">Testnet</span>
-<span class="wizard-card-desc">テストおよび開発ネットワーク</span>
+<span class="wizard-card-desc">テストおよび開発用ネットワーク</span>
 </button>
 </div>
 </div>
@@ -54,11 +58,11 @@
 </div>
 
 <div id="wiz-q-firewall" class="wizard-question wizard-hidden">
-<h3>使用しているファイアウォールツールはどれですか？</h3>
+<h3>どのファイアウォールツールを使用していますか？</h3>
 <div class="wizard-options">
 <button class="wizard-card" data-question="firewall" data-value="iptables">
 <span class="wizard-card-title">iptables</span>
-<span class="wizard-card-desc">iptablesルールを直接設定</span>
+<span class="wizard-card-desc">直接的なiptablesルール</span>
 </button>
 <button class="wizard-card" data-question="firewall" data-value="ufw">
 <span class="wizard-card-title">UFW</span>
@@ -68,7 +72,7 @@
 </div>
 
 <div id="wiz-q-usertype" class="wizard-question wizard-hidden">
-<h3>実行しているノードの種類は何ですか？</h3>
+<h3>どの種類のノードを運用していますか？</h3>
 <div class="wizard-options">
 <button class="wizard-card" data-question="usertype" data-value="validator">
 <span class="wizard-card-title">バリデーター</span>
@@ -82,7 +86,7 @@
 </div>
 
 <div id="wiz-q-connection" class="wizard-question wizard-hidden">
-<h3>必要な接続モードは何ですか？</h3>
+<h3>どの接続モードが必要ですか？</h3>
 <div class="wizard-options">
 <button class="wizard-card" data-question="connection" data-value="unicast">
 <span class="wizard-card-title">ユニキャスト（IBRL）</span>
@@ -94,7 +98,7 @@
 </button>
 <button class="wizard-card" data-question="connection" data-value="both">
 <span class="wizard-card-title">両方</span>
-<span class="wizard-card-desc">ユニキャストとマルチキャストのトンネルを同時使用</span>
+<span class="wizard-card-desc">ユニキャストとマルチキャストトンネルの同時使用</span>
 </button>
 </div>
 </div>
@@ -104,11 +108,11 @@
 <div class="wizard-options">
 <button class="wizard-card" data-question="multicastrole" data-value="publisher">
 <span class="wizard-card-title">パブリッシャー</span>
-<span class="wizard-card-desc">マルチキャストグループにデータを送信（例：ブロックプロデューサー）</span>
+<span class="wizard-card-desc">マルチキャストグループにデータを送信する（例：ブロックプロデューサー）</span>
 </button>
 <button class="wizard-card" data-question="multicastrole" data-value="subscriber">
 <span class="wizard-card-title">サブスクライバー</span>
-<span class="wizard-card-desc">マルチキャストグループからデータを受信</span>
+<span class="wizard-card-desc">マルチキャストグループからデータを受信する</span>
 </button>
 </div>
 </div>

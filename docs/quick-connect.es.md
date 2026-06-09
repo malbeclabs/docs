@@ -1,9 +1,13 @@
+---
+description: Responde algunas preguntas para generar una guía de conexión personalizada de DoubleZero con los pasos y comandos exactos para tu configuración.
+---
+
 # Conexión Rápida
 
-Responde algunas preguntas y generaremos una guía de conexión personalizada con los pasos exactos y comandos para tu configuración.
+Responde algunas preguntas y generaremos una guía de conexión personalizada con los pasos y comandos exactos para tu configuración.
 
 !!! note "Guía Simplificada"
-    Este asistente proporciona fragmentos clave de la documentación completa para conectarte lo más rápido posible. Para más detalles, consulta las guías de [Configuración](setup.md) e [Inquilino](tenant.md).
+    Este asistente proporciona fragmentos clave de la documentación completa para que te conectes lo más rápido posible. Para más detalles, consulta las guías de [Configuración](setup.md) e [Inquilino](tenant.md).
 
 <div id="wizard-container">
 
@@ -100,7 +104,7 @@ Responde algunas preguntas y generaremos una guía de conexión personalizada co
 </div>
 
 <div id="wiz-q-multicastrole" class="wizard-question wizard-hidden">
-<h3>¿Cuál es tu rol de multicast?</h3>
+<h3>¿Cuál es tu rol en multicast?</h3>
 <div class="wizard-options">
 <button class="wizard-card" data-question="multicastrole" data-value="publisher">
 <span class="wizard-card-title">Publicador</span>

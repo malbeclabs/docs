@@ -1,3 +1,7 @@
+---
+description: Ongoing operational tasks for DoubleZero contributors — agent upgrades, device and interface updates, link management, and incident logging.
+---
+
 # Operations Guide for Contributors
 
 

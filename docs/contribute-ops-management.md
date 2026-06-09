@@ -1,3 +1,7 @@
+---
+description: Use the DoubleZero OPS Management portal to log and track network incidents and planned maintenance.
+---
+
 # OPS Management
 
 The DoubleZero OPS Management portal is where contributors log and track incidents (unplanned outages) and maintenance (planned work) across the network. All tickets are visible to all contributors.

@@ -1,9 +1,13 @@
+---
+description: 回答几个问题，生成适合您配置的个性化 DoubleZero 连接指南，包含确切的步骤和命令。
+---
+
 # 快速连接
 
-回答几个问题，我们将根据您的具体设置生成个性化的连接指南，包含精确的步骤和命令。
+回答几个问题，我们将为您生成一份个性化的连接指南，包含适合您配置的确切步骤和命令。
 
 !!! note "简化指南"
-    此向导提供了完整文档中的关键片段，帮助您尽快完成连接。如需了解完整详情，请参阅[安装](setup.md)和[租户](tenant.md)指南。
+    此向导提供了完整文档中的关键片段，帮助您尽快完成连接。如需完整详情，请参阅 [设置](setup.md) 和 [租户](tenant.md) 指南。
 
 <div id="wizard-container">
 
@@ -12,7 +16,7 @@
 <div class="wizard-options">
 <button class="wizard-card" data-question="network" data-value="mainnet-beta">
 <span class="wizard-card-title">Mainnet-Beta</span>
-<span class="wizard-card-desc">面向活跃验证者和 RPC 运营者的生产网络</span>
+<span class="wizard-card-desc">用于活跃验证者和 RPC 运营商的生产网络</span>
 </button>
 <button class="wizard-card" data-question="network" data-value="testnet">
 <span class="wizard-card-title">Testnet</span>
@@ -40,7 +44,7 @@
 <div class="wizard-options">
 <button class="wizard-card" data-question="tenant" data-value="solana">
 <span class="wizard-card-title">Solana</span>
-<span class="wizard-card-desc">Solana 上的验证者和 RPC 运营者</span>
+<span class="wizard-card-desc">Solana 上的验证者和 RPC 运营商</span>
 </button>
 <button class="wizard-card" data-question="tenant" data-value="shelby" title="仅限 Testnet">
 <span class="wizard-card-title">Shelby</span>
@@ -72,7 +76,7 @@
 <div class="wizard-options">
 <button class="wizard-card" data-question="usertype" data-value="validator">
 <span class="wizard-card-title">验证者</span>
-<span class="wizard-card-desc">具有身份密钥对的领导者调度 Solana 验证者</span>
+<span class="wizard-card-desc">具有身份密钥对的 Leader 调度 Solana 验证者</span>
 </button>
 <button class="wizard-card" data-question="usertype" data-value="rpc">
 <span class="wizard-card-title">非验证者 (RPC)</span>
@@ -93,7 +97,7 @@
 <span class="wizard-card-desc">一对多数据包传输（发布者/订阅者）</span>
 </button>
 <button class="wizard-card" data-question="connection" data-value="both">
-<span class="wizard-card-title">两者兼用</span>
+<span class="wizard-card-title">两者都需要</span>
 <span class="wizard-card-desc">同时使用单播和组播隧道</span>
 </button>
 </div>
