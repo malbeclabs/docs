@@ -1,7 +1,11 @@
+---
+description: 安装 doublezerod 并将您的验证者或节点连接到 DoubleZero 网络的分步指南。
+---
+
 # 如何设置 DoubleZero
 
-!!! info "术语"
-    初次接触 DoubleZero？请参阅[术语表](glossary.md)，了解 [doublezerod](glossary.md#doublezerod)、[IBRL](glossary.md#ibrl-increase-bandwidth-reduce-latency) 和 [DZD](glossary.md#dzd-doublezero-device) 等术语的定义。
+!!! info "术语说明"
+    刚接触 DoubleZero？请参阅[术语表](glossary.md)了解 [doublezerod](glossary.md#doublezerod)、[IBRL](glossary.md#ibrl-increase-bandwidth-reduce-latency) 和 [DZD](glossary.md#dzd-doublezero-device) 等术语的定义。
 
 !!! warning "连接到 DoubleZero 即表示我同意 [DoubleZero 服务条款](https://doublezero.xyz/terms-protocol)"
 
@@ -9,15 +13,15 @@
 ## 前提条件
 !!! warning inline end
     对于验证者：DoubleZero 需要直接安装在您的验证者主机上，而不是在容器中。
-- 具有公网 IP 地址的互联网连接（无 NAT）
+- 具有公共 IP 地址的互联网连接（无 NAT）
 - x86_64 服务器
 - 支持的操作系统：Ubuntu 22.04+ 或 Debian 11+，或 Rocky Linux / RHEL 9+
-- 运行 DoubleZero 的服务器上的 root 或 sudo 权限
+- 运行 DoubleZero 的服务器上的 Root 或 sudo 权限
 - 可选但有用：用于调试的 jq 和 curl
 
 ## 连接到 DoubleZero
 
-DoubleZero Testnet 和 DoubleZero Mainnet-Beta 是物理上独立的网络。请在安装过程中选择适当的网络。
+DoubleZero Testnet 和 DoubleZero Mainnet-Beta 是物理上独立的网络。请在安装过程中选择合适的网络。
 
 加入 DoubleZero 时，您将建立一个 **DoubleZero 身份**，由一个称为 **DoubleZero ID** 的公钥表示。此密钥是 DoubleZero 识别您机器的方式之一。
 
@@ -32,13 +36,13 @@ DoubleZero Testnet 和 DoubleZero Mainnet-Beta 是物理上独立的网络。请
 
 </div>
 
-请根据您的操作系统执行以下步骤：
+根据您的操作系统按照以下步骤操作：
 
 ### Ubuntu / Debian
 
 <div data-wizard-step="install-deb-mainnet-beta" markdown>
 
-当前推荐的 Mainnet-Beta 部署方式为：
+当前推荐的 Mainnet-Beta 部署方式：
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
 sudo apt-get install doublezero
@@ -48,7 +52,7 @@ sudo apt-get install doublezero
 
 <div data-wizard-step="install-deb-testnet" markdown>
 
-当前推荐的 Testnet 部署方式为：
+当前推荐的 Testnet 部署方式：
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero-testnet/setup.deb.sh | sudo -E bash
 sudo apt-get install doublezero
@@ -60,7 +64,7 @@ sudo apt-get install doublezero
 
 <div data-wizard-step="install-rpm-mainnet-beta" markdown>
 
-当前推荐的 Mainnet-Beta 部署方式为：
+当前推荐的 Mainnet-Beta 部署方式：
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh | sudo -E bash
 sudo yum install doublezero
@@ -70,7 +74,7 @@ sudo yum install doublezero
 
 <div data-wizard-step="install-rpm-testnet" markdown>
 
-当前推荐的 Testnet 部署方式为：
+当前推荐的 Testnet 部署方式：
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero-testnet/setup.rpm.sh | sudo -E bash
 sudo yum install doublezero
@@ -83,14 +87,14 @@ sudo yum install doublezero
 ??? info "仅限现有用户：将软件包从 *Testnet 切换到 Mainnet-Beta*，或从 *Mainnet-Beta 切换到 Testnet*"
     当您从上述某个软件包仓库安装时，它特定于 DoubleZero **Testnet** 或 **DoubleZero Mainnet Beta**。如果您在任何时候切换网络，您需要移除之前安装的软件包仓库并更新到目标仓库。
 
-    本示例将演示从 Testnet 到 Mainnet-Beta 的迁移
+    本示例将演示从 Testnet 迁移到 Mainnet-Beta 的过程
 
-    从 Mainnet-Beta 迁移到 Testnet 也可以完成相同的步骤，只需将步骤 3 替换为上述 Testnet 的安装命令即可。
+    同样的步骤也可用于从 Mainnet-Beta 迁移到 Testnet，只需将步骤 3 替换为上述 Testnet 的安装命令即可。
 
 
     1. 查找旧的仓库文件
 
-        首先，找到系统上所有现有的 DoubleZero 仓库配置文件：
+        首先，找到系统上现有的 DoubleZero 仓库配置文件：
 
         `find /etc/apt | grep doublezero`
 
@@ -98,7 +102,7 @@ sudo yum install doublezero
 
     2. 移除旧的仓库文件
 
-        移除上一步中找到的旧仓库文件，例如
+        移除在上一步中找到的旧仓库文件，例如
 
         ```
         sudo rm /etc/apt/sources.list.d/malbeclabs-doublezero.list
@@ -106,7 +110,7 @@ sudo yum install doublezero
         ```
     3. 从新仓库安装
 
-        添加新的 Mainnet-Beta 仓库并安装最新的软件包：
+        添加新的 Mainnet-Beta 仓库并安装最新软件包：
 
         ```
         curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
@@ -120,7 +124,7 @@ sudo yum install doublezero
 
 #### 检查 `doublezerod` 的状态
 
-软件包安装后，将安装、激活并启动一个新的 systemd 单元。要查看状态，您可以运行：
+软件包安装后，会安装、激活并启动一个新的 systemd 单元。要查看状态，您可以运行：
 ```
 sudo systemctl status doublezerod
 ```
@@ -158,14 +162,14 @@ sudo ufw allow out on doublezero0 from 169.254.0.0/16 to 169.254.0.0/16 port 179
 
 ## 2. 创建新的 DoubleZero 身份
 
-使用以下命令在服务器上创建 DoubleZero 身份：
+使用以下命令在您的服务器上创建 DoubleZero 身份：
 
 ```bash
 doublezero keygen
 ```
 
 !!! info
-    如果您有现有的 ID 想要使用，可以按照以下可选步骤操作。
+    如果您有想要使用的现有 ID，可以按照以下可选步骤操作。
 
     创建 doublezero 配置目录
 
@@ -180,7 +184,7 @@ doublezero keygen
     ```
 ## 3. 获取服务器的 DoubleZero 身份
 
-查看您的 DoubleZero 身份。此身份将用于在您的机器和 DoubleZero 之间创建连接。
+查看您的 DoubleZero 身份。此身份将用于在您的机器和 DoubleZero 之间创建连接
 
 ```bash
 doublezero address
@@ -213,11 +217,11 @@ $ doublezero latency
  9uhh2D5c14WJjbwgM7BudztdoPZYCjbvqcTPgEKtTMZE | sg1-dz01  | 180.87.102.98  | 176.66ms | 176.76ms | 176.72ms | true
 ```
 
-如果输出中未返回任何设备，请等待 10-20 秒后重试。
+如果输出中没有返回设备，请等待 10-20 秒后重试。
 
-## 5. 断开与 DoubleZero 的连接
+## 5. 断开 DoubleZero 连接
 
-在接下来的章节中，您将设置 DoubleZero 环境。为确保成功，请断开当前会话。这将避免因机器上打开多个隧道而导致的问题。
+在接下来的章节中，您将设置 DoubleZero 环境。为确保成功，请断开当前会话。这将避免与机器上打开多个隧道相关的问题。
 
 检查
 
@@ -233,14 +237,14 @@ doublezero disconnect
 
 ### 下一步：租户
 
-连接到 DoubleZero 的方式将因您的使用场景而异。在 DoubleZero 上，租户是具有相似用户配置文件的组。示例包括区块链、数据传输层等。
+连接到 DoubleZero 的方式会因您的使用场景而异。在 DoubleZero 上，租户是具有相似用户配置文件的群组。例如区块链、数据传输层等。
 
 ### [点击此处选择您的租户](tenant.md)
 
 
 # 可选：启用 Prometheus 指标
 
-熟悉 Prometheus 指标的运营者可能希望为 DoubleZero 监控启用这些指标。这可以提供对 DoubleZero 客户端性能、连接状态和运行健康状况的可见性。
+熟悉 Prometheus 指标的运营者可能希望为 DoubleZero 监控启用它们。这提供了对 DoubleZero 客户端性能、连接状态和运行健康状况的可视化。
 
 ## 可用的指标
 
@@ -265,7 +269,7 @@ sudo nano /etc/systemd/system/doublezerod.service.d/override.conf
 
 替换为以下配置：
 
-请注意，`-env` 标志需要指向 `testnet` 或 `mainnet-beta`，具体取决于您要从哪个网络收集数据。在示例代码块中使用的是 `testnet`。如果需要，您可以将其替换为 `mainnet-beta`。
+请注意 `-env` 标志需要指向 `testnet` 或 `mainnet-beta`，具体取决于您要从哪个网络收集数据。在示例代码块中使用的是 `testnet`。如果需要，您可以将其替换为 `mainnet-beta`。
 
 ```ini
 [Service]
@@ -317,8 +321,8 @@ Grafana 是一个出色的可视化选项，其文档可在[此处](https://graf
 
 ## Grafana 仪表板（可选）
 
-对于可视化，您可以使用 DoubleZero 指标创建 Grafana 仪表板。常见面板包括：
-- 会话状态随时间变化
+为了可视化，您可以使用 DoubleZero 指标创建 Grafana 仪表板。常见的面板包括：
+- 会话状态随时间的变化
 - 构建信息
 - 连接延迟趋势
 - 错误率监控
