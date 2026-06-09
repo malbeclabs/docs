@@ -1,3 +1,7 @@
+---
+description: Overview of the actors and components that make up the DoubleZero network architecture.
+---
+
 # Architecture
 
 What makes up the different actors and components of the DoubleZero network?
