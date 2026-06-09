@@ -1,0 +1,35 @@
+# robots.txt for docs.malbeclabs.com
+
+User-agent: *
+Allow: /
+# Content Signals (contentsignals.org / draft-romm-aipref-contentsignals)
+# Public protocol documentation: we want it indexed, used to ground AI
+# answers, and available for training. Flip any value to "no" to opt out.
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+
+# AI crawlers / assistants — explicitly allowed
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://docs.malbeclabs.com/sitemap.xml
