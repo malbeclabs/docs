@@ -1,3 +1,7 @@
+---
+description: Register and configure validator publisher rewards so validators publishing shreds to DoubleZero Edge are paid each epoch.
+---
+
 # Validator Rewards
 !!! warning "By connecting to DoubleZero, I agree to the [DoubleZero Terms of Use](https://doublezero.xyz/terms-protocol)"
 

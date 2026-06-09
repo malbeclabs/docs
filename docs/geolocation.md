@@ -1,3 +1,7 @@
+---
+description: How the DoubleZero Geolocation service uses signed latency measurements to prove a device's physical location, with use cases and architecture.
+---
+
 # Geolocation
 
 The DoubleZero Geolocation service helps users determine the physical location of devices using latency measurements. [RTT](glossary.md#rtt-round-trip-time) (round-trip time) measurements between known-location infrastructure and a target device provide cryptographically-signed proof that a device is within a certain distance of a given point. Onchain recording of measurements to the DoubleZero Ledger is planned for a future release.

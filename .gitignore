@@ -17,3 +17,9 @@ dist/
 .devcontainer/
 smartcontract/.vscode/settings.json
 site/
+
+.DS_Store
+**/.DS_Store
+
+__pycache__/
+**/__pycache__/

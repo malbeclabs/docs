@@ -1,3 +1,7 @@
+---
+description: Step-by-step guide to installing doublezerod and connecting your validator or node to the DoubleZero network.
+---
+
 # How to set up DoubleZero
 
 !!! info "Terminology"

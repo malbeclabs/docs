@@ -1,3 +1,7 @@
+---
+description: Definitions of DoubleZero-specific terminology used throughout the documentation.
+---
+
 # Glossary
 
 This page defines DoubleZero-specific terminology used throughout the documentation.

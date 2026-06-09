@@ -1,3 +1,7 @@
+---
+description: Use the DoubleZero OPS Management portal to log and track network incidents and planned maintenance.
+---
+
 # OPS Management
 
 The DoubleZero OPS Management portal is where contributors log and track incidents (unplanned outages) and maintenance (planned work) across the network. All tickets are visible to all contributors.
@@ -45,11 +49,13 @@ doublezero contributor update \
 
 Once authenticated, the **Incident Tracking Table** shows.
 
+Account settings live behind the **Settings** menu (the gear icon, top right): API Key Management, User Management, and Escalation Contacts. The options you see depend on your role.
+
 ### 3. Create API Keys (Optional)
 
 For programmatic access instead of the web form:
 
-1. Click **Manage API Keys** on the portal.
+1. Open the **Settings** menu (gear icon) and choose **API Key Management**.
 2. Create one or more API keys.
 3. Download the API documentation from this page.
 
@@ -188,9 +194,12 @@ Click **Create New Record** > **Maintenance** on the portal, or submit via the A
 |-------|-------------|
 | `title` | Short summary (max 100 characters) |
 | `description` | Detailed explanation (max 500 characters) |
+| `severity` | `sev1`, `sev2`, or `sev3`. Set it to the expected user impact (see note below). |
 | `start_at` | Planned start time (UTC) |
 | `end_at` | Planned end time (UTC); must be after `start_at` |
 | Device and/or Link | At least one required. On the web form, select from a dropdown of your device and link codes. When using the API, pass the corresponding pubkeys as `device_pubkey` and/or `affected_link_pubkey`. |
+
+Severity applies to maintenance the same way it does to incidents. Set it to the user impact you expect during the window, using the [severity levels above](#severity-levels).
 
 Once created, a notification is posted to the contributor maintenance Slack channel with the ticket ID, affected devices/links, planned window, and contributor name.
 
@@ -214,6 +223,72 @@ planned → in-progress → completed → closed (auto 24h after end_at)
 
 ---
 
+## Escalation Contacts
+
+Escalation contacts tell DoubleZero and other contributors who to reach when your part of the network has a problem. You set up your own contacts for your organization. A contact can be a person or a team, such as your NOC. Each contact has one or more ways to reach it and a schedule for when it is on call.
+
+Open the **Settings** menu (gear icon) and choose **Escalation Contacts**. Only ops managers can add or edit contacts.
+
+### Adding a Contact
+
+For each contact, set:
+
+| Field | Description |
+|-------|-------------|
+| Name | A name for the contact, whether a person or a team such as your NOC |
+| Timezone | The local timezone, used to read the schedule |
+| Availability | **24/7**, or one or more weekly time slots when the contact is on call |
+| Contact methods | One or more ways to reach the contact, in priority order |
+
+Supported contact methods are email, phone, Slack, Telegram, and WhatsApp. Order matters: the first method is the one to try first.
+
+### Availability and Coverage Gaps
+
+A contact is either available around the clock (24/7) or available during weekly time slots you define, for example Monday to Friday, 09:00 to 17:00. Slots are entered in the contact's local timezone and shown in UTC, so daylight saving is handled for you.
+
+The **coverage gaps** view shows the times each week when no one from your organization is on call. Use it to find and close gaps.
+
+### Rotation Windows
+
+The week is split into half-hour windows. For each window you can set the order in which your contacts are reached. This lets you run an on-call rotation without editing each contact.
+
+### Visibility
+
+You control who can see your contacts. DoubleZero can always see them. You choose who else can:
+
+| Setting | Who else can see your contacts |
+|---------|-------------------------------|
+| DoubleZero only (default) | No other contributors |
+| Everybody | All contributors |
+| Some contributors | Only the contributors you select |
+
+Your own team can always see your contacts. Visibility is set once for your whole organization and applies to all your contacts.
+
+---
+
+## User Management
+
+By default, your Ops Manager key is the only account that can act for your organization. You can add team members so more than one person can manage your tickets.
+
+Open the **Settings** menu (gear icon) and choose **User Management**. Only ops managers can add or remove team members.
+
+For each team member, set:
+
+| Field | Description |
+|-------|-------------|
+| Name | The person's name |
+| Wallet pubkey | The Solana wallet they sign in with |
+| Access level | **Read** or **Read-write** |
+
+Access levels:
+
+- **Read**: can view tickets and escalation contacts, and create read-only API keys. Cannot create, update, or close tickets.
+- **Read-write**: full access to create, update, and close tickets, and can create API keys of any level.
+
+Each team member signs in with their own wallet, the same way you connected your Ops Manager key.
+
+---
+
 ## Permissions and Escalation
 
 ### What Contributors Can Do
@@ -221,6 +296,8 @@ planned → in-progress → completed → closed (auto 24h after end_at)
 - Create and manage tickets for their own devices and links only.
 - Assign tickets to themselves or escalate to DZ/Malbeclabs.
 - View all tickets across all contributors.
+- Add team members and set their access level (ops managers only).
+- Manage escalation contacts for their organization (ops managers only).
 
 ### What DZ/Malbeclabs Admins Can Do
 

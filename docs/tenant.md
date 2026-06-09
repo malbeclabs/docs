@@ -1,3 +1,7 @@
+---
+description: Choose the DoubleZero tenant and connection path that matches your use case — Solana validators, RPCs, Shelby, or a new protocol.
+---
+
 # Tenants
 
 Tenants on DoubleZero are groups of users with similar profiles and connection requirements, typically representing different blockchain ecosystems, data transfer layers, or distributed systems.

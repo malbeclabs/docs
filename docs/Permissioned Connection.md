@@ -1,3 +1,7 @@
+---
+description: Permissioned onboarding for non-validators and RPCs connecting to DoubleZero Mainnet-Beta and Testnet in IBRL mode.
+---
+
 # Non-Validator Permissioned Connection to DoubleZero in IBRL Mode
 !!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Service](https://doublezero.xyz/terms-protocol)"
 

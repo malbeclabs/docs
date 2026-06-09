@@ -40,13 +40,31 @@
     return title ? title.textContent.trim() : document.title;
   }
 
+  // Clean Markdown is emitted next to every page as index.md (see
+  // hooks/emit_markdown.py), served from this same domain for every language.
+  function getMarkdownUrl() {
+    var path = window.location.pathname.replace(/\/?$/, '/');
+    return window.location.origin + path + 'index.md';
+  }
+
+  // Fetch the page's raw Markdown; fall back to the rendered text on failure.
+  function getPageMarkdown(callback) {
+    fetch(getMarkdownUrl())
+      .then(function(resp) { return resp.ok ? resp.text() : null; })
+      .then(function(md) {
+        callback(md && md.trim() ? md : getPageTitle() + '\n\n' + getPageContent());
+      })
+      .catch(function() { callback(getPageTitle() + '\n\n' + getPageContent()); });
+  }
+
   function copyPageToClipboard() {
-    var textToCopy = getPageTitle() + '\n\n' + getPageContent();
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(textToCopy).then(function() {
-        showCopyFeedback('copy-page-btn');
-      }).catch(function() { fallbackCopy(textToCopy); });
-    } else { fallbackCopy(textToCopy); }
+    getPageMarkdown(function(textToCopy) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(textToCopy).then(function() {
+          showCopyFeedback('copy-page-btn');
+        }).catch(function() { fallbackCopy(textToCopy); });
+      } else { fallbackCopy(textToCopy); }
+    });
   }
 
   function fallbackCopy(text) {
@@ -71,19 +89,23 @@
   }
 
   function viewMarkdown() {
-    var path = window.location.pathname.replace(/^\/|\/$/g, '').replace(/\.html$/, '') || 'index';
-    var markdownUrl = 'https://raw.githubusercontent.com/malbeclabs/docs/main/docs/' + path + '.md';
-    window.open(markdownUrl, '_blank');
+    window.open(getMarkdownUrl(), '_blank');
+  }
+
+  // Opened synchronously from the click handler so the browser keeps the
+  // user-gesture context (an async fetch first would trip popup blockers).
+  function buildPrompt() {
+    var body = getPageContent();
+    return 'I\'m reading this documentation page: "' + getPageTitle() + '"\n\n' +
+      body.substring(0, 3000) + (body.length > 3000 ? '...' : '');
   }
 
   function askInChatGPT() {
-    var prompt = 'I\'m reading this documentation page: "' + getPageTitle() + '"\n\n' + getPageContent().substring(0, 3000) + (getPageContent().length > 3000 ? '...' : '');
-    window.open('https://chat.openai.com/?q=' + encodeURIComponent(prompt), '_blank');
+    window.open('https://chat.openai.com/?q=' + encodeURIComponent(buildPrompt()), '_blank');
   }
 
   function askInClaude() {
-    var prompt = 'I\'m reading this documentation page: "' + getPageTitle() + '"\n\n' + getPageContent().substring(0, 3000) + (getPageContent().length > 3000 ? '...' : '');
-    window.open('https://claude.ai/new?prompt=' + encodeURIComponent(prompt), '_blank');
+    window.open('https://claude.ai/new?prompt=' + encodeURIComponent(buildPrompt()), '_blank');
   }
 
   function addToolbar() {

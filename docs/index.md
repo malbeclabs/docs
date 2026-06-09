@@ -1,3 +1,7 @@
+---
+description: DoubleZero is a high-performance decentralized protocol and network optimized for distributed systems like blockchains, offering optimized transmission and pre-processing of distributed systems data.
+---
+
 # Welcome to DoubleZero
 
 DoubleZero is a high-performance decentralized protocol and network, optimized for distributed systems, like blockchains. Users of DoubleZero enjoy an integrated service for highly- optimized transmission and pre-processing of distributed systems data.

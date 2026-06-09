@@ -1,27 +1,31 @@
-# DoubleZero のセットアップ方法
+---
+description: doublezerodのインストールおよびバリデーターやノードをDoubleZeroネットワークに接続するためのステップバイステップガイド。
+---
+
+# DoubleZeroのセットアップ方法
 
 !!! info "用語について"
-    DoubleZero を初めて使いますか？[doublezerod](glossary.md#doublezerod)、[IBRL](glossary.md#ibrl-increase-bandwidth-reduce-latency)、[DZD](glossary.md#dzd-doublezero-device) などの用語の定義については [用語集](glossary.md) をご覧ください。
+    DoubleZeroが初めてですか？[doublezerod](glossary.md#doublezerod)、[IBRL](glossary.md#ibrl-increase-bandwidth-reduce-latency)、[DZD](glossary.md#dzd-doublezero-device)などの用語の定義は[用語集](glossary.md)を参照してください。
 
-!!! warning "DoubleZero に接続することにより、[DoubleZero 利用規約](https://doublezero.xyz/terms-protocol)に同意したものとみなされます"
+!!! warning "DoubleZeroに接続することにより、[DoubleZero利用規約](https://doublezero.xyz/terms-protocol)に同意したものとみなされます"
 
 
 ## 前提条件
 !!! warning inline end
-    バリデーターの場合：DoubleZero はコンテナ内ではなく、バリデーターホストに直接インストールする必要があります。
-- パブリック IP アドレスを持つインターネット接続（NAT なし）
-- x86_64 サーバー
-- 対応 OS：Ubuntu 22.04 以降または Debian 11 以降、もしくは Rocky Linux / RHEL 9 以降
-- DoubleZero を実行するサーバーでの root または sudo 権限
-- オプションですが便利：デバッグ用の jq と curl
+    バリデーターの場合：DoubleZeroはコンテナ内ではなく、バリデーターホストに直接インストールする必要があります。
+- パブリックIPアドレスを持つインターネット接続（NATなし）
+- x86_64サーバー
+- サポートされるOS: Ubuntu 22.04以降またはDebian 11以降、またはRocky Linux / RHEL 9以降
+- DoubleZeroを実行するサーバーでのrootまたはsudo権限
+- オプションですが便利: デバッグ用のjqとcurl
 
-## DoubleZero への接続
+## DoubleZeroへの接続
 
-DoubleZero Testnet と DoubleZero Mainnet-Beta は物理的に異なるネットワークです。インストール時に適切なネットワークを選択してください。
+DoubleZero TestnetとDoubleZero Mainnet-Betaは物理的に異なるネットワークです。インストール時に適切なネットワークを選択してください。
 
-DoubleZero にオンボーディングする際、**DoubleZero ID** と呼ばれる公開鍵で表される **DoubleZero アイデンティティ**を確立します。この鍵は、DoubleZero がお使いのマシンを認識するための手段の一部です。
+DoubleZeroにオンボーディングする際、**DoubleZero ID**と呼ばれる公開鍵で表される**DoubleZero アイデンティティ**を確立します。この鍵は、DoubleZeroがあなたのマシンを認識する方法の一部です。
 
-## 1. DoubleZero パッケージのインストール
+## 1. DoubleZeroパッケージのインストール
 
 <div data-wizard-step="install-version-info" markdown>
 
@@ -38,7 +42,7 @@ DoubleZero にオンボーディングする際、**DoubleZero ID** と呼ばれ
 
 <div data-wizard-step="install-deb-mainnet-beta" markdown>
 
-Mainnet-Beta の現在の推奨デプロイメントは以下の通りです：
+Mainnet-Betaの現在推奨されるデプロイ方法：
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
 sudo apt-get install doublezero
@@ -48,7 +52,7 @@ sudo apt-get install doublezero
 
 <div data-wizard-step="install-deb-testnet" markdown>
 
-Testnet の現在の推奨デプロイメントは以下の通りです：
+Testnetの現在推奨されるデプロイ方法：
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero-testnet/setup.deb.sh | sudo -E bash
 sudo apt-get install doublezero
@@ -60,7 +64,7 @@ sudo apt-get install doublezero
 
 <div data-wizard-step="install-rpm-mainnet-beta" markdown>
 
-Mainnet-Beta の現在の推奨デプロイメントは以下の通りです：
+Mainnet-Betaの現在推奨されるデプロイ方法：
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh | sudo -E bash
 sudo yum install doublezero
@@ -70,7 +74,7 @@ sudo yum install doublezero
 
 <div data-wizard-step="install-rpm-testnet" markdown>
 
-Testnet の現在の推奨デプロイメントは以下の通りです：
+Testnetの現在推奨されるデプロイ方法：
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero-testnet/setup.rpm.sh | sudo -E bash
 sudo yum install doublezero
@@ -80,17 +84,17 @@ sudo yum install doublezero
 
 <div data-wizard-step="install-network-warning" markdown>
 
-??? info "既存ユーザーのみ：パッケージを *Testnet から Mainnet-Beta*、または *Mainnet-Beta から Testnet* に変更する"
-    上記のパッケージリポジトリからインストールする場合、DoubleZero **Testnet** または **DoubleZero Mainnet Beta** に固有のものとなります。ネットワークを切り替える場合は、以前インストールしたパッケージリポジトリを削除し、ターゲットリポジトリに更新する必要があります。
+??? info "既存ユーザーのみ：パッケージを*TestnetからMainnet-Beta*、または*Mainnet-BetaからTestnet*に変更する"
+    上記のパッケージリポジトリからインストールする場合、それはDoubleZero **Testnet**または**DoubleZero Mainnet Beta**に固有のものです。ネットワークを切り替える場合は、以前インストールしたパッケージリポジトリを削除し、対象のリポジトリに更新する必要があります。
 
-    この例では、Testnet から Mainnet-Beta への移行手順を説明します。
+    この例では、TestnetからMainnet-Betaへの移行手順を説明します。
 
-    Mainnet-Beta から Testnet への移行も同じ手順で行えますが、ステップ 3 を上記の Testnet 用インストールコマンドに置き換えてください。
+    Mainnet-BetaからTestnetへの移行も同じ手順で実行できます。その場合、ステップ3を上記のTestnet用インストールコマンドに置き換えてください。
 
 
     1. 古いリポジトリファイルの検索
 
-        まず、システム上の既存の DoubleZero リポジトリ設定ファイルを見つけます：
+        まず、システム上の既存のDoubleZeroリポジトリ設定ファイルを見つけます：
 
         `find /etc/apt | grep doublezero`
 
@@ -106,7 +110,7 @@ sudo yum install doublezero
         ```
     3. 新しいリポジトリからのインストール
 
-        新しい Mainnet-Beta リポジトリを追加し、最新パッケージをインストールします：
+        新しいMainnet-Betaリポジトリを追加し、最新パッケージをインストールします：
 
         ```
         curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
@@ -118,20 +122,20 @@ sudo yum install doublezero
 
 <div data-wizard-step="install-verify-daemon" markdown>
 
-#### `doublezerod` のステータス確認
+#### `doublezerod`のステータス確認
 
-パッケージのインストール後、新しい systemd ユニットがインストール、有効化、起動されます。ステータスを確認するには以下を実行してください：
+パッケージのインストール後、新しいsystemdユニットがインストール、有効化、起動されます。ステータスを確認するには以下を実行します：
 ```
 sudo systemctl status doublezerod
 ```
 
 </div>
 
-### GRE および BGP のファイアウォール設定
+### GREおよびBGP用のファイアウォール設定
 
-DoubleZero は GRE トンネリング（IP プロトコル 47）および BGP ルーティング（リンクローカルアドレス上の tcp/179）を使用します。ファイアウォールでこれらのプロトコルを許可してください：
+DoubleZeroはGREトンネリング（IPプロトコル47）とBGPルーティング（リンクローカルアドレスのtcp/179）を使用します。ファイアウォールでこれらのプロトコルが許可されていることを確認してください：
 
-iptables で GRE と BGP を許可する：
+iptablesでGREとBGPを許可する：
 
 <div data-wizard-step="firewall-gre-bgp-iptables" markdown>
 
@@ -144,7 +148,7 @@ sudo iptables -A OUTPUT -o doublezero0 -s 169.254.0.0/16 -d 169.254.0.0/16 -p tc
 
 </div>
 
-または UFW で GRE と BGP を許可する：
+またはUFWでGREとBGPを許可する：
 
 <div data-wizard-step="firewall-gre-bgp-ufw" markdown>
 
@@ -156,31 +160,31 @@ sudo ufw allow out on doublezero0 from 169.254.0.0/16 to 169.254.0.0/16 port 179
 
 </div>
 
-## 2. 新しい DoubleZero アイデンティティの作成
+## 2. 新しいDoubleZeroアイデンティティの作成
 
-以下のコマンドでサーバー上に DoubleZero アイデンティティを作成します：
+以下のコマンドでサーバー上にDoubleZeroアイデンティティを作成します：
 
 ```bash
 doublezero keygen
 ```
 
 !!! info
-    既存の ID を使用したい場合は、以下のオプション手順に従ってください。
+    使用したい既存のIDがある場合は、以下のオプション手順に従ってください。
 
-    doublezero 設定ディレクトリの作成
+    doublezero設定ディレクトリを作成します
 
     ```
     mkdir -p ~/.config/doublezero
     ```
 
-    DoubleZero で使用したい `id.json` を doublezero 設定ディレクトリにコピーまたはリンクします。
+    DoubleZeroで使用したい`id.json`をdoublezero設定ディレクトリにコピーまたはリンクします。
 
     ```
     sudo cp </path/to/id.json> ~/.config/doublezero/
     ```
-## 3. サーバーの DoubleZero アイデンティティの取得
+## 3. サーバーのDoubleZeroアイデンティティの確認
 
-DoubleZero アイデンティティを確認します。このアイデンティティは、お使いのマシンと DoubleZero 間の接続を作成するために使用されます。
+DoubleZeroアイデンティティを確認します。このアイデンティティは、あなたのマシンとDoubleZero間の接続を作成するために使用されます。
 
 ```bash
 doublezero address
@@ -191,9 +195,9 @@ doublezero address
 YourDoubleZeroAddress11111111111111111111111111111
 ```
 
-## 4. doublezerod が DZ デバイスを検出したか確認する
+## 4. doublezerodがDZデバイスを検出したことを確認
 
-接続する前に、`doublezerod` が利用可能な DZ テストネットスイッチをすべて検出し、ping したことを確認してください：
+接続する前に、`doublezerod`が利用可能なすべてのDZテストネットスイッチを検出し、pingを実行したことを確認してください：
 
 ```
 doublezero latency
@@ -213,19 +217,19 @@ $ doublezero latency
  9uhh2D5c14WJjbwgM7BudztdoPZYCjbvqcTPgEKtTMZE | sg1-dz01  | 180.87.102.98  | 176.66ms | 176.76ms | 176.72ms | true
 ```
 
-出力にデバイスが表示されない場合は、10〜20 秒待ってから再試行してください。
+出力にデバイスが表示されない場合は、10〜20秒待ってから再試行してください。
 
-## 5. DoubleZero からの切断
+## 5. DoubleZeroからの切断
 
-次のセクションで DoubleZero 環境を設定します。成功を確実にするために、現在のセッションを切断してください。これにより、マシン上で複数のトンネルが開いていることに関連する問題を回避できます。
+次のセクションでは、DoubleZero環境を設定します。成功を確実にするために、現在のセッションを切断してください。これにより、マシン上で複数のトンネルが開かれることに関連する問題を回避できます。
 
-確認
+確認：
 
 ```bash
 doublezero status
 ```
 
-`up` の場合は以下を実行してください：
+`up`の場合は以下を実行：
 
 ```bash
 doublezero disconnect
@@ -233,39 +237,39 @@ doublezero disconnect
 
 ### 次のステップ：テナント
 
-DoubleZero への接続は、ユースケースによって異なります。DoubleZero では、テナントは類似したユーザープロファイルを持つグループです。例としては、ブロックチェーン、データ転送レイヤーなどがあります。
+DoubleZeroへの接続は、ユースケースによって異なります。DoubleZeroでは、テナントは類似したユーザープロファイルを持つグループです。例としては、ブロックチェーン、データ転送レイヤーなどがあります。
 
 ### [こちらからテナントを選択してください](tenant.md)
 
 
-# オプション：Prometheus メトリクスの有効化
+# オプション：Prometheusメトリクスの有効化
 
-Prometheus メトリクスに精通しているオペレーターは、DoubleZero モニタリング用にメトリクスを有効化できます。これにより、DoubleZero クライアントのパフォーマンス、接続ステータス、運用状態を可視化できます。
+Prometheusメトリクスに精通しているオペレーターは、DoubleZeroの監視のためにメトリクスを有効にしたい場合があります。これにより、DoubleZeroクライアントのパフォーマンス、接続ステータス、運用状況の可視性が得られます。
 
 ## 利用可能なメトリクス
 
-DoubleZero はいくつかの主要なメトリクスを公開しています：
-- **ビルド情報**：バージョン、コミットハッシュ、ビルド日時
-- **セッションステータス**：DoubleZero セッションがアクティブかどうか
-- **接続メトリクス**：レイテンシーと接続性に関する情報
-- **パフォーマンスデータ**：スループットとエラー率
+DoubleZeroはいくつかの重要なメトリクスを公開します：
+- **ビルド情報**: バージョン、コミットハッシュ、ビルド日
+- **セッションステータス**: DoubleZeroセッションがアクティブかどうか
+- **接続メトリクス**: レイテンシと接続情報
+- **パフォーマンスデータ**: スループットとエラーレート
 
-## Prometheus メトリクスの有効化
+## Prometheusメトリクスの有効化
 
-DoubleZero クライアントで Prometheus メトリクスを有効にするには、以下の手順に従ってください：
+DoubleZeroクライアントでPrometheusメトリクスを有効にするには、以下の手順に従ってください：
 
-### 1. doublezerod systemd サービスの起動コマンドを変更する
+### 1. doublezerod systemdサービスの起動コマンドを変更
 
-systemd オーバーライド設定を作成または編集します：
+systemdオーバーライド設定を作成または編集します：
 
 ```bash
 sudo mkdir -p /etc/systemd/system/doublezerod.service.d/
 sudo nano /etc/systemd/system/doublezerod.service.d/override.conf
 ```
 
-以下の設定に置き換えてください：
+以下の設定に置き換えます：
 
-`-env` フラグは、データを収集したいネットワークに応じて `testnet` または `mainnet-beta` を指定する必要があることに注意してください。以下のサンプルブロックでは `testnet` を使用しています。必要に応じて `mainnet-beta` に置き換えてください。
+`-env`フラグは、データを収集したいネットワークに応じて`testnet`または`mainnet-beta`を指定する必要があります。以下のサンプルブロックでは`testnet`を使用しています。必要に応じて`mainnet-beta`に変更できます。
 
 ```ini
 [Service]
@@ -281,7 +285,7 @@ sudo systemctl restart doublezerod
 sudo systemctl status doublezerod
 ```
 
-### 3. メトリクスが利用可能か確認する
+### 3. メトリクスが利用可能か確認
 
 メトリクスエンドポイントが応答していることをテストします：
 
@@ -303,22 +307,22 @@ doublezero_session_is_up 0
 
 メトリクスが表示されない場合：
 
-1. **サービスステータスの確認**：`sudo systemctl status doublezerod`
-2. **設定の確認**：`sudo systemctl cat doublezerod`
-3. **ログの確認**：`sudo journalctl -u doublezerod -f`
-4. **エンドポイントのテスト**：`curl -v localhost:2113/metrics`
-5. **ポートの確認**：`netstat -tlnp | grep 2113`
+1. **サービスステータスの確認**: `sudo systemctl status doublezerod`
+2. **設定の確認**: `sudo systemctl cat doublezerod`
+3. **ログの確認**: `sudo journalctl -u doublezerod -f`
+4. **エンドポイントのテスト**: `curl -v localhost:2113/metrics`
+5. **ポートの確認**: `netstat -tlnp | grep 2113`
 
 
-## Prometheus サーバーの設定
+## Prometheusサーバーの設定
 
-設定とセキュリティについては、このドキュメントの範囲外です。
-Grafana は可視化のための優れた選択肢であり、Prometheus メトリクスの収集方法について説明したドキュメントが[こちら](https://grafana.com/docs/alloy/latest/collect/prometheus-metrics/)にあります。
+設定およびセキュリティについては、本ドキュメントの範囲外です。
+Grafanaは可視化の優れた選択肢であり、Prometheusメトリクスの収集方法を詳しく説明した[ドキュメント](https://grafana.com/docs/alloy/latest/collect/prometheus-metrics/)が利用可能です。
 
-## Grafana ダッシュボード（オプション）
+## Grafanaダッシュボード（オプション）
 
-可視化のために、DoubleZero メトリクスを使用して Grafana ダッシュボードを作成できます。一般的なパネルには以下が含まれます：
+可視化のために、DoubleZeroメトリクスを使用してGrafanaダッシュボードを作成できます。一般的なパネルには以下が含まれます：
 - 時系列でのセッションステータス
 - ビルド情報
-- 接続レイテンシーの推移
-- エラー率のモニタリング
+- 接続レイテンシの傾向
+- エラーレートの監視

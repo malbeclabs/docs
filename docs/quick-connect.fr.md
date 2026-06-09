@@ -1,9 +1,13 @@
+---
+description: Répondez à quelques questions pour générer un guide de connexion DoubleZero personnalisé avec les étapes et commandes exactes pour votre configuration.
+---
+
 # Connexion rapide
 
 Répondez à quelques questions et nous générerons un guide de connexion personnalisé avec les étapes et commandes exactes pour votre configuration.
 
 !!! note "Guide simplifié"
-    Cet assistant fournit les extraits clés de la documentation complète pour vous connecter le plus rapidement possible. Pour tous les détails, consultez les guides [Installation](setup.md) et [Tenant](tenant.md).
+    Cet assistant fournit les extraits clés de la documentation complète pour vous connecter le plus rapidement possible. Pour tous les détails, consultez les guides [Setup](setup.md) et [Tenant](tenant.md).
 
 <div id="wizard-container">
 
@@ -12,7 +16,7 @@ Répondez à quelques questions et nous générerons un guide de connexion perso
 <div class="wizard-options">
 <button class="wizard-card" data-question="network" data-value="mainnet-beta">
 <span class="wizard-card-title">Mainnet-Beta</span>
-<span class="wizard-card-desc">Réseau de production pour les validateurs actifs et les opérateurs RPC</span>
+<span class="wizard-card-desc">Réseau de production pour les validateurs et opérateurs RPC actifs</span>
 </button>
 <button class="wizard-card" data-question="network" data-value="testnet">
 <span class="wizard-card-title">Testnet</span>
@@ -22,7 +26,7 @@ Répondez à quelques questions et nous générerons un guide de connexion perso
 </div>
 
 <div id="wiz-q-os" class="wizard-question wizard-hidden">
-<h3>Quel système d'exploitation votre serveur utilise-t-il ?</h3>
+<h3>Quel système d'exploitation votre serveur exécute-t-il ?</h3>
 <div class="wizard-options">
 <button class="wizard-card" data-question="os" data-value="deb">
 <span class="wizard-card-title">Ubuntu / Debian</span>
@@ -47,7 +51,7 @@ Répondez à quelques questions et nous générerons un guide de connexion perso
 <span class="wizard-card-desc">RPCs et nœuds de stockage sur Shelby (Testnet uniquement)</span>
 </button>
 <button class="wizard-card" data-question="tenant" data-value="new-tenant">
-<span class="wizard-card-title">Nouveau Tenant</span>
+<span class="wizard-card-title">Nouveau tenant</span>
 <span class="wizard-card-desc">Autres écosystèmes</span>
 </button>
 </div>
@@ -72,7 +76,7 @@ Répondez à quelques questions et nous générerons un guide de connexion perso
 <div class="wizard-options">
 <button class="wizard-card" data-question="usertype" data-value="validator">
 <span class="wizard-card-title">Validateur</span>
-<span class="wizard-card-desc">Validateur Solana avec planification de leader et paire de clés d'identité</span>
+<span class="wizard-card-desc">Validateur Solana planifié en tant que leader avec une paire de clés d'identité</span>
 </button>
 <button class="wizard-card" data-question="usertype" data-value="rpc">
 <span class="wizard-card-title">Non-validateur (RPC)</span>
@@ -86,11 +90,11 @@ Répondez à quelques questions et nous générerons un guide de connexion perso
 <div class="wizard-options">
 <button class="wizard-card" data-question="connection" data-value="unicast">
 <span class="wizard-card-title">Unicast (IBRL)</span>
-<span class="wizard-card-desc">Connexion point-à-point standard</span>
+<span class="wizard-card-desc">Connexion point à point standard</span>
 </button>
 <button class="wizard-card" data-question="connection" data-value="multicast">
 <span class="wizard-card-title">Multicast</span>
-<span class="wizard-card-desc">Livraison de paquets un-vers-plusieurs (éditeur/abonné)</span>
+<span class="wizard-card-desc">Distribution de paquets un-vers-plusieurs (éditeur/abonné)</span>
 </button>
 <button class="wizard-card" data-question="connection" data-value="both">
 <span class="wizard-card-title">Les deux</span>

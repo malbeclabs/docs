@@ -1,3 +1,7 @@
+---
+description: Deploy and configure geoProbe agents that perform the latency measurements behind the DoubleZero Geolocation service.
+---
+
 # Geoprobe Deployment
 
 This guide covers deploying and configuring **geoProbe agents** — the servers that perform latency measurements for the DoubleZero [Geolocation](geolocation.md) service.

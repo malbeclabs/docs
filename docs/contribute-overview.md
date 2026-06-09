@@ -1,3 +1,7 @@
+---
+description: Overview and onboarding checklist for becoming a DoubleZero network contributor.
+---
+
 # Contributor Documentation
 
 !!! info "Terminology"

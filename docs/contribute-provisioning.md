@@ -1,3 +1,7 @@
+---
+description: Step-by-step guide to provisioning a DoubleZero Device (DZD) and registering its interfaces and roles on-chain.
+---
+
 # Device Provisioning Guide
 
 This guide walks you through provisioning a DoubleZero Device (DZD) from start to finish. Each phase matches the [Onboarding Checklist](contribute-overview.md#onboarding-checklist).

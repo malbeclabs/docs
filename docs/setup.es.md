@@ -1,14 +1,18 @@
+---
+description: Guía paso a paso para instalar doublezerod y conectar tu validador o nodo a la red DoubleZero.
+---
+
 # Cómo configurar DoubleZero
 
 !!! info "Terminología"
-    ¿Nuevo en DoubleZero? Consulta el [Glosario](glossary.md) para las definiciones de términos como [doublezerod](glossary.md#doublezerod), [IBRL](glossary.md#ibrl-increase-bandwidth-reduce-latency) y [DZD](glossary.md#dzd-doublezero-device).
+    ¿Nuevo en DoubleZero? Consulta el [Glosario](glossary.md) para definiciones de términos como [doublezerod](glossary.md#doublezerod), [IBRL](glossary.md#ibrl-increase-bandwidth-reduce-latency) y [DZD](glossary.md#dzd-doublezero-device).
 
 !!! warning "Al conectarme a DoubleZero acepto los [Términos de Servicio de DoubleZero](https://doublezero.xyz/terms-protocol)"
 
 
 ## Requisitos previos
 !!! warning inline end
-    Para validadores: DoubleZero debe instalarse directamente en el host de su validador, no en un contenedor.
+    Para validadores: DoubleZero debe instalarse directamente en el host de tu validador, no en un contenedor.
 - Conectividad a Internet con una dirección IP pública (sin NAT)
 - Servidor x86_64
 - SO compatible: Ubuntu 22.04+ o Debian 11+, o Rocky Linux / RHEL 9+
@@ -17,11 +21,11 @@
 
 ## Conexión a DoubleZero
 
-DoubleZero Testnet y DoubleZero Mainnet-Beta son redes físicamente distintas. Por favor, elija la red apropiada durante la instalación.
+DoubleZero Testnet y DoubleZero Mainnet-Beta son redes físicamente distintas. Por favor, elige la red apropiada durante la instalación.
 
-Al incorporarse a DoubleZero establecerá una **identidad DoubleZero**, representada por una clave pública llamada **DoubleZero ID**. Esta clave es parte de cómo DoubleZero reconoce su máquina.
+Al incorporarte a DoubleZero establecerás una **identidad DoubleZero**, representada por una clave pública llamada **DoubleZero ID**. Esta clave es parte de cómo DoubleZero reconoce tu máquina.
 
-## 1. Instalar los paquetes de DoubleZero
+## 1. Instalar paquetes de DoubleZero
 
 <div data-wizard-step="install-version-info" markdown>
 
@@ -32,13 +36,13 @@ Al incorporarse a DoubleZero establecerá una **identidad DoubleZero**, represen
 
 </div>
 
-Siga estos pasos según su sistema operativo:
+Sigue estos pasos según tu sistema operativo:
 
 ### Ubuntu / Debian
 
 <div data-wizard-step="install-deb-mainnet-beta" markdown>
 
-La implementación recomendada actualmente para Mainnet-Beta es:
+El despliegue recomendado actualmente para Mainnet-Beta es:
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
 sudo apt-get install doublezero
@@ -48,7 +52,7 @@ sudo apt-get install doublezero
 
 <div data-wizard-step="install-deb-testnet" markdown>
 
-La implementación recomendada actualmente para Testnet es:
+El despliegue recomendado actualmente para Testnet es:
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero-testnet/setup.deb.sh | sudo -E bash
 sudo apt-get install doublezero
@@ -60,7 +64,7 @@ sudo apt-get install doublezero
 
 <div data-wizard-step="install-rpm-mainnet-beta" markdown>
 
-La implementación recomendada actualmente para Mainnet-Beta es:
+El despliegue recomendado actualmente para Mainnet-Beta es:
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh | sudo -E bash
 sudo yum install doublezero
@@ -70,7 +74,7 @@ sudo yum install doublezero
 
 <div data-wizard-step="install-rpm-testnet" markdown>
 
-La implementación recomendada actualmente para Testnet es:
+El despliegue recomendado actualmente para Testnet es:
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero-testnet/setup.rpm.sh | sudo -E bash
 sudo yum install doublezero
@@ -81,24 +85,24 @@ sudo yum install doublezero
 <div data-wizard-step="install-network-warning" markdown>
 
 ??? info "Solo para usuarios existentes: Cambiar un paquete de *Testnet a Mainnet-Beta*, o de *Mainnet-Beta a Testnet*"
-    Cuando instala desde uno de los repositorios de paquetes anteriores, es específico para DoubleZero **Testnet** o **DoubleZero Mainnet Beta**. Si cambia de red en algún momento, necesitará eliminar los repositorios de paquetes previamente instalados y actualizar al repositorio de destino.
+    Cuando instalas desde uno de los repositorios de paquetes anteriores, es específico para DoubleZero **Testnet** o **DoubleZero Mainnet Beta**. Si cambias de red en algún momento, necesitarás eliminar los repositorios de paquetes previamente instalados y actualizar al repositorio destino.
 
-    Este ejemplo le guiará a través de la migración de Testnet a Mainnet-Beta
+    Este ejemplo recorrerá la migración de Testnet a Mainnet-Beta
 
     Los mismos pasos pueden completarse para pasar de Mainnet-Beta a Testnet, reemplazando el paso 3 con el comando de instalación para Testnet indicado anteriormente.
 
 
-    1. Encontrar los archivos de repositorio antiguos
+    1. Encontrar archivos de repositorio antiguos
 
-        Primero, localice cualquier archivo de configuración de repositorio de DoubleZero existente en su sistema:
+        Primero, localiza cualquier archivo de configuración de repositorio de DoubleZero existente en tu sistema:
 
         `find /etc/apt | grep doublezero`
 
         `find /usr/share/keyrings/ | grep doublezero`
 
-    2. Eliminar los archivos de repositorio antiguos
+    2. Eliminar archivos de repositorio antiguos
 
-        Elimine los archivos de repositorio antiguos encontrados en el paso anterior, por ejemplo
+        Elimina los archivos de repositorio antiguos encontrados en el paso anterior, por ejemplo
 
         ```
         sudo rm /etc/apt/sources.list.d/malbeclabs-doublezero.list
@@ -106,7 +110,7 @@ sudo yum install doublezero
         ```
     3. Instalar desde el nuevo repositorio
 
-        Agregue el nuevo repositorio de Mainnet-Beta e instale el paquete más reciente:
+        Añade el nuevo repositorio de Mainnet-Beta e instala el paquete más reciente:
 
         ```
         curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
@@ -120,7 +124,7 @@ sudo yum install doublezero
 
 #### Verificar el estado de `doublezerod`
 
-Después de instalar el paquete, se instala, activa e inicia una nueva unidad de systemd. Para ver el estado puede ejecutar:
+Después de instalar el paquete, se instala, activa e inicia una nueva unidad de systemd. Para ver el estado puedes ejecutar:
 ```
 sudo systemctl status doublezerod
 ```
@@ -129,7 +133,7 @@ sudo systemctl status doublezerod
 
 ### Configurar el firewall para GRE y BGP
 
-DoubleZero utiliza túneles GRE (protocolo IP 47) y enrutamiento BGP (tcp/179 en direcciones link-local). Asegúrese de que su firewall permita estos protocolos:
+DoubleZero utiliza túneles GRE (protocolo IP 47) y enrutamiento BGP (tcp/179 en direcciones link-local). Asegúrate de que tu firewall permita estos protocolos:
 
 Permitir GRE y BGP a través de iptables:
 
@@ -156,16 +160,16 @@ sudo ufw allow out on doublezero0 from 169.254.0.0/16 to 169.254.0.0/16 port 179
 
 </div>
 
-## 2. Crear una nueva identidad de DoubleZero
+## 2. Crear una nueva identidad DoubleZero
 
-Cree una identidad de DoubleZero en su servidor con el siguiente comando:
+Crea una identidad DoubleZero en tu servidor con el siguiente comando:
 
 ```bash
 doublezero keygen
 ```
 
 !!! info
-    Si tiene un ID existente que desea utilizar, puede seguir estos pasos opcionales.
+    Si tienes un ID existente que deseas utilizar, puedes seguir estos pasos opcionales.
 
     Crear el directorio de configuración de doublezero
 
@@ -173,14 +177,14 @@ doublezero keygen
     mkdir -p ~/.config/doublezero
     ```
 
-    Copie o vincule el `id.json` que desea usar con DoubleZero al directorio de configuración de doublezero.
+    Copia o enlaza el `id.json` que deseas usar con DoubleZero al directorio de configuración de doublezero.
 
     ```
     sudo cp </path/to/id.json> ~/.config/doublezero/
     ```
-## 3. Obtener la identidad de DoubleZero del servidor
+## 3. Obtener la identidad DoubleZero del servidor
 
-Revise su identidad de DoubleZero. Esta identidad se utilizará para crear la conexión entre su máquina y DoubleZero
+Revisa tu identidad DoubleZero. Esta identidad se utilizará para crear la conexión entre tu máquina y DoubleZero
 
 ```bash
 doublezero address
@@ -191,15 +195,15 @@ doublezero address
 YourDoubleZeroAddress11111111111111111111111111111
 ```
 
-## 4. Verificar que doublezerod ha descubierto los dispositivos DZ
+## 4. Verificar que doublezerod ha descubierto dispositivos DZ
 
-Antes de conectarse, asegúrese de que `doublezerod` haya descubierto y hecho ping a cada uno de los switches DZ de testnet disponibles:
+Antes de conectar, asegúrate de que `doublezerod` haya descubierto y hecho ping a cada uno de los switches DZ de testnet disponibles:
 
 ```
 doublezero latency
 ```
 
-Salida de ejemplo:
+Ejemplo de salida:
 
 ```
 $ doublezero latency
@@ -213,19 +217,19 @@ $ doublezero latency
  9uhh2D5c14WJjbwgM7BudztdoPZYCjbvqcTPgEKtTMZE | sg1-dz01  | 180.87.102.98  | 176.66ms | 176.76ms | 176.72ms | true
 ```
 
-Si no se devuelven dispositivos en la salida, espere 10-20 segundos y vuelva a intentar.
+Si no se devuelven dispositivos en la salida, espera 10-20 segundos y vuelve a intentar.
 
 ## 5. Desconectarse de DoubleZero
 
-En las siguientes secciones configurará su entorno de DoubleZero. Para asegurar el éxito, desconecte la sesión actual. Esto evitará problemas relacionados con múltiples túneles abiertos en su máquina.
+En las siguientes secciones configurarás tu entorno DoubleZero. Para garantizar el éxito, desconecta la sesión actual. Esto evitará problemas relacionados con múltiples túneles abiertos en tu máquina.
 
-Verificar
+Verifica
 
 ```bash
 doublezero status
 ```
 
-si está `up` ejecute:
+si está `up` ejecuta:
 
 ```bash
 doublezero disconnect
@@ -233,14 +237,14 @@ doublezero disconnect
 
 ### Siguiente paso: Tenant
 
-La conexión a DoubleZero variará según su caso de uso. En DoubleZero, los Tenants son grupos que tienen perfiles de usuario similares. Los ejemplos incluyen Blockchains, Capas de Transferencia de Datos, etc.
+La conexión a DoubleZero variará según tu caso de uso. En DoubleZero, los Tenants son grupos que tienen perfiles de usuario similares. Los ejemplos incluyen Blockchains, Capas de Transferencia de Datos, etc.
 
-### [Proceda a elegir su tenant aquí](tenant.md)
+### [Continúa para elegir tu tenant aquí](tenant.md)
 
 
 # Opcional: Habilitar métricas de Prometheus
 
-Los operadores familiarizados con las métricas de Prometheus pueden querer habilitarlas para el monitoreo de DoubleZero. Esto proporciona visibilidad sobre el rendimiento del cliente de DoubleZero, el estado de la conexión y la salud operativa.
+Los operadores familiarizados con métricas de Prometheus pueden querer habilitarlas para el monitoreo de DoubleZero. Esto proporciona visibilidad sobre el rendimiento del cliente DoubleZero, el estado de la conexión y la salud operativa.
 
 ## Qué métricas están disponibles
 
@@ -252,20 +256,20 @@ DoubleZero expone varias métricas clave:
 
 ## Habilitar métricas de Prometheus
 
-Para habilitar las métricas de Prometheus en el cliente de DoubleZero siga estos pasos:
+Para habilitar las métricas de Prometheus en el cliente de DoubleZero sigue estos pasos:
 
 ### 1. Modificar el comando de inicio del servicio systemd de doublezerod
 
-Cree o edite la configuración de sobreescritura de systemd:
+Crea o edita la configuración de override de systemd:
 
 ```bash
 sudo mkdir -p /etc/systemd/system/doublezerod.service.d/
 sudo nano /etc/systemd/system/doublezerod.service.d/override.conf
 ```
 
-Reemplace con esta configuración:
+Reemplaza con esta configuración:
 
-Tenga en cuenta que el flag `-env` debe apuntar a `testnet` o `mainnet-beta` dependiendo de qué red desea recopilar datos. En el bloque de ejemplo se usa `testnet`. Puede reemplazarlo por `mainnet-beta` si es necesario.
+Ten en cuenta que el flag `-env` debe apuntar a `testnet` o `mainnet-beta` dependiendo de qué red deseas recopilar datos. En el bloque de ejemplo se usa `testnet`. Puedes cambiarlo por `mainnet-beta` si es necesario.
 
 ```ini
 [Service]
@@ -281,9 +285,9 @@ sudo systemctl restart doublezerod
 sudo systemctl status doublezerod
 ```
 
-### 3. Verificar que las métricas estén disponibles
+### 3. Verificar que las métricas están disponibles
 
-Compruebe que el endpoint de métricas esté respondiendo:
+Prueba que el endpoint de métricas está respondiendo:
 
 ```bash
 curl -s localhost:2113/metrics | grep doublezero
@@ -310,15 +314,15 @@ Si las métricas no aparecen:
 5. **Verificar el puerto**: `netstat -tlnp | grep 2113`
 
 
-## Configurar el servidor de Prometheus
+## Configurar el servidor Prometheus
 
 La configuración y la seguridad están fuera del alcance de esta documentación.
-Grafana es una excelente opción para la visualización y tiene documentación disponible [aquí](https://grafana.com/docs/alloy/latest/collect/prometheus-metrics/) que detalla cómo recopilar métricas de Prometheus.
+Grafana es una excelente opción para visualización y tiene documentación disponible [aquí](https://grafana.com/docs/alloy/latest/collect/prometheus-metrics/) que detalla cómo recopilar métricas de Prometheus.
 
 ## Dashboard de Grafana (Opcional)
 
-Para la visualización, puede crear un dashboard de Grafana utilizando las métricas de DoubleZero. Los paneles comunes incluyen:
+Para visualización, puedes crear un dashboard de Grafana usando las métricas de DoubleZero. Los paneles comunes incluyen:
 - Estado de la sesión a lo largo del tiempo
 - Información de compilación
 - Tendencias de latencia de conexión
-- Monitoreo de tasas de error
+- Monitoreo de tasa de errores

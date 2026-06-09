@@ -1,9 +1,13 @@
+---
+description: Rispondi a poche domande per generare una guida di connessione DoubleZero personalizzata con i passaggi e i comandi esatti per la tua configurazione.
+---
+
 # Connessione Rapida
 
-Rispondi a qualche domanda e genereremo una guida di connessione personalizzata con i passaggi e i comandi esatti per la tua configurazione.
+Rispondi a poche domande e genereremo una guida di connessione personalizzata con i passaggi e i comandi esatti per la tua configurazione.
 
 !!! note "Guida Semplificata"
-    Questa procedura guidata fornisce i frammenti chiave dalla documentazione completa per consentirti di connetterti il più rapidamente possibile. Per i dettagli completi, consulta le guide [Setup](setup.md) e [Tenant](tenant.md).
+    Questa procedura guidata fornisce i frammenti chiave dalla documentazione completa per consentirti di collegarti il più rapidamente possibile. Per tutti i dettagli, consulta le guide [Setup](setup.md) e [Tenant](tenant.md).
 
 <div id="wizard-container">
 
@@ -22,7 +26,7 @@ Rispondi a qualche domanda e genereremo una guida di connessione personalizzata 
 </div>
 
 <div id="wiz-q-os" class="wizard-question wizard-hidden">
-<h3>Quale sistema operativo utilizza il tuo server?</h3>
+<h3>Quale sistema operativo è in esecuzione sul tuo server?</h3>
 <div class="wizard-options">
 <button class="wizard-card" data-question="os" data-value="deb">
 <span class="wizard-card-title">Ubuntu / Debian</span>
@@ -44,7 +48,7 @@ Rispondi a qualche domanda e genereremo una guida di connessione personalizzata 
 </button>
 <button class="wizard-card" data-question="tenant" data-value="shelby" title="Solo Testnet">
 <span class="wizard-card-title">Shelby</span>
-<span class="wizard-card-desc">RPC e nodi di archiviazione su Shelby (solo Testnet)</span>
+<span class="wizard-card-desc">RPC e Nodi di Storage su Shelby (solo Testnet)</span>
 </button>
 <button class="wizard-card" data-question="tenant" data-value="new-tenant">
 <span class="wizard-card-title">Nuovo Tenant</span>
@@ -72,7 +76,7 @@ Rispondi a qualche domanda e genereremo una guida di connessione personalizzata 
 <div class="wizard-options">
 <button class="wizard-card" data-question="usertype" data-value="validator">
 <span class="wizard-card-title">Validatore</span>
-<span class="wizard-card-desc">Validatore Solana con pianificazione leader e keypair di identità</span>
+<span class="wizard-card-desc">Validatore Solana con schedule di leader e keypair di identità</span>
 </button>
 <button class="wizard-card" data-question="usertype" data-value="rpc">
 <span class="wizard-card-title">Non-validatore (RPC)</span>
