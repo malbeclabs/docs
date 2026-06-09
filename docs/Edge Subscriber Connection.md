@@ -1,3 +1,7 @@
+---
+description: Set up an edge subscriber to receive DoubleZero shred feeds, including client setup and firewall rules for GRE, BGP, PIM, and shred traffic.
+---
+
 # Edge Subscriber Connection
 !!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Use](https://doublezero.xyz/terms-protocol). Please note that the data is for your internal purposes only and may not be retransmitted (see Section 2(e))."
 

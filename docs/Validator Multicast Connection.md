@@ -1,3 +1,7 @@
+---
+description: Configure a connected validator to publish leader shreds to the DoubleZero multicast edge feed.
+---
+
 # Validator Multicast Connection
 !!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Service](https://doublezero.xyz/terms-protocol)"
 

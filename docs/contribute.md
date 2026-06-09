@@ -1,3 +1,7 @@
+---
+description: Hardware, bandwidth, and connectivity requirements and architecture for contributing capacity to the DoubleZero network.
+---
+
 # Contributors Requirements & Architecture
 
 ## Summary
