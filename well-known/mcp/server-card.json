@@ -1,0 +1,15 @@
+{
+  "serverInfo": {
+    "name": "DoubleZero Data",
+    "version": "1.0.0"
+  },
+  "transport": {
+    "type": "streamable-http",
+    "endpoint": "https://data.malbeclabs.com/mcp"
+  },
+  "capabilities": {
+    "tools": true,
+    "resources": false,
+    "prompts": false
+  }
+}
