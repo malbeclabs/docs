@@ -114,3 +114,4 @@ extra_javascript:
   - path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 hooks:
   - hooks/emit_markdown.py
+  - hooks/emit_well_known.py
