@@ -69,6 +69,7 @@ nav:
         - Validator Rewards: Validator Rewards.md
         - Other Multicast Connection: Other Multicast Connection.md
         - Edge Subscriber Connection: Edge Subscriber Connection.md
+        - Edge Connection: Edge Market Data Connection.md
         - Troubleshooting: troubleshooting.md
       - Shelby:
         - Shelby Connection: Shelby Permissioned Connection.md
