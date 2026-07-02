@@ -1,17 +1,17 @@
 ---
-description: Esegui doublezero-edge-connect per ri-inoltrare gli shred di Solana verso una porta UDP locale e consumare dati di mercato Edge normalizzati tramite un WebSocket locale.
+description: Esegui doublezero-edge-connect per ri-inoltrare gli shred di Solana a una porta UDP locale e consumare dati di mercato Edge normalizzati tramite un WebSocket locale.
 ---
 
 # Connessione Edge
 
-!!! warning "Connettendomi a DoubleZero accetto i [Termini di utilizzo di DoubleZero](https://doublezero.xyz/terms-protocol). I dati sono esclusivamente per uso interno e non possono essere ritrasmessi (vedi Sezione 2(e))."
+!!! warning "Connettendomi a DoubleZero accetto i [Termini d'uso di DoubleZero](https://doublezero.xyz/terms-protocol). I dati sono esclusivamente per uso interno e non possono essere ritrasmessi (vedi Sezione 2(e))."
 
-`doublezero-edge-connect` è un bridge che si connette al **multicast binario di DoubleZero Edge** e lo ri-serve localmente come due feed:
+`doublezero-edge-connect` è un bridge che si unisce al **multicast binario di DoubleZero Edge** e lo ri-serve localmente come due feed:
 
-1. **Inoltro degli shred Solana** — shred deduplicati (opzionalmente con verifica della firma) distribuiti a una o più destinazioni UDP locali, pronti per il tuo validator o RPC.
-2. **Dati di mercato normalizzati** — feed dei venue Edge decodificati, corretti in precisione e ri-serviti come singolo WebSocket JSON su `ws://host:8081`.
+1. **Inoltro shred di Solana** — shred deduplicati (con verifica opzionale della firma) distribuiti a una o più destinazioni UDP locali, pronti per il tuo validator o RPC.
+2. **Dati di mercato normalizzati** — feed dei venue Edge decodificati, con precisione corretta, e ri-serviti come un singolo WebSocket JSON su `ws://host:8081`.
 
-Entrambi vengono eseguiti dallo stesso container e dalla stessa installazione con un singolo comando. Abilita i feed consentiti dalla tua autorizzazione onchain.
+Entrambi vengono eseguiti dallo stesso container e dalla stessa installazione a riga singola. Abilita qualsiasi feed concesso dalla tua autorizzazione onchain.
 
 ```
                                         ┌─ UDP datagrams ──▶  validator / RPC
@@ -24,16 +24,16 @@ DZ Edge multicast ──▶  doublezero-edge-connect ─┤
 
 ## Requisiti
 
-- Host **Linux/amd64** con un indirizzo IPv4 pubblico autorizzato onchain per l'ambiente target.
-- **Docker** (il comando one-liner lo installa se mancante).
-- **Connettività GRE** — consenti il protocollo IP 47 presso il tuo cloud provider; su AWS disabilita il controllo source/dest dell'ENI.
-- Un **secret di accesso DoubleZero**: un token base64 con prefisso `DZ_` oppure un percorso a un file keypair, ottenuto dal processo di [onboarding DoubleZero](setup.md).
+- Host **Linux/amd64** con un indirizzo IPv4 pubblico autorizzato onchain per l'ambiente di destinazione.
+- **Docker** (l'installazione a riga singola lo installa se mancante).
+- **Connettività GRE** — consentire il protocollo IP 47 presso il tuo cloud provider; su AWS disabilitare il controllo source/dest dell'ENI.
+- Un **secret di accesso DoubleZero**: un token base64 con prefisso `DZ_` o un percorso a un file keypair, ottenuto dal processo di [onboarding DoubleZero](setup.md).
 
 ---
 
 ## Passo 1: Installazione ed Esecuzione
 
-Un singolo comando prepara l'host e avvia il container bridge. Si connette alla rete DoubleZero e avvia ogni feed consentito dalla tua autorizzazione — inoltro shred e/o il WebSocket per i dati di mercato sulla porta `:8081`:
+Un singolo comando prepara l'host e avvia il container bridge. Si unisce alla rete DoubleZero e avvia ogni feed concesso dalla tua autorizzazione — inoltro shred e/o il WebSocket per dati di mercato sulla porta `:8081`:
 
 === "Mainnet-beta"
 
@@ -56,19 +56,19 @@ Un singolo comando prepara l'host e avvia il container bridge. Si connette alla 
 
 Cosa fa lo script:
 
-1. Verifica che l'host sia Linux/amd64, assicura che Docker sia presente (propone l'installazione se assente).
-2. Prepara il kernel dell'host per il tunnel GRE: carica `tun`/`ip_gre`, aumenta `net.core.rmem_max`, avvisa riguardo alle regole del firewall e del cloud provider.
-3. Carica il tuo secret di accesso (richiesto una sola volta se `DZ_SECRET` non è impostato).
-4. Esegue il container bridge (`--network host`, `NET_ADMIN`/`NET_RAW`, `/dev/net/tun`) e lancia `doublezero connect multicast`.
+1. Verifica che l'host sia Linux/amd64.
+2. Carica il tuo secret di accesso (richiesto una volta se `DZ_SECRET` non è impostato) e **verifica il pass di accesso onchain prima di installare qualsiasi cosa** — un controllo puramente lato host contro il JSON-RPC pubblico del ledger. Se il pass è associato a un IP diverso da quello dell'host, interrompe l'esecuzione (quando l'IP è stato fornito esplicitamente tramite `DZ_CLIENT_IP`) o avvisa e continua (quando l'IP è stato solo auto-rilevato, il che può essere errato dietro NAT), lasciando `doublezero connect` come verifica effettiva.
+3. Assicura che Docker sia presente (propone di installarlo) e prepara il kernel dell'host per il tunnel GRE: carica `tun`/`ip_gre`, aumenta `net.core.rmem_max`, avvisa riguardo firewall e regole del cloud provider.
+4. Esegue il container bridge (`--network host`, `NET_ADMIN`/`NET_RAW`, `/dev/net/tun`) ed esegue `doublezero connect multicast`.
 
 !!! tip "Installazione non interattiva"
-    Imposta `DZ_SECRET=DZ_…` prima del pipe per eseguire in modo completamente automatico — nessun prompt.
+    Imposta `DZ_SECRET=DZ_…` prima della pipe per eseguire in modo completamente automatico — nessun prompt.
 
 ---
 
 ## Passo 2: Configurazione
 
-Tutta la configurazione avviene tramite **variabili d'ambiente impostate prima del pipe**. Non esiste un file di configurazione.
+Tutta la configurazione avviene tramite **variabili d'ambiente impostate prima della pipe**. Non esiste un file di configurazione.
 
 ```bash
 DZ_SECRET=DZ_… VAR=value curl -fsSL https://get.doublezero.xyz/connect | bash
@@ -77,58 +77,63 @@ DZ_SECRET=DZ_… VAR=value curl -fsSL https://get.doublezero.xyz/connect | bash
 ### Variabili dell'installer
 
 | Variabile | Default | Scopo |
-|-----------|---------|-------|
-| `DZ_SECRET` | *(richiesto interattivamente)* | Token base64 con prefisso `DZ_` **oppure** percorso a un file keypair. Un token viene iniettato nel container e non viene mai scritto su disco; un file viene montato in sola lettura tramite bind mount. |
+|----------|---------|---------|
+| `DZ_SECRET` | *(richiesto)* | Token base64 con prefisso `DZ_` **oppure** percorso a un file keypair. Un token viene iniettato nel container e non viene mai scritto su disco; un file viene montato in bind read-only. |
 | `DZ_ENV` | per script | `mainnet-beta` \| `testnet` \| `devnet`. |
-| `DZ_IMAGE` | per script | Sovrascrive l'immagine del container. |
+| `DZ_IMAGE` | per script | Override dell'immagine del container. |
 | `DZ_NAME` | `doublezero-edge-connect` | Nome del container. |
-| `DZ_FEEDS` | *(tutti)* | Venue separati da virgola per restringere l'ingestione dei dati di mercato (es. `VenueA,VenueB`). Non influisce sull'inoltro degli shred Solana. |
+| `DZ_FEEDS` | *(tutti)* | Venue separati da virgola per restringere l'ingestione dei dati di mercato (es. `VenueA,VenueB`). Non influisce sull'inoltro degli shred di Solana. |
+| `DZ_CLIENT_IP` | *(auto-rilevato)* | Override dell'IPv4 pubblico utilizzato dal pre-check del pass di accesso onchain. Impostalo quando l'auto-rilevamento è errato (es. dietro NAT) così il pre-check può confermare anziché solo avvisare. |
+| `DZ_LEDGER_RPC_URL` | per env | Override dell'endpoint RPC del ledger DoubleZero utilizzato dal pre-check. |
 | `DZ_ASSUME_YES` | `0` | Salta i prompt di conferma (es. il prompt di installazione Docker). |
 | `DZ_GHCR_TOKEN` | — | **Solo Devnet** — un token GHCR con `read:packages` (l'immagine devnet è privata). |
 | `DZ_GHCR_USER` | `malbeclabs` | **Solo Devnet** — username GHCR per il login. |
 
 ### Variabili del bridge
 
-L'installer inoltra **qualsiasi** variabile bridge non vuota direttamente al container. Le più comuni:
+L'installer inoltra **qualsiasi variabile non vuota** del bridge direttamente al container. Le più comuni:
 
 | Variabile | Default | Scopo |
-|-----------|---------|-------|
-| `DZ_IFACE` | `doublezero1` | Interfaccia di rete su cui mettersi in ascolto. |
-| `DZ_RECV_BUF` | — | Override del buffer di ricezione UDP (in byte). |
+|----------|---------|---------|
+| `DZ_IFACE` | `doublezero1` | Interfaccia di rete su cui ascoltare. |
+| `DZ_RECV_BUF` | `8388608` | Override del buffer di ricezione UDP (byte; default 8 MiB). |
 | `METRICS_BIND` | *(vuoto / disattivato)* | Abilita l'endpoint Prometheus `/metrics` (es. `127.0.0.1:9090`). |
-| `RUST_LOG` | `info` | Livello di log (`debug`, `warn`, ecc.). |
-| `DZ_SHRED_FORWARD` | — | Destinazione/i UDP locale/i per gli shred inoltrati — vedi [Inoltro Shred Solana](#inoltro-shred-solana). |
-| `WS_BIND` | `0.0.0.0:8081` | Indirizzo di bind del WebSocket per i dati di mercato — vedi [WebSocket Dati di Mercato](#websocket-dati-di-mercato). |
-| `WS_MAX_CLIENTS` | `64` | Numero massimo di client WebSocket simultanei. |
-| `WS_INPUT_COINS` | *(vuoto / disattivato)* | Abilita il backstop WebSocket pubblico per i simboli elencati (es. `BTC,ETH`). |
+| `RUST_LOG` | `warn,doublezero_edge_connect=info` | Livello di log (`debug`, `warn`, ecc.). |
+| `DZ_SHRED_FORWARD` | — | Destinazione/i UDP locale/i per gli shred inoltrati — vedi [Inoltro Shred di Solana](#inoltro-shred-di-solana). |
+| `WS_BIND` | `0.0.0.0:8081` | Indirizzo di bind del WebSocket per dati di mercato — vedi [WebSocket Dati di Mercato](#websocket-dati-di-mercato). |
+| `WS_MAX_CLIENTS` | `64` | Massimo numero di client WebSocket concorrenti. |
+| `WS_INPUT_COINS` | *(vuoto / disattivato)* | Abilita il backstop WebSocket pubblico di Hyperliquid per i simboli listati (es. `BTC,ETH`) — vedi [Sorgenti di input](#sorgenti-di-input-e-backstop-websocket). |
+| `WS_INPUT_URL` | `wss://api.hyperliquid.xyz/ws` | URL del WebSocket pubblico di Hyperliquid per il backstop. |
+| `PHOENIX_WS_INPUT_MARKETS` | *(vuoto / disattivato)* | Abilita il backstop WebSocket pubblico di Phoenix (solo trade) per i ticker listati (es. `SOL,BTC`). |
+| `PHOENIX_WS_INPUT_URL` | `wss://perp-api.phoenix.trade/v1/ws` | URL del WebSocket pubblico di Phoenix per il backstop. |
 
 **Esempi:**
 
 ```bash
-# Inoltra gli shred a un validator/RPC locale:
+# Inoltra shred a un validator/RPC locale:
 DZ_SECRET=DZ_… DZ_SHRED_FORWARD=127.0.0.1:20000 \
   curl -fsSL https://get.doublezero.xyz/connect | bash
 
 # Non interattivo, testnet:
 DZ_SECRET=DZ_… curl -fsSL https://get.doublezero.xyz/connect-testnet | bash
 
-# Restringi i dati di mercato a venue specifici, logging verboso, porta WS non predefinita:
+# Restringi i dati di mercato a venue specifici, logging verbose, porta WS non predefinita:
 DZ_SECRET=DZ_… DZ_FEEDS=VenueA,VenueB RUST_LOG=debug WS_BIND=0.0.0.0:9000 \
   curl -fsSL https://get.doublezero.xyz/connect | bash
 
-# Abilita le metriche e un backstop WS pubblico:
+# Abilita metriche e un backstop WS pubblico:
 DZ_SECRET=DZ_… METRICS_BIND=127.0.0.1:9090 WS_INPUT_COINS=BTC,ETH \
   curl -fsSL https://get.doublezero.xyz/connect | bash
 ```
 
 !!! note
-    Poiché l'installer inoltra solo valori **non vuoti**, non è possibile passare un override vuoto (es. `WS_BIND=""` per disabilitare il sink WebSocket) tramite il one-liner. Usa un `docker run` scritto manualmente per questo — vedi [Self-hosting](#avanzato-self-hosting).
+    L'installer inoltra solo valori **non vuoti**, con un'eccezione: `WS_BIND` viene inoltrato anche se impostato vuoto, quindi `WS_BIND=""` **disabilita** effettivamente il sink WebSocket tramite la riga singola. Per qualsiasi altra variabile, un override vuoto non può essere passato tramite la pipe — usa un `docker run` scritto manualmente per questo (vedi [Self-hosting](#avanzato-self-hosting)).
 
 ---
 
-## Inoltro Shred Solana
+## Inoltro Shred di Solana
 
-Il bridge si unisce ai gruppi multicast `edge-solana-*` per gli shred e inoltra ogni datagramma a una o più destinazioni UDP locali — alimentando direttamente il tuo validator o RPC dalla rete Edge. Si attiva automaticamente al discovery quando quei gruppi sono presenti nella tua autorizzazione.
+Il bridge si unisce ai gruppi multicast `edge-solana-*` per gli shred e distribuisce ogni datagramma a una o più destinazioni UDP locali — alimentando il tuo validator o RPC direttamente dalla rete Edge. Si attiva automaticamente al discovery quando quei gruppi sono presenti nella tua autorizzazione.
 
 ```bash
 # Default (solo dedup, inoltro alla porta locale 20000):
@@ -142,10 +147,11 @@ DZ_SHRED_DEDUP_MODE=sigverify \
 ```
 
 | Variabile | Default | Scopo |
-|-----------|---------|-------|
+|----------|---------|---------|
 | `DZ_SHRED_FORWARD` | `127.0.0.1:20000` | Destinazione/i per gli shred inoltrati (ripetibile). |
+| `DZ_SHRED_DISABLE` | `0` | Opt-out principale (`--shred-forward-disable`). Mantiene il forwarder disattivato indipendentemente da ciò che concede la tua autorizzazione — impostalo quando nessun consumer locale è in ascolto, per evitare di sprecare CPU inoltrando il firehose di shred nel vuoto. |
 | `DZ_SHRED_DEDUP_MODE` | `dedup` | `dedup` (una copia per shred), `sigverify` (+ verifica ed25519), `none` (tutti i datagrammi). |
-| `DZ_SHRED_RPC_URL` | — | Endpoint Solana RPC; richiesto dalla modalità `sigverify`. |
+| `DZ_SHRED_RPC_URL` | — | Endpoint RPC Solana; richiesto dalla modalità `sigverify`. |
 | `DZ_SHRED_DEDUP_WINDOW_SLOTS` | `512` | Dimensione della finestra di deduplicazione. |
 
 Vedi [Inoltro shred](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/docs/shred-forwarding.md) per la pipeline completa e le avvertenze.
@@ -156,31 +162,34 @@ Vedi [Inoltro shred](https://github.com/malbeclabs/doublezero-edge-connect/blob/
 
 Apri un WebSocket verso `ws://<host>:8081` e leggi frame JSON. Ricevi tutti i venue per cui sei autorizzato. Un messaggio opzionale `subscribe` restringe lo stream a venue e simboli specifici.
 
-Qualsiasi engine che parli WebSocket + JSON può consumarlo con un adapter leggero (~50–100 righe). Il multicast binario, la suddivisione a due porte per venue e l'handshake manifest/precisione restano tutti all'interno del bridge; l'unico contratto su cui il consumer deve implementare è il WebSocket JSON.
+Qualsiasi engine che parli WebSocket + JSON può consumarlo con un adapter sottile (~50–100 righe). Il multicast binario, la suddivisione a due porte per venue e l'handshake manifest/precisione restano tutti all'interno del bridge; l'unico contratto contro cui un consumer programma è il WebSocket JSON.
+
+!!! note
+    Il sink WebSocket si attiva solo quando almeno un feed di dati di mercato è attivo per la tua autorizzazione — un host solo-shred non serve alcun WebSocket. L'attivazione è guidata da un riconciliatore di sottoscrizioni onchain che si aggiorna ogni 30s (`--subscription-refresh-secs`); `--subscription-gating-disable` disabilita il gating.
 
 ### Ciclo di vita della connessione
 
 Ad ogni nuova connessione il bridge:
 
-1. **Riproduce le definizioni degli strumenti correnti** — un messaggio `instrument` per ogni simbolo noto — così il consumer ha le informazioni di precisione prima della prima quotazione.
+1. **Riproduce le definizioni correnti degli strumenti** — un messaggio `instrument` per ogni simbolo noto — così il consumer ha la precisione prima della prima quotazione.
 2. **Riproduce l'ultimo snapshot di profondità** per simbolo (se il feed Market-by-Order è attivo).
-3. **Invia in streaming** messaggi `quote` / `trade` / `midpoint` / `depth` man mano che arrivano, distribuiti a tutti i consumer connessi.
+3. **Trasmette in streaming** messaggi `quote` / `trade` / `midpoint` / `depth` man mano che arrivano, distribuiti a tutti i consumer connessi.
 
 ```
-connect → instrument (×N) → depth (×M, ultimi book) → quote → trade → depth → …
+connect → instrument (×N) → depth (×M, latest books) → quote → trade → depth → …
 ```
 
 ### Tipi di messaggio
 
-Ogni messaggio è un oggetto JSON identificato da un campo `type`:
+Ogni messaggio è un oggetto JSON contrassegnato da un campo `type`:
 
 | `type` | Significato |
-|--------|-------------|
-| `instrument` | Definizione dello strumento/precisione. |
+|--------|---------|
+| `instrument` | Definizione strumento/precisione. |
 | `quote` | Aggiornamento top-of-book (stato completo). |
-| `trade` | Stampa di trade (ultimo scambio). |
-| `midpoint` | Prezzo medio derivato. |
-| `depth` | Snapshot completo della profondità dell'order book. |
+| `trade` | Stampa di trade (ultimo prezzo). |
+| `midpoint` | Prezzo mid derivato. |
+| `depth` | Snapshot completo della profondità del book degli ordini. |
 | `status` | Transizione dello stato di salute del feed a livello di venue. |
 
 I consumer **devono ignorare valori `type` sconosciuti e campi sconosciuti** (compatibilità in avanti).
@@ -191,7 +200,7 @@ I consumer **devono ignorare valori `type` sconosciuti e campi sconosciuti** (co
 {"type":"instrument","venue":"ExampleVenue","symbol":"SOL","price_exponent":-2,"qty_exponent":-2}
 ```
 
-Inviato alla connessione e ogni volta che le definizioni cambiano. `price_exponent` e `qty_exponent` indicano il tick size e lo step di dimensione del venue come potenze di dieci.
+Inviato alla connessione e ogni volta che le definizioni cambiano. `price_exponent` e `qty_exponent` forniscono il tick size e lo step di dimensione del venue come potenze di dieci.
 
 #### `quote`
 
@@ -210,14 +219,14 @@ Inviato alla connessione e ogni volta che le definizioni cambiano. `price_expone
 }
 ```
 
-Ogni `quote` è **stato completo** — un messaggio perso si auto-ripristina con la quotazione successiva, nessuna risincronizzazione necessaria. I quattro timestamp decompongono la latenza end-to-end:
+Ogni `quote` è **stato completo** — un messaggio perso si auto-ripara alla prossima quotazione, nessuna risincronizzazione necessaria. I quattro timestamp decompongono la latenza end-to-end:
 
 ```
-source_ts_ns → kernel_rx_ts_ns → recv_ts_ns → ws_send_ts_ns → (ricezione consumer)
-  book del venue   arrivo sul wire    post-decode    hand-off WS
+source_ts_ns → kernel_rx_ts_ns → recv_ts_ns → ws_send_ts_ns → (consumer recv)
+  venue book      wire arrival      post-decode    WS hand-off
 ```
 
-`0` è il valore sentinella per "non disponibile" — trattarlo come mancante, non come 1970.
+`0` è il valore sentinella per "non disponibile" — trattalo come mancante, non come 1970.
 
 #### `trade`
 
@@ -233,7 +242,7 @@ source_ts_ns → kernel_rx_ts_ns → recv_ts_ns → ws_send_ts_ns → (ricezione
 }
 ```
 
-`aggressor_side` è `"buy"`, `"sell"` oppure `"unknown"`. I trade sono eventi puntuali e non vengono riprodotti alla riconnessione.
+`aggressor_side` è `"buy"`, `"sell"` o `"unknown"`. I trade sono eventi puntuali e non vengono riprodotti alla riconnessione.
 
 #### `depth`
 
@@ -248,7 +257,7 @@ source_ts_ns → kernel_rx_ts_ns → recv_ts_ns → ws_send_ts_ns → (ricezione
 }
 ```
 
-I `bids` sono ordinati dal prezzo più alto al più basso; gli `asks` dal prezzo più basso al più alto. Ogni `depth` è uno **snapshot completo** — sostituire, non unire.
+I `bids` sono ordinati dal prezzo più alto al più basso; gli `asks` sono ordinati dal prezzo più basso al più alto. Ogni `depth` è uno **snapshot completo** — sostituisci, non unire.
 
 #### `status`
 
@@ -256,7 +265,7 @@ I `bids` sono ordinati dal prezzo più alto al più basso; gli `asks` dal prezzo
 {"type":"status","venue":"ExampleVenue","state":"down","stale_ms":30000,"ts_ns":...}
 ```
 
-Emesso all'edge quando il multicast delle quotazioni di un venue diventa silenzioso (`state:"down"`) o si riprende (`state:"ok"`). Usalo per disattivare visualmente un venue nella tua UI. La consegna delle quotazioni non è vincolata allo stato — il feed si auto-ripristina con la quotazione successiva.
+Emesso al limite quando il multicast delle quotazioni di un venue diventa silenzioso (`state:"down"`) o si riprende (`state:"ok"`). Usalo per disattivare visualmente un venue nella tua UI. La consegna delle quotazioni non è condizionata dallo status — il feed si auto-ripara alla prossima quotazione.
 
 ### Sottoscrizioni
 
@@ -269,7 +278,7 @@ Per impostazione predefinita ricevi tutto. Invia un messaggio di controllo per r
 
 Omettere un campo corrisponde a qualsiasi valore (`{"symbol":"SOL"}` = SOL su ogni venue). `venue` viene confrontato senza distinzione tra maiuscole e minuscole.
 
-**Risposta di conferma del server:**
+**Conferma del server:**
 
 ```json
 {"channel":"subscription_response","method":"subscribe","subscription":{"venue":"ExampleVenue","symbol":"SOL"}}
@@ -280,7 +289,7 @@ Gli errori restituiscono `{"channel":"error","error":"<reason>"}`.
 ### Heartbeat e liveness
 
 - Il server invia un **WebSocket Ping** ogni 20 secondi; i client conformi rispondono automaticamente con Pong.
-- I client silenziosi per 60 secondi vengono chiusi e rimossi.
+- I client silenti per 60 secondi vengono chiusi e rimossi.
 - Keepalive a livello applicativo: `{"method":"ping"}` → `{"channel":"pong"}`.
 
 ### Scheletro del consumer
@@ -304,7 +313,7 @@ def on_message(ws, frame):
     elif t == "depth":
         replace_book(msg["venue"], msg["symbol"],
                      msg["bids"], msg["asks"])
-    # tipi sconosciuti: ignorare silenziosamente (compatibilità in avanti)
+    # tipi sconosciuti: ignora silenziosamente (compatibilità in avanti)
 
 ws = websocket.WebSocketApp("ws://localhost:8081", on_message=on_message)
 ws.run_forever()
@@ -312,14 +321,22 @@ ws.run_forever()
 
 ### Sorgenti di input e backstop WebSocket
 
-Il feed multicast Edge è sempre attivo. Un **backstop WebSocket pubblico** opzionale può colmare le lacune quando il feed Edge si blocca:
+Il feed multicast Edge è sempre attivo. **Backstop WebSocket pubblici** opzionali possono colmare le lacune quando il feed Edge si interrompe. Ne sono disponibili due, ciascuno disattivato per default e abilitabile indipendentemente per venue:
+
+| Backstop | Abilita con | Copre | URL predefinito |
+|----------|-------------|--------|-------------|
+| **Hyperliquid** | `WS_INPUT_COINS` (es. `BTC,ETH`) | quotazioni + trade | `wss://api.hyperliquid.xyz/ws` (`WS_INPUT_URL`) |
+| **Phoenix** | `PHOENIX_WS_INPUT_MARKETS` (ticker, es. `SOL,BTC`) | **solo trade** | `wss://perp-api.phoenix.trade/v1/ws` (`PHOENIX_WS_INPUT_URL`) |
 
 ```bash
-# Abilita il backstop per BTC ed ETH:
+# Abilita il backstop Hyperliquid per BTC ed ETH:
 WS_INPUT_COINS=BTC,ETH DZ_SECRET=DZ_… curl -fsSL https://get.doublezero.xyz/connect | bash
+
+# Abilita il backstop trade di Phoenix per SOL:
+PHOENIX_WS_INPUT_MARKETS=SOL DZ_SECRET=DZ_… curl -fsSL https://get.doublezero.xyz/connect | bash
 ```
 
-Le due sorgenti competono per tick `(venue, symbol, source_ts)` all'interno di un arbitro condiviso. In condizioni normali la sorgente Edge vince (sub-ms vs. decine di ms su internet); quando l'Edge presenta lacune, la copia pubblica interviene. L'output WebSocket è identico indipendentemente dalla sorgente che ha consegnato un determinato aggiornamento.
+Per ogni tick `(venue, symbol, source_ts)`, le sorgenti Edge e pubbliche competono all'interno di un arbitro condiviso. In condizioni normali la sorgente Edge vince (sub-ms vs. decine di ms su internet); quando l'Edge ha interruzioni, la copia pubblica interviene. L'output WebSocket è identico indipendentemente da quale sorgente ha consegnato un dato aggiornamento. (I backstop di Phoenix coprono solo i trade — Edge rimane l'unica sorgente delle quotazioni Phoenix.)
 
 ---
 
@@ -329,30 +346,30 @@ Le due sorgenti competono per tick `(venue, symbol, source_ts)` all'interno di u
 # Streaming dei log
 sudo docker logs -f doublezero-edge-connect
 
-# Verifica stato del tunnel
+# Verifica dello stato del tunnel
 sudo docker exec -it doublezero-edge-connect doublezero status
 
-# Verifica latenze del dispositivo
+# Verifica delle latenze dei dispositivi
 sudo docker exec -it doublezero-edge-connect doublezero latency
 
-# Stop e rimozione
+# Arresto e rimozione
 sudo docker stop doublezero-edge-connect && sudo docker rm doublezero-edge-connect
 ```
 
 !!! note "Nessun TLS"
-    Il bridge è progettato per una rete trusted/locale. Termina TLS con un reverse proxy se esponi l'endpoint WebSocket esternamente.
+    Il bridge è pensato per una rete trusted/locale. Termina il TLS con un reverse proxy se esponi l'endpoint WebSocket esternamente.
 
 ---
 
 ## Monitoraggio (Metriche Prometheus)
 
-L'endpoint delle metriche è **disattivato per impostazione predefinita**. Abilitalo con `METRICS_BIND`:
+L'endpoint delle metriche è **disattivato per default**. Abilitalo con `METRICS_BIND`:
 
 ```bash
 METRICS_BIND=127.0.0.1:9090 DZ_SECRET=DZ_… curl -fsSL https://get.doublezero.xyz/connect | bash
 ```
 
-Poi esegui lo scraping:
+Poi esegui lo scrape:
 
 ```bash
 curl -s localhost:9090/metrics | grep '^dz_'
@@ -360,17 +377,18 @@ curl -s localhost:9090/metrics | grep '^dz_'
 
 Metriche principali:
 
-| Metrica | Cosa monitora |
-|---------|---------------|
+| Metrica | Cosa traccia |
+|--------|---------------|
 | `dz_feed_up{venue}` | `1` mentre il multicast del venue è attivo, `0` mentre è silenzioso. |
 | `dz_datagrams_received_total{venue}` | Volume di ingestione per venue. |
-| `dz_emit_total{venue,kind}` | Messaggi trasmessi dopo la deduplicazione, per tipo. |
+| `dz_emit_total{venue,kind}` | Messaggi trasmessi dopo la dedup, per tipo. |
+| `dz_quotes_admitted_total{venue,publisher}` | Quotazioni ammesse dall'arbitro, attribuite alla sorgente vincente. Un aumento di `publisher="public"` significa che un backstop sta colmando un'interruzione Edge (vs. `publisher="edge"` in condizioni normali). |
 | `dz_quotes_dropped_total{venue}` | Quotazioni obsolete/duplicate soppresse. |
 | `dz_ws_clients` | Client WebSocket attualmente connessi. |
 | `dz_ws_messages_sent_total{kind}` | Messaggi inoltrati ai client. |
-| `dz_ws_client_lagged_total` | Volte in cui un client lento è stato disconnesso per proteggere il feed. |
+| `dz_ws_client_lagged_total` | Numero di volte in cui un client lento è stato disconnesso per proteggere il feed. |
 
-Una sonda di liveness `GET /healthz` è anch'essa servita sullo stesso indirizzo di bind.
+Un probe di liveness `GET /healthz` è anch'esso servito sullo stesso indirizzo di bind.
 
 ---
 
@@ -379,7 +397,7 @@ Una sonda di liveness `GET /healthz` è anch'essa servita sullo stesso indirizzo
 Il container è disponibile su GHCR:
 
 | Ambiente | Immagine | Tag |
-|----------|----------|-----|
+|-------------|-------|-----|
 | Mainnet-beta | `ghcr.io/malbeclabs/doublezero-edge-connect` | `:mainnet-beta` |
 | Testnet | `ghcr.io/malbeclabs/doublezero-edge-connect` | `:testnet` |
 | Devnet (privata) | `ghcr.io/malbeclabs/doublezero-edge-connect-devnet` | `:latest` |
@@ -395,7 +413,7 @@ docker run --rm --network host --cap-add NET_ADMIN --device /dev/net/tun \
   ghcr.io/malbeclabs/doublezero-edge-connect:mainnet-beta
 ```
 
-**Compilazione dal sorgente:**
+**Build dal sorgente:**
 
 ```bash
 git clone https://github.com/malbeclabs/doublezero-edge-connect
@@ -408,7 +426,7 @@ cargo test
   --ws-bind 0.0.0.0:8081
 ```
 
-Un buffer di ricezione del kernel più grande è consigliato per feed a raffica:
+Un buffer di ricezione del kernel più grande è raccomandato per feed a raffica:
 
 ```bash
 sudo sysctl -w net.core.rmem_max=268435456
@@ -418,14 +436,14 @@ sudo sysctl -w net.core.rmem_max=268435456
 
 ## Limiti e Backpressure
 
-| Limite | Default | Comportamento al superamento |
-|--------|---------|------------------------------|
-| Client simultanei (`WS_MAX_CLIENTS`) | 64 | La nuova connessione viene rifiutata. |
-| Sottoscrizioni per client (`WS_MAX_SUBS`) | 256 | La `subscribe` viene rifiutata con un errore. |
+| Limite | Default | Comportamento quando superato |
+|-------|---------|------------------------|
+| Client concorrenti (`WS_MAX_CLIENTS`) | 64 | La nuova connessione viene rifiutata. |
+| Sottoscrizioni per client (`WS_MAX_SUBS`) | 256 | Il `subscribe` viene rifiutato con un errore. |
 | Messaggi di controllo in ingresso / client / min (`WS_MAX_INBOUND_PER_MIN`) | 600 | Il client viene disconnesso. |
 | Buffer di broadcast (`WS_BROADCAST_CAPACITY`) | 4096 | Un client lento **perde i messaggi più vecchi** (non blocca mai il feed). |
 
-Poiché ogni `quote` e `depth` è stato completo, un consumer che perde messaggi sotto backpressure si auto-ripristina con il messaggio successivo — nessun handshake di risincronizzazione necessario.
+Poiché ogni `quote` e `depth` è stato completo, un consumer che perde messaggi sotto backpressure si auto-ripara al messaggio successivo — nessun handshake di risincronizzazione necessario.
 
 ---
 
@@ -453,12 +471,12 @@ Poiché ogni `quote` e `depth` è stato completo, un consumer che perde messaggi
 
 ### `dz_ws_client_lagged_total` elevato
 
-Il tuo consumer sta leggendo più lentamente di quanto il bridge stia pubblicando. Aumenta il buffer di broadcast con `WS_BROADCAST_CAPACITY`, riduci il tempo di elaborazione per messaggio, oppure aggiungi un thread di lettura dedicato.
+Il tuo consumer legge più lentamente di quanto il bridge pubblica. Aumenta il buffer di broadcast con `WS_BROADCAST_CAPACITY`, riduci il tempo di elaborazione per messaggio, oppure aggiungi un thread di lettura dedicato.
 
-### Il container termina immediatamente
+### Il container esce immediatamente
 
 - Il bridge richiede `--network host` e il device `/dev/net/tun`; un semplice `docker run` senza questi flag fallirà.
-- Usa il one-liner dell'installer o l'esatto comando `docker run` mostrato in [Self-hosting](#avanzato-self-hosting).
+- Usa la riga singola dell'installer o l'esatto comando `docker run` mostrato in [Self-hosting](#avanzato-self-hosting).
 
 ### Il tunnel GRE non si stabilisce
 
