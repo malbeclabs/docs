@@ -56,9 +56,9 @@ One command prepares the host and starts the bridge container. It joins the Doub
 
 What the script does:
 
-1. Checks that the host is Linux/amd64, ensures Docker is present (offers to install it).
-2. Prepares the host kernel for the GRE tunnel: loads `tun`/`ip_gre`, raises `net.core.rmem_max`, warns about firewall and cloud-provider rules.
-3. Loads your access secret (prompted once if `DZ_SECRET` is not set).
+1. Checks that the host is Linux/amd64.
+2. Loads your access secret (prompted once if `DZ_SECRET` is not set) and **verifies its access pass onchain before installing anything** — a pure host-side check against the ledger's public JSON-RPC. If the pass is bound to a different IP than the host's, it aborts (when the IP was given explicitly via `DZ_CLIENT_IP`) or warns and continues (when the IP was only auto-detected, which can be wrong behind NAT), leaving `doublezero connect` as the real check.
+3. Ensures Docker is present (offers to install it) and prepares the host kernel for the GRE tunnel: loads `tun`/`ip_gre`, raises `net.core.rmem_max`, warns about firewall and cloud-provider rules.
 4. Runs the bridge container (`--network host`, `NET_ADMIN`/`NET_RAW`, `/dev/net/tun`) and executes `doublezero connect multicast`.
 
 !!! tip "Non-interactive install"
@@ -83,6 +83,8 @@ DZ_SECRET=DZ_… VAR=value curl -fsSL https://get.doublezero.xyz/connect | bash
 | `DZ_IMAGE` | per script | Override the container image. |
 | `DZ_NAME` | `doublezero-edge-connect` | Container name. |
 | `DZ_FEEDS` | *(all)* | Comma-separated venues to narrow market-data ingestion (e.g. `VenueA,VenueB`). Does not affect Solana shred forwarding. |
+| `DZ_CLIENT_IP` | *(auto-detected)* | Override the public IPv4 used by the onchain access-pass pre-check. Set it when auto-detection is wrong (e.g. behind NAT) so the pre-check can confirm rather than only warn. |
+| `DZ_LEDGER_RPC_URL` | per env | Override the DoubleZero ledger RPC endpoint used by the pre-check. |
 | `DZ_ASSUME_YES` | `0` | Skip confirmation prompts (e.g. the Docker install prompt). |
 | `DZ_GHCR_TOKEN` | — | **Devnet only** — a GHCR token with `read:packages` (devnet image is private). |
 | `DZ_GHCR_USER` | `malbeclabs` | **Devnet only** — GHCR username for the login. |
@@ -94,13 +96,16 @@ The installer forwards **any non-empty** bridge variable straight through to the
 | Variable | Default | Purpose |
 |----------|---------|---------|
 | `DZ_IFACE` | `doublezero1` | Network interface to listen on. |
-| `DZ_RECV_BUF` | — | UDP receive buffer override (bytes). |
+| `DZ_RECV_BUF` | `8388608` | UDP receive buffer override (bytes; default 8 MiB). |
 | `METRICS_BIND` | *(empty / off)* | Enable the Prometheus `/metrics` endpoint (e.g. `127.0.0.1:9090`). |
-| `RUST_LOG` | `info` | Log level (`debug`, `warn`, etc.). |
+| `RUST_LOG` | `warn,doublezero_edge_connect=info` | Log level (`debug`, `warn`, etc.). |
 | `DZ_SHRED_FORWARD` | — | Local UDP destination(s) for forwarded shreds — see [Solana Shred Forwarding](#solana-shred-forwarding). |
 | `WS_BIND` | `0.0.0.0:8081` | Market-data WebSocket bind address — see [Market Data WebSocket](#market-data-websocket). |
 | `WS_MAX_CLIENTS` | `64` | Maximum concurrent WebSocket clients. |
-| `WS_INPUT_COINS` | *(empty / off)* | Enable the public WebSocket backstop for listed symbols (e.g. `BTC,ETH`). |
+| `WS_INPUT_COINS` | *(empty / off)* | Enable the Hyperliquid public WebSocket backstop for listed symbols (e.g. `BTC,ETH`) — see [Input sources](#input-sources-and-the-websocket-backstop). |
+| `WS_INPUT_URL` | `wss://api.hyperliquid.xyz/ws` | Hyperliquid public WebSocket URL for the backstop. |
+| `PHOENIX_WS_INPUT_MARKETS` | *(empty / off)* | Enable the Phoenix public WebSocket backstop (trades only) for listed tickers (e.g. `SOL,BTC`). |
+| `PHOENIX_WS_INPUT_URL` | `wss://perp-api.phoenix.trade/v1/ws` | Phoenix public WebSocket URL for the backstop. |
 
 **Examples:**
 
@@ -122,7 +127,7 @@ DZ_SECRET=DZ_… METRICS_BIND=127.0.0.1:9090 WS_INPUT_COINS=BTC,ETH \
 ```
 
 !!! note
-    Because the installer only forwards **non-empty** values, you cannot pass an empty override (e.g. `WS_BIND=""` to disable the WebSocket sink) through the one-liner. Use a hand-written `docker run` for that — see [Self-hosting](#advanced-self-hosting).
+    The installer forwards only **non-empty** values, with one exception: `WS_BIND` is forwarded even when set empty, so `WS_BIND=""` **does** disable the WebSocket sink through the one-liner. For any other variable, an empty override cannot be passed through the pipe — use a hand-written `docker run` for that (see [Self-hosting](#advanced-self-hosting)).
 
 ---
 
@@ -144,6 +149,7 @@ DZ_SHRED_DEDUP_MODE=sigverify \
 | Variable | Default | Purpose |
 |----------|---------|---------|
 | `DZ_SHRED_FORWARD` | `127.0.0.1:20000` | Destination(s) for forwarded shreds (repeatable). |
+| `DZ_SHRED_DISABLE` | `0` | Master opt-out (`--shred-forward-disable`). Keeps the forwarder off regardless of what your authorization grants — set it when no local consumer is listening, to avoid burning CPU forwarding the shred firehose to nowhere. |
 | `DZ_SHRED_DEDUP_MODE` | `dedup` | `dedup` (one copy per shred), `sigverify` (+ ed25519 verification), `none` (all datagrams). |
 | `DZ_SHRED_RPC_URL` | — | Solana RPC endpoint; required by `sigverify` mode. |
 | `DZ_SHRED_DEDUP_WINDOW_SLOTS` | `512` | Size of the dedup window. |
@@ -157,6 +163,9 @@ See [Shred forwarding](https://github.com/malbeclabs/doublezero-edge-connect/blo
 Open a WebSocket to `ws://<host>:8081` and read JSON frames. You receive all venues you are authorized for. An optional `subscribe` message narrows the stream to specific venues and symbols.
 
 Any engine that speaks WebSocket + JSON can consume it with a thin (~50–100 line) adapter. The binary multicast, the two-port per-venue split, and the manifest/precision handshake all stay inside the bridge; the only contract a consumer codes against is the WebSocket JSON.
+
+!!! note
+    The WebSocket sink comes up only when at least one market-data feed is active for your authorization — a shreds-only host serves no WebSocket. Activation is driven by an onchain subscription reconciler that refreshes every 30s (`--subscription-refresh-secs`); `--subscription-gating-disable` opts out of the gating.
 
 ### Connection lifecycle
 
@@ -312,14 +321,22 @@ ws.run_forever()
 
 ### Input sources and the WebSocket backstop
 
-The Edge multicast feed is always-on. An optional **public WebSocket backstop** can fill gaps when the Edge feed stalls:
+The Edge multicast feed is always-on. Optional **public WebSocket backstops** can fill gaps when the Edge feed stalls. Two are available, each off by default and enabled independently per venue:
+
+| Backstop | Enable with | Covers | Default URL |
+|----------|-------------|--------|-------------|
+| **Hyperliquid** | `WS_INPUT_COINS` (e.g. `BTC,ETH`) | quotes + trades | `wss://api.hyperliquid.xyz/ws` (`WS_INPUT_URL`) |
+| **Phoenix** | `PHOENIX_WS_INPUT_MARKETS` (tickers, e.g. `SOL,BTC`) | **trades only** | `wss://perp-api.phoenix.trade/v1/ws` (`PHOENIX_WS_INPUT_URL`) |
 
 ```bash
-# Enable the backstop for BTC and ETH:
+# Enable the Hyperliquid backstop for BTC and ETH:
 WS_INPUT_COINS=BTC,ETH DZ_SECRET=DZ_… curl -fsSL https://get.doublezero.xyz/connect | bash
+
+# Enable the Phoenix trade backstop for SOL:
+PHOENIX_WS_INPUT_MARKETS=SOL DZ_SECRET=DZ_… curl -fsSL https://get.doublezero.xyz/connect | bash
 ```
 
-The two sources race per `(venue, symbol, source_ts)` tick inside a shared arbiter. In steady state the Edge source wins (sub-ms vs. tens of ms over the internet); when the Edge gaps, the public copy fills in. The WebSocket output is identical regardless of which source delivered a given update.
+For each `(venue, symbol, source_ts)` tick, the Edge and public sources race inside a shared arbiter. In steady state the Edge source wins (sub-ms vs. tens of ms over the internet); when the Edge gaps, the public copy fills in. The WebSocket output is identical regardless of which source delivered a given update. (Phoenix backstops trades only — Edge remains the sole source of Phoenix quotes.)
 
 ---
 
@@ -365,6 +382,7 @@ Key metrics:
 | `dz_feed_up{venue}` | `1` while that venue's multicast is live, `0` while silent. |
 | `dz_datagrams_received_total{venue}` | Ingest volume per venue. |
 | `dz_emit_total{venue,kind}` | Messages broadcast after dedup, by type. |
+| `dz_quotes_admitted_total{venue,publisher}` | Quotes admitted by the arbiter, attributed to the winning source. A rise in `publisher="public"` means a backstop is filling an Edge gap (vs. `publisher="edge"` in steady state). |
 | `dz_quotes_dropped_total{venue}` | Stale/duplicate quotes suppressed. |
 | `dz_ws_clients` | Currently connected WebSocket clients. |
 | `dz_ws_messages_sent_total{kind}` | Messages forwarded to clients. |
