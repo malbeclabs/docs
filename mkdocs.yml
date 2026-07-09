@@ -82,6 +82,7 @@ nav:
     - Operations: contribute-operations.md
     - OPS Management: contribute-ops-management.md
     - Geolocation: contribute-geolocation.md
+    - Decommissioning: contribute-decommission.md
   - Architecture: architecture.md
   - Glossary: glossary.md
 markdown_extensions:
