@@ -86,3 +86,16 @@
       flex-wrap: wrap;
     }
   }
+
+/* Header shows two logos (Malbec + DoubleZero); lay them out side by side.
+   The logo partial is also reused by the mobile nav drawer — keep the DZ icon
+   out of there. */
+.md-header__button.md-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.md-nav__button.md-logo img[alt="DoubleZero"] {
+  display: none;
+}
