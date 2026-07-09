@@ -86,3 +86,11 @@
       flex-wrap: wrap;
     }
   }
+
+/* Header shows two logos (Malbec + DoubleZero); lay them out side by side */
+.md-header__button.md-logo,
+.md-nav__button.md-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
