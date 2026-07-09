@@ -5,7 +5,10 @@ This guide describes how to decommission a DoubleZero Device (DZD) or exit a sit
 The process runs in three stages: cap the device 31 days before decommission day, notify connected users during a notice window so they can move, then drain and delete the links, interfaces, and device on decommission day.
 
 > ⚠️ **Coordinate with DoubleZero first:**
-> Always align with the DoubleZero team before decommissioning a device or site. Agree on the dates and plan before you cap a device or drain a link, so user migration and the required foundation-side steps can be coordinated.
+> Always align with the DoubleZero team before decommissioning a device or site, and schedule your decommission date and time with us. We run a few steps on our side around that slot, so we need to be scheduled in. Agree on the dates and plan before you cap a device or drain a link.
+
+> ⚠️ **DZX and cross-contributor links:**
+> If the device is a DZX or carries links to other contributors, identify those contributors as early as possible and give them notice, since they may need to move or rebuild their links before your date. Also create a maintenance event in the [OPS portal](contribute-ops-management.md) for the decommission date.
 
 ---
 
@@ -54,6 +57,14 @@ doublezero device list
 ---
 
 ## Phase 3 — Decommission day
+
+Before you start, work out exactly what needs to be removed: the device, the links connected to it, and the interfaces to clean up. You can find all of this with:
+
+```bash
+doublezero device list | grep <CONTRIBUTOR_CODE>    # find your device: its code and pubkey
+doublezero link list | grep <DEVICE_CODE>           # find the links connected to the device
+doublezero device interface list <DEVICE_CODE>      # list the interfaces on the device to remove
+```
 
 Run these steps in order. Each step unlocks the next.
 
