@@ -7,8 +7,8 @@ The process runs in three stages: cap the device 31 days before decommission day
 > ⚠️ **Coordinate with DoubleZero first:**
 > Always align with the DoubleZero team before decommissioning a device or site, and schedule your decommission date and time with us. We run a few steps on our side around that slot, so we need to be scheduled in. Agree on the dates and plan before you cap a device or drain a link.
 
-> ⚠️ **DZX and cross-contributor links:**
-> If the device is a DZX or carries links to other contributors, identify those contributors as early as possible and give them notice, since they may need to move or rebuild their links before your date. Also create a maintenance event in the [OPS portal](contribute-ops-management.md) for the decommission date.
+> ⚠️ **DZX switches and links:**
+> If the device you are decommissioning is a DZX switch, or has any DZX links, identify the affected contributors as early as possible and give them notice, since they may need to move or rebuild their links before your date. Also create a maintenance event in the [OPS portal](contribute-ops-management.md) for the decommission date.
 
 ---
 
