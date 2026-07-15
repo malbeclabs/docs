@@ -8,7 +8,7 @@ theme:
   name: material
   custom_dir: overrides
   logo: logo.png
-  favicon: logo.png
+  favicon: favicon.ico
   # Use a language-style globe icon for the language selector
   icon:
     alternate: fontawesome/solid/language
@@ -112,6 +112,7 @@ extra_javascript:
   - javascripts/connection-wizard.js
   - javascripts/page-toolbar.js
   - javascripts/language-selector-label.js
+  - javascripts/search-language-filter.js
   - javascripts/mathjax.js
   - path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 hooks:
