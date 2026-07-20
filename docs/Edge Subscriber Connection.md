@@ -262,6 +262,10 @@ doublezero multicast group list
 
 - `edge-solana-shreds`: `233.84.178.1:7733`
 
+### Root Shreds
+
+- `edge-solana-root`: `233.84.178.16:7733`
+
 ### Retransmit Shreds
 
 - `edge-solana-retrans-eu`: `233.84.178.12:7733`
