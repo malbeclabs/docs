@@ -49,19 +49,6 @@ The reconciler monitors onchain state and automatically provisions tunnels when 
 doublezero enable
 ```
 
-### 4. Retrieve the Server's DoubleZero Identity
-
-Review your DoubleZero Identity. This identity will be used to create the connection between your machine and DoubleZero.
-
-```bash
-doublezero address
-```
-
-**Output:**
-```
-YourDoubleZeroAddress11111111111111111111111111111
-```
-
 ---
 
 ## Step 2: Set Up Your Wallet
