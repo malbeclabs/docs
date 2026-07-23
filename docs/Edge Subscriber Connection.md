@@ -92,7 +92,7 @@ Note the device code from the lowest-latency result (e.g., `<Device_Name>`). You
 
 ### 2. Check Pricing
 
-View current device pricing before committing funds. Pricing has two components: a **base metro price** and a **per-device premium**. Prices update each epoch. You can also view pricing and availability [here](https://data.malbeclabs.com/dz/shreds/devices).
+View current device pricing before committing funds. Pricing has two components: a **base metro price** and a **per-device premium**. You can also view pricing and availability [here](https://data.malbeclabs.com/dz/shreds/devices).
 
 **All devices:**
 
