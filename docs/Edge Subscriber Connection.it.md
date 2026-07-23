@@ -3,21 +3,21 @@ description: Configura un edge subscriber per ricevere i feed di shred DoubleZer
 ---
 
 # Connessione Edge Subscriber
-!!! warning "Collegandomi a DoubleZero accetto i [Termini di Utilizzo di DoubleZero](https://doublezero.xyz/terms-protocol). Si prega di notare che i dati sono esclusivamente per uso interno e non possono essere ritrasmessi (vedi Sezione 2(e))."
+!!! warning "Connettendomi a DoubleZero accetto i [Termini di Utilizzo di DoubleZero](https://doublezero.xyz/terms-protocol). Si prega di notare che i dati sono esclusivamente per uso interno e non possono essere ritrasmessi (vedere Sezione 2(e))."
 
-## Passaggio 1: Configurazione di DoubleZero
+## Passaggio 1: Configurazione DoubleZero
 
 ### 1. Completare la Configurazione
 
-Installare la [Solana CLI](https://docs.anza.xyz/cli/install).
+Installa la [Solana CLI](https://docs.anza.xyz/cli/install).
 
-Seguire le istruzioni di [configurazione](setup.md) per installare e configurare il client DoubleZero.
+Segui le istruzioni di [configurazione](setup.md) per installare e configurare il client DoubleZero.
 
 Se hai già configurato DoubleZero in precedenza, assicurati di avere l'ultima versione della CLI Doublezero-Solana con `sudo apt update && sudo apt install doublezero-solana`
 
 ### 2. Configurare il Firewall
 
-Consentire il traffico GRE, BGP, PIM e shred.
+Consenti il traffico GRE, BGP, PIM e shred.
 
 **iptables:**
 
@@ -49,26 +49,13 @@ Il reconciler monitora lo stato onchain e provisiona automaticamente i tunnel qu
 doublezero enable
 ```
 
-### 4. Recuperare l'Identità DoubleZero del Server
-
-Verifica la tua Identità DoubleZero. Questa identità verrà utilizzata per creare la connessione tra la tua macchina e DoubleZero.
-
-```bash
-doublezero address
-```
-
-**Output:**
-```
-YourDoubleZeroAddress11111111111111111111111111111
-```
-
 ---
 
 ## Passaggio 2: Configurare il Wallet
 
-### 1. Creare un Keypair Solana
+### 1. Creare una Keypair Solana
 
-La CLI `doublezero-solana` utilizza un keypair Solana standard per la gestione onchain dei seat. Se non ne hai uno:
+La CLI `doublezero-solana` utilizza una keypair Solana standard per la gestione dei seat onchain. Se non ne hai una:
 
 ```bash
 solana-keygen new
@@ -86,49 +73,49 @@ solana address
 
 Il tuo wallet necessita di due token:
 
-- **SOL** — per le commissioni delle transazioni Solana. Trasferisci SOL all'indirizzo del wallet stampato sopra.
+- **SOL** — per le commissioni di transazione Solana. Trasferisci SOL all'indirizzo del wallet stampato sopra.
 - **USDC** — per il finanziamento del seat. La CLI preleva dall'Associated Token Account (ATA) del tuo wallet per il mint USDC mainnet (`EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v`).
 
 ---
 
 ## Passaggio 3: Acquistare un Seat
 
-### 1. Trovare il Device Più Vicino
+### 1. Trovare il Dispositivo Più Vicino
 
-Prima di acquistare un seat, identifica il device con la latenza più bassa dalla tua macchina:
+Prima di acquistare un seat, identifica il dispositivo con la latenza più bassa dalla tua macchina:
 
 ```bash
 doublezero latency
 ```
 
-Annota il codice del device dal risultato con la latenza più bassa (es., `<Device_Name>`). Lo utilizzerai durante l'acquisto di un seat.
+Annota il codice del dispositivo dal risultato con la latenza più bassa (es., `<Device_Name>`). Lo utilizzerai per l'acquisto di un seat.
 
 ### 2. Verificare i Prezzi
 
-Visualizza i prezzi attuali dei device prima di impegnare fondi. I prezzi hanno due componenti: un **prezzo base metro** e un **sovrapprezzo per device**. I prezzi si aggiornano ad ogni epoch. Puoi anche visualizzare prezzi e disponibilità [qui](https://data.malbeclabs.com/dz/shreds/devices).
+Visualizza i prezzi correnti del dispositivo prima di impegnare fondi. I prezzi hanno due componenti: un **prezzo base della metro** e un **premium per dispositivo**. I prezzi si aggiornano ad ogni epoch. Puoi anche visualizzare prezzi e disponibilità [qui](https://data.malbeclabs.com/dz/shreds/devices).
 
-**Tutti i device:**
+**Tutti i dispositivi:**
 
 ```bash
 doublezero-solana shreds price
 ```
 
-**Device specifico:**
+**Dispositivo specifico:**
 
 ```bash
 doublezero-solana shreds price --device-code <Device_Name>
 doublezero-solana shreds price --device <PUBKEY>
 ```
 
-**Tutti i device in un metro:**
+**Tutti i dispositivi in una metro:**
 
 ```bash
 doublezero-solana shreds price --metro <PUBKEY>
 ```
 
-Colonne di output: `Device Code`, `Metro Code`, `Metro Name`, `Status`, `Settled Seats`, `Available Seats`, `Base Price (USDC)`, `Premium (USDC)`, `Epoch Price (USDC)`.
+Colonne dell'output: `Device Code`, `Metro Code`, `Metro Name`, `Status`, `Settled Seats`, `Available Seats`, `Base Price (USDC)`, `Premium (USDC)`, `Epoch Price (USDC)`.
 
-Il prezzo per epoch è il costo totale per epoch per un seat su quel device (base + sovrapprezzo). Usa `--wide` per mostrare le pubkey complete, o `--json` per output JSON.
+Il prezzo epoch è il costo totale per epoch per un seat su quel dispositivo (base + premium). Usa `--wide` per mostrare le pubkey complete, o `--json` per output JSON.
 
 ### 3. Acquistare un Seat
 
@@ -145,37 +132,37 @@ doublezero-solana shreds pay \
 
 | Flag | Descrizione |
 |------|-------------|
-| `--device <PUBKEY>` | Device target per chiave pubblica (mutuamente esclusivo con `--device-code`) |
-| `--device-code <CODE>` | Device target per codice leggibile (es., `<Device_Name>`) |
-| `--client-ip <IP>` | Indirizzo IPv4 pubblico della tua macchina |
+| `--device <PUBKEY>` | Dispositivo di destinazione tramite chiave pubblica (mutuamente esclusivo con `--device-code`) |
+| `--device-code <CODE>` | Dispositivo di destinazione tramite codice leggibile (es., `<Device_Name>`) |
+| `--client-ip <IP>` | L'indirizzo IPv4 pubblico della tua macchina |
 | `--amount <USDC>` | USDC da finanziare (formato decimale, es. `100` = 100 USDC). Deve soddisfare il prezzo minimo per epoch. |
 | `--source-token-account <PUBKEY>` | Account sorgente USDC personalizzato (predefinito: ATA del tuo wallet) |
 | `--accept-partial-epoch` | Salta l'avviso sull'epoch rimanente (vedi sotto) |
-| `--fee-payer <PATH>` | Usa un wallet diverso per le commissioni delle transazioni SOL |
+| `--fee-payer <PATH>` | Usa un wallet diverso per le commissioni di transazione SOL |
 | `--dry-run` | Simula la transazione senza eseguirla |
-| `--with-compute-unit-price <PRICE>` | Imposta un prezzo per compute unit per un'inclusione più rapida durante la congestione |
+| `--with-compute-unit-price <PRICE>` | Imposta un prezzo per unità di calcolo per un'inclusione più rapida durante la congestione |
 
-Una volta allocato il tuo seat, il daemon stabilisce automaticamente il tunnel GRE. Verifica la tua connessione con:
+Una volta che il tuo seat è allocato, il daemon stabilisce il tunnel GRE automaticamente. Verifica la tua connessione con:
 
 ```bash
 doublezero status
 ```
 
-### Tempistica dell'Epoch
+### Tempistiche dell'Epoch
 
-I seat vengono allocati per epoch Solana (~2 giorni). Se rimane meno del 10% dell'epoch corrente quando effettui il pagamento, la CLI avvisa che il tuo seat verrà allocato immediatamente ma coprirà solo il resto dell'epoch corrente. Un pagamento separato verrà detratto dal tuo escrow quando inizia l'epoch successivo.
+I seat vengono allocati per epoch Solana (~2 giorni). Se rimane meno del 10% dell'epoch corrente quando paghi, la CLI avvisa che il tuo seat verrà allocato immediatamente ma copre solo il resto dell'epoch corrente. Un pagamento separato verrà detratto dal tuo escrow quando inizia l'epoch successivo.
 
-!!! info "È consigliabile finanziare per più di 1 epoch alla volta per non perdere il tuo seat. Puoi verificare il tempo rimanente in un epoch [qui](https://explorer.solana.com/)."
+!!! info "È consigliabile finanziare per più di 1 epoch alla volta per non perdere il proprio seat. Puoi verificare il tempo rimanente in un epoch [qui](https://explorer.solana.com/)."
 
 Puoi ignorare questo avviso con `--accept-partial-epoch`.
 
-### Mantenere l'Escrow Finanziato
+### Mantenere il Proprio Escrow Finanziato
 
-!!! warning "Se il saldo del tuo escrow è inferiore al prezzo per epoch al momento del settlement, il tuo seat non verrà allocato, il tunnel verrà abbattuto e perderai la tenure accumulata. La tenure determina la tua priorità per gli epoch futuri — perderla significa competere nuovamente come nuovo arrivato."
+!!! warning "Se il saldo del tuo escrow è inferiore al prezzo epoch al momento del settlement, il tuo seat non verrà allocato, il tunnel verrà dismesso e perderai la tenure accumulata. La tenure determina la tua priorità per gli epoch futuri — perderla significa competere nuovamente come nuovo arrivato."
 
-Puoi sovra-finanziare questo account per coprire più epoch. Ogni settlement detrae il prezzo di un epoch dal tuo escrow, e il saldo rimanente viene riportato. Ad esempio, finanziare 5 volte il prezzo per epoch mantiene il tuo seat attivo per un massimo di 5 epoch senza ri-finanziamento.
+Puoi sovraccaricare questo account per finanziare più epoch. Ogni settlement detrae il prezzo di un epoch dal tuo escrow, e il saldo rimanente viene riportato. Ad esempio, finanziare 5 volte il prezzo per epoch mantiene il tuo seat attivo fino a 5 epoch senza ri-finanziare.
 
-Per ricaricare il tuo escrow, esegui nuovamente `shreds pay` in qualsiasi momento:
+Per ricaricare il tuo escrow, esegui di nuovo `shreds pay` in qualsiasi momento:
 
 ```bash
 doublezero-solana shreds pay \
@@ -184,7 +171,7 @@ doublezero-solana shreds pay \
   --amount 500
 ```
 
-Nota che il `Target_IP` deve essere un indirizzo ipv4 pubblico sulla macchina che riceverà gli shred. Puoi trovarlo eseguendo un comando come `curl -4 ifconfig.me` sulla macchina target.
+Nota che il `Target_IP` deve essere un indirizzo ipv4 pubblico sulla macchina che riceverà gli shred. Puoi trovarlo eseguendo un comando come `curl -4 ifconfig.me` sulla macchina di destinazione.
 
 ### Monitorare i Seat
 
@@ -198,31 +185,31 @@ Visualizza i tuoi seat attivi e i saldi escrow:
 doublezero-solana shreds list
 ```
 
-**Filtrare per device:**
+**Filtra per dispositivo:**
 
 ```bash
 doublezero-solana shreds list --device-code <Device_Name>
 ```
 
-**Filtrare per IP client:**
+**Filtra per IP client:**
 
 ```bash
 doublezero-solana shreds list --client-ip <Target_IP>
 ```
 
-**Filtrare per wallet:**
+**Filtra per wallet:**
 
 ```bash
 doublezero-solana shreds list --withdraw-authority <PUBKEY>
 ```
 
-Colonne di output: `Device Code`, `Client IP`, `Tenure`, `Balance (USDC)`, `Est. Epochs Paid`.
+Colonne dell'output: `Device Code`, `Client IP`, `Tenure`, `Balance (USDC)`, `Est. Epochs Paid`.
 
 La colonna "Est. Epochs Paid" mostra quanti epoch copre il tuo saldo attuale ai prezzi correnti. Se i prezzi cambiano, questa stima si adegua.
 
 ### Prelevare Fondi
 
-Chiudi il tuo escrow e ricevi il rimborso degli USDC rimanenti nel tuo wallet:
+Chiudi il tuo escrow e rimborsa gli USDC rimanenti al tuo wallet:
 
 ```bash
 doublezero-solana shreds withdraw \
@@ -230,9 +217,9 @@ doublezero-solana shreds withdraw \
   --client-ip <Target_IP>
 ```
 
-Puoi identificare il device sia tramite `--device <PUBKEY>` che `--device-code <CODE>`, come per gli altri comandi.
+Puoi identificare il dispositivo sia con `--device <PUBKEY>` che con `--device-code <CODE>`, come per gli altri comandi.
 
-Per inviare il rimborso a un token account diverso:
+Per inviare il rimborso a un account token diverso:
 
 ```bash
 doublezero-solana shreds withdraw \
@@ -241,15 +228,15 @@ doublezero-solana shreds withdraw \
   --refund-token-account <PUBKEY>
 ```
 
-!!! warning "Prelevare significa perdere il tuo seat e la tenure accumulata."
+!!! warning "Prelevare significa perdere il proprio seat e la tenure accumulata."
 
 ---
 
 ## Indirizzi Shred (IP vs Porta)
 
-I Leader Shred e i Retransmit Shred ad alto stake arriveranno sulla porta `7733`, attraverso l'interfaccia `doublezero1`. L'interfaccia `doublezero0` è per il traffico unicast. La porta `5765` è un monitor heartbeat dai publisher degli shred — non conterrà shred.
+Gli Shred Leader e gli Shred Retransmit ad alto stake arriveranno sulla porta `7733`, tramite l'interfaccia `doublezero1`. L'interfaccia `doublezero0` è per il traffico unicast. La porta `5765` è un monitor heartbeat dai publisher di shred — non conterrà shred.
 
-Per il consumo degli shred, l'**indirizzo IP** identifica lo stream multicast e la **porta** identifica il servizio UDP su quello stream.
+Per il consumo degli shred, l'**indirizzo IP** identifica lo stream multicast e la **porta** identifica il servizio UDP su quello stream.  
 Tutti gli stream shred sottostanti utilizzano la porta UDP `7733` su `doublezero1`.
 
 Puoi esaminare gli IP di qualsiasi gruppo multicast con:
@@ -258,15 +245,15 @@ Puoi esaminare gli IP di qualsiasi gruppo multicast con:
 doublezero multicast group list
 ```
 
-### Leader Shred
+### Shred Leader
 
 - `edge-solana-shreds`: `233.84.178.1:7733`
 
-### Root Shred
+### Shred Root
 
 - `edge-solana-root`: `233.84.178.16:7733`
 
-### Retransmit Shred
+### Shred Retransmit
 
 - `edge-solana-retrans-eu`: `233.84.178.12:7733`
 - `edge-solana-retrans-apac`: `233.84.178.13:7733`
@@ -275,7 +262,7 @@ doublezero multicast group list
 
 ## Header del Tunnel GRE — XDP
 
-!!! note "Il traffico shred consegnato sulla rete è incapsulato in GRE. Potrebbe essere necessario rimuovere l'header GRE prima di alimentare i dati nella tua pipeline esistente (es. un deshredder basato su XDP)."
+!!! note "Il traffico shred consegnato sulla rete è incapsulato in GRE. Potrebbe essere necessario rimuovere l'header GRE prima di inviare i dati alla pipeline esistente (es. un deshredder basato su XDP)."
 
 ---
 
@@ -283,25 +270,25 @@ doublezero multicast group list
 
 ### [Edge Scoreboard](https://data.malbeclabs.com/dz/shreds/scoreboard)
 
-Lo Scoreboard confronta la velocità di consegna degli shred tra DoubleZero Edge e altri provider, utilizzando dati a livello di slot per comparare le prestazioni in tempo reale. Usa questa dashboard per visualizzare i tassi di vittoria degli shred Edge rispetto ad altri provider. Puoi visualizzare i risultati solo per i leader shred, oltre al confronto del feed completo. Puoi anche approfondire per regione per vedere le prestazioni attese.
+Lo Scoreboard confronta la velocità di consegna degli shred tra DoubleZero Edge e altri provider, utilizzando dati a livello di slot per confrontare le prestazioni in tempo reale. Usa questa dashboard per visualizzare le percentuali di vittoria degli shred Edge rispetto ad altri provider. Puoi visualizzare i risultati solo per gli shred leader, oltre al confronto del feed completo. Puoi anche approfondire per regione per vedere le prestazioni attese.
 
-### [Edge Publisher](https://data.malbeclabs.com/dz/shreds/publishers)
+### [Edge Publishers](https://data.malbeclabs.com/dz/shreds/publishers)
 
-La metrica "Publishing Shreds" in alto a sinistra della dashboard mostra la percentuale totale di peso dello stake di tutti i validatori Solana che pubblicano leader shred su DoubleZero Edge. Puoi vedere i dettagli per ogni publisher sulla rete.
+La metrica "Publishing Shreds" in alto a sinistra della dashboard mostra la percentuale totale del peso di stake di tutti i validatori Solana che pubblicano shred leader su DoubleZero Edge. Puoi visualizzare i dettagli per ogni publisher sulla rete.
 
-### [Edge Subscriber, Device e Attività](https://data.malbeclabs.com/dz/shreds/subscribers)
+### [Edge Subscribers, Dispositivi e Attività](https://data.malbeclabs.com/dz/shreds/subscribers)
 
-Puoi facilmente cercare il tuo Client IP su questa pagina per i seat sottoscritti e visualizzarne lo stato. Clicca sulle specifiche sottoscrizioni dei seat per visualizzare la cronologia dei pagamenti e l'attività. Puoi anche visualizzare i device disponibili nella pagina [Device](https://data.malbeclabs.com/dz/shreds/devices) e tutte le attività recenti nella pagina [Attività](https://data.malbeclabs.com/dz/shreds/activity).
+Puoi facilmente cercare il tuo Client IP su questa pagina per i seat sottoscritti e visualizzarne lo stato. Clicca sulle sottoscrizioni specifiche dei seat per visualizzare lo storico dei pagamenti e l'attività. Puoi anche visualizzare i dispositivi disponibili sulla pagina [Dispositivi](https://data.malbeclabs.com/dz/shreds/devices) e tutte le attività recenti sulla pagina [Attività](https://data.malbeclabs.com/dz/shreds/activity).
 
 ### Documentazione API Dati
 
-Per l'accesso programmatico agli endpoint dati, consulta la documentazione API: [https://data.malbeclabs.com/api/v1/docs](https://data.malbeclabs.com/api/v1/docs).
+Per l'accesso programmatico agli endpoint dei dati, consulta la documentazione API: [https://data.malbeclabs.com/api/v1/docs](https://data.malbeclabs.com/api/v1/docs).
 
 ---
 
 ## Risoluzione dei Problemi
 
-Se riscontri un problema non trattato qui, contattaci attraverso il tuo canale esistente prima di cercare soluzioni alternative. Se non disponi di un canale, cerca su [Discord](https://discord.gg/U2fEb4Jq) e apri un ticket se necessario.
+Se riscontri un problema non trattato qui, contattaci tramite il tuo canale esistente prima di cercare soluzioni alternative. Se non hai un canale, cerca su [Discord](https://discord.gg/U2fEb4Jq) e apri un ticket se necessario.
 
 ### Assicurati che il tuo Client sia aggiornato:
 
@@ -309,13 +296,13 @@ Esegui: `sudo apt update && sudo apt install doublezero-solana`
 
 ### Saldo escrow insufficiente
 
-Se il saldo del tuo escrow è inferiore al prezzo per epoch al momento del settlement, il seat non viene allocato, il tunnel viene abbattuto e la tenure viene persa. Ricarica con `shreds pay` prima del prossimo settlement.
+Se il saldo del tuo escrow è inferiore al prezzo epoch al momento del settlement, il seat non viene allocato, il tunnel viene dismesso e la tenure viene persa. Ricarica con `shreds pay` prima del prossimo settlement.
 
 ### Seat non allocato dopo il pagamento
 
-- Potresti aver pagato tardi nell'epoch — il seat diventa effettivo nell'epoch successivo.
-- Tutti i seat sul device potrebbero essere occupati da titolari con tenure superiore. Verifica i seat disponibili con `shreds price`.
-- Se hai prelevato prima del settlement, il seat non era eleggibile.
+- Potresti aver pagato in ritardo nell'epoch — il seat entra in vigore nell'epoch successivo.
+- Tutti i seat sul dispositivo potrebbero essere occupati da incumbent con tenure superiore. Verifica i seat disponibili con `shreds price`.
+- Se hai prelevato prima del settlement, il seat non era idoneo.
 
 ### Il tunnel non si attiva
 
@@ -323,20 +310,20 @@ Se il saldo del tuo escrow è inferiore al prezzo per epoch al momento del settl
 2. Verifica che il reconciler sia abilitato: `doublezero enable`
 3. Verifica che le regole del firewall siano configurate (GRE, BGP, PIM, traffico shred su `doublezero1`, porta 44880 su `doublezero0`)
 4. Verifica che il tuo seat sia attivo per l'epoch corrente: `doublezero-solana shreds list`
-5. Controlla lo stato della tua connessione: `doublezero status`
+5. Controlla lo stato della connessione: `doublezero status`
 
-L'IP client del daemon viene rilevato automaticamente dall'IP pubblico del tuo host — verifica che corrisponda al `--client-ip` utilizzato nei tuoi comandi seat.
+L'IP client del daemon viene scoperto automaticamente dall'IP pubblico del tuo host — verifica che corrisponda al `--client-ip` utilizzato nei comandi del seat.
 
-### Prompt di avviso sull'epoch
+### Avviso relativo all'epoch
 
 La CLI avvisa quando rimane meno del 10% dell'epoch. Le tue opzioni sono:
 
 - Accettare con `--accept-partial-epoch` se vuoi il seat immediatamente
-- Attendere l'epoch successivo per ottenere una copertura completa dell'epoch
+- Attendere il prossimo epoch per ottenere una copertura completa dell'epoch
 
 ### "Amount is below the current price"
 
-Il comando `pay` valida l'importo rispetto al prezzo minimo per epoch (base metro + sovrapprezzo device). Usa `shreds price` per verificare i prezzi attuali e aumenta il tuo importo.
+Il comando `pay` valida l'importo rispetto al prezzo minimo per epoch (base metro + premium dispositivo). Usa `shreds price` per verificare i prezzi correnti e aumenta l'importo.
 
 ### "Multicast user already exists"
 
