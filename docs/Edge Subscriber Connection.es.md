@@ -92,7 +92,7 @@ Anote el código del dispositivo del resultado con menor latencia (por ejemplo, 
 
 ### 2. Verificar Precios
 
-Consulte los precios actuales de los dispositivos antes de comprometer fondos. Los precios tienen dos componentes: un **precio base de metro** y una **prima por dispositivo**. Los precios se actualizan en cada epoch. También puede ver precios y disponibilidad [aquí](https://data.malbeclabs.com/dz/shreds/devices).
+Consulte los precios actuales de los dispositivos antes de comprometer fondos. Los precios tienen dos componentes: un **precio base de metro** y una **prima por dispositivo**. También puede ver precios y disponibilidad [aquí](https://data.malbeclabs.com/dz/shreds/devices).
 
 **Todos los dispositivos:**
 
