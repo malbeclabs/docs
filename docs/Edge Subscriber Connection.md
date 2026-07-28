@@ -92,7 +92,7 @@ Note the device code from the lowest-latency result (e.g., `<Device_Name>`). You
 
 ### 2. Check Pricing
 
-View current device pricing before committing funds. Pricing has two components: a **base metro price** and a **per-device premium**. Prices update each epoch. You can also view pricing and availability [here](https://data.malbeclabs.com/dz/shreds/devices).
+View current device pricing before committing funds. Pricing has two components: a **base metro price** and a **per-device premium**. You can also view pricing and availability [here](https://data.doublezero.xyz/dz/shreds/devices).
 
 **All devices:**
 
@@ -175,7 +175,7 @@ Note that the `Target_IP` must be a public ipv4 address on the machine which wil
 
 ### Monitor Seats
 
-This section details how to view seats via the CLI. You may also use [https://data.malbeclabs.com/api/v1/docs](https://data.malbeclabs.com/api/v1/docs) to monitor seats, and assost in managing your escrow account.
+This section details how to view seats via the CLI. You may also use [https://data.malbeclabs.com/api/v1/docs](https://data.doublezero.xyz/api/v1/docs) to monitor seats, and assost in managing your escrow account.
 
 View your active seats and escrow balances:
 
@@ -278,11 +278,11 @@ The "Publishing Shreds" metric at the top left of the dashboard shows the total 
 
 ### [Edge Subscribers, Devices and Activity](https://data.malbeclabs.com/dz/shreds/subscribers)
 
-You can easily search your Client IP on this page for subscribed seats and view status. Click through specific seat subscriptions to view payment history and activity. You can also view available devices on the [Devices](https://data.malbeclabs.com/dz/shreds/devices) page and all recent activity on the [Activity](https://data.malbeclabs.com/dz/shreds/activity) page.
+You can easily search your Client IP on this page for subscribed seats and view status. Click through specific seat subscriptions to view payment history and activity. You can also view available devices on the [Devices](https://data.doublezero.xyz/dz/shreds/devices) page and all recent activity on the [Activity](https://data.malbeclabs.com/dz/shreds/activity) page.
 
 ### Data API Docs
 
-For programmatic access to data endpoints, see the API documentation: [https://data.malbeclabs.com/api/v1/docs](https://data.malbeclabs.com/api/v1/docs).
+For programmatic access to data endpoints, see the API documentation: [https://data.malbeclabs.com/api/v1/docs](https://data.doublezero.xyz/api/v1/docs).
 
 ---
 
