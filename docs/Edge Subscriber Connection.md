@@ -209,7 +209,7 @@ The "Est. Epochs Paid" column shows how many epochs your current balance covers 
 
 ### Withdraw Seat & Escrow
 
-This command releases your seat and closes the escrow in one step. You receive a prorated refund for the unused portion of the current epoch, plus any remaining escrow balance, returned to your wallet. You lose the seat and any accumulated tenure.
+This command releases your seat and closes the escrow. You receive a prorated refund for the unused portion of the current epoch, plus any remaining escrow balance, returned to your wallet. You lose the seat and any accumulated tenure.
 
 ```bash
 doublezero-solana shreds withdraw \
@@ -228,7 +228,7 @@ doublezero-solana shreds withdraw \
   --refund-token-account <PUBKEY>
 ```
 
-!!! warning "This cannot be undone. After withdraw, your seat is gone and tenure resets. Only run this when you intend to leave the device."
+!!! warning "This cannot be undone. After withdraw, your seat is gone and tenure resets."
 
 ---
 
