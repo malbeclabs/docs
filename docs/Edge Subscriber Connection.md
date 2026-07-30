@@ -207,9 +207,9 @@ Output columns: `Device Code`, `Client IP`, `Tenure`, `Balance (USDC)`, `Est. Ep
 
 The "Est. Epochs Paid" column shows how many epochs your current balance covers at current pricing. If prices change, this estimate adjusts.
 
-### Withdraw Funds
+### Withdraw Seat & Escrow
 
-Close your escrow and refund remaining USDC to your wallet:
+This command releases your seat and closes the escrow. You receive a prorated refund for the unused portion of the current epoch, plus any remaining escrow balance, returned to your wallet. You lose the seat and any accumulated tenure.
 
 ```bash
 doublezero-solana shreds withdraw \
@@ -219,7 +219,7 @@ doublezero-solana shreds withdraw \
 
 You can identify the device by either `--device <PUBKEY>` or `--device-code <CODE>`, same as other commands.
 
-To send the refund to a different token account:
+To send the USDC refund to a different token account:
 
 ```bash
 doublezero-solana shreds withdraw \
@@ -228,7 +228,7 @@ doublezero-solana shreds withdraw \
   --refund-token-account <PUBKEY>
 ```
 
-!!! warning "Withdrawing means you lose your seat and accumulated tenure."
+!!! warning "This cannot be undone. After withdraw, your seat is gone and tenure resets."
 
 ---
 
