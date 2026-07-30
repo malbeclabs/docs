@@ -4,22 +4,19 @@ description: doublezerod를 설치하고 밸리데이터 또는 노드를 Double
 
 # DoubleZero 설정 방법
 
-!!! info "용어 안내"
-    DoubleZero가 처음이신가요? [doublezerod](glossary.md#doublezerod), [IBRL](glossary.md#ibrl-increase-bandwidth-reduce-latency), [DZD](glossary.md#dzd-doublezero-device) 등의 용어 정의는 [용어집](glossary.md)을 참고하세요.
-
-!!! warning "DoubleZero에 연결함으로써 [DoubleZero 서비스 약관](https://doublezero.xyz/terms-protocol)에 동의합니다"
-
+DoubleZero가 처음이신가요? [doublezerod](glossary.md#doublezerod), [IBRL](glossary.md#ibrl-increase-bandwidth-reduce-latency), [DZD](glossary.md#dzd-doublezero-device) 등의 용어 정의는 [용어집](glossary.md)을 참고하세요.
 
 ## 사전 요구 사항
-!!! warning inline end
-    밸리데이터의 경우: DoubleZero는 컨테이너가 아닌 밸리데이터 호스트에 직접 설치해야 합니다.
 - 공인 IP 주소를 사용하는 인터넷 연결 (NAT 불가)
 - x86_64 서버
 - 지원 OS: Ubuntu 22.04+ 또는 Debian 11+, 또는 Rocky Linux / RHEL 9+
 - DoubleZero가 실행될 서버에서의 Root 또는 sudo 권한
 - 선택 사항(디버깅에 유용): jq 및 curl
+- 밸리데이터: DoubleZero는 컨테이너가 아닌 밸리데이터 호스트에 직접 설치해야 합니다
 
 ## DoubleZero 연결
+
+!!! warning "DoubleZero에 연결함으로써 [DoubleZero 서비스 약관](https://doublezero.xyz/terms-protocol)에 동의합니다"
 
 DoubleZero Testnet과 DoubleZero Mainnet-Beta는 물리적으로 별개의 네트워크입니다. 설치 시 적절한 네트워크를 선택하세요.
 

@@ -1,13 +1,15 @@
-// Keep theme toggle rightmost, and ensure only one palette icon is visible
+// Keep theme toggle rightmost on desktop; on mobile move it into the drawer.
+// Also ensure only one palette icon is visible.
 (function () {
   'use strict';
 
   var busy = false;
+  var MOBILE_MQ = '(max-width: 40em)';
 
-  function syncPaletteIcon() {
-    var form = document.querySelector(
-      '.md-header__option[data-md-component="palette"]'
-    );
+  function syncPaletteIcon(form) {
+    if (!form) {
+      form = document.querySelector('[data-md-component="palette"]');
+    }
     if (!form) return;
 
     var inputs = form.querySelectorAll('.md-option');
@@ -46,21 +48,30 @@
     }
   }
 
-  function movePaletteRight() {
+  function placePalette() {
+    var palette = document.querySelector('[data-md-component="palette"]');
+    if (!palette) return;
+
+    var drawerSlot = document.getElementById('drawer-palette-slot');
     var header = document.querySelector('.md-header__inner');
-    var palette = document.querySelector(
-      '.md-header__inner > .md-header__option[data-md-component="palette"]'
-    );
-    if (!header || !palette) return;
-    if (header.lastElementChild === palette) return;
-    header.appendChild(palette);
+    var mobile = window.matchMedia(MOBILE_MQ).matches;
+
+    if (mobile && drawerSlot) {
+      if (palette.parentElement !== drawerSlot) {
+        drawerSlot.appendChild(palette);
+      }
+    } else if (header) {
+      if (palette.parentElement !== header || header.lastElementChild !== palette) {
+        header.appendChild(palette);
+      }
+    }
   }
 
   function refresh() {
     if (busy) return;
     busy = true;
     try {
-      movePaletteRight();
+      placePalette();
       syncPaletteIcon();
     } finally {
       busy = false;
@@ -69,12 +80,22 @@
 
   function boot() {
     refresh();
-    var form = document.querySelector(
-      '.md-header__option[data-md-component="palette"]'
-    );
+    var form = document.querySelector('[data-md-component="palette"]');
     if (form) {
-      form.addEventListener('change', syncPaletteIcon);
+      form.addEventListener('change', function () {
+        syncPaletteIcon(form);
+      });
     }
+
+    window.matchMedia(MOBILE_MQ).addEventListener('change', refresh);
+
+    // Opening search from the drawer should close the drawer first
+    document.addEventListener('click', function (event) {
+      var trigger = event.target.closest && event.target.closest('label[for="__search"]');
+      if (!trigger || !trigger.closest('.mobile-drawer-controls')) return;
+      var drawer = document.getElementById('__drawer');
+      if (drawer) drawer.checked = false;
+    });
 
     var header = document.querySelector('.md-header');
     if (!header || header.dataset.paletteOrderBound) return;

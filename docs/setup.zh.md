@@ -4,22 +4,19 @@ description: 安装 doublezerod 并将您的验证者或节点连接到 DoubleZe
 
 # 如何设置 DoubleZero
 
-!!! info "术语说明"
-    刚接触 DoubleZero？请参阅[术语表](glossary.md)了解 [doublezerod](glossary.md#doublezerod)、[IBRL](glossary.md#ibrl-increase-bandwidth-reduce-latency) 和 [DZD](glossary.md#dzd-doublezero-device) 等术语的定义。
-
-!!! warning "连接到 DoubleZero 即表示我同意 [DoubleZero 服务条款](https://doublezero.xyz/terms-protocol)"
-
+刚接触 DoubleZero？请参阅[术语表](glossary.md)了解 [doublezerod](glossary.md#doublezerod)、[IBRL](glossary.md#ibrl-increase-bandwidth-reduce-latency) 和 [DZD](glossary.md#dzd-doublezero-device) 等术语的定义。
 
 ## 前提条件
-!!! warning inline end
-    对于验证者：DoubleZero 需要直接安装在您的验证者主机上，而不是在容器中。
 - 具有公共 IP 地址的互联网连接（无 NAT）
 - x86_64 服务器
 - 支持的操作系统：Ubuntu 22.04+ 或 Debian 11+，或 Rocky Linux / RHEL 9+
 - 运行 DoubleZero 的服务器上的 Root 或 sudo 权限
 - 可选但有用：用于调试的 jq 和 curl
+- 验证者：请将 DoubleZero 直接安装在验证者主机上，而不是容器中
 
 ## 连接到 DoubleZero
+
+!!! warning "连接到 DoubleZero 即表示我同意 [DoubleZero 服务条款](https://doublezero.xyz/terms-protocol)"
 
 DoubleZero Testnet 和 DoubleZero Mainnet-Beta 是物理上独立的网络。请在安装过程中选择合适的网络。
 

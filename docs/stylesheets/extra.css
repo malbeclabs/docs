@@ -1,398 +1,630 @@
-  :root  > * {
-      --md-accent-fg-color:        #16B5F4;
-    }
-
-  /* Light mode: cleaner white page + stronger text */
-  [data-md-color-scheme="default"] {
-    --md-default-bg-color: #ffffff;
-    --md-default-bg-color--light: #ffffff;
-    --md-default-bg-color--lighter: #f7f7f7;
-    --md-default-bg-color--lightest: #efefef;
-    --md-default-fg-color: rgba(0, 0, 0, 0.92);
-    --md-default-fg-color--light: rgba(0, 0, 0, 0.72);
-    --md-default-fg-color--lighter: rgba(0, 0, 0, 0.54);
-    --md-default-fg-color--lightest: rgba(0, 0, 0, 0.14);
-    --md-typeset-color: rgba(0, 0, 0, 0.9);
-  }
-
-  /* Dark mode: brighter body text (less washed-out gray) */
-  [data-md-color-scheme="slate"] {
-    --md-default-fg-color: rgba(255, 255, 255, 0.92);
-    --md-default-fg-color--light: rgba(255, 255, 255, 0.72);
-    --md-typeset-color: rgba(255, 255, 255, 0.9);
-  }
-
-  /* Wider layout: push sidebars toward the viewport edges and give content more room */
-  .md-grid {
-    max-width: none;
-  }
-
-  .md-header__inner.md-grid,
-  .md-main__inner.md-grid {
-    max-width: none;
-    margin-inline: 0.75rem;
-  }
-
-  @media screen and (min-width: 76.25em) {
-    .md-main__inner {
-      padding-left: 0.25rem;
-      padding-right: 0.25rem;
-    }
-
-    .md-content {
-      max-width: none;
-    }
-
-    .md-sidebar--primary {
-      width: 14rem;
-    }
-
-    .md-sidebar--secondary {
-      width: 13.5rem;
-    }
-
-    .md-content__inner {
-      margin: 0 1.25rem;
-      max-width: none;
-    }
-  }
-
-  /* Header control order: language → search → theme (rightmost) */
-  .md-header__inner {
-    display: flex;
-    align-items: center;
-  }
-
-  .md-header__option:has(.md-select) {
-    order: 40 !important;
-  }
-
-  .md-header__button[for="__search"] {
-    order: 50 !important;
-  }
-
-  .md-search {
-    order: 51 !important;
-  }
-
-  .header-support-btn {
-    order: 80 !important;
-  }
-
-  .md-header__option[data-md-component="palette"] {
-    order: 999 !important;
-  }
-
-  .md-header__source {
-    order: 1000 !important;
-  }
-
-  /* Theme toggle: style only the label Material leaves un-hidden */
-  .md-header__option[data-md-component="palette"] > .md-header__button[hidden] {
-    display: none !important;
-  }
-
-  .md-header__option[data-md-component="palette"] > .md-header__button:not([hidden]) {
-    position: relative;
-    display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
-    width: 2.1rem;
-    height: 2.1rem;
-    margin: 0.15rem 0.25rem;
-    padding: 0 !important;
-    line-height: 0;
-    border: none;
-    border-radius: 50%;
-    box-sizing: border-box;
-    background-color: color-mix(in srgb, var(--md-default-fg-color) 18%, transparent);
-    outline: none !important;
-    box-shadow: none !important;
-    transition: background-color 0.15s ease;
-  }
-
-  .md-header__option[data-md-component="palette"] > .md-header__button:not([hidden]):hover,
-  .md-header__option[data-md-component="palette"] > .md-header__button:not([hidden]):focus {
-    background-color: color-mix(in srgb, var(--md-default-fg-color) 68%, transparent);
-    outline: none !important;
-    box-shadow: none !important;
-  }
-
-  .md-header__option[data-md-component="palette"] > .md-header__button:not([hidden]) svg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 1.15rem;
-    height: 1.15rem;
-    margin: 0;
-    transform: translate(-50%, -50%);
-  }
-
-  /* Support header button — bright white on the dark header */
-  .header-support-btn {
-    display: inline-flex !important;
-    align-items: center;
-    justify-content: center;
-    height: 2.1rem;
-    margin: 0.15rem 0.35rem;
-    padding: 0 0.85rem !important;
-    border: 1.5px solid rgba(255, 255, 255, 0.55);
-    border-radius: 999px;
-    background: transparent;
-    color: #ffffff !important;
-    opacity: 1 !important;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    text-decoration: none !important;
-    line-height: 1;
-    transition: background-color 0.15s ease, border-color 0.15s ease;
-  }
-
-  .header-support-btn:hover,
-  .header-support-btn:focus {
-    color: #ffffff !important;
-    opacity: 1 !important;
-    background-color: rgba(255, 255, 255, 0.18);
-    border-color: rgba(255, 255, 255, 0.75);
-    outline: none !important;
-  }
-
-  /* Language selector: match icon size to theme/search; polish dropdown */
-  .md-header__option .md-select {
-    position: relative;
-  }
-
-  .md-header__option .md-select > .md-header__button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.1rem;
-    height: 2.1rem;
-    margin: 0.15rem 0.1rem;
-    padding: 0;
-    line-height: 0;
-  }
-
-  .md-header__option .md-select > .md-header__button svg {
-    display: block;
-    width: 1.2rem;
-    height: 1.2rem;
-  }
-
-  .md-select__inner {
-    min-width: 11rem;
-    top: calc(100% + 0.15rem);
-    margin-top: 0;
-    padding: 0.35rem;
-    border: 1px solid color-mix(in srgb, var(--md-default-fg-color) 16%, transparent);
-    border-radius: 0.55rem;
-    background-color: var(--md-default-bg-color);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
-    overflow-y: auto;
-    /* Closed dropdown must not capture hover in the space below the icon */
-    pointer-events: none;
-  }
-
-  /* Invisible bridge so you can move from icon → menu without a dead gap */
-  .md-select__inner::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: -0.45rem;
-    height: 0.45rem;
-  }
-
-  .md-select:focus-within .md-select__inner,
-  .md-select:hover .md-select__inner {
-    max-height: min(20rem, 70vh);
-    opacity: 1;
-    transform: translate3d(-50%, 0, 0);
-    pointer-events: auto;
-  }
-
-  .md-select__list {
-    margin: 0;
-    padding: 0;
-  }
-
-  .md-select__item {
-    margin: 0;
-  }
-
-  .md-select__link {
-    display: block;
-    margin: 0;
-    padding: 0.5rem 0.75rem;
-    border-radius: 0.35rem;
-    color: var(--md-default-fg-color);
-    font-size: 0.78rem;
-    line-height: 1.3;
-    text-decoration: none;
-    transition: background-color 0.12s ease, color 0.12s ease;
-  }
-
-  .md-select__link:hover,
-  .md-select__link:focus {
-    background-color: color-mix(in srgb, var(--md-accent-fg-color, #16B5F4) 14%, transparent);
-    color: var(--md-accent-fg-color, #16B5F4);
-  }
-
-  .md-select__link.is-active {
-    color: var(--md-accent-fg-color, #16B5F4);
-    font-weight: 600;
-    background-color: color-mix(in srgb, var(--md-accent-fg-color, #16B5F4) 10%, transparent);
-  }
-
-  .md-select__link.is-active::after {
-    content: "✓";
-    float: right;
-    opacity: 0.9;
-  }
-
-  /* 50px buffer at bottom of content when fully scrolled, before footer */
-  .md-content__inner {
-    padding-bottom: 50px;
-  }
-
-  /* Page toolbar styles - text-based links like Pyth docs */
-  .page-toolbar-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: var(--md-default-bg-color);
-    border-top: 1px solid var(--md-default-fg-color--lightest);
-    z-index: 100;
-    padding: 0;
-  }
-
-  .page-toolbar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1rem;
-    font-size: 0.875rem;
-    color: var(--md-default-fg-color);
-    max-width: 100%;
-    margin: 0 auto;
-  }
-
-  .page-toolbar-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.375rem;
-    color: var(--md-default-fg-color);
-    text-decoration: none;
-    cursor: pointer;
-    transition: opacity 0.2s ease;
-  }
-
-  .page-toolbar-link:hover {
-    text-decoration: underline;
-    opacity: 0.8;
-  }
-
-  .page-toolbar-link.copied {
-    color: var(--md-default-fg-color);
-    font-weight: 500;
-  }
-
-  .page-toolbar-icon {
-    width: 16px;
-    height: 16px;
-    flex-shrink: 0;
-    vertical-align: middle;
-    opacity: 0.9;
-  }
-
-  [data-md-color-scheme="slate"] .page-toolbar-favicon {
-    filter: brightness(0) invert(1);
-  }
-
-  .page-toolbar-separator {
-    color: var(--md-default-fg-color--light);
-    user-select: none;
-  }
-
-  /* Responsive design for smaller screens */
-  @media screen and (max-width: 768px) {
-    .page-toolbar {
-      flex-wrap: wrap;
-    }
-  }
-
-  /* Runbook assist banner (long guides + runbook pages) */
-  .runbook-assist.admonition {
-    margin: 0.75rem 0 1.25rem;
-    padding: 0.85rem 1rem 1rem !important;
-  }
-
-  .runbook-assist .admonition-title {
-    margin-top: 0;
-  }
-
-  .runbook-assist > p {
-    margin-left: 0;
-    margin-right: 0;
-  }
-
-  .runbook-assist-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin: 0.85rem 0 0 !important;
-    padding: 0 !important;
-  }
-
-  .runbook-assist-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.45rem 0.8rem;
-    border-radius: 0.25rem;
-    border: 1px solid var(--md-accent-fg-color, #16B5F4);
-    background: var(--md-accent-fg-color, #16B5F4);
-    color: #0b0b0b !important;
-    font-size: 0.8rem;
-    font-weight: 600;
-    text-decoration: none !important;
-    cursor: pointer;
-    line-height: 1.2;
-  }
-
-  .runbook-assist-btn:hover {
-    opacity: 0.9;
-  }
-
-  .runbook-assist-btn.copied {
-    background: #2e7d32;
-    border-color: #2e7d32;
-    color: #fff !important;
-  }
-
-  .runbook-assist-btn-secondary {
-    background: transparent;
-    color: var(--md-accent-fg-color, #16B5F4) !important;
-  }
-
-  button.runbook-assist-btn {
-    font-family: inherit;
-  }
-
-/* Header shows two logos (Malbec + DoubleZero); lay them out side by side.
-   The logo partial is also reused by the mobile nav drawer — keep the DZ icon
-   out of there. */
-.md-header__button.md-logo {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
+/* Readability first; brand accents second (Malbec kit).
+   Dark canvas: soft charcoal (not pure navy/black).
+   Type: Roboto for long-form reading. Brand: cerulean links/accents.
+*/
+:root {
+  --dz-cerulean: #16B5F4;
+  --dz-cerulean-readable: #3bbef0; /* slightly brighter for dark surfaces */
+  --dz-web-blue: #0919D8;
+  --dz-black: #000000;
+  --dz-white: #ffffff;
+  /* Soft charcoal — easier on eyes than #0a0c12 */
+  --dz-surface: #1a1d24;
+  --dz-surface-raised: #22262f;
+  --dz-surface-code: #2a2f3a;
+  --dz-text: #d8dce3;
+  --dz-text-strong: #eef1f6;
+  --dz-text-muted: #a7adb8;
 }
 
-.md-nav__button.md-logo img[alt="DoubleZero"] {
+:root > * {
+  --md-accent-fg-color: var(--dz-cerulean);
+  --md-accent-fg-color--transparent: color-mix(in srgb, var(--dz-cerulean) 12%, transparent);
+  --md-typeset-a-color: var(--dz-cerulean);
+}
+
+/* Light mode: soft paper (not pure white glare) + dark text */
+[data-md-color-scheme="default"] {
+  --md-default-bg-color: #f6f7f9;
+  --md-default-bg-color--light: #f6f7f9;
+  --md-default-bg-color--lighter: #eef0f4;
+  --md-default-bg-color--lightest: #e2e5eb;
+  --md-default-fg-color: rgba(20, 24, 32, 0.92);
+  --md-default-fg-color--light: rgba(20, 24, 32, 0.72);
+  --md-default-fg-color--lighter: rgba(20, 24, 32, 0.54);
+  --md-default-fg-color--lightest: rgba(20, 24, 32, 0.14);
+  --md-typeset-color: rgba(20, 24, 32, 0.88);
+  --md-typeset-a-color: #0b8fc4; /* darker cerulean for contrast on light */
+  --md-code-bg-color: #e8ebf0;
+  --md-code-fg-color: #1a1d24;
+  --md-primary-fg-color: #1a1d24;
+  --md-primary-bg-color: #f6f7f9;
+}
+
+/* Dark mode: Material-like charcoal — brand only as accent */
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: var(--dz-surface);
+  --md-default-bg-color--light: #1e222a;
+  --md-default-bg-color--lighter: var(--dz-surface-raised);
+  --md-default-bg-color--lightest: #2e3440;
+  --md-default-fg-color: var(--dz-text-strong);
+  --md-default-fg-color--light: var(--dz-text-muted);
+  --md-default-fg-color--lighter: #8b929e;
+  --md-default-fg-color--lightest: rgba(255, 255, 255, 0.12);
+  --md-typeset-color: var(--dz-text);
+  --md-typeset-a-color: var(--dz-cerulean-readable);
+  --md-code-bg-color: var(--dz-surface-code);
+  --md-code-fg-color: #e4e8ef;
+  --md-footer-bg-color: #15181e;
+  --md-footer-bg-color--dark: #12151a;
+  --md-accent-fg-color: var(--dz-cerulean-readable);
+}
+
+/* Long-form reading comfort */
+.md-typeset {
+  font-size: 0.78rem;
+  line-height: 1.7;
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4 {
+  font-family: var(--md-text-font, Roboto), system-ui, sans-serif;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  color: var(--md-default-fg-color);
+  font-weight: 700;
+}
+
+.md-typeset > h1 {
+  font-size: 1.65em;
+  font-weight: 700;
+  margin-bottom: 0.85em;
+}
+
+.md-typeset h2 {
+  font-weight: 600;
+  margin-top: 1.6em;
+}
+
+/* Header: same charcoal family as page; thin brand edge only */
+.md-header {
+  background:
+    linear-gradient(var(--dz-cerulean), var(--dz-cerulean)) top / 100% 2px no-repeat,
+    var(--dz-surface);
+  color: var(--dz-text-strong);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+}
+
+[data-md-color-scheme="default"] .md-header {
+  background:
+    linear-gradient(var(--dz-cerulean), var(--dz-cerulean)) top / 100% 2px no-repeat,
+    #ffffff;
+  color: #1a1d24;
+  box-shadow: 0 1px 0 rgba(20, 24, 32, 0.08);
+}
+
+.md-header .md-header__button,
+.md-header .md-header__topic,
+.md-header .md-source,
+.md-header .md-tabs__link {
+  color: inherit;
+}
+
+[data-md-color-scheme="slate"] .md-header .md-header__button:hover,
+[data-md-color-scheme="slate"] .md-header .md-header__button:focus {
+  opacity: 1;
+  color: var(--dz-cerulean-readable);
+}
+
+[data-md-color-scheme="default"] .md-header .md-header__button:hover,
+[data-md-color-scheme="default"] .md-header .md-header__button:focus {
+  opacity: 1;
+  color: #0b8fc4;
+}
+
+/* Links + nav accents (brand, quieter than body) */
+.md-typeset a {
+  color: var(--md-typeset-a-color);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+
+.md-typeset a:hover {
+  color: color-mix(in srgb, var(--md-typeset-a-color) 75%, var(--dz-web-blue));
+}
+
+.md-nav__link:hover,
+.md-nav__link:focus,
+.md-nav__item .md-nav__link--active,
+.md-nav__link--active {
+  color: var(--md-typeset-a-color);
+}
+
+.md-nav__link--active {
+  transition: color 0.18s ease;
+}
+
+.md-typeset .admonition.note,
+.md-typeset details.note {
+  border-color: var(--dz-cerulean);
+}
+
+.md-typeset .note > .admonition-title,
+.md-typeset .note > summary {
+  background-color: color-mix(in srgb, var(--dz-cerulean) 12%, transparent);
+}
+
+.md-typeset .note > .admonition-title::before,
+.md-typeset .note > summary::before {
+  background-color: var(--dz-cerulean);
+}
+
+/* Wider layout: push sidebars toward the viewport edges and give content more room */
+.md-grid {
+  max-width: none;
+}
+
+.md-header__inner.md-grid,
+.md-main__inner.md-grid {
+  max-width: none;
+  margin-inline: 0.75rem;
+}
+
+@media screen and (min-width: 76.25em) {
+  .md-main__inner {
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
+
+  .md-content {
+    max-width: none;
+  }
+
+  .md-sidebar--primary {
+    width: 14rem;
+  }
+
+  .md-sidebar--secondary {
+    width: 13.5rem;
+  }
+
+  .md-content__inner {
+    margin: 0 1.25rem;
+    max-width: none;
+  }
+}
+
+/* Header control order: language → search → theme (rightmost) */
+.md-header__inner {
+  display: flex;
+  align-items: center;
+}
+
+.md-header__option:has(.md-select) {
+  order: 40 !important;
+}
+
+.md-header__button[for="__search"] {
+  order: 50 !important;
+}
+
+.md-search {
+  order: 51 !important;
+}
+
+.header-support-btn {
+  order: 80 !important;
+}
+
+.md-header__option[data-md-component="palette"] {
+  order: 999 !important;
+}
+
+.md-header__source {
+  order: 1000 !important;
+}
+
+/* Theme toggle: style only the label Material leaves un-hidden */
+.md-header__option[data-md-component="palette"] > .md-header__button[hidden] {
+  display: none !important;
+}
+
+.md-header__option[data-md-component="palette"] > .md-header__button:not([hidden]) {
+  position: relative;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  margin: 0.15rem 0.25rem;
+  padding: 0 !important;
+  line-height: 0;
+  border: none;
+  border-radius: 50%;
+  box-sizing: border-box;
+  background-color: color-mix(in srgb, currentColor 18%, transparent);
+  outline: none !important;
+  box-shadow: none !important;
+  transition: background-color 0.15s ease;
+}
+
+.md-header__option[data-md-component="palette"] > .md-header__button:not([hidden]):hover,
+.md-header__option[data-md-component="palette"] > .md-header__button:not([hidden]):focus {
+  background-color: color-mix(in srgb, currentColor 68%, transparent);
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.md-header__option[data-md-component="palette"] > .md-header__button:not([hidden]) svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1.15rem;
+  height: 1.15rem;
+  margin: 0;
+  transform: translate(-50%, -50%);
+}
+
+/* Support header button */
+.header-support-btn {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  height: 2.1rem;
+  margin: 0.15rem 0.35rem;
+  padding: 0 0.85rem !important;
+  border: 1.5px solid color-mix(in srgb, var(--dz-cerulean) 65%, transparent);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--dz-white) !important;
+  opacity: 1 !important;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none !important;
+  line-height: 1;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.header-support-btn:hover,
+.header-support-btn:focus {
+  color: var(--dz-white) !important;
+  opacity: 1 !important;
+  background-color: color-mix(in srgb, var(--dz-cerulean) 22%, transparent);
+  border-color: var(--dz-cerulean);
+  outline: none !important;
+}
+
+[data-md-color-scheme="default"] .header-support-btn {
+  color: var(--dz-web-blue) !important;
+  border-color: color-mix(in srgb, var(--dz-web-blue) 45%, transparent);
+}
+
+[data-md-color-scheme="default"] .header-support-btn:hover,
+[data-md-color-scheme="default"] .header-support-btn:focus {
+  color: var(--dz-web-blue) !important;
+  background-color: color-mix(in srgb, var(--dz-cerulean) 18%, transparent);
+  border-color: var(--dz-cerulean);
+}
+
+/* Language selector: match icon size to theme/search; polish dropdown */
+.md-header__option .md-select {
+  position: relative;
+}
+
+.md-header__option .md-select > .md-header__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  margin: 0.15rem 0.1rem;
+  padding: 0;
+  line-height: 0;
+}
+
+.md-header__option .md-select > .md-header__button svg {
+  display: block;
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.md-select__inner {
+  min-width: 0;
+  width: max-content;
+  max-width: 10rem;
+  top: calc(100% + 0.15rem);
+  margin-top: 0;
+  padding: 0.2rem;
+  border: 1px solid color-mix(in srgb, var(--md-default-fg-color) 16%, transparent);
+  border-radius: 0.45rem;
+  background-color: var(--md-default-bg-color);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  overflow-y: auto;
+  /* Closed dropdown must not capture hover in the space below the icon */
+  pointer-events: none;
+}
+
+/* Invisible bridge so you can move from icon → menu without a dead gap */
+.md-select__inner::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -0.45rem;
+  height: 0.45rem;
+}
+
+.md-select:focus-within .md-select__inner,
+.md-select:hover .md-select__inner {
+  max-height: min(20rem, 70vh);
+  opacity: 1;
+  transform: translate3d(-50%, 0, 0);
+  pointer-events: auto;
+}
+
+.md-select__list {
+  margin: 0;
+  padding: 0;
+}
+
+.md-select__item {
+  margin: 0;
+}
+
+.md-select__link {
+  display: block;
+  margin: 0;
+  padding: 0.28rem 0.55rem;
+  border-radius: 0.28rem;
+  color: var(--md-default-fg-color);
+  font-size: 0.72rem;
+  line-height: 1.25;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background-color 0.12s ease, color 0.12s ease;
+}
+
+.md-select__link:hover,
+.md-select__link:focus {
+  background-color: color-mix(in srgb, var(--md-accent-fg-color, #16B5F4) 14%, transparent);
+  color: var(--md-accent-fg-color, #16B5F4);
+}
+
+.md-select__link.is-active {
+  color: var(--md-accent-fg-color, #16B5F4);
+  font-weight: 600;
+  background-color: color-mix(in srgb, var(--md-accent-fg-color, #16B5F4) 10%, transparent);
+  padding-inline-end: 1.35rem;
+}
+
+.md-select__link.is-active::after {
+  content: "✓";
+  float: right;
+  margin-inline-start: 0.45rem;
+  opacity: 0.9;
+}
+
+/* 50px buffer at bottom of content when fully scrolled, before footer */
+.md-content__inner {
+  padding-bottom: 50px;
+}
+
+/* Page toolbar styles - text-based links like Pyth docs */
+.page-toolbar-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--md-default-bg-color);
+  border-top: 1px solid var(--md-default-fg-color--lightest);
+  z-index: 100;
+  padding: 0;
+}
+
+.page-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  color: var(--md-default-fg-color);
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.page-toolbar-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: var(--md-default-fg-color);
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.page-toolbar-link:hover {
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+.page-toolbar-link.copied {
+  color: var(--md-default-fg-color);
+  font-weight: 500;
+}
+
+.page-toolbar-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  vertical-align: middle;
+  opacity: 0.9;
+}
+
+[data-md-color-scheme="slate"] .page-toolbar-favicon {
+  filter: brightness(0) invert(1);
+}
+
+.page-toolbar-separator {
+  color: var(--md-default-fg-color--light);
+  user-select: none;
+}
+
+@media screen and (max-width: 768px) {
+  .page-toolbar {
+    flex-wrap: wrap;
+  }
+}
+
+/* Runbook assist — quiet compact strip (no admonition chrome / border) */
+.runbook-assist--compact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem 0.85rem;
+  margin: 0.35rem 0 1rem;
+  padding: 0.55rem 0.75rem;
+  border: none;
+  border-radius: 0.4rem;
+  background: color-mix(in srgb, var(--md-accent-fg-color, #16B5F4) 10%, transparent);
+}
+
+.runbook-assist--compact .runbook-assist-icon {
+  flex: 0 0 auto;
+  width: 1.15rem;
+  height: 1.15rem;
+  color: var(--md-accent-fg-color, #16B5F4);
+}
+
+.runbook-assist--compact .runbook-assist-copy {
+  flex: 1 1 12rem;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: var(--md-default-fg-color--light);
+}
+
+.runbook-assist--compact .runbook-assist-copy strong {
+  color: var(--md-default-fg-color);
+  font-weight: 600;
+}
+
+.runbook-assist--compact .runbook-assist-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.runbook-assist-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.32rem 0.65rem;
+  border-radius: 0.25rem;
+  border: 1px solid var(--md-accent-fg-color, #16B5F4);
+  background: var(--md-accent-fg-color, #16B5F4);
+  color: #0b0b0b !important;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-decoration: none !important;
+  cursor: pointer;
+  line-height: 1.2;
+}
+
+.runbook-assist-btn:hover {
+  opacity: 0.9;
+}
+
+.runbook-assist-btn.copied {
+  background: #2e7d32;
+  border-color: #2e7d32;
+  color: #fff !important;
+}
+
+.runbook-assist-btn-secondary {
+  background: transparent;
+  color: var(--md-accent-fg-color, #16B5F4) !important;
+}
+
+button.runbook-assist-btn {
+  font-family: inherit;
+}
+
+/* Legacy full admonition assist (if any remain) */
+.runbook-assist.admonition {
+  margin: 0.75rem 0 1.25rem;
+  padding: 0.85rem 1rem 1rem !important;
+}
+
+.runbook-assist.admonition .admonition-title {
+  margin-top: 0;
+}
+
+.runbook-assist.admonition > p {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Header: DoubleZero icon + Malbec wordmark (swap dark/light by scheme) */
+.md-header__button.md-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  animation: dz-logo-settle 0.5s ease-out 0.05s both;
+}
+
+@keyframes dz-logo-settle {
+  from {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.md-header__button.md-logo img,
+.md-nav__button.md-logo img {
+  height: 1.55rem;
+  width: auto;
+}
+
+.md-header__button.md-logo .header-logo-dz,
+.md-nav__button.md-logo .header-logo-dz {
+  height: 1.35rem;
+  width: auto;
+}
+
+/* Drawer: keep Malbec wordmark only (DZ icon stays in header) */
+.md-nav__button.md-logo .header-logo-dz {
   display: none;
+}
+
+.header-logo-malbec--light {
+  display: none !important;
+}
+
+[data-md-color-scheme="default"] .header-logo-malbec--dark {
+  display: none !important;
+}
+
+[data-md-color-scheme="default"] .header-logo-malbec--light {
+  display: inline-block !important;
+}
+
+/* Keep title as flex spacer so controls stay right; hide redundant brand text */
+.md-header__title {
+  flex: 1 1 auto;
+  visibility: hidden;
+  pointer-events: none;
 }
 
 /* Right TOC: "On this page" title → scroll to top */
@@ -453,22 +685,42 @@
   border-left: 2px solid transparent;
   margin-left: -1px;
   border-radius: 0;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition: color 0.15s ease, border-color 0.15s ease, text-shadow 0.15s ease;
 }
 
 .md-sidebar--secondary .md-nav--secondary .md-nav__link:hover,
 .md-sidebar--secondary .md-nav--secondary .md-nav__link:focus {
   color: var(--md-default-fg-color);
   background: transparent;
+  font-weight: 400;
+  /* Faux-bold: looks heavier without changing glyph metrics / layout */
+  text-shadow: 0.35px 0 0 currentColor, -0.35px 0 0 currentColor;
 }
 
+/* Active: color + rail + faux-bold — no font-weight change (no layout shift) */
 .md-sidebar--secondary .md-nav--secondary .md-nav__link--active,
 .md-sidebar--secondary .md-nav--secondary .md-nav__link--active:focus,
-.md-sidebar--secondary .md-nav--secondary .md-nav__link--active:hover {
+.md-sidebar--secondary .md-nav--secondary .md-nav__link--active:hover,
+.md-sidebar--secondary .md-nav--secondary .md-nav__item--active > .md-nav__link {
   color: var(--md-accent-fg-color, #16B5F4);
-  font-weight: 600;
+  font-weight: 400 !important;
   border-left-color: var(--md-accent-fg-color, #16B5F4);
   background: transparent;
+  text-shadow: 0.4px 0 0 currentColor, -0.4px 0 0 currentColor;
+}
+
+/* Primary nav: faux-bold on active/hover, stable metrics */
+.md-sidebar--primary .md-nav__link {
+  font-weight: 400 !important;
+  transition: color 0.15s ease, text-shadow 0.15s ease;
+}
+
+.md-sidebar--primary .md-nav__link:hover,
+.md-sidebar--primary .md-nav__link:focus,
+.md-sidebar--primary .md-nav__link--active,
+.md-sidebar--primary .md-nav__item--active > .md-nav__link {
+  font-weight: 400 !important;
+  text-shadow: 0.35px 0 0 currentColor, -0.35px 0 0 currentColor;
 }
 
 /* Nested TOC levels stay indented under the scrollspy rail */
@@ -489,12 +741,6 @@
 
 .md-sidebar--secondary .md-nav--secondary > .md-nav__list > .md-nav__item:has(> .md-nav) + .md-nav__item > .md-nav__link {
   padding-top: 0.45rem;
-}
-
-/* Page title — bold, high contrast in both schemes */
-.md-typeset > h1 {
-  color: var(--md-default-fg-color);
-  font-weight: 700;
 }
 
 /* Keep scrollspy / in-page anchors aligned under the sticky header */
@@ -524,7 +770,7 @@
   border: none;
   border-radius: 50%;
   box-sizing: border-box;
-  background-color: color-mix(in srgb, var(--md-default-fg-color) 18%, transparent);
+  background-color: color-mix(in srgb, currentColor 18%, transparent);
   outline: none !important;
   box-shadow: none !important;
   transition: background-color 0.15s ease;
@@ -533,7 +779,7 @@
 .md-header__button[for="__search"]:hover,
 .md-header__button[for="__search"]:focus {
   border: none;
-  background-color: color-mix(in srgb, var(--md-default-fg-color) 48%, transparent);
+  background-color: color-mix(in srgb, currentColor 48%, transparent);
   outline: none !important;
   box-shadow: none !important;
 }
@@ -598,6 +844,12 @@
     box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45) !important;
   }
 
+  /* Open search: one cohesive card (form top + output bottom, both rounded) */
+  [data-md-toggle="search"]:checked ~ .md-header .md-search__form {
+    border-radius: 0.75rem 0.75rem 0 0 !important;
+    box-shadow: none !important;
+  }
+
   .md-search__form:hover {
     background-color: var(--md-default-bg-color) !important;
   }
@@ -606,6 +858,8 @@
     font-size: 0.95rem !important;
     line-height: 3rem !important;
     color: var(--md-default-fg-color) !important;
+    /* Room for the back/close icon on the left + comfortable gap before typed text */
+    padding-inline-start: 3rem !important;
   }
 
   .md-search__input::placeholder {
@@ -615,7 +869,7 @@
 
   .md-search__icon[for="__search"] {
     top: 50% !important;
-    inset-inline-start: 0.85rem !important;
+    inset-inline-start: 0.75rem !important;
     display: inline-flex !important;
     align-items: center;
     justify-content: center;
@@ -655,9 +909,9 @@
     left: 0;
     right: 0;
     width: 100% !important;
-    border-radius: 0 0 0.75rem 0.75rem;
+    border-radius: 0 0 0.75rem 0.75rem !important;
     opacity: 0;
-    overflow: hidden;
+    overflow: hidden !important;
     background-color: var(--md-default-bg-color);
     box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
   }
@@ -670,10 +924,17 @@
     width: 100% !important;
     max-width: none !important;
     max-height: 0;
+    border-radius: 0 0 0.75rem 0.75rem;
+    overflow: hidden;
   }
 
   [data-md-toggle="search"]:checked ~ .md-header .md-search__scrollwrap {
-    max-height: 55vh !important;
+    max-height: min(55vh, calc(100vh - 8rem)) !important;
+    min-height: 2.75rem;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
   }
 
   /* Leave room for the result icon (Material places it absolutely on the left) */
@@ -692,7 +953,7 @@
     inset-inline-start: 0.55rem;
   }
 
-  /* Connect form to results when previews are showing */
+  /* Keep shared card radius when results are showing */
   [data-md-toggle="search"]:checked ~ .md-header .md-search__form:has(+ .md-search__output .md-search-result__item) {
     border-radius: 0.75rem 0.75rem 0 0 !important;
     box-shadow: none !important;
@@ -701,6 +962,12 @@
   [data-md-toggle="search"]:checked ~ .md-header .md-search__form:has(+ .md-search__output .md-search-result__item) + .md-search__output {
     box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
   }
+}
+
+/* Lock page scroll while search is open (desktop + mobile) */
+html:has([data-md-toggle="search"]:checked),
+html:has([data-md-toggle="search"]:checked) body {
+  overflow: hidden !important;
 }
 
 /* Smaller screens: keep Material’s modal, but float a centered card */
@@ -730,7 +997,223 @@
     position: relative;
     top: 0;
     bottom: auto;
-    max-height: 55vh;
+    max-height: min(55vh, calc(100vh - 8rem));
     border-radius: 0 0 0.75rem 0.75rem;
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+  }
+
+  [data-md-toggle="search"]:checked ~ .md-header .md-search__scrollwrap {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Header / drawer: keep controls visible until they would crush (~40em).
+   Material still shows the nav hamburger below ~76em — just don't steal
+   search/lang/support/theme until phone widths.
+   -------------------------------------------------------------------------- */
+.mobile-drawer-controls {
+  display: none;
+}
+
+/* Tablet: nav drawer toggle appears beside logo — keep logo from covering it */
+@media screen and (max-width: 76.1875em) {
+  .md-header__button.md-logo {
+    flex: 0 1 auto;
+    max-width: calc(100% - 3.25rem);
+    min-width: 0;
+    overflow: hidden;
+    margin-inline-end: 0.35rem;
+  }
+
+  .md-header__button.md-logo img {
+    max-height: 1.35rem;
+  }
+
+  .md-header__button[for="__drawer"] {
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+  }
+}
+
+/* Narrow phones: shrink brand mark so it never collides with the hamburger */
+@media screen and (max-width: 40em) {
+  .md-header__button.md-logo {
+    gap: 0.25rem;
+    max-width: calc(100% - 3rem);
+  }
+
+  .md-header__button.md-logo .header-logo-dz {
+    display: block;
+    height: 0.95rem;
+    flex-shrink: 0;
+  }
+
+  .md-header__button.md-logo .header-logo-malbec {
+    height: 0.95rem;
+    max-width: min(8.75rem, calc(100vw - 6.25rem));
+    object-fit: contain;
+    object-position: left center;
+  }
+}
+
+@media screen and (max-width: 22.5em) {
+  /* Keep DZ + Malbec; shrink further instead of dropping either mark */
+  .md-header__button.md-logo {
+    gap: 0.2rem;
+  }
+
+  .md-header__button.md-logo .header-logo-dz {
+    display: block;
+    height: 0.85rem;
+  }
+
+  .md-header__button.md-logo .header-logo-malbec {
+    height: 0.85rem;
+    max-width: calc(100vw - 5.75rem);
+  }
+}
+
+/* Phone: move chrome controls into the sandwich drawer */
+@media screen and (max-width: 40em) {
+  .md-header__inner > .md-header__option,
+  .md-header__inner > .header-support-btn,
+  .md-header__inner > .md-header__button[for="__search"] {
+    display: none !important;
+  }
+
+  /* Search UI stays in DOM for the modal, but takes no header space */
+  .md-header__inner > .md-search {
+    position: absolute;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .md-header__inner > .md-search .md-search__inner {
+    pointer-events: auto;
+  }
+
+  /* Logo left, hamburger right */
+  .md-header__button.md-logo {
+    order: 1;
+    flex: 1 1 auto;
+    max-width: calc(100% - 3rem);
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .md-header__title {
+    display: none;
+  }
+
+  .md-header__button[for="__drawer"] {
+    order: 2;
+    flex: 0 0 auto;
+    width: 2.4rem;
+    margin-inline-start: 0.35rem;
+  }
+
+  /* Drawer control panel */
+  .mobile-drawer-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    margin: 0.35rem 0.8rem 1rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    background: color-mix(in srgb, var(--md-default-fg-color) 6%, transparent);
+  }
+
+  .mobile-drawer-controls__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0.55rem 0.7rem;
+    border: 1px solid color-mix(in srgb, var(--md-default-fg-color) 14%, transparent);
+    border-radius: 0.4rem;
+    background: var(--md-default-bg-color);
+    color: var(--md-default-fg-color);
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    cursor: pointer;
+    line-height: 1.2;
+  }
+
+  .mobile-drawer-controls__btn svg {
+    width: 1.1rem;
+    height: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .mobile-drawer-controls__btn:hover,
+  .mobile-drawer-controls__btn:focus {
+    border-color: var(--md-accent-fg-color, #16B5F4);
+    color: var(--md-accent-fg-color, #16B5F4);
+  }
+
+  .mobile-drawer-controls__label {
+    display: block;
+    margin: 0.15rem 0 0.35rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--md-default-fg-color--light);
+  }
+
+  .mobile-drawer-controls__langs ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.35rem;
+  }
+
+  .mobile-drawer-controls__langs a {
+    display: block;
+    padding: 0.4rem 0.55rem;
+    border-radius: 0.3rem;
+    color: var(--md-default-fg-color);
+    font-size: 0.75rem;
+    text-decoration: none;
+    background: var(--md-default-bg-color);
+    border: 1px solid color-mix(in srgb, var(--md-default-fg-color) 12%, transparent);
+  }
+
+  .mobile-drawer-controls__langs a:hover,
+  .mobile-drawer-controls__langs a.is-active,
+  .mobile-drawer-controls__langs a[aria-current="page"] {
+    color: var(--md-accent-fg-color, #16B5F4);
+    border-color: color-mix(in srgb, var(--md-accent-fg-color, #16B5F4) 45%, transparent);
+  }
+
+  .mobile-drawer-controls__palette {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 0.15rem;
+  }
+
+  .mobile-drawer-controls__palette .md-header__option {
+    display: inline-flex;
+  }
+
+  .mobile-drawer-controls__palette .md-header__button {
+    width: 2.25rem;
+    height: 2.25rem;
+    margin: 0;
+    border-radius: 50%;
+    background-color: color-mix(in srgb, currentColor 14%, transparent);
   }
 }

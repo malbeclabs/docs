@@ -4,22 +4,19 @@ description: doublezerodのインストールおよびバリデーターやノ�
 
 # DoubleZeroのセットアップ方法
 
-!!! info "用語について"
-    DoubleZeroが初めてですか？[doublezerod](glossary.md#doublezerod)、[IBRL](glossary.md#ibrl-increase-bandwidth-reduce-latency)、[DZD](glossary.md#dzd-doublezero-device)などの用語の定義は[用語集](glossary.md)を参照してください。
-
-!!! warning "DoubleZeroに接続することにより、[DoubleZero利用規約](https://doublezero.xyz/terms-protocol)に同意したものとみなされます"
-
+DoubleZeroが初めてですか？[doublezerod](glossary.md#doublezerod)、[IBRL](glossary.md#ibrl-increase-bandwidth-reduce-latency)、[DZD](glossary.md#dzd-doublezero-device)などの用語の定義は[用語集](glossary.md)を参照してください。
 
 ## 前提条件
-!!! warning inline end
-    バリデーターの場合：DoubleZeroはコンテナ内ではなく、バリデーターホストに直接インストールする必要があります。
 - パブリックIPアドレスを持つインターネット接続（NATなし）
 - x86_64サーバー
 - サポートされるOS: Ubuntu 22.04以降またはDebian 11以降、またはRocky Linux / RHEL 9以降
 - DoubleZeroを実行するサーバーでのrootまたはsudo権限
 - オプションですが便利: デバッグ用のjqとcurl
+- バリデーター向け: DoubleZeroはコンテナではなく、バリデーターホストに直接インストールしてください
 
 ## DoubleZeroへの接続
+
+!!! warning "DoubleZeroに接続することにより、[DoubleZero利用規約](https://doublezero.xyz/terms-protocol)に同意したものとみなされます"
 
 DoubleZero TestnetとDoubleZero Mainnet-Betaは物理的に異なるネットワークです。インストール時に適切なネットワークを選択してください。
 

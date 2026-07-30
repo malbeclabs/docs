@@ -4,22 +4,19 @@ description: Guida passo-passo per installare doublezerod e connettere il tuo va
 
 # Come configurare DoubleZero
 
-!!! info "Terminologia"
-    Sei nuovo su DoubleZero? Consulta il [Glossario](glossary.md) per le definizioni di termini come [doublezerod](glossary.md#doublezerod), [IBRL](glossary.md#ibrl-increase-bandwidth-reduce-latency) e [DZD](glossary.md#dzd-doublezero-device).
-
-!!! warning "Connettendomi a DoubleZero accetto i [Termini di Servizio di DoubleZero](https://doublezero.xyz/terms-protocol)"
-
+Sei nuovo su DoubleZero? Consulta il [Glossario](glossary.md) per le definizioni di termini come [doublezerod](glossary.md#doublezerod), [IBRL](glossary.md#ibrl-increase-bandwidth-reduce-latency) e [DZD](glossary.md#dzd-doublezero-device).
 
 ## Prerequisiti
-!!! warning inline end
-    Per i validatori: DoubleZero deve essere installato direttamente sull'host del validatore, non in un container.
 - Connettività Internet con un indirizzo IP pubblico (no NAT)
 - Server x86_64
 - Sistema operativo supportato: Ubuntu 22.04+ o Debian 11+, oppure Rocky Linux / RHEL 9+
 - Privilegi root o sudo sul server dove verrà eseguito DoubleZero
 - Opzionale ma utile: jq e curl per il debug
+- Per i validator: installa DoubleZero direttamente sull'host del validator, non in un container
 
 ## Connessione a DoubleZero
+
+!!! warning "Connettendomi a DoubleZero accetto i [Termini di Servizio di DoubleZero](https://doublezero.xyz/terms-protocol)"
 
 DoubleZero Testnet e DoubleZero Mainnet-Beta sono reti fisicamente distinte. Scegli la rete appropriata durante l'installazione.
 
