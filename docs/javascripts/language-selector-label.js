@@ -1,5 +1,5 @@
-// Display the currently selected language name next to the language selector icon
-(function() {
+// Highlight the active language in the selector dropdown
+(function () {
   'use strict';
 
   var LOCALE_SEGMENTS = ['zh', 'ja', 'ko', 'pt', 'es', 'fr', 'it'];
@@ -14,34 +14,32 @@
     return 'en';
   }
 
-  function getCurrentLanguageName() {
+  function init() {
+    var selector = document.querySelector('.md-select');
+    if (!selector) return;
+
+    var btn = selector.querySelector('button');
     var locale = getCurrentLocale();
-    var selector = document.querySelector('.md-select .md-select__list');
-    if (!selector) return null;
     var links = selector.querySelectorAll('.md-select__link');
+    var activeName = null;
+
     for (var i = 0; i < links.length; i++) {
       var link = links[i];
       var hreflang = link.getAttribute('hreflang') || '';
       if (hreflang === locale) {
-        return link.textContent.trim();
+        link.classList.add('is-active');
+        link.setAttribute('aria-current', 'true');
+        activeName = link.textContent.trim();
+      } else {
+        link.classList.remove('is-active');
+        link.removeAttribute('aria-current');
       }
     }
-    return null;
-  }
 
-  function init() {
-    // Find the language selector button via its parent .md-select container
-    // rather than aria-label, which gets translated on non-English pages
-    var selector = document.querySelector('.md-select');
-    if (!selector) return;
-    var btn = selector.querySelector('button');
-    if (!btn) return;
-    var name = getCurrentLanguageName();
-    if (!name) return;
-    var label = document.createElement('span');
-    label.className = 'md-header__language-label';
-    label.textContent = name;
-    btn.appendChild(label);
+    if (btn && activeName) {
+      btn.setAttribute('title', activeName);
+      btn.setAttribute('aria-label', 'Language: ' + activeName);
+    }
   }
 
   if (document.readyState === 'loading') {

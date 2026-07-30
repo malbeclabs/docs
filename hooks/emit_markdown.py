@@ -24,23 +24,41 @@ import os
 LOCALES = {"zh", "ja", "ko", "pt", "es", "fr", "it"}
 
 # Curated llms.txt layout: (section title, [source files in order]).
+# Primary Solana journeys first; other tenants last.
 SECTIONS = [
     ("Welcome", ["index.md"]),
-    ("Quick start", ["quick-connect.md"]),
+    ("Quick start", ["setup.md"]),
     (
-        "Users",
+        "Runbooks",
         [
-            "setup.md",
-            "tenant.md",
+            "runbooks/index.md",
+            "runbooks/install-client.md",
+            "runbooks/solana-ibrl-mainnet.md",
+            "runbooks/solana-ibrl-testnet.md",
+            "runbooks/publish-edge-shreds.md",
+            "runbooks/subscribe-edge-shreds.md",
+            "runbooks/permissioned-rpc.md",
+            "runbooks/other-multicast.md",
+            "runbooks/troubleshoot-edge.md",
+        ],
+    ),
+    (
+        "Solana on DoubleZero",
+        [
             "DZ Mainnet-beta Connection.md",
             "DZ Testnet Connection.md",
-            "Permissioned Connection.md",
             "Validator Multicast Connection.md",
+            "Edge Subscriber Connection.md",
+            "Permissioned Connection.md",
             "Validator Rewards.md",
             "Other Multicast Connection.md",
-            "Edge Subscriber Connection.md",
             "troubleshooting.md",
-            "geolocation.md",
+        ],
+    ),
+    (
+        "Other tenants",
+        [
+            "tenant.md",
             "Shelby Permissioned Connection.md",
             "New Tenant.md",
         ],
@@ -54,9 +72,11 @@ SECTIONS = [
             "contribute-operations.md",
             "contribute-ops-management.md",
             "contribute-geolocation.md",
+            "contribute-decommission.md",
         ],
     ),
-    ("Reference", ["architecture.md", "glossary.md"]),
+    ("Reference", ["architecture.md", "geolocation.md", "glossary.md"]),
+    ("Support", ["support.md"]),
 ]
 
 # Collected default-locale pages, keyed by source filename (e.g. "setup.md").

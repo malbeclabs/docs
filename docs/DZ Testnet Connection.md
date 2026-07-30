@@ -58,7 +58,6 @@ description: Connect a Solana Testnet validator to DoubleZero in IBRL mode, incl
 
 ###  Connecting to Testnet in IBRL Mode
 
-
 !!! Note inline end
     IBRL mode does not require restarting validator clients, because it uses your existing public IP address.
 

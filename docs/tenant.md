@@ -1,29 +1,32 @@
 ---
-description: Choose the DoubleZero tenant and connection path that matches your use case — Solana validators, RPCs, Shelby, or a new protocol.
+description: Choose the DoubleZero connection path that matches your use case — Solana validators, Edge shreds, RPCs, Shelby, or a new protocol.
 ---
 
-# Tenants
+# Other tenants & path finder
 
-Tenants on DoubleZero are groups of users with similar profiles and connection requirements, typically representing different blockchain ecosystems, data transfer layers, or distributed systems.
+Most Solana users should start from the homepage or [Runbooks](runbooks/index.md). Use this page if you are unsure which guide fits, or you are onboarding a non-Solana tenant.
 
-Examine the table below, and chose the use case which best describes how you plan to interact with the DoubleZero Network.
+## Solana (primary)
 
-Solana
+| Use case | Runbook | Full guide |
+|----------|---------|------------|
+| Mainnet validator — IBRL (unicast) | [IBRL Mainnet](runbooks/solana-ibrl-mainnet.md) | [Validator IBRL Mainnet](DZ%20Mainnet-beta%20Connection.md) |
+| Testnet validator — IBRL | [IBRL Testnet](runbooks/solana-ibrl-testnet.md) | [Validator IBRL Testnet](DZ%20Testnet%20Connection.md) |
+| Validator — publish leader shreds on Edge | [Publish shreds](runbooks/publish-edge-shreds.md) | [Publish shreds (Edge)](Validator%20Multicast%20Connection.md) |
+| Subscribe to Edge shreds (trading / infra) | [Subscribe shreds](runbooks/subscribe-edge-shreds.md) | [Subscribe to shreds (Edge)](Edge%20Subscriber%20Connection.md) |
+| Non-validators — RPCs, MEV, and others | [Permissioned / RPC](runbooks/permissioned-rpc.md) | [Permissioned Connection](Permissioned%20Connection.md) |
+| Other named multicast feeds | [Other multicast](runbooks/other-multicast.md) | [Other Multicast Connection](Other%20Multicast%20Connection.md) |
 
-| Use Case | Next Stop |
-|-------------|---------|
-| Solana Mainnet Validator, including backups | [DoubleZero Mainnet-Beta Connection](https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/) |
-| Solana Testnet Validator, including backups | [DoubleZero Testnet Connection](https://docs.malbeclabs.com/DZ%20Testnet%20Connection/) |
-| Non-Validators - RPCs, and others. | [DoubleZero Mainnet-Beta and Testnet Connection](Permissioned%20Connection.md) |
+Install the client first: [Install client runbook](runbooks/install-client.md) · [Setup](setup.md).
 
-Shelby
+## Shelby
 
-| Use Case | Next Stop |
-|-------------|---------|
-| Shelby Testnet RPCs and Storage Nodes | [DoubleZero Testnet Connection](Shelby%20Permissioned%20Connection.md) |
+| Use case | Next stop |
+|----------|-----------|
+| Shelby Testnet RPCs and Storage Nodes | [Shelby Connection](Shelby%20Permissioned%20Connection.md) |
 
-New Tenant
+## New tenant
 
-| Use Case | Next Stop |
--------------|---------|
-| You have a new protocol, application, or other use case for leveraging DoubleZero | [Add A New Tenant](New%20Tenant.md) |
+| Use case | Next stop |
+|----------|-----------|
+| New protocol, application, or other use case | [Add a New Tenant](New%20Tenant.md) |

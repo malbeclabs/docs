@@ -45,13 +45,18 @@ server instead of guessing.
 
 ## Workflow
 
-1. Identify whether the question is about **procedure/concepts** (use the docs)
+1. Identify the **primary journey** first when possible:
+   - Validator IBRL → `runbooks/solana-ibrl-mainnet.md` (or testnet)
+   - Publish Edge shreds → `runbooks/publish-edge-shreds.md`
+   - Subscribe Edge shreds → `runbooks/subscribe-edge-shreds.md`
+   Prefer runbooks for bring-up; use the long guides for edge cases.
+2. Identify whether the question is about **procedure/concepts** (use the docs)
    or **live state** (use the MCP), or both.
-2. For docs: fetch `llms.txt`, pick the relevant page(s), then fetch the
+3. For docs: fetch `llms.txt`, pick the relevant page(s), then fetch the
    `index.md` Markdown for those pages.
-3. For live data: call `get_schema` first, then issue a read-only `execute_sql`
+4. For live data: call `get_schema` first, then issue a read-only `execute_sql`
    or `execute_cypher` query.
-4. Answer concisely and link the user to the canonical page on
+5. Answer concisely and link the user to the canonical page on
    `https://docs.malbeclabs.com/` so they can follow the full steps.
 
 ## Notes
@@ -62,3 +67,5 @@ server instead of guessing.
   `https://data.malbeclabs.com/dz/publisher-check`,
   `https://data.malbeclabs.com/dz/users`) are human-facing; for programmatic
   access use the MCP tools above.
+- Shelby and "new tenant" paths are secondary; do not lead with them unless the
+  user asks.

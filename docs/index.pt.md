@@ -34,6 +34,6 @@ Para mais detalhes, consulte o whitepaper do [DoubleZero Protocol](https://doubl
 
 ## Próximos Passos
 
-* *Para Utilizadores* - Comece com o nosso [Assistente de Conexão Rápida](quick-connect.md) para criar uma configuração personalizada com base no tipo de utilizador ou vá diretamente para a [configuração inicial](setup.md) e siga o fluxo de configuração manualmente.
+* *Para Utilizadores* - Comece pelos [Runbooks](runbooks/index.md) ou pela [configuração inicial](setup.md).
 * *Para Contribuidores* - Veja como [Contribuir](contribute-overview.md) com capacidade adicional para expandir ainda mais a rede DoubleZero.
 * *Mais Informações* - Leia mais sobre o que compõe a [Arquitetura](architecture.md) da rede DoubleZero.

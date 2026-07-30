@@ -35,6 +35,20 @@ For more details, see the [DoubleZero Protocol](https://doublezero.xyz/whitepape
 
 ## Next Steps
 
-* *For Users* - Start with our [Quick Connect Wizard](quick-connect.md) to create a custom setup based on user type or go straight to [initial setup](setup.md) and follow the setup flow manually.
-* *For Contributors* - See how to [Contribute](contribute-overview.md) additional capacity to grow the DoubleZero network further.
-* *More Information* - Read more about what makes up the [Architecture](architecture.md) of the DoubleZero network.
+### Primary paths (Solana)
+
+Pick the path that matches what you want to do. Prefer the **runbook** for a short checklist; use the full guide for detail.
+
+| Goal | Runbook | Full guide |
+|------|---------|------------|
+| Connect a validator (IBRL) | [IBRL Mainnet runbook](runbooks/solana-ibrl-mainnet.md) | [Validator IBRL Mainnet](DZ%20Mainnet-beta%20Connection.md) |
+| Publish leader shreds on Edge | [Publish shreds runbook](runbooks/publish-edge-shreds.md) | [Publish shreds (Edge)](Validator%20Multicast%20Connection.md) |
+| Subscribe to Edge shreds | [Subscribe shreds runbook](runbooks/subscribe-edge-shreds.md) | [Subscribe to shreds (Edge)](Edge%20Subscriber%20Connection.md) |
+
+Or start with [Install client (Setup)](setup.md). All runbooks: [Runbooks overview](runbooks/index.md).
+
+### Other
+
+* *Other tenants* (Shelby, new protocols) — [Other tenants](tenant.md)
+* *For Contributors* — [Contribute](contribute-overview.md)
+* *Architecture* — [Architecture](architecture.md)

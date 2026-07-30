@@ -8,6 +8,7 @@ Install the required plugin so `mkdocs serve` works:
 pip install mkdocs-static-i18n
 pip install pymdown-extensions
 pip install mkdocs-material
+pip install mkdocs-git-revision-date-localized-plugin
 ```
 
 Then run:

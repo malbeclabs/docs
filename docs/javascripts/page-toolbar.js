@@ -100,12 +100,12 @@
       body.substring(0, 3000) + (body.length > 3000 ? '...' : '');
   }
 
-  function askInChatGPT() {
-    window.open('https://chat.openai.com/?q=' + encodeURIComponent(buildPrompt()), '_blank');
+  function askInClaude() {
+    window.open('https://claude.ai/new?q=' + encodeURIComponent(buildPrompt()), '_blank');
   }
 
-  function askInClaude() {
-    window.open('https://claude.ai/new?prompt=' + encodeURIComponent(buildPrompt()), '_blank');
+  function askInChatGPT() {
+    window.open('https://chatgpt.com/?q=' + encodeURIComponent(buildPrompt()), '_blank');
   }
 
   function addToolbar() {
