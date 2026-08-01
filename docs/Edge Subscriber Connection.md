@@ -74,7 +74,7 @@ solana address
 Your wallet needs two tokens:
 
 - **SOL** — for Solana transaction fees. Transfer SOL to the wallet address printed above.
-- **USDC** — for seat funding. The CLI pulls from your wallet's Associated Token Account (ATA) for the mainnet USDC mint (`EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v`).
+- **2Z** — for seat funding. The CLI pulls from your wallet's Associated Token Account (ATA) for the mainnet USDC mint (`xfrsfrvsrf`).
 
 ---
 
