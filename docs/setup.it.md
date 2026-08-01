@@ -1,19 +1,19 @@
 ---
-description: Guida passo-passo per installare doublezerod e connettere il tuo validatore o nodo alla rete DoubleZero.
+description: Guida passo passo per installare doublezerod e connettere il tuo validatore o nodo alla rete DoubleZero.
 ---
 
 # Come configurare DoubleZero
 
 !!! info "Terminologia"
-    Sei nuovo su DoubleZero? Consulta il [Glossario](glossary.md) per le definizioni di termini come [doublezerod](glossary.md#doublezerod), [IBRL](glossary.md#ibrl-increase-bandwidth-reduce-latency) e [DZD](glossary.md#dzd-doublezero-device).
+    Nuovo su DoubleZero? Consulta il [Glossario](glossary.md) per le definizioni di termini come [doublezerod](glossary.md#doublezerod), [IBRL](glossary.md#ibrl-increase-bandwidth-reduce-latency) e [DZD](glossary.md#dzd-doublezero-device).
 
-!!! warning "Connettendomi a DoubleZero accetto i [Termini di Servizio di DoubleZero](https://doublezero.xyz/terms-protocol)"
+!!! warning "Collegandomi a DoubleZero accetto i [Termini di Servizio di DoubleZero](https://doublezero.xyz/terms-protocol)"
 
 
 ## Prerequisiti
 !!! warning inline end
     Per i validatori: DoubleZero deve essere installato direttamente sull'host del validatore, non in un container.
-- Connettività Internet con un indirizzo IP pubblico (no NAT)
+- Connettività Internet con un indirizzo IP pubblico (senza NAT)
 - Server x86_64
 - Sistema operativo supportato: Ubuntu 22.04+ o Debian 11+, oppure Rocky Linux / RHEL 9+
 - Privilegi root o sudo sul server dove verrà eseguito DoubleZero
@@ -85,11 +85,11 @@ sudo yum install doublezero
 <div data-wizard-step="install-network-warning" markdown>
 
 ??? info "Solo utenti esistenti: Cambiare un pacchetto da *Testnet a Mainnet-Beta*, o da *Mainnet-Beta a Testnet*"
-    Quando installi da uno dei repository di pacchetti sopra indicati, esso è specifico per DoubleZero **Testnet** o **DoubleZero Mainnet Beta**. Se cambi rete in qualsiasi momento, dovrai rimuovere i repository di pacchetti precedentemente installati e aggiornare al repository di destinazione.
+    Quando installi da uno dei repository di pacchetti sopra indicati, è specifico per DoubleZero **Testnet** o **DoubleZero Mainnet Beta**. Se cambi rete in qualsiasi momento, dovrai rimuovere i repository di pacchetti precedentemente installati e aggiornare al repository di destinazione.
 
-    Questo esempio illustrerà la migrazione da Testnet a Mainnet-Beta
+    Questo esempio illustra la migrazione da Testnet a Mainnet-Beta
 
-    Gli stessi passaggi possono essere completati per passare da Mainnet-Beta a Testnet, sostituendo il passaggio 3 con il comando di installazione per Testnet sopra indicato.
+    Gli stessi passaggi possono essere completati per passare da Mainnet-Beta a Testnet, sostituendo il passaggio 3 con il comando di installazione per Testnet indicato sopra.
 
 
     1. Trovare i vecchi file del repository
@@ -122,9 +122,9 @@ sudo yum install doublezero
 
 <div data-wizard-step="install-verify-daemon" markdown>
 
-#### Controllare lo stato di `doublezerod`
+#### Verificare lo stato di `doublezerod`
 
-Dopo l'installazione del pacchetto, viene installata, attivata e avviata una nuova unit systemd. Per vedere lo stato puoi eseguire:
+Dopo l'installazione del pacchetto, una nuova unità systemd viene installata, attivata e avviata. Per vedere lo stato puoi eseguire:
 ```
 sudo systemctl status doublezerod
 ```
@@ -177,14 +177,14 @@ doublezero keygen
     mkdir -p ~/.config/doublezero
     ```
 
-    Copia o collega il file `id.json` che vuoi usare con DoubleZero nella directory di configurazione di doublezero.
+    Copia o collega il file `id.json` che vuoi utilizzare con DoubleZero nella directory di configurazione di doublezero.
 
     ```
     sudo cp </path/to/id.json> ~/.config/doublezero/
     ```
 ## 3. Recuperare l'identità DoubleZero del server
 
-Visualizza la tua identità DoubleZero. Questa identità verrà utilizzata per creare la connessione tra la tua macchina e DoubleZero
+Verifica la tua identità DoubleZero. Questa identità verrà utilizzata per creare la connessione tra la tua macchina e DoubleZero
 
 ```bash
 doublezero address
@@ -197,7 +197,7 @@ YourDoubleZeroAddress11111111111111111111111111111
 
 ## 4. Verificare che doublezerod abbia scoperto i dispositivi DZ
 
-Prima di connetterti, assicurati che `doublezerod` abbia scoperto e pingato ciascuno degli switch DZ testnet disponibili:
+Prima di connetterti, assicurati che `doublezerod` abbia scoperto e verificato tramite ping ciascuno degli switch DZ testnet disponibili:
 
 ```
 doublezero latency
@@ -221,9 +221,9 @@ Se nell'output non vengono restituiti dispositivi, attendi 10-20 secondi e ripro
 
 ## 5. Disconnettersi da DoubleZero
 
-Nelle prossime sezioni configurerai il tuo ambiente DoubleZero. Per garantire il successo, disconnetti la sessione corrente. Questo eviterà problemi legati a tunnel multipli aperti sulla tua macchina.
+Nelle sezioni successive configurerai il tuo ambiente DoubleZero. Per garantire il successo, disconnetti la sessione corrente. Questo eviterà problemi legati a tunnel multipli aperti sulla tua macchina.
 
-Controlla
+Verifica
 
 ```bash
 doublezero status
@@ -237,19 +237,19 @@ doublezero disconnect
 
 ### Prossimo passo: Tenant
 
-La connessione a DoubleZero varia in base al tuo caso d'uso. Su DoubleZero, i Tenant sono gruppi che hanno profili utente simili. Esempi includono Blockchain, Data Transfer Layer, ecc.
+La connessione a DoubleZero varierà in base al tuo caso d'uso. Su DoubleZero, i Tenant sono gruppi che hanno profili utente simili. Gli esempi includono Blockchain, Data Transfer Layer, ecc.
 
-### [Procedi a scegliere il tuo tenant qui](tenant.md)
+### [Procedi per scegliere il tuo tenant qui](tenant.md)
 
 
 # Opzionale: Abilitare le metriche Prometheus
 
-Gli operatori che hanno familiarità con le metriche Prometheus potrebbero volerle abilitare per il monitoraggio di DoubleZero. Questo fornisce visibilità sulle prestazioni del client DoubleZero, sullo stato della connessione e sulla salute operativa.
+Gli operatori che hanno familiarità con le metriche Prometheus potrebbero volerle abilitare per il monitoraggio di DoubleZero. Questo fornisce visibilità sulle prestazioni del client DoubleZero, lo stato della connessione e la salute operativa.
 
 ## Quali metriche sono disponibili
 
 DoubleZero espone diverse metriche chiave:
-- **Informazioni sulla build**: Versione, hash del commit e data di build
+- **Informazioni di build**: Versione, hash del commit e data di build
 - **Stato della sessione**: Se la sessione DoubleZero è attiva
 - **Metriche di connessione**: Latenza e informazioni sulla connettività
 - **Dati sulle prestazioni**: Throughput e tassi di errore
@@ -293,7 +293,7 @@ Verifica che l'endpoint delle metriche stia rispondendo:
 curl -s localhost:2113/metrics | grep doublezero
 ```
 
-Output atteso:
+Output previsto:
 
 ```
 # HELP doublezero_build_info Build information of the client
@@ -305,24 +305,24 @@ doublezero_session_is_up 0
 ```
 ## Risoluzione dei problemi
 
-Se le metriche non compaiono:
+Se le metriche non appaiono:
 
-1. **Controlla lo stato del servizio**: `sudo systemctl status doublezerod`
-2. **Verifica la configurazione**: `sudo systemctl cat doublezerod`
-3. **Controlla i log**: `sudo journalctl -u doublezerod -f`
-4. **Testa l'endpoint**: `curl -v localhost:2113/metrics`
-5. **Verifica la porta**: `netstat -tlnp | grep 2113`
+1. **Verificare lo stato del servizio**: `sudo systemctl status doublezerod`
+2. **Verificare la configurazione**: `sudo systemctl cat doublezerod`
+3. **Controllare i log**: `sudo journalctl -u doublezerod -f`
+4. **Testare l'endpoint**: `curl -v localhost:2113/metrics`
+5. **Verificare la porta**: `netstat -tlnp | grep 2113`
 
 
 ## Configurare il server Prometheus
 
-La configurazione e la sicurezza vanno oltre lo scopo di questa documentazione.
-Grafana è un'eccellente opzione per la visualizzazione e dispone di documentazione disponibile [qui](https://grafana.com/docs/alloy/latest/collect/prometheus-metrics/) che descrive come raccogliere le metriche Prometheus.
+La configurazione e la sicurezza esulano dall'ambito di questa documentazione.
+Grafana è un'ottima opzione per la visualizzazione e dispone di documentazione disponibile [qui](https://grafana.com/docs/alloy/latest/collect/prometheus-metrics/) che descrive come raccogliere le metriche Prometheus.
 
 ## Dashboard Grafana (Opzionale)
 
-Per la visualizzazione, puoi creare una dashboard Grafana utilizzando le metriche di DoubleZero. I pannelli comuni includono:
+Per la visualizzazione, puoi creare una dashboard Grafana utilizzando le metriche DoubleZero. I pannelli comuni includono:
 - Stato della sessione nel tempo
-- Informazioni sulla build
+- Informazioni di build
 - Tendenze della latenza di connessione
 - Monitoraggio del tasso di errore

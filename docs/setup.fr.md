@@ -12,10 +12,10 @@ description: Guide étape par étape pour installer doublezerod et connecter vot
 
 ## Prérequis
 !!! warning inline end
-    Pour les validateurs : DoubleZero doit être installé directement sur votre hôte validateur, pas dans un conteneur.
+    Pour les validateurs : DoubleZero doit être installé directement sur l'hôte de votre validateur, pas dans un conteneur.
 - Connectivité Internet avec une adresse IP publique (pas de NAT)
 - Serveur x86_64
-- Système d'exploitation pris en charge : Ubuntu 22.04+ ou Debian 11+, ou Rocky Linux / RHEL 9+
+- OS supporté : Ubuntu 22.04+ ou Debian 11+, ou Rocky Linux / RHEL 9+
 - Privilèges root ou sudo sur le serveur où DoubleZero sera exécuté
 - Optionnel mais utile : jq et curl pour le débogage
 
@@ -23,7 +23,7 @@ description: Guide étape par étape pour installer doublezerod et connecter vot
 
 DoubleZero Testnet et DoubleZero Mainnet-Beta sont des réseaux physiquement distincts. Veuillez choisir le réseau approprié lors de l'installation.
 
-Lors de l'intégration à DoubleZero, vous établirez une **identité DoubleZero**, représentée par une clé publique appelée **DoubleZero ID**. Cette clé fait partie de la manière dont DoubleZero reconnaît votre machine.
+Lors de l'intégration à DoubleZero, vous établirez une **identité DoubleZero**, représentée par une clé publique appelée **DoubleZero ID**. Cette clé fait partie de la façon dont DoubleZero reconnaît votre machine.
 
 ## 1. Installer les paquets DoubleZero
 
@@ -110,7 +110,7 @@ sudo yum install doublezero
         ```
     3. Installer depuis le nouveau dépôt
 
-        Ajoutez le nouveau dépôt Mainnet-Beta et installez le dernier paquet :
+        Ajoutez le nouveau dépôt Mainnet-Beta et installez la dernière version du paquet :
 
         ```
         curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
@@ -171,7 +171,7 @@ doublezero keygen
 !!! info
     Si vous avez un ID existant que vous souhaitez utiliser, vous pouvez suivre ces étapes optionnelles.
 
-    Créer le répertoire de configuration doublezero
+    Créez le répertoire de configuration doublezero
 
     ```
     mkdir -p ~/.config/doublezero
@@ -195,9 +195,9 @@ doublezero address
 YourDoubleZeroAddress11111111111111111111111111111
 ```
 
-## 4. Vérifier que doublezerod a découvert les appareils DZ
+## 4. Vérifier que doublezerod a découvert les dispositifs DZ
 
-Avant de vous connecter, assurez-vous que `doublezerod` a découvert et pingé chacun des commutateurs DZ testnet disponibles :
+Avant de vous connecter, assurez-vous que `doublezerod` a découvert et contacté chacun des commutateurs DZ testnet disponibles :
 
 ```
 doublezero latency
@@ -217,11 +217,11 @@ $ doublezero latency
  9uhh2D5c14WJjbwgM7BudztdoPZYCjbvqcTPgEKtTMZE | sg1-dz01  | 180.87.102.98  | 176.66ms | 176.76ms | 176.72ms | true
 ```
 
-Si aucun appareil n'est retourné dans la sortie, attendez 10 à 20 secondes et réessayez.
+Si aucun dispositif n'est retourné dans la sortie, attendez 10 à 20 secondes et réessayez.
 
 ## 5. Se déconnecter de DoubleZero
 
-Dans les sections suivantes, vous configurerez votre environnement DoubleZero. Afin de garantir le succès, déconnectez la session en cours. Cela évitera les problèmes liés à plusieurs tunnels ouverts sur votre machine.
+Dans les sections suivantes, vous configurerez votre environnement DoubleZero. Afin de garantir le succès, déconnectez la session en cours. Cela évitera les problèmes liés à l'ouverture de plusieurs tunnels sur votre machine.
 
 Vérifiez
 
@@ -229,7 +229,7 @@ Vérifiez
 doublezero status
 ```
 
-s'il est `up`, exécutez :
+si le statut est `up`, exécutez :
 
 ```bash
 doublezero disconnect
@@ -237,7 +237,7 @@ doublezero disconnect
 
 ### Étape suivante : Tenant
 
-La connexion à DoubleZero diffère selon votre cas d'utilisation. Sur DoubleZero, les Tenants sont des groupes ayant des profils utilisateur similaires. Les exemples incluent les Blockchains, les couches de transfert de données, etc.
+La connexion à DoubleZero diffère selon votre cas d'utilisation. Sur DoubleZero, les Tenants sont des groupes ayant des profils utilisateurs similaires. Les exemples incluent les blockchains, les couches de transfert de données, etc.
 
 ### [Cliquez ici pour choisir votre tenant](tenant.md)
 
@@ -249,10 +249,10 @@ Les opérateurs familiers avec les métriques Prometheus peuvent souhaiter les a
 ## Quelles métriques sont disponibles
 
 DoubleZero expose plusieurs métriques clés :
-- **Informations de build** : Version, hash de commit et date de build
+- **Informations de build** : Version, hash du commit et date de build
 - **Statut de session** : Indique si la session DoubleZero est active
 - **Métriques de connexion** : Latence et informations de connectivité
-- **Données de performance** : Débit et taux d'erreur
+- **Données de performance** : Débit et taux d'erreurs
 
 ## Activer les métriques Prometheus
 
@@ -309,7 +309,7 @@ Si les métriques n'apparaissent pas :
 
 1. **Vérifier le statut du service** : `sudo systemctl status doublezerod`
 2. **Vérifier la configuration** : `sudo systemctl cat doublezerod`
-3. **Consulter les logs** : `sudo journalctl -u doublezerod -f`
+3. **Consulter les journaux** : `sudo journalctl -u doublezerod -f`
 4. **Tester le point de terminaison** : `curl -v localhost:2113/metrics`
 5. **Vérifier le port** : `netstat -tlnp | grep 2113`
 
@@ -322,7 +322,7 @@ Grafana est une excellente option pour la visualisation et dispose d'une documen
 ## Tableau de bord Grafana (Optionnel)
 
 Pour la visualisation, vous pouvez créer un tableau de bord Grafana en utilisant les métriques DoubleZero. Les panneaux courants incluent :
-- Statut de session dans le temps
+- Statut de session au fil du temps
 - Informations de build
 - Tendances de latence de connexion
-- Surveillance du taux d'erreur
+- Surveillance du taux d'erreurs
