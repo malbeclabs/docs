@@ -7,7 +7,7 @@ description: Configure a connected validator to publish leader shreds to the Dou
 
 If you are not already connected to DoubleZero please complete [Setup](setup.md), and [Mainnet-Beta](DZ%20Mainnet-beta%20Connection.md) validator connection documentation.
 
-Trading firms and other subscribers: [Subscribe to shreds (Edge)](Edge%20Subscriber%20Connection.md).
+Trading firms and other subscribers: Edge shreds subscription is live. See [Subscribe to shreds (Edge)](Edge%20Subscriber%20Connection.md). You can also [fill out this form](https://doublezero.xyz/edge-form) to register interest.
 
 If you are a validator who is already connected to DoubleZero you may continue this guide.
 
@@ -102,11 +102,11 @@ You must be running Jito-Agave 3.1.9+, JitoBam 3.1.9+, Frankendancer, or Harmoni
 
     The screenshot below shows: **Retransmitting** (undesirable) steady outbound traffic with no leader-slot pattern.
 
-    ![User multicast view — retransmit example](images/user-multicast-view-retransmit.png)
+    ![User multicast view. retransmit example](images/user-multicast-view-retransmit.png)
 
     The screenshot below shows: **Healthy** (publishing only leader shreds) outbound traffic in spikes, known as a sawtooth pattern, which line up with your leader slots.
 
-    ![User multicast view — healthy publisher example](images/user-multicast-view-healthy.png)
+    ![User multicast view. healthy publisher example](images/user-multicast-view-healthy.png)
 
 The chart shows whether you are sending only leader shreds. Traffic spikes should line up with when you have a leader slot. When you have no leader slot there should be no traffic. If you are retransmitting, you will see a steady flow of traffic instead of slot-aligned spikes.
 

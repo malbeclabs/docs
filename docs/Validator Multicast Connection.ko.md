@@ -3,10 +3,9 @@
 
 !!! warning "DoubleZero에 연결함으로써 [DoubleZero 이용약관](https://doublezero.xyz/terms-protocol)에 동의합니다"
 
-!!! note inline end "거래 회사 및 기업"
-    피드를 구독하려는 거래 회사나 기업을 운영하시는 경우, 자세한 내용은 곧 공유될 예정입니다. 더 많은 정보를 얻으려면 [여기](https://doublezero.xyz/edge-form)에서 관심을 등록하세요.
+DoubleZero에 아직 연결되지 않은 경우 [설정](setup.md) 및 [Mainnet-Beta](DZ%20Mainnet-beta%20Connection.md) 검증자 연결 문서를 먼저 완료하세요.
 
-DoubleZero에 아직 연결되지 않은 경우 [설정](https://docs.malbeclabs.com/setup/) 및 [Mainnet-Beta](https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/) 검증자 연결 문서를 먼저 완료하세요.
+거래 회사 및 기타 구독자: Edge shreds 구독이 이미 제공됩니다. [엣지 구독자 연결](Edge%20Subscriber%20Connection.md)을 참고하세요. 관심 등록은 [이 양식](https://doublezero.xyz/edge-form)으로도 가능합니다.
 
 이미 DoubleZero에 연결된 검증자라면 이 가이드를 계속 진행할 수 있습니다.
 
@@ -82,10 +81,10 @@ Jito-Agave 3.1.9+, JitoBam 3.1.9+, Frankendancer 또는 Harmonic 3.1.11+를 실�
 
     아래 스크린샷은：**재전송** (바람직하지 않음) 리더 슬롯 패턴 없는 안정적인 아웃바운드 트래픽을 보여줍니다.
 
-    ![사용자 멀티캐스트 뷰 — 재전송 예시](images/user-multicast-view-retransmit.png)
+    ![사용자 멀티캐스트 뷰. 재전송 예시](images/user-multicast-view-retransmit.png)
 
     아래 스크린샷은：**정상** (리더 슈레드만 게시) 스파이크 형태의 아웃바운드 트래픽(톱니파 패턴)을 보여주며, 리더 슬롯과 일치합니다.
 
-    ![사용자 멀티캐스트 뷰 — 정상 게시자 예시](images/user-multicast-view-healthy.png)
+    ![사용자 멀티캐스트 뷰. 정상 게시자 예시](images/user-multicast-view-healthy.png)
 
 차트는 리더 슈레드만 보내고 있는지 보여줍니다. 트래픽 스파이크는 리더 슬롯이 있을 때와 일치해야 합니다. 리더 슬롯이 없을 때는 트래픽이 없어야 합니다. 재전송 중이라면 슬롯에 맞춘 스파이크 대신 안정적인 트래픽 흐름이 보일 것입니다.

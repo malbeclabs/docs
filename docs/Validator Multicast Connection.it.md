@@ -3,10 +3,9 @@
 
 !!! warning "Connettendomi a DoubleZero accetto i [Termini di Servizio di DoubleZero](https://doublezero.xyz/terms-protocol)"
 
-!!! note inline end "Società di trading e aziende"
-    Se gestisci una società di trading o un'azienda che desidera iscriversi al feed, ulteriori dettagli saranno condivisi a breve. Registra il tuo interesse per ricevere più informazioni [qui](https://doublezero.xyz/edge-form).
+Se non sei ancora connesso a DoubleZero, completa prima la documentazione di [Configurazione](setup.md) e di connessione validatore [Mainnet-Beta](DZ%20Mainnet-beta%20Connection.md).
 
-Se non sei ancora connesso a DoubleZero, completa prima la documentazione di [Configurazione](https://docs.malbeclabs.com/setup/) e di connessione validatore [Mainnet-Beta](https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/).
+Società di trading e altri subscriber: l'abbonamento agli shreds Edge è già live. Vedi [Connessione Edge Subscriber](Edge%20Subscriber%20Connection.md). Puoi anche [compilare questo form](https://doublezero.xyz/edge-form) per registrare il tuo interesse.
 
 Se sei un validatore già connesso a DoubleZero, puoi continuare questa guida.
 
@@ -82,10 +81,10 @@ Devi eseguire Jito-Agave 3.1.9+, JitoBam 3.1.9+, Frankendancer o Harmonic 3.1.11
 
     Lo screenshot seguente mostra: **Ritrasmissione** (indesiderata) traffico in uscita costante senza pattern di slot leader.
 
-    ![Vista multicast utente — esempio di ritrasmissione](images/user-multicast-view-retransmit.png)
+    ![Vista multicast utente. esempio di ritrasmissione](images/user-multicast-view-retransmit.png)
 
     Lo screenshot seguente mostra: **Sano** (pubblicazione solo di shred leader) traffico in uscita a picchi, noto come pattern a dente di sega, che si allinea con i tuoi slot leader.
 
-    ![Vista multicast utente — esempio di publisher sano](images/user-multicast-view-healthy.png)
+    ![Vista multicast utente. esempio di publisher sano](images/user-multicast-view-healthy.png)
 
 Il grafico mostra se stai inviando solo shred leader. I picchi di traffico dovrebbero allinearsi con quando hai uno slot leader. Quando non hai uno slot leader non ci dovrebbe essere traffico. Se stai ritrasmettendo, vedrai un flusso costante di traffico invece di picchi allineati agli slot.

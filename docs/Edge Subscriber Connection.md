@@ -13,7 +13,7 @@ Install the [Solana CLI](https://docs.anza.xyz/cli/install).
 
 Follow the [setup](setup.md) instructions to install and configure the DoubleZero client.
 
-If you have previously setup DoubleZero, ensure you have the latest Doublezero-Solana CLI with `sudo apt update && sudo apt install doublezero-solana`
+If you have previously set up DoubleZero, ensure you have the latest Doublezero-Solana CLI with `sudo apt update && sudo apt install doublezero-solana`
 
 ### 2. Configure the Firewall
 
@@ -175,7 +175,7 @@ Note that the `Target_IP` must be a public ipv4 address on the machine which wil
 
 ### Monitor Seats
 
-This section details how to view seats via the CLI. You may also use [https://data.doublezero.xyz/api/v1/docs](https://data.doublezero.xyz/api/v1/docs) to monitor seats, and assost in managing your escrow account.
+This section details how to view seats via the CLI. You may also use [https://data.doublezero.xyz/api/v1/docs](https://data.doublezero.xyz/api/v1/docs) to monitor seats, and assist in managing your escrow account.
 
 View your active seats and escrow balances:
 
