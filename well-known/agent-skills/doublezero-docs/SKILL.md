@@ -36,8 +36,8 @@ For questions about the current state of the network — which users/devices exi
 publisher/subscriber status, link health, telemetry — use the DoubleZero Data MCP
 server instead of guessing.
 
-- **Endpoint:** `https://data.malbeclabs.com/mcp` (MCP Streamable HTTP)
-- **Discovery:** `https://data.malbeclabs.com/.well-known/mcp/server-card.json`
+- **Endpoint:** `https://data.doublezero.xyz/mcp` (MCP Streamable HTTP)
+- **Discovery:** `https://data.doublezero.xyz/.well-known/mcp/server-card.json`
 - **Tools:** `get_schema` (always call first to learn the available tables,
   columns, and types — never assume names), `execute_sql` and `execute_cypher`
   (read-only queries over the data), and `read_docs` (conceptual/procedural docs
@@ -59,6 +59,6 @@ server instead of guessing.
 - The network is public and read-only from an agent's perspective; there is no
   agent login or write API. Do not attempt to register credentials.
 - Dashboards referenced in the docs (e.g.
-  `https://data.malbeclabs.com/dz/publisher-check`,
-  `https://data.malbeclabs.com/dz/users`) are human-facing; for programmatic
+  `https://data.doublezero.xyz/dz/publisher-check`,
+  `https://data.doublezero.xyz/dz/users`) are human-facing; for programmatic
   access use the MCP tools above.

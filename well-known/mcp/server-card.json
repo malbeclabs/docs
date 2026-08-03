@@ -5,7 +5,7 @@
   },
   "transport": {
     "type": "streamable-http",
-    "endpoint": "https://data.malbeclabs.com/mcp"
+    "endpoint": "https://data.doublezero.xyz/mcp"
   },
   "capabilities": {
     "tools": true,

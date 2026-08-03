@@ -3,10 +3,9 @@
 
 !!! warning "Connettendomi a DoubleZero accetto i [Termini di Servizio di DoubleZero](https://doublezero.xyz/terms-protocol)"
 
-!!! note inline end "Società di trading e aziende"
-    Se gestisci una società di trading o un'azienda che desidera iscriversi al feed, ulteriori dettagli saranno condivisi a breve. Registra il tuo interesse per ricevere più informazioni [qui](https://doublezero.xyz/edge-form).
-
 Se non sei ancora connesso a DoubleZero, completa prima la documentazione di [Configurazione](https://docs.malbeclabs.com/setup/) e di connessione validatore [Mainnet-Beta](https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/).
+
+Società di trading e altri subscriber: l'abbonamento agli shreds Edge è già live. Vedi [Connessione Edge Subscriber](Edge%20Subscriber%20Connection.md). Puoi anche [compilare questo form](https://doublezero.xyz/edge-form) per registrare il tuo interesse.
 
 Se sei un validatore già connesso a DoubleZero, puoi continuare questa guida.
 
@@ -47,7 +46,7 @@ Se sei un validatore già connesso a DoubleZero, puoi continuare questa guida.
 
 ## 2. Confermare la pubblicazione degli shred leader
 
-Una volta connesso, puoi verificare [questa dashboard](https://data.malbeclabs.com/dz/publisher-check) per confermare che stai pubblicando shred. Non vedrai la conferma finché non avrai pubblicato shred leader per almeno uno slot.
+Una volta connesso, puoi verificare [questa dashboard](https://data.doublezero.xyz/dz/publisher-check) per confermare che stai pubblicando shred. Non vedrai la conferma finché non avrai pubblicato shred leader per almeno uno slot.
 
 ## 3. Ricompense per i Validatori
 
@@ -67,14 +66,14 @@ Devi eseguire Jito-Agave 3.1.9+, JitoBam 3.1.9+, Frankendancer o Harmonic 3.1.11
 
     Il flag da rimuovere in Jito-Agave è: `--shred-retransmit-receiver-address`.
 
-1. Controlla la [dashboard dei publisher](https://data.malbeclabs.com/dz/publisher-check) e verifica se hai shred ritrasmessi. Nella tabella, guarda la colonna **No Retransmit Shreds**—una X rossa significa che stai ritrasmettendo.
+1. Controlla la [dashboard dei publisher](https://data.doublezero.xyz/dz/publisher-check) e verifica se hai shred ritrasmessi. Nella tabella, guarda la colonna **No Retransmit Shreds**—una X rossa significa che stai ritrasmettendo.
 
     !!! note "Vista per epoca"
         Tieni presente che ci sono diverse finestre temporali per visualizzare la dashboard dei publisher. Se vedi la ritrasmissione nella **vista 2 epoche**, ma hai apportato una modifica recente, prova a passare alla vista **slot recente**.
 
     ![Dashboard di verifica publisher](images/publisher-check-dashboard.png)
 
-2. Trova l'IP del tuo client e cerca il tuo utente in [DoubleZero Data](https://data.malbeclabs.com/dz/users).
+2. Trova l'IP del tuo client e cerca il tuo utente in [DoubleZero Data](https://data.doublezero.xyz/dz/users).
 
     ![Utenti DoubleZero Data](images/doublezero-data-users.png)
 
@@ -82,10 +81,10 @@ Devi eseguire Jito-Agave 3.1.9+, JitoBam 3.1.9+, Frankendancer o Harmonic 3.1.11
 
     Lo screenshot seguente mostra: **Ritrasmissione** (indesiderata) traffico in uscita costante senza pattern di slot leader.
 
-    ![Vista multicast utente — esempio di ritrasmissione](images/user-multicast-view-retransmit.png)
+    ![Vista multicast utente. esempio di ritrasmissione](images/user-multicast-view-retransmit.png)
 
     Lo screenshot seguente mostra: **Sano** (pubblicazione solo di shred leader) traffico in uscita a picchi, noto come pattern a dente di sega, che si allinea con i tuoi slot leader.
 
-    ![Vista multicast utente — esempio di publisher sano](images/user-multicast-view-healthy.png)
+    ![Vista multicast utente. esempio di publisher sano](images/user-multicast-view-healthy.png)
 
 Il grafico mostra se stai inviando solo shred leader. I picchi di traffico dovrebbero allinearsi con quando hai uno slot leader. Quando non hai uno slot leader non ci dovrebbe essere traffico. Se stai ritrasmettendo, vedrai un flusso costante di traffico invece di picchi allineati agli slot.

@@ -92,7 +92,7 @@ Notez le code de l'appareil avec le résultat de latence le plus faible (par ex.
 
 ### 2. Vérifier les tarifs
 
-Consultez les tarifs actuels des appareils avant d'engager des fonds. La tarification comporte deux composantes : un **prix de base métro** et une **prime par appareil**. Vous pouvez également consulter les tarifs et la disponibilité [ici](https://data.malbeclabs.com/dz/shreds/devices).
+Consultez les tarifs actuels des appareils avant d'engager des fonds. La tarification comporte deux composantes : un **prix de base métro** et une **prime par appareil**. Vous pouvez également consulter les tarifs et la disponibilité [ici](https://data.doublezero.xyz/dz/shreds/devices).
 
 **Tous les appareils :**
 
@@ -175,7 +175,7 @@ Notez que le `Target_IP` doit être une adresse IPv4 publique sur la machine qui
 
 ### Surveiller les sièges
 
-Cette section détaille comment visualiser les sièges via le CLI. Vous pouvez également utiliser [https://data.malbeclabs.com/api/v1/docs](https://data.malbeclabs.com/api/v1/docs) pour surveiller les sièges et vous aider à gérer votre compte séquestre.
+Cette section détaille comment visualiser les sièges via le CLI. Vous pouvez également utiliser [https://data.doublezero.xyz/api/v1/docs](https://data.doublezero.xyz/api/v1/docs) pour surveiller les sièges et vous aider à gérer votre compte séquestre.
 
 Consultez vos sièges actifs et soldes de séquestre :
 
@@ -268,21 +268,21 @@ doublezero multicast group list
 
 ## Outils et tableaux de bord
 
-### [Tableau des scores Edge](https://data.malbeclabs.com/dz/shreds/scoreboard)
+### [Tableau des scores Edge](https://data.doublezero.xyz/dz/shreds/scoreboard)
 
 Le tableau des scores compare la vitesse de livraison des shreds entre DoubleZero Edge et d'autres fournisseurs, en utilisant des données au niveau des slots pour comparer les performances en temps réel. Utilisez ce tableau de bord pour voir les taux de victoire des shreds Edge par rapport aux autres fournisseurs. Vous pouvez consulter les résultats uniquement pour les shreds de leader, en plus de la comparaison du flux complet. Vous pouvez également affiner par région pour voir les performances attendues.
 
-### [Éditeurs Edge](https://data.malbeclabs.com/dz/shreds/publishers)
+### [Éditeurs Edge](https://data.doublezero.xyz/dz/shreds/publishers)
 
 La métrique « Publishing Shreds » en haut à gauche du tableau de bord affiche le pourcentage total du poids de stake de tous les validateurs Solana publiant des shreds de leader sur DoubleZero Edge. Vous pouvez voir les détails de chaque éditeur sur le réseau.
 
-### [Abonnés Edge, appareils et activité](https://data.malbeclabs.com/dz/shreds/subscribers)
+### [Abonnés Edge, appareils et activité](https://data.doublezero.xyz/dz/shreds/subscribers)
 
-Vous pouvez facilement rechercher votre IP client sur cette page pour les sièges souscrits et consulter le statut. Cliquez sur des abonnements de sièges spécifiques pour voir l'historique des paiements et l'activité. Vous pouvez également consulter les appareils disponibles sur la page [Appareils](https://data.malbeclabs.com/dz/shreds/devices) et toute l'activité récente sur la page [Activité](https://data.malbeclabs.com/dz/shreds/activity).
+Vous pouvez facilement rechercher votre IP client sur cette page pour les sièges souscrits et consulter le statut. Cliquez sur des abonnements de sièges spécifiques pour voir l'historique des paiements et l'activité. Vous pouvez également consulter les appareils disponibles sur la page [Appareils](https://data.doublezero.xyz/dz/shreds/devices) et toute l'activité récente sur la page [Activité](https://data.doublezero.xyz/dz/shreds/activity).
 
 ### Documentation de l'API de données
 
-Pour un accès programmatique aux points de terminaison de données, consultez la documentation de l'API : [https://data.malbeclabs.com/api/v1/docs](https://data.malbeclabs.com/api/v1/docs).
+Pour un accès programmatique aux points de terminaison de données, consultez la documentation de l'API : [https://data.doublezero.xyz/api/v1/docs](https://data.doublezero.xyz/api/v1/docs).
 
 ---
 

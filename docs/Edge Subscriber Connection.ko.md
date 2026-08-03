@@ -92,7 +92,7 @@ doublezero latency
 
 ### 2. 가격 확인
 
-자금을 투입하기 전에 현재 장치 가격을 확인합니다. 가격은 **기본 메트로 가격**과 **장치별 프리미엄** 두 가지 요소로 구성됩니다. [여기](https://data.malbeclabs.com/dz/shreds/devices)에서도 가격 및 가용성을 확인할 수 있습니다.
+자금을 투입하기 전에 현재 장치 가격을 확인합니다. 가격은 **기본 메트로 가격**과 **장치별 프리미엄** 두 가지 요소로 구성됩니다. [여기](https://data.doublezero.xyz/dz/shreds/devices)에서도 가격 및 가용성을 확인할 수 있습니다.
 
 **모든 장치:**
 
@@ -175,7 +175,7 @@ doublezero-solana shreds pay \
 
 ### 좌석 모니터링
 
-이 섹션에서는 CLI를 통해 좌석을 확인하는 방법을 설명합니다. [https://data.malbeclabs.com/api/v1/docs](https://data.malbeclabs.com/api/v1/docs)를 사용하여 좌석을 모니터링하고 에스크로 계정 관리를 지원받을 수도 있습니다.
+이 섹션에서는 CLI를 통해 좌석을 확인하는 방법을 설명합니다. [https://data.doublezero.xyz/api/v1/docs](https://data.doublezero.xyz/api/v1/docs)를 사용하여 좌석을 모니터링하고 에스크로 계정 관리를 지원받을 수도 있습니다.
 
 활성 좌석 및 에스크로 잔액을 확인합니다:
 
@@ -268,21 +268,21 @@ doublezero multicast group list
 
 ## 도구 및 대시보드
 
-### [엣지 스코어보드](https://data.malbeclabs.com/dz/shreds/scoreboard)
+### [엣지 스코어보드](https://data.doublezero.xyz/dz/shreds/scoreboard)
 
 스코어보드는 슬롯 수준 데이터를 사용하여 DoubleZero Edge와 다른 제공업체 간의 슈레드 전달 속도를 실시간으로 비교 벤치마킹합니다. 이 대시보드를 사용하여 다른 제공업체 대비 Edge 슈레드 승률을 확인할 수 있습니다. 리더 슈레드만의 결과와 전체 피드 비교를 모두 볼 수 있습니다. 또한 지역별로 드릴다운하여 예상 성능을 확인할 수 있습니다.
 
-### [엣지 퍼블리셔](https://data.malbeclabs.com/dz/shreds/publishers)
+### [엣지 퍼블리셔](https://data.doublezero.xyz/dz/shreds/publishers)
 
 대시보드 좌측 상단의 "Publishing Shreds" 지표는 DoubleZero Edge에서 리더 슈레드를 퍼블리싱하는 모든 Solana 밸리데이터의 총 스테이크 가중치 비율을 보여줍니다. 네트워크의 각 퍼블리셔에 대한 세부 정보를 확인할 수 있습니다.
 
-### [엣지 구독자, 장치 및 활동](https://data.malbeclabs.com/dz/shreds/subscribers)
+### [엣지 구독자, 장치 및 활동](https://data.doublezero.xyz/dz/shreds/subscribers)
 
-이 페이지에서 구독 좌석에 대한 클라이언트 IP를 쉽게 검색하고 상태를 확인할 수 있습니다. 특정 좌석 구독을 클릭하여 결제 내역 및 활동을 확인할 수 있습니다. [장치](https://data.malbeclabs.com/dz/shreds/devices) 페이지에서 사용 가능한 장치를 확인하고, [활동](https://data.malbeclabs.com/dz/shreds/activity) 페이지에서 최근 모든 활동을 확인할 수도 있습니다.
+이 페이지에서 구독 좌석에 대한 클라이언트 IP를 쉽게 검색하고 상태를 확인할 수 있습니다. 특정 좌석 구독을 클릭하여 결제 내역 및 활동을 확인할 수 있습니다. [장치](https://data.doublezero.xyz/dz/shreds/devices) 페이지에서 사용 가능한 장치를 확인하고, [활동](https://data.doublezero.xyz/dz/shreds/activity) 페이지에서 최근 모든 활동을 확인할 수도 있습니다.
 
 ### 데이터 API 문서
 
-데이터 엔드포인트에 프로그래밍 방식으로 접근하려면 API 문서를 참조하세요: [https://data.malbeclabs.com/api/v1/docs](https://data.malbeclabs.com/api/v1/docs).
+데이터 엔드포인트에 프로그래밍 방식으로 접근하려면 API 문서를 참조하세요: [https://data.doublezero.xyz/api/v1/docs](https://data.doublezero.xyz/api/v1/docs).
 
 ---
 

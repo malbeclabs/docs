@@ -9,7 +9,7 @@ This guide will cover a variety of issues, and is ongoing. If you complete the g
 
 ## Common Commands and Outputs
 
-To begin examine the output of the following commands, and their expected output. These will assist you in more detailed troubleshooting. 
+To begin, examine the output of the following commands, and their expected output. These will assist you in more detailed troubleshooting. 
 If you open a ticket, you may be asked for their output.
 
 #### 1. Check Version
