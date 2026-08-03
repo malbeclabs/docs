@@ -3,9 +3,10 @@
 
 !!! warning "Ao me conectar ao DoubleZero, concordo com os [Termos de Serviço do DoubleZero](https://doublezero.xyz/terms-protocol)"
 
-Se você ainda não está conectado ao DoubleZero, complete a documentação de [Configuração](https://docs.malbeclabs.com/setup/) e de conexão de validador [Mainnet-Beta](https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/).
+!!! note inline end "Empresas de trading e negócios"
+    Se você opera uma empresa de trading ou negócio que deseja se inscrever no feed, registre seu interesse para obter mais informações [aqui](https://doublezero.xyz/edge-form).
 
-Empresas de trading e outros assinantes: a assinatura de shreds Edge já está disponível. Veja [Conexão do Assinante de Borda](Edge%20Subscriber%20Connection.md). Você também pode [preencher este formulário](https://doublezero.xyz/edge-form) para registrar interesse.
+Se você ainda não está conectado ao DoubleZero, complete a documentação de [Configuração](setup.md) e de conexão de validador [Mainnet-Beta](DZ%20Mainnet-beta%20Connection.md).
 
 Se você é um validador já conectado ao DoubleZero, pode continuar este guia.
 
@@ -81,10 +82,10 @@ Você deve estar executando Jito-Agave 3.1.9+, JitoBam 3.1.9+, Frankendancer ou 
 
     A captura de tela abaixo mostra: **Retransmitindo** (indesejável) tráfego de saída constante sem padrão de slot de líder.
 
-    ![Visão multicast do usuário. exemplo de retransmissão](images/user-multicast-view-retransmit.png)
+    ![Visão multicast do usuário - exemplo de retransmissão](images/user-multicast-view-retransmit.png)
 
     A captura de tela abaixo mostra: **Saudável** (publicando apenas shreds de líder) tráfego de saída em picos, conhecido como padrão de dente de serra, que se alinha com seus slots de líder.
 
-    ![Visão multicast do usuário. exemplo de publicador saudável](images/user-multicast-view-healthy.png)
+    ![Visão multicast do usuário - exemplo de publicador saudável](images/user-multicast-view-healthy.png)
 
 O gráfico mostra se você está enviando apenas shreds de líder. Os picos de tráfego devem se alinhar com quando você tem um slot de líder. Quando não há slot de líder, não deve haver tráfego. Se você estiver retransmitindo, verá um fluxo constante de tráfego em vez de picos alinhados com slots.

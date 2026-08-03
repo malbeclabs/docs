@@ -37,7 +37,7 @@ publisher/subscriber status, link health, telemetry — use the DoubleZero Data 
 server instead of guessing.
 
 - **Endpoint:** `https://data.doublezero.xyz/mcp` (MCP Streamable HTTP)
-- **Discovery:** `https://data.doublezero.xyz/.well-known/mcp/server-card.json`
+- **Discovery:** `https://docs.malbeclabs.com/.well-known/mcp/server-card.json`
 - **Tools:** `get_schema` (always call first to learn the available tables,
   columns, and types — never assume names), `execute_sql` and `execute_cypher`
   (read-only queries over the data), and `read_docs` (conceptual/procedural docs

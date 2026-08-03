@@ -3,9 +3,10 @@
 
 !!! warning "DoubleZeroに接続することで、[DoubleZero利用規約](https://doublezero.xyz/terms-protocol)に同意します"
 
-DoubleZeroにまだ接続していない場合は、[セットアップ](https://docs.malbeclabs.com/setup/)と[Mainnet-Beta](https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/)バリデーター接続ドキュメントを完了してください。
+!!! note inline end "トレーディングファームおよびビジネス"
+    トレーディングファームやフィードへの購読を検討している企業の方は、詳細については[こちら](https://doublezero.xyz/edge-form)からご登録ください。
 
-トレーディングファームおよびその他のサブスクライバー：Edge shreds のサブスクリプションはすでに提供されています。[エッジサブスクライバー接続](Edge%20Subscriber%20Connection.md)を参照してください。関心の登録は[こちらのフォーム](https://doublezero.xyz/edge-form)からも可能です。
+DoubleZeroにまだ接続していない場合は、[セットアップ](setup.md)と[Mainnet-Beta](DZ%20Mainnet-beta%20Connection.md)バリデーター接続ドキュメントを完了してください。
 
 DoubleZeroにすでに接続しているバリデーターの方は、このガイドを続けてください。
 
@@ -81,10 +82,10 @@ Jito-Agave 3.1.9+、JitoBam 3.1.9+、Frankendancer、またはHarmonic 3.1.11+�
 
     以下のスクリーンショットは：**再送信**（望ましくない）リーダースロットパターンのない安定した送信トラフィックを示しています。
 
-    ![ユーザーマルチキャストビュー. 再送信の例](images/user-multicast-view-retransmit.png)
+    ![ユーザーマルチキャストビュー - 再送信の例](images/user-multicast-view-retransmit.png)
 
     以下のスクリーンショットは：**正常**（リーダーシュレッドのみを発行）スパイク状の送信トラフィック（鋸歯状波パターン）を示しており、リーダースロットと一致しています。
 
-    ![ユーザーマルチキャストビュー. 正常なパブリッシャーの例](images/user-multicast-view-healthy.png)
+    ![ユーザーマルチキャストビュー - 正常なパブリッシャーの例](images/user-multicast-view-healthy.png)
 
 チャートはリーダーシュレッドのみを送信しているかどうかを示します。トラフィックのスパイクはリーダースロットがある時と一致するはずです。リーダースロットがない場合はトラフィックがないはずです。再送信している場合は、スロットに合わせたスパイクではなく、安定したトラフィックの流れが見えます。

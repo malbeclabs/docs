@@ -3,9 +3,10 @@
 
 !!! warning "通过连接到DoubleZero，我同意[DoubleZero服务条款](https://doublezero.xyz/terms-protocol)"
 
-如果您尚未连接到DoubleZero，请先完成[设置](https://docs.malbeclabs.com/setup/)和[主网Beta](https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/)验证器连接文档。
+!!! note inline end "交易公司和企业"
+    如果您经营交易公司或企业，希望订阅数据流，请在[此处](https://doublezero.xyz/edge-form)注册以获取更多信息。
 
-交易公司及其他订阅者：Edge shreds 订阅现已上线。请参阅[边缘订阅者连接](Edge%20Subscriber%20Connection.md)。您也可以[填写此表单](https://doublezero.xyz/edge-form)登记兴趣。
+如果您尚未连接到DoubleZero，请先完成[设置](setup.md)和[主网Beta](DZ%20Mainnet-beta%20Connection.md)验证器连接文档。
 
 如果您是已连接到DoubleZero的验证器，可以继续阅读本指南。
 
@@ -81,10 +82,10 @@
 
     下图显示：**重传**（不理想）稳定的出站流量，没有领导者槽位模式。
 
-    ![用户多播视图. 重传示例](images/user-multicast-view-retransmit.png)
+    ![用户多播视图 - 重传示例](images/user-multicast-view-retransmit.png)
 
     下图显示：**健康**（仅发布领导者碎片）出站流量呈尖峰状，称为锯齿波模式，与您的领导者槽位对齐。
 
-    ![用户多播视图. 健康发布者示例](images/user-multicast-view-healthy.png)
+    ![用户多播视图 - 健康发布者示例](images/user-multicast-view-healthy.png)
 
 图表显示您是否仅发送领导者碎片。流量峰值应与您拥有领导者槽位时对齐。当您没有领导者槽位时，应该没有流量。如果您正在重传，您将看到稳定的流量流，而不是与槽位对齐的峰值。
