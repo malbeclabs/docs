@@ -2,7 +2,7 @@
 description: Quick checks for Edge shreds publish and subscribe failures — client version, escrow, tunnel, retransmit.
 ---
 
-# Runbook — Troubleshoot Edge
+# Troubleshoot Edge
 
 **Full guides:** [Edge Subscriber](../Edge%20Subscriber%20Connection.md) · [Publish shreds](../Validator%20Multicast%20Connection.md) · [Troubleshooting](../troubleshooting.md)
 
@@ -29,4 +29,4 @@ description: Quick checks for Edge shreds publish and subscribe failures — cli
 | Retransmitting | Remove `--shred-retransmit-receiver-address`; check publisher-check **No Retransmit** column |
 | Multicast not joined | `doublezero connect multicast --publish edge-solana-shreds`; IBRL still up? |
 
-Dashboards: [publisher-check](https://data.malbeclabs.com/dz/publisher-check) · [users](https://data.malbeclabs.com/dz/users)
+Dashboards: [publisher-check](https://data.doublezero.xyz/dz/publisher-check) · [users](https://data.doublezero.xyz/dz/users)

@@ -47,7 +47,7 @@ Si es un validador ya conectado a DoubleZero, puede continuar con esta guía.
 
 ## 2. Confirmar que está publicando shreds de líder
 
-Una vez conectado, puede verificar [este panel](https://data.malbeclabs.com/dz/publisher-check) para confirmar que está publicando shreds. No verá la confirmación hasta que haya publicado shreds de líder para al menos un slot.
+Una vez conectado, puede verificar [este panel](https://data.doublezero.xyz/dz/publisher-check) para confirmar que está publicando shreds. No verá la confirmación hasta que haya publicado shreds de líder para al menos un slot.
 
 ## 3. Recompensas para Validadores
 
@@ -67,14 +67,14 @@ Debe estar ejecutando Jito-Agave 3.1.9+, JitoBam 3.1.9+, Frankendancer o Harmoni
 
     El flag que debe eliminar en Jito-Agave es: `--shred-retransmit-receiver-address`.
 
-1. Revise el [panel de publicadores](https://data.malbeclabs.com/dz/publisher-check) y compruebe si tiene shreds retransmitidos. En la tabla, observe la columna **No Retransmit Shreds**—una X roja significa que está retransmitiendo.
+1. Revise el [panel de publicadores](https://data.doublezero.xyz/dz/publisher-check) y compruebe si tiene shreds retransmitidos. En la tabla, observe la columna **No Retransmit Shreds**—una X roja significa que está retransmitiendo.
 
     !!! note "Vista de época"
         Tenga en cuenta que hay diferentes ventanas de tiempo para ver el panel de publicadores. Si ve retransmisión en la **vista de 2 épocas**, pero realizó un cambio reciente, intente cambiar a la vista de **slot reciente**.
 
     ![Panel de verificación de publicadores](images/publisher-check-dashboard.png)
 
-2. Encuentre la IP de su cliente y busque su usuario en [DoubleZero Data](https://data.malbeclabs.com/dz/users).
+2. Encuentre la IP de su cliente y busque su usuario en [DoubleZero Data](https://data.doublezero.xyz/dz/users).
 
     ![Usuarios de DoubleZero Data](images/doublezero-data-users.png)
 

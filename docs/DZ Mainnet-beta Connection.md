@@ -2,7 +2,7 @@
 description: Connect a Solana Mainnet-Beta validator and up to three backups to DoubleZero in IBRL mode, including identity proof and the connection request.
 ---
 
-# Validator Mainnet-Beta Connection in IBRL Mode
+# Connect validator (IBRL Mainnet)
 !!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Service](https://doublezero.xyz/terms-protocol)"
 
 ###  Connecting to Mainnet-Beta in IBRL Mode

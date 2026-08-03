@@ -34,6 +34,6 @@ Pour plus de détails, consultez le livre blanc du [DoubleZero Protocol](https:/
 
 ## Prochaines étapes
 
-* *Pour les utilisateurs* - Commencez par les [Runbooks](runbooks/index.md) ou la [configuration initiale](setup.md).
+* *Pour les utilisateurs* - Commencez par [Solana](solana/index.md) ou la [configuration initiale](setup.md).
 * *Pour les contributeurs* - Découvrez comment [Contribuer](contribute-overview.md) de la capacité supplémentaire pour développer davantage le réseau DoubleZero.
 * *Plus d'informations* - En savoir plus sur ce qui compose l'[Architecture](architecture.md) du réseau DoubleZero.

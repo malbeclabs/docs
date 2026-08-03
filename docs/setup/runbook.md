@@ -2,7 +2,7 @@
 description: Install the DoubleZero client, verify doublezerod, create and back up the DoubleZero identity keypair.
 ---
 
-# Runbook — Install client
+# Install client
 
 **Goal:** `doublezerod` running and a DoubleZero identity ready for connection.
 
@@ -97,7 +97,7 @@ Avoid multiple tunnels / wrong env before the next runbook.
 
 | Goal | Next runbook |
 |------|----------------|
-| Validator IBRL Mainnet | [solana-ibrl-mainnet](solana-ibrl-mainnet.md) |
-| Validator IBRL Testnet | [solana-ibrl-testnet](solana-ibrl-testnet.md) |
-| Subscribe Edge shreds | [subscribe-edge-shreds](subscribe-edge-shreds.md) |
-| Permissioned RPC | [permissioned-rpc](permissioned-rpc.md) |
+| Validator IBRL Mainnet | [solana-ibrl-mainnet](../DZ%20Mainnet-beta%20Connection/runbook.md) |
+| Validator IBRL Testnet | [solana-ibrl-testnet](../DZ%20Testnet%20Connection/runbook.md) |
+| Subscribe Edge shreds | [subscribe-edge-shreds](../Edge%20Subscriber%20Connection/runbook.md) |
+| Permissioned RPC | [permissioned-rpc](../Permissioned%20Connection/runbook.md) |

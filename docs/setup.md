@@ -2,22 +2,24 @@
 description: Step-by-step guide to installing doublezerod and connecting your validator or node to the DoubleZero network.
 ---
 
-# How to set up DoubleZero
+# Install client
 
-New to DoubleZero? See the [Glossary](glossary.md) for terms like [doublezerod](glossary.md#doublezerod), [IBRL](glossary.md#ibrl-increase-bandwidth-reduce-latency), and [DZD](glossary.md#dzd-doublezero-device).
+!!! info "Terminology"
+    New to DoubleZero? See the [Glossary](glossary.md) for definitions of terms like [doublezerod](glossary.md#doublezerod), [IBRL](glossary.md#ibrl-increase-bandwidth-reduce-latency), and [DZD](glossary.md#dzd-doublezero-device).
+
+!!! warning "By connecting to the DoubleZero I agree to the [DoubleZero Terms of Service](https://doublezero.xyz/terms-protocol)"
+
 
 ## Prerequisites
-
+!!! warning inline end
+    For validators: DoubleZero needs to be installed directly on your validator host, not in a container.
 - Internet connectivity with a public IP address (no NAT)
 - x86_64 server
 - Supported OS: Ubuntu 22.04+ or Debian 11+, or Rocky Linux / RHEL 9+
 - Root or sudo privileges on the server where DoubleZero will run
-- For validators: install DoubleZero directly on your validator host, not in a container
 - Optional but useful: jq and curl for debugging
 
 ## Connecting to DoubleZero
-
-!!! warning "By connecting to the DoubleZero I agree to the [DoubleZero Terms of Service](https://doublezero.xyz/terms-protocol)"
 
 DoubleZero Testnet and DoubleZero Mainnet-Beta are physically distinct networks. Please choose the appropriate network during install.
 
@@ -82,7 +84,7 @@ sudo yum install doublezero
 
 <div data-wizard-step="install-network-warning" markdown>
 
-??? info "Existing Users Only: Chang a package from *Testnet to Mainnet-Beta*, or *Mainnet-Beta to Testnet*"
+??? info "Existing Users Only: Change a package from *Testnet to Mainnet-Beta*, or *Mainnet-Beta to Testnet*"
     When you install from one of the package repositories above it is specific to DoubleZero **Testnet** or **DoubleZero Mainnet Beta**. If you swap networks at any point you will need to remove the previously installed package repositories and update to the target repo.
 
     This example will walk through Testnet to Mainnet-Beta Migration

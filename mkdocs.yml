@@ -74,25 +74,16 @@ plugins:
 nav:
   - Welcome: index.md
   - Setup: setup.md
-  - Runbooks:
-    - Overview: runbooks/index.md
-    - Install client: runbooks/install-client.md
-    - Connect validator (IBRL Mainnet): runbooks/solana-ibrl-mainnet.md
-    - Connect validator (IBRL Testnet): runbooks/solana-ibrl-testnet.md
-    - Publish shreds (Edge): runbooks/publish-edge-shreds.md
-    - Subscribe to shreds (Edge): runbooks/subscribe-edge-shreds.md
-    - Permissioned / RPC: runbooks/permissioned-rpc.md
-    - Other multicast: runbooks/other-multicast.md
-    - Troubleshoot Edge: runbooks/troubleshoot-edge.md
-  - Solana on DoubleZero:
-    - Connect validator (IBRL Mainnet): DZ Mainnet-beta Connection.md
-    - Connect validator (IBRL Testnet): DZ Testnet Connection.md
-    - Publish shreds (Edge): Validator Multicast Connection.md
-    - Subscribe to shreds (Edge): Edge Subscriber Connection.md
-    - RPC / permissioned: Permissioned Connection.md
-    - Validator rewards: Validator Rewards.md
-    - Other multicast feeds: Other Multicast Connection.md
-    - Troubleshooting: troubleshooting.md
+  - Solana:
+    - solana/index.md
+    - Connect validator (IBRL Mainnet): DZ Mainnet-beta Connection/runbook.md
+    - Connect validator (IBRL Testnet): DZ Testnet Connection/runbook.md
+    - Publish shreds (Edge): Validator Multicast Connection/runbook.md
+    - Subscribe to shreds (Edge): Edge Subscriber Connection/runbook.md
+    - Permissioned / RPC: Permissioned Connection/runbook.md
+    - Other multicast: Other Multicast Connection/runbook.md
+    - Troubleshoot Edge: troubleshooting/runbook.md
+    - Validator Rewards: Validator Rewards/runbook.md
   - Other tenants:
     - Overview: tenant.md
     - Shelby (Testnet): Shelby Permissioned Connection.md

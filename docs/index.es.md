@@ -34,6 +34,6 @@ Para más detalles, consulte el whitepaper del [Protocolo DoubleZero](https://do
 
 ## Próximos Pasos
 
-* *Para Usuarios* - Empiece por los [Runbooks](runbooks/index.md) o la [configuración inicial](setup.md).
+* *Para Usuarios* - Empiece por [Solana](solana/index.md) o la [configuración inicial](setup.md).
 * *Para Contribuidores* - Vea cómo [Contribuir](contribute-overview.md) capacidad adicional para hacer crecer aún más la red DoubleZero.
 * *Más Información* - Lea más sobre lo que compone la [Arquitectura](architecture.md) de la red DoubleZero.

@@ -2,7 +2,7 @@
 description: Set up an edge subscriber to receive DoubleZero shred feeds, including client setup and firewall rules for GRE, BGP, PIM, and shred traffic.
 ---
 
-# Edge Subscriber Connection
+# Subscribe to shreds (Edge)
 !!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Use](https://doublezero.xyz/terms-protocol). Please note that the data is for your internal purposes only and may not be retransmitted (see Section 2(e))."
 
 ## Step 1: DoubleZero Setup
@@ -175,7 +175,7 @@ Note that the `Target_IP` must be a public ipv4 address on the machine which wil
 
 ### Monitor Seats
 
-This section details how to view seats via the CLI. You may also use [https://data.malbeclabs.com/api/v1/docs](https://data.doublezero.xyz/api/v1/docs) to monitor seats, and assost in managing your escrow account.
+This section details how to view seats via the CLI. You may also use [https://data.doublezero.xyz/api/v1/docs](https://data.doublezero.xyz/api/v1/docs) to monitor seats, and assost in managing your escrow account.
 
 View your active seats and escrow balances:
 
@@ -268,21 +268,21 @@ doublezero multicast group list
 
 ## Tools and Dashboards
 
-### [Edge Scoreboard](https://data.malbeclabs.com/dz/shreds/scoreboard)
+### [Edge Scoreboard](https://data.doublezero.xyz/dz/shreds/scoreboard)
 
 Scoreboard benchmarks shred delivery speed across DoubleZero Edge and other providers, using slot-level data to compare performance in real time. Use this dashboard to see a view of Edge shreds win rates against other providers. You can view results for leader shreds only, in addition to full feed comparison. You can also drill down by region to see expected performance.
 
-### [Edge Publishers](https://data.malbeclabs.com/dz/shreds/publishers)
+### [Edge Publishers](https://data.doublezero.xyz/dz/shreds/publishers)
 
 The "Publishing Shreds" metric at the top left of the dashboard shows the total percent of stake weight of all Solana validators publishing leader shreds on DoubleZero Edge. You can see details for each publisher on the network.
 
-### [Edge Subscribers, Devices and Activity](https://data.malbeclabs.com/dz/shreds/subscribers)
+### [Edge Subscribers, Devices and Activity](https://data.doublezero.xyz/dz/shreds/subscribers)
 
-You can easily search your Client IP on this page for subscribed seats and view status. Click through specific seat subscriptions to view payment history and activity. You can also view available devices on the [Devices](https://data.doublezero.xyz/dz/shreds/devices) page and all recent activity on the [Activity](https://data.malbeclabs.com/dz/shreds/activity) page.
+You can easily search your Client IP on this page for subscribed seats and view status. Click through specific seat subscriptions to view payment history and activity. You can also view available devices on the [Devices](https://data.doublezero.xyz/dz/shreds/devices) page and all recent activity on the [Activity](https://data.doublezero.xyz/dz/shreds/activity) page.
 
 ### Data API Docs
 
-For programmatic access to data endpoints, see the API documentation: [https://data.malbeclabs.com/api/v1/docs](https://data.doublezero.xyz/api/v1/docs).
+For programmatic access to data endpoints, see the API documentation: [https://data.doublezero.xyz/api/v1/docs](https://data.doublezero.xyz/api/v1/docs).
 
 ---
 

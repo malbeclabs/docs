@@ -47,7 +47,7 @@ DoubleZeroにすでに接続しているバリデーターの方は、このガ�
 
 ## 2. リーダーシュレッドの発行確認
 
-接続後、[このダッシュボード](https://data.malbeclabs.com/dz/publisher-check)でシュレッドを発行していることを確認できます。少なくとも1スロット分のリーダーシュレッドを発行した後でないと確認は表示されません。
+接続後、[このダッシュボード](https://data.doublezero.xyz/dz/publisher-check)でシュレッドを発行していることを確認できます。少なくとも1スロット分のリーダーシュレッドを発行した後でないと確認は表示されません。
 
 ## 3. バリデーター報酬
 
@@ -67,14 +67,14 @@ Jito-Agave 3.1.9+、JitoBam 3.1.9+、Frankendancer、またはHarmonic 3.1.11+�
 
     Jito-Agaveで削除するフラグは：`--shred-retransmit-receiver-address`です。
 
-1. [パブリッシャーダッシュボード](https://data.malbeclabs.com/dz/publisher-check)を確認し、再送信シュレッドがあるかどうかを確認します。表の**No Retransmit Shreds**列を確認してください——赤いXは再送信していることを意味します。
+1. [パブリッシャーダッシュボード](https://data.doublezero.xyz/dz/publisher-check)を確認し、再送信シュレッドがあるかどうかを確認します。表の**No Retransmit Shreds**列を確認してください——赤いXは再送信していることを意味します。
 
     !!! note "エポックビュー"
         パブリッシャーダッシュボードには異なる時間ウィンドウがあります。**2エポックビュー**で再送信が見られるが最近変更を加えた場合は、**最近のスロット**ビューに切り替えてみてください。
 
     ![パブリッシャーチェックダッシュボード](images/publisher-check-dashboard.png)
 
-2. クライアントIPを見つけ、[DoubleZeroデータ](https://data.malbeclabs.com/dz/users)でユーザーを検索します。
+2. クライアントIPを見つけ、[DoubleZeroデータ](https://data.doublezero.xyz/dz/users)でユーザーを検索します。
 
     ![DoubleZeroデータユーザー](images/doublezero-data-users.png)
 

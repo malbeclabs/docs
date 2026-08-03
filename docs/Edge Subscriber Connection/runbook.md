@@ -2,11 +2,11 @@
 description: Runbook to buy an Edge shreds seat and receive DoubleZero Edge shred multicast on doublezero1.
 ---
 
-# Runbook — Subscribe to Edge shreds
+# Subscribe to shreds (Edge)
 
 **Goal:** Seat allocated, tunnel up, UDP shreds on `doublezero1` port `7733` (e.g. `233.84.178.1`).
 
-**Prereq:** [Install client](install-client.md)  
+**Prereq:** [Install client](../setup/runbook.md)  
 **Full guide:** [Subscribe to shreds (Edge)](../Edge%20Subscriber%20Connection.md)
 
 Also need: Solana CLI, `doublezero-solana`, wallet with **SOL** + **USDC**, public IPv4, GRE/BGP/PIM allowed. On AWS: disable ENI source/destination check.
@@ -15,7 +15,7 @@ Also need: Solana CLI, `doublezero-solana`, wallet with **SOL** + **USDC**, publ
 
 ## 1 — Setup + packages
 
-Follow [install-client](install-client.md). Then:
+Follow [install-client](../setup/runbook.md). Then:
 
 ```bash
 sudo apt update && sudo apt install doublezero-solana   # or equivalent
@@ -117,4 +117,4 @@ doublezero multicast group list
 
 If escrow &lt; epoch price at settlement → seat lost, tunnel down, tenure reset. Top up with `shreds pay` again.
 
-Issues → [troubleshoot-edge](troubleshoot-edge.md).
+Issues → [troubleshoot-edge](../troubleshooting/runbook.md).

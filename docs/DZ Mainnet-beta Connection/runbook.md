@@ -2,11 +2,11 @@
 description: Eight-step runbook to connect a Solana Mainnet-Beta validator to DoubleZero in IBRL mode.
 ---
 
-# Runbook — Solana IBRL (Mainnet)
+# Connect validator (IBRL Mainnet)
 
 **Goal:** `doublezero status` shows tunnel **up**, User Type **IBRL**, Network **mainnet-beta**.
 
-**Prereq:** [Install client](install-client.md)  
+**Prereq:** [Install client](../setup/runbook.md)  
 **Full guide:** [Validator IBRL Mainnet](../DZ%20Mainnet-beta%20Connection.md)
 
 Also need: Solana CLI on `$PATH`, access to validator identity keypair, ≥1 SOL on identity, GRE + BGP allowed.
@@ -93,5 +93,5 @@ doublezero status
 
 ## Next
 
-- Publish Edge shreds → [publish-edge-shreds](publish-edge-shreds.md)
+- Publish Edge shreds → [publish-edge-shreds](../Validator%20Multicast%20Connection/runbook.md)
 - Issues → [troubleshooting](../troubleshooting.md)

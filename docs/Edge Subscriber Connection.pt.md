@@ -92,7 +92,7 @@ Anote o código do dispositivo do resultado com menor latência (ex.: `<Device_N
 
 ### 2. Verificar Preços
 
-Visualize os preços atuais do dispositivo antes de comprometer fundos. Os preços têm dois componentes: um **preço base do metro** e um **prêmio por dispositivo**. Você também pode visualizar preços e disponibilidade [aqui](https://data.malbeclabs.com/dz/shreds/devices).
+Visualize os preços atuais do dispositivo antes de comprometer fundos. Os preços têm dois componentes: um **preço base do metro** e um **prêmio por dispositivo**. Você também pode visualizar preços e disponibilidade [aqui](https://data.doublezero.xyz/dz/shreds/devices).
 
 **Todos os dispositivos:**
 
@@ -175,7 +175,7 @@ Note que o `Target_IP` deve ser um endereço IPv4 público na máquina que receb
 
 ### Monitorar Assentos
 
-Esta seção detalha como visualizar assentos via CLI. Você também pode usar [https://data.malbeclabs.com/api/v1/docs](https://data.malbeclabs.com/api/v1/docs) para monitorar assentos e auxiliar no gerenciamento da sua conta escrow.
+Esta seção detalha como visualizar assentos via CLI. Você também pode usar [https://data.doublezero.xyz/api/v1/docs](https://data.doublezero.xyz/api/v1/docs) para monitorar assentos e auxiliar no gerenciamento da sua conta escrow.
 
 Visualize seus assentos ativos e saldos de escrow:
 
@@ -268,21 +268,21 @@ doublezero multicast group list
 
 ## Ferramentas e Painéis
 
-### [Placar do Edge](https://data.malbeclabs.com/dz/shreds/scoreboard)
+### [Placar do Edge](https://data.doublezero.xyz/dz/shreds/scoreboard)
 
 O Placar compara a velocidade de entrega de shreds entre o DoubleZero Edge e outros provedores, usando dados em nível de slot para comparar o desempenho em tempo real. Use este painel para ver as taxas de vitória dos shreds Edge contra outros provedores. Você pode visualizar resultados apenas para shreds de líder, além de comparação de feed completo. Você também pode detalhar por região para ver o desempenho esperado.
 
-### [Publicadores Edge](https://data.malbeclabs.com/dz/shreds/publishers)
+### [Publicadores Edge](https://data.doublezero.xyz/dz/shreds/publishers)
 
 A métrica "Publishing Shreds" no canto superior esquerdo do painel mostra o percentual total de peso de stake de todos os validadores Solana publicando shreds de líder no DoubleZero Edge. Você pode ver detalhes de cada publicador na rede.
 
-### [Assinantes, Dispositivos e Atividade do Edge](https://data.malbeclabs.com/dz/shreds/subscribers)
+### [Assinantes, Dispositivos e Atividade do Edge](https://data.doublezero.xyz/dz/shreds/subscribers)
 
-Você pode facilmente pesquisar seu IP de Cliente nesta página para assentos inscritos e visualizar o status. Clique em assinaturas de assentos específicas para ver o histórico de pagamentos e atividade. Você também pode visualizar dispositivos disponíveis na página de [Dispositivos](https://data.malbeclabs.com/dz/shreds/devices) e toda a atividade recente na página de [Atividade](https://data.malbeclabs.com/dz/shreds/activity).
+Você pode facilmente pesquisar seu IP de Cliente nesta página para assentos inscritos e visualizar o status. Clique em assinaturas de assentos específicas para ver o histórico de pagamentos e atividade. Você também pode visualizar dispositivos disponíveis na página de [Dispositivos](https://data.doublezero.xyz/dz/shreds/devices) e toda a atividade recente na página de [Atividade](https://data.doublezero.xyz/dz/shreds/activity).
 
 ### Documentação da API de Dados
 
-Para acesso programático aos endpoints de dados, consulte a documentação da API: [https://data.malbeclabs.com/api/v1/docs](https://data.malbeclabs.com/api/v1/docs).
+Para acesso programático aos endpoints de dados, consulte a documentação da API: [https://data.doublezero.xyz/api/v1/docs](https://data.doublezero.xyz/api/v1/docs).
 
 ---
 

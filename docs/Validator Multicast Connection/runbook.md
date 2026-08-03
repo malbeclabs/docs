@@ -2,11 +2,11 @@
 description: Runbook for Solana validators to publish leader shreds to the DoubleZero Edge multicast group edge-solana-shreds.
 ---
 
-# Runbook — Publish Edge shreds
+# Publish shreds (Edge)
 
-**Goal:** Validator publishes leader shreds to `edge-solana-shreds` (`233.84.178.1:7733`); visible on the [publisher-check](https://data.malbeclabs.com/dz/publisher-check) dashboard after at least one leader slot.
+**Goal:** Validator publishes leader shreds to `edge-solana-shreds` (`233.84.178.1:7733`); visible on the [publisher-check](https://data.doublezero.xyz/dz/publisher-check) dashboard after at least one leader slot.
 
-**Prereq:** IBRL already up — [solana-ibrl-mainnet](solana-ibrl-mainnet.md)  
+**Prereq:** IBRL already up — [solana-ibrl-mainnet](../DZ%20Mainnet-beta%20Connection/runbook.md)  
 **Full guide:** [Publish shreds (Edge)](../Validator%20Multicast%20Connection.md)
 
 **Client versions:** Jito-Agave **3.1.9+**, JitoBam 3.1.9+, Frankendancer, or Harmonic **3.1.11+**. STOP if older.
@@ -75,13 +75,13 @@ Group: `edge-solana-shreds` → `233.84.178.1` port `7733`.
 
 ## 7 — Confirm publishing
 
-After you have been leader for ≥1 slot, check [publisher-check](https://data.malbeclabs.com/dz/publisher-check).
+After you have been leader for ≥1 slot, check [publisher-check](https://data.doublezero.xyz/dz/publisher-check).
 
 ---
 
 ## 8 — Done
 
-Optional: rewards overview in the full guide. Issues → [troubleshoot-edge](troubleshoot-edge.md).
+Optional: [Validator Rewards](../Validator%20Rewards/runbook.md) after you are publishing. Issues → [troubleshoot-edge](../troubleshooting/runbook.md).
 
 ### Related groups (receive / ops)
 

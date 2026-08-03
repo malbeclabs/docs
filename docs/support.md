@@ -23,4 +23,4 @@ If status looks healthy (or does not explain your issue), open a ticket with the
 3. Include what you can: environment (mainnet / testnet), node type, **client IP**, recent commands, and any error output
 
 !!! tip "Before you open a ticket"
-    The [Troubleshooting](troubleshooting.md) guide and [Edge troubleshoot runbook](runbooks/troubleshoot-edge.md) cover the most common connection failures. Checking those first often gets you unblocked faster.
+    The [Troubleshooting](troubleshooting.md) guide and [Edge troubleshoot runbook](troubleshooting/runbook.md) cover the most common connection failures. Checking those first often gets you unblocked faster.

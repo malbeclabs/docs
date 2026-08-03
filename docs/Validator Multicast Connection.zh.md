@@ -47,7 +47,7 @@
 
 ## 2. 确认您正在发布领导者碎片
 
-连接后，您可以查看[此仪表板](https://data.malbeclabs.com/dz/publisher-check)以确认您正在发布碎片。在您至少发布了一个槽位的领导者碎片之后，才能看到确认信息。
+连接后，您可以查看[此仪表板](https://data.doublezero.xyz/dz/publisher-check)以确认您正在发布碎片。在您至少发布了一个槽位的领导者碎片之后，才能看到确认信息。
 
 ## 3. 验证器奖励
 
@@ -67,14 +67,14 @@
 
     在Jito-Agave中需要删除的标志是：`--shred-retransmit-receiver-address`。
 
-1. 查看[发布者仪表板](https://data.malbeclabs.com/dz/publisher-check)，检查是否有重传碎片。在表格中，查看**No Retransmit Shreds**列——红色X表示您正在重传。
+1. 查看[发布者仪表板](https://data.doublezero.xyz/dz/publisher-check)，检查是否有重传碎片。在表格中，查看**No Retransmit Shreds**列——红色X表示您正在重传。
 
     !!! note "纪元视图"
         注意发布者仪表板有不同的时间窗口可供查看。如果您在**2纪元视图**中看到重传，但最近做了更改，请尝试切换到**近期槽位**视图。
 
     ![发布者检查仪表板](images/publisher-check-dashboard.png)
 
-2. 找到您的客户端IP，并在[DoubleZero数据](https://data.malbeclabs.com/dz/users)中查找您的用户。
+2. 找到您的客户端IP，并在[DoubleZero数据](https://data.doublezero.xyz/dz/users)中查找您的用户。
 
     ![DoubleZero数据用户](images/doublezero-data-users.png)
 

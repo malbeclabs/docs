@@ -2,7 +2,7 @@
 description: Configure a connected validator to publish leader shreds to the DoubleZero multicast edge feed.
 ---
 
-# Validator Multicast Connection
+# Publish shreds (Edge)
 !!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Service](https://doublezero.xyz/terms-protocol)"
 
 If you are not already connected to DoubleZero please complete [Setup](setup.md), and [Mainnet-Beta](DZ%20Mainnet-beta%20Connection.md) validator connection documentation.
@@ -48,7 +48,7 @@ If you are a validator who is already connected to DoubleZero you may continue t
 
 ## 2. Confirm you're publishing leader shreds
 
-Once you are connected you may check [this dashboard](https://data.malbeclabs.com/dz/publisher-check) to confirm you are publishing shreds. You will not see confirmation until after you have published leader shreds for at least one slot.
+Once you are connected you may check [this dashboard](https://data.doublezero.xyz/dz/publisher-check) to confirm you are publishing shreds. You will not see confirmation until after you have published leader shreds for at least one slot.
 
 ## Multicast Endpoints (IP vs Port)
 
@@ -66,7 +66,7 @@ doublezero multicast group list
 - `edge-solana-retrans-apac`: `233.84.178.13:7733`
 - `edge-solana-retrans-amer`: `233.84.178.14:7733`
 
-For API references and machine-readable data endpoints, see [https://data.malbeclabs.com/api/v1/docs](https://data.malbeclabs.com/api/v1/docs).
+For API references and machine-readable data endpoints, see [https://data.doublezero.xyz/api/v1/docs](https://data.doublezero.xyz/api/v1/docs).
 
 ## 3. Validator Rewards
 
@@ -86,7 +86,7 @@ You must be running Jito-Agave 3.1.9+, JitoBam 3.1.9+, Frankendancer, or Harmoni
 
     The flag to remove in Jito-Agave is: `--shred-retransmit-receiver-address`.
 
-1. Check the [publisher dashboard](https://data.malbeclabs.com/dz/publisher-check) and see if you have any retransmitted shreds. In the table, look at the **No Retransmit Shreds** column—a red X means you are retransmitting.
+1. Check the [publisher dashboard](https://data.doublezero.xyz/dz/publisher-check) and see if you have any retransmitted shreds. In the table, look at the **No Retransmit Shreds** column—a red X means you are retransmitting.
 
     !!! note "epoch view"
         Note that there are different time windows to view the publisher dashboard. If you see retransmit in the **2 epoch view**, but have made a recent change, try switching to the **recent slot** view.
@@ -94,7 +94,7 @@ You must be running Jito-Agave 3.1.9+, JitoBam 3.1.9+, Frankendancer, or Harmoni
 
     ![Publisher check dashboard](images/publisher-check-dashboard.png)
 
-2. Find your client IP and look up your user in [DoubleZero Data](https://data.malbeclabs.com/dz/users).
+2. Find your client IP and look up your user in [DoubleZero Data](https://data.doublezero.xyz/dz/users).
 
     ![DoubleZero Data users](images/doublezero-data-users.png)
 

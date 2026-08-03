@@ -47,7 +47,7 @@ Si vous êtes un validateur déjà connecté à DoubleZero, vous pouvez continue
 
 ## 2. Confirmer que vous publiez des shreds de leader
 
-Une fois connecté, vous pouvez vérifier [ce tableau de bord](https://data.malbeclabs.com/dz/publisher-check) pour confirmer que vous publiez des shreds. Vous ne verrez pas de confirmation tant que vous n'aurez pas publié des shreds de leader pour au moins un slot.
+Une fois connecté, vous pouvez vérifier [ce tableau de bord](https://data.doublezero.xyz/dz/publisher-check) pour confirmer que vous publiez des shreds. Vous ne verrez pas de confirmation tant que vous n'aurez pas publié des shreds de leader pour au moins un slot.
 
 ## 3. Récompenses des Validateurs
 
@@ -67,14 +67,14 @@ Vous devez utiliser Jito-Agave 3.1.9+, JitoBam 3.1.9+, Frankendancer ou Harmonic
 
     Le flag à supprimer dans Jito-Agave est : `--shred-retransmit-receiver-address`.
 
-1. Vérifiez le [tableau de bord des publicateurs](https://data.malbeclabs.com/dz/publisher-check) et voyez si vous avez des shreds retransmis. Dans le tableau, regardez la colonne **No Retransmit Shreds**—une croix rouge signifie que vous retransmettez.
+1. Vérifiez le [tableau de bord des publicateurs](https://data.doublezero.xyz/dz/publisher-check) et voyez si vous avez des shreds retransmis. Dans le tableau, regardez la colonne **No Retransmit Shreds**—une croix rouge signifie que vous retransmettez.
 
     !!! note "Vue par époque"
         Notez qu'il existe différentes fenêtres temporelles pour afficher le tableau de bord des publicateurs. Si vous voyez une retransmission dans la **vue 2 époques**, mais que vous avez effectué un changement récent, essayez de passer à la vue **slot récent**.
 
     ![Tableau de bord de vérification des publicateurs](images/publisher-check-dashboard.png)
 
-2. Trouvez l'IP de votre client et cherchez votre utilisateur dans [DoubleZero Data](https://data.malbeclabs.com/dz/users).
+2. Trouvez l'IP de votre client et cherchez votre utilisateur dans [DoubleZero Data](https://data.doublezero.xyz/dz/users).
 
     ![Utilisateurs DoubleZero Data](images/doublezero-data-users.png)
 

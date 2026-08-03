@@ -41,11 +41,11 @@ Pick the path that matches what you want to do. Prefer the **runbook** for a sho
 
 | Goal | Runbook | Full guide |
 |------|---------|------------|
-| Connect a validator (IBRL) | [IBRL Mainnet runbook](runbooks/solana-ibrl-mainnet.md) | [Validator IBRL Mainnet](DZ%20Mainnet-beta%20Connection.md) |
-| Publish leader shreds on Edge | [Publish shreds runbook](runbooks/publish-edge-shreds.md) | [Publish shreds (Edge)](Validator%20Multicast%20Connection.md) |
-| Subscribe to Edge shreds | [Subscribe shreds runbook](runbooks/subscribe-edge-shreds.md) | [Subscribe to shreds (Edge)](Edge%20Subscriber%20Connection.md) |
+| Connect a validator (IBRL) | [IBRL Mainnet runbook](DZ%20Mainnet-beta%20Connection/runbook.md) | [Validator IBRL Mainnet](DZ%20Mainnet-beta%20Connection.md) |
+| Publish leader shreds on Edge | [Publish shreds runbook](Validator%20Multicast%20Connection/runbook.md) | [Publish shreds (Edge)](Validator%20Multicast%20Connection.md) |
+| Subscribe to Edge shreds | [Subscribe shreds runbook](Edge%20Subscriber%20Connection/runbook.md) | [Subscribe to shreds (Edge)](Edge%20Subscriber%20Connection.md) |
 
-Or start with [Install client (Setup)](setup.md). All runbooks: [Runbooks overview](runbooks/index.md).
+Or start with [Install client (Setup)](setup.md). All paths: [Solana](solana/index.md).
 
 ### Other
 

@@ -2,7 +2,7 @@
 description: Diagnose common DoubleZero connection issues with reference commands, expected outputs, and where to get further support.
 ---
 
-# Troubleshooting
+# Troubleshoot Edge
 
 This guide will cover a variety of issues, and is ongoing. If you complete the guide you can seek further support in the [DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701) discord.
 

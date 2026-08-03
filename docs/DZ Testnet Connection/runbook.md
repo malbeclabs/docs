@@ -2,11 +2,11 @@
 description: Eight-step runbook to connect a Solana Testnet validator to DoubleZero in IBRL mode.
 ---
 
-# Runbook — Solana IBRL (Testnet)
+# Connect validator (IBRL Testnet)
 
 **Goal:** `doublezero status` shows tunnel **up**, User Type **IBRL**, Network **testnet**.
 
-**Prereq:** [Install client](install-client.md) with **Testnet** packages (see [Setup](../setup.md))  
+**Prereq:** [Install client](../setup/runbook.md) with **Testnet** packages (see [Setup](../setup.md))  
 **Full guide:** [Validator IBRL Testnet](../DZ%20Testnet%20Connection.md)
 
 Same shape as Mainnet; use testnet env and `-u testnet` / testnet package repo.
@@ -64,4 +64,4 @@ Tunnel **up** on **testnet**.
 
 ## Next
 
-Mainnet production path: [solana-ibrl-mainnet](solana-ibrl-mainnet.md)
+Mainnet production path: [solana-ibrl-mainnet](../DZ%20Mainnet-beta%20Connection/runbook.md)

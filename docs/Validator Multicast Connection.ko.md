@@ -47,7 +47,7 @@ DoubleZero에 아직 연결되지 않은 경우 [설정](https://docs.malbeclabs
 
 ## 2. 리더 슈레드 게시 확인
 
-연결 후 [이 대시보드](https://data.malbeclabs.com/dz/publisher-check)에서 슈레드를 게시하고 있는지 확인할 수 있습니다. 최소 한 슬롯의 리더 슈레드를 게시한 후에야 확인이 표시됩니다.
+연결 후 [이 대시보드](https://data.doublezero.xyz/dz/publisher-check)에서 슈레드를 게시하고 있는지 확인할 수 있습니다. 최소 한 슬롯의 리더 슈레드를 게시한 후에야 확인이 표시됩니다.
 
 ## 3. 검증자 보상
 
@@ -67,14 +67,14 @@ Jito-Agave 3.1.9+, JitoBam 3.1.9+, Frankendancer 또는 Harmonic 3.1.11+를 실�
 
     Jito-Agave에서 제거해야 할 플래그는：`--shred-retransmit-receiver-address`입니다.
 
-1. [게시자 대시보드](https://data.malbeclabs.com/dz/publisher-check)를 확인하여 재전송된 슈레드가 있는지 확인하세요. 테이블에서 **No Retransmit Shreds** 열을 확인하세요——빨간 X는 재전송 중임을 의미합니다.
+1. [게시자 대시보드](https://data.doublezero.xyz/dz/publisher-check)를 확인하여 재전송된 슈레드가 있는지 확인하세요. 테이블에서 **No Retransmit Shreds** 열을 확인하세요——빨간 X는 재전송 중임을 의미합니다.
 
     !!! note "에포크 뷰"
         게시자 대시보드에는 다른 시간 창이 있습니다. **2 에포크 뷰**에서 재전송이 보이지만 최근에 변경했다면 **최근 슬롯** 뷰로 전환해 보세요.
 
     ![게시자 확인 대시보드](images/publisher-check-dashboard.png)
 
-2. 클라이언트 IP를 찾아 [DoubleZero 데이터](https://data.malbeclabs.com/dz/users)에서 사용자를 조회합니다.
+2. 클라이언트 IP를 찾아 [DoubleZero 데이터](https://data.doublezero.xyz/dz/users)에서 사용자를 조회합니다.
 
     ![DoubleZero 데이터 사용자](images/doublezero-data-users.png)
 

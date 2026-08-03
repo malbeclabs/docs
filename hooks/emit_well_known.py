@@ -9,7 +9,7 @@ repo root and copy them into ``<site_dir>/.well-known/`` here, mirroring the way
 Two things are published:
 
 1. ``/.well-known/mcp/server-card.json`` — MCP Server Card (SEP-1649) advertising
-   the DoubleZero Data MCP server at https://data.malbeclabs.com/mcp.
+   the DoubleZero Data MCP server at https://data.doublezero.xyz/mcp.
 
 2. ``/.well-known/agent-skills/index.json`` — Agent Skills discovery index
    (Agent Skills Discovery RFC v0.2.0). Each ``SKILL.md`` found under

@@ -2,7 +2,7 @@
 description: Connect to DoubleZero in multicast mode to publish or subscribe to one or more feeds.
 ---
 
-# Other Multicast Connection
+# Other multicast
 !!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Service](https://doublezero.xyz/terms-protocol)"
  
 Detailed connection information: 
