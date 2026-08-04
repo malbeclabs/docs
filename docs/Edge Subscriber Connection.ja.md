@@ -92,7 +92,7 @@ doublezero latency
 
 ### 2. 価格の確認
 
-資金を投入する前に、現在のデバイス価格を確認します。価格は **基本メトロ価格** と **デバイスごとのプレミアム** の 2 つの要素で構成されます。価格と空き状況は[こちら](https://data.malbeclabs.com/dz/shreds/devices)でも確認できます。
+資金を投入する前に、現在のデバイス価格を確認します。価格は **基本メトロ価格** と **デバイスごとのプレミアム** の 2 つの要素で構成されます。価格と空き状況は[こちら](https://data.doublezero.xyz/dz/shreds/devices)でも確認できます。
 
 **全デバイス：**
 
@@ -175,7 +175,7 @@ doublezero-solana shreds pay \
 
 ### シートの監視
 
-このセクションでは、CLI を使用してシートを表示する方法を説明します。[https://data.malbeclabs.com/api/v1/docs](https://data.malbeclabs.com/api/v1/docs) を使用してシートを監視し、エスクローアカウントの管理を支援することもできます。
+このセクションでは、CLI を使用してシートを表示する方法を説明します。[https://data.doublezero.xyz/api/v1/docs](https://data.doublezero.xyz/api/v1/docs) を使用してシートを監視し、エスクローアカウントの管理を支援することもできます。
 
 アクティブなシートとエスクロー残高を表示します：
 
@@ -268,21 +268,21 @@ doublezero multicast group list
 
 ## ツールとダッシュボード
 
-### [Edge Scoreboard](https://data.malbeclabs.com/dz/shreds/scoreboard)
+### [Edge Scoreboard](https://data.doublezero.xyz/dz/shreds/scoreboard)
 
 Scoreboard は、スロットレベルのデータを使用して、DoubleZero Edge と他のプロバイダー間のシュレッド配信速度をリアルタイムで比較するベンチマークです。このダッシュボードを使用して、Edge シュレッドの他のプロバイダーに対する勝率を確認できます。リーダーシュレッドのみの結果や、フルフィードの比較を表示できます。リージョン別にドリルダウンして、期待されるパフォーマンスを確認することもできます。
 
-### [Edge Publishers](https://data.malbeclabs.com/dz/shreds/publishers)
+### [Edge Publishers](https://data.doublezero.xyz/dz/shreds/publishers)
 
 ダッシュボードの左上にある「Publishing Shreds」メトリックは、DoubleZero Edge 上でリーダーシュレッドを公開しているすべての Solana バリデーターのステークウェイトの合計パーセントを示します。ネットワーク上の各パブリッシャーの詳細を確認できます。
 
-### [Edge Subscribers, Devices and Activity](https://data.malbeclabs.com/dz/shreds/subscribers)
+### [Edge Subscribers, Devices and Activity](https://data.doublezero.xyz/dz/shreds/subscribers)
 
-このページでクライアント IP を簡単に検索して、サブスクライブされたシートとステータスを確認できます。特定のシートサブスクリプションをクリックすると、支払い履歴とアクティビティを表示できます。利用可能なデバイスは [Devices](https://data.malbeclabs.com/dz/shreds/devices) ページで、最近のすべてのアクティビティは [Activity](https://data.malbeclabs.com/dz/shreds/activity) ページで確認できます。
+このページでクライアント IP を簡単に検索して、サブスクライブされたシートとステータスを確認できます。特定のシートサブスクリプションをクリックすると、支払い履歴とアクティビティを表示できます。利用可能なデバイスは [Devices](https://data.doublezero.xyz/dz/shreds/devices) ページで、最近のすべてのアクティビティは [Activity](https://data.doublezero.xyz/dz/shreds/activity) ページで確認できます。
 
 ### Data API ドキュメント
 
-データエンドポイントへのプログラムによるアクセスについては、API ドキュメントを参照してください：[https://data.malbeclabs.com/api/v1/docs](https://data.malbeclabs.com/api/v1/docs)。
+データエンドポイントへのプログラムによるアクセスについては、API ドキュメントを参照してください：[https://data.doublezero.xyz/api/v1/docs](https://data.doublezero.xyz/api/v1/docs)。
 
 ---
 

@@ -4,9 +4,9 @@
 !!! warning "Ao me conectar ao DoubleZero, concordo com os [Termos de Serviço do DoubleZero](https://doublezero.xyz/terms-protocol)"
 
 !!! note inline end "Empresas de trading e negócios"
-    Se você opera uma empresa de trading ou negócio que deseja se inscrever no feed, mais detalhes serão compartilhados em breve. Registre seu interesse para obter mais informações [aqui](https://doublezero.xyz/edge-form).
+    Se você opera uma empresa de trading ou negócio que deseja se inscrever no feed, registre seu interesse para obter mais informações [aqui](https://doublezero.xyz/edge-form).
 
-Se você ainda não está conectado ao DoubleZero, complete a documentação de [Configuração](https://docs.malbeclabs.com/setup/) e de conexão de validador [Mainnet-Beta](https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/).
+Se você ainda não está conectado ao DoubleZero, complete a documentação de [Configuração](setup.md) e de conexão de validador [Mainnet-Beta](DZ%20Mainnet-beta%20Connection.md).
 
 Se você é um validador já conectado ao DoubleZero, pode continuar este guia.
 
@@ -47,7 +47,7 @@ Se você é um validador já conectado ao DoubleZero, pode continuar este guia.
 
 ## 2. Confirmar que está publicando shreds de líder
 
-Após a conexão, você pode verificar [este painel](https://data.malbeclabs.com/dz/publisher-check) para confirmar que está publicando shreds. Você não verá a confirmação até ter publicado shreds de líder para pelo menos um slot.
+Após a conexão, você pode verificar [este painel](https://data.doublezero.xyz/dz/publisher-check) para confirmar que está publicando shreds. Você não verá a confirmação até ter publicado shreds de líder para pelo menos um slot.
 
 ## 3. Recompensas para Validadores
 
@@ -67,14 +67,14 @@ Você deve estar executando Jito-Agave 3.1.9+, JitoBam 3.1.9+, Frankendancer ou 
 
     O flag a remover no Jito-Agave é: `--shred-retransmit-receiver-address`.
 
-1. Verifique o [painel de publicadores](https://data.malbeclabs.com/dz/publisher-check) e veja se há shreds retransmitidos. Na tabela, observe a coluna **No Retransmit Shreds**—um X vermelho significa que você está retransmitindo.
+1. Verifique o [painel de publicadores](https://data.doublezero.xyz/dz/publisher-check) e veja se há shreds retransmitidos. Na tabela, observe a coluna **No Retransmit Shreds**—um X vermelho significa que você está retransmitindo.
 
     !!! note "Visão por época"
         Observe que há diferentes janelas de tempo para visualizar o painel de publicadores. Se você vê retransmissão na **visão de 2 épocas**, mas fez uma alteração recente, tente mudar para a visão de **slot recente**.
 
     ![Painel de verificação de publicadores](images/publisher-check-dashboard.png)
 
-2. Encontre o IP do seu cliente e procure seu usuário em [DoubleZero Data](https://data.malbeclabs.com/dz/users).
+2. Encontre o IP do seu cliente e procure seu usuário em [DoubleZero Data](https://data.doublezero.xyz/dz/users).
 
     ![Usuários do DoubleZero Data](images/doublezero-data-users.png)
 
@@ -82,10 +82,10 @@ Você deve estar executando Jito-Agave 3.1.9+, JitoBam 3.1.9+, Frankendancer ou 
 
     A captura de tela abaixo mostra: **Retransmitindo** (indesejável) tráfego de saída constante sem padrão de slot de líder.
 
-    ![Visão multicast do usuário — exemplo de retransmissão](images/user-multicast-view-retransmit.png)
+    ![Visão multicast do usuário - exemplo de retransmissão](images/user-multicast-view-retransmit.png)
 
     A captura de tela abaixo mostra: **Saudável** (publicando apenas shreds de líder) tráfego de saída em picos, conhecido como padrão de dente de serra, que se alinha com seus slots de líder.
 
-    ![Visão multicast do usuário — exemplo de publicador saudável](images/user-multicast-view-healthy.png)
+    ![Visão multicast do usuário - exemplo de publicador saudável](images/user-multicast-view-healthy.png)
 
 O gráfico mostra se você está enviando apenas shreds de líder. Os picos de tráfego devem se alinhar com quando você tem um slot de líder. Quando não há slot de líder, não deve haver tráfego. Se você estiver retransmitindo, verá um fluxo constante de tráfego em vez de picos alinhados com slots.

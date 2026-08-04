@@ -4,9 +4,9 @@
 !!! warning "DoubleZeroに接続することで、[DoubleZero利用規約](https://doublezero.xyz/terms-protocol)に同意します"
 
 !!! note inline end "トレーディングファームおよびビジネス"
-    トレーディングファームやフィードへの購読を検討している企業の方は、詳細は近日中に共有される予定です。詳細については[こちら](https://doublezero.xyz/edge-form)からご登録ください。
+    トレーディングファームやフィードへの購読を検討している企業の方は、詳細については[こちら](https://doublezero.xyz/edge-form)からご登録ください。
 
-DoubleZeroにまだ接続していない場合は、[セットアップ](https://docs.malbeclabs.com/setup/)と[Mainnet-Beta](https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/)バリデーター接続ドキュメントを完了してください。
+DoubleZeroにまだ接続していない場合は、[セットアップ](setup.md)と[Mainnet-Beta](DZ%20Mainnet-beta%20Connection.md)バリデーター接続ドキュメントを完了してください。
 
 DoubleZeroにすでに接続しているバリデーターの方は、このガイドを続けてください。
 
@@ -47,7 +47,7 @@ DoubleZeroにすでに接続しているバリデーターの方は、このガ�
 
 ## 2. リーダーシュレッドの発行確認
 
-接続後、[このダッシュボード](https://data.malbeclabs.com/dz/publisher-check)でシュレッドを発行していることを確認できます。少なくとも1スロット分のリーダーシュレッドを発行した後でないと確認は表示されません。
+接続後、[このダッシュボード](https://data.doublezero.xyz/dz/publisher-check)でシュレッドを発行していることを確認できます。少なくとも1スロット分のリーダーシュレッドを発行した後でないと確認は表示されません。
 
 ## 3. バリデーター報酬
 
@@ -67,14 +67,14 @@ Jito-Agave 3.1.9+、JitoBam 3.1.9+、Frankendancer、またはHarmonic 3.1.11+�
 
     Jito-Agaveで削除するフラグは：`--shred-retransmit-receiver-address`です。
 
-1. [パブリッシャーダッシュボード](https://data.malbeclabs.com/dz/publisher-check)を確認し、再送信シュレッドがあるかどうかを確認します。表の**No Retransmit Shreds**列を確認してください——赤いXは再送信していることを意味します。
+1. [パブリッシャーダッシュボード](https://data.doublezero.xyz/dz/publisher-check)を確認し、再送信シュレッドがあるかどうかを確認します。表の**No Retransmit Shreds**列を確認してください——赤いXは再送信していることを意味します。
 
     !!! note "エポックビュー"
         パブリッシャーダッシュボードには異なる時間ウィンドウがあります。**2エポックビュー**で再送信が見られるが最近変更を加えた場合は、**最近のスロット**ビューに切り替えてみてください。
 
     ![パブリッシャーチェックダッシュボード](images/publisher-check-dashboard.png)
 
-2. クライアントIPを見つけ、[DoubleZeroデータ](https://data.malbeclabs.com/dz/users)でユーザーを検索します。
+2. クライアントIPを見つけ、[DoubleZeroデータ](https://data.doublezero.xyz/dz/users)でユーザーを検索します。
 
     ![DoubleZeroデータユーザー](images/doublezero-data-users.png)
 
@@ -82,10 +82,10 @@ Jito-Agave 3.1.9+、JitoBam 3.1.9+、Frankendancer、またはHarmonic 3.1.11+�
 
     以下のスクリーンショットは：**再送信**（望ましくない）リーダースロットパターンのない安定した送信トラフィックを示しています。
 
-    ![ユーザーマルチキャストビュー — 再送信の例](images/user-multicast-view-retransmit.png)
+    ![ユーザーマルチキャストビュー - 再送信の例](images/user-multicast-view-retransmit.png)
 
     以下のスクリーンショットは：**正常**（リーダーシュレッドのみを発行）スパイク状の送信トラフィック（鋸歯状波パターン）を示しており、リーダースロットと一致しています。
 
-    ![ユーザーマルチキャストビュー — 正常なパブリッシャーの例](images/user-multicast-view-healthy.png)
+    ![ユーザーマルチキャストビュー - 正常なパブリッシャーの例](images/user-multicast-view-healthy.png)
 
 チャートはリーダーシュレッドのみを送信しているかどうかを示します。トラフィックのスパイクはリーダースロットがある時と一致するはずです。リーダースロットがない場合はトラフィックがないはずです。再送信している場合は、スロットに合わせたスパイクではなく、安定したトラフィックの流れが見えます。

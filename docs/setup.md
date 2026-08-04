@@ -89,7 +89,7 @@ sudo yum install doublezero
 
     This example will walk through Testnet to Mainnet-Beta Migration
 
-    The same steps may be completed to move from Mainnet-Beta to Testnet, by replacing the step 3 with the the install command for Testnet above.
+    The same steps may be completed to move from Mainnet-Beta to Testnet, by replacing the step 3 with the install command for Testnet above.
 
 
     1. Find Old Repository Files
@@ -237,9 +237,9 @@ doublezero disconnect
 
 ### Up Next: Tenant
 
-Connection to DoubleZero will differ based on your use case. On DoubleZero, Tenants are groups which have similiar user profiles. Examples include Blockchains, Data Transfer Layers, etc.
+Connection to DoubleZero will differ based on your use case. On DoubleZero, Tenants are groups which have similar user profiles. Examples include Blockchains, Data Transfer Layers, etc.
 
-### [Proceed to chose your tenant here](tenant.md)
+### [Proceed to choose your tenant here](tenant.md)
 
 
 # Optional: Enable Prometheus Metrics

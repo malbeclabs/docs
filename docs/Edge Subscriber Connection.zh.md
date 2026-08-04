@@ -92,7 +92,7 @@ doublezero latency
 
 ### 2. 查看定价
 
-在投入资金之前查看当前设备定价。定价由两部分组成：**基础城域价格**和**每设备溢价**。您也可以在[此处](https://data.malbeclabs.com/dz/shreds/devices)查看定价和可用性。
+在投入资金之前查看当前设备定价。定价由两部分组成：**基础城域价格**和**每设备溢价**。您也可以在[此处](https://data.doublezero.xyz/dz/shreds/devices)查看定价和可用性。
 
 **所有设备：**
 
@@ -175,7 +175,7 @@ doublezero-solana shreds pay \
 
 ### 监控席位
 
-本节详细介绍如何通过 CLI 查看席位。您也可以使用 [https://data.malbeclabs.com/api/v1/docs](https://data.malbeclabs.com/api/v1/docs) 来监控席位并协助管理您的托管账户。
+本节详细介绍如何通过 CLI 查看席位。您也可以使用 [https://data.doublezero.xyz/api/v1/docs](https://data.doublezero.xyz/api/v1/docs) 来监控席位并协助管理您的托管账户。
 
 查看您的活跃席位和托管余额：
 
@@ -268,21 +268,21 @@ doublezero multicast group list
 
 ## 工具和仪表板
 
-### [边缘排行榜](https://data.malbeclabs.com/dz/shreds/scoreboard)
+### [边缘排行榜](https://data.doublezero.xyz/dz/shreds/scoreboard)
 
 排行榜使用槽级数据，实时比较 DoubleZero Edge 和其他提供商之间的分片传输速度。使用此仪表板查看 Edge 分片相对于其他提供商的胜率。您可以查看仅限领导者分片的结果，以及完整数据流的比较。您还可以按区域深入查看预期性能。
 
-### [边缘发布者](https://data.malbeclabs.com/dz/shreds/publishers)
+### [边缘发布者](https://data.doublezero.xyz/dz/shreds/publishers)
 
 仪表板左上角的"Publishing Shreds"指标显示在 DoubleZero Edge 上发布领导者分片的所有 Solana 验证者的总质押权重百分比。您可以查看网络上每个发布者的详细信息。
 
-### [边缘订阅者、设备和活动](https://data.malbeclabs.com/dz/shreds/subscribers)
+### [边缘订阅者、设备和活动](https://data.doublezero.xyz/dz/shreds/subscribers)
 
-您可以在此页面轻松搜索您的客户端 IP 以查看已订阅的席位和状态。点击特定的席位订阅可查看付款历史和活动记录。您还可以在[设备](https://data.malbeclabs.com/dz/shreds/devices)页面查看可用设备，以及在[活动](https://data.malbeclabs.com/dz/shreds/activity)页面查看所有近期活动。
+您可以在此页面轻松搜索您的客户端 IP 以查看已订阅的席位和状态。点击特定的席位订阅可查看付款历史和活动记录。您还可以在[设备](https://data.doublezero.xyz/dz/shreds/devices)页面查看可用设备，以及在[活动](https://data.doublezero.xyz/dz/shreds/activity)页面查看所有近期活动。
 
 ### 数据 API 文档
 
-如需以编程方式访问数据端点，请参阅 API 文档：[https://data.malbeclabs.com/api/v1/docs](https://data.malbeclabs.com/api/v1/docs)。
+如需以编程方式访问数据端点，请参阅 API 文档：[https://data.doublezero.xyz/api/v1/docs](https://data.doublezero.xyz/api/v1/docs)。
 
 ---
 

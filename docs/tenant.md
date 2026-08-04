@@ -6,7 +6,7 @@ description: Choose the DoubleZero tenant and connection path that matches your 
 
 Tenants on DoubleZero are groups of users with similar profiles and connection requirements, typically representing different blockchain ecosystems, data transfer layers, or distributed systems.
 
-Examine the table below, and chose the use case which best describes how you plan to interact with the DoubleZero Network.
+Examine the table below, and choose the use case which best describes how you plan to interact with the DoubleZero Network.
 
 Solana
 
