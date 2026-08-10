@@ -1,8 +1,10 @@
+---
+description: Escolha o tenant e o caminho de conexão DoubleZero que corresponde ao seu caso de uso — validadores Solana, RPCs, Shelby ou um novo protocolo.
+---
+
 # Tenants
-!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
 
-
-Os Tenants no DoubleZero são grupos de usuários com perfis e requisitos de conexão semelhantes, geralmente representando diferentes ecossistemas de blockchain, camadas de transferência de dados ou sistemas distribuídos.
+Tenants no DoubleZero são grupos de usuários com perfis e requisitos de conexão semelhantes, normalmente representando diferentes ecossistemas de blockchain, camadas de transferência de dados ou sistemas distribuídos.
 
 Examine a tabela abaixo e escolha o caso de uso que melhor descreve como você planeja interagir com a Rede DoubleZero.
 
@@ -10,8 +12,8 @@ Solana
 
 | Caso de Uso | Próximo Passo |
 |-------------|---------|
-| Validador Mainnet Solana, incluindo backups | [Conexão DoubleZero Mainnet-Beta](<DZ Mainnet-beta Connection.md>) |
-| Validador Testnet Solana, incluindo backups | [Conexão DoubleZero Testnet](<DZ Testnet Connection.md>) |
+| Validador Solana Mainnet, incluindo backups | [Conexão DoubleZero Mainnet-Beta](<DZ Mainnet-beta Connection.md>) |
+| Validador Solana Testnet, incluindo backups | [Conexão DoubleZero Testnet](<DZ Testnet Connection.md>) |
 | Não-Validadores - RPCs e outros. | [Conexão DoubleZero Mainnet-Beta e Testnet](Permissioned%20Connection.md) |
 
 Shelby
@@ -24,4 +26,4 @@ Novo Tenant
 
 | Caso de Uso | Próximo Passo |
 -------------|---------|
-| Você tem um novo protocolo, aplicação ou outro caso de uso para aproveitar o DoubleZero | [Adicionar um Novo Tenant](New%20Tenant.md) |
+| Você tem um novo protocolo, aplicação ou outro caso de uso para utilizar o DoubleZero | [Adicionar Um Novo Tenant](New%20Tenant.md) |
