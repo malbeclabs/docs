@@ -1,19 +1,19 @@
 ---
-description: DoubleZeroのテナントと接続パスを選択してください。Solanaバリデーター、RPC、Shelby、または新しいプロトコルなど、ユースケースに合ったものをお選びください。
+description: Solanaバリデーター、RPC、Shelby、または新しいプロトコルなど、ご自身のユースケースに合ったDoubleZeroテナントと接続パスを選択してください。
 ---
 
 # テナント
 
-DoubleZeroのテナントとは、類似したプロファイルと接続要件を持つユーザーのグループであり、通常は異なるブロックチェーンエコシステム、データ転送レイヤー、または分散システムを表します。
+DoubleZeroのテナントは、類似したプロファイルと接続要件を持つユーザーのグループであり、通常、異なるブロックチェーンエコシステム、データ転送レイヤー、または分散システムを表しています。
 
-以下の表を確認し、DoubleZero Networkとの連携方法として最も適切なユースケースを選択してください。
+以下の表を確認し、DoubleZero Networkとのやり取りにおいて最も適したユースケースを選択してください。
 
 Solana
 
 | ユースケース | 次のステップ |
 |-------------|---------|
-| Solana Mainnetバリデーター（バックアップを含む） | [DoubleZero Mainnet-Beta接続](<DZ Mainnet-beta Connection.md>) |
-| Solana Testnetバリデーター（バックアップを含む） | [DoubleZero Testnet接続](<DZ Testnet Connection.md>) |
+| バックアップを含むSolana Mainnetバリデーター | [DoubleZero Mainnet-Beta接続](<DZ Mainnet-beta Connection.md>) |
+| バックアップを含むSolana Testnetバリデーター | [DoubleZero Testnet接続](<DZ Testnet Connection.md>) |
 | 非バリデーター - RPC、その他 | [DoubleZero Mainnet-BetaおよびTestnet接続](Permissioned%20Connection.md) |
 
 Shelby
@@ -26,4 +26,4 @@ Shelby
 
 | ユースケース | 次のステップ |
 -------------|---------|
-| DoubleZeroを活用する新しいプロトコル、アプリケーション、またはその他のユースケースをお持ちの場合 | [新規テナントの追加](New%20Tenant.md) |
+| DoubleZeroを活用するための新しいプロトコル、アプリケーション、またはその他のユースケースをお持ちの方 | [新規テナントの追加](New%20Tenant.md) |

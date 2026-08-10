@@ -1,16 +1,16 @@
 ---
-description: Diagnostiquez les problèmes courants de connexion DoubleZero avec des commandes de référence, les sorties attendues et où obtenir une assistance supplémentaire.
+description: Diagnostiquez les problèmes de connexion courants de DoubleZero avec des commandes de référence, les sorties attendues et où obtenir une assistance supplémentaire.
 ---
 
 # Dépannage
 
-Ce guide couvre une variété de problèmes et est mis à jour régulièrement. Si vous avez parcouru l'intégralité du guide, vous pouvez obtenir une assistance supplémentaire sur le discord [DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701).
+Ce guide couvre une variété de problèmes et est mis à jour régulièrement. Si vous avez terminé le guide, vous pouvez obtenir une assistance supplémentaire sur le Discord [DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701).
 
 
-## Commandes courantes et sorties attendues
+## Commandes courantes et sorties
 
 Pour commencer, examinez la sortie des commandes suivantes ainsi que leur sortie attendue. Celles-ci vous aideront dans un dépannage plus détaillé.
-Si vous ouvrez un ticket, on pourrait vous demander leur sortie.
+Si vous ouvrez un ticket, on pourra vous demander leur sortie.
 
 #### 1. Vérifier la version
 Commande :
@@ -60,7 +60,7 @@ Exemple de sortie :
 ```
 [comment]: # (add section linked later for 0 balance mainnet/testnet)
 
-#### 5. Vérifier l'état de la connexion
+#### 5. Vérifier le statut de la connexion
 Commande :
 
 `doublezero status`
@@ -95,11 +95,11 @@ Exemple de sortie :
 [comment]: # ()
 
 # Exemples de dépannage
-Maintenant que nous avons examiné les sorties de base et ce qui est attendu dans un déploiement sain, nous pouvons examiner quelques exemples courants de dépannage.
+Maintenant que nous avons examiné les sorties de base et ce qui est attendu dans un déploiement sain, nous pouvons examiner quelques exemples de dépannage courants.
 
 ### Problème : ❌ Error creating user
 
-Ce problème est généralement lié à une discordance entre la paire clé publique/IP attendue et la paire clé publique/IP avec laquelle l'utilisateur essaie d'accéder à DoubleZero.
+Ce problème est généralement lié à une incohérence entre la paire clé publique/IP attendue et la paire clé publique/IP avec laquelle l'utilisateur essaie d'accéder à DoubleZero.
 
 **Symptômes :**
 - Lors de la connexion avec `doublezero connect ibrl`, l'utilisateur rencontre `❌ Error creating user`
@@ -125,9 +125,9 @@ Ce problème est généralement lié à une discordance entre la paire clé publ
     FHyoPs7U23MuSTtepEyXUtSAEffEpFpJGoYvug8X2sWY | prepaid                                                        | 141.14.14.14   | MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2 | MAX               | MAX             | 0           | requested    | DZfHh2vjXFqt8zfNbT1afm8PGuCm3BrQKegC5THtKFdn 
     ```
      La clé publique de `doublezero address` doit correspondre à la clé publique user_payer et l'adresse IP depuis laquelle vous essayez de vous connecter doit correspondre à l'IP dans l'Access-Pass.
-    `doublezero address` est sourcée depuis le fichier id.json dans ~/.config/doublezero/ par défaut. Voir l'[étape 6 ici](<setup.md>)
+    `doublezero address` est extraite du fichier id.json dans ~/.config/doublezero/ par défaut. Voir l'[étape 6 ici](<setup.md>)
     
-3. Si ce qui précède semble correct et que vous obtenez une erreur lors de la connexion, ou si la correspondance ci-dessus est incorrecte, veuillez contacter le support sur [DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701)
+3. Si les informations ci-dessus semblent correctes et que vous obtenez une erreur lors de la connexion, ou si la correspondance ci-dessus est incorrecte, veuillez contacter le support sur [DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701)
 
 ### Problème : ❌ Error provisioning service: malformed stuff: cannot provision multiple tunnels at the same time
 Cette erreur signifie qu'un appareil est déjà connecté à DoubleZero.
@@ -145,8 +145,8 @@ Cette erreur signifie qu'un appareil est déjà connecté à DoubleZero.
     Tunnel status | Last Session Update     | Tunnel Name | Tunnel src    | Tunnel dst     | Doublezero IP | User Type | Current Device | Lowest Latency Device | Metro     | Network 
     up            | 2025-10-20 12:12:55 UTC | doublezero0 | 11.11.11.111 | 12.34.56.789 | 11.11.11.111 | IBRL      | ams-dz001      | ✅ ams-dz001          | Amsterdam | testnet
     ```
-2. -`up`- signifie une connexion saine.
-3. L'erreur apparaît parce qu'un tunnel vers DoubleZero avec l'IP DoubleZero spécifique est déjà actif sur cette machine.
+2. -`up`- indique une connexion saine.
+3. L'erreur apparaît car un tunnel vers DoubleZero avec l'IP DoubleZero spécifique est déjà actif sur cette machine.
 
     Cette erreur est souvent rencontrée après une mise à jour du client DoubleZero. Les mises à jour de DoubleZero redémarrent automatiquement le service doublezerod et vous reconnecteront si vous étiez connecté avant le redémarrage du service.
 
@@ -177,7 +177,7 @@ Ce problème est souvent lié au tunnel GRE qui a été activé avec succès ent
 **Solutions :**
 1. Vérifiez vos règles de pare-feu !
 
-   DoubleZero utilise l'espace d'adresses link-local : 169.254.0.0/16 pour les interfaces de tunnel GRE entre votre machine et l'appareil DoubleZero. 169.254.0.0/16 est typiquement un espace « non-routable » et les bonnes pratiques de sécurité recommandent de bloquer les communications vers/depuis cet espace. Vous devrez autoriser une règle dans votre pare-feu qui permet à la source 169.254.0.0/16 de communiquer avec la destination 169.254.0.0/16 sur le port TCP 179. Cette règle devra être placée au-dessus de toute règle qui refuse le trafic vers 169.254.0.0/16.
+   DoubleZero utilise l'espace d'adresses lien-local : 169.254.0.0/16 pour les interfaces de tunnel GRE entre votre machine et l'appareil DoubleZero. 169.254.0.0/16 est généralement un espace « non routable » et les bonnes pratiques de sécurité recommandent de bloquer les communications vers/depuis cet espace. Vous devrez autoriser une règle dans votre pare-feu qui permet à src 169.254.0.0/16 de communiquer avec dst 169.254.0.0/16 sur le port tcp 179. Cette règle devra être placée au-dessus de toute règle qui refuse le trafic vers 169.254.0.0/16.
 
     Dans un pare-feu comme ufw, vous pouvez exécuter `sudo ufw status` pour visualiser les règles du pare-feu et
 
@@ -201,12 +201,12 @@ Ce problème est souvent lié au tunnel GRE qui a été activé avec succès ent
     ```
 
     Dans la sortie ci-dessus, vous voyez que tout le trafic vers 169.254.0.0/16, à l'exception des ports spécifiés, est refusé.
-    `sudo ufw insert <N> allow proto tcp from 169.254.0.0/16 to 169.254.0.0/16 port 179` pour insérer la règle à la position <N>. Par exemple, si N = 1, vous insérerez cette règle comme première règle.
+    `sudo ufw insert <N> allow proto tcp from 169.254.0.0/16 to 169.254.0.0/16 port 179` pour insérer la règle à la position <N>. Par exemple : si N = 1, vous insérerez cette règle comme première règle.
     `sudo ufw status numbered` vous montrera l'ordre numérique des règles.
     
 ### Problème : L'appareil DoubleZero le plus proche a changé
 
-Ce n'est pas une erreur, mais cela peut être une optimisation. Ci-dessous se trouve une bonne pratique qui peut être exécutée de temps en temps, ou automatisée.
+Ce n'est pas une erreur, mais une optimisation possible. Voici une bonne pratique qui peut être exécutée de temps en temps, ou automatisée.
 
 **Solutions :**
 
@@ -222,7 +222,7 @@ Ce n'est pas une erreur, mais cela peut être une optimisation. Ci-dessous se tr
          8J691gPwzy9FzUZQ4SmC6jJcY7By8kZXfbJwRfQ8ns31 | nyc002-dz002  | 38.122.35.137   | 2.33ms   | 2.39ms   | 2.37ms   | true      
          FEML4XsDPN3WfmyFAXzE2xzyYqSB9kFCRrMik8JqN6kT | nyc001-dz001  | 38.104.167.29   | 2.29ms   | 2.59ms   | 2.40ms   | true   
         ```
-        notez ci-dessus que l'appareil le plus proche est `dz-ny7-sw01`
+        notez ci-dessus que l'appareil le plus proche est `dz-ny7-sw01 `
 
         Nous voulons nous connecter à cet appareil. :
 
@@ -244,7 +244,7 @@ Ce n'est pas une erreur, mais cela peut être une optimisation. Ci-dessous se tr
         ```
         Ce serait une connexion sous-optimale. Voyons si une reconnexion est nécessaire.
 
-        Avant la connexion, nous vérifierons si l'appareil dispose de tunnels utilisateur disponibles.
+        Avant la connexion, nous allons vérifier si l'appareil dispose de tunnels utilisateur disponibles.
 
 3. Optionnel : examiner le réseau pour les appareils disponibles
 
@@ -259,9 +259,9 @@ Ce n'est pas une erreur, mais cela peut être une optimisation. Ci-dessous se tr
         ```
         Notez ci-dessus que `ams001-dz002` a 69 utilisateurs et 128 utilisateurs maximum. Cet appareil peut accueillir 59 utilisateurs supplémentaires.
 
-        Cependant, `dz-fr5-sw01` a 0 utilisateur et 0 utilisateur maximum. Vous ne pourrez pas vous connecter à cet appareil. Avec un maximum de 0 utilisateurs, l'appareil n'accepte aucune connexion.
+        Cependant, `dz-fr5-sw01` a 0 utilisateur et 0 utilisateur maximum. Vous ne pourrez pas vous connecter à cet appareil. Avec un nombre maximum d'utilisateurs à 0, l'appareil n'accepte aucune connexion.
 
-        Revenons maintenant à la connexion à notre appareil le plus proche.
+        Revenons maintenant à la connexion vers notre appareil le plus proche.
 
 4. Déterminez si l'appareil cible a une connexion disponible
     - exécutez `doublezero device list | grep dz-ny7-sw01` remplacez `dz-ny7-sw01` par votre appareil cible
@@ -270,7 +270,7 @@ Ce n'est pas une erreur, mais cela peut être une optimisation. Ci-dessous se tr
         ```
         2hPMFJHh5BPX42ygBvuYYJfCv9q7g3rRR3ZRsUgtaqUi | dz-ny7-sw01   | glxy        | EQX-NY7   | nyc      | switch      | 137.239.213.162 | 137.239.216.164/31               | 29    | 128       | activated |          | 5YbNrJHJJoiRwVEvgAWRGdFRG9gRdZ47hLCKSym8bqbp 
         ```
-        ici nous pouvons voir que `dz-ny7-sw01` dispose d'espace disponible pour une connexion.
+        ici nous pouvons voir que `dz-ny7-sw01` a de la place disponible pour une connexion.
 
 5. Se connecter à l'appareil DoubleZero le plus proche
 
@@ -298,7 +298,7 @@ Ce n'est pas une erreur, mais cela peut être une optimisation. Ci-dessous se tr
     Tunnel status | Last Session Update | Tunnel Name | Tunnel src | Tunnel dst | Doublezero IP | User Type 
     disconnected  | no session data     |             |            |            |               |    
     ```
-    Enfin, nous nous reconnectons avec
+    Enfin nous nous reconnectons avec
     - `doublezero connect ibrl`
 
     sortie
@@ -312,11 +312,11 @@ Ce n'est pas une erreur, mais cela peut être une optimisation. Ci-dessous se tr
     Service provisioned with status: ok
     ✅  User Provisioned
     ```
-    notez dans la sortie ci-dessus que nous avons `Connected to device: dz-ny7-sw01`, c'est le résultat souhaité suite à notre investigation initiale à l'étape 1, où nous avions découvert que `dz-ny7-sw01` était l'appareil avec la latence la plus faible.
+    remarquez dans la sortie ci-dessus que nous avons `Connected to device: dz-ny7-sw01` — c'est le résultat souhaité suite à notre investigation initiale à l'étape 1, où nous avions découvert que `dz-ny7-sw01` était l'appareil avec la latence la plus faible.
 
 ### Problème : `doublezero status` retourne certains champs avec N/A
 
-Ce problème est généralement lié à une discordance entre le daemon et le client actuels, et le daemon et le client avec lesquels le tunnel DZ connecté a été établi.
+Ce problème est généralement lié à une incohérence entre le daemon et le client actuels, par rapport au daemon et au client avec lesquels le tunnel DZ connecté a été établi.
 
 **Symptômes :**
 - Lors de l'exécution de `doublezero status`, l'utilisateur rencontre `N/A` dans certains champs
@@ -335,14 +335,14 @@ Ce problème est généralement lié à une discordance entre le daemon et le cl
     up            | 2025-10-20 20:06:18 UTC | doublezero0 | 149.28.38.64 | 64.86.249.22 | 149.28.38.64  | IBRL      | N/A            | ✅ dz-ny7-sw01        | N/A   | mainnet-beta
     ```
 
-    Notez dans notre exemple de sortie ci-dessus que le `Tunnel status` est `up`. Notre `Network` est `mainnet-beta`. Cependant, `Current Device` et `Metro` sont `N/A`
+    Remarquez dans notre exemple de sortie ci-dessus que le `Tunnel status` est `up`. Notre `Network` est `mainnet-beta`. Cependant, `Current Device` et `Metro` sont `N/A`.
 
-    Cela indique un tunnel ouvert sur votre machine qui n'est pas dans votre environnement actuel.
+    Cela indique la présence d'un tunnel ouvert sur votre machine qui n'est pas dans votre environnement actuel.
     Dans ce cas, le statut `up`, sans `Current Device` trouvé sur `mainnet-beta`, nous révèle que notre tunnel est sur testnet !
  
 2. Changez votre environnement.
 
-    Afin de rectifier la discordance, vous changerez votre environnement vers l'opposé de l'environnement retournant le `N/A`
+    Afin de rectifier l'incohérence, vous allez changer votre environnement vers l'opposé de l'environnement retournant le `N/A`
 
     ```bash
     DESIRED_DOUBLEZERO_ENV=testnet \
@@ -354,7 +354,7 @@ Ce problème est généralement lié à une discordance entre le daemon et le cl
 	    && echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV"
     ```
 
-    Pour configurer le CLI client DoubleZero (`doublezero`) et le daemon (`doublezerod`) pour se connecter à **DoubleZero mainnet-beta** :
+    Pour configurer le CLI client DoubleZero (`doublezero`) et le daemon (`doublezerod`) pour se connecter au **DoubleZero mainnet-beta** :
 
     ```bash
     DESIRED_DOUBLEZERO_ENV=mainnet-beta \

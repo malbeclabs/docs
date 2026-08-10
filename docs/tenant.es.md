@@ -1,10 +1,10 @@
 ---
-description: Elija el inquilino y la ruta de conexión de DoubleZero que se ajuste a su caso de uso — validadores de Solana, RPCs, Shelby o un nuevo protocolo.
+description: Elija el inquilino y la ruta de conexión de DoubleZero que coincida con su caso de uso — validadores de Solana, RPCs, Shelby o un nuevo protocolo.
 ---
 
 # Inquilinos
 
-Los inquilinos en DoubleZero son grupos de usuarios con perfiles y requisitos de conexión similares, que normalmente representan diferentes ecosistemas de blockchain, capas de transferencia de datos o sistemas distribuidos.
+Los inquilinos en DoubleZero son grupos de usuarios con perfiles y requisitos de conexión similares, que típicamente representan diferentes ecosistemas de blockchain, capas de transferencia de datos o sistemas distribuidos.
 
 Examine la tabla a continuación y elija el caso de uso que mejor describa cómo planea interactuar con la Red DoubleZero.
 

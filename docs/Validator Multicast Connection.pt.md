@@ -1,12 +1,12 @@
 ---
-description: Configure um validador conectado para publicar leader shreds no feed multicast DoubleZero edge.
+description: Configure um validador conectado para publicar leader shreds no feed multicast edge do DoubleZero.
 ---
 
 # Conexão Multicast do Validador
-!!! warning "Ao conectar-se ao DoubleZero, concordo com os [Termos de Serviço do DoubleZero](https://doublezero.xyz/terms-protocol)"
+!!! warning "Ao conectar-se ao DoubleZero, eu concordo com os [Termos de Serviço do DoubleZero](https://doublezero.xyz/terms-protocol)"
 
 !!! note inline end "Empresas de trading e negócios"
-    Se você opera uma empresa de trading ou negócio que deseja assinar o feed, por favor registre seu interesse para obter mais informações [aqui](https://doublezero.xyz/edge-form).
+    Se você opera uma empresa de trading ou negócio e deseja assinar o feed, registre seu interesse para obter mais informações [aqui](https://doublezero.xyz/edge-form).
 
 Se você ainda não está conectado ao DoubleZero, por favor complete a documentação de [Configuração](<setup.md>) e de conexão do validador à [Mainnet-Beta](<DZ Mainnet-beta Connection.md>).
 
@@ -33,7 +33,7 @@ Se você é um validador que já está conectado ao DoubleZero, pode continuar e
     ```
 
 2. Reinicie seu validador.
-3. Conecte-se ao grupo multicast DoubleZero `edge-solana-shreds` como publicador: `doublezero connect ibrl && doublezero connect multicast --publish edge-solana-shreds`
+3. Conecte-se ao grupo multicast do DoubleZero `edge-solana-shreds` como publicador: `doublezero connect ibrl && doublezero connect multicast --publish edge-solana-shreds`
 
 ### Frankendancer
 
@@ -45,15 +45,15 @@ Se você é um validador que já está conectado ao DoubleZero, pode continuar e
     ```
 
 2. Reinicie seu validador.
-3. Conecte-se ao grupo multicast DoubleZero `edge-solana-shreds` como publicador: `doublezero connect ibrl && doublezero connect multicast --publish edge-solana-shreds`
+3. Conecte-se ao grupo multicast do DoubleZero `edge-solana-shreds` como publicador: `doublezero connect ibrl && doublezero connect multicast --publish edge-solana-shreds`
 
 ## 2. Confirme que você está publicando leader shreds
 
-Depois de conectado, você pode verificar [este painel](https://data.doublezero.xyz/dz/publisher-check) para confirmar que está publicando shreds. Você não verá confirmação até ter publicado leader shreds para pelo menos um slot.
+Depois de conectado, você pode verificar [este painel](https://data.doublezero.xyz/dz/publisher-check) para confirmar que está publicando shreds. Você não verá confirmação até que tenha publicado leader shreds por pelo menos um slot.
 
 ## Endpoints Multicast (IP vs Porta)
 
-Para tráfego de shreds, o **endereço IP** seleciona o feed multicast e a **porta** seleciona o serviço UDP.  
+Para o tráfego de shreds, o **endereço IP** seleciona o feed multicast e a **porta** seleciona o serviço UDP.  
 Todos os feeds abaixo utilizam a porta UDP `7733`.
 
 Você pode descobrir os IPs de grupo atuais com:
@@ -71,11 +71,11 @@ Para referências de API e endpoints de dados legíveis por máquina, consulte [
 
 ## 3. Recompensas do Validador
 
-Para cada epoch em que os validadores publicam leader shreds, eles serão recompensados proporcionalmente pela sua contribuição com base nas assinaturas. Os detalhes deste sistema serão anunciados e detalhados em uma data posterior.
+Para cada epoch em que os validadores publicam leader shreds, eles serão recompensados proporcionalmente por sua contribuição com base nas assinaturas. Os detalhes deste sistema serão anunciados e detalhados em uma data posterior.
 
-## Resolução de Problemas
+## Solução de Problemas
 
-### Não Está Publicando Leader Shreds:
+### Não Publicando Leader Shreds:
 
 A causa mais comum para não transmitir shreds é a versão do cliente:
 
@@ -105,8 +105,8 @@ Você deve estar executando Jito-Agave 3.1.9+, JitoBam 3.1.9+, Frankendancer ou 
 
     ![Visualização multicast do usuário - exemplo de retransmissão](images/user-multicast-view-retransmit.png)
 
-    A captura de tela abaixo mostra: **Saudável** (publicando apenas leader shreds) tráfego de saída em picos, conhecido como padrão dente de serra, que se alinham com seus leader slots.
+    A captura de tela abaixo mostra: **Saudável** (publicando apenas leader shreds) tráfego de saída em picos, conhecido como padrão dente de serra, que se alinha com seus leader slots.
 
     ![Visualização multicast do usuário - exemplo de publicador saudável](images/user-multicast-view-healthy.png)
 
-O gráfico mostra se você está enviando apenas leader shreds. Os picos de tráfego devem se alinhar com quando você tem um leader slot. Quando você não tem um leader slot, não deve haver tráfego. Se você está retransmitindo, verá um fluxo constante de tráfego em vez de picos alinhados aos slots.
+O gráfico mostra se você está enviando apenas leader shreds. Os picos de tráfego devem se alinhar com quando você tem um leader slot. Quando você não tem leader slot, não deve haver tráfego. Se você está retransmitindo, verá um fluxo constante de tráfego em vez de picos alinhados aos slots.

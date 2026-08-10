@@ -18,7 +18,7 @@ Si vous êtes un validateur déjà connecté à DoubleZero, vous pouvez poursuiv
 
 1. Dans votre script de démarrage du validateur, ajoutez : `--shred-receiver-address 233.84.178.1:7733`
 
-    Vous pouvez envoyer à Jito et au groupe `edge-solana-shreds` en même temps.
+    Vous pouvez envoyer simultanément vers Jito et le groupe `edge-solana-shreds`.
 
     exemple :
 
@@ -51,9 +51,9 @@ Si vous êtes un validateur déjà connecté à DoubleZero, vous pouvez poursuiv
 
 Une fois connecté, vous pouvez vérifier [ce tableau de bord](https://data.doublezero.xyz/dz/publisher-check) pour confirmer que vous publiez des shreds. Vous ne verrez pas de confirmation tant que vous n'aurez pas publié des shreds de leader pour au moins un slot.
 
-## Points de Terminaison Multicast (IP vs Port)
+## Points de terminaison Multicast (IP vs Port)
 
-Pour le trafic de shreds, l'**adresse IP** sélectionne le flux multicast et le **port** sélectionne le service UDP.  
+Pour le trafic de shreds, l'**adresse IP** sélectionne le flux multicast et le **port** sélectionne le service UDP.
 Tous les flux ci-dessous utilisent le port UDP `7733`.
 
 Vous pouvez découvrir les IP de groupe actuelles avec :
@@ -71,26 +71,26 @@ Pour les références API et les points de terminaison de données lisibles par 
 
 ## 3. Récompenses des Validateurs
 
-Pour chaque époque où les validateurs publient des shreds de leader, ils seront proportionnellement récompensés pour leur contribution en fonction des abonnements. Les détails de ce système seront annoncés et précisés ultérieurement.
+Pour chaque époque où les validateurs publient des shreds de leader, ils seront récompensés proportionnellement pour leur contribution en fonction des abonnements. Les détails de ce système seront annoncés et précisés ultérieurement.
 
 ## Dépannage
 
-### Pas de Publication de Shreds de Leader :
+### Pas de publication de shreds de leader :
 
-La cause la plus courante de non-transmission de shreds est la version du client :
+La cause la plus courante de non-transmission des shreds est la version du client :
 
 Vous devez utiliser Jito-Agave 3.1.9+, JitoBam 3.1.9+, Frankendancer, ou Harmonic 3.1.11+. Les autres versions de client ne fonctionneront pas.
 
 ### Retransmission :
 
-1. Une cause courante de retransmission de shreds est une simple erreur de configuration. Vous avez peut-être activé le flag pour envoyer des shreds de retransmission dans votre script de démarrage ; vous devrez le désactiver.
+1. Une cause courante de retransmission de shreds est une simple erreur de configuration. Vous avez peut-être activé le flag d'envoi de shreds de retransmission dans votre script de démarrage ; vous devrez le désactiver.
 
     Le flag à supprimer dans Jito-Agave est : `--shred-retransmit-receiver-address`.
 
-1. Vérifiez le [tableau de bord des éditeurs](https://data.doublezero.xyz/dz/publisher-check) et voyez si vous avez des shreds retransmis. Dans le tableau, regardez la colonne **No Retransmit Shreds** — un X rouge signifie que vous retransmettez.
+1. Consultez le [tableau de bord des éditeurs](https://data.doublezero.xyz/dz/publisher-check) et vérifiez si vous avez des shreds retransmis. Dans le tableau, regardez la colonne **No Retransmit Shreds** — un X rouge signifie que vous retransmettez.
 
     !!! note "vue par époque"
-        Notez qu'il existe différentes fenêtres temporelles pour visualiser le tableau de bord des éditeurs. Si vous voyez de la retransmission dans la **vue sur 2 époques**, mais que vous avez effectué un changement récent, essayez de passer à la vue **slot récent**.
+        Notez qu'il existe différentes fenêtres temporelles pour consulter le tableau de bord des éditeurs. Si vous voyez de la retransmission dans la **vue sur 2 époques**, mais que vous avez effectué un changement récent, essayez de basculer vers la vue **slot récent**.
 
 
     ![Tableau de bord de vérification des éditeurs](images/publisher-check-dashboard.png)
@@ -101,12 +101,12 @@ Vous devez utiliser Jito-Agave 3.1.9+, JitoBam 3.1.9+, Frankendancer, ou Harmoni
 
 3. Cliquez sur **Multicast** pour ouvrir votre vue multicast.
 
-    La capture d'écran ci-dessous montre : **Retransmission** (indésirable) un trafic sortant constant sans schéma de slots de leader.
+    La capture d'écran ci-dessous montre : **Retransmission** (indésirable) — un trafic sortant constant sans schéma de slot de leader.
 
-    ![Vue multicast de l'utilisateur - exemple de retransmission](images/user-multicast-view-retransmit.png)
+    ![Vue multicast utilisateur - exemple de retransmission](images/user-multicast-view-retransmit.png)
 
-    La capture d'écran ci-dessous montre : **Sain** (publication uniquement de shreds de leader) un trafic sortant en pics, connu sous le nom de motif en dents de scie, qui correspondent à vos slots de leader.
+    La capture d'écran ci-dessous montre : **Sain** (publication uniquement des shreds de leader) — un trafic sortant par pics, connu sous le nom de motif en dents de scie, qui correspond à vos slots de leader.
 
-    ![Vue multicast de l'utilisateur - exemple d'éditeur sain](images/user-multicast-view-healthy.png)
+    ![Vue multicast utilisateur - exemple d'éditeur sain](images/user-multicast-view-healthy.png)
 
-Le graphique montre si vous envoyez uniquement des shreds de leader. Les pics de trafic devraient correspondre aux moments où vous avez un slot de leader. Lorsque vous n'avez pas de slot de leader, il ne devrait y avoir aucun trafic. Si vous retransmettez, vous verrez un flux de trafic constant au lieu de pics alignés sur les slots.
+Le graphique indique si vous envoyez uniquement des shreds de leader. Les pics de trafic doivent correspondre aux moments où vous avez un slot de leader. Lorsque vous n'avez pas de slot de leader, il ne devrait y avoir aucun trafic. Si vous retransmettez, vous verrez un flux de trafic constant au lieu de pics alignés sur les slots.

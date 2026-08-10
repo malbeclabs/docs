@@ -4,7 +4,7 @@ description: Escolha o tenant e o caminho de conexão DoubleZero que corresponde
 
 # Tenants
 
-Tenants no DoubleZero são grupos de usuários com perfis e requisitos de conexão semelhantes, normalmente representando diferentes ecossistemas de blockchain, camadas de transferência de dados ou sistemas distribuídos.
+Tenants no DoubleZero são grupos de usuários com perfis e requisitos de conexão semelhantes, tipicamente representando diferentes ecossistemas de blockchain, camadas de transferência de dados ou sistemas distribuídos.
 
 Examine a tabela abaixo e escolha o caso de uso que melhor descreve como você planeja interagir com a Rede DoubleZero.
 
@@ -26,4 +26,4 @@ Novo Tenant
 
 | Caso de Uso | Próximo Passo |
 -------------|---------|
-| Você tem um novo protocolo, aplicação ou outro caso de uso para utilizar o DoubleZero | [Adicionar Um Novo Tenant](New%20Tenant.md) |
+| Você tem um novo protocolo, aplicação ou outro caso de uso para aproveitar o DoubleZero | [Adicionar Um Novo Tenant](New%20Tenant.md) |
