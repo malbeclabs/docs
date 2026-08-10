@@ -1,14 +1,16 @@
-# Conexão Multicast para Validadores
-!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+---
+description: Configure um validador conectado para publicar leader shreds no feed multicast DoubleZero edge.
+---
 
-!!! warning "Ao me conectar ao DoubleZero, concordo com os [Termos de Serviço do DoubleZero](https://doublezero.xyz/terms-protocol)"
+# Conexão Multicast do Validador
+!!! warning "Ao conectar-se ao DoubleZero, concordo com os [Termos de Serviço do DoubleZero](https://doublezero.xyz/terms-protocol)"
 
 !!! note inline end "Empresas de trading e negócios"
-    Se você opera uma empresa de trading ou negócio que deseja se inscrever no feed, registre seu interesse para obter mais informações [aqui](https://doublezero.xyz/edge-form).
+    Se você opera uma empresa de trading ou negócio que deseja assinar o feed, por favor registre seu interesse para obter mais informações [aqui](https://doublezero.xyz/edge-form).
 
-Se você ainda não está conectado ao DoubleZero, complete a documentação de [Configuração](setup.md) e de conexão de validador [Mainnet-Beta](DZ%20Mainnet-beta%20Connection.md).
+Se você ainda não está conectado ao DoubleZero, por favor complete a documentação de [Configuração](<setup.md>) e de conexão do validador à [Mainnet-Beta](<DZ Mainnet-beta Connection.md>).
 
-Se você é um validador já conectado ao DoubleZero, pode continuar este guia.
+Se você é um validador que já está conectado ao DoubleZero, pode continuar este guia.
 
 ## 1. Configuração do Cliente
 
@@ -18,7 +20,7 @@ Se você é um validador já conectado ao DoubleZero, pode continuar este guia.
 
     Você pode enviar para o Jito e para o grupo `edge-solana-shreds` ao mesmo tempo.
 
-    Exemplo:
+    exemplo:
 
     ```json
     #!/bin/bash
@@ -31,11 +33,11 @@ Se você é um validador já conectado ao DoubleZero, pode continuar este guia.
     ```
 
 2. Reinicie seu validador.
-3. Conecte-se ao grupo multicast do DoubleZero `edge-solana-shreds` como publicador: `doublezero connect ibrl && doublezero connect multicast --publish edge-solana-shreds`
+3. Conecte-se ao grupo multicast DoubleZero `edge-solana-shreds` como publicador: `doublezero connect ibrl && doublezero connect multicast --publish edge-solana-shreds`
 
 ### Frankendancer
 
-1. Em `config.toml`, adicione:
+1. No `config.toml`, adicione:
 
     ```toml
     [tiles.shred]
@@ -43,49 +45,68 @@ Se você é um validador já conectado ao DoubleZero, pode continuar este guia.
     ```
 
 2. Reinicie seu validador.
-3. Conecte-se ao grupo multicast do DoubleZero `edge-solana-shreds` como publicador: `doublezero connect ibrl && doublezero connect multicast --publish edge-solana-shreds`
+3. Conecte-se ao grupo multicast DoubleZero `edge-solana-shreds` como publicador: `doublezero connect ibrl && doublezero connect multicast --publish edge-solana-shreds`
 
-## 2. Confirmar que está publicando shreds de líder
+## 2. Confirme que você está publicando leader shreds
 
-Após a conexão, você pode verificar [este painel](https://data.doublezero.xyz/dz/publisher-check) para confirmar que está publicando shreds. Você não verá a confirmação até ter publicado shreds de líder para pelo menos um slot.
+Depois de conectado, você pode verificar [este painel](https://data.doublezero.xyz/dz/publisher-check) para confirmar que está publicando shreds. Você não verá confirmação até ter publicado leader shreds para pelo menos um slot.
 
-## 3. Recompensas para Validadores
+## Endpoints Multicast (IP vs Porta)
 
-Para cada época em que os validadores publicam shreds de líder, eles serão recompensados proporcionalmente pela sua contribuição com base nas assinaturas. Os detalhes deste sistema serão anunciados e detalhados em uma data posterior.
+Para tráfego de shreds, o **endereço IP** seleciona o feed multicast e a **porta** seleciona o serviço UDP.  
+Todos os feeds abaixo utilizam a porta UDP `7733`.
 
-## Solução de Problemas
+Você pode descobrir os IPs de grupo atuais com:
 
-### Não está publicando shreds de líder:
+```bash
+doublezero multicast group list
+```
 
-A causa mais comum de não transmitir shreds é a versão do cliente:
+- `edge-solana-shreds` (leader): `233.84.178.1:7733`
+- `edge-solana-retrans-eu`: `233.84.178.12:7733`
+- `edge-solana-retrans-apac`: `233.84.178.13:7733`
+- `edge-solana-retrans-amer`: `233.84.178.14:7733`
+
+Para referências de API e endpoints de dados legíveis por máquina, consulte [https://data.doublezero.xyz/api/v1/docs](https://data.doublezero.xyz/api/v1/docs).
+
+## 3. Recompensas do Validador
+
+Para cada epoch em que os validadores publicam leader shreds, eles serão recompensados proporcionalmente pela sua contribuição com base nas assinaturas. Os detalhes deste sistema serão anunciados e detalhados em uma data posterior.
+
+## Resolução de Problemas
+
+### Não Está Publicando Leader Shreds:
+
+A causa mais comum para não transmitir shreds é a versão do cliente:
 
 Você deve estar executando Jito-Agave 3.1.9+, JitoBam 3.1.9+, Frankendancer ou Harmonic 3.1.11+. Outras versões de cliente não funcionarão.
 
-### Retransmissão:
+### Retransmitindo:
 
-1. Uma causa comum de retransmissão de shreds é uma configuração simples. Você pode ter o flag habilitado para enviar shreds de retransmissão no seu script de inicialização; você precisará desabilitá-lo.
+1. Uma causa comum de retransmissão de shreds é uma configuração simples. Você pode ter a flag habilitada para enviar shreds de retransmissão no seu script de inicialização; será necessário desabilitá-la.
 
-    O flag a remover no Jito-Agave é: `--shred-retransmit-receiver-address`.
+    A flag a ser removida no Jito-Agave é: `--shred-retransmit-receiver-address`.
 
-1. Verifique o [painel de publicadores](https://data.doublezero.xyz/dz/publisher-check) e veja se há shreds retransmitidos. Na tabela, observe a coluna **No Retransmit Shreds**—um X vermelho significa que você está retransmitindo.
+1. Verifique o [painel do publicador](https://data.doublezero.xyz/dz/publisher-check) e veja se você tem algum shred retransmitido. Na tabela, observe a coluna **No Retransmit Shreds** — um X vermelho significa que você está retransmitindo.
 
-    !!! note "Visão por época"
-        Observe que há diferentes janelas de tempo para visualizar o painel de publicadores. Se você vê retransmissão na **visão de 2 épocas**, mas fez uma alteração recente, tente mudar para a visão de **slot recente**.
+    !!! note "visualização por epoch"
+        Note que existem diferentes janelas de tempo para visualizar o painel do publicador. Se você vir retransmissão na **visualização de 2 epochs**, mas fez uma alteração recente, tente mudar para a visualização de **slot recente**.
 
-    ![Painel de verificação de publicadores](images/publisher-check-dashboard.png)
+
+    ![Painel de verificação do publicador](images/publisher-check-dashboard.png)
 
 2. Encontre o IP do seu cliente e procure seu usuário em [DoubleZero Data](https://data.doublezero.xyz/dz/users).
 
     ![Usuários do DoubleZero Data](images/doublezero-data-users.png)
 
-3. Clique em **Multicast** para abrir sua visão multicast.
+3. Clique em **Multicast** para abrir sua visualização multicast.
 
-    A captura de tela abaixo mostra: **Retransmitindo** (indesejável) tráfego de saída constante sem padrão de slot de líder.
+    A captura de tela abaixo mostra: **Retransmitindo** (indesejável) tráfego de saída constante sem padrão de leader-slot.
 
-    ![Visão multicast do usuário - exemplo de retransmissão](images/user-multicast-view-retransmit.png)
+    ![Visualização multicast do usuário - exemplo de retransmissão](images/user-multicast-view-retransmit.png)
 
-    A captura de tela abaixo mostra: **Saudável** (publicando apenas shreds de líder) tráfego de saída em picos, conhecido como padrão de dente de serra, que se alinha com seus slots de líder.
+    A captura de tela abaixo mostra: **Saudável** (publicando apenas leader shreds) tráfego de saída em picos, conhecido como padrão dente de serra, que se alinham com seus leader slots.
 
-    ![Visão multicast do usuário - exemplo de publicador saudável](images/user-multicast-view-healthy.png)
+    ![Visualização multicast do usuário - exemplo de publicador saudável](images/user-multicast-view-healthy.png)
 
-O gráfico mostra se você está enviando apenas shreds de líder. Os picos de tráfego devem se alinhar com quando você tem um slot de líder. Quando não há slot de líder, não deve haver tráfego. Se você estiver retransmitindo, verá um fluxo constante de tráfego em vez de picos alinhados com slots.
+O gráfico mostra se você está enviando apenas leader shreds. Os picos de tráfego devem se alinhar com quando você tem um leader slot. Quando você não tem um leader slot, não deve haver tráfego. Se você está retransmitindo, verá um fluxo constante de tráfego em vez de picos alinhados aos slots.

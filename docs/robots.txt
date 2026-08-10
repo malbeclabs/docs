@@ -30,4 +30,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://docs.malbeclabs.com/sitemap.xml
+Sitemap: https://docs.doublezero.xyz/sitemap.xml

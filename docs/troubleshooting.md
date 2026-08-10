@@ -125,7 +125,7 @@ This issue is generally related to a mismatch between the expected pubkey/IP pai
     FHyoPs7U23MuSTtepEyXUtSAEffEpFpJGoYvug8X2sWY | prepaid                                                        | 141.14.14.14   | MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2 | MAX               | MAX             | 0           | requested    | DZfHh2vjXFqt8zfNbT1afm8PGuCm3BrQKegC5THtKFdn 
     ```
      The pubkey from `doublezero address` must match the user_payer pubkey and the IP Address you are trying to connect from must match the ip in the Access-Pass. 
-    `doublezero address` is sourced from the id.json file in in ~/.config/doublezero/ by default. See the [step 6 here](https://docs.malbeclabs.com/setup/)
+    `doublezero address` is sourced from the id.json file in in ~/.config/doublezero/ by default. See the [step 6 here](<setup.md>)
     
 3. If the above looks correct and you are getting an error while connecting or if the above mapping is incorrect please contact support in [DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701)
 

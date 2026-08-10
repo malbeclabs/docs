@@ -12,8 +12,8 @@ Solana
 
 | Use Case | Next Stop |
 |-------------|---------|
-| Solana Mainnet Validator, including backups | [DoubleZero Mainnet-Beta Connection](https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/) |
-| Solana Testnet Validator, including backups | [DoubleZero Testnet Connection](https://docs.malbeclabs.com/DZ%20Testnet%20Connection/) |
+| Solana Mainnet Validator, including backups | [DoubleZero Mainnet-Beta Connection](<DZ Mainnet-beta Connection.md>) |
+| Solana Testnet Validator, including backups | [DoubleZero Testnet Connection](<DZ Testnet Connection.md>) |
 | Non-Validators - RPCs, and others. | [DoubleZero Mainnet-Beta and Testnet Connection](Permissioned%20Connection.md) |
 
 Shelby

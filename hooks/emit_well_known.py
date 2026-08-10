@@ -29,7 +29,7 @@ import os
 import shutil
 
 SKILLS_SCHEMA = "https://schemas.agentskills.io/discovery/0.2.0/schema.json"
-SITE_BASE = "https://docs.malbeclabs.com"
+SITE_BASE = "https://docs.doublezero.xyz"
 
 
 def _repo_root(config) -> str:
