@@ -17,6 +17,8 @@ dist/
 .devcontainer/
 smartcontract/.vscode/settings.json
 site/
+.venv/
+.vercel/
 
 .DS_Store
 **/.DS_Store
