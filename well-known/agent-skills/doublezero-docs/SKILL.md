@@ -5,7 +5,7 @@ description: >-
   validator and tenant setup, multicast, rewards, geolocation, and contributor
   operations — by grounding answers in the official documentation and live
   network data.
-license: See https://docs.malbeclabs.com/
+license: See https://docs.doublezero.xyz/
 ---
 
 # DoubleZero documentation assistant
@@ -20,15 +20,15 @@ contributor (network operator) tasks.
 The full documentation is published as clean Markdown on the docs domain. Always
 prefer these sources over general knowledge, and cite the page you used.
 
-- **Index of pages:** `https://docs.malbeclabs.com/llms.txt` — a curated list of
+- **Index of pages:** `https://docs.doublezero.xyz/llms.txt` — a curated list of
   every page with its Markdown URL and a one-line description. Read this first to
   find the right page.
-- **Full corpus:** `https://docs.malbeclabs.com/llms-full.txt` — every page
+- **Full corpus:** `https://docs.doublezero.xyz/llms-full.txt` — every page
   concatenated into a single Markdown file, when you need broad context.
 - **Per-page Markdown:** append `index.md` to any page URL, e.g.
-  `https://docs.malbeclabs.com/setup/index.md` or
-  `https://docs.malbeclabs.com/DZ%20Testnet%20Connection/index.md`. Translations
-  live under a locale prefix, e.g. `https://docs.malbeclabs.com/es/setup/index.md`.
+  `https://docs.doublezero.xyz/setup/index.md` or
+  `https://docs.doublezero.xyz/DZ%20Testnet%20Connection/index.md`. Translations
+  live under a locale prefix, e.g. `https://docs.doublezero.xyz/es/setup/index.md`.
 
 ## Query live network data (MCP)
 
@@ -37,7 +37,7 @@ publisher/subscriber status, link health, telemetry — use the DoubleZero Data 
 server instead of guessing.
 
 - **Endpoint:** `https://data.doublezero.xyz/mcp` (MCP Streamable HTTP)
-- **Discovery:** `https://docs.malbeclabs.com/.well-known/mcp/server-card.json`
+- **Discovery:** `https://docs.doublezero.xyz/.well-known/mcp/server-card.json`
 - **Tools:** `get_schema` (always call first to learn the available tables,
   columns, and types — never assume names), `execute_sql` and `execute_cypher`
   (read-only queries over the data), and `read_docs` (conceptual/procedural docs
@@ -52,7 +52,7 @@ server instead of guessing.
 3. For live data: call `get_schema` first, then issue a read-only `execute_sql`
    or `execute_cypher` query.
 4. Answer concisely and link the user to the canonical page on
-   `https://docs.malbeclabs.com/` so they can follow the full steps.
+   `https://docs.doublezero.xyz/` so they can follow the full steps.
 
 ## Notes
 
