@@ -1,8 +1,13 @@
 name: docs
 on:
+  # All branches, so pushing a branch produces a Vercel preview without
+  # needing a PR. Deploy gates below are keyed on github.ref, NOT on
+  # event_name: with this wildcard, an event_name check would match every
+  # branch push and publish it to production.
   push:
     branches:
-      - main
+      - '**'
+  # Fork PRs cannot push here, so this is what validates their build.
   pull_request:
 
 # Least privilege at the top; the pages job re-grants what it needs.
@@ -40,7 +45,9 @@ jobs:
 
   deploy-pages:
     needs: build
-    if: github.event_name == 'push'
+    # main only. Must stay ref-based: `event_name == 'push'` would publish
+    # every branch to the live site now that push covers all branches.
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       pages: write
@@ -56,12 +63,12 @@ jobs:
 
   deploy-vercel:
     needs: build
-    # Fork PRs cannot receive secrets, so skip rather than fail. They still get
-    # the build job above as validation. pull_request_target is deliberately
-    # NOT used: it would expose the Vercel token to untrusted PR code.
-    if: >-
-      github.event_name == 'push' ||
-      github.event.pull_request.head.repo.full_name == github.repository
+    # push only. Pushing here requires write access, so the Vercel token is
+    # never exposed to untrusted code and no fork check is needed. Same-repo
+    # PRs still get a preview, via the push event on their branch rather than
+    # the pull_request event, which also avoids deploying twice per push.
+    # pull_request_target is deliberately NOT used.
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -76,8 +83,23 @@ jobs:
       - name: Package for Vercel
         run: scripts/build-vercel-output.sh /tmp/pages/artifact.tar
       - name: Deploy (production)
-        if: github.event_name == 'push'
+        if: github.ref == 'refs/heads/main'
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy (preview)
-        if: github.event_name == 'pull_request'
-        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
+        if: github.ref != 'refs/heads/main'
+        run: |
+          set -o pipefail
+          vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} 2>&1 | tee /tmp/deploy.log
+          url=$(grep -oE 'https://[a-z0-9-]+\.vercel\.app' /tmp/deploy.log | tail -1)
+          if [ -z "$url" ]; then
+            echo "::error::could not parse a preview URL from the deploy output"
+            exit 1
+          fi
+          # Surface the URL in the run summary; otherwise it is buried in logs.
+          {
+            echo "### Docs preview"
+            echo ""
+            echo "$url"
+            echo ""
+            echo "Requires \`doublezero-foundation\` Vercel team access (SSO-protected)."
+          } >> "$GITHUB_STEP_SUMMARY"
