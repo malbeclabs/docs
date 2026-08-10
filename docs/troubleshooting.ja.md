@@ -118,7 +118,7 @@ account                                      | accesspass_type                  
     FHyoPs7U23MuSTtepEyXUtSAEffEpFpJGoYvug8X2sWY | prepaid                                                        | 141.14.14.14   | MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2 | MAX               | MAX             | 0           | requested    | DZfHh2vjXFqt8zfNbT1afm8PGuCm3BrQKegC5THtKFdn
     ```
      `doublezero address`の公開鍵はuser_payerの公開鍵と一致し、接続しようとしているIPアドレスはアクセスパスのIPと一致する必要があります。
-    `doublezero address`はデフォルトで`~/.config/doublezero/`のid.jsonファイルから取得されます。[ステップ6](https://docs.malbeclabs.com/setup/)を参照してください。
+    `doublezero address`はデフォルトで`~/.config/doublezero/`のid.jsonファイルから取得されます。[ステップ6](<setup.md>)を参照してください。
 
 3. 上記が正しく、接続中にエラーが発生している場合、またはマッピングが間違っている場合は、[DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701)でサポートにお問い合わせください。
 

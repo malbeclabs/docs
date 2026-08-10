@@ -118,7 +118,7 @@ Questo problema è generalmente correlato a una mancata corrispondenza tra la co
     FHyoPs7U23MuSTtepEyXUtSAEffEpFpJGoYvug8X2sWY | prepaid                                                        | 141.14.14.14   | MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2 | MAX               | MAX             | 0           | requested    | DZfHh2vjXFqt8zfNbT1afm8PGuCm3BrQKegC5THtKFdn
     ```
      La chiave pubblica da `doublezero address` deve corrispondere alla chiave pubblica user_payer e l'indirizzo IP da cui stai cercando di connetterti deve corrispondere all'IP nell'Access-Pass.
-    `doublezero address` è originato dal file id.json in ~/.config/doublezero/ per impostazione predefinita. Vedi il [passaggio 6 qui](https://docs.malbeclabs.com/setup/)
+    `doublezero address` è originato dal file id.json in ~/.config/doublezero/ per impostazione predefinita. Vedi il [passaggio 6 qui](<setup.md>)
 
 3. Se quanto sopra sembra corretto e stai ricevendo un errore durante la connessione, o se la mappatura sopra è errata, contatta il supporto in [DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701)
 

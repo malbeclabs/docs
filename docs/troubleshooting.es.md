@@ -117,7 +117,7 @@ Este problema generalmente está relacionado con una discrepancia entre el par p
     FHyoPs7U23MuSTtepEyXUtSAEffEpFpJGoYvug8X2sWY | prepaid                                                        | 141.14.14.14   | MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2 | MAX               | MAX             | 0           | requested    | DZfHh2vjXFqt8zfNbT1afm8PGuCm3BrQKegC5THtKFdn
     ```
      La pubkey de `doublezero address` debe coincidir con la pubkey user_payer y la dirección IP desde la que intenta conectarse debe coincidir con la IP en el Pase de Acceso.
-    `doublezero address` proviene del archivo id.json en `~/.config/doublezero/` por defecto. Consulte el [paso 6 aquí](https://docs.malbeclabs.com/setup/)
+    `doublezero address` proviene del archivo id.json en `~/.config/doublezero/` por defecto. Consulte el [paso 6 aquí](<setup.md>)
 
 3. Si lo anterior parece correcto y está obteniendo un error al conectarse, o si el mapeo anterior es incorrecto, contacte a soporte en [DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701)
 

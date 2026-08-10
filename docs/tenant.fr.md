@@ -10,8 +10,8 @@ Solana
 
 | Cas d'Utilisation | Prochaine Étape |
 |-------------|---------|
-| Validateur Solana Mainnet, y compris les sauvegardes | [Connexion DoubleZero Mainnet-Beta](https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/) |
-| Validateur Solana Testnet, y compris les sauvegardes | [Connexion DoubleZero Testnet](https://docs.malbeclabs.com/DZ%20Testnet%20Connection/) |
+| Validateur Solana Mainnet, y compris les sauvegardes | [Connexion DoubleZero Mainnet-Beta](<DZ Mainnet-beta Connection.md>) |
+| Validateur Solana Testnet, y compris les sauvegardes | [Connexion DoubleZero Testnet](<DZ Testnet Connection.md>) |
 | Non-Validateurs - RPC, et autres. | [Connexion DoubleZero Mainnet-Beta et Testnet](Permissioned%20Connection.md) |
 
 Shelby

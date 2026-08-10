@@ -117,7 +117,7 @@ account                                      | accesspass_type                  
     FHyoPs7U23MuSTtepEyXUtSAEffEpFpJGoYvug8X2sWY | prepaid                                                        | 141.14.14.14   | MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2 | MAX               | MAX             | 0           | requested    | DZfHh2vjXFqt8zfNbT1afm8PGuCm3BrQKegC5THtKFdn
     ```
      `doublezero address`의 공개 키는 user_payer 공개 키와 일치해야 하며, 연결하려는 IP 주소는 액세스 패스의 IP와 일치해야 합니다.
-    `doublezero address`는 기본적으로 `~/.config/doublezero/`의 id.json 파일에서 가져옵니다. [여기 6단계](https://docs.malbeclabs.com/setup/)를 참조하세요.
+    `doublezero address`는 기본적으로 `~/.config/doublezero/`의 id.json 파일에서 가져옵니다. [여기 6단계](<setup.md>)를 참조하세요.
 
 3. 위 내용이 올바르게 보이지만 연결 중 오류가 발생하거나 위 매핑이 올바르지 않은 경우 [DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701)에서 지원에 연락하세요.
 

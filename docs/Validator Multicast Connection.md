@@ -8,7 +8,7 @@ description: Configure a connected validator to publish leader shreds to the Dou
 !!! note inline end "Trading firms and businesses"
     If you operate a trading firm or business looking to subscribe to the feed please register interest to get more information [here](https://doublezero.xyz/edge-form).
 
-If you are not already connected to DoubleZero please complete [Setup](https://docs.malbeclabs.com/setup/), and [Mainnet-Beta](https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/) validator connection documentation.
+If you are not already connected to DoubleZero please complete [Setup](<setup.md>), and [Mainnet-Beta](<DZ Mainnet-beta Connection.md>) validator connection documentation.
 
 If you are a validator who is already connected to DoubleZero you may continue this guide.
 

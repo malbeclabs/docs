@@ -10,8 +10,8 @@ Solana
 
 | ユースケース | 次のステップ |
 |-------------|---------|
-| Solanaメインネットバリデーター（バックアップ含む） | [DoubleZero Mainnet-Beta接続](https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/) |
-| Solanaテストネットバリデーター（バックアップ含む） | [DoubleZero Testnet接続](https://docs.malbeclabs.com/DZ%20Testnet%20Connection/) |
+| Solanaメインネットバリデーター（バックアップ含む） | [DoubleZero Mainnet-Beta接続](<DZ Mainnet-beta Connection.md>) |
+| Solanaテストネットバリデーター（バックアップ含む） | [DoubleZero Testnet接続](<DZ Testnet Connection.md>) |
 | 非バリデーター - RPC等 | [DoubleZero Mainnet-BetaおよびTestnet接続](Permissioned%20Connection.md) |
 
 Shelby

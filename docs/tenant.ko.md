@@ -10,8 +10,8 @@ Solana
 
 | 사용 사례 | 다음 단계 |
 |-------------|---------|
-| 백업을 포함한 Solana 메인넷 검증자 | [DoubleZero Mainnet-Beta 연결](https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/) |
-| 백업을 포함한 Solana 테스트넷 검증자 | [DoubleZero Testnet 연결](https://docs.malbeclabs.com/DZ%20Testnet%20Connection/) |
+| 백업을 포함한 Solana 메인넷 검증자 | [DoubleZero Mainnet-Beta 연결](<DZ Mainnet-beta Connection.md>) |
+| 백업을 포함한 Solana 테스트넷 검증자 | [DoubleZero Testnet 연결](<DZ Testnet Connection.md>) |
 | 비검증자 - RPC 및 기타 | [DoubleZero Mainnet-Beta 및 Testnet 연결](Permissioned%20Connection.md) |
 
 Shelby

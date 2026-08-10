@@ -10,8 +10,8 @@ Solana
 
 | 用例 | 下一步 |
 |-------------|---------|
-| Solana主网验证器，包括备份 | [DoubleZero主网Beta连接](https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/) |
-| Solana测试网验证器，包括备份 | [DoubleZero测试网连接](https://docs.malbeclabs.com/DZ%20Testnet%20Connection/) |
+| Solana主网验证器，包括备份 | [DoubleZero主网Beta连接](<DZ Mainnet-beta Connection.md>) |
+| Solana测试网验证器，包括备份 | [DoubleZero测试网连接](<DZ Testnet Connection.md>) |
 | 非验证器 - RPC及其他 | [DoubleZero主网Beta和测试网连接](Permissioned%20Connection.md) |
 
 Shelby

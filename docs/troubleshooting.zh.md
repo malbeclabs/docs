@@ -118,7 +118,7 @@ account                                      | accesspass_type                  
     FHyoPs7U23MuSTtepEyXUtSAEffEpFpJGoYvug8X2sWY | prepaid                                                        | 141.14.14.14   | MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2 | MAX               | MAX             | 0           | requested    | DZfHh2vjXFqt8zfNbT1afm8PGuCm3BrQKegC5THtKFdn
     ```
      `doublezero address`的公钥必须与user_payer公钥匹配，且您尝试连接的IP地址必须与访问通行证中的ip匹配。
-    `doublezero address`来源于默认情况下`~/.config/doublezero/`中的id.json文件。请参阅[此处的步骤6](https://docs.malbeclabs.com/setup/)
+    `doublezero address`来源于默认情况下`~/.config/doublezero/`中的id.json文件。请参阅[此处的步骤6](<setup.md>)
 
 3. 如果上述内容看起来正确但您在连接时遇到错误，或者如果上述映射不正确，请在[DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701)联系支持
 
