@@ -3,38 +3,81 @@ on:
   push:
     branches:
       - main
+  pull_request:
+
+# Least privilege at the top; the pages job re-grants what it needs.
 permissions:
-  contents: write
-  id-token: write
-  pages: write
+  contents: read
+
+concurrency:
+  group: docs-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Configure Git Credentials
-        run: |
-          git config user.name github-actions[bot]
-          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
       - uses: actions/setup-python@v5
         with:
-          python-version: 3.12
+          python-version: '3.12'
       - run: pip install mkdocs-material mkdocs-static-i18n
-      - run: mkdocs build
-      - run: cd /home/runner/work/docs/docs/site && tar --dereference -cvf "/home/runner/work/_temp/artifact.tar" .
+      # --strict fails the build on broken internal links. The docs use
+      # relative .md cross-links, so this is the gate that keeps them honest.
+      - run: mkdocs build --strict
+      # tar --dereference is what preserves the hidden .well-known directory.
+      # Both deploy jobs consume this one artifact, so the two origins cannot drift.
+      - name: Package site
+        run: |
+          mkdir -p /tmp/pages
+          tar --dereference -cf /tmp/pages/artifact.tar -C site .
       - uses: actions/upload-artifact@v4
         with:
           name: github-pages
-          path: /home/runner/work/_temp/artifact.tar
+          path: /tmp/pages/artifact.tar
           retention-days: 1
           if-no-files-found: error
-          compression-level: 6
-          overwrite: false
-          include-hidden-files: false
-      - uses: actions/deploy-pages@v4
+
+  deploy-pages:
+    needs: build
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
         with:
-          timeout: 600000
-          error_count: 10
-          reporting_interval: 5000
           artifact_name: github-pages
-          preview: false
+
+  deploy-vercel:
+    needs: build
+    # Fork PRs cannot receive secrets, so skip rather than fail. They still get
+    # the build job above as validation. pull_request_target is deliberately
+    # NOT used: it would expose the Vercel token to untrusted PR code.
+    if: >-
+      github.event_name == 'push' ||
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: github-pages
+          path: /tmp/pages
+      - run: npm install --global vercel@latest
+      - name: Package for Vercel
+        run: scripts/build-vercel-output.sh /tmp/pages/artifact.tar
+      - name: Deploy (production)
+        if: github.event_name == 'push'
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy (preview)
+        if: github.event_name == 'pull_request'
+        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}
