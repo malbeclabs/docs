@@ -12,7 +12,7 @@ description: 获取 DoubleZero 帮助 — 查看实时链路状态并在 Discord
 
 **[链路状态仪表板](https://data.doublezero.xyz/status/links)**
 
-在更改配置之前，请使用此页面确认您遇到的问题是全网范围的还是仅限于您本地的设置。
+在更改配置之前，请使用此页面确认您遇到的问题是全网范围的还是仅限于您的本地环境。
 
 ## 联系团队
 
@@ -23,4 +23,4 @@ description: 获取 DoubleZero 帮助 — 查看实时链路状态并在 Discord
 3. 尽可能提供以下信息：环境（mainnet / testnet）、节点类型、**客户端 IP**、最近执行的命令以及任何错误输出
 
 !!! tip "在提交工单之前"
-    [故障排除](troubleshooting.md)指南涵盖了最常见的连接故障。先查阅该指南通常能更快地帮您解决问题。
+    [故障排除](troubleshooting.md)指南涵盖了最常见的连接故障。先查看该指南通常能更快地帮助您解决问题。

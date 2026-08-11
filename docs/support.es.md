@@ -4,7 +4,7 @@ description: Obtén ayuda con DoubleZero — consulta el estado en vivo de los e
 
 # Soporte
 
-¿Necesitas ayuda para conectarte u operar en DoubleZero? Comienza con el estado en vivo y luego contacta al equipo si aún necesitas asistencia.
+¿Necesitas ayuda para conectarte o para operar en DoubleZero? Comienza con el estado en vivo y luego contacta al equipo si aún necesitas asistencia.
 
 ## Estado de los enlaces de red
 
@@ -12,11 +12,11 @@ Consulta el estado actual de los enlaces y la conectividad en el portal de datos
 
 **[Panel de estado de enlaces](https://data.doublezero.xyz/status/links)**
 
-Usa esta página para confirmar si los problemas que estás experimentando son a nivel de toda la red o locales a tu configuración antes de realizar cambios en la configuración.
+Usa esta página para confirmar si los problemas que estás experimentando son a nivel de red o locales de tu configuración antes de realizar cambios en la configuración.
 
-## Contactar al equipo
+## Contacta al equipo
 
-Si el estado parece saludable (o no explica tu problema), abre un ticket con el equipo de DoubleZero en Discord:
+Si el estado se ve saludable (o no explica tu problema), abre un ticket con el equipo de DoubleZero en Discord:
 
 1. Únete a **[discord.gg/doublezerotech](https://discord.gg/doublezerotech)**
 2. Abre un **ticket de soporte** y describe el problema
