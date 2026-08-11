@@ -1098,6 +1098,12 @@ a.dz-cta-rainbow:focus-visible {
   flex-shrink: 0;
   vertical-align: middle;
   opacity: 0.9;
+  color: currentColor;
+}
+
+.page-toolbar-link svg.page-toolbar-icon {
+  display: block;
+  overflow: visible;
 }
 
 [data-md-color-scheme="slate"] .page-toolbar-favicon {
@@ -1919,19 +1925,63 @@ html:has([data-md-toggle="search"]:checked) body {
     background: color-mix(in srgb, var(--md-default-fg-color) 8%, transparent);
   }
 
-  .mobile-drawer-controls__palette {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin: 0;
-    flex-shrink: 0;
-    padding-top: 0.05rem;
+  /* Keep palette form in the header DOM for instant nav; hide it visually on
+     mobile and expose #drawer-theme-btn as the click proxy instead. */
+  .md-header__inner > [data-md-component="palette"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 
-  .mobile-drawer-controls__palette .md-header__option {
+  .mobile-drawer-theme-btn {
     display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
     margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: var(--md-default-fg-color);
+    cursor: pointer;
+    flex-shrink: 0;
   }
+
+  .mobile-drawer-theme-btn svg {
+    width: 1rem;
+    height: 1rem;
+    display: block;
+  }
+
+  .mobile-drawer-theme-btn:hover,
+  .mobile-drawer-theme-btn:focus-visible {
+    opacity: 0.85;
+  }
+}
+
+/* TOC title: close control (label) + scroll-to-top link as siblings */
+.md-nav--secondary > .md-nav__title {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.md-nav--secondary > .md-nav__title > .toc-page-top {
+  color: inherit;
+  text-decoration: none;
+}
+
+.md-nav--secondary > .md-nav__title > .toc-page-top:hover,
+.md-nav--secondary > .md-nav__title > .toc-page-top:focus-visible {
+  text-decoration: underline;
 }
 
 .page-toolbar-link:hover .page-toolbar-icon,

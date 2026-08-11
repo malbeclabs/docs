@@ -1,8 +1,14 @@
 {#- Language selector: current language name + chevron (opens menu) -#}
+{%- set lang_ns = namespace(current_name="English") -%}
+{%- for alt in config.extra.alternate -%}
+  {%- if alt.lang == config.theme.language -%}
+    {%- set lang_ns.current_name = alt.name -%}
+  {%- endif -%}
+{%- endfor -%}
 <div class="md-header__option">
   <div class="md-select">
     <button class="md-header__button md-header__language-btn" type="button" aria-label="{{ lang.t('select.language') }}">
-      <span class="md-header__language-label">English</span>
+      <span class="md-header__language-label">{{ lang_ns.current_name }}</span>
       <span class="md-header__language-chevron" aria-hidden="true">▾</span>
     </button>
     <div class="md-select__inner">

@@ -56,6 +56,19 @@
     applyScheme(nextMode() === 'light' ? LIGHT_SCHEME : DARK_SCHEME);
   }
 
+  function isApplePlatform() {
+    var platform = navigator.platform || '';
+    var ua = navigator.userAgent || '';
+    return /Mac|iPhone|iPad|iPod/i.test(platform) || /Mac OS X/.test(ua);
+  }
+
+  function shortcutKbdHtml() {
+    if (isApplePlatform()) {
+      return '<span class="dz2-theme-btn__kbd"><kbd>⌘</kbd><span>+</span><kbd>Shift</kbd><span>+</span><kbd>L</kbd></span>';
+    }
+    return '<span class="dz2-theme-btn__kbd"><kbd>Ctrl</kbd><span>+</span><kbd>Shift</kbd><span>+</span><kbd>L</kbd></span>';
+  }
+
   function syncButton() {
     var btn = document.querySelector('.dz2-theme-btn');
     if (!btn) return;
@@ -69,7 +82,7 @@
       '<span class="dz2-theme-btn__tip-text">' +
       label +
       '</span>' +
-      '<span class="dz2-theme-btn__kbd"><kbd>Ctrl</kbd><span>+</span><kbd>Shift</kbd><span>+</span><kbd>L</kbd></span>' +
+      shortcutKbdHtml() +
       '</span>';
   }
 

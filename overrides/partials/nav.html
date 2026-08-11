@@ -61,9 +61,9 @@
         </details>
       {% endif %}
 
-      <div class="mobile-drawer-controls__palette" id="drawer-palette-slot">
-        {#- Palette form is moved here on small screens by header-controls-order.js -#}
-      </div>
+      {#- Theme form stays in the header (instant nav replaces this drawer).
+          This button proxies a click to the header toggle. -#}
+      <button type="button" class="mobile-drawer-theme-btn" id="drawer-theme-btn" aria-label="Toggle theme"></button>
     </div>
   </div>
 

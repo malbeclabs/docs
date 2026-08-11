@@ -1,9 +1,8 @@
-// Keep theme toggle rightmost on desktop; on mobile move it into the drawer.
-// Also ensure only one palette icon is visible.
+// Keep theme palette in the header (instant nav replaces the drawer container).
+// On mobile, a drawer button clicks the header toggle instead of relocating the form.
 (function () {
   'use strict';
 
-  var busy = false;
   var MOBILE_MQ = '(max-width: 40em)';
 
   function syncPaletteIcon(form) {
@@ -59,32 +58,30 @@
 
   function placePalette() {
     var palette = document.querySelector('[data-md-component="palette"]');
-    if (!palette) return;
-
-    var drawerSlot = document.getElementById('drawer-palette-slot');
     var header = document.querySelector('.md-header__inner');
-    var mobile = window.matchMedia(MOBILE_MQ).matches;
+    if (!palette || !header) return;
+    // Always keep the form in the header so instant navigation cannot destroy it.
+    if (palette.parentElement !== header || header.lastElementChild !== palette) {
+      header.appendChild(palette);
+    }
+  }
 
-    if (mobile && drawerSlot) {
-      if (palette.parentElement !== drawerSlot) {
-        drawerSlot.appendChild(palette);
-      }
-    } else if (header) {
-      if (palette.parentElement !== header || header.lastElementChild !== palette) {
-        header.appendChild(palette);
-      }
+  function syncDrawerThemeBtn() {
+    var drawerBtn = document.getElementById('drawer-theme-btn');
+    var real = document.querySelector('.dz2-theme-btn');
+    if (!drawerBtn || !real) return;
+    drawerBtn.setAttribute('aria-label', real.getAttribute('aria-label') || 'Toggle theme');
+    drawerBtn.setAttribute('data-next-mode', real.getAttribute('data-next-mode') || '');
+    var icon = real.querySelector('svg');
+    if (icon) {
+      drawerBtn.innerHTML = icon.outerHTML;
     }
   }
 
   function refresh() {
-    if (busy) return;
-    busy = true;
-    try {
-      placePalette();
-      syncPaletteIcon();
-    } finally {
-      busy = false;
-    }
+    placePalette();
+    syncPaletteIcon();
+    syncDrawerThemeBtn();
   }
 
   function boot() {
@@ -94,6 +91,7 @@
       form.dataset.paletteSyncBound = '1';
       form.addEventListener('change', function () {
         syncPaletteIcon(form);
+        syncDrawerThemeBtn();
       });
     }
 
@@ -108,6 +106,15 @@
         var drawer = document.getElementById('__drawer');
         if (drawer) drawer.checked = false;
       });
+
+      // Drawer theme control proxies the header toggle (form stays in header).
+      document.addEventListener('click', function (event) {
+        var drawerBtn = event.target.closest && event.target.closest('#drawer-theme-btn');
+        if (!drawerBtn) return;
+        event.preventDefault();
+        var real = document.querySelector('.dz2-theme-btn');
+        if (real) real.click();
+      });
     }
 
     var header = document.querySelector('.md-header');
@@ -117,6 +124,11 @@
         refresh();
       }).observe(header, { childList: true, subtree: true });
     }
+
+    new MutationObserver(syncDrawerThemeBtn).observe(document.body, {
+      attributes: true,
+      attributeFilter: ['data-md-color-scheme', 'data-md-color-primary']
+    });
   }
 
   function onReady(fn) {
