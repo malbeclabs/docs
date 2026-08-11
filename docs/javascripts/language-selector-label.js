@@ -27,13 +27,17 @@
   }
 
   // Build a same-page URL in targetLocale (en has no prefix).
+  // Preserve query + hash so deep links like /architecture/#topology survive.
   function localizePath(pathname, targetLocale) {
     var segments = stripLocale(pathname);
     var tail = segments.length ? segments.join('/') + '/' : '';
+    var base;
     if (!targetLocale || targetLocale === 'en') {
-      return '/' + tail;
+      base = '/' + tail;
+    } else {
+      base = '/' + targetLocale + '/' + tail;
     }
-    return '/' + targetLocale + '/' + tail;
+    return base + window.location.search + window.location.hash;
   }
 
   function markActive(links, locale) {
