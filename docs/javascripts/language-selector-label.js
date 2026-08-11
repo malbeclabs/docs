@@ -1,4 +1,8 @@
-// Show current language name + chevron on the header language control
+// Language control: label + path-aware alternate links for navigation.instant.
+//
+// mkdocs-static-i18n warns that Material's contextual language hrefs go stale
+// under instant navigation. We rewrite every alternate link from the current
+// pathname so locale switches always target the page you are on.
 (function () {
   'use strict';
 
@@ -14,11 +18,30 @@
     return 'en';
   }
 
+  function stripLocale(pathname) {
+    var segments = (pathname || '/').split('/').filter(Boolean);
+    if (segments.length && LOCALE_SEGMENTS.indexOf(segments[0]) !== -1) {
+      segments.shift();
+    }
+    return segments;
+  }
+
+  // Build a same-page URL in targetLocale (en has no prefix).
+  function localizePath(pathname, targetLocale) {
+    var segments = stripLocale(pathname);
+    var tail = segments.length ? segments.join('/') + '/' : '';
+    if (!targetLocale || targetLocale === 'en') {
+      return '/' + tail;
+    }
+    return '/' + targetLocale + '/' + tail;
+  }
+
   function markActive(links, locale) {
     var activeName = null;
     for (var i = 0; i < links.length; i++) {
       var link = links[i];
       var hreflang = link.getAttribute('hreflang') || '';
+      link.setAttribute('href', localizePath(window.location.pathname, hreflang));
       if (hreflang === locale) {
         link.classList.add('is-active');
         link.setAttribute('aria-current', 'page');
@@ -29,6 +52,19 @@
       }
     }
     return activeName;
+  }
+
+  function bindLocaleClicks(root) {
+    if (!root || root.dataset.langNavBound === '1') return;
+    root.dataset.langNavBound = '1';
+    root.addEventListener('click', function (event) {
+      var link = event.target.closest && event.target.closest('a[hreflang]');
+      if (!link || !root.contains(link)) return;
+      var hreflang = link.getAttribute('hreflang') || 'en';
+      // Full navigation on locale change (search index / chrome differ per language).
+      event.preventDefault();
+      window.location.assign(localizePath(window.location.pathname, hreflang));
+    });
   }
 
   function init() {
@@ -47,6 +83,7 @@
         btn.setAttribute('title', activeName);
         btn.setAttribute('aria-label', 'Language: ' + activeName);
       }
+      bindLocaleClicks(selector);
     }
 
     var drawerLang = document.querySelector('.mobile-drawer-lang');
@@ -56,6 +93,7 @@
       if (drawerLabel && drawerActive) {
         drawerLabel.textContent = drawerActive;
       }
+      bindLocaleClicks(drawerLang);
     }
   }
 
