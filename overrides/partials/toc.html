@@ -1,0 +1,28 @@
+{#-
+  This file was automatically generated - do not edit.
+  Forked from mkdocs-material; re-sync on theme upgrades.
+-#}
+{% set title = lang.t("toc") %}
+{% if config.mdx_configs.toc and config.mdx_configs.toc.title %}
+  {% set title = config.mdx_configs.toc.title %}
+{% endif %}
+<nav class="md-nav md-nav--secondary" aria-label="{{ title | e }}">
+  {% set toc = page.toc %}
+  {% set first = toc | first %}
+  {% if first and first.level == 1 %}
+    {% set toc = first.children %}
+  {% endif %}
+  {% if toc %}
+    {#- Keep the close control on a label; keep the title link outside so
+        "On this page" scrolls to top without toggling the TOC drawer. -#}
+    <div class="md-nav__title">
+      <label class="md-nav__icon md-icon" for="__toc"></label>
+      <a href="{{ page.url | url }}" class="toc-page-top" title="Back to top of page">{{ title }}</a>
+    </div>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      {% for toc_item in toc %}
+        {% include "partials/toc-item.html" %}
+      {% endfor %}
+    </ul>
+  {% endif %}
+</nav>

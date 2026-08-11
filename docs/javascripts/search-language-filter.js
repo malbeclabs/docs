@@ -15,7 +15,9 @@
     return LOCALE_SEGMENTS.indexOf(first) !== -1 ? first : 'en';
   }
 
-  var currentLocale = localeOfPath(window.location.pathname);
+  function currentLocale() {
+    return localeOfPath(window.location.pathname);
+  }
 
   function localeOfHref(href) {
     if (!href) return 'en';
@@ -40,6 +42,7 @@
   function filterResults(resultRoot) {
     var list = resultRoot.querySelector('.md-search-result__list');
     if (!list) return;
+    var locale = currentLocale();
     var items = list.querySelectorAll('.md-search-result__item');
     var visible = 0;
     for (var i = 0; i < items.length; i++) {
@@ -47,7 +50,7 @@
       var link = item.querySelector('a.md-search-result__link');
       // Use the resolved .href so the URL is absolute regardless of whether
       // Material emitted a root- or page-relative attribute.
-      var keep = !!link && localeOfHref(link.href) === currentLocale;
+      var keep = !!link && localeOfHref(link.href) === locale;
       item.hidden = !keep;
       item.style.display = keep ? '' : 'none';
       if (keep) visible++;
@@ -57,7 +60,8 @@
 
   function init() {
     var resultRoot = document.querySelector('[data-md-component="search-result"]');
-    if (!resultRoot) return;
+    if (!resultRoot || resultRoot.dataset.langFilterBound === '1') return;
+    resultRoot.dataset.langFilterBound = '1';
 
     var scheduled = false;
     var observer = new MutationObserver(function() {
@@ -73,9 +77,17 @@
     observer.observe(resultRoot, { childList: true, subtree: true });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
+  function onReady(fn) {
+    if (typeof document$ !== 'undefined' && document$.subscribe) {
+      document$.subscribe(fn);
+      return;
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', fn);
+    } else {
+      fn();
+    }
   }
+
+  onReady(init);
 })();

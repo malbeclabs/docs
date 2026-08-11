@@ -27,9 +27,22 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install mkdocs-material mkdocs-static-i18n
-      # --strict fails the build on broken internal links. The docs use
-      # relative .md cross-links, so this is the gate that keeps them honest.
-      - run: mkdocs build --strict
+      # Build without --strict so the known i18n + navigation.instant warning
+      # does not abort. Still fail on any other WARNING (link/config issues).
+      # Language alternates are rewritten at runtime (language-selector-label.js).
+      - name: Build docs
+        run: |
+          set -o pipefail
+          mkdocs build 2>&1 | tee /tmp/mkdocs-build.log
+          # Allow only the known i18n ↔ navigation.instant incompatibility warning
+          # (exact message from mkdocs-static-i18n). Any other WARNING fails CI.
+          allowed='mkdocs_static_i18n: mkdocs-material language switcher contextual link is not compatible with theme.features = navigation.instant'
+          unexpected=$(grep -E '^WARNING' /tmp/mkdocs-build.log | grep -vF "$allowed" || true)
+          if [ -n "$unexpected" ]; then
+            echo "::error::Unexpected mkdocs WARNING(s):"
+            echo "$unexpected"
+            exit 1
+          fi
       # tar --dereference is what preserves the hidden .well-known directory.
       # Both deploy jobs consume this one artifact, so the two origins cannot drift.
       - name: Package site
