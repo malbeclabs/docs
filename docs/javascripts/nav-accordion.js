@@ -51,15 +51,17 @@
     document.querySelectorAll('.md-sidebar--primary').forEach(bind);
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
+  function onReady(fn) {
+    if (typeof document$ !== 'undefined' && document$.subscribe) {
+      document$.subscribe(fn);
+      return;
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', fn);
+    } else {
+      fn();
+    }
   }
 
-  // Instant navigation / SPA-style replacements (if enabled later)
-  document.addEventListener('DOMContentLoaded', function() {
-    var observer = new MutationObserver(function() { init(); });
-    observer.observe(document.body, { childList: true, subtree: true });
-  });
+  onReady(init);
 })();

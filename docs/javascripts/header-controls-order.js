@@ -90,33 +90,46 @@
   function boot() {
     refresh();
     var form = document.querySelector('[data-md-component="palette"]');
-    if (form) {
+    if (form && !form.dataset.paletteSyncBound) {
+      form.dataset.paletteSyncBound = '1';
       form.addEventListener('change', function () {
         syncPaletteIcon(form);
       });
     }
 
-    window.matchMedia(MOBILE_MQ).addEventListener('change', refresh);
+    if (!window.__dzPaletteMqBound) {
+      window.__dzPaletteMqBound = true;
+      window.matchMedia(MOBILE_MQ).addEventListener('change', refresh);
 
-    // Opening search from the drawer should close the drawer first
-    document.addEventListener('click', function (event) {
-      var trigger = event.target.closest && event.target.closest('label[for="__search"]');
-      if (!trigger || !trigger.closest('.mobile-drawer-controls')) return;
-      var drawer = document.getElementById('__drawer');
-      if (drawer) drawer.checked = false;
-    });
+      // Opening search from the drawer should close the drawer first
+      document.addEventListener('click', function (event) {
+        var trigger = event.target.closest && event.target.closest('label[for="__search"]');
+        if (!trigger || !trigger.closest('.mobile-drawer-controls')) return;
+        var drawer = document.getElementById('__drawer');
+        if (drawer) drawer.checked = false;
+      });
+    }
 
     var header = document.querySelector('.md-header');
-    if (!header || header.dataset.paletteOrderBound) return;
-    header.dataset.paletteOrderBound = '1';
-    new MutationObserver(function () {
-      refresh();
-    }).observe(header, { childList: true, subtree: true });
+    if (header && !header.dataset.paletteOrderBound) {
+      header.dataset.paletteOrderBound = '1';
+      new MutationObserver(function () {
+        refresh();
+      }).observe(header, { childList: true, subtree: true });
+    }
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', boot);
-  } else {
-    boot();
+  function onReady(fn) {
+    if (typeof document$ !== 'undefined' && document$.subscribe) {
+      document$.subscribe(fn);
+      return;
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', fn);
+    } else {
+      fn();
+    }
   }
+
+  onReady(boot);
 })();

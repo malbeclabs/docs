@@ -14,36 +14,48 @@
     return 'en';
   }
 
-  function init() {
-    var selector = document.querySelector('.md-select');
-    if (!selector) return;
-
-    var btn = selector.querySelector('button');
-    var label = selector.querySelector('.md-header__language-label');
-    var locale = getCurrentLocale();
-    var links = selector.querySelectorAll('.md-select__link');
+  function markActive(links, locale) {
     var activeName = null;
-
     for (var i = 0; i < links.length; i++) {
       var link = links[i];
       var hreflang = link.getAttribute('hreflang') || '';
       if (hreflang === locale) {
         link.classList.add('is-active');
-        link.setAttribute('aria-current', 'true');
+        link.setAttribute('aria-current', 'page');
         activeName = link.textContent.trim();
       } else {
         link.classList.remove('is-active');
         link.removeAttribute('aria-current');
       }
     }
+    return activeName;
+  }
 
-    if (label && activeName) {
-      label.textContent = activeName;
+  function init() {
+    var locale = getCurrentLocale();
+
+    var selector = document.querySelector('.md-header .md-select');
+    if (selector) {
+      var btn = selector.querySelector('button');
+      var label = selector.querySelector('.md-header__language-label');
+      var activeName = markActive(selector.querySelectorAll('.md-select__link'), locale);
+
+      if (label && activeName) {
+        label.textContent = activeName;
+      }
+      if (btn && activeName) {
+        btn.setAttribute('title', activeName);
+        btn.setAttribute('aria-label', 'Language: ' + activeName);
+      }
     }
 
-    if (btn && activeName) {
-      btn.setAttribute('title', activeName);
-      btn.setAttribute('aria-label', 'Language: ' + activeName);
+    var drawerLang = document.querySelector('.mobile-drawer-lang');
+    if (drawerLang) {
+      var drawerLabel = drawerLang.querySelector('.mobile-drawer-lang__label');
+      var drawerActive = markActive(drawerLang.querySelectorAll('.mobile-drawer-lang__list a'), locale);
+      if (drawerLabel && drawerActive) {
+        drawerLabel.textContent = drawerActive;
+      }
     }
   }
 

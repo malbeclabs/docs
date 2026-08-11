@@ -255,6 +255,8 @@ pre,
   height: 100%;
   min-height: var(--dz-header-height);
   box-sizing: border-box;
+  display: flex;
+  align-items: center;
 }
 
 .md-header__title {
@@ -416,7 +418,7 @@ pre,
   flex-shrink: 0;
 }
 
-/* Rainbow text — hover only (CTAs + side nav) */
+/* CTA links — growing underline on hover (same recipe as Support / doublezero.xyz) */
 .dz-cta-rainbow,
 a.dz-cta-rainbow {
   display: inline-flex;
@@ -424,14 +426,18 @@ a.dz-cta-rainbow {
   gap: 0.35rem;
   color: var(--md-default-fg-color) !important;
   -webkit-text-fill-color: var(--md-default-fg-color);
-  background: none;
+  background-color: transparent;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: left 100%;
+  background-repeat: no-repeat;
+  background-size: 0 1px;
   font-family: var(--dz-font-mono);
   font-size: 0.78rem;
   font-weight: 500;
   letter-spacing: 0.01em;
   text-decoration: none !important;
   line-height: 1.3;
-  transition: opacity 0.15s ease;
+  transition: background-size 200ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .dz-cta-rainbow::after {
@@ -445,49 +451,46 @@ a.dz-cta-rainbow {
 .dz-cta-rainbow:focus-visible,
 a.dz-cta-rainbow:hover,
 a.dz-cta-rainbow:focus-visible {
-  background-image: var(--dz-fiber);
-  background-size: 100% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent !important;
-  -webkit-text-fill-color: transparent;
+  background-size: 100% 1px;
+  color: var(--md-default-fg-color) !important;
+  -webkit-text-fill-color: var(--md-default-fg-color);
 }
 
-.dz-cta-rainbow:hover::after,
-.dz-cta-rainbow:focus-visible::after {
-  background: none;
-  -webkit-background-clip: border-box;
-  background-clip: border-box;
+/* Side nav + TOC: growing underline instead of rainbow text */
+.md-sidebar .md-nav__link .md-ellipsis,
+.md-sidebar .toc-page-top,
+.dz-rainbow-hover {
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: bottom;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: left 100%;
+  background-repeat: no-repeat;
+  background-size: 0 1px;
+  transition: background-size 200ms cubic-bezier(0.4, 0, 0.2, 1), color 0.15s ease;
+}
+
+.md-sidebar .md-nav__link:hover .md-ellipsis,
+.md-sidebar .md-nav__link:focus-visible .md-ellipsis,
+.md-sidebar .toc-page-top:hover,
+.md-sidebar .toc-page-top:focus-visible,
+.dz-rainbow-hover:hover,
+.dz-rainbow-hover:focus-visible {
+  background-size: 100% 1px;
+  background-color: transparent !important;
+  text-shadow: none !important;
   color: var(--md-default-fg-color);
   -webkit-text-fill-color: var(--md-default-fg-color);
 }
 
-/* Shared rainbow hover for left + right menus
-   (Material puts label text in .md-ellipsis — clip must hit that node too) */
-.md-sidebar--primary .md-nav__link:hover,
-.md-sidebar--primary .md-nav__link:focus-visible,
-.md-sidebar--secondary .md-nav__link:hover,
-.md-sidebar--secondary .md-nav__link:focus-visible,
-.md-sidebar--secondary .toc-page-top:hover,
-.md-sidebar--secondary .toc-page-top:focus-visible {
-  background-color: transparent !important;
-  text-shadow: none !important;
-}
-
-.md-sidebar--primary .md-nav__link:hover .md-nav__icon,
-.md-sidebar--primary .md-nav__link:focus-visible .md-nav__icon,
-.md-sidebar--primary .md-nav__link:hover svg,
-.md-sidebar--primary .md-nav__link:focus-visible svg,
-.md-sidebar--secondary .md-nav__link:hover .md-nav__icon,
-.md-sidebar--secondary .md-nav__link:focus-visible .md-nav__icon,
-.md-sidebar--secondary .md-nav__link:hover svg,
-.md-sidebar--secondary .md-nav__link:focus-visible svg {
-  color: var(--md-default-fg-color) !important;
-  fill: var(--md-default-fg-color) !important;
-  -webkit-text-fill-color: var(--md-default-fg-color) !important;
-  background: none !important;
-  -webkit-background-clip: border-box !important;
-  background-clip: border-box !important;
+@media (prefers-reduced-motion: reduce) {
+  .dz-cta-rainbow,
+  a.dz-cta-rainbow,
+  .md-sidebar .md-nav__link .md-ellipsis,
+  .md-sidebar .toc-page-top,
+  .dz-rainbow-hover {
+    transition: none;
+  }
 }
 
 /* Sharp mono rectangle buttons */
@@ -545,12 +548,13 @@ a.dz-cta-rainbow:focus-visible {
   width: 100%;
   box-sizing: border-box;
   margin-inline: 0;
-  padding-inline: 0.75rem;
+  padding-inline: 12px; /* max-md:px-3 */
+  padding-block: 0;
 }
 
-@media screen and (min-width: 48em) {
+@media screen and (min-width: 768px) {
   .md-header__inner.md-grid {
-    padding-inline: 2rem;
+    padding-inline: 32px; /* min-md:px-8 */
   }
 }
 
@@ -594,6 +598,11 @@ a.dz-cta-rainbow:focus-visible {
 
 .md-header__option:has(.md-select) {
   order: 3 !important;
+  display: inline-flex;
+  align-items: center;
+  align-self: center;
+  margin-inline-start: 0.85rem;
+  height: 100%;
 }
 
 .md-header__title {
@@ -721,6 +730,17 @@ a.dz-cta-rainbow:focus-visible {
   visibility: visible;
 }
 
+/* Drawer / phone: tip has no room — hide it (aria-label still covers a11y) */
+.mobile-drawer-controls .dz2-theme-btn__tip {
+  display: none !important;
+}
+
+@media screen and (max-width: 40em) {
+  .dz2-theme-btn__tip {
+    display: none !important;
+  }
+}
+
 .dz2-theme-btn__kbd {
   display: inline-flex;
   align-items: center;
@@ -830,19 +850,23 @@ a.dz-cta-rainbow:focus-visible {
 /* Language selector: discrete text control (name + chevron) */
 .md-header__option .md-select {
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
 }
 
 .md-header__option .md-select > .md-header__language-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.2rem;
+  align-self: center;
+  gap: 0.25rem;
   width: auto !important;
   min-width: 0;
   height: auto !important;
   min-height: 0;
-  margin: 0.35rem 0.15rem;
-  padding: 0.2rem 0.15rem !important;
+  margin: 0 !important;
+  padding: 0 !important;
   border: 0 !important;
   border-radius: 0;
   background: transparent !important;
@@ -1004,19 +1028,68 @@ a.dz-cta-rainbow:focus-visible {
   -webkit-text-fill-color: var(--md-default-fg-color);
   text-decoration: none;
   cursor: pointer;
-  transition: opacity 0.15s ease;
 }
 
-.page-toolbar-link:hover {
+.page-toolbar-link__text {
+  display: inline-block;
+}
+
+/* Fiber spectrum sweep — same geometry/timing as doublezero.xyz nav links */
+@keyframes dz-fiber-sweep {
+  from {
+    background-position-x: 100%;
+  }
+  to {
+    background-position-x: 0%;
+  }
+}
+
+.page-toolbar-link:hover .page-toolbar-link__text,
+.page-toolbar-link:focus-visible .page-toolbar-link__text {
+  background-image: linear-gradient(
+    90deg,
+    var(--md-default-fg-color) 0%,
+    var(--md-default-fg-color) 26%,
+    var(--dz-teal) 29%,
+    var(--dz-blue) 43%,
+    var(--dz-yellow) 57%,
+    var(--dz-red) 71%,
+    var(--md-default-fg-color) 74%,
+    var(--md-default-fg-color) 100%
+  );
+  background-size: 400% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: dz-fiber-sweep 700ms ease-out forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-toolbar-link:hover .page-toolbar-link__text,
+  .page-toolbar-link:focus-visible .page-toolbar-link__text {
+    background: none;
+    background-clip: border-box;
+    -webkit-background-clip: border-box;
+    -webkit-text-fill-color: var(--md-default-fg-color);
+    color: var(--md-default-fg-color);
+    animation: none;
+  }
+}
+
+.page-toolbar-link:hover,
+.page-toolbar-link:focus-visible {
   text-decoration: none;
   opacity: 1;
 }
 
-.page-toolbar-link.copied {
+.page-toolbar-link.copied,
+.page-toolbar-link.copied .page-toolbar-link__text {
   color: var(--dz-green);
   -webkit-text-fill-color: var(--dz-green);
   font-weight: 500;
-  background-image: none !important;
+  background: none;
+  animation: none;
 }
 
 .page-toolbar-icon {
@@ -1124,36 +1197,31 @@ a.dz-cta-rainbow:focus-visible {
   color: #fff !important;
 }
 
-/* Open runbook: always looks like a link; rainbow on hover */
+/* Open runbook: always looks like a link; underline grows on hover */
 a.runbook-assist-btn.dz-cta-rainbow {
   padding: 0;
   border: none;
-  background: none;
-  background-image: none;
+  background-color: transparent;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: left 100%;
+  background-repeat: no-repeat;
+  background-size: 0 1px;
   color: var(--dz-green) !important;
   -webkit-text-fill-color: var(--dz-green);
-  text-decoration: underline !important;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.22em;
+  text-decoration: none !important;
 }
 
 a.runbook-assist-btn.dz-cta-rainbow:hover,
 a.runbook-assist-btn.dz-cta-rainbow:focus-visible {
-  background-image: var(--dz-fiber);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent !important;
-  -webkit-text-fill-color: transparent;
-  text-decoration-color: color-mix(in srgb, var(--dz-teal) 70%, var(--dz-orange));
+  background-size: 100% 1px;
+  color: var(--dz-green) !important;
+  -webkit-text-fill-color: var(--dz-green);
   opacity: 1;
 }
 
 a.runbook-assist-btn.dz-cta-rainbow::after {
   content: "→";
   margin-left: 0.35rem;
-  background: none;
-  -webkit-background-clip: border-box;
-  background-clip: border-box;
   color: var(--dz-green);
   -webkit-text-fill-color: var(--dz-green);
   text-decoration: none;
@@ -1161,8 +1229,8 @@ a.runbook-assist-btn.dz-cta-rainbow::after {
 
 a.runbook-assist-btn.dz-cta-rainbow:hover::after,
 a.runbook-assist-btn.dz-cta-rainbow:focus-visible::after {
-  color: var(--md-default-fg-color);
-  -webkit-text-fill-color: var(--md-default-fg-color);
+  color: var(--dz-green);
+  -webkit-text-fill-color: var(--dz-green);
 }
 
 .runbook-assist-btn-secondary {
@@ -1212,53 +1280,34 @@ button.runbook-assist-btn {
   margin-right: 0;
 }
 
-/* Header: DoubleZero color icon + wordmark (swap dark/light by scheme) */
+/* Header: DoubleZero wordmark only (swap dark/light by scheme)
+   Flush to header padding like doublezero.xyz — no Material button chrome. */
 .md-header__button.md-logo {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  animation: dz-logo-settle 0.5s ease-out 0.05s both;
-}
-
-@keyframes dz-logo-settle {
-  from {
-    opacity: 0;
-    transform: translateX(-6px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
-  }
+  align-self: center;
+  margin: 0 !important;
+  margin-inline-end: 0.75rem !important;
+  padding: 0 !important;
+  height: auto;
+  line-height: 0;
 }
 
 .md-header__button.md-logo img,
 .md-nav__button.md-logo img {
-  height: 1.55rem;
+  height: 24px; /* doublezero.xyz desktop: h-6 */
   width: auto;
+  display: block;
 }
 
-.md-header__button.md-logo .header-logo-dz,
-.md-nav__button.md-logo .header-logo-dz {
-  height: 1.35rem;
-  width: auto;
-}
-
-/* Drawer: wordmark only (icon stays in header) */
-.md-nav__button.md-logo .header-logo-dz {
-  display: none !important;
-}
-
-.header-logo-dz--light,
 .header-logo-wordmark--light {
   display: none !important;
 }
 
-[data-md-color-scheme="default"] .header-logo-dz--dark,
 [data-md-color-scheme="default"] .header-logo-wordmark--dark {
   display: none !important;
 }
 
-[data-md-color-scheme="default"] .header-logo-dz--light,
 [data-md-color-scheme="default"] .header-logo-wordmark--light {
   display: inline-block !important;
 }
@@ -1331,13 +1380,12 @@ button.runbook-assist-btn {
   font-weight: 400;
 }
 
-/* Active: color + rail — no layout shift; rainbow only on hover (above) */
+/* Active: color + rail — no layout shift */
 .md-sidebar--secondary .md-nav--secondary .md-nav__link--active,
 .md-sidebar--secondary .md-nav--secondary .md-nav__link--active:focus,
 .md-sidebar--secondary .md-nav--secondary .md-nav__item--active > .md-nav__link {
   color: var(--md-default-fg-color);
   -webkit-text-fill-color: var(--md-default-fg-color);
-  background-image: none;
   font-weight: 400 !important;
   border-left-color: var(--md-default-fg-color);
   background-color: transparent;
@@ -1346,16 +1394,10 @@ button.runbook-assist-btn {
 
 .md-sidebar--secondary .md-nav--secondary .md-nav__link--active:hover,
 .md-sidebar--secondary .md-nav--secondary .md-nav__link--active:focus-visible {
-  background-image: var(--dz-fiber) !important;
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  color: transparent !important;
-  -webkit-text-fill-color: transparent !important;
   text-shadow: none !important;
-  border-left-color: var(--dz-orange);
 }
 
-/* Primary nav: stable metrics; rainbow via shared hover rule above */
+/* Primary nav: stable metrics; underline via shared hover rule above */
 .md-sidebar--primary .md-nav__link {
   font-weight: 400 !important;
   transition: color 0.15s ease;
@@ -1677,11 +1719,10 @@ html:has([data-md-toggle="search"]:checked) body {
     max-width: calc(100% - 3.25rem);
     min-width: 0;
     overflow: hidden;
-    margin-inline-end: 0.35rem;
   }
 
   .md-header__button.md-logo img {
-    max-height: 1.35rem;
+    max-height: 24px;
   }
 
   .md-header__button[for="__drawer"] {
@@ -1691,21 +1732,15 @@ html:has([data-md-toggle="search"]:checked) body {
   }
 }
 
-/* Narrow phones: shrink brand mark so it never collides with the hamburger */
+/* Narrow phones: match doublezero.xyz mobile wordmark (h-5 = 20px) */
 @media screen and (max-width: 40em) {
   .md-header__button.md-logo {
-    gap: 0.25rem;
     max-width: calc(100% - 3rem);
   }
 
-  .md-header__button.md-logo .header-logo-dz {
-    display: block;
-    height: 0.95rem;
-    flex-shrink: 0;
-  }
-
-  .md-header__button.md-logo .header-logo-wordmark {
-    height: 0.95rem;
+  .md-header__button.md-logo .header-logo-wordmark,
+  .md-header__button.md-logo img {
+    height: 20px;
     max-width: min(8.75rem, calc(100vw - 6.25rem));
     object-fit: contain;
     object-position: left center;
@@ -1713,18 +1748,9 @@ html:has([data-md-toggle="search"]:checked) body {
 }
 
 @media screen and (max-width: 22.5em) {
-  /* Keep icon + wordmark; shrink further instead of dropping either mark */
-  .md-header__button.md-logo {
-    gap: 0.2rem;
-  }
-
-  .md-header__button.md-logo .header-logo-dz {
-    display: block;
-    height: 0.85rem;
-  }
-
-  .md-header__button.md-logo .header-logo-wordmark {
-    height: 0.85rem;
+  .md-header__button.md-logo .header-logo-wordmark,
+  .md-header__button.md-logo img {
+    height: 18px;
     max-width: calc(100vw - 5.75rem);
   }
 }
@@ -1772,15 +1798,16 @@ html:has([data-md-toggle="search"]:checked) body {
     margin-inline-start: 0.35rem;
   }
 
-  /* Drawer control panel */
+  /* Drawer control panel — Search / Support + compact language/theme row */
   .mobile-drawer-controls {
     display: flex;
     flex-direction: column;
-    gap: 0.55rem;
-    margin: 0.35rem 0.8rem 1rem;
-    padding: 0.75rem;
-    border-radius: 0.5rem;
-    background: color-mix(in srgb, var(--md-default-fg-color) 6%, transparent);
+    gap: 0.45rem;
+    margin: 0.35rem 0.8rem 0.75rem;
+    padding: 0 0 0.85rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--md-default-fg-color) 12%, transparent);
+    border-radius: 0;
+    background: transparent;
   }
 
   .mobile-drawer-controls__btn {
@@ -1792,11 +1819,13 @@ html:has([data-md-toggle="search"]:checked) body {
     margin: 0;
     padding: 0.55rem 0.7rem;
     border: 1px solid color-mix(in srgb, var(--md-default-fg-color) 14%, transparent);
-    border-radius: 0.4rem;
-    background: var(--md-default-bg-color);
+    border-radius: 0;
+    background: transparent;
     color: var(--md-default-fg-color);
-    font-size: 0.78rem;
-    font-weight: 600;
+    font-family: var(--dz-font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
     text-decoration: none !important;
     cursor: pointer;
     line-height: 1.2;
@@ -1810,51 +1839,93 @@ html:has([data-md-toggle="search"]:checked) body {
 
   .mobile-drawer-controls__btn:hover,
   .mobile-drawer-controls__btn:focus {
-    border-color: var(--md-accent-fg-color);
-    color: var(--md-accent-fg-color);
-  }
-
-  .mobile-drawer-controls__label {
-    display: block;
-    margin: 0.15rem 0 0.35rem;
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--md-default-fg-color--light);
-  }
-
-  .mobile-drawer-controls__langs ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.35rem;
-  }
-
-  .mobile-drawer-controls__langs a {
-    display: block;
-    padding: 0.4rem 0.55rem;
-    border-radius: 0.3rem;
+    border-color: var(--md-default-fg-color);
     color: var(--md-default-fg-color);
-    font-size: 0.75rem;
-    text-decoration: none;
-    background: var(--md-default-bg-color);
-    border: 1px solid color-mix(in srgb, var(--md-default-fg-color) 12%, transparent);
   }
 
-  .mobile-drawer-controls__langs a:hover,
-  .mobile-drawer-controls__langs a.is-active,
-  .mobile-drawer-controls__langs a[aria-current="page"] {
-    color: var(--md-accent-fg-color);
-    border-color: color-mix(in srgb, var(--md-accent-fg-color) 45%, transparent);
+  .mobile-drawer-controls__meta {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.15rem 0.15rem 0;
+  }
+
+  .mobile-drawer-lang {
+    position: relative;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .mobile-drawer-lang__summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    list-style: none;
+    cursor: pointer;
+    color: color-mix(in srgb, var(--md-default-fg-color) 62%, transparent);
+    font-family: var(--dz-font-mono);
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    user-select: none;
+  }
+
+  .mobile-drawer-lang__summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .mobile-drawer-lang__summary::marker {
+    content: "";
+  }
+
+  .mobile-drawer-lang[open] .mobile-drawer-lang__summary,
+  .mobile-drawer-lang__summary:hover {
+    color: var(--md-default-fg-color);
+  }
+
+  .mobile-drawer-lang__chevron {
+    font-size: 0.6rem;
+    opacity: 0.8;
+  }
+
+  /* In-flow list so it expands and pushes nav down — never overlays menu items */
+  .mobile-drawer-lang__list {
+    list-style: none;
+    position: static;
+    margin: 0.45rem 0 0;
+    padding: 0.25rem 0;
+    width: 100%;
+    max-width: 12rem;
+    border: 1px solid color-mix(in srgb, var(--md-default-fg-color) 14%, transparent);
+    background: var(--md-default-bg-color);
+    box-shadow: none;
+  }
+
+  .mobile-drawer-lang__list a {
+    display: block;
+    padding: 0.4rem 0.65rem;
+    color: var(--md-default-fg-color);
+    font-family: var(--dz-font-mono);
+    font-size: 0.7rem;
+    text-decoration: none;
+    line-height: 1.2;
+  }
+
+  .mobile-drawer-lang__list a:hover,
+  .mobile-drawer-lang__list a.is-active,
+  .mobile-drawer-lang__list a[aria-current="page"] {
+    background: color-mix(in srgb, var(--md-default-fg-color) 8%, transparent);
   }
 
   .mobile-drawer-controls__palette {
     display: flex;
-    justify-content: flex-start;
-    margin-top: 0.15rem;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 0;
+    flex-shrink: 0;
+    padding-top: 0.05rem;
   }
 
   .mobile-drawer-controls__palette .md-header__option {
@@ -1863,66 +1934,8 @@ html:has([data-md-toggle="search"]:checked) body {
   }
 }
 
-/* ─── Rainbow hover (final cascade) ─────────────────────────────────────────
-   Apply clip to the node that actually paints the glyphs (.md-ellipsis / link).
-   Also covers bottom page-toolbar links. */
-.dz-rainbow-hover:hover,
-.dz-rainbow-hover:focus-visible,
-.md-sidebar .md-nav__link:hover,
-.md-sidebar .md-nav__link:focus-visible,
-.md-sidebar .md-nav__link:hover .md-ellipsis,
-.md-sidebar .md-nav__link:focus-visible .md-ellipsis,
-.md-sidebar .toc-page-top:hover,
-.md-sidebar .toc-page-top:focus-visible,
-.md-sidebar .toc-page-top:hover .md-ellipsis,
-.md-sidebar .toc-page-top:focus-visible .md-ellipsis,
-.page-toolbar-link:hover,
-.page-toolbar-link:focus-visible,
-a.dz-cta-rainbow:hover,
-a.dz-cta-rainbow:focus-visible {
-  background-image: linear-gradient(
-    90deg,
-    #07c8c9 0%,
-    #1b63ff 28%,
-    #9b7bff 48%,
-    #ffdc78 68%,
-    #ff5a1f 85%,
-    #d92308 100%
-  ) !important;
-  background-size: 100% 100% !important;
-  background-repeat: no-repeat !important;
-  background-color: transparent !important;
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  color: transparent !important;
-  -webkit-text-fill-color: transparent !important;
-  text-shadow: none !important;
-}
-
-/* Keep arrows / icons readable while text is rainbow-clipped */
-a.dz-cta-rainbow:hover::after,
-a.dz-cta-rainbow:focus-visible::after {
-  background: none !important;
-  -webkit-background-clip: border-box !important;
-  background-clip: border-box !important;
-  color: var(--md-default-fg-color) !important;
-  -webkit-text-fill-color: var(--md-default-fg-color) !important;
-}
-
 .page-toolbar-link:hover .page-toolbar-icon,
 .page-toolbar-link:focus-visible .page-toolbar-icon {
   opacity: 1;
   filter: none;
-}
-
-.md-sidebar .md-nav__link:hover .md-nav__icon,
-.md-sidebar .md-nav__link:focus-visible .md-nav__icon,
-.md-sidebar .md-nav__link:hover svg,
-.md-sidebar .md-nav__link:focus-visible svg {
-  color: var(--md-default-fg-color) !important;
-  fill: var(--md-default-fg-color) !important;
-  -webkit-text-fill-color: var(--md-default-fg-color) !important;
-  background: none !important;
-  -webkit-background-clip: border-box !important;
-  background-clip: border-box !important;
 }
