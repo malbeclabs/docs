@@ -1,0 +1,20 @@
+{#- Language selector: current language name + chevron (opens menu) -#}
+<div class="md-header__option">
+  <div class="md-select">
+    <button class="md-header__button md-header__language-btn" type="button" aria-label="{{ lang.t('select.language') }}">
+      <span class="md-header__language-label">English</span>
+      <span class="md-header__language-chevron" aria-hidden="true">▾</span>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        {% for alt in config.extra.alternate %}
+          <li class="md-select__item">
+            <a href="{{ alt.link | url }}" hreflang="{{ alt.lang }}" class="md-select__link">
+              {{ alt.name }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>

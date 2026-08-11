@@ -1,0 +1,71 @@
+{% import "partials/nav-item.html" as item with context %}
+{% set class = "md-nav md-nav--primary" %}
+{% if "navigation.tabs" in features %}
+  {% set class = class ~ " md-nav--lifted" %}
+{% endif %}
+{% if "toc.integrate" in features %}
+  {% set class = class ~ " md-nav--integrated" %}
+{% endif %}
+<nav class="{{ class }}" aria-label="{{ lang.t('nav') }}" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="{{ config.extra.homepage | d(nav.homepage.url, true) | url }}" title="{{ config.site_name | e }}" class="md-nav__button md-logo" aria-label="{{ config.site_name }}" data-md-component="logo">
+      {% include "partials/logo.html" %}
+    </a>
+    {{ config.site_name }}
+  </label>
+
+  {#- Mobile-only: language / search / support / theme live here so the header stays clean -#}
+  <div class="mobile-drawer-controls" aria-label="Site controls">
+    {% if "material/search" in config.plugins %}
+      {% set search = config.plugins["material/search"] | attr("config") %}
+      {% if search.enabled %}
+        <label class="mobile-drawer-controls__btn" for="__search">
+          {% set icon = config.theme.icon.search or "material/magnify" %}
+          {% include ".icons/" ~ icon ~ ".svg" %}
+          <span>Search</span>
+        </label>
+      {% endif %}
+    {% endif %}
+
+    {%- set ns = namespace(support_page=none) -%}
+    {%- for nav_item in nav -%}
+      {%- if nav_item.is_page and nav_item.file and nav_item.file.src_uri == "support.md" -%}
+        {%- set ns.support_page = nav_item -%}
+      {%- endif -%}
+    {%- endfor -%}
+    <a class="mobile-drawer-controls__btn" href="{% if ns.support_page %}{{ ns.support_page.url | url }}{% else %}{{ 'support/' | url }}{% endif %}">
+      Support
+    </a>
+
+    {% if config.extra.alternate %}
+      <div class="mobile-drawer-controls__langs">
+        <span class="mobile-drawer-controls__label">Language</span>
+        <ul>
+          {% for alt in config.extra.alternate %}
+            <li>
+              <a href="{{ alt.link | url }}" hreflang="{{ alt.lang }}"{% if alt.lang == config.theme.language %} aria-current="page" class="is-active"{% endif %}>
+                {{ alt.name }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+
+    <div class="mobile-drawer-controls__palette" id="drawer-palette-slot">
+      {#- Palette form is moved here on small screens by header-controls-order.js -#}
+    </div>
+  </div>
+
+  {% if config.repo_url %}
+    <div class="md-nav__source">
+      {% include "partials/source.html" %}
+    </div>
+  {% endif %}
+  <ul class="md-nav__list" data-md-scrollfix>
+    {% for nav_item in nav.items %}
+      {% set path = "__nav_" ~ loop.index %}
+      {{ item.render(nav_item, path, 1) }}
+    {% endfor %}
+  </ul>
+</nav>

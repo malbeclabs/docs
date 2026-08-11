@@ -1,5 +1,5 @@
-// Display the currently selected language name next to the language selector icon
-(function() {
+// Show current language name + chevron on the header language control
+(function () {
   'use strict';
 
   var LOCALE_SEGMENTS = ['zh', 'ja', 'ko', 'pt', 'es', 'fr', 'it'];
@@ -14,39 +14,50 @@
     return 'en';
   }
 
-  function getCurrentLanguageName() {
+  function init() {
+    var selector = document.querySelector('.md-select');
+    if (!selector) return;
+
+    var btn = selector.querySelector('button');
+    var label = selector.querySelector('.md-header__language-label');
     var locale = getCurrentLocale();
-    var selector = document.querySelector('.md-select .md-select__list');
-    if (!selector) return null;
     var links = selector.querySelectorAll('.md-select__link');
+    var activeName = null;
+
     for (var i = 0; i < links.length; i++) {
       var link = links[i];
       var hreflang = link.getAttribute('hreflang') || '';
       if (hreflang === locale) {
-        return link.textContent.trim();
+        link.classList.add('is-active');
+        link.setAttribute('aria-current', 'true');
+        activeName = link.textContent.trim();
+      } else {
+        link.classList.remove('is-active');
+        link.removeAttribute('aria-current');
       }
     }
-    return null;
+
+    if (label && activeName) {
+      label.textContent = activeName;
+    }
+
+    if (btn && activeName) {
+      btn.setAttribute('title', activeName);
+      btn.setAttribute('aria-label', 'Language: ' + activeName);
+    }
   }
 
-  function init() {
-    // Find the language selector button via its parent .md-select container
-    // rather than aria-label, which gets translated on non-English pages
-    var selector = document.querySelector('.md-select');
-    if (!selector) return;
-    var btn = selector.querySelector('button');
-    if (!btn) return;
-    var name = getCurrentLanguageName();
-    if (!name) return;
-    var label = document.createElement('span');
-    label.className = 'md-header__language-label';
-    label.textContent = name;
-    btn.appendChild(label);
+  function onReady(fn) {
+    if (typeof document$ !== 'undefined' && document$.subscribe) {
+      document$.subscribe(fn);
+      return;
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', fn);
+    } else {
+      fn();
+    }
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+  onReady(init);
 })();

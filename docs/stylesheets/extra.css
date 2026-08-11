@@ -1,101 +1,1928 @@
- :root  > * {
-      --md-accent-fg-color:        #16B5F4;
-    }
+/* DoubleZero brand identity (Media Kit 2026 + doublezero.xyz).
+   Display: Reckless · Body: Suisse Intl · Mono: Suisse Intl Mono
+   Palette: black/white primary; spectrum accents only as thin fiber edges.
+*/
+@font-face {
+  font-family: "Reckless";
+  src: url("../fonts/RecklessStandardM-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
-  /* Current language name next to the language selector icon */
-  button[aria-label="Select language"] {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
+@font-face {
+  font-family: "Reckless";
+  src: url("../fonts/RecklessStandardM-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Reckless";
+  src: url("../fonts/RecklessStandardM-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Reckless";
+  src: url("../fonts/RecklessStandardM-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Suisse Intl";
+  src: url("../fonts/SuisseIntl-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Suisse Intl";
+  src: url("../fonts/SuisseIntl-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Suisse Intl";
+  src: url("../fonts/SuisseIntl-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Suisse Intl";
+  src: url("../fonts/SuisseIntl-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Suisse Intl";
+  src: url("../fonts/SuisseIntl-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Suisse Intl Mono";
+  src: url("../fonts/SuisseIntl-Mono.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* doublezero.xyz + logo spectrum */
+  --dz-black: #08090a;
+  --dz-white: #fafafa;
+  --dz-grey: #62666d;
+  --dz-grey-light: #e2e2e2;
+  --dz-green: #21b906;
+  --dz-green-soft: color-mix(in srgb, #21b906 10%, #fafafa);
+  --dz-teal: #07c8c9;
+  --dz-blue: #1b63ff;
+  --dz-yellow: #ffdc78;
+  --dz-red: #d92308;
+  --dz-orange: #ff5a1f;
+  --dz-fiber: linear-gradient(
+    90deg,
+    var(--dz-teal) 0%,
+    var(--dz-blue) 28%,
+    #9b7bff 48%,
+    var(--dz-yellow) 68%,
+    var(--dz-orange) 85%,
+    var(--dz-red) 100%
+  );
+  --dz-font-display: "Reckless", "Times New Roman", Georgia, serif;
+  --dz-font-body: "Suisse Intl", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --dz-font-mono: "Suisse Intl Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --dz-surface: #08090a;
+  --dz-surface-raised: #121314;
+  --dz-surface-code: #18191b;
+  --dz-text: #e2e2e2;
+  --dz-text-strong: #fafafa;
+  --dz-text-muted: #62666d;
+  /* Header chrome matches doublezero.xyz: same surface as page + hairline */
+  --dz-header-bg: var(--dz-surface);
+  --dz-header-border: #1f1f20;
+  /* doublezero.xyz: 64px mobile, 67px desktop (≥ xl / 1280px) */
+  --dz-header-height: 64px;
+  --md-text-font: "Suisse Intl";
+  --md-code-font: "Suisse Intl Mono";
+}
+
+@media screen and (min-width: 1280px) {
+  :root {
+    --dz-header-height: 67px;
   }
-  .md-header__language-label {
-    font-size: 0.8rem;
-    font-weight: 500;
-    white-space: nowrap;
+}
+
+:root > * {
+  --md-accent-fg-color: var(--dz-grey-light);
+  --md-accent-fg-color--transparent: color-mix(in srgb, var(--dz-grey-light) 12%, transparent);
+  --md-typeset-a-color: var(--dz-grey-light);
+}
+
+/* Light mode: clean paper + dark type (doublezero.xyz .light) */
+[data-md-color-scheme="default"] {
+  --md-default-bg-color: #fafafa;
+  --md-default-bg-color--light: #fafafa;
+  --md-default-bg-color--lighter: #f0f0f0;
+  --md-default-bg-color--lightest: #e2e2e2;
+  --md-default-fg-color: rgba(8, 9, 10, 0.92);
+  --md-default-fg-color--light: rgba(8, 9, 10, 0.72);
+  --md-default-fg-color--lighter: rgba(8, 9, 10, 0.54);
+  --md-default-fg-color--lightest: rgba(8, 9, 10, 0.14);
+  --md-typeset-color: rgba(8, 9, 10, 0.9);
+  --md-typeset-a-color: #08090a;
+  --md-code-bg-color: #efefef;
+  --md-code-fg-color: #08090a;
+  /* Keep Material primary in sync so the header never falls back to grey */
+  --md-primary-fg-color: #fafafa;
+  --md-primary-fg-color--light: #fafafa;
+  --md-primary-fg-color--dark: #fafafa;
+  --md-primary-bg-color: #08090a;
+  --md-accent-fg-color: #08090a;
+  --dz-header-bg: #fafafa;
+  --dz-header-border: #e2e2e2;
+  --dz-green-soft: color-mix(in srgb, #21b906 8%, #fafafa);
+}
+
+/* Dark mode: DoubleZero black canvas (doublezero.xyz .dark) */
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: var(--dz-surface);
+  --md-default-bg-color--light: #0c0d0e;
+  --md-default-bg-color--lighter: var(--dz-surface-raised);
+  --md-default-bg-color--lightest: #222426;
+  --md-default-fg-color: var(--dz-text-strong);
+  --md-default-fg-color--light: var(--dz-grey-light);
+  --md-default-fg-color--lighter: var(--dz-grey);
+  --md-default-fg-color--lightest: rgba(255, 255, 255, 0.12);
+  --md-typeset-color: var(--dz-text);
+  --md-typeset-a-color: var(--dz-grey-light);
+  --md-code-bg-color: var(--dz-surface-code);
+  --md-code-fg-color: #f0f0f0;
+  --md-footer-bg-color: #000000;
+  --md-footer-bg-color--dark: #000000;
+  --md-primary-fg-color: #08090a;
+  --md-primary-fg-color--light: #08090a;
+  --md-primary-fg-color--dark: #08090a;
+  --md-primary-bg-color: #fafafa;
+  --md-accent-fg-color: var(--dz-white);
+  --dz-header-bg: #08090a;
+  --dz-header-border: #1f1f20;
+  --dz-green-soft: color-mix(in srgb, #21b906 14%, #08090a);
+}
+
+body {
+  font-family: var(--dz-font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+code,
+pre,
+.md-typeset code,
+.md-typeset pre,
+.md-code__content,
+.dz-btn-rect,
+.runbook-assist-btn {
+  font-family: var(--dz-font-mono);
+}
+
+/* Suisse body · Reckless headings only */
+.md-typeset {
+  font-size: 0.84rem;
+  line-height: 1.75;
+  font-family: var(--dz-font-body);
+  font-weight: 400;
+  color: var(--md-typeset-color);
+}
+
+.md-typeset p,
+.md-typeset li,
+.md-typeset td,
+.md-typeset th {
+  font-family: var(--dz-font-body);
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3,
+.md-typeset h4 {
+  font-family: var(--dz-font-display);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--md-default-fg-color);
+  font-weight: 500;
+}
+
+.md-typeset > h1 {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 0.75em;
+}
+
+.md-typeset h2 {
+  font-weight: 500;
+  margin-top: 1.75em;
+  padding-bottom: 0.35em;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+}
+
+/* Header: same surface as page + hairline (doublezero.xyz header chrome) */
+.md-header,
+.md-header--shadow {
+  background: var(--dz-header-bg) !important;
+  color: var(--dz-text-strong);
+  border-bottom: 1px solid var(--dz-header-border);
+  box-shadow: none !important;
+  height: var(--dz-header-height);
+  box-sizing: border-box;
+}
+
+.md-header__inner {
+  height: 100%;
+  min-height: var(--dz-header-height);
+  box-sizing: border-box;
+}
+
+.md-header__title {
+  height: auto;
+  line-height: 1.2;
+}
+
+[data-md-color-scheme="default"] .md-header,
+[data-md-color-scheme="default"] .md-header--shadow {
+  color: var(--dz-black);
+}
+
+.md-header .md-header__button,
+.md-header .md-header__topic,
+.md-header .md-source,
+.md-header .md-tabs__link {
+  color: inherit;
+}
+
+[data-md-color-scheme="slate"] .md-header .md-header__button:hover,
+[data-md-color-scheme="slate"] .md-header .md-header__button:focus {
+  opacity: 1;
+  color: var(--dz-white);
+}
+
+[data-md-color-scheme="default"] .md-header .md-header__button:hover,
+[data-md-color-scheme="default"] .md-header .md-header__button:focus {
+  opacity: 1;
+  color: var(--dz-black);
+}
+
+/* Links + nav accents */
+.md-typeset a {
+  color: var(--md-typeset-a-color);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+
+.md-typeset a:hover {
+  color: var(--dz-orange);
+}
+
+[data-md-color-scheme="default"] .md-typeset a:hover {
+  color: var(--dz-orange);
+}
+
+.md-nav__link:hover,
+.md-nav__link:focus,
+.md-nav__item .md-nav__link--active,
+.md-nav__link--active {
+  color: var(--md-default-fg-color);
+}
+
+.md-nav__link--active {
+  transition: color 0.15s ease;
+}
+
+/* Orange square bullets (brand lists) */
+.md-typeset ul:not(.task-list):not(.md-nav__list) {
+  list-style: none;
+  padding-left: 0;
+}
+
+.md-typeset ul:not(.task-list):not(.md-nav__list) > li {
+  position: relative;
+  padding-left: 1.15em;
+  margin-left: 0.15em;
+}
+
+.md-typeset ul:not(.task-list):not(.md-nav__list) > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.38em;
+  height: 0.38em;
+  background: var(--dz-orange);
+}
+
+/* Admonitions: sharp thin rectangles */
+.md-typeset .admonition,
+.md-typeset details {
+  border-radius: 0 !important;
+  border-width: 1px !important;
+  box-shadow: none !important;
+}
+
+/* Informational cards (info / note / tip) — brand green */
+.md-typeset .admonition.info,
+.md-typeset details.info,
+.md-typeset .admonition.note,
+.md-typeset details.note,
+.md-typeset .admonition.tip,
+.md-typeset details.tip {
+  border-color: var(--dz-green);
+}
+
+.md-typeset .info > .admonition-title,
+.md-typeset .info > summary,
+.md-typeset .note > .admonition-title,
+.md-typeset .note > summary,
+.md-typeset .tip > .admonition-title,
+.md-typeset .tip > summary {
+  background-color: var(--dz-green-soft);
+  border-radius: 0;
+  color: var(--md-default-fg-color);
+}
+
+.md-typeset .info > .admonition-title::before,
+.md-typeset .info > summary::before,
+.md-typeset .note > .admonition-title::before,
+.md-typeset .note > summary::before,
+.md-typeset .tip > .admonition-title::before,
+.md-typeset .tip > summary::before {
+  background-color: var(--dz-green);
+}
+
+.md-typeset .admonition.warning,
+.md-typeset details.warning {
+  border-color: var(--dz-orange);
+}
+
+.md-typeset .warning > .admonition-title,
+.md-typeset .warning > summary {
+  background-color: color-mix(in srgb, var(--dz-orange) 10%, transparent);
+}
+
+.md-typeset .warning > .admonition-title::before,
+.md-typeset .warning > summary::before {
+  background-color: var(--dz-orange);
+}
+
+/* Green pill badge (brand) */
+.dz-badge-green {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.35rem 0.85rem;
+  border: 1px solid var(--dz-green);
+  border-radius: 999px;
+  background: var(--dz-green-soft);
+  color: var(--dz-green);
+  font-family: var(--dz-font-mono);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none !important;
+  line-height: 1;
+}
+
+.dz-badge-green::before {
+  content: "";
+  width: 0.4em;
+  height: 0.4em;
+  background: var(--dz-green);
+  flex-shrink: 0;
+}
+
+/* Rainbow text — hover only (CTAs + side nav) */
+.dz-cta-rainbow,
+a.dz-cta-rainbow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--md-default-fg-color) !important;
+  -webkit-text-fill-color: var(--md-default-fg-color);
+  background: none;
+  font-family: var(--dz-font-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  text-decoration: none !important;
+  line-height: 1.3;
+  transition: opacity 0.15s ease;
+}
+
+.dz-cta-rainbow::after {
+  content: "→";
+  color: var(--md-default-fg-color);
+  -webkit-text-fill-color: var(--md-default-fg-color);
+  font-weight: 400;
+}
+
+.dz-cta-rainbow:hover,
+.dz-cta-rainbow:focus-visible,
+a.dz-cta-rainbow:hover,
+a.dz-cta-rainbow:focus-visible {
+  background-image: var(--dz-fiber);
+  background-size: 100% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent;
+}
+
+.dz-cta-rainbow:hover::after,
+.dz-cta-rainbow:focus-visible::after {
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  color: var(--md-default-fg-color);
+  -webkit-text-fill-color: var(--md-default-fg-color);
+}
+
+/* Shared rainbow hover for left + right menus
+   (Material puts label text in .md-ellipsis — clip must hit that node too) */
+.md-sidebar--primary .md-nav__link:hover,
+.md-sidebar--primary .md-nav__link:focus-visible,
+.md-sidebar--secondary .md-nav__link:hover,
+.md-sidebar--secondary .md-nav__link:focus-visible,
+.md-sidebar--secondary .toc-page-top:hover,
+.md-sidebar--secondary .toc-page-top:focus-visible {
+  background-color: transparent !important;
+  text-shadow: none !important;
+}
+
+.md-sidebar--primary .md-nav__link:hover .md-nav__icon,
+.md-sidebar--primary .md-nav__link:focus-visible .md-nav__icon,
+.md-sidebar--primary .md-nav__link:hover svg,
+.md-sidebar--primary .md-nav__link:focus-visible svg,
+.md-sidebar--secondary .md-nav__link:hover .md-nav__icon,
+.md-sidebar--secondary .md-nav__link:focus-visible .md-nav__icon,
+.md-sidebar--secondary .md-nav__link:hover svg,
+.md-sidebar--secondary .md-nav__link:focus-visible svg {
+  color: var(--md-default-fg-color) !important;
+  fill: var(--md-default-fg-color) !important;
+  -webkit-text-fill-color: var(--md-default-fg-color) !important;
+  background: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+}
+
+/* Sharp mono rectangle buttons */
+.dz-btn-rect,
+.md-typeset .md-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 0.55rem 0.95rem;
+  border: 1px solid var(--md-default-fg-color) !important;
+  border-radius: 0 !important;
+  background: var(--md-default-fg-color);
+  color: var(--md-default-bg-color) !important;
+  font-family: var(--dz-font-mono);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-decoration: none !important;
+  line-height: 1.2;
+  box-shadow: none !important;
+}
+
+.dz-btn-rect:hover,
+.md-typeset .md-button:hover {
+  background: transparent;
+  color: var(--md-default-fg-color) !important;
+}
+
+.dz-btn-rect--ghost,
+.md-typeset .md-button--primary {
+  background: transparent;
+  color: var(--md-default-fg-color) !important;
+}
+
+.dz-btn-rect--ghost:hover,
+.md-typeset .md-button--primary:hover {
+  background: var(--md-default-fg-color);
+  color: var(--md-default-bg-color) !important;
+}
+
+/* Wider layout: push sidebars toward the viewport edges and give content more room */
+.md-grid {
+  max-width: none;
+}
+
+.md-main__inner.md-grid {
+  max-width: none;
+  margin-inline: 0.75rem;
+}
+
+/* Header width: match doublezero.xyz (full-bleed + max-md:px-3 / min-md:px-8) */
+.md-header__inner.md-grid {
+  max-width: none;
+  width: 100%;
+  box-sizing: border-box;
+  margin-inline: 0;
+  padding-inline: 0.75rem;
+}
+
+@media screen and (min-width: 48em) {
+  .md-header__inner.md-grid {
+    padding-inline: 2rem;
+  }
+}
+
+@media screen and (min-width: 76.25em) {
+  .md-main__inner {
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
   }
 
-  /* 50px buffer at bottom of content when fully scrolled, before footer */
+  .md-content {
+    max-width: none;
+  }
+
+  .md-sidebar--primary {
+    width: 14rem;
+  }
+
+  .md-sidebar--secondary {
+    width: 13.5rem;
+  }
+
   .md-content__inner {
-    padding-bottom: 50px;
+    margin: 0 1.25rem;
+    max-width: none;
   }
+}
 
-  /* Page toolbar styles - text-based links like Pyth docs */
-  .page-toolbar-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: var(--md-default-bg-color, #1e1e1e);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    z-index: 100;
-    padding: 0;
-  }
+/* Header control order: logo / language (left) → title → search → support → theme */
+.md-header__inner {
+  display: flex;
+  align-items: center;
+}
 
-  .page-toolbar {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1rem;
-    font-size: 0.875rem;
-    color: #ffffff;
-    max-width: 100%;
-    margin: 0 auto;
-  }
-
-  .page-toolbar-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.375rem;
-    color: #ffffff;
-    text-decoration: none;
-    cursor: pointer;
-    transition: opacity 0.2s ease;
-  }
-
-  .page-toolbar-link:hover {
-    text-decoration: underline;
-    opacity: 0.8;
-  }
-
-  .page-toolbar-link.copied {
-    color: #ffffff;
-    font-weight: 500;
-  }
-
-  .page-toolbar-icon {
-    width: 16px;
-    height: 16px;
-    flex-shrink: 0;
-    vertical-align: middle;
-    opacity: 0.9;
-  }
-
-  .page-toolbar-favicon {
-    filter: brightness(0) invert(1);
-  }
-
-  .page-toolbar-separator {
-    color: rgba(255, 255, 255, 0.5);
-    user-select: none;
-  }
-
-  /* Responsive design for smaller screens */
-  @media screen and (max-width: 768px) {
-    .page-toolbar {
-      flex-wrap: wrap;
-    }
-  }
-
-/* Header shows two logos (Malbec + DoubleZero); lay them out side by side.
-   The logo partial is also reused by the mobile nav drawer — keep the DZ icon
-   out of there. */
 .md-header__button.md-logo {
+  order: 1 !important;
+}
+
+.md-header__button[for="__drawer"] {
+  order: 2 !important;
+}
+
+.md-header__option:has(.md-select) {
+  order: 3 !important;
+}
+
+.md-header__title {
+  order: 10 !important;
+  flex: 1 1 auto;
+}
+
+.md-header__button[for="__search"] {
+  order: 50 !important;
+}
+
+.md-search {
+  order: 51 !important;
+}
+
+.header-support-btn {
+  order: 80 !important;
+}
+
+.md-header__option[data-md-component="palette"] {
+  order: 999 !important;
+}
+
+.md-header__source {
+  order: 1000 !important;
+}
+
+/* Theme toggle: DoubleZero compact button (from doublezero.xyz CompactThemeToggle) */
+.md-header__option[data-md-component="palette"].dz2-palette-host {
+  display: inline-flex;
+  align-items: center;
+  margin: 0.15rem 0.25rem;
+}
+
+.md-header__option[data-md-component="palette"].dz2-palette-host > input.md-option,
+.md-header__option[data-md-component="palette"].dz2-palette-host > label.md-header__button {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.dz2-theme-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--dz-white) 14%, transparent);
+  color: var(--dz-white);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.dz2-theme-btn:hover,
+.dz2-theme-btn:focus-visible {
+  background: color-mix(in srgb, var(--dz-white) 28%, transparent);
+  color: var(--dz-white);
+  outline: none;
+}
+
+[data-md-color-scheme="default"] .dz2-theme-btn {
+  background: color-mix(in srgb, var(--dz-black) 10%, transparent);
+  color: var(--dz-black);
+}
+
+[data-md-color-scheme="default"] .dz2-theme-btn:hover,
+[data-md-color-scheme="default"] .dz2-theme-btn:focus-visible {
+  background: var(--dz-black);
+  color: var(--dz-white);
+}
+
+.dz2-theme-btn svg {
+  display: block;
+  width: 1rem;
+  height: 1rem;
+}
+
+/* Hover tooltip like doublezero.xyz — right-align so it isn't clipped at viewport edge */
+.dz2-theme-btn__tip {
+  position: absolute;
+  top: calc(100% + 0.45rem);
+  right: 0;
+  left: auto;
+  transform: none;
+  z-index: 40;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.55rem;
+  border-radius: 0.35rem;
+  background: #111213;
+  color: #f5f6f6;
+  font-family: var(--dz-font-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.12s ease, visibility 0.12s ease;
+}
+
+.md-header,
+.md-header__inner,
+.md-header__option[data-md-component="palette"],
+.md-header__option[data-md-component="palette"].dz2-palette-host {
+  overflow: visible;
+}
+
+.dz2-theme-btn:hover .dz2-theme-btn__tip,
+.dz2-theme-btn:focus-visible .dz2-theme-btn__tip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.dz2-theme-btn__kbd {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  color: color-mix(in srgb, #f5f6f6 75%, transparent);
+}
+
+.dz2-theme-btn__kbd kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.15rem;
+  padding: 0.1rem 0.28rem;
+  border: 1px solid color-mix(in srgb, #f5f6f6 18%, transparent);
+  border-radius: 0.25rem;
+  background: color-mix(in srgb, #f5f6f6 10%, transparent);
+  font: inherit;
+  line-height: 1.2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dz2-theme-btn,
+  .dz2-theme-btn__tip {
+    transition: none;
+  }
+}
+
+/* Legacy Material palette icon button styles (kept inert) */
+.md-header__option[data-md-component="palette"] > .md-header__button[hidden] {
+  display: none !important;
+}
+
+/* Support header button */
+/* Support header button — inverted vs theme; underline grows L→R on hover
+   (same recipe as doublezero.xyz .header-cta-link / .dz2-footer-link) */
+.header-support-btn {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  height: 2.1rem;
+  margin: 0.15rem 0.35rem;
+  padding: 0 0.85rem !important;
+  border: 1px solid var(--dz-white);
+  border-radius: 0;
+  background: var(--dz-white);
+  color: var(--dz-black) !important;
+  opacity: 1 !important;
+  font-family: var(--dz-font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none !important;
+  line-height: 1;
+}
+
+.header-support-btn,
+.header-support-btn:hover,
+.header-support-btn:focus,
+.header-support-btn:focus-visible {
+  color: var(--dz-black) !important;
+  background: var(--dz-white);
+  border-color: var(--dz-white);
+  text-decoration: none !important;
+  outline: none !important;
+}
+
+.header-support-btn__text {
+  position: relative;
+  white-space: nowrap;
+}
+
+.header-support-btn__text::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  height: 1px;
+  width: 0;
+  background: currentColor;
+  transition: width 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.header-support-btn:hover .header-support-btn__text::after,
+.header-support-btn:focus .header-support-btn__text::after,
+.header-support-btn:focus-visible .header-support-btn__text::after {
+  width: 100%;
+}
+
+/* Light theme: inverted — dark button */
+[data-md-color-scheme="default"] .header-support-btn,
+[data-md-color-scheme="default"] .header-support-btn:hover,
+[data-md-color-scheme="default"] .header-support-btn:focus,
+[data-md-color-scheme="default"] .header-support-btn:focus-visible {
+  color: var(--dz-white) !important;
+  background: var(--dz-black);
+  border-color: var(--dz-black);
+  text-decoration: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header-support-btn__text::after {
+    transition: none;
+  }
+}
+
+/* Language selector: discrete text control (name + chevron) */
+.md-header__option .md-select {
+  position: relative;
+}
+
+.md-header__option .md-select > .md-header__language-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  width: auto !important;
+  min-width: 0;
+  height: auto !important;
+  min-height: 0;
+  margin: 0.35rem 0.15rem;
+  padding: 0.2rem 0.15rem !important;
+  border: 0 !important;
+  border-radius: 0;
+  background: transparent !important;
+  color: color-mix(in srgb, var(--dz-white) 72%, transparent) !important;
+  opacity: 1 !important;
+  font-family: var(--dz-font-mono);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: none;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: none !important;
+  transition: color 0.15s ease;
+}
+
+.md-header__option .md-select > .md-header__language-btn:hover,
+.md-header__option .md-select > .md-header__language-btn:focus {
+  color: var(--dz-white) !important;
+  background: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+[data-md-color-scheme="default"] .md-header__option .md-select > .md-header__language-btn {
+  color: color-mix(in srgb, var(--dz-black) 62%, transparent) !important;
+}
+
+[data-md-color-scheme="default"] .md-header__option .md-select > .md-header__language-btn:hover,
+[data-md-color-scheme="default"] .md-header__option .md-select > .md-header__language-btn:focus {
+  color: var(--dz-black) !important;
+  background: transparent !important;
+}
+
+.md-header__language-label {
+  white-space: nowrap;
+}
+
+.md-header__language-chevron {
+  font-size: 0.5rem;
+  line-height: 1;
+  opacity: 0.75;
+}
+
+.md-header__option .md-select > .md-header__button svg {
+  display: none;
+}
+
+.md-select__inner {
+  min-width: 0;
+  width: max-content;
+  max-width: 10rem;
+  top: calc(100% + 0.15rem);
+  margin-top: 0;
+  padding: 0.2rem;
+  border: 1px solid color-mix(in srgb, var(--md-default-fg-color) 16%, transparent);
+  border-radius: 0.45rem;
+  background-color: var(--md-default-bg-color);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  overflow-y: auto;
+  /* Closed dropdown must not capture hover in the space below the icon */
+  pointer-events: none;
+}
+
+/* Invisible bridge so you can move from icon → menu without a dead gap */
+.md-select__inner::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -0.45rem;
+  height: 0.45rem;
+}
+
+.md-select:focus-within .md-select__inner,
+.md-select:hover .md-select__inner {
+  max-height: min(20rem, 70vh);
+  opacity: 1;
+  transform: translate3d(-50%, 0, 0);
+  pointer-events: auto;
+}
+
+.md-select__list {
+  margin: 0;
+  padding: 0;
+}
+
+.md-select__item {
+  margin: 0;
+}
+
+.md-select__link {
+  display: block;
+  margin: 0;
+  padding: 0.28rem 0.55rem;
+  border-radius: 0.28rem;
+  color: var(--md-default-fg-color);
+  font-size: 0.72rem;
+  line-height: 1.25;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background-color 0.12s ease, color 0.12s ease;
+}
+
+.md-select__link:hover,
+.md-select__link:focus {
+  background-color: color-mix(in srgb, var(--md-accent-fg-color) 14%, transparent);
+  color: var(--md-accent-fg-color);
+}
+
+.md-select__link.is-active {
+  color: var(--md-accent-fg-color);
+  font-weight: 600;
+  background-color: color-mix(in srgb, var(--md-accent-fg-color) 10%, transparent);
+  padding-inline-end: 1.35rem;
+}
+
+.md-select__link.is-active::after {
+  content: "✓";
+  float: right;
+  margin-inline-start: 0.45rem;
+  opacity: 0.9;
+}
+
+/* 50px buffer at bottom of content when fully scrolled, before footer */
+.md-content__inner {
+  padding-bottom: 50px;
+}
+
+/* Page toolbar styles - text-based links like Pyth docs */
+.page-toolbar-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--md-default-bg-color);
+  border-top: 1px solid var(--md-default-fg-color--lightest);
+  z-index: 100;
+  padding: 0;
+}
+
+.page-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  color: var(--md-default-fg-color);
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.page-toolbar-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  color: var(--md-default-fg-color);
+  -webkit-text-fill-color: var(--md-default-fg-color);
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.page-toolbar-link:hover {
+  text-decoration: none;
+  opacity: 1;
+}
+
+.page-toolbar-link.copied {
+  color: var(--dz-green);
+  -webkit-text-fill-color: var(--dz-green);
+  font-weight: 500;
+  background-image: none !important;
+}
+
+.page-toolbar-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  vertical-align: middle;
+  opacity: 0.9;
+}
+
+[data-md-color-scheme="slate"] .page-toolbar-favicon {
+  filter: brightness(0) invert(1);
+}
+
+.page-toolbar-separator {
+  color: var(--md-default-fg-color--light);
+  user-select: none;
+}
+
+@media screen and (max-width: 768px) {
+  .page-toolbar {
+    flex-wrap: wrap;
+  }
+}
+
+/* Runbook assist — copy left, actions right on one row */
+.runbook-assist--compact {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.65rem 1rem;
+  margin: 0.25rem 0 1.15rem;
+  padding: 0.7rem 0;
+  border: none;
+  border-bottom: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 0;
+  background: transparent;
+}
+
+.runbook-assist--compact .runbook-assist-mark {
+  flex: 0 0 auto;
+  width: 0.45rem;
+  height: 0.45rem;
+  background: var(--dz-green);
+  align-self: center;
+}
+
+.runbook-assist--compact .runbook-assist-icon {
+  display: none;
+}
+
+.runbook-assist--compact .runbook-assist-copy {
+  flex: 1 1 auto;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--md-default-fg-color--light);
+  font-family: var(--dz-font-body);
+  min-width: 0;
+}
+
+.runbook-assist--compact .runbook-assist-copy strong {
+  color: var(--md-default-fg-color);
+  font-weight: 600;
+}
+
+.runbook-assist--compact .runbook-assist-actions {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.65rem 0.85rem;
+  margin: 0 0 0 auto !important;
+  padding: 0 !important;
+  flex: 0 0 auto;
+}
+
+.runbook-assist-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.85rem;
+  border-radius: 0;
+  border: 1px solid var(--md-default-fg-color);
+  background: var(--md-default-fg-color);
+  color: var(--md-default-bg-color) !important;
+  font-family: var(--dz-font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-decoration: none !important;
+  cursor: pointer;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.runbook-assist-btn:hover {
+  background: transparent;
+  color: var(--md-default-fg-color) !important;
+}
+
+.runbook-assist-btn.copied {
+  background: var(--dz-green);
+  border-color: var(--dz-green);
+  color: #fff !important;
+}
+
+/* Open runbook: always looks like a link; rainbow on hover */
+a.runbook-assist-btn.dz-cta-rainbow {
+  padding: 0;
+  border: none;
+  background: none;
+  background-image: none;
+  color: var(--dz-green) !important;
+  -webkit-text-fill-color: var(--dz-green);
+  text-decoration: underline !important;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+
+a.runbook-assist-btn.dz-cta-rainbow:hover,
+a.runbook-assist-btn.dz-cta-rainbow:focus-visible {
+  background-image: var(--dz-fiber);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent;
+  text-decoration-color: color-mix(in srgb, var(--dz-teal) 70%, var(--dz-orange));
+  opacity: 1;
+}
+
+a.runbook-assist-btn.dz-cta-rainbow::after {
+  content: "→";
+  margin-left: 0.35rem;
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  color: var(--dz-green);
+  -webkit-text-fill-color: var(--dz-green);
+  text-decoration: none;
+}
+
+a.runbook-assist-btn.dz-cta-rainbow:hover::after,
+a.runbook-assist-btn.dz-cta-rainbow:focus-visible::after {
+  color: var(--md-default-fg-color);
+  -webkit-text-fill-color: var(--md-default-fg-color);
+}
+
+.runbook-assist-btn-secondary {
+  background: transparent;
+  color: var(--md-default-fg-color) !important;
+}
+
+.runbook-assist-btn-secondary:hover {
+  background: var(--md-default-fg-color);
+  color: var(--md-default-bg-color) !important;
+}
+
+button.runbook-assist-btn {
+  font-family: var(--dz-font-mono);
+}
+
+/* Narrow: stack copy, keep actions on one row aligned end */
+@media screen and (max-width: 40em) {
+  .runbook-assist--compact {
+    flex-wrap: wrap;
+  }
+
+  .runbook-assist--compact .runbook-assist-copy {
+    flex: 1 1 calc(100% - 1.5rem);
+  }
+
+  .runbook-assist--compact .runbook-assist-actions {
+    flex: 1 1 100%;
+    justify-content: flex-end;
+    margin-left: 0 !important;
+    padding-left: 1.1rem !important;
+  }
+}
+
+/* Legacy full admonition assist (if any remain) */
+.runbook-assist.admonition {
+  margin: 0.75rem 0 1.25rem;
+  padding: 0.85rem 1rem 1rem !important;
+}
+
+.runbook-assist.admonition .admonition-title {
+  margin-top: 0;
+}
+
+.runbook-assist.admonition > p {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+/* Header: DoubleZero color icon + wordmark (swap dark/light by scheme) */
+.md-header__button.md-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  animation: dz-logo-settle 0.5s ease-out 0.05s both;
+}
+
+@keyframes dz-logo-settle {
+  from {
+    opacity: 0;
+    transform: translateX(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.md-header__button.md-logo img,
+.md-nav__button.md-logo img {
+  height: 1.55rem;
+  width: auto;
+}
+
+.md-header__button.md-logo .header-logo-dz,
+.md-nav__button.md-logo .header-logo-dz {
+  height: 1.35rem;
+  width: auto;
+}
+
+/* Drawer: wordmark only (icon stays in header) */
+.md-nav__button.md-logo .header-logo-dz {
+  display: none !important;
+}
+
+.header-logo-dz--light,
+.header-logo-wordmark--light {
+  display: none !important;
+}
+
+[data-md-color-scheme="default"] .header-logo-dz--dark,
+[data-md-color-scheme="default"] .header-logo-wordmark--dark {
+  display: none !important;
+}
+
+[data-md-color-scheme="default"] .header-logo-dz--light,
+[data-md-color-scheme="default"] .header-logo-wordmark--light {
+  display: inline-block !important;
+}
+
+/* Keep title as flex spacer so controls stay right; hide redundant brand text */
+.md-header__title {
+  flex: 1 1 auto;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Right TOC: "On this page" title → scroll to top */
+.md-sidebar--secondary .md-nav__title {
   display: flex;
   align-items: center;
   gap: 0.4rem;
+  padding: 0 0.6rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: none;
+  color: var(--md-default-fg-color);
+  box-shadow: none;
+  background: transparent;
+  opacity: 1;
 }
 
-.md-nav__button.md-logo img[alt="DoubleZero"] {
+.md-sidebar--secondary .md-nav__title .md-nav__icon {
+  margin: 0;
+  width: 0.9rem;
+  height: 0.9rem;
+  color: var(--md-default-fg-color);
+  fill: currentColor;
+  opacity: 1;
+}
+
+.md-sidebar--secondary .toc-page-top {
+  color: var(--md-default-fg-color);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* Scrollspy TOC — active section tracks as you scroll (Solana / Helius style) */
+.md-sidebar--secondary .md-nav--secondary > .md-nav__list {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  border-left: 1px solid var(--md-default-fg-color--lightest);
+}
+
+.md-sidebar--secondary .md-nav--secondary .md-nav__item {
+  padding: 0;
+}
+
+.md-sidebar--secondary .md-nav--secondary .md-nav__link {
+  margin-top: 0;
+  padding: 0.4rem 0.75rem;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.7rem;
+  font-weight: 400;
+  line-height: 1.35;
+  border-left: 2px solid transparent;
+  margin-left: -1px;
+  border-radius: 0;
+  transition: color 0.15s ease, border-color 0.15s ease, text-shadow 0.15s ease;
+}
+
+.md-sidebar--secondary .md-nav--secondary .md-nav__link:hover,
+.md-sidebar--secondary .md-nav--secondary .md-nav__link:focus {
+  background-color: transparent;
+  font-weight: 400;
+}
+
+/* Active: color + rail — no layout shift; rainbow only on hover (above) */
+.md-sidebar--secondary .md-nav--secondary .md-nav__link--active,
+.md-sidebar--secondary .md-nav--secondary .md-nav__link--active:focus,
+.md-sidebar--secondary .md-nav--secondary .md-nav__item--active > .md-nav__link {
+  color: var(--md-default-fg-color);
+  -webkit-text-fill-color: var(--md-default-fg-color);
+  background-image: none;
+  font-weight: 400 !important;
+  border-left-color: var(--md-default-fg-color);
+  background-color: transparent;
+  text-shadow: 0.4px 0 0 currentColor, -0.4px 0 0 currentColor;
+}
+
+.md-sidebar--secondary .md-nav--secondary .md-nav__link--active:hover,
+.md-sidebar--secondary .md-nav--secondary .md-nav__link--active:focus-visible {
+  background-image: var(--dz-fiber) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  text-shadow: none !important;
+  border-left-color: var(--dz-orange);
+}
+
+/* Primary nav: stable metrics; rainbow via shared hover rule above */
+.md-sidebar--primary .md-nav__link {
+  font-weight: 400 !important;
+  transition: color 0.15s ease;
+}
+
+.md-sidebar--primary .md-nav__link--active,
+.md-sidebar--primary .md-nav__item--active > .md-nav__link {
+  font-weight: 400 !important;
+  text-shadow: 0.35px 0 0 currentColor, -0.35px 0 0 currentColor;
+  color: var(--md-default-fg-color);
+}
+
+.md-sidebar--primary .md-nav__link--active:hover,
+.md-sidebar--primary .md-nav__link--active:focus-visible,
+.md-sidebar--primary .md-nav__item--active > .md-nav__link:hover,
+.md-sidebar--primary .md-nav__item--active > .md-nav__link:focus-visible {
+  text-shadow: none !important;
+}
+
+/* Nested TOC levels stay indented under the scrollspy rail */
+.md-sidebar--secondary .md-nav--secondary .md-nav .md-nav__list {
+  border-left: none;
+  margin: 0;
+  padding: 0;
+}
+
+.md-sidebar--secondary .md-nav--secondary .md-nav .md-nav__link {
+  padding-left: 1.25rem;
+}
+
+/* Extra air between a nested subtitle and the next top-level section (e.g. 3→4) */
+.md-sidebar--secondary .md-nav--secondary > .md-nav__list > .md-nav__item > .md-nav {
+  margin-bottom: 0.2rem;
+}
+
+.md-sidebar--secondary .md-nav--secondary > .md-nav__list > .md-nav__item:has(> .md-nav) + .md-nav__item > .md-nav__link {
+  padding-top: 0.45rem;
+}
+
+/* Keep scrollspy / in-page anchors aligned under the sticky header */
+.md-typeset :is(h1, h2, h3, h4, h5, h6) {
+  scroll-margin-top: 3.5rem;
+}
+
+/* Last-updated line at the bottom of each page */
+.md-source-file .page-updated {
+  color: var(--md-default-fg-color--light);
+  font-size: 0.75rem;
+}
+
+/* --------------------------------------------------------------------------
+   Search: circular header button → centered modal (Helius / QuickNode style)
+   -------------------------------------------------------------------------- */
+
+/* Always show a round magnifying-glass control in the header */
+.md-header__button[for="__search"] {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  margin: 0.15rem 0.25rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  box-sizing: border-box;
+  background-color: color-mix(in srgb, currentColor 18%, transparent);
+  outline: none !important;
+  box-shadow: none !important;
+  transition: background-color 0.15s ease;
+}
+
+.md-header__button[for="__search"]:hover,
+.md-header__button[for="__search"]:focus {
+  border: none;
+  background-color: color-mix(in srgb, currentColor 48%, transparent);
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.md-header__button[for="__search"] svg {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+/* Desktop+: don't embed the long search field in the header — use a modal */
+@media screen and (min-width: 60em) {
+  .md-search {
+    position: static;
+    padding: 0;
+  }
+
+  .md-search__overlay {
+    border-radius: 0 !important;
+    background-color: rgba(0, 0, 0, 0.55) !important;
+  }
+
+  .md-search__inner {
+    position: fixed !important;
+    top: 4.75rem !important;
+    left: 50% !important;
+    float: none !important;
+    z-index: 5;
+    width: min(42rem, calc(100vw - 2.5rem)) !important;
+    height: auto !important;
+    max-height: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    /* Must be visible: results are position:absolute and were being clipped */
+    overflow: visible !important;
+    opacity: 0 !important;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateX(-50%) translateY(-0.25rem) !important;
+    border-radius: 0.75rem;
+    background-color: transparent;
+    box-shadow: none;
+    transition:
+      opacity 0.18s ease,
+      transform 0.18s ease,
+      visibility 0.18s !important;
+  }
+
+  [data-md-toggle="search"]:checked ~ .md-header .md-search__inner {
+    opacity: 1 !important;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0) !important;
+    width: min(42rem, calc(100vw - 2.5rem)) !important;
+  }
+
+  .md-search__form {
+    display: flex !important;
+    align-items: center !important;
+    height: 3rem !important;
+    border-radius: 0.75rem !important;
+    background-color: var(--md-default-bg-color) !important;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45) !important;
+  }
+
+  /* Open search: one cohesive card (form top + output bottom, both rounded) */
+  [data-md-toggle="search"]:checked ~ .md-header .md-search__form {
+    border-radius: 0.75rem 0.75rem 0 0 !important;
+    box-shadow: none !important;
+  }
+
+  .md-search__form:hover {
+    background-color: var(--md-default-bg-color) !important;
+  }
+
+  .md-search__input {
+    font-size: 0.95rem !important;
+    line-height: 3rem !important;
+    color: var(--md-default-fg-color) !important;
+    /* Room for the back/close icon on the left + comfortable gap before typed text */
+    padding-inline-start: 3rem !important;
+  }
+
+  .md-search__input::placeholder {
+    color: var(--md-default-fg-color--light) !important;
+    line-height: 3rem;
+  }
+
+  .md-search__icon[for="__search"] {
+    top: 50% !important;
+    inset-inline-start: 0.75rem !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 1.4rem !important;
+    height: 1.4rem !important;
+    margin: 0;
+    transform: translateY(-50%);
+    color: var(--md-default-fg-color--light) !important;
+    pointer-events: auto;
+  }
+
+  .md-search__icon[for="__search"] svg {
+    width: 1.2rem;
+    height: 1.2rem;
+    display: block;
+  }
+
+  .md-search__options {
+    top: 50% !important;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+  }
+
+  /* Prefer close/back affordance inside the modal */
+  .md-search__icon[for="__search"] svg:first-child {
+    display: none;
+  }
+
+  .md-search__icon[for="__search"] svg:last-child {
+    display: block;
+  }
+
+  .md-search__output {
+    position: absolute !important;
+    top: 3rem !important;
+    left: 0;
+    right: 0;
+    width: 100% !important;
+    border-radius: 0 0 0.75rem 0.75rem !important;
+    opacity: 0;
+    overflow: hidden !important;
+    background-color: var(--md-default-bg-color);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+  }
+
+  [data-md-toggle="search"]:checked ~ .md-header .md-search__output {
+    opacity: 1 !important;
+  }
+
+  .md-search__scrollwrap {
+    width: 100% !important;
+    max-width: none !important;
+    max-height: 0;
+    border-radius: 0 0 0.75rem 0.75rem;
+    overflow: hidden;
+  }
+
+  [data-md-toggle="search"]:checked ~ .md-header .md-search__scrollwrap {
+    max-height: min(55vh, calc(100vh - 8rem)) !important;
+    min-height: 2.75rem;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Leave room for the result icon (Material places it absolutely on the left) */
+  .md-search-result__meta {
+    padding-inline-start: 1rem !important;
+  }
+
+  .md-search-result__article,
+  .md-search-result__more > summary > div,
+  .md-search-result__link {
+    padding-inline-start: 2.5rem !important;
+  }
+
+  .md-search-result__icon {
+    display: block;
+    inset-inline-start: 0.55rem;
+  }
+
+  /* Keep shared card radius when results are showing */
+  [data-md-toggle="search"]:checked ~ .md-header .md-search__form:has(+ .md-search__output .md-search-result__item) {
+    border-radius: 0.75rem 0.75rem 0 0 !important;
+    box-shadow: none !important;
+  }
+
+  [data-md-toggle="search"]:checked ~ .md-header .md-search__form:has(+ .md-search__output .md-search-result__item) + .md-search__output {
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+  }
+}
+
+/* Lock page scroll while search is open (desktop + mobile) */
+html:has([data-md-toggle="search"]:checked),
+html:has([data-md-toggle="search"]:checked) body {
+  overflow: hidden !important;
+}
+
+/* Smaller screens: keep Material’s modal, but float a centered card */
+@media screen and (max-width: 59.9375em) {
+  [data-md-toggle="search"]:checked ~ .md-header .md-search__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 5.5rem 1rem 1rem;
+    background: transparent;
+  }
+
+  [data-md-toggle="search"]:checked ~ .md-header .md-search__form,
+  [data-md-toggle="search"]:checked ~ .md-header .md-search__output {
+    width: min(40rem, 100%);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+  }
+
+  [data-md-toggle="search"]:checked ~ .md-header .md-search__form {
+    border-radius: 0.75rem 0.75rem 0 0;
+  }
+
+  [data-md-toggle="search"]:checked ~ .md-header .md-search__output {
+    position: relative;
+    top: 0;
+    bottom: auto;
+    max-height: min(55vh, calc(100vh - 8rem));
+    border-radius: 0 0 0.75rem 0.75rem;
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+  }
+
+  [data-md-toggle="search"]:checked ~ .md-header .md-search__scrollwrap {
+    max-height: none !important;
+    overflow: visible !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Header / drawer: keep controls visible until they would crush (~40em).
+   Material still shows the nav hamburger below ~76em — just don't steal
+   search/lang/support/theme until phone widths.
+   -------------------------------------------------------------------------- */
+.mobile-drawer-controls {
   display: none;
+}
+
+/* Tablet: nav drawer toggle appears beside logo — keep logo from covering it */
+@media screen and (max-width: 76.1875em) {
+  .md-header__button.md-logo {
+    flex: 0 1 auto;
+    max-width: calc(100% - 3.25rem);
+    min-width: 0;
+    overflow: hidden;
+    margin-inline-end: 0.35rem;
+  }
+
+  .md-header__button.md-logo img {
+    max-height: 1.35rem;
+  }
+
+  .md-header__button[for="__drawer"] {
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+  }
+}
+
+/* Narrow phones: shrink brand mark so it never collides with the hamburger */
+@media screen and (max-width: 40em) {
+  .md-header__button.md-logo {
+    gap: 0.25rem;
+    max-width: calc(100% - 3rem);
+  }
+
+  .md-header__button.md-logo .header-logo-dz {
+    display: block;
+    height: 0.95rem;
+    flex-shrink: 0;
+  }
+
+  .md-header__button.md-logo .header-logo-wordmark {
+    height: 0.95rem;
+    max-width: min(8.75rem, calc(100vw - 6.25rem));
+    object-fit: contain;
+    object-position: left center;
+  }
+}
+
+@media screen and (max-width: 22.5em) {
+  /* Keep icon + wordmark; shrink further instead of dropping either mark */
+  .md-header__button.md-logo {
+    gap: 0.2rem;
+  }
+
+  .md-header__button.md-logo .header-logo-dz {
+    display: block;
+    height: 0.85rem;
+  }
+
+  .md-header__button.md-logo .header-logo-wordmark {
+    height: 0.85rem;
+    max-width: calc(100vw - 5.75rem);
+  }
+}
+
+/* Phone: move chrome controls into the sandwich drawer */
+@media screen and (max-width: 40em) {
+  .md-header__inner > .md-header__option,
+  .md-header__inner > .header-support-btn,
+  .md-header__inner > .md-header__button[for="__search"] {
+    display: none !important;
+  }
+
+  /* Search UI stays in DOM for the modal, but takes no header space */
+  .md-header__inner > .md-search {
+    position: absolute;
+    width: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    pointer-events: none;
+  }
+
+  .md-header__inner > .md-search .md-search__inner {
+    pointer-events: auto;
+  }
+
+  /* Logo left, hamburger right */
+  .md-header__button.md-logo {
+    order: 1;
+    flex: 1 1 auto;
+    max-width: calc(100% - 3rem);
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .md-header__title {
+    display: none;
+  }
+
+  .md-header__button[for="__drawer"] {
+    order: 2;
+    flex: 0 0 auto;
+    width: 2.4rem;
+    margin-inline-start: 0.35rem;
+  }
+
+  /* Drawer control panel */
+  .mobile-drawer-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    margin: 0.35rem 0.8rem 1rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    background: color-mix(in srgb, var(--md-default-fg-color) 6%, transparent);
+  }
+
+  .mobile-drawer-controls__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0.55rem 0.7rem;
+    border: 1px solid color-mix(in srgb, var(--md-default-fg-color) 14%, transparent);
+    border-radius: 0.4rem;
+    background: var(--md-default-bg-color);
+    color: var(--md-default-fg-color);
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-decoration: none !important;
+    cursor: pointer;
+    line-height: 1.2;
+  }
+
+  .mobile-drawer-controls__btn svg {
+    width: 1.1rem;
+    height: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .mobile-drawer-controls__btn:hover,
+  .mobile-drawer-controls__btn:focus {
+    border-color: var(--md-accent-fg-color);
+    color: var(--md-accent-fg-color);
+  }
+
+  .mobile-drawer-controls__label {
+    display: block;
+    margin: 0.15rem 0 0.35rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--md-default-fg-color--light);
+  }
+
+  .mobile-drawer-controls__langs ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.35rem;
+  }
+
+  .mobile-drawer-controls__langs a {
+    display: block;
+    padding: 0.4rem 0.55rem;
+    border-radius: 0.3rem;
+    color: var(--md-default-fg-color);
+    font-size: 0.75rem;
+    text-decoration: none;
+    background: var(--md-default-bg-color);
+    border: 1px solid color-mix(in srgb, var(--md-default-fg-color) 12%, transparent);
+  }
+
+  .mobile-drawer-controls__langs a:hover,
+  .mobile-drawer-controls__langs a.is-active,
+  .mobile-drawer-controls__langs a[aria-current="page"] {
+    color: var(--md-accent-fg-color);
+    border-color: color-mix(in srgb, var(--md-accent-fg-color) 45%, transparent);
+  }
+
+  .mobile-drawer-controls__palette {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 0.15rem;
+  }
+
+  .mobile-drawer-controls__palette .md-header__option {
+    display: inline-flex;
+    margin: 0;
+  }
+}
+
+/* ─── Rainbow hover (final cascade) ─────────────────────────────────────────
+   Apply clip to the node that actually paints the glyphs (.md-ellipsis / link).
+   Also covers bottom page-toolbar links. */
+.dz-rainbow-hover:hover,
+.dz-rainbow-hover:focus-visible,
+.md-sidebar .md-nav__link:hover,
+.md-sidebar .md-nav__link:focus-visible,
+.md-sidebar .md-nav__link:hover .md-ellipsis,
+.md-sidebar .md-nav__link:focus-visible .md-ellipsis,
+.md-sidebar .toc-page-top:hover,
+.md-sidebar .toc-page-top:focus-visible,
+.md-sidebar .toc-page-top:hover .md-ellipsis,
+.md-sidebar .toc-page-top:focus-visible .md-ellipsis,
+.page-toolbar-link:hover,
+.page-toolbar-link:focus-visible,
+a.dz-cta-rainbow:hover,
+a.dz-cta-rainbow:focus-visible {
+  background-image: linear-gradient(
+    90deg,
+    #07c8c9 0%,
+    #1b63ff 28%,
+    #9b7bff 48%,
+    #ffdc78 68%,
+    #ff5a1f 85%,
+    #d92308 100%
+  ) !important;
+  background-size: 100% 100% !important;
+  background-repeat: no-repeat !important;
+  background-color: transparent !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  text-shadow: none !important;
+}
+
+/* Keep arrows / icons readable while text is rainbow-clipped */
+a.dz-cta-rainbow:hover::after,
+a.dz-cta-rainbow:focus-visible::after {
+  background: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
+  color: var(--md-default-fg-color) !important;
+  -webkit-text-fill-color: var(--md-default-fg-color) !important;
+}
+
+.page-toolbar-link:hover .page-toolbar-icon,
+.page-toolbar-link:focus-visible .page-toolbar-icon {
+  opacity: 1;
+  filter: none;
+}
+
+.md-sidebar .md-nav__link:hover .md-nav__icon,
+.md-sidebar .md-nav__link:focus-visible .md-nav__icon,
+.md-sidebar .md-nav__link:hover svg,
+.md-sidebar .md-nav__link:focus-visible svg {
+  color: var(--md-default-fg-color) !important;
+  fill: var(--md-default-fg-color) !important;
+  -webkit-text-fill-color: var(--md-default-fg-color) !important;
+  background: none !important;
+  -webkit-background-clip: border-box !important;
+  background-clip: border-box !important;
 }
