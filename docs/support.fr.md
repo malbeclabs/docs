@@ -4,7 +4,7 @@ description: Obtenez de l'aide avec DoubleZero — vérifiez l'état des liens e
 
 # Support
 
-Besoin d'aide pour vous connecter à DoubleZero ou pour opérer sur le réseau ? Commencez par vérifier l'état en direct, puis contactez l'équipe si vous avez encore besoin d'assistance.
+Besoin d'aide pour vous connecter à DoubleZero ou pour l'utiliser ? Commencez par vérifier l'état en direct, puis contactez l'équipe si vous avez encore besoin d'assistance.
 
 ## État des liens réseau
 
@@ -12,7 +12,7 @@ Vérifiez la santé actuelle des liens et la connectivité sur le portail de don
 
 **[Tableau de bord de l'état des liens](https://data.doublezero.xyz/status/links)**
 
-Utilisez cette page pour confirmer si les problèmes que vous rencontrez sont généralisés à l'ensemble du réseau ou locaux à votre configuration avant de modifier quoi que ce soit.
+Utilisez cette page pour confirmer si les problèmes que vous rencontrez sont généralisés à l'ensemble du réseau ou spécifiques à votre configuration avant de modifier quoi que ce soit.
 
 ## Contacter l'équipe
 
