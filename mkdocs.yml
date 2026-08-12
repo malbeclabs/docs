@@ -4,6 +4,13 @@ site_description: >-
   Documentation for connecting to and operating on the Malbec Labs / DoubleZero
   network — validator and tenant setup, multicast, rewards, geolocation, and
   contributor operations.
+# Machine-oriented runbooks stay in git for MCP / GitHub raw, but are not built
+# into the public docs site.
+exclude_docs: |
+  runbooks.md
+  solana-ibrl-runbook.md
+  solana-shreds-runbook.md
+  solana-shreds-publisher-runbook.md
 theme:
   name: material
   custom_dir: overrides
