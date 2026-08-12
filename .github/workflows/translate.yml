@@ -39,9 +39,11 @@ jobs:
         run: |
           BASE="${{ github.event.pull_request.base.sha }}"
           # Only source .md files — exclude already-translated ones (e.g. index.es.md)
+          # and MCP runbooks (git/raw only, not on the public site).
           CHANGED=$(git diff --name-only "$BASE" HEAD -- docs/ \
             | grep '\.md$' \
             | grep -vE '\.[a-z]{2,3}\.md$' \
+            | grep -vE '(^|/)runbooks\.md$|(^|/).*-runbook\.md$' \
             || true)
           echo "Source files changed:"
           echo "$CHANGED"

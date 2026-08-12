@@ -44,6 +44,11 @@ def translate(content: str, lang_name: str) -> str:
     return message.content[0].text
 
 
+def _is_runbook(filepath: str) -> bool:
+    name = filepath.replace("\\", "/").rsplit("/", 1)[-1]
+    return name == "runbooks.md" or name.endswith("-runbook.md")
+
+
 def main():
     changed_files = os.environ.get("CHANGED_FILES", "").strip().splitlines()
     target_langs = [
@@ -53,6 +58,7 @@ def main():
     ]
 
     source_files = [f.strip() for f in changed_files if f.strip() and f.endswith(".md")]
+    source_files = [f for f in source_files if not _is_runbook(f)]
 
     if not source_files:
         print("No changed source files.")
