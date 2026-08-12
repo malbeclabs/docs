@@ -20,7 +20,7 @@ Shelby
 
 | Caso de Uso | Próximo Passo |
 |-------------|---------|
-| RPCs e Nós de Armazenamento Shelby Testnet | [Conexão DoubleZero Testnet](Shelby%20Permissioned%20Connection.md) |
+| RPCs e Nós de Armazenamento Shelby Testnet | [Conexão DoubleZero Testnet](shelby.md) |
 
 Novo Tenant
 

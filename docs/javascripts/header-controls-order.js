@@ -125,10 +125,13 @@
       }).observe(header, { childList: true, subtree: true });
     }
 
-    new MutationObserver(syncDrawerThemeBtn).observe(document.body, {
-      attributes: true,
-      attributeFilter: ['data-md-color-scheme', 'data-md-color-primary']
-    });
+    if (!window.__dzBodyThemeObsBound) {
+      window.__dzBodyThemeObsBound = true;
+      new MutationObserver(syncDrawerThemeBtn).observe(document.body, {
+        attributes: true,
+        attributeFilter: ['data-md-color-scheme', 'data-md-color-primary']
+      });
+    }
   }
 
   function onReady(fn) {

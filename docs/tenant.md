@@ -1,5 +1,5 @@
 ---
-description: Choose the DoubleZero tenant and connection path that matches your use case — Solana validators, RPCs, Shelby, or a new protocol.
+description: Choose the DoubleZero tenant and connection path that matches your use case — Solana validators, RPCs, Kalshi market data, Shelby, or a new protocol.
 ---
 
 # Tenants
@@ -16,11 +16,17 @@ Solana
 | Solana Testnet Validator, including backups | [DoubleZero Testnet Connection](<DZ Testnet Connection.md>) |
 | Non-Validators - RPCs, and others. | [DoubleZero Mainnet-Beta and Testnet Connection](Permissioned%20Connection.md) |
 
+Kalshi
+
+| Use Case | Next Stop |
+|-------------|---------|
+| Subscribing to the Kalshi market data feeds | [Kalshi](kalshi.md) |
+
 Shelby
 
 | Use Case | Next Stop |
 |-------------|---------|
-| Shelby Testnet RPCs and Storage Nodes | [DoubleZero Testnet Connection](Shelby%20Permissioned%20Connection.md) |
+| Shelby Testnet RPCs and Storage Nodes | [DoubleZero Testnet Connection](shelby.md) |
 
 New Tenant
 

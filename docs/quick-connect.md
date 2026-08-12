@@ -46,6 +46,10 @@ Answer a few questions and we'll generate a personalized connection guide with t
 <span class="wizard-card-title">Solana</span>
 <span class="wizard-card-desc">Validators and RPC operators on Solana</span>
 </button>
+<button class="wizard-card" data-question="tenant" data-value="kalshi">
+<span class="wizard-card-title">Kalshi</span>
+<span class="wizard-card-desc">Market data feed subscribers on Kalshi</span>
+</button>
 <button class="wizard-card" data-question="tenant" data-value="shelby" title="Testnet only">
 <span class="wizard-card-title">Shelby</span>
 <span class="wizard-card-desc">RPCs and Storage Nodes on Shelby (Testnet only)</span>

@@ -19,7 +19,7 @@
     network: { 'mainnet-beta': 'Mainnet-Beta', 'testnet': 'Testnet' },
     os: { 'deb': 'Ubuntu / Debian', 'rpm': 'Rocky / RHEL' },
     firewall: { 'iptables': 'iptables', 'ufw': 'UFW' },
-    tenant: { 'solana': 'Solana', 'shelby': 'Shelby', 'new-tenant': 'New Tenant' },
+    tenant: { 'solana': 'Solana', 'kalshi': 'Kalshi', 'shelby': 'Shelby', 'new-tenant': 'New Tenant' },
     usertype: { 'validator': 'Validator', 'rpc': 'RPC' },
     connection: { 'unicast': 'Unicast (IBRL)', 'multicast': 'Multicast', 'both': 'Both' },
     multicastrole: { 'publisher': 'Publisher', 'subscriber': 'Subscriber' }
@@ -39,7 +39,7 @@
         if (state.tenant === 'new-tenant') return null;
         return 'firewall';
       case 'firewall':
-        if (state.tenant === 'shelby') return null;
+        if (state.tenant === 'shelby' || state.tenant === 'kalshi') return null;
         return 'usertype';
       case 'usertype': return 'connection';
       case 'connection':
@@ -242,6 +242,11 @@
         sources.push({ page: '../setup/', section: 'firewall-gre-bgp-' + s.firewall });
         if (s.tenant == 'solana') {
           sources.push({ page: connectionPage(s).page, section: 'firewall-' + s.firewall });
+        } else if (s.tenant === 'kalshi') {
+          sources.push({
+            page: '../kalshi/',
+            section: 'kalshi-firewall-' + s.firewall
+          });
         }
         return sources;
       }
@@ -288,9 +293,25 @@
       show: function(s) { return s.usertype === 'rpc' || s.tenant === 'shelby'; },
       sources: function(s) {
         var page = s.tenant === 'shelby'
-          ? '../Shelby%20Permissioned%20Connection/'
+          ? '../shelby/'
           : '../Permissioned%20Connection/';
         return [{ page: page, section: 'rpc-onboarding' }];
+      }
+    },
+    {
+      id: 'kalshi-buy-feed',
+      title: 'Buy a Feed',
+      show: function(s) { return s.tenant === 'kalshi'; },
+      sources: function() {
+        return [{ page: '../kalshi/', section: 'kalshi-buy-feed' }];
+      }
+    },
+    {
+      id: 'kalshi-subscribe',
+      title: 'Subscribe to the Kalshi Feeds',
+      show: function(s) { return s.tenant === 'kalshi'; },
+      sources: function() {
+        return [{ page: '../kalshi/', section: 'kalshi-subscribe' }];
       }
     },
     {
@@ -299,7 +320,7 @@
       show: function(s) { return s.tenant === 'shelby' || s.connection === 'unicast' || s.connection === 'both'; },
       sources: function(s) {
         if (s.tenant === 'shelby') {
-          return [{ page: '../Shelby%20Permissioned%20Connection/', section: 'rpc-connect-ibrl' }];
+          return [{ page: '../shelby/', section: 'rpc-connect-ibrl' }];
         }
         if (s.usertype === 'rpc') {
           return [{ page: '../Permissioned%20Connection/', section: 'rpc-connect-ibrl' }];
@@ -348,6 +369,12 @@
         labelFor('os', state.os) + '</strong>.</p>';
     }
 
+    if (state.tenant === 'kalshi') {
+      return '<p class="wizard-summary-line">Subscribe to the <strong>Kalshi</strong> market-data ' +
+        'feeds on DoubleZero <strong>' + networkLabel + '</strong> on <strong>' +
+        labelFor('os', state.os) + '</strong>.</p>';
+    }
+
     var connLabel = state.connection === 'both' ? 'unicast + multicast'
       : state.connection === 'unicast' ? 'unicast (IBRL)' : 'multicast';
     var roleNote = state.multicastrole ? ' as a ' + state.multicastrole : '';
@@ -368,7 +395,9 @@
         ? '<li><a href="../DZ%20Mainnet-beta%20Connection/">Mainnet-Beta Connection</a></li>'
         : '<li><a href="../DZ%20Testnet%20Connection/">Testnet Connection</a></li>') +
       (state.tenant === 'shelby'
-        ? '<li><a href="../Shelby%20Permissioned%20Connection/">Shelby Permissioned Connection</a></li>' : '') +
+        ? '<li><a href="../shelby/">Shelby</a></li>' : '') +
+      (state.tenant === 'kalshi'
+        ? '<li><a href="../kalshi/">Kalshi</a></li>' : '') +
       (state.usertype === 'rpc' && state.tenant !== 'shelby'
         ? '<li><a href="../Permissioned%20Connection/">Permissioned Connection</a></li>' : '') +
       (state.connection !== 'unicast'
