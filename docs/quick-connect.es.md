@@ -46,6 +46,10 @@ Responde algunas preguntas y generaremos una guía de conexión personalizada co
 <span class="wizard-card-title">Solana</span>
 <span class="wizard-card-desc">Validadores y operadores RPC en Solana</span>
 </button>
+<button class="wizard-card" data-question="tenant" data-value="kalshi">
+<span class="wizard-card-title">Kalshi</span>
+<span class="wizard-card-desc">Suscriptores de feed de datos de mercado en Kalshi</span>
+</button>
 <button class="wizard-card" data-question="tenant" data-value="shelby" title="Solo Testnet">
 <span class="wizard-card-title">Shelby</span>
 <span class="wizard-card-desc">RPCs y nodos de almacenamiento en Shelby (solo Testnet)</span>
@@ -104,7 +108,7 @@ Responde algunas preguntas y generaremos una guía de conexión personalizada co
 </div>
 
 <div id="wiz-q-multicastrole" class="wizard-question wizard-hidden">
-<h3>¿Cuál es tu rol en multicast?</h3>
+<h3>¿Cuál es tu rol de multicast?</h3>
 <div class="wizard-options">
 <button class="wizard-card" data-question="multicastrole" data-value="publisher">
 <span class="wizard-card-title">Publicador</span>

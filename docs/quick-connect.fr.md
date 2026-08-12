@@ -16,7 +16,7 @@ Répondez à quelques questions et nous générerons un guide de connexion perso
 <div class="wizard-options">
 <button class="wizard-card" data-question="network" data-value="mainnet-beta">
 <span class="wizard-card-title">Mainnet-Beta</span>
-<span class="wizard-card-desc">Réseau de production pour les validateurs et opérateurs RPC actifs</span>
+<span class="wizard-card-desc">Réseau de production pour les validateurs actifs et les opérateurs RPC</span>
 </button>
 <button class="wizard-card" data-question="network" data-value="testnet">
 <span class="wizard-card-title">Testnet</span>
@@ -26,7 +26,7 @@ Répondez à quelques questions et nous générerons un guide de connexion perso
 </div>
 
 <div id="wiz-q-os" class="wizard-question wizard-hidden">
-<h3>Quel système d'exploitation votre serveur exécute-t-il ?</h3>
+<h3>Quel système d'exploitation votre serveur utilise-t-il ?</h3>
 <div class="wizard-options">
 <button class="wizard-card" data-question="os" data-value="deb">
 <span class="wizard-card-title">Ubuntu / Debian</span>
@@ -45,6 +45,10 @@ Répondez à quelques questions et nous générerons un guide de connexion perso
 <button class="wizard-card" data-question="tenant" data-value="solana">
 <span class="wizard-card-title">Solana</span>
 <span class="wizard-card-desc">Validateurs et opérateurs RPC sur Solana</span>
+</button>
+<button class="wizard-card" data-question="tenant" data-value="kalshi">
+<span class="wizard-card-title">Kalshi</span>
+<span class="wizard-card-desc">Abonnés au flux de données de marché sur Kalshi</span>
 </button>
 <button class="wizard-card" data-question="tenant" data-value="shelby" title="Testnet uniquement">
 <span class="wizard-card-title">Shelby</span>
@@ -94,7 +98,7 @@ Répondez à quelques questions et nous générerons un guide de connexion perso
 </button>
 <button class="wizard-card" data-question="connection" data-value="multicast">
 <span class="wizard-card-title">Multicast</span>
-<span class="wizard-card-desc">Distribution de paquets un-vers-plusieurs (éditeur/abonné)</span>
+<span class="wizard-card-desc">Livraison de paquets un-vers-plusieurs (éditeur/abonné)</span>
 </button>
 <button class="wizard-card" data-question="connection" data-value="both">
 <span class="wizard-card-title">Les deux</span>
@@ -108,7 +112,7 @@ Répondez à quelques questions et nous générerons un guide de connexion perso
 <div class="wizard-options">
 <button class="wizard-card" data-question="multicastrole" data-value="publisher">
 <span class="wizard-card-title">Éditeur</span>
-<span class="wizard-card-desc">Envoyer des données à un groupe multicast (ex. : producteur de blocs)</span>
+<span class="wizard-card-desc">Envoyer des données à un groupe multicast (par ex., producteur de blocs)</span>
 </button>
 <button class="wizard-card" data-question="multicastrole" data-value="subscriber">
 <span class="wizard-card-title">Abonné</span>

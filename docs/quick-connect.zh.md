@@ -1,10 +1,10 @@
 ---
-description: 回答几个问题，生成适合您配置的个性化 DoubleZero 连接指南，包含确切的步骤和命令。
+description: 回答几个问题，生成一份个性化的 DoubleZero 连接指南，包含适合您设置的确切步骤和命令。
 ---
 
 # 快速连接
 
-回答几个问题，我们将为您生成一份个性化的连接指南，包含适合您配置的确切步骤和命令。
+回答几个问题，我们将为您生成一份个性化的连接指南，包含适合您设置的确切步骤和命令。
 
 !!! note "简化指南"
     此向导提供了完整文档中的关键片段，帮助您尽快完成连接。如需完整详情，请参阅 [设置](setup.md) 和 [租户](tenant.md) 指南。
@@ -16,7 +16,7 @@ description: 回答几个问题，生成适合您配置的个性化 DoubleZero �
 <div class="wizard-options">
 <button class="wizard-card" data-question="network" data-value="mainnet-beta">
 <span class="wizard-card-title">Mainnet-Beta</span>
-<span class="wizard-card-desc">用于活跃验证者和 RPC 运营商的生产网络</span>
+<span class="wizard-card-desc">面向活跃验证者和 RPC 运营商的生产网络</span>
 </button>
 <button class="wizard-card" data-question="network" data-value="testnet">
 <span class="wizard-card-title">Testnet</span>
@@ -45,6 +45,10 @@ description: 回答几个问题，生成适合您配置的个性化 DoubleZero �
 <button class="wizard-card" data-question="tenant" data-value="solana">
 <span class="wizard-card-title">Solana</span>
 <span class="wizard-card-desc">Solana 上的验证者和 RPC 运营商</span>
+</button>
+<button class="wizard-card" data-question="tenant" data-value="kalshi">
+<span class="wizard-card-title">Kalshi</span>
+<span class="wizard-card-desc">Kalshi 上的市场数据订阅者</span>
 </button>
 <button class="wizard-card" data-question="tenant" data-value="shelby" title="仅限 Testnet">
 <span class="wizard-card-title">Shelby</span>
@@ -108,7 +112,7 @@ description: 回答几个问题，生成适合您配置的个性化 DoubleZero �
 <div class="wizard-options">
 <button class="wizard-card" data-question="multicastrole" data-value="publisher">
 <span class="wizard-card-title">发布者</span>
-<span class="wizard-card-desc">向组播组发送数据（例如，出块者）</span>
+<span class="wizard-card-desc">向组播组发送数据（例如，出块节点）</span>
 </button>
 <button class="wizard-card" data-question="multicastrole" data-value="subscriber">
 <span class="wizard-card-title">订阅者</span>

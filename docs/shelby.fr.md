@@ -1,37 +1,39 @@
-# Connexion à DoubleZero en Mode IBRL pour les Utilisateurs du Testnet Shelby
-!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+---
+description: Guide de connexion avec permissions pour les utilisateurs du Testnet Shelby se connectant à DoubleZero en mode IBRL.
+---
 
-!!! warning "En me connectant à DoubleZero, j'accepte les [Conditions d'Utilisation de DoubleZero](https://doublezero.xyz/terms-protocol)"
+# Shelby
+!!! warning "En me connectant à DoubleZero, j'accepte les [Conditions d'utilisation de DoubleZero](https://doublezero.xyz/terms-protocol)"
 
 <div data-wizard-step="rpc-onboarding" markdown>
 
 ### Obtenir votre DoubleZeroID
 
-Vous devrez fournir votre `DoubleZeroID` et l'`adresse IPv4 publique` sur ce [formulaire](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z)
+Vous devrez fournir votre `DoubleZeroID` et l'`public ipv4 address` sur ce [formulaire](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z)
 
 
-- Des frais pourront être associés à l'utilisation des Utilisateurs Autorisés à l'avenir.
+- Des frais pourraient être associés à l'utilisation des utilisateurs avec permissions à l'avenir.
 - Après la soumission du formulaire, surveillez votre contact Telegram principal.
-- Pour l'instant, Shelby ne peut se connecter qu'au Testnet DoubleZero.
+- À ce stade, Shelby ne peut se connecter qu'au Testnet DoubleZero.
 
 </div>
 
-### Connexion au Testnet en Mode IBRL
+### Connexion au Testnet en mode IBRL
 
-Les utilisateurs autorisés Shelby complèteront la connexion au Testnet DoubleZero, qui est décrite sur cette page.
+Les utilisateurs avec permissions Shelby effectueront la connexion au Testnet DoubleZero, qui est détaillée sur cette page.
 
-## 1. Configuration de l'Environnement
+## 1. Configuration de l'environnement
 
-Veuillez suivre les instructions de [configuration](setup.md) avant de procéder.
+Veuillez suivre les instructions de [configuration](setup.md) avant de continuer.
 
-La dernière étape de la configuration consistait à se déconnecter du réseau. Cela garantit qu'un seul tunnel est ouvert sur votre machine vers DoubleZero, et que ce tunnel est sur le bon réseau.
+La dernière étape de la configuration consistait à se déconnecter du réseau. Cela permet de s'assurer qu'un seul tunnel est ouvert sur votre machine vers DoubleZero, et que ce tunnel est sur le bon réseau.
 
-Pour configurer la CLI Client DoubleZero (`doublezero`) afin de se connecter au tenant Shelby sur DoubleZero :
+Pour configurer le CLI du client DoubleZero (`doublezero`) afin de se connecter au tenant Shelby sur DoubleZero :
 ```bash
 doublezero config set --tenant shelby
 ```
 
-Appliquez des règles de pare-feu supplémentaires spécifiques à Shelby :
+Appliquez les règles de pare-feu supplémentaires spécifiques à Shelby :
 
 iptables :
 ```
@@ -45,14 +47,14 @@ sudo ufw allow in on doublezero0 to any port 39431 proto tcp
 sudo ufw deny in to any port 39431 proto tcp
 ```
 
-## 2. Contacter la DoubleZero Foundation
+## 2. Contacter la Fondation DoubleZero
 
-La DoubleZero Foundation. Vous devrez fournir votre `DoubleZeroID` et l'`adresse IPv4 publique` depuis laquelle vous vous connecterez.
+La fondation DoubleZero. Vous devrez fournir votre `DoubleZeroID` et l'`public ipv4 address` depuis laquelle vous vous connecterez.
 
 
 <div data-wizard-step="rpc-connect-ibrl" markdown>
 
-## 3. Se Connecter en Mode IBRL
+## 3. Se connecter en mode IBRL
 
 Sur le serveur, avec l'utilisateur qui se connectera à DoubleZero, exécutez la commande `connect` pour établir la connexion à DoubleZero.
 
@@ -73,7 +75,7 @@ Public IP detected: 137.184.101.183 - If you want to use a different IP, you can
     Service provisioned with status: ok
 ✅  User Provisioned
 ```
-Attendez une minute que le tunnel soit complété. Jusqu'à ce que le tunnel soit établi, votre sortie de statut peut indiquer "down" ou "Unknown"
+Attendez une minute que le tunnel se termine. Tant que le tunnel n'est pas terminé, la sortie de votre statut peut renvoyer "down" ou "Unknown"
 
 Vérifiez votre connexion :
 
@@ -88,7 +90,7 @@ up            | 2025-09-10 12:16:03 UTC | doublezero0 | 137.184.101.183 | 64.86.
 ```
 Un statut `up` signifie que vous êtes connecté avec succès.
 
-Vous pourrez voir les routes propagées par d'autres utilisateurs sur DoubleZero en exécutant :
+Vous pourrez visualiser les routes propagées par d'autres utilisateurs sur DoubleZero en exécutant :
 
 ```
 ip route

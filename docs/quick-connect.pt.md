@@ -7,7 +7,7 @@ description: Responda algumas perguntas para gerar um guia de conexão DoubleZer
 Responda algumas perguntas e geraremos um guia de conexão personalizado com os passos e comandos exatos para a sua configuração.
 
 !!! note "Guia Simplificado"
-    Este assistente fornece trechos-chave da documentação completa para conectar você o mais rápido possível. Para detalhes completos, consulte os guias de [Configuração](setup.md) e [Tenant](tenant.md).
+    Este assistente fornece trechos essenciais da documentação completa para conectá-lo o mais rápido possível. Para detalhes completos, consulte os guias de [Configuração](setup.md) e [Tenant](tenant.md).
 
 <div id="wizard-container">
 
@@ -16,7 +16,7 @@ Responda algumas perguntas e geraremos um guia de conexão personalizado com os 
 <div class="wizard-options">
 <button class="wizard-card" data-question="network" data-value="mainnet-beta">
 <span class="wizard-card-title">Mainnet-Beta</span>
-<span class="wizard-card-desc">Rede de produção para validadores ativos e operadores RPC</span>
+<span class="wizard-card-desc">Rede de produção para validadores e operadores RPC ativos</span>
 </button>
 <button class="wizard-card" data-question="network" data-value="testnet">
 <span class="wizard-card-title">Testnet</span>
@@ -46,6 +46,10 @@ Responda algumas perguntas e geraremos um guia de conexão personalizado com os 
 <span class="wizard-card-title">Solana</span>
 <span class="wizard-card-desc">Validadores e operadores RPC na Solana</span>
 </button>
+<button class="wizard-card" data-question="tenant" data-value="kalshi">
+<span class="wizard-card-title">Kalshi</span>
+<span class="wizard-card-desc">Assinantes de feed de dados de mercado na Kalshi</span>
+</button>
 <button class="wizard-card" data-question="tenant" data-value="shelby" title="Apenas Testnet">
 <span class="wizard-card-title">Shelby</span>
 <span class="wizard-card-desc">RPCs e Nós de Armazenamento na Shelby (Apenas Testnet)</span>
@@ -72,7 +76,7 @@ Responda algumas perguntas e geraremos um guia de conexão personalizado com os 
 </div>
 
 <div id="wiz-q-usertype" class="wizard-question wizard-hidden">
-<h3>Qual tipo de nó você está executando?</h3>
+<h3>Que tipo de nó você está executando?</h3>
 <div class="wizard-options">
 <button class="wizard-card" data-question="usertype" data-value="validator">
 <span class="wizard-card-title">Validador</span>
@@ -90,11 +94,11 @@ Responda algumas perguntas e geraremos um guia de conexão personalizado com os 
 <div class="wizard-options">
 <button class="wizard-card" data-question="connection" data-value="unicast">
 <span class="wizard-card-title">Unicast (IBRL)</span>
-<span class="wizard-card-desc">Conexão ponto-a-ponto padrão</span>
+<span class="wizard-card-desc">Conexão padrão ponto-a-ponto</span>
 </button>
 <button class="wizard-card" data-question="connection" data-value="multicast">
 <span class="wizard-card-title">Multicast</span>
-<span class="wizard-card-desc">Entrega de pacotes de um para muitos (publicador/assinante)</span>
+<span class="wizard-card-desc">Entrega de pacotes um-para-muitos (publicador/assinante)</span>
 </button>
 <button class="wizard-card" data-question="connection" data-value="both">
 <span class="wizard-card-title">Ambos</span>

@@ -1,10 +1,10 @@
 ---
-description: Escolha o tenant e o caminho de conexão DoubleZero que corresponde ao seu caso de uso — validadores Solana, RPCs, Shelby ou um novo protocolo.
+description: Escolha o tenant e o caminho de conexão DoubleZero que corresponde ao seu caso de uso — validadores Solana, RPCs, dados de mercado Kalshi, Shelby ou um novo protocolo.
 ---
 
 # Tenants
 
-Tenants no DoubleZero são grupos de usuários com perfis e requisitos de conexão semelhantes, normalmente representando diferentes ecossistemas de blockchain, camadas de transferência de dados ou sistemas distribuídos.
+Tenants no DoubleZero são grupos de usuários com perfis e requisitos de conexão semelhantes, representando tipicamente diferentes ecossistemas de blockchain, camadas de transferência de dados ou sistemas distribuídos.
 
 Examine a tabela abaixo e escolha o caso de uso que melhor descreve como você planeja interagir com a Rede DoubleZero.
 
@@ -15,6 +15,12 @@ Solana
 | Validador Solana Mainnet, incluindo backups | [Conexão DoubleZero Mainnet-Beta](<DZ Mainnet-beta Connection.md>) |
 | Validador Solana Testnet, incluindo backups | [Conexão DoubleZero Testnet](<DZ Testnet Connection.md>) |
 | Não-Validadores - RPCs e outros. | [Conexão DoubleZero Mainnet-Beta e Testnet](Permissioned%20Connection.md) |
+
+Kalshi
+
+| Caso de Uso | Próximo Passo |
+|-------------|---------|
+| Assinatura dos feeds de dados de mercado Kalshi | [Kalshi](kalshi.md) |
 
 Shelby
 

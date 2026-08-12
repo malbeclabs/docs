@@ -1,13 +1,13 @@
 ---
-description: 몇 가지 질문에 답하면 사용자 환경에 맞는 정확한 단계와 명령어가 포함된 맞춤형 DoubleZero 연결 가이드를 생성합니다.
+description: 몇 가지 질문에 답하면 설정에 맞는 정확한 단계와 명령어가 포함된 맞춤형 DoubleZero 연결 가이드를 생성합니다.
 ---
 
 # 빠른 연결
 
-몇 가지 질문에 답하시면 사용자 환경에 맞는 정확한 단계와 명령어가 포함된 맞춤형 연결 가이드를 생성해 드립니다.
+몇 가지 질문에 답하시면 설정에 맞는 정확한 단계와 명령어가 포함된 맞춤형 연결 가이드를 생성해 드립니다.
 
 !!! note "간소화된 가이드"
-    이 마법사는 가능한 한 빠르게 연결할 수 있도록 전체 문서에서 핵심 내용을 발췌하여 제공합니다. 자세한 내용은 [설정](setup.md) 및 [테넌트](tenant.md) 가이드를 참조하세요.
+    이 마법사는 가능한 빠르게 연결할 수 있도록 전체 문서에서 핵심 내용을 제공합니다. 자세한 내용은 [설정](setup.md) 및 [테넌트](tenant.md) 가이드를 참조하세요.
 
 <div id="wizard-container">
 
@@ -26,7 +26,7 @@ description: 몇 가지 질문에 답하면 사용자 환경에 맞는 정확한
 </div>
 
 <div id="wiz-q-os" class="wizard-question wizard-hidden">
-<h3>서버의 운영 체제는 무엇인가요?</h3>
+<h3>서버에서 어떤 운영체제를 실행하고 있나요?</h3>
 <div class="wizard-options">
 <button class="wizard-card" data-question="os" data-value="deb">
 <span class="wizard-card-title">Ubuntu / Debian</span>
@@ -40,11 +40,15 @@ description: 몇 가지 질문에 답하면 사용자 환경에 맞는 정확한
 </div>
 
 <div id="wiz-q-tenant" class="wizard-question wizard-hidden">
-<h3>어떤 에코시스템인가요?</h3>
+<h3>어떤 생태계인가요?</h3>
 <div class="wizard-options">
 <button class="wizard-card" data-question="tenant" data-value="solana">
 <span class="wizard-card-title">Solana</span>
 <span class="wizard-card-desc">Solana의 밸리데이터 및 RPC 운영자</span>
+</button>
+<button class="wizard-card" data-question="tenant" data-value="kalshi">
+<span class="wizard-card-title">Kalshi</span>
+<span class="wizard-card-desc">Kalshi의 시장 데이터 피드 구독자</span>
 </button>
 <button class="wizard-card" data-question="tenant" data-value="shelby" title="Testnet only">
 <span class="wizard-card-title">Shelby</span>
@@ -52,7 +56,7 @@ description: 몇 가지 질문에 답하면 사용자 환경에 맞는 정확한
 </button>
 <button class="wizard-card" data-question="tenant" data-value="new-tenant">
 <span class="wizard-card-title">새 테넌트</span>
-<span class="wizard-card-desc">기타 에코시스템</span>
+<span class="wizard-card-desc">기타 생태계</span>
 </button>
 </div>
 </div>
@@ -72,11 +76,11 @@ description: 몇 가지 질문에 답하면 사용자 환경에 맞는 정확한
 </div>
 
 <div id="wiz-q-usertype" class="wizard-question wizard-hidden">
-<h3>어떤 유형의 노드를 운영하시나요?</h3>
+<h3>어떤 유형의 노드를 운영하고 있나요?</h3>
 <div class="wizard-options">
 <button class="wizard-card" data-question="usertype" data-value="validator">
 <span class="wizard-card-title">밸리데이터</span>
-<span class="wizard-card-desc">아이덴티티 키페어를 가진 리더 스케줄 Solana 밸리데이터</span>
+<span class="wizard-card-desc">ID 키페어를 가진 리더 스케줄 Solana 밸리데이터</span>
 </button>
 <button class="wizard-card" data-question="usertype" data-value="rpc">
 <span class="wizard-card-title">비밸리데이터 (RPC)</span>
@@ -90,7 +94,7 @@ description: 몇 가지 질문에 답하면 사용자 환경에 맞는 정확한
 <div class="wizard-options">
 <button class="wizard-card" data-question="connection" data-value="unicast">
 <span class="wizard-card-title">유니캐스트 (IBRL)</span>
-<span class="wizard-card-desc">표준 점대점 연결</span>
+<span class="wizard-card-desc">표준 포인트-투-포인트 연결</span>
 </button>
 <button class="wizard-card" data-question="connection" data-value="multicast">
 <span class="wizard-card-title">멀티캐스트</span>

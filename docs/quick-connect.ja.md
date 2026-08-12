@@ -1,13 +1,13 @@
 ---
-description: いくつかの質問に答えるだけで、お使いの環境に合った正確な手順とコマンドを含む、パーソナライズされたDoubleZero接続ガイドを生成します。
+description: いくつかの質問に答えるだけで、お使いの環境に合わせた正確な手順とコマンドを含む、パーソナライズされたDoubleZero接続ガイドを生成します。
 ---
 
 # クイックコネクト
 
-いくつかの質問に答えるだけで、お使いの環境に合った正確な手順とコマンドを含む、パーソナライズされた接続ガイドを生成します。
+いくつかの質問に答えるだけで、お使いの環境に合わせた正確な手順とコマンドを含む、パーソナライズされた接続ガイドを生成します。
 
 !!! note "簡易ガイド"
-    このウィザードは、できるだけ早く接続できるよう、完全なドキュメントから重要なスニペットを提供します。詳細については、[セットアップ](setup.md)および[テナント](tenant.md)ガイドを参照してください。
+    このウィザードは、できるだけ早く接続できるよう、完全なドキュメントから重要なスニペットを提供します。詳細については、[セットアップ](setup.md)および[テナント](tenant.md)ガイドをご覧ください。
 
 <div id="wizard-container">
 
@@ -20,7 +20,7 @@ description: いくつかの質問に答えるだけで、お使いの環境に�
 </button>
 <button class="wizard-card" data-question="network" data-value="testnet">
 <span class="wizard-card-title">Testnet</span>
-<span class="wizard-card-desc">テストおよび開発用ネットワーク</span>
+<span class="wizard-card-desc">テストおよび開発ネットワーク</span>
 </button>
 </div>
 </div>
@@ -46,7 +46,11 @@ description: いくつかの質問に答えるだけで、お使いの環境に�
 <span class="wizard-card-title">Solana</span>
 <span class="wizard-card-desc">Solana上のバリデーターおよびRPCオペレーター</span>
 </button>
-<button class="wizard-card" data-question="tenant" data-value="shelby" title="Testnet only">
+<button class="wizard-card" data-question="tenant" data-value="kalshi">
+<span class="wizard-card-title">Kalshi</span>
+<span class="wizard-card-desc">Kalshi上のマーケットデータフィード購読者</span>
+</button>
+<button class="wizard-card" data-question="tenant" data-value="shelby" title="Testnetのみ">
 <span class="wizard-card-title">Shelby</span>
 <span class="wizard-card-desc">Shelby上のRPCおよびストレージノード（Testnetのみ）</span>
 </button>
@@ -72,7 +76,7 @@ description: いくつかの質問に答えるだけで、お使いの環境に�
 </div>
 
 <div id="wiz-q-usertype" class="wizard-question wizard-hidden">
-<h3>どの種類のノードを運用していますか？</h3>
+<h3>どのタイプのノードを実行していますか？</h3>
 <div class="wizard-options">
 <button class="wizard-card" data-question="usertype" data-value="validator">
 <span class="wizard-card-title">バリデーター</span>
@@ -108,11 +112,11 @@ description: いくつかの質問に答えるだけで、お使いの環境に�
 <div class="wizard-options">
 <button class="wizard-card" data-question="multicastrole" data-value="publisher">
 <span class="wizard-card-title">パブリッシャー</span>
-<span class="wizard-card-desc">マルチキャストグループにデータを送信する（例：ブロックプロデューサー）</span>
+<span class="wizard-card-desc">マルチキャストグループにデータを送信（例：ブロックプロデューサー）</span>
 </button>
 <button class="wizard-card" data-question="multicastrole" data-value="subscriber">
 <span class="wizard-card-title">サブスクライバー</span>
-<span class="wizard-card-desc">マルチキャストグループからデータを受信する</span>
+<span class="wizard-card-desc">マルチキャストグループからデータを受信</span>
 </button>
 </div>
 </div>
