@@ -17,34 +17,35 @@ that plugin cannot resolve localized page URIs under mkdocs-static-i18n.
 
 from __future__ import annotations
 
+import logging
 import os
 
 # Locale subdirectories produced by mkdocs-static-i18n. A page whose built path
 # starts with one of these belongs to a translation, not the default locale.
 LOCALES = {"zh", "ja", "ko", "pt", "es", "fr", "it"}
 
+log = logging.getLogger("mkdocs.hooks.emit_markdown")
+
 # Curated llms.txt layout: (section title, [source files in order]).
 SECTIONS = [
     ("Welcome", ["index.md"]),
-    ("Quick start", ["quick-connect.md"]),
+    ("Setup", ["setup.md"]),
+    ("Connect your AI", ["mcp.md"]),
+    ("Kalshi", ["kalshi.md"]),
     (
-        "Users",
+        "Solana",
         [
-            "setup.md",
-            "tenant.md",
             "DZ Mainnet-beta Connection.md",
             "DZ Testnet Connection.md",
-            "Permissioned Connection.md",
             "Validator Multicast Connection.md",
-            "Validator Rewards.md",
-            "Other Multicast Connection.md",
             "Edge Subscriber Connection.md",
+            "Permissioned Connection.md",
+            "Other Multicast Connection.md",
             "troubleshooting.md",
-            "geolocation.md",
-            "Shelby Permissioned Connection.md",
-            "New Tenant.md",
+            "Validator Rewards.md",
         ],
     ),
+    ("Shelby", ["shelby.md"]),
     (
         "Contributors",
         [
@@ -54,9 +55,11 @@ SECTIONS = [
             "contribute-operations.md",
             "contribute-ops-management.md",
             "contribute-geolocation.md",
+            "contribute-decommission.md",
         ],
     ),
-    ("Reference", ["architecture.md", "glossary.md"]),
+    ("Reference", ["architecture.md", "geolocation.md", "glossary.md"]),
+    ("Support", ["support.md"]),
 ]
 
 # Collected default-locale pages, keyed by source filename (e.g. "setup.md").
@@ -126,6 +129,11 @@ def on_post_build(config, **kwargs) -> None:
         for src in files:
             page = _pages.get(src)
             if not page:
+                log.warning(
+                    "llms SECTIONS entry %r under %r did not resolve to a built page",
+                    src,
+                    title,
+                )
                 continue
             entry = f"- [{page['title']}]({page['md_url']})"
             if page["description"]:

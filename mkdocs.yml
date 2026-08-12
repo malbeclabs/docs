@@ -15,6 +15,8 @@ exclude_docs: |
   solana-shreds-runbook.*.md
   solana-shreds-publisher-runbook.md
   solana-shreds-publisher-runbook.*.md
+  kalshi-runbook.md
+  kalshi-runbook.*.md
 theme:
   name: material
   custom_dir: overrides
@@ -81,24 +83,19 @@ plugins:
           build: true
 nav:
   - Welcome: index.md
-  - Quick Connect: quick-connect.md
-  - Users:
-    - Setup: setup.md
-    - Tenants:
-      - Overview: tenant.md
-      - Solana:
-        - Validator Mainnet-Beta Connection: DZ Mainnet-beta Connection.md
-        - Validator Testnet Connection: DZ Testnet Connection.md
-        - Permissioned Connection: Permissioned Connection.md
-        - Validator Multicast Connection: Validator Multicast Connection.md
-        - Validator Rewards: Validator Rewards.md
-        - Other Multicast Connection: Other Multicast Connection.md
-        - Edge Subscriber Connection: Edge Subscriber Connection.md
-        - Troubleshooting: troubleshooting.md
-      - Shelby:
-        - Shelby Connection: Shelby Permissioned Connection.md
-      - New Tenant: New Tenant.md
-    - Geolocation: geolocation.md
+  - Setup: setup.md
+  - Connect your AI: mcp.md
+  - Kalshi: kalshi.md
+  - Solana:
+    - Connect validator (IBRL Mainnet): DZ Mainnet-beta Connection.md
+    - Connect validator (IBRL Testnet): DZ Testnet Connection.md
+    - Publish shreds (Edge): Validator Multicast Connection.md
+    - Subscribe to shreds (Edge): Edge Subscriber Connection.md
+    - Permissioned / RPC: Permissioned Connection.md
+    - Other multicast: Other Multicast Connection.md
+    - Troubleshoot Edge: troubleshooting.md
+    - Validator Rewards: Validator Rewards.md
+  - Shelby: shelby.md
   - Contributors:
     - Overview: contribute-overview.md
     - Requirements & Architecture: contribute.md
@@ -107,8 +104,10 @@ nav:
     - OPS Management: contribute-ops-management.md
     - Geolocation: contribute-geolocation.md
     - Decommissioning: contribute-decommission.md
-  - Architecture: architecture.md
-  - Glossary: glossary.md
+  - Reference:
+    - Architecture: architecture.md
+    - Geolocation: geolocation.md
+    - Glossary: glossary.md
   - Support: support.md
 markdown_extensions:
   - admonition
