@@ -1,5 +1,7 @@
 ---
-description: Machine-readable index of onboarding runbooks for the DoubleZero MCP. Not published on the docs site.
+description: Machine-readable index of onboarding runbooks for the DoubleZero MCP. Not linked in the docs nav.
+search:
+  exclude: true
 ---
 
 # Runbooks
