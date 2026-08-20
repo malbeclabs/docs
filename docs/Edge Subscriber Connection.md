@@ -5,9 +5,12 @@ description: Set up an edge subscriber to receive DoubleZero shred feeds, includ
 # Edge Subscriber Connection
 !!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Use](https://doublezero.xyz/terms-protocol). Please note that the data is for your internal purposes only and may not be retransmitted (see Section 2(e))."
 
+!!! warning "Already on the CLI subscription?"
+    If you subscribed through the **CLI** (`doublezero-solana shreds pay` / escrow seats), use the [CLI subscription page](Edge Subscriber CLI.md) for those commands. That system is being **decommissioned on August 30, 2026**. New subscriptions follow this page.
+
 ## Step 1: DoubleZero Setup
 
-### 1. Complete Setup
+### Complete Setup
 
 Install the [Solana CLI](https://docs.anza.xyz/cli/install).
 
@@ -15,7 +18,7 @@ Follow the [setup](setup.md) instructions to install and configure the DoubleZer
 
 If you have previously set up DoubleZero, ensure you have the latest Doublezero-Solana CLI with `sudo apt update && sudo apt install doublezero-solana`
 
-### 2. Configure the Firewall
+### Configure the Firewall
 
 Allow GRE, BGP, PIM, and shred traffic.
 
@@ -41,194 +44,66 @@ sudo ufw allow in on doublezero1 to any port 7733 proto udp
 sudo ufw allow in on doublezero0 to any port 44880 proto udp
 ```
 
-### 3. Enable the Reconciler
-
-The reconciler monitors onchain state and automatically provisions tunnels when your seat is allocated. It is not enabled by default.
-
-```bash
-doublezero enable
-```
-
 ---
 
-## Step 2: Set Up Your Wallet
+## Step 2: Choose a metro
 
-### 1. Create a Solana Keypair
-
-The `doublezero-solana` CLI uses a standard Solana keypair for onchain seat management. If you don't have one:
-
-```bash
-solana-keygen new
-```
-
-This writes to `~/.config/solana/id.json`. To use a different path, pass `--keypair <path>` to any `doublezero-solana` command.
-
-Print your wallet address:
-
-```bash
-solana address
-```
-
-### 2. Fund Your Wallet
-
-Your wallet needs two tokens:
-
-- **SOL** — for Solana transaction fees. Transfer SOL to the wallet address printed above.
-- **USDC** — for seat funding. The CLI pulls from your wallet's Associated Token Account (ATA) for the mainnet USDC mint (`EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v`).
-
----
-
-## Step 3: Buy a Seat
-
-### 1. Find Your Nearest Device
-
-Before buying a seat, identify the device with the lowest latency from your machine:
+Identify the lowest-latency location from the machine that will receive shreds:
 
 ```bash
 doublezero latency
 ```
 
-Note the device code from the lowest-latency result (e.g., `<Device_Name>`). You'll use this when purchasing a seat.
+Note the metro / city from the lowest-latency result. You will select that city on the application form. See the [topology map](https://data.malbeclabs.com/topology/map?overlays=metroClustering%2Cbandwidth) for how metros are grouped.
 
-### 2. Check Pricing
+### Pricing
 
-View current device pricing before committing funds. Pricing has two components: a **base metro price** and a **per-device premium**. You can also view pricing and availability [here](https://data.doublezero.xyz/dz/shreds/devices).
+Seats are billed **per month**, per machine, in the metro you select:
 
-**All devices:**
+| Metros | Price |
+|--------|-------|
+| Frankfurt, Amsterdam | $1,500 / month |
+| London, New York, Singapore, Tokyo | $900 / month |
+| All other locations | $450 / month |
+
+---
+
+## Step 3: Submit Request
+
+1. Go to [https://doublezero.xyz/edge/subscribe](https://doublezero.xyz/edge/subscribe).
+2. Select **Solana Shreds**.
+3. Select the **city** (metro) you need. Use the table above and `doublezero latency` to choose.
+4. Finish the application form.
+
+You will assign a DoubleZero ID (existing key, or generate a new one) to each feed request on the [accounts](https://doublezero.xyz/shreds/account) page. The matching **private key must be present on the machine that will receive shreds** — do not assign a pubkey whose private key you cannot move to that host.
+
+You pick a **metro** and a **pubkey**. You do **not** bind a public IP at application time. During the subscription you can move access between IPs **within the chosen metros**.
+
+Our team reviews applications and contacts you in a timely manner (expect **2 business days**).
+
+---
+
+## Step 4: Connect after approval
+
+After we contact you, you receive an invoice, and that invoice is paid, connect on each approved machine:
 
 ```bash
-doublezero-solana shreds price
+doublezero connect multicast --subscribe-feed solana-shreds-full
 ```
 
-**Specific device:**
-
-```bash
-doublezero-solana shreds price --device-code <Device_Name>
-doublezero-solana shreds price --device <PUBKEY>
-```
-
-**All devices in a metro:**
-
-```bash
-doublezero-solana shreds price --metro <PUBKEY>
-```
-
-Output columns: `Device Code`, `Metro Code`, `Metro Name`, `Status`, `Settled Seats`, `Available Seats`, `Base Price (USDC)`, `Premium (USDC)`, `Epoch Price (USDC)`.
-
-The epoch price is the total cost per epoch for a seat on that device (base + premium). Use `--wide` to show full pubkeys, or `--json` for JSON output.
-
-### 3. Buy a Seat
-
-Purchase a seat with a single command. This initializes your seat, funds the escrow, and requests allocation:
-
-```bash
-doublezero-solana shreds pay \
-  --device-code <Device_Name> \
-  --client-ip <Target_IP> \
-  --amount <Cost_Of_Seat>
-```
-
-**Parameters:**
-
-| Flag | Description |
-|------|-------------|
-| `--device <PUBKEY>` | Target device by public key (mutually exclusive with `--device-code`) |
-| `--device-code <CODE>` | Target device by human-readable code (e.g., `<Device_Name>`) |
-| `--client-ip <IP>` | Your machine's public IPv4 address |
-| `--amount <USDC>` | USDC to fund (decimal format, e.g. `100` = 100 USDC). Must meet the minimum epoch price. |
-| `--source-token-account <PUBKEY>` | Custom USDC source account (defaults to your wallet's ATA) |
-| `--accept-partial-epoch` | Skip the epoch-remaining warning (see below) |
-| `--fee-payer <PATH>` | Use a different wallet for SOL transaction fees |
-| `--dry-run` | Simulate the transaction without executing it |
-| `--with-compute-unit-price <PRICE>` | Set a compute unit price for faster inclusion during congestion |
-
-Once your seat is allocated, the daemon establishes the GRE tunnel automatically. Check your connection with:
+Access is enabled on your chosen start date (typically 9:01 AM ET). Check the tunnel with:
 
 ```bash
 doublezero status
 ```
 
-### Epoch Timing
+---
 
-Seats are allocated per Solana epoch (~2 days). If less than 10% of the current epoch remains when you pay, the CLI warns that your seat will be allocated immediately but only covers the remainder of the current epoch. A separate payment will be deducted from your escrow when the next epoch begins.
+## Billing
 
-!!! info "It is advisable to fund for more than 1 epoch at a time so you don't lose your seat. You can check the current time left in an epoch [here](https://explorer.solana.com/)."
+Seats are charged **monthly**. Watch the seat expiration date.
 
-You can bypass this warning with `--accept-partial-epoch`.
-
-### Keep Your Escrow Funded
-
-!!! warning "If your escrow balance is below the epoch price at settlement, your seat will not be allocated, the tunnel will be torn down, and you lose your accumulated tenure. Tenure determines your priority for future epochs — losing it means you compete as a newcomer again."
-
-You may overfund this account to fund multiple epochs. Each settlement deducts one epoch's price from your escrow, and the remaining balance carries forward. For example, funding 5x the per-epoch price keeps your seat active for up to 5 epochs without re-funding.
-
-To top up your escrow, run `shreds pay` again at any time:
-
-```bash
-doublezero-solana shreds pay \
-  --device-code <Device_Name> \
-  --client-ip <Target_IP> \
-  --amount 500
-```
-
-Note that the `Target_IP` must be a public ipv4 address on the machine which will be receiving shreds. You can find this by running a command like `curl -4 ifconfig.me` on the target machine.
-
-### Monitor Seats
-
-This section details how to view seats via the CLI. You may also use [https://data.doublezero.xyz/api/v1/docs](https://data.doublezero.xyz/api/v1/docs) to monitor seats, and assist in managing your escrow account.
-
-View your active seats and escrow balances:
-
-**All your seats:**
-
-```bash
-doublezero-solana shreds list
-```
-
-**Filter by device:**
-
-```bash
-doublezero-solana shreds list --device-code <Device_Name>
-```
-
-**Filter by client IP:**
-
-```bash
-doublezero-solana shreds list --client-ip <Target_IP>
-```
-
-**Filter by wallet:**
-
-```bash
-doublezero-solana shreds list --withdraw-authority <PUBKEY>
-```
-
-Output columns: `Device Code`, `Client IP`, `Tenure`, `Balance (USDC)`, `Est. Epochs Paid`.
-
-The "Est. Epochs Paid" column shows how many epochs your current balance covers at current pricing. If prices change, this estimate adjusts.
-
-### Withdraw Seat & Escrow
-
-This command releases your seat and closes the escrow. You receive a prorated refund for the unused portion of the current epoch, plus any remaining escrow balance, returned to your wallet. You lose the seat and any accumulated tenure.
-
-```bash
-doublezero-solana shreds withdraw \
-  --device-code <Device_Name> \
-  --client-ip <Target_IP>
-```
-
-You can identify the device by either `--device <PUBKEY>` or `--device-code <CODE>`, same as other commands.
-
-To send the USDC refund to a different token account:
-
-```bash
-doublezero-solana shreds withdraw \
-  --device-code <Device_Name> \
-  --client-ip <Target_IP> \
-  --refund-token-account <PUBKEY>
-```
-
-!!! warning "This cannot be undone. After withdraw, your seat is gone and tenure resets."
+You will be invoiced a few days before the seat expires. **Not paying leads to removal of the seat.**
 
 ---
 
@@ -278,7 +153,7 @@ The "Publishing Shreds" metric at the top left of the dashboard shows the total 
 
 ### [Edge Subscribers, Devices and Activity](https://data.doublezero.xyz/dz/shreds/subscribers)
 
-You can easily search your Client IP on this page for subscribed seats and view status. Click through specific seat subscriptions to view payment history and activity. You can also view available devices on the [Devices](https://data.doublezero.xyz/dz/shreds/devices) page and all recent activity on the [Activity](https://data.doublezero.xyz/dz/shreds/activity) page.
+You can search your Client IP on this page for subscribed seats and view status. You can also view available devices on the [Devices](https://data.doublezero.xyz/dz/shreds/devices) page and all recent activity on the [Activity](https://data.doublezero.xyz/dz/shreds/activity) page.
 
 ### Data API Docs
 
@@ -294,37 +169,20 @@ If you run into an issue not covered here, please reach out over your existing c
 
 Run: `sudo apt update && sudo apt install doublezero-solana`
 
-### Insufficient escrow balance
-
-If your escrow balance is below the epoch price at settlement, the seat is not allocated, the tunnel is torn down, and tenure is lost. Top up with `shreds pay` before the next settlement.
-
-### Seat not allocated after paying
-
-- You may have paid late in the epoch — the seat takes effect next epoch.
-- All seats on the device may be taken by higher-tenure incumbents. Check available seats with `shreds price`.
-- If you withdrew before settlement, the seat was not eligible.
-
 ### Tunnel not coming up
 
 1. Verify the daemon is running: `sudo systemctl status doublezerod`
-2. Verify the reconciler is enabled: `doublezero enable`
-3. Verify firewall rules are in place (GRE, BGP, PIM, shred traffic on `doublezero1`, port 44880 on `doublezero0`)
-4. Verify your seat is active for the current epoch: `doublezero-solana shreds list`
+2. Verify firewall rules are in place (GRE, BGP, PIM, shred traffic on `doublezero1`, port 44880 on `doublezero0`)
+3. Confirm the invoice for this seat is paid and the start date has passed
+4. Run `doublezero connect multicast --subscribe-feed solana-shreds-full` on the machine that holds the assigned private key
 5. Check your connection status: `doublezero status`
 
-The daemon's client IP is auto-discovered from your host's public IP — verify it matches the `--client-ip` used in your seat commands.
+The DoubleZero ID used on the accounts page must match the key on this host.
 
-### Epoch warning prompt
+### Seat expired or removed
 
-The CLI warns when less than 10% of the epoch remains. Your options:
-
-- Accept with `--accept-partial-epoch` if you want the seat immediately
-- Wait for the next epoch to get a full epoch's coverage
-
-### "Amount is below the current price"
-
-The `pay` command validates your amount against the minimum epoch price (metro base + device premium). Use `shreds price` to check current pricing and increase your amount.
+Seats are monthly. If the invoice sent before expiry is not paid, the seat is removed and the tunnel will not stay up.
 
 ### "Multicast user already exists"
 
-You already have an active subscription through a different path. Disconnect first with `doublezero disconnect`, then retry `shreds pay`.
+You already have an active subscription through a different path. Disconnect first with `doublezero disconnect`, then retry `doublezero connect multicast --subscribe-feed solana-shreds-full`.

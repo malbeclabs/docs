@@ -35,29 +35,19 @@ This guide allows for 1 Primary Validator to register itself, and up to 3 backup
 
     Consider: In the case where you have a junk ID and Primary ID on at the same IP, only the Primary ID will be used in registration of the machine. This is because the junk ID will not appear in gossip, and therefore cannot be used to verify the IP of the target machine.
 
-## 1. Environment Configuration
+## 1. Confirm the client network
 
-Please follow the [setup](setup.md) instructions before proceeding.
+Please follow the [setup](setup.md) instructions before proceeding. Install the **Mainnet-Beta** packages — Testnet and Mainnet-Beta use different package repos.
 
 The last step in setup was to disconnect from the network. This is to ensure that only one tunnel is open on your machine to DoubleZero, and that tunnel is on the correct network.
 
-<div data-wizard-step="mainnet-env-config" markdown>
+Confirm the client is on mainnet-beta:
 
-To configure the DoubleZero Client CLI (`doublezero`) and daemon (`doublezerod`) to connect to **DoubleZero mainnet-beta**:
 ```bash
-DESIRED_DOUBLEZERO_ENV=mainnet-beta \
-	&& sudo mkdir -p /etc/systemd/system/doublezerod.service.d \
-	&& echo -e "[Service]\nExecStart=\nExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env $DESIRED_DOUBLEZERO_ENV" | sudo tee /etc/systemd/system/doublezerod.service.d/override.conf > /dev/null \
-	&& sudo systemctl daemon-reload \
-	&& sudo systemctl restart doublezerod \
-	&& doublezero config set --env $DESIRED_DOUBLEZERO_ENV  > /dev/null \
-	&& echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV"
+doublezero status
 ```
 
-You should see the following output:
-`
-✅ doublezerod configured for environment mainnet-beta
-`
+The `Network` column should be `mainnet-beta`. If it is `testnet`, or you installed the wrong package, use the copy-paste switch in [troubleshooting](troubleshooting.md#issue-wrong-doublezero-environment).
 
 After about 30 seconds you will see the DoubleZero devices available:
 
@@ -80,9 +70,6 @@ Example output (Mainnet-Beta)
  9M7FfYYyjM4wGinKPofZRNmQFcCjCKRbXscGBUiXvXnG | dz-tor1-sw01  | 209.42.165.10   | 14.52ms  | 14.53ms  | 14.52ms  | true
 ```
 Testnet output will be identical in structure, but with fewer devices.
-</details>
-
-</div>
 
 ## 2. Open port 44880
 
