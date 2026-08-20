@@ -1,67 +1,60 @@
-# IBRLモードでのバリデーターメインネットベータ接続
-!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+---
+description: Solana Mainnet-Beta バリデーターと最大3台のバックアップを IBRL モードで DoubleZero に接続する方法（ID証明と接続リクエストを含む）。
+---
 
-!!! warning "DoubleZeroに接続することで、[DoubleZeroサービス利用規約](https://doublezero.xyz/terms-protocol)に同意します"
+# バリデーター Mainnet-Beta 接続（IBRL モード）
+!!! warning "DoubleZero に接続することで、[DoubleZero 利用規約](https://doublezero.xyz/terms-protocol)に同意したものとみなされます"
 
 
 
-### IBRLモードでのメインネットベータ接続
+###  Mainnet-Beta への IBRL モード接続
 
 !!! Note inline end
-    IBRLモードは既存のパブリックIPアドレスを使用するため、バリデータークライアントの再起動が不要です。
+    IBRL モードでは、既存のパブリック IP アドレスを使用するため、バリデータークライアントの再起動は不要です。
 
-SolanaメインネットバリデーターはDoubleZeroメインネットベータへの接続を完了します。詳細はこのページに記載されています。
+Solana Mainnet バリデーターは、このページで詳述する DoubleZero Mainnet-beta への接続を完了します。
 
-各Solanaバリデーターには独自の**アイデンティティキーペア**があります。そこから**ノードID**として知られる公開鍵を抽出します。これはSolanaネットワーク上のバリデーターの一意のフィンガープリントです。
+各 Solana バリデーターは固有の **identity keypair** を持っています。ここから **ノード ID** として知られる公開鍵を抽出します。これは Solana ネットワーク上でのバリデーターの一意な識別子です。
 
-DoubleZeroIDとノードIDが特定されると、マシンの所有権を証明します。これは、DoubleZeroIDを含むメッセージをバリデーターのアイデンティティキーで署名することによって行われます。生成された暗号署名は、バリデーターを制御していることの検証可能な証明として機能します。
+DoubleZeroID とノード ID を特定したら、マシンの所有権を証明します。これは、バリデーターの identity key で署名された DoubleZeroID を含むメッセージを作成することで行います。生成された暗号署名は、バリデーターを管理していることの検証可能な証明として機能します。
 
-最後に、**DoubleZeroへの接続リクエストを送信**します。このリクエストは「*こちらが私のアイデンティティ、こちらが所有権の証明、そしてこちらが接続方法です。*」というメッセージを伝えます。DoubleZeroはこの情報を検証し、証明を受け入れ、DoubleZero上のバリデーターのネットワークアクセスをプロビジョニングします。
+最後に、**DoubleZero への接続リクエスト** を送信します。このリクエストは次のことを伝えます：*「これが私の ID であり、これが所有権の証明であり、これが接続方法です。」* DoubleZero はこの情報を検証し、証明を受け入れ、DoubleZero 上でバリデーターのネットワークアクセスをプロビジョニングします。
 
-このガイドでは、1台のプライマリバリデーターが自身を登録し、同時に最大3台のバックアップ/フェイルオーバーマシンを登録できます。
+このガイドでは、1台のプライマリバリデーターの登録と、同時に最大3台のバックアップ/フェイルオーバーマシンの登録が可能です。
 
 ## 前提条件
 
-- Solana CLIがインストールされ、$PATHに設定されていること
-- バリデーターの場合：solユーザー下のバリデーターアイデンティティキーペアファイル（例：validator-keypair.json）にアクセスする権限
-- バリデーターの場合：接続するSolanaバリデーターのアイデンティティキーに少なくとも1 SOLがあることを確認
-- ファイアウォールルールがDoubleZeroとSolana RPCのアウトバウンド接続を許可していること（GRE（ipプロト47）とBGP（169.254.0.0/16のtcp/179）を含む）
+- Solana CLI がインストールされ、$PATH に設定されていること
+- バリデーターの場合：sol ユーザーでバリデーター identity keypair ファイル（例：validator-keypair.json）にアクセスする権限があること
+- バリデーターの場合：接続する Solana バリデーターの Identity key に少なくとも 1 SOL があることを確認すること
+- ファイアウォールルールで、DoubleZero および Solana RPC に必要なアウトバウンド接続が許可されていること。
+ GRE (ip proto 47) および BGP (169.254.0.0/16 on tcp/179) を含む
 
 !!! info
-    バリデーターIDはSolanaゴシップに対して確認され、ターゲットIPが決定されます。ターゲットIPとDoubleZero IDは、マシンとターゲットDoubleZeroデバイス間のGREトンネルを開く際に使用されます。
+    バリデーター ID は Solana gossip と照合され、ターゲット IP が決定されます。ターゲット IP と DoubleZero ID は、マシンとターゲット DoubleZero デバイス間の GRE トンネルを開く際に使用されます。
 
-    注意：同じIPにジャンクIDとプライマリIDがある場合、マシンの登録にはプライマリIDのみが使用されます。これはジャンクIDがゴシップに表示されず、ターゲットマシンのIPを確認するために使用できないためです。
+    注意：同じ IP にジャンク ID とプライマリ ID がある場合、マシンの登録にはプライマリ ID のみが使用されます。これは、ジャンク ID が gossip に表示されないため、ターゲットマシンの IP の検証に使用できないためです。
 
-## 1. 環境設定
+## 1. クライアントネットワークの確認
 
-続行する前に[セットアップ](setup.md)手順に従ってください。
+先に進む前に、[セットアップ](setup.md)の手順に従ってください。**Mainnet-Beta** パッケージをインストールしてください — Testnet と Mainnet-Beta は異なるパッケージリポジトリを使用します。
 
-セットアップの最後のステップはネットワークから切断することでした。これにより、マシン上のDoubleZeroへのトンネルが1つだけ開いており、そのトンネルが正しいネットワーク上にあることを確認します。
+セットアップの最後のステップはネットワークからの切断でした。これは、マシン上で DoubleZero へのトンネルが1つだけ開かれ、そのトンネルが正しいネットワーク上にあることを確認するためです。
 
-<div data-wizard-step="mainnet-env-config" markdown>
+クライアントが mainnet-beta 上にあることを確認します：
 
-DoubleZeroクライアントCLI（`doublezero`）とデーモン（`doublezerod`）を**DoubleZeroメインネットベータ**に接続するように設定するには：
 ```bash
-DESIRED_DOUBLEZERO_ENV=mainnet-beta \
-	&& sudo mkdir -p /etc/systemd/system/doublezerod.service.d \
-	&& echo -e "[Service]\nExecStart=\nExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env $DESIRED_DOUBLEZERO_ENV" | sudo tee /etc/systemd/system/doublezerod.service.d/override.conf > /dev/null \
-	&& sudo systemctl daemon-reload \
-	&& sudo systemctl restart doublezerod \
-	&& doublezero config set --env $DESIRED_DOUBLEZERO_ENV  > /dev/null \
-	&& echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV"
+doublezero status
 ```
 
-次の出力が表示されるはずです：
-`
-✅ doublezerod configured for environment mainnet-beta
-`
+`Network` 列が `mainnet-beta` であることを確認してください。`testnet` の場合、または誤ったパッケージをインストールした場合は、[トラブルシューティング](troubleshooting.md#issue-wrong-doublezero-environment)のコピーペースト切り替え手順を使用してください。
 
-約30秒後に利用可能なDoubleZeroデバイスが表示されます：
+約30秒後に、利用可能な DoubleZero デバイスが表示されます：
 
 ```bash
 doublezero latency
 ```
-メインネットベータの出力例：
+出力例（Mainnet-Beta）
 ```bash
  pubkey                                       | code          | ip              | min      | max      | avg      | reachable
  2hPMFJHh5BPX42ygBvuYYJfCv9q7g3rRR3ZRsUgtaqUi | dz-ny7-sw01   | 137.239.213.162 | 1.74ms   | 1.92ms   | 1.84ms   | true
@@ -76,15 +69,13 @@ doublezero latency
  9LFtjDzohKvCBzSquQD4YtL3HwuvkKBDE7KSzb8ztV2b | dz-mtl11-sw01 | 134.195.161.10  | 9.88ms   | 10.01ms  | 9.95ms   | true
  9M7FfYYyjM4wGinKPofZRNmQFcCjCKRbXscGBUiXvXnG | dz-tor1-sw01  | 209.42.165.10   | 14.52ms  | 14.53ms  | 14.52ms  | true
 ```
-テストネットの出力は構造が同じですが、デバイス数が少なくなります。
+Testnet の出力も構造は同じですが、デバイス数が少なくなります。
 
-</div>
+## 2. ポート 44880 の開放
 
-## 2. ポート44880を開く
+一部の[ルーティング機能](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc7-client-route-liveness.md)を利用するには、ポート 44880 を開放する必要があります。
 
-一部の[ルーティング機能](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc7-client-route-liveness.md)を利用するには、ユーザーはポート44880を開く必要があります。
-
-ポート44880を開くには、例えば次のようにIPテーブルを更新できます：
+ポート 44880 を開放するには、IP テーブルを以下のように更新します：
 
 <div data-wizard-step="firewall-iptables" markdown>
 
@@ -95,9 +86,9 @@ sudo iptables -A OUTPUT -o doublezero0 -p udp --dport 44880 -j ACCEPT
 
 </div>
 
-このルールをDoubleZeroインターフェースのみに制限する`-i doublezero0`、`-o doublezero0`フラグに注意してください。
+`-i doublezero0`、`-o doublezero0` フラグにより、このルールは DoubleZero インターフェースにのみ制限されることに注意してください。
 
-またはUFWの場合：
+または UFW を使用する場合：
 
 <div data-wizard-step="firewall-ufw" markdown>
 
@@ -108,25 +99,25 @@ sudo ufw allow out on doublezero0 to any port 44880 proto udp
 
 </div>
 
-このルールをDoubleZeroインターフェースのみに制限する`in on doublezero0`、`out on doublezero0`フラグに注意してください。
+`in on doublezero0`、`out on doublezero0` フラグにより、このルールは DoubleZero インターフェースにのみ制限されることに注意してください。
 
 ## 3. バリデーター所有権の証明
 
 <div data-wizard-step="mainnet-find-validator" markdown>
 
-DoubleZero環境が設定されたので、バリデーター所有権の証明を行います。
+DoubleZero 環境が設定されたので、バリデーターの所有権を証明します。
 
-プライマリバリデーターの[セットアップ](setup.md)で作成したDoubleZero IDをすべてのバックアップマシンで使用する必要があります。
+プライマリバリデーターの[セットアップ](setup.md)で作成した DoubleZero ID は、すべてのバックアップマシンで使用する必要があります。
 
-プライマリマシンのIDは`doublezero address`で確認できます。同じIDがクラスター内のすべてのマシンの`~/.config/doublezero/id.json`に必要です。
+プライマリマシンの ID は `doublezero address` で確認できます。同じ ID がクラスター内のすべてのマシンの `~/.config/doublezero/id.json` に存在している必要があります。
 
-これを実現するために、まずコマンドを実行しているマシンが**プライマリバリデーター**であることを次のコマンドで確認します：
+これを行うには、まずコマンドを実行しているマシンが**プライマリバリデーター**であることを確認します：
 
 ```
 doublezero-solana passport find-validator -u mainnet-beta
 ```
 
-これにより、バリデーターがゴシップに登録され、リーダースケジュールに表示されることを確認します。
+これにより、バリデーターが gossip に登録されており、リーダースケジュールに表示されていることが検証されます。
 
 期待される出力：
 
@@ -142,8 +133,8 @@ In Leader scheduler
 ```
 
 !!! info
-    同じワークフローが1台でも複数台のマシンでも使用されます。
-    1台のマシンを登録する場合は、このページのコマンドから"--backup-validator-ids"または"backup_ids="引数を除外してください。
+    1台でも複数台でも同じワークフローを使用します。
+    1台のマシンのみを登録する場合は、このページのすべてのコマンドから引数 "--backup-validator-ids" または "backup_ids=" を除外してください。
 
 次に、**プライマリバリデーター**を実行する予定のすべてのバックアップマシンで以下を実行します：
 ```
@@ -162,9 +153,9 @@ Gossip IP: 22.22.22.222
 In Not in Leader scheduler
  ✅ This validator can only connect as a backup in DoubleZero 🖥️  🛟. It is not leader scheduled and cannot act as a primary validator.
 ```
-この出力は正常です。バックアップノードはパス作成時にリーダースケジュールに含まれることができません。
+この出力は想定通りです。バックアップノードはパス作成時にリーダースケジュールに含まれていてはなりません。
 
-次に、**プライマリバリデーター**の投票アカウントとアイデンティティを使用する予定の**すべてのバックアップマシン**でこのコマンドを実行します。
+**プライマリバリデーター**の投票アカウントと identity を使用する予定の**すべてのバックアップマシン**でこのコマンドを実行してください。
 
 </div>
 
@@ -173,7 +164,7 @@ In Not in Leader scheduler
 
 ### 接続の準備
 
-**プライマリバリデーター**マシンで次のコマンドを実行します。これはコマンドを実行しているマシンのSolanaゴシップに、プライマリバリデーターIDを持つアクティブなステークがあり、リーダースケジュールに含まれているマシンです：
+**プライマリバリデーター**マシンで以下のコマンドを実行します。これは、アクティブなステークを持ち、リーダースケジュールに含まれ、コマンドを実行しているマシン上の solana gossip にプライマリバリデーター ID が存在するマシンです：
 
 ```
 doublezero-solana passport prepare-validator-access -u mainnet-beta \
@@ -218,7 +209,7 @@ Backup validator 🖥️ 🛡️:
      -k <identity-keypair-file.json>
 
 ```
-このコマンドの最後の出力に注意してください。次のステップの構造になっています。
+このコマンドの最後に出力される内容に注目してください。これが次のステップの構造になります。
 
 </div>
 
@@ -226,9 +217,9 @@ Backup validator 🖥️ 🛡️:
 
 <div data-wizard-step="mainnet-sign-message" markdown>
 
-前のステップの最後に、`solana sign-offchain-message`のための事前フォーマットされた出力を受け取りました。
+前のステップの最後に、`solana sign-offchain-message` のフォーマット済み出力を受け取りました。
 
-上記の出力から**プライマリバリデーター**マシンでこのコマンドを実行します。
+上記の出力を使用して、**プライマリバリデーター**マシンでこのコマンドを実行します。
 
 ```
   solana sign-offchain-message \
@@ -244,17 +235,17 @@ Backup validator 🖥️ 🛡️:
 
 </div>
 
-## 5. DoubleZeroでの接続リクエストの開始
+## 5. DoubleZero への接続リクエストの開始
 
 <div data-wizard-step="mainnet-request-access" markdown>
 
-`request-validator-access`コマンドを使用して、接続リクエストのためにSolana上にアカウントを作成します。DoubleZero Sentinelエージェントが新しいアカウントを検出し、アイデンティティと署名を検証し、サーバーが接続を確立できるようにDoubleZeroにアクセスパスを作成します。
+`request-validator-access` コマンドを使用して、接続リクエスト用のアカウントを Solana 上に作成します。DoubleZero Sentinel エージェントが新しいアカウントを検出し、ID と署名を検証し、サーバーが接続を確立できるように DoubleZero 内にアクセスパスを作成します。
 
 
-ノードID、DoubleZeroID、署名を使用します。
+ノード ID、DoubleZeroID、および署名を使用します。
 
 !!! note inline end
-      この例では`-k /home/user/.config/solana/id.json`を使用してバリデーターアイデンティティを見つけます。ローカルデプロイメントの適切な場所を使用してください。
+      この例では、バリデーター Identity を見つけるために `-k /home/user/.config/solana/id.json` を使用しています。ローカルデプロイメントに適切なパスを使用してください。
 
 ```
 doublezero-solana passport request-validator-access -k <path to keypair> -u mainnet-beta \
@@ -265,27 +256,27 @@ doublezero-solana passport request-validator-access -k <path to keypair> -u main
 
 **出力：**
 
-この出力はSolanaエクスプローラーでトランザクションを確認するために使用できます。エクスプローラーをメインネットに変更することを忘れずに。この確認はオプションです。
+この出力は、Solana エクスプローラーでトランザクションを確認するために使用できます。エクスプローラーを mainnet に切り替えてください。この検証は任意です。
 
 ```bash
 Request Solana validator access: Transaction22222222VaB8FMqM2wEBXyV5THpKRXWrPtDQxmTjHJHiAWteVYTsc7Gjz4hdXxvYoZXGeHkrEayp
 ```
 
-成功した場合、DoubleZeroはプライマリをバックアップとともに登録します。アクセスパスに登録されたIPの間でフェイルオーバーできるようになります。DoubleZeroはこのように登録されたバックアップノードへの切り替え時に接続を自動的に維持します。
+成功すると、DoubleZero はプライマリとそのバックアップを登録します。アクセスパスに登録された IP 間でフェイルオーバーが可能になります。この方法で登録されたバックアップノードに切り替える際、DoubleZero は自動的に接続を維持します。
 
 </div>
 
-## 6. IBRLモードでの接続
+## 6. IBRL モードでの接続
 
 <div data-wizard-step="mainnet-connect-ibrl" markdown>
 
-DoubleZeroに接続するユーザーで、サーバー上で`connect`コマンドを実行してDoubleZeroへの接続を確立します。
+サーバー上で、DoubleZero に接続するユーザーとして `connect` コマンドを実行し、DoubleZero への接続を確立します。
 
 ```
 doublezero connect ibrl
 ```
 
-以下のようなプロビジョニングを示す出力が表示されます：
+以下のようなプロビジョニングを示す出力が表示されるはずです：
 
 ```
 DoubleZero Service Provisioning
@@ -298,7 +289,7 @@ Public IP detected: 137.184.101.183 - If you want to use a different IP, you can
     Service provisioned with status: ok
 ✅  User Provisioned
 ```
-GREトンネルのセットアップが完了するまで1分待ちます。GREトンネルのセットアップが完了するまで、ステータス出力が「down」または「Unknown」を返す場合があります。
+GRE トンネルのセットアップが完了するまで1分間お待ちください。GRE トンネルのセットアップが完了するまで、ステータス出力が "down" または "Unknown" を返す場合があります。
 
 接続を確認します：
 
@@ -308,15 +299,16 @@ doublezero status
 
 **出力：**
 !!! note inline end
-    この出力を確認してください。`Tunnel src`と`DoubleZero IP`がマシンのパブリックIPv4アドレスと一致していることに注意してください。
+    この出力を確認してください。`Tunnel src` と `DoubleZero IP` がマシンのパブリック IPv4 アドレスと一致していることに注目してください。
+    <!--`Tunnel dst` は接続先の DZ デバイスのアドレスです。-->
 
 ```bash
  Tunnel status | Last Session Update     | Tunnel Name | Tunnel src    | Tunnel dst     | Doublezero IP | User Type | Current Device | Lowest Latency Device | Metro     | Network
  up            | 2025-10-20 12:12:55 UTC | doublezero0 | 11.11.11.111 | 12.34.56.789 | 11.11.11.111 | IBRL      | ams-dz001      | ✅ ams-dz001          | Amsterdam | mainnet-beta
 ```
-`up`のステータスは正常に接続されていることを意味します。
+ステータスが `up` であれば、正常に接続されています。
 
-次のコマンドを実行することでDoubleZero上の他のユーザーによって伝搬されたルートを確認できます：
+DoubleZero 上の他のユーザーによって伝播されたルートを以下のコマンドで確認できます：
 
 ```
 ip route
@@ -333,6 +325,6 @@ default via 149.28.38.1 dev enp1s0 proto dhcp src 149.28.38.64 metric 100
 
 </div>
 
-### 次のステップ：マルチキャストによるシュレッドの公開
+### 次のステップ：マルチキャストによるシュレッドの配信
 
-このセットアップを完了してマルチキャストでシュレッドを公開する予定の場合は、[次のページ](Validator%20Multicast%20Connection.md)に進んでください。
+このセットアップが完了し、マルチキャストによるシュレッドの配信を計画している場合は、[次のページ](Validator%20Multicast%20Connection.md)に進んでください。

@@ -1,99 +1,103 @@
+---
+description: Connetti un validatore Solana Testnet a DoubleZero in modalità IBRL, incluso l'accordo di valutazione per testnet e i passaggi per la connessione.
+---
+
 # Connessione Validatore Testnet in Modalità IBRL
-!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
-
-??? warning "Connettendomi al testnet DoubleZero accetto i termini del Contratto di Valutazione indicati qui (clicca per espandere)"
+??? warning "Collegandomi alla testnet di DoubleZero accetto i termini dell'Accordo di Valutazione qui stabilito (clicca per espandere)"
     <span style="font-size:14px;">DoubleZero Testnet</span>
-    Contratto di Valutazione
+    Accordo di Valutazione
 
-    Accedendo o utilizzando la Soluzione (definita di seguito), accetti a partire dalla prima data di tale accesso (la "**Data di Efficacia**") che il presente Contratto di Valutazione (il "**Contratto**") stabilisce i termini e le condizioni in base ai quali DoubleZero Foundation ("**DZF**") ti fornirà ("**Utente**" o "**tu**") l'accesso alla Soluzione su base di valutazione. In considerazione delle reciproche promesse contenute nel presente, accetti quanto segue:
+    Accedendo o utilizzando la Soluzione (come definita di seguito), accetti a partire dalla
+    prima data di tale accesso (la "**Data di Efficacia**") che questo
+    Accordo di Valutazione (l'"**Accordo**") stabilisce i termini e
+    le condizioni in base ai quali DoubleZero Foundation ("**DZF**") fornirà
+    a te ("**Utente**" o "**tu**") l'accesso alla Soluzione su base di
+    valutazione. In considerazione delle reciproche promesse qui contenute, accetti
+    quanto segue:
 
     <span style="font-size:14px;">1. DEFINIZIONI.</span>
 
-    <span style="font-size:14px;">1.1 "**Informazioni Riservate**"</span> indica qualsiasi informazione divulgata da una parte all'altra che sia designata come riservata, o che dovrebbe altrimenti essere intesa come riservata, incluse, ma non limitate a, la Soluzione, piani di prodotto, piani aziendali, segreti commerciali, tecnologia o qualsiasi altra informazione proprietaria.
+    <span style="font-size:14px;">1.1 "**Informazioni Riservate**"</span> indica qualsiasi informazione divulgata da una parte all'altra che sia designata come riservata, o che dovrebbe altrimenti essere intesa come riservata, incluse ma non limitate a, la Soluzione, piani di prodotto, piani aziendali, segreti commerciali, tecnologia, o qualsiasi altra informazione proprietaria.
 
-    <span style="font-size:14px;">1.2 "**Soluzione**"</span> indica la versione testnet dell'infrastruttura di rete ad alte prestazioni DoubleZero per progetti web3 ("**Testnet**") e il relativo servizio di filtraggio al margine con larghezza di banda integrata ("**Servizio Informativo**"), il Software DZ (definito di seguito), tutti i materiali forniti da DZF relativi al Software DZ ("**Documentazione**") e altri materiali che DZF fornisce all'Utente ai sensi del presente.
+    <span style="font-size:14px;">1.2 "**Soluzione**" </span> indica la versione testnet dell'infrastruttura di rete ad alte prestazioni DoubleZero per progetti web3 ("**Testnet**") e il relativo servizio di filtraggio perimetrale con larghezza di banda integrata ("**Servizio Informativo**"), il Software DZ (come definito di seguito), qualsiasi materiale fornito da DZF relativo al Software DZ ("**Documentazione**"), e altri materiali che DZF fornisce all'Utente ai sensi del presente accordo.
 
-    <span style="font-size:14px;">2. ACCESSO.</span>
+    <span style="font-size:14px;">2. ACCESSO. </span>
 
-    <span style="font-size:14px;">2.1 ^^Accesso alla Soluzione^^.</span> Subordinatamente ai termini e alle condizioni del presente Contratto, DZF fornirà all'Utente l'accesso alla Soluzione tramite Internet. L'accesso dell'Utente è un uso limitato, non esclusivo e non trasferibile della Soluzione per consentire all'Utente di valutare il Servizio Informativo. Con riferimento a qualsiasi software che comprende la Soluzione ("**Software DZ**"), DZF concede all'Utente una licenza limitata, revocabile, durante il Periodo di Valutazione, per copiare, scaricare, fare un numero ragionevole di copie, eseguire e distribuire (ove applicabile) tale Software DZ esclusivamente come previsto dalla Documentazione.
+    <span style="font-size:14px;">2.1 ^^Accesso alla Soluzione^^.</span> Fatti salvi i termini e le condizioni del presente Accordo, DZF fornirà all'Utente l'accesso alla Soluzione tramite Internet. L'accesso dell'Utente è un uso non esclusivo, non trasferibile e limitato della Soluzione per consentire all'Utente di valutare esclusivamente il Servizio Informativo. Per quanto riguarda qualsiasi software che compone la Soluzione ("**Software DZ**"), DZF concede all'Utente una licenza limitata e revocabile, durante il Periodo di Valutazione, per copiare, scaricare, effettuare un numero ragionevole di copie, eseguire e implementare (se applicabile) tale Software DZ esclusivamente come previsto dalla Documentazione.
 
-    <span style="font-size:14px;">2.2 ^^Restrizioni^^.</span> L'Utente può utilizzare la Soluzione in conformità al presente Contratto dalla Data di Efficacia fino alla risoluzione da parte di DZF (il "**Periodo di Valutazione**"). L'Utente comprende che qualsiasi diritto di utilizzare la Soluzione oltre il Periodo di Valutazione sarà soggetto a un accordo commerciale separato tra le parti al riguardo, incluso il pagamento di commissioni. L'Utente non dovrà, e non dovrà consentire a terzi di: (i) modificare o creare opere derivate basate sulla Soluzione o su qualsiasi sua parte; (ii) riprodurre la Soluzione salvo quanto espressamente consentito dal presente Contratto; (iii) sublicenziare, distribuire, vendere, prestare, affittare, trasferire o concedere diritti sulla Soluzione o fornire accesso alla Soluzione a terzi, su base di service bureau o altrimenti; o (iv) utilizzare la Soluzione diversamente da quanto previsto nel presente.
+    <span style="font-size:14px;">2.2 ^^Restrizioni^^. </span>L'Utente può utilizzare la Soluzione in conformità con il presente Accordo dalla Data di Efficacia fino alla risoluzione da parte di DZF (il "**Periodo di Valutazione**"). L'Utente comprende che qualsiasi diritto di utilizzo della Soluzione oltre il Periodo di Valutazione sarà soggetto a un separato accordo commerciale tra le parti a tal riguardo, incluso il pagamento di corrispettivi. L'Utente non dovrà, e non permetterà a terzi di: (i) modificare o creare opere derivate basate sulla Soluzione o su qualsiasi sua parte; (ii) riprodurre la Soluzione salvo quanto espressamente consentito dal presente Accordo; (iii) sublicenziare, distribuire, vendere, prestare, noleggiare, dare in locazione, trasferire o concedere diritti su tutta o parte della Soluzione o fornire accesso alla Soluzione a terzi, su base di service bureau o in altro modo, salvo come offerta dei Servizi Informativi attraverso o in connessione con la piattaforma o il prodotto dell'Utente e non su base autonoma; o (iv) utilizzare la Soluzione in modo diverso da quanto previsto nel presente documento.
 
-    <span style="font-size:14px;">2.3 ^^Proprietà^^.</span> DZF conserva tutti i diritti, titoli e interessi, inclusi i diritti di proprietà intellettuale, nella e sulla Soluzione.
+    <span style="font-size:14px;">2.3 ^^Proprietà^^.</span> DZF conserva tutti i diritti, titoli e interessi, inclusi i diritti di proprietà intellettuale, sulla Soluzione.
 
-    <span style="font-size:14px;">3. FEEDBACK.</span>
-    DZF può periodicamente richiedere che l'Utente fornisca, e l'Utente accetta di fornire a DZF, feedback sull'uso, il funzionamento e la funzionalità della Soluzione ("Feedback"). L'Utente concede a DZF un diritto e una licenza non esclusivi, mondiali, perpetui, irrevocabili, esenti da royalty, completamente pagati, completamente sublicenziabili e trasferibili per utilizzare e incorporare il Feedback in qualsiasi prodotto e servizio, per produrre, usare, vendere, offrire in vendita, importare e altrimenti sfruttare tali prodotti e servizi, e per altrimenti usare, copiare, distribuire e sfruttare il Feedback senza restrizioni.
+    <span style="font-size:14px;">3 FEEDBACK.</span>
+    DZF può periodicamente richiedere che l'Utente fornisca, e l'Utente accetta di fornire a DZF, feedback riguardanti l'uso, il funzionamento e le funzionalità della Soluzione ("Feedback"). L'Utente concede a DZF un diritto e una licenza non esclusivi, mondiali, perpetui, irrevocabili, esenti da royalty, interamente pagati, interamente sublicenziabili e trasferibili per utilizzare e incorporare il Feedback in qualsiasi prodotto e servizio, per realizzare, utilizzare, vendere, offrire in vendita, importare e altrimenti sfruttare tali prodotti e servizi, e per altrimenti utilizzare, copiare, distribuire e sfruttare il Feedback senza restrizioni.
 
     <span style="font-size:14px;">4. DURATA E RISOLUZIONE.</span>
 
-    <span style="font-size:14px;">4.1 ^^Durata^^.</span> Il presente Contratto avrà inizio alla Data di Efficacia e rimarrà in piena vigenza ed efficacia per il Periodo di Valutazione. Entrambe le parti possono risolvere il presente Contratto immediatamente per convenienza, per qualsiasi motivo o senza motivo, mediante notifica scritta all'altra parte (l'e-mail è sufficiente).
+    <span style="font-size:14px;">4.1 ^^Durata^^.</span> Il presente Accordo entrerà in vigore dalla Data di Efficacia e rimarrà pienamente in vigore per il Periodo di Valutazione. Ciascuna parte può risolvere immediatamente il presente Accordo per convenienza, per qualsiasi motivo o senza motivo, previa comunicazione scritta all'altra parte (e-mail sufficiente).
 
-    <span style="font-size:14px;">4.1 ^^Effetti della Risoluzione^^.</span> Alla risoluzione del presente Contratto per qualsiasi motivo: (i) i diritti concessi all'Utente ai sensi del presente cesseranno immediatamente; (ii) l'Utente dovrà immediatamente interrompere qualsiasi uso della Soluzione e restituire o distruggere tutta la Documentazione e qualsiasi Software DZ sotto il suo controllo; (iii) ciascuna parte dovrà prontamente restituire o distruggere tutte le Informazioni Riservate e la proprietà dell'altra parte; e (iv) le Sezioni 2.2, 2.3, 3, 4.2 e da 5 a 8 sopravvivranno.
+    <span style="font-size:14px;">4.1 ^^Effetti della Risoluzione^^.</span> In caso di risoluzione del presente Accordo per qualsiasi motivo: (i) i diritti concessi all'Utente ai sensi del presente Accordo cesseranno immediatamente; (ii) l'Utente dovrà immediatamente interrompere qualsiasi utilizzo della Soluzione e dovrà restituire o distruggere tutta la Documentazione e qualsiasi Software DZ sotto il suo controllo; (iii) ciascuna parte dovrà prontamente restituire o distruggere tutte le Informazioni Riservate e le proprietà dell'altra parte; e (iv) le Sezioni 2.2, 2.3, 3, 4.2 e da 5 a 8 sopravvivranno.
 
     <span style="font-size:14px;">5. RISERVATEZZA.</span>
-    Ciascuna parte accetta di utilizzare le Informazioni Riservate dell'altra parte esclusivamente per adempiere ai propri obblighi ed esercitare i propri diritti ai sensi del presente Contratto e non divulgherà, né permetterà la divulgazione, delle stesse, salvo quanto altrimenti consentito nel presente. Tuttavia, ciascuna parte può divulgare le Informazioni Riservate al proprio personale, avvocati e altri rappresentanti che abbiano necessità di conoscerle e siano vincolati da obblighi di riservatezza non meno protettivi di quelli stabiliti nel presente Contratto; e come richiesto dalla legge.
+    Ciascuna parte conviene che utilizzerà le Informazioni Riservate dell'altra parte esclusivamente per adempiere ai propri obblighi ed esercitare i propri diritti ai sensi del presente Accordo e non divulgherà, né permetterà la divulgazione delle stesse, salvo quanto altrimenti consentito nel presente documento. Tuttavia, ciascuna parte può divulgare le Informazioni Riservate al proprio personale, avvocati e altri rappresentanti che abbiano necessità di conoscerle e siano vincolati da obblighi di riservatezza non meno protettivi di quelli stabiliti nel presente Accordo; e come richiesto dalla legge (nel qual caso la parte ricevente fornirà alla parte divulgante preavviso e opportunità di contestare tale divulgazione, e limiterà tale divulgazione nella misura consentita dalla legge applicabile). Gli obblighi di riservatezza nella presente Sezione 5 non si applicheranno alle informazioni che: (a) sono o diventano generalmente note o pubblicamente disponibili senza colpa della parte ricevente; (b) erano debitamente note alla parte ricevente, senza restrizioni, prima della divulgazione da parte della parte divulgante; (c) sono state debitamente divulgate alla parte ricevente, senza restrizioni, da un'altra persona con l'autorità legale per farlo; o (d) sono sviluppate indipendentemente dalla parte ricevente senza uso o riferimento alle Informazioni Riservate della parte divulgante. Ciascuna parte si impegna a esercitare la dovuta diligenza nella protezione delle Informazioni Riservate dell'altra parte da uso e divulgazione non autorizzati. In caso di violazione effettiva o minacciata delle disposizioni della presente Sezione o delle licenze qui contenute, la parte non inadempiente avrà diritto di richiedere un provvedimento inibitorio immediato e altri rimedi equitativi, senza rinunciare ad altri diritti o rimedi a sua disposizione. L'Utente è responsabile della manutenzione della Soluzione e della segretezza di qualsiasi password, frase seed o codice che fornisca accesso alla Soluzione come Informazione Riservata di DZF. Nulla nel presente documento limita o restringe il diritto o la capacità di DZF di utilizzare dati riguardanti le prestazioni, la disponibilità, l'utilizzo, l'integrità e la sicurezza della Soluzione. Se una delle parti viola, o minaccia di violare le disposizioni della presente Sezione 5, ciascuna parte conviene che la parte non inadempiente non avrà un rimedio adeguato in diritto e ha pertanto diritto a un provvedimento inibitorio immediato e altri rimedi equitativi, senza cauzione e senza la necessità di dimostrare danni monetari effettivi.
 
-    <span style="font-size:14px;">6. ESCLUSIONE DI GARANZIE; LIMITAZIONE DI RESPONSABILITÀ.</span>
+    <span style="font-size:14px;">6. ESCLUSIONE DI GARANZIA; LIMITAZIONE DI RESPONSABILITÀ.</span>
 
-    <span style="font-size:14px;">6.1 ^^ESCLUSIONE DI GARANZIE^^.</span> LA SOLUZIONE VIENE FORNITA "COSÌ COM'È" SENZA GARANZIE DI ALCUN TIPO. DZF NON FORNISCE GARANZIE, ESPRESSE, IMPLICITE, LEGALI O DI ALTRO TIPO CON RIFERIMENTO ALLA SOLUZIONE E ALLA DOCUMENTAZIONE.
+    <span style="font-size:14px;">6.1 ^^ESCLUSIONE DI GARANZIA^^.</span> LA SOLUZIONE È FORNITA "COSÌ COM'È" SENZA GARANZIA DI ALCUN TIPO. DZF NON RILASCIA ALCUNA GARANZIA, ESPRESSA, IMPLICITA, LEGALE O DI ALTRO TIPO IN RELAZIONE ALLA SOLUZIONE E ALLA DOCUMENTAZIONE INCLUSE LE LORO CONDIZIONI, CONFORMITÀ A QUALSIASI RAPPRESENTAZIONE O DESCRIZIONE, E DZF ESCLUDE SPECIFICAMENTE TUTTE LE GARANZIE IMPLICITE DI COMMERCIABILITÀ, IDONEITÀ A UNO SCOPO PARTICOLARE, TITOLO E NON VIOLAZIONE.
 
     <span style="font-size:14px;">6.2 ^^LIMITAZIONE DI RESPONSABILITÀ^^.</span>
-    SALVO PER UNA VIOLAZIONE DELLE SEZIONI 2.1, 2.2 E 5, IN NESSUN CASO ALCUNA PARTE SARÀ RESPONSABILE NEI CONFRONTI DELL'ALTRA PER DANNI INDIRETTI, INCIDENTALI, SPECIALI O ALTRI DANNI CONSEQUENZIALI. IN NESSUN CASO LA RESPONSABILITÀ AGGREGATA DI DZF SUPERERÀ CENTO DOLLARI (\$100).
+    SALVO PER VIOLAZIONE DELLE SEZIONI 2.1, 2.2 E 5, IN NESSUN CASO NESSUNA DELLE PARTI SARÀ RESPONSABILE NEI CONFRONTI DELL'ALTRA PER DANNI INDIRETTI, INCIDENTALI, SPECIALI O ALTRI DANNI CONSEQUENZIALI, INCLUSI SENZA LIMITAZIONE DANNI PER PERDITA DI PROFITTI O USO O PERDITA DI DATI, SOSTENUTI DA TE O DA QUALSIASI TERZO, DERIVANTI DA O CORRELATI AL PRESENTE ACCORDO SIA IN UN'AZIONE CONTRATTUALE, EXTRACONTRATTUALE O DI ALTRO TIPO, ANCHE SE L'ALTRA PARTE È STATA INFORMATA DELLA POSSIBILITÀ DI TALI DANNI. IN NESSUN CASO LA RESPONSABILITÀ COMPLESSIVA DI DZF DERIVANTE DA O CORRELATA AL PRESENTE ACCORDO SUPERERÀ CENTO DOLLARI (\$100), SIA IN UN'AZIONE CONTRATTUALE, EXTRACONTRATTUALE O DI ALTRO TIPO. **LE SUDDETTE LIMITAZIONI SI APPLICHERANNO NONOSTANTE IL FALLIMENTO DELLO SCOPO ESSENZIALE DI QUALSIASI RIMEDIO LIMITATO PREVISTO DAL PRESENTE DOCUMENTO.** LE PARTI CONVENGONO CHE LE SUDDETTE LIMITAZIONI RAPPRESENTANO UNA RAGIONEVOLE ALLOCAZIONE DEL RISCHIO AI SENSI DEL PRESENTE ACCORDO.
 
     <span style="font-size:14px;">7. LEGGE APPLICABILE.</span>
-    Il presente Contratto e tutte le questioni derivanti da o relative al presente Contratto saranno regolati, interpretati e costruiti in conformità alle leggi delle Isole Cayman. Le eventuali controversie saranno risolte tramite arbitrato amministrato dal Cayman International Mediation & Arbitration Centre (CI-MAC).
+    Il presente Accordo e tutte le questioni derivanti da o relative al presente Accordo saranno disciplinati, interpretati e costruiti in conformità con le leggi delle Isole Cayman. Qualora una controversia, disputa o reclamo sorga da o in relazione al presente Accordo ("Controversia"), la parte interessata, come appropriato, deve dare 30 giorni di preavviso di tale Controversia alle altre parti (l'"Avviso di Controversia"). Qualora la Controversia non sia risolta alla scadenza di 30 giorni dalla notifica dell'Avviso di Controversia, la parte interessata può avviare un procedimento arbitrale come qui previsto. Qualora la Controversia permanga alla scadenza di 30 giorni dalla notifica dell'Avviso di Controversia, la Controversia sarà risolta mediante arbitrato amministrato dal Cayman International Mediation & Arbitration Centre (CI-MAC) in conformità con le Regole Arbitrali CI-MAC (le "Regole Arbitrali") in vigore alla data del presente Accordo, le quali Regole Arbitrali si intendono incorporate per riferimento alla presente clausola, e disciplinato dall'Arbitration Act (come modificato). La sede dell'arbitrato sarà George Town, Grand Cayman, Isole Cayman e sarà disciplinato dalla legge delle Isole Cayman. La lingua dell'arbitrato sarà l'inglese. L'arbitrato sarà determinato da un arbitro unico da nominare in conformità con le Regole Arbitrali. Qualsiasi lodo o decisione dell'arbitro sarà redatto per iscritto e sarà definitivo e vincolante per le parti senza alcun diritto di appello, e il giudizio su qualsiasi lodo così ottenuto potrà essere inserito o eseguito da qualsiasi tribunale competente. Nessuna azione legale o in equità basata su qualsiasi pretesa derivante da o correlata al presente Accordo potrà essere intentata presso qualsiasi tribunale di qualsiasi giurisdizione. Se qualsiasi contenzioso o arbitrato è necessario per far rispettare i termini del presente Accordo, la parte vincitrice avrà diritto al rimborso delle spese legali da parte dell'altra parte. Ciascuna parte rinuncia a qualsiasi diritto che possa avere di invocare la dottrina del forum non conveniens, di sostenere di non essere soggetta alla giurisdizione di tale arbitrato o tribunali o di opporsi alla sede nella misura in cui qualsiasi procedimento sia avviato in conformità con il presente documento. </span>
 
     <span style="font-size:14px;">8. DISPOSIZIONI GENERALI.</span>
-    Il presente Contratto non può essere trasferito o ceduto dall'Utente senza il previo consenso scritto di DZF. DZF può liberamente cedere il presente Contratto. Il presente Contratto, insieme a eventuali allegati, costituisce l'accordo completo tra le parti.
+    Il presente Accordo non può essere trasferito o ceduto dall'Utente senza il previo consenso scritto di DZF. DZF può cedere liberamente il presente Accordo. Tutte le comunicazioni che devono essere inviate ai sensi del presente documento saranno inviate via e-mail (a DZF: legal@doublezero.xyz) e si considereranno ricevute il giorno successivo all'invio (con conferma di trasmissione). Se una qualsiasi disposizione del presente Accordo è ritenuta invalida o inapplicabile, le restanti disposizioni del presente Accordo rimarranno pienamente in vigore. La rinuncia da parte di una delle parti a qualsiasi inadempienza o violazione del presente Accordo non costituirà rinuncia a qualsiasi altra o successiva inadempienza o violazione. Nessuna delle parti sarà responsabile per qualsiasi ritardo o mancata esecuzione dovuta a cause di forza maggiore, terremoti, carenza di forniture, difficoltà di trasporto, controversie sindacali, sommosse, guerre, incendi, epidemie e eventi simili al di fuori del suo controllo, prevedibili o meno. Il presente Accordo insieme a qualsiasi allegato costituisce l'accordo completo tra le parti e sostituisce tutti gli accordi o le rappresentazioni precedenti o contemporanei, scritti o orali, relativi all'oggetto del presente documento. Il presente Accordo non può essere modificato o emendato se non per iscritto e firmato da un rappresentante debitamente autorizzato di ciascuna parte.
 
 
 
-### Connessione al Testnet in Modalità IBRL
+###  Connessione alla Testnet in Modalità IBRL
 
 
 !!! Note inline end
-    La modalità IBRL non richiede il riavvio dei client validatori, perché utilizza il tuo indirizzo IP pubblico esistente.
+    La modalità IBRL non richiede il riavvio dei client del validatore, poiché utilizza il tuo indirizzo IP pubblico esistente.
 
-I validatori Solana Testnet completeranno la connessione al Testnet DoubleZero, che è dettagliata su questa pagina.
+I Validatori Solana Testnet completeranno la connessione alla Testnet di DoubleZero, come descritto in dettaglio in questa pagina.
 
-Ogni validatore Solana ha il proprio **keypair di identità**; da questo, estrai la chiave pubblica nota come **node ID**. Questa è l'impronta digitale univoca del validatore sulla rete Solana.
+Ogni validatore Solana ha il proprio **keypair di identità**; da questo, si estrae la chiave pubblica nota come **node ID**. Questa è l'impronta univoca del validatore sulla rete Solana.
 
-Con il DoubleZeroID e il node ID identificati, dimostrerai la proprietà della tua macchina. Questo viene fatto creando un messaggio che include il DoubleZeroID firmato con la chiave di identità del validatore. La firma crittografica risultante serve come prova verificabile che controlli il validatore.
+Con il DoubleZeroID e il node ID identificati, dovrai dimostrare la proprietà della tua macchina. Questo viene fatto creando un messaggio che include il DoubleZeroID firmato con la chiave di identità del validatore. La firma crittografica risultante serve come prova verificabile che controlli il validatore.
 
-Infine, invierai una **richiesta di connessione a DoubleZero**. Questa richiesta comunica: *"Ecco la mia identità, ecco la prova di proprietà, ed ecco come intendo connettermi."* DoubleZero valida queste informazioni, accetta la prova e fornisce l'accesso alla rete per il validatore su DoubleZero.
+Infine, invierai una **richiesta di connessione a DoubleZero**. Questa richiesta comunica: *"Ecco la mia identità, ecco la prova di proprietà, ed ecco come intendo connettermi."* DoubleZero valida queste informazioni, accetta la prova e predispone l'accesso alla rete per il validatore su DoubleZero.
 
-Questa guida consente a 1 Validatore Primario di registrarsi, e fino a 3 macchine di backup/failover contemporaneamente.
+Questa guida consente a 1 Validatore Primario di registrarsi e fino a 3 macchine di backup/failover contemporaneamente.
 
 ## Prerequisiti
 
 - Solana CLI installata e nel $PATH
-- Per i validatori: Permesso di accesso al file keypair di identità del validatore (es. validator-keypair.json) sotto l'utente sol
-- Per i validatori: Verifica che la chiave Identity del validatore Solana che si connette abbia almeno 1 SOL
-- Le regole firewall permettono le connessioni in uscita per DoubleZero e Solana RPC come necessario, inclusi GRE (ip proto 47) e BGP (169.254.0.0/16 su tcp/179)
+- Per i validatori: Permesso di accesso al file del keypair di identità del validatore (es. validator-keypair.json) sotto l'utente sol
+- Per i validatori: Verificare che la chiave di identità del validatore Solana che si sta collegando abbia almeno 1 SOL
+- Le regole del firewall consentono connessioni in uscita per DoubleZero e Solana RPC secondo necessità, inclusi
+ GRE (ip proto 47) e BGP (169.254.0.0/16 su tcp/179)
 
 !!! info
-    L'ID Validatore verrà verificato con Solana gossip per determinare l'IP target. L'IP target e il DoubleZero ID verranno poi utilizzati per aprire un tunnel GRE tra la tua macchina e il DoubleZero Device target.
+    Il Validator ID verrà verificato rispetto al gossip di Solana per determinare l'IP di destinazione. L'IP di destinazione e il DoubleZero ID verranno quindi utilizzati per l'apertura di un tunnel GRE tra la tua macchina e il Dispositivo DoubleZero di destinazione.
 
-## 1. Configurazione dell'Ambiente
+    Nota: Nel caso in cui tu abbia un ID spazzatura e un ID Primario sullo stesso IP, solo l'ID Primario verrà utilizzato nella registrazione della macchina. Questo perché l'ID spazzatura non apparirà nel gossip e quindi non può essere utilizzato per verificare l'IP della macchina di destinazione.
 
-Segui le istruzioni di [setup](setup.md) prima di procedere.
+## 1. Confermare la rete del client
 
-<div data-wizard-step="testnet-env-config" markdown>
+Segui le istruzioni di [configurazione](setup.md) prima di procedere. Installa i pacchetti **Testnet** — Testnet e Mainnet-Beta utilizzano repository di pacchetti diversi.
 
-Per configurare la CLI DoubleZero Client (`doublezero`) e il daemon (`doublezerod`) per connettersi al **testnet DoubleZero**:
+L'ultimo passaggio della configurazione era disconnettersi dalla rete. Questo per garantire che solo un tunnel sia aperto sulla tua macchina verso DoubleZero, e che quel tunnel sia sulla rete corretta.
+
+Conferma che il client sia su testnet:
+
 ```bash
-DESIRED_DOUBLEZERO_ENV=testnet \
-	&& sudo mkdir -p /etc/systemd/system/doublezerod.service.d \
-	&& echo -e "[Service]\nExecStart=\nExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env $DESIRED_DOUBLEZERO_ENV" | sudo tee /etc/systemd/system/doublezerod.service.d/override.conf > /dev/null \
-	&& sudo systemctl daemon-reload \
-	&& sudo systemctl restart doublezerod \
-	&& doublezero config set --env $DESIRED_DOUBLEZERO_ENV  > /dev/null \
-	&& echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV"
+doublezero status
 ```
-Dovresti vedere il seguente output:
-```
-✅ doublezerod configured for environment testnet
-```
+
+La colonna `Network` dovrebbe mostrare `testnet`. Se mostra `mainnet-beta`, o hai installato il pacchetto sbagliato, usa il cambio rapido copia-incolla nella sezione [risoluzione problemi](troubleshooting.md#issue-wrong-doublezero-environment).
 
 Dopo circa 30 secondi vedrai i dispositivi DoubleZero disponibili:
 
@@ -101,7 +105,7 @@ Dopo circa 30 secondi vedrai i dispositivi DoubleZero disponibili:
 ```bash
 doublezero latency
 ```
-Esempio di output (testnet)
+Output di esempio (testnet)
 ```bash
 doublezero latency
  pubkey                                       | code         | ip             | min      | max      | avg      | reachable
@@ -115,15 +119,13 @@ doublezero latency
  5tqXoiQtZmuL6CjhgAC6vA49JRUsgB9Gsqh4fNjEhftU | tyo-dz001    | 180.87.154.78  | 180.96ms | 181.08ms | 181.02ms | true
  D3ZjDiLzvrGi5NJGzmM7b3YZg6e2DrUcBCQznJr3KfC8 | sin-dz001    | 180.87.102.98  | 220.87ms | 221.14ms | 220.97ms | true
 ```
-</div>
-L'output del Mainnet sarà identico nella struttura, ma con molti più dispositivi disponibili.
-</details>
+L'output di Mainnet sarà identico nella struttura, ma con molti più dispositivi disponibili.
 
-
-
-## 2. Apri la porta 44880
+## 2. Aprire la porta 44880
 
 Gli utenti devono aprire la porta 44880 per utilizzare alcune [funzionalità di routing](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc7-client-route-liveness.md).
+
+Per aprire la porta 44880 puoi aggiornare le tabelle IP in questo modo:
 
 <div data-wizard-step="firewall-iptables" markdown>
 
@@ -134,9 +136,9 @@ sudo iptables -A OUTPUT -o doublezero0 -p udp --dport 44880 -j ACCEPT
 
 </div>
 
-nota i flag `-i doublezero0`, `-o doublezero0` che limitano questa regola solo all'interfaccia DoubleZero
+nota i flag `-i doublezero0`, `-o doublezero0` che limitano questa regola esclusivamente all'interfaccia DoubleZero
 
-O UFW:
+Oppure UFW in questo modo:
 
 <div data-wizard-step="firewall-ufw" markdown>
 
@@ -147,19 +149,27 @@ sudo ufw allow out on doublezero0 to any port 44880 proto udp
 
 </div>
 
-nota i flag `in on doublezero0`, `out on doublezero0` che limitano questa regola solo all'interfaccia DoubleZero
+nota i flag `in on doublezero0`, `out on doublezero0` che limitano questa regola esclusivamente all'interfaccia DoubleZero
 
-## 3. Attesta la Proprietà del Validatore
+## 3. Attestare la Proprietà del Validatore
 
 <div data-wizard-step="testnet-find-validator" markdown>
 
-In ordine per fare questo verificherai prima che la macchina da cui stai eseguendo i comandi sia il tuo **Validatore Primario** con:
+Con il tuo Ambiente DoubleZero configurato, è ora il momento di attestare la Proprietà del tuo Validatore.
+
+Il DoubleZero ID che hai creato nella [configurazione](setup.md) del tuo validatore primario deve essere utilizzato su tutte le macchine di backup.
+
+L'ID sulla tua macchina primaria può essere trovato con `doublezero address`. Lo stesso ID deve essere presente in `~/.config/doublezero/id.json` su tutte le macchine del cluster.
+
+Per fare questo, prima verificherai che la macchina da cui stai eseguendo i comandi sia il tuo **Validatore Primario** con:
 
 ```
 doublezero-solana passport find-validator -ut
 ```
 
-Output atteso:
+Questo verifica che il validatore sia registrato nel gossip e compaia nello schedule dei leader.
+
+Output previsto:
 
 ```
 Connected to Solana: testnet
@@ -171,14 +181,17 @@ Gossip IP: 11.11.11.111
 In Leader scheduler
 ✅ This validator can connect as a primary in DoubleZero 🖥️  💎. It is a leader scheduled validator.
 ```
+!!! info
+    Lo stesso flusso di lavoro viene utilizzato per una o più macchine.
+    Per registrare una sola macchina, escludi gli argomenti "--backup-validator-ids" o "backup_ids=" da qualsiasi comando in questa pagina.
 
-Ora, su tutte le macchine di backup:
+Ora, su tutte le macchine di backup su cui intendi eseguire il tuo **Validatore Primario**, esegui il seguente comando:
 
 ```
 doublezero-solana passport find-validator -ut
 ```
 
-Output atteso:
+Output previsto:
 
 ```
 Connected to Solana: testnet
@@ -190,13 +203,18 @@ Gossip IP: 22.22.22.222
 In Not in Leader scheduler
  ✅ This validator can only connect as a backup in DoubleZero 🖥️  🛟. It is not leader scheduled and cannot act as a primary validator.
 ```
+Questo output è previsto. Il nodo di backup non può essere nello schedule dei leader al momento della creazione del pass.
+
+Eseguirai ora questo comando su **tutte le macchine di backup** che prevedi di utilizzare con il tuo account di voto e l'identità del **Validatore Primario**.
 
 </div>
 
 
 <div data-wizard-step="testnet-prepare-access" markdown>
 
-### Prepara la Connessione
+### Preparare la Connessione
+
+Esegui il seguente comando sulla macchina del **Validatore Primario**. Questa è la macchina su cui hai stake attivo, che è nello schedule dei leader con il tuo ID del validatore primario nel gossip di Solana sulla macchina da cui stai eseguendo il comando:
 
 ```
 doublezero-solana passport prepare-validator-access -ut \
@@ -205,11 +223,53 @@ doublezero-solana passport prepare-validator-access -ut \
   --backup-validator-ids ValidatorIdentity222222222222222222222222222,ValidatorIdentity33333333333333333333333333,ValidatorIdentity444444444444444444444444444>
 ```
 
+
+Output di esempio:
+
+```
+DoubleZero Passport - Prepare Validator Access Request
+Connected to Solana: testnet
+
+Primary validator 🖥️  💎:
+  ID: ValidatorIdentity111111111111111111111111111
+  Gossip: ✅ OK 11.11.11.111)
+  Leader scheduler: ✅ OK (Stake: 1,050,000.00 SOL)
+
+Backup validator 🖥️ 🛡️:
+  ID: ValidatorIdentity222222222222222222222222222
+  Gossip: ✅ OK (22.22.22.222)
+  Leader scheduler:  ✅ OK (not a leader scheduled validator)
+
+
+Backup validator 🖥️ 🛡️:
+  ID: ValidatorIdentity333333333333333333333333333
+  Gossip: ✅ OK (33.33.33.333)
+  Leader scheduler:  ✅ OK (not a leader scheduled validator)
+
+
+  Backup validator 🖥️ 🛡️:
+  ID: ValidatorIdentity444444444444444444444444444
+  Gossip: ✅ OK (33.33.33.333)
+  Leader scheduler:  ✅ OK (not a leader scheduled validator)
+
+  To request access, sign the following message with your validator's identity key:
+
+  solana sign-offchain-message \
+     service_key=YourDoubleZeroAddress11111111111111111111111111111,backup_ids=ValidatorIdentity222222222222222222222222222,ValidatorIdentity33333333333333333333333333,ValidatorIdentity444444444444444444444444444 \
+     -k <identity-keypair-file.json>
+
+```
+Prendi nota dell'output alla fine di questo comando. È la struttura per il passaggio successivo.
+
 </div>
 
-## 4. Genera la Firma
+## 4. Generare la Firma
 
 <div data-wizard-step="testnet-sign-message" markdown>
+
+Alla fine dell'ultimo passaggio, abbiamo ricevuto un output pre-formattato per `solana sign-offchain-message`
+
+Dall'output sopra, eseguiremo questo comando sulla macchina del **Validatore Primario**.
 
 ```
   solana sign-offchain-message \
@@ -225,60 +285,6 @@ doublezero-solana passport prepare-validator-access -ut \
 
 </div>
 
-## 5. Avvia una Richiesta di Connessione in DoubleZero
+## 5. Avviare una Richiesta di Connessione in DoubleZero
 
 <div data-wizard-step="testnet-request-access" markdown>
-
-```
-doublezero-solana passport request-validator-access -k <path to keypair> -ut \
---primary-validator-id ValidatorIdentity111111111111111111111111111 \
---backup-validator-ids ValidatorIdentity222222222222222222222222222,ValidatorIdentity33333333333333333333333333,ValidatorIdentity444444444444444444444444444 \
---signature Signature111111rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7 --doublezero-address YourDoubleZeroAddress11111111111111111111111111111
-```
-
-**Output:**
-
-```bash
-Request Solana validator access: Transaction22222222VaB8FMqM2wEBXyV5THpKRXWrPtDQxmTjHJHiAWteVYTsc7Gjz4hdXxvYoZXGeHkrEayp
-```
-
-</div>
-
-## 6. Connettiti in Modalità IBRL
-
-<div data-wizard-step="testnet-connect-ibrl" markdown>
-
-```
-doublezero connect ibrl
-```
-
-Dovresti vedere un output che indica il provisioning, come:
-
-```
-DoubleZero Service Provisioning
-🔗  Start Provisioning User...
-Public IP detected: 137.184.101.183 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
-🔍  Provisioning User for IP: 137.184.101.183
-    User account created
-    Connected to device: nyc-dz001
-    The user has been successfully activated
-    Service provisioned with status: ok
-✅  User Provisioned
-```
-
-Verifica la tua connessione:
-
-```bash
-doublezero status
-```
-
-```bash
- Tunnel status | Last Session Update     | Tunnel Name | Tunnel src    | Tunnel dst     | Doublezero IP | User Type | Current Device | Lowest Latency Device | Metro     | Network
- up            | 2025-10-20 12:12:55 UTC | doublezero0 | 11.11.11.111 | 12.34.56.789 | 11.11.11.111 | IBRL      | ams-dz001      | ✅ ams-dz001          | Amsterdam | testnet
-```
-
-</div>
-
-### Passo Successivo: Pubblicazione degli Shred via Multicast
-
-Se hai completato questa configurazione e prevedi di pubblicare shred via multicast, procedi alla [pagina successiva](Validator%20Multicast%20Connection.md).

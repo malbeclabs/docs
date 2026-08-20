@@ -1,21 +1,24 @@
 ---
-description: DoubleZero シュレッドフィードを受信するためのエッジサブスクライバーのセットアップ方法。クライアントのセットアップや GRE、BGP、PIM、シュレッドトラフィック用のファイアウォールルールを含みます。
+description: エッジサブスクライバーを設定して DoubleZero シュレッドフィードを受信する方法（クライアントのセットアップ、GRE・BGP・PIM・シュレッドトラフィック用のファイアウォールルールを含む）。
 ---
 
 # エッジサブスクライバー接続
-!!! warning "DoubleZero に接続することにより、[DoubleZero 利用規約](https://doublezero.xyz/terms-protocol)に同意したものとみなされます。データはお客様の内部利用目的に限られ、再送信は許可されていません（セクション 2(e) を参照）。"
+!!! warning "DoubleZero に接続することにより、[DoubleZero 利用規約](https://doublezero.xyz/terms-protocol)に同意したものとみなされます。データはお客様の内部目的のみに使用可能であり、再送信は禁止されていますのでご注意ください（セクション 2(e) 参照）。"
 
-## ステップ 1: DoubleZero のセットアップ
+!!! warning "CLI サブスクリプションをすでにご利用中ですか？"
+    **CLI** 経由でサブスクライブした場合（`doublezero-solana shreds pay` / エスクローシート）、それらのコマンドについては [CLI サブスクリプションページ](Edge Subscriber CLI.md)をご参照ください。このシステムは **2026 年 8 月 30 日に廃止予定** です。新規サブスクリプションは本ページに従ってください。
 
-### 1. セットアップの完了
+## ステップ 1: DoubleZero セットアップ
+
+### セットアップの完了
 
 [Solana CLI](https://docs.anza.xyz/cli/install) をインストールします。
 
-[セットアップ](setup.md)の手順に従って、DoubleZero クライアントをインストールおよび設定します。
+[セットアップ](setup.md)手順に従って、DoubleZero クライアントのインストールと設定を行います。
 
-以前に DoubleZero をセットアップしたことがある場合は、`sudo apt update && sudo apt install doublezero-solana` で最新の Doublezero-Solana CLI をインストールしてください。
+以前に DoubleZero をセットアップ済みの場合は、`sudo apt update && sudo apt install doublezero-solana` で最新の Doublezero-Solana CLI に更新してください。
 
-### 2. ファイアウォールの設定
+### ファイアウォールの設定
 
 GRE、BGP、PIM、およびシュレッドトラフィックを許可します。
 
@@ -41,205 +44,77 @@ sudo ufw allow in on doublezero1 to any port 7733 proto udp
 sudo ufw allow in on doublezero0 to any port 44880 proto udp
 ```
 
-### 3. リコンサイラーの有効化
-
-リコンサイラーはオンチェーンの状態を監視し、シートが割り当てられると自動的にトンネルをプロビジョニングします。デフォルトでは有効になっていません。
-
-```bash
-doublezero enable
-```
-
 ---
 
-## ステップ 2: ウォレットのセットアップ
+## ステップ 2: メトロの選択
 
-### 1. Solana キーペアの作成
-
-`doublezero-solana` CLI は、オンチェーンのシート管理に標準的な Solana キーペアを使用します。まだお持ちでない場合：
-
-```bash
-solana-keygen new
-```
-
-これにより `~/.config/solana/id.json` に書き込まれます。別のパスを使用する場合は、任意の `doublezero-solana` コマンドに `--keypair <path>` を渡してください。
-
-ウォレットアドレスを表示します：
-
-```bash
-solana address
-```
-
-### 2. ウォレットへの入金
-
-ウォレットには 2 種類のトークンが必要です：
-
-- **SOL** — Solana のトランザクション手数料用。上記で表示されたウォレットアドレスに SOL を送金してください。
-- **USDC** — シートの資金用。CLI はメインネット USDC ミント（`EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v`）のウォレットの Associated Token Account（ATA）から引き出します。
-
----
-
-## ステップ 3: シートの購入
-
-### 1. 最寄りのデバイスを見つける
-
-シートを購入する前に、お使いのマシンから最も低レイテンシーのデバイスを特定します：
+シュレッドを受信するマシンから最も低レイテンシのロケーションを特定します：
 
 ```bash
 doublezero latency
 ```
 
-最低レイテンシーの結果からデバイスコードをメモしてください（例：`<Device_Name>`）。シートの購入時にこれを使用します。
+最も低レイテンシの結果からメトロ / 都市を確認してください。申請フォームでその都市を選択します。メトロのグループ分けについては[トポロジマップ](https://data.malbeclabs.com/topology/map?overlays=metroClustering%2Cbandwidth)をご参照ください。
 
-### 2. 価格の確認
+### 料金
 
-資金を投入する前に、現在のデバイス価格を確認します。価格は **基本メトロ価格** と **デバイスごとのプレミアム** の 2 つの要素で構成されます。価格と空き状況は[こちら](https://data.doublezero.xyz/dz/shreds/devices)でも確認できます。
+シートは選択したメトロにおいて、マシンごとに**月額**で課金されます：
 
-**全デバイス：**
+| メトロ | 料金 |
+|--------|------|
+| Frankfurt, Amsterdam | $1,500 / 月 |
+| London, New York, Singapore, Tokyo | $900 / 月 |
+| その他すべてのロケーション | $450 / 月 |
+
+---
+
+## ステップ 3: リクエストの送信
+
+1. [https://doublezero.xyz/edge/subscribe](https://doublezero.xyz/edge/subscribe) にアクセスします。
+2. **Solana Shreds** を選択します。
+3. 必要な**都市**（メトロ）を選択します。上記の料金表と `doublezero latency` を参考に選んでください。
+4. 申請フォームを完了します。
+
+[アカウント](https://doublezero.xyz/shreds/account)ページで、各フィードリクエストに DoubleZero ID（既存のキー、または新規生成）を割り当てます。対応する**秘密鍵はシュレッドを受信するマシン上に存在する必要があります** — そのホストに移動できない秘密鍵の公開鍵は割り当てないでください。
+
+選択するのは**メトロ**と**公開鍵**です。申請時にパブリック IP をバインドする必要は**ありません**。サブスクリプション期間中、**選択したメトロ内で** IP 間のアクセス移動が可能です。
+
+当チームが申請を審査し、速やかにご連絡いたします（**2 営業日**を目安としてください）。
+
+---
+
+## ステップ 4: 承認後の接続
+
+当チームからご連絡後、請求書を受領し、お支払いが完了したら、承認された各マシンで接続します：
 
 ```bash
-doublezero-solana shreds price
+doublezero connect multicast --subscribe-feed solana-shreds-full
 ```
 
-**特定のデバイス：**
-
-```bash
-doublezero-solana shreds price --device-code <Device_Name>
-doublezero-solana shreds price --device <PUBKEY>
-```
-
-**メトロ内の全デバイス：**
-
-```bash
-doublezero-solana shreds price --metro <PUBKEY>
-```
-
-出力列：`Device Code`、`Metro Code`、`Metro Name`、`Status`、`Settled Seats`、`Available Seats`、`Base Price (USDC)`、`Premium (USDC)`、`Epoch Price (USDC)`。
-
-エポック価格は、そのデバイスのシートに対するエポックごとの合計コストです（基本 + プレミアム）。完全な公開鍵を表示するには `--wide` を、JSON 出力には `--json` を使用してください。
-
-### 3. シートの購入
-
-1 つのコマンドでシートを購入します。これによりシートの初期化、エスクローへの入金、および割り当てリクエストが行われます：
-
-```bash
-doublezero-solana shreds pay \
-  --device-code <Device_Name> \
-  --client-ip <Target_IP> \
-  --amount <Cost_Of_Seat>
-```
-
-**パラメータ：**
-
-| フラグ | 説明 |
-|------|-------------|
-| `--device <PUBKEY>` | 公開鍵でターゲットデバイスを指定（`--device-code` とは排他） |
-| `--device-code <CODE>` | 人間が読めるコードでターゲットデバイスを指定（例：`<Device_Name>`） |
-| `--client-ip <IP>` | お使いのマシンのパブリック IPv4 アドレス |
-| `--amount <USDC>` | 入金する USDC（小数形式、例：`100` = 100 USDC）。最低エポック価格を満たす必要があります。 |
-| `--source-token-account <PUBKEY>` | カスタム USDC ソースアカウント（デフォルトはウォレットの ATA） |
-| `--accept-partial-epoch` | エポック残量の警告をスキップ（下記参照） |
-| `--fee-payer <PATH>` | SOL トランザクション手数料に別のウォレットを使用 |
-| `--dry-run` | トランザクションを実行せずにシミュレーション |
-| `--with-compute-unit-price <PRICE>` | 混雑時のインクルージョンを高速化するためのコンピュートユニット価格を設定 |
-
-シートが割り当てられると、デーモンが自動的に GRE トンネルを確立します。接続状況を確認するには：
+選択した開始日（通常は東部時間午前 9:01）にアクセスが有効化されます。トンネルの状態を以下で確認してください：
 
 ```bash
 doublezero status
 ```
 
-### エポックのタイミング
+---
 
-シートは Solana エポック（約 2 日間）ごとに割り当てられます。支払い時に現在のエポックの残りが 10% 未満の場合、CLI はシートが即座に割り当てられるものの、現在のエポックの残り期間のみをカバーすることを警告します。次のエポックが始まると、エスクローから別途支払いが差し引かれます。
+## 課金
 
-!!! info "シートを失わないように、1 エポック分以上を入金しておくことをお勧めします。エポックの残り時間は[こちら](https://explorer.solana.com/)で確認できます。"
+シートは**月額**で課金されます。シートの有効期限にご注意ください。
 
-`--accept-partial-epoch` でこの警告をバイパスできます。
-
-### エスクローの残高を維持する
-
-!!! warning "決済時にエスクロー残高がエポック価格を下回っている場合、シートは割り当てられず、トンネルは切断され、蓄積されたテニュアが失われます。テニュアは将来のエポックにおける優先順位を決定するため、失うと新規参入者として再び競争することになります。"
-
-このアカウントに複数エポック分を超過入金することができます。各決済ではエスクローから 1 エポック分の価格が差し引かれ、残りの残高は繰り越されます。例えば、エポックあたりの価格の 5 倍を入金すれば、再入金なしで最大 5 エポック間シートをアクティブに保つことができます。
-
-エスクローを追加入金するには、いつでも `shreds pay` を再実行してください：
-
-```bash
-doublezero-solana shreds pay \
-  --device-code <Device_Name> \
-  --client-ip <Target_IP> \
-  --amount 500
-```
-
-`Target_IP` はシュレッドを受信するマシンのパブリック IPv4 アドレスである必要があります。ターゲットマシンで `curl -4 ifconfig.me` のようなコマンドを実行して確認できます。
-
-### シートの監視
-
-このセクションでは、CLI を使用してシートを表示する方法を説明します。[https://data.doublezero.xyz/api/v1/docs](https://data.doublezero.xyz/api/v1/docs) を使用してシートを監視し、エスクローアカウントの管理を支援することもできます。
-
-アクティブなシートとエスクロー残高を表示します：
-
-**すべてのシート：**
-
-```bash
-doublezero-solana shreds list
-```
-
-**デバイスでフィルター：**
-
-```bash
-doublezero-solana shreds list --device-code <Device_Name>
-```
-
-**クライアント IP でフィルター：**
-
-```bash
-doublezero-solana shreds list --client-ip <Target_IP>
-```
-
-**ウォレットでフィルター：**
-
-```bash
-doublezero-solana shreds list --withdraw-authority <PUBKEY>
-```
-
-出力列：`Device Code`、`Client IP`、`Tenure`、`Balance (USDC)`、`Est. Epochs Paid`。
-
-「Est. Epochs Paid」列は、現在の価格設定で現在の残高が何エポック分をカバーするかを示します。価格が変更された場合、この見積もりは調整されます。
-
-### 資金の引き出し
-
-エスクローを閉じて、残りの USDC をウォレットに返金します：
-
-```bash
-doublezero-solana shreds withdraw \
-  --device-code <Device_Name> \
-  --client-ip <Target_IP>
-```
-
-他のコマンドと同様に、`--device <PUBKEY>` または `--device-code <CODE>` のいずれかでデバイスを指定できます。
-
-別のトークンアカウントに返金を送る場合：
-
-```bash
-doublezero-solana shreds withdraw \
-  --device-code <Device_Name> \
-  --client-ip <Target_IP> \
-  --refund-token-account <PUBKEY>
-```
-
-!!! warning "引き出しを行うと、シートと蓄積されたテニュアが失われます。"
+シートの有効期限の数日前に請求書が送付されます。**未払いの場合、シートは削除されます。**
 
 ---
 
 ## シュレッドアドレス（IP とポート）
 
-リーダーシュレッドと高ステークのリトランスミットシュレッドはポート `7733` 経由で `doublezero1` インターフェース上に到着します。`doublezero0` インターフェースはユニキャストトラフィック用です。ポート `5765` はシュレッドパブリッシャーからのハートビートモニターであり、シュレッドは含まれません。
+リーダーシュレッドおよび高ステークのリトランスミットシュレッドは、`doublezero1` インターフェース上のポート `7733` で到着します。`doublezero0` インターフェースはユニキャストトラフィック用です。ポート `5765` はシュレッドパブリッシャーからのハートビートモニターであり、シュレッドは含まれません。
 
-シュレッドの消費において、**IP アドレス** はマルチキャストストリームを識別し、**ポート** はそのストリーム上の UDP サービスを識別します。
-以下のすべてのシュレッドストリームは `doublezero1` 上の UDP ポート `7733` を使用します。
+シュレッドの受信では、**IP アドレス**がマルチキャストストリームを識別し、**ポート**がそのストリーム上の UDP サービスを識別します。
+以下のすべてのシュレッドストリームは、`doublezero1` 上の UDP ポート `7733` を使用します。
 
-任意のマルチキャストグループの IP を確認するには：
+任意のマルチキャストグループの IP は以下で確認できます：
 
 ```bash
 doublezero multicast group list
@@ -262,69 +137,52 @@ doublezero multicast group list
 
 ## GRE トンネルヘッダー — XDP
 
-!!! note "ネットワーク経由で配信されるシュレッドトラフィックは GRE カプセル化されています。既存のパイプライン（例：XDP ベースのデシュレッダー）にデータを入力する前に、GRE ヘッダーを除去する必要がある場合があります。"
+!!! note "ネットワーク経由で配信されるシュレッドトラフィックは GRE カプセル化されています。既存のパイプライン（例：XDP ベースのデシュレッダー）にデータを投入する前に、GRE ヘッダーを除去する必要がある場合があります。"
 
 ---
 
 ## ツールとダッシュボード
 
-### [Edge Scoreboard](https://data.doublezero.xyz/dz/shreds/scoreboard)
+### [エッジスコアボード](https://data.doublezero.xyz/dz/shreds/scoreboard)
 
-Scoreboard は、スロットレベルのデータを使用して、DoubleZero Edge と他のプロバイダー間のシュレッド配信速度をリアルタイムで比較するベンチマークです。このダッシュボードを使用して、Edge シュレッドの他のプロバイダーに対する勝率を確認できます。リーダーシュレッドのみの結果や、フルフィードの比較を表示できます。リージョン別にドリルダウンして、期待されるパフォーマンスを確認することもできます。
+スコアボードは、スロットレベルのデータを使用して DoubleZero Edge と他のプロバイダー間のシュレッド配信速度をベンチマークし、リアルタイムでパフォーマンスを比較します。このダッシュボードを使用して、他のプロバイダーに対する Edge シュレッドの勝率を確認できます。リーダーシュレッドのみの結果や、フルフィードの比較を表示できます。また、リージョン別にドリルダウンして期待されるパフォーマンスを確認することも可能です。
 
-### [Edge Publishers](https://data.doublezero.xyz/dz/shreds/publishers)
+### [エッジパブリッシャー](https://data.doublezero.xyz/dz/shreds/publishers)
 
-ダッシュボードの左上にある「Publishing Shreds」メトリックは、DoubleZero Edge 上でリーダーシュレッドを公開しているすべての Solana バリデーターのステークウェイトの合計パーセントを示します。ネットワーク上の各パブリッシャーの詳細を確認できます。
+ダッシュボード左上の「Publishing Shreds」メトリクスは、DoubleZero Edge でリーダーシュレッドを公開しているすべての Solana バリデーターの合計ステークウェイト割合を示しています。ネットワーク上の各パブリッシャーの詳細を確認できます。
 
-### [Edge Subscribers, Devices and Activity](https://data.doublezero.xyz/dz/shreds/subscribers)
+### [エッジサブスクライバー、デバイス、アクティビティ](https://data.doublezero.xyz/dz/shreds/subscribers)
 
-このページでクライアント IP を簡単に検索して、サブスクライブされたシートとステータスを確認できます。特定のシートサブスクリプションをクリックすると、支払い履歴とアクティビティを表示できます。利用可能なデバイスは [Devices](https://data.doublezero.xyz/dz/shreds/devices) ページで、最近のすべてのアクティビティは [Activity](https://data.doublezero.xyz/dz/shreds/activity) ページで確認できます。
+このページでクライアント IP を検索して、サブスクライブ済みのシートとステータスを確認できます。また、[デバイス](https://data.doublezero.xyz/dz/shreds/devices)ページで利用可能なデバイスを、[アクティビティ](https://data.doublezero.xyz/dz/shreds/activity)ページで最近のすべてのアクティビティを表示できます。
 
-### Data API ドキュメント
+### データ API ドキュメント
 
-データエンドポイントへのプログラムによるアクセスについては、API ドキュメントを参照してください：[https://data.doublezero.xyz/api/v1/docs](https://data.doublezero.xyz/api/v1/docs)。
+データエンドポイントへのプログラマティックアクセスについては、API ドキュメントをご参照ください：[https://data.doublezero.xyz/api/v1/docs](https://data.doublezero.xyz/api/v1/docs)。
 
 ---
 
 ## トラブルシューティング
 
-ここに記載されていない問題が発生した場合は、回避策を講じる前に既存のチャネルでお問い合わせください。チャネルがない場合は、[Discord](https://discord.gg/U2fEb4Jq) を検索し、必要に応じてチケットを作成してください。
+ここでカバーされていない問題が発生した場合は、回避策を講じる前に既存のチャネルからお問い合わせください。チャネルをお持ちでない場合は、[Discord](https://discord.gg/U2fEb4Jq) を検索し、必要に応じてチケットを作成してください。
 
-### クライアントが最新であることを確認する：
+### クライアントが最新であることを確認：
 
-実行：`sudo apt update && sudo apt install doublezero-solana`
+実行: `sudo apt update && sudo apt install doublezero-solana`
 
-### エスクロー残高不足
+### トンネルが起動しない
 
-決済時にエスクロー残高がエポック価格を下回っている場合、シートは割り当てられず、トンネルは切断され、テニュアが失われます。次の決済前に `shreds pay` で追加入金してください。
+1. デーモンが実行中であることを確認: `sudo systemctl status doublezerod`
+2. ファイアウォールルールが設定されていることを確認（GRE、BGP、PIM、`doublezero1` 上のシュレッドトラフィック、`doublezero0` 上のポート 44880）
+3. このシートの請求書が支払い済みで、開始日を過ぎていることを確認
+4. 割り当てられた秘密鍵を保持するマシンで `doublezero connect multicast --subscribe-feed solana-shreds-full` を実行
+5. 接続状態を確認: `doublezero status`
 
-### 支払い後にシートが割り当てられない
+アカウントページで使用した DoubleZero ID は、このホスト上のキーと一致する必要があります。
 
-- エポックの遅い時期に支払った可能性があります — シートは次のエポックから有効になります。
-- デバイス上のすべてのシートが、より高いテニュアを持つ既存ユーザーによって占有されている可能性があります。`shreds price` で空きシートを確認してください。
-- 決済前に引き出しを行った場合、シートは対象外でした。
+### シートの期限切れまたは削除
 
-### トンネルが確立されない
-
-1. デーモンが実行中であることを確認：`sudo systemctl status doublezerod`
-2. リコンサイラーが有効であることを確認：`doublezero enable`
-3. ファイアウォールルールが設定されていることを確認（GRE、BGP、PIM、`doublezero1` 上のシュレッドトラフィック、`doublezero0` 上のポート 44880）
-4. 現在のエポックでシートがアクティブであることを確認：`doublezero-solana shreds list`
-5. 接続状況を確認：`doublezero status`
-
-デーモンのクライアント IP はホストのパブリック IP から自動検出されます — シートコマンドで使用した `--client-ip` と一致していることを確認してください。
-
-### エポック警告プロンプト
-
-CLI はエポックの残りが 10% 未満の場合に警告します。選択肢は以下の通りです：
-
-- シートをすぐに取得したい場合は `--accept-partial-epoch` で受け入れる
-- フルエポック分のカバレッジを得るために次のエポックを待つ
-
-### 「Amount is below the current price」
-
-`pay` コマンドは、最低エポック価格（メトロ基本 + デバイスプレミアム）に対して金額を検証します。`shreds price` で現在の価格を確認し、金額を増やしてください。
+シートは月額制です。有効期限前に送付された請求書が未払いの場合、シートは削除され、トンネルは維持されません。
 
 ### 「Multicast user already exists」
 
-別のパスを通じてすでにアクティブなサブスクリプションがあります。まず `doublezero disconnect` で切断してから、`shreds pay` を再試行してください。
+別の経路で既にアクティブなサブスクリプションがあります。まず `doublezero disconnect` で切断してから、`doublezero connect multicast --subscribe-feed solana-shreds-full` を再試行してください。
