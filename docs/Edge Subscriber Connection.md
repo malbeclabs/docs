@@ -91,7 +91,7 @@ After we contact you, you receive an invoice, and that invoice is paid, connect 
 doublezero connect multicast --subscribe-feed solana-shreds-full
 ```
 
-Access is enabled on your chosen start date (typically 9:01 AM ET). Check the tunnel with:
+Access is enabled on your chosen start date, after access is provisioned you may check the tunnel status with:
 
 ```bash
 doublezero status
