@@ -1,6 +1,6 @@
 **Review the Disclaimer before accessing or using the code or any related materials.**
 
-<!-- https://github.com/doublezerofoundation/doublezero-offchain/pull/159 -->
+<!-- https://github.com/malbeclabs/doublezero-offchain/pull/159 -->
 
 ??? warning "Disclaimer"
     
@@ -121,7 +121,7 @@ Optionally, you may specify the checked SOL amount to the standard fill size (se
 
 ### Interface to Buy SOL
 
-The interface and `doublezero-solana` CLI live in [this repo](https://github.com/doublezerofoundation/doublezero-offchain). The source code for the DoubleZero swap contract interface can be found [here](https://github.com/doublezerofoundation/doublezero-offchain/tree/b3f606a91326baf64b475a37d612981b63243b09). The program ID is `9DRcqsJUCo8CL2xDCXpogwzLEVKRDzSyNtVgXqsXHfDs`.
+The interface and `doublezero-solana` CLI live in [this repo](https://github.com/malbeclabs/doublezero-offchain). The source code for the DoubleZero swap contract interface can be found [here](https://github.com/malbeclabs/doublezero-offchain/tree/b3f606a91326baf64b475a37d612981b63243b09). The program ID is `9DRcqsJUCo8CL2xDCXpogwzLEVKRDzSyNtVgXqsXHfDs`.
 
 A convenient way of generating the accounts needed for the buy SOL instruction is using the `new` method (found in *instruction/account.rs*).
 
