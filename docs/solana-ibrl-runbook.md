@@ -48,17 +48,15 @@ Rocky / RHEL: use `setup.rpm.sh` and `sudo yum install doublezero`.
 
 **Verify:** `sudo systemctl status doublezerod` is active. Back up `~/.config/doublezero/id.json`.
 
-### 2. Point the daemon at mainnet-beta
+### 2. Confirm the client is on mainnet-beta
+
+Install the Mainnet-Beta packages from [setup](setup.md) (Testnet uses a different repo). Then:
 
 ```bash
-DESIRED_DOUBLEZERO_ENV=mainnet-beta \
-	&& sudo mkdir -p /etc/systemd/system/doublezerod.service.d \
-	&& echo -e "[Service]\nExecStart=\nExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env $DESIRED_DOUBLEZERO_ENV" | sudo tee /etc/systemd/system/doublezerod.service.d/override.conf > /dev/null \
-	&& sudo systemctl daemon-reload \
-	&& sudo systemctl restart doublezerod \
-	&& doublezero config set --env $DESIRED_DOUBLEZERO_ENV  > /dev/null \
-	&& echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV"
+doublezero status
 ```
+
+**Pass:** `Network` is `mainnet-beta`. If it is `testnet`, switch with the copy-paste in [troubleshooting](troubleshooting.md#issue-wrong-doublezero-environment).
 
 Wait ~30s, then `doublezero latency` should list mainnet devices.
 
@@ -145,7 +143,7 @@ Expect BGP-learned routes via `doublezero0`.
 
 ## Gotchas
 
-1. **Wrong env.** Testnet packages / `DESIRED_DOUBLEZERO_ENV=testnet` will not land on mainnet-beta.
+1. **Wrong env.** Testnet packages will not land on mainnet-beta. Confirm with `doublezero status`; switch using [troubleshooting](troubleshooting.md#issue-wrong-doublezero-environment).
 2. **Identity not in gossip.** Junk IDs on the same IP cannot register the machine.
 3. **Backups must share the primary DoubleZero ID.** Copy `id.json`; do not keygen a second identity.
 4. **Sign with the validator identity**, not the DoubleZero key.

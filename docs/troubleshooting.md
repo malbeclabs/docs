@@ -314,6 +314,36 @@ This is not an error, but can be an optimization. Below is a best practice which
     ```
     notice in the above output that we `Connected to device: dz-ny7-sw01` this is the desired result from our initial investigation in step 1, where we discovered that `dz-ny7-sw01` was the device with the lowest latency.
 
+### Issue: wrong DoubleZero environment
+
+Mainnet-Beta and Testnet use different package repos. `doublezero status` shows which network the client is on (`Network` column). If a user installed the wrong client, or the daemon is still pointed at the other env, use these copy-paste switches.
+
+To configure the DoubleZero Client CLI (`doublezero`) and daemon (`doublezerod`) to connect to **DoubleZero testnet**:
+
+```bash
+DESIRED_DOUBLEZERO_ENV=testnet \
+	&& sudo mkdir -p /etc/systemd/system/doublezerod.service.d \
+	&& echo -e "[Service]\nExecStart=\nExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env $DESIRED_DOUBLEZERO_ENV" | sudo tee /etc/systemd/system/doublezerod.service.d/override.conf > /dev/null \
+	&& sudo systemctl daemon-reload \
+	&& sudo systemctl restart doublezerod \
+	&& doublezero config set --env $DESIRED_DOUBLEZERO_ENV  > /dev/null \
+	&& echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV"
+```
+
+To configure the DoubleZero Client CLI (`doublezero`) and daemon (`doublezerod`) to connect to **DoubleZero mainnet-beta**:
+
+```bash
+DESIRED_DOUBLEZERO_ENV=mainnet-beta \
+	&& sudo mkdir -p /etc/systemd/system/doublezerod.service.d \
+	&& echo -e "[Service]\nExecStart=\nExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env $DESIRED_DOUBLEZERO_ENV" | sudo tee /etc/systemd/system/doublezerod.service.d/override.conf > /dev/null \
+	&& sudo systemctl daemon-reload \
+	&& sudo systemctl restart doublezerod \
+	&& doublezero config set --env $DESIRED_DOUBLEZERO_ENV  > /dev/null \
+	&& echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV"
+```
+
+You should see: `✅ doublezerod configured for environment mainnet-beta` (or `testnet`). Then `doublezero status` should show the matching `Network`.
+
 ### Issue: `doublezero status` returns some fields with N/A
 
 This issue is generally related to a mismatch between the current daemon and client, vs the daemon and client the connected DZ tunnel was established in.
@@ -340,32 +370,8 @@ This issue is generally related to a mismatch between the current daemon and cli
     This is indicative of an open tunnel on your machine which is not in your current environment.
     In this case the `up` status, with no found `Current Device` on `mainnet-beta` reveals to us that our tunnel is on testnet!
  
-2. Change your environment.
+2. Switch environment using the copy-paste commands in [wrong DoubleZero environment](#issue-wrong-doublezero-environment). Use the opposite of the `Network` value that is returning `N/A`.
 
-    In order to rectify the mismatch you will change your environment to the opposite of the environment returning the `N/A`
-
-    ```bash
-    DESIRED_DOUBLEZERO_ENV=testnet \
-	    && sudo mkdir -p /etc/systemd/system/doublezerod.service.d \
-	    && echo -e "[Service]\nExecStart=\nExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env $DESIRED_DOUBLEZERO_ENV" | sudo tee /etc/systemd/system/doublezerod.service.d/override.conf > /dev/null \
-	    && sudo systemctl daemon-reload \
-	    && sudo systemctl restart doublezerod \
-	    && doublezero config set --env $DESIRED_DOUBLEZERO_ENV  > /dev/null \
-	    && echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV"
-    ```
-
-    To configure the DoubleZero Client CLI (`doublezero`) and daemon (`doublezerod`) to connect to **DoubleZero mainnet-beta**:
-
-    ```bash
-    DESIRED_DOUBLEZERO_ENV=mainnet-beta \
-	    && sudo mkdir -p /etc/systemd/system/doublezerod.service.d \
-	    && echo -e "[Service]\nExecStart=\nExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env $DESIRED_DOUBLEZERO_ENV" | sudo tee /etc/systemd/system/doublezerod.service.d/override.conf > /dev/null \
-	    && sudo systemctl daemon-reload \
-	    && sudo systemctl restart doublezerod \
-	    && doublezero config set --env $DESIRED_DOUBLEZERO_ENV  > /dev/null \
-	    && echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV"
-    ```
-    
 3. Check your status
 
     After switching environments run:

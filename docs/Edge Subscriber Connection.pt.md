@@ -1,21 +1,24 @@
 ---
-description: Configure um assinante de borda para receber feeds de shred do DoubleZero, incluindo configuração do cliente e regras de firewall para GRE, BGP, PIM e tráfego de shreds.
+description: Configure um assinante edge para receber feeds de shreds do DoubleZero, incluindo configuração do cliente e regras de firewall para GRE, BGP, PIM e tráfego de shreds.
 ---
 
-# Conexão do Assinante de Borda
-!!! warning "Ao conectar-se ao DoubleZero, eu concordo com os [Termos de Uso do DoubleZero](https://doublezero.xyz/terms-protocol). Por favor, note que os dados são apenas para seus propósitos internos e não podem ser retransmitidos (veja a Seção 2(e))."
+# Conexão de Assinante Edge
+!!! warning "Ao conectar-se ao DoubleZero, eu concordo com os [Termos de Uso do DoubleZero](https://doublezero.xyz/terms-protocol). Observe que os dados são apenas para seus fins internos e não podem ser retransmitidos (veja a Seção 2(e))."
+
+!!! warning "Já está na assinatura via CLI?"
+    Se você se inscreveu através da **CLI** (`doublezero-solana shreds pay` / escrow seats), use a [página de assinatura via CLI](Edge Subscriber CLI.md) para esses comandos. Esse sistema está sendo **descontinuado em 30 de agosto de 2026**. Novas assinaturas seguem esta página.
 
 ## Passo 1: Configuração do DoubleZero
 
-### 1. Concluir a Configuração
+### Configuração Completa
 
-Instale o [Solana CLI](https://docs.anza.xyz/cli/install).
+Instale a [Solana CLI](https://docs.anza.xyz/cli/install).
 
 Siga as instruções de [configuração](setup.md) para instalar e configurar o cliente DoubleZero.
 
-Se você já configurou o DoubleZero anteriormente, certifique-se de ter o CLI Doublezero-Solana mais recente com `sudo apt update && sudo apt install doublezero-solana`
+Se você já configurou o DoubleZero anteriormente, certifique-se de ter a versão mais recente da CLI Doublezero-Solana com `sudo apt update && sudo apt install doublezero-solana`
 
-### 2. Configurar o Firewall
+### Configure o Firewall
 
 Permita tráfego GRE, BGP, PIM e de shreds.
 
@@ -41,200 +44,72 @@ sudo ufw allow in on doublezero1 to any port 7733 proto udp
 sudo ufw allow in on doublezero0 to any port 44880 proto udp
 ```
 
-### 3. Habilitar o Reconciliador
-
-O reconciliador monitora o estado onchain e provisiona automaticamente túneis quando seu assento é alocado. Ele não é habilitado por padrão.
-
-```bash
-doublezero enable
-```
-
 ---
 
-## Passo 2: Configurar Sua Carteira
+## Passo 2: Escolha um metro
 
-### 1. Criar um Par de Chaves Solana
-
-O CLI `doublezero-solana` usa um par de chaves Solana padrão para gerenciamento de assentos onchain. Se você não tiver um:
-
-```bash
-solana-keygen new
-```
-
-Isso grava em `~/.config/solana/id.json`. Para usar um caminho diferente, passe `--keypair <path>` para qualquer comando `doublezero-solana`.
-
-Imprima o endereço da sua carteira:
-
-```bash
-solana address
-```
-
-### 2. Financiar Sua Carteira
-
-Sua carteira precisa de dois tokens:
-
-- **SOL** — para taxas de transação Solana. Transfira SOL para o endereço da carteira impresso acima.
-- **USDC** — para financiamento de assentos. O CLI retira da Conta de Token Associada (ATA) da sua carteira para o mint USDC da mainnet (`EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v`).
-
----
-
-## Passo 3: Comprar um Assento
-
-### 1. Encontrar o Dispositivo Mais Próximo
-
-Antes de comprar um assento, identifique o dispositivo com a menor latência a partir da sua máquina:
+Identifique a localização com menor latência a partir da máquina que receberá os shreds:
 
 ```bash
 doublezero latency
 ```
 
-Anote o código do dispositivo do resultado com menor latência (ex.: `<Device_Name>`). Você usará isso ao comprar um assento.
+Anote o metro / cidade do resultado com menor latência. Você selecionará essa cidade no formulário de inscrição. Veja o [mapa de topologia](https://data.malbeclabs.com/topology/map?overlays=metroClustering%2Cbandwidth) para ver como os metros são agrupados.
 
-### 2. Verificar Preços
+### Preços
 
-Visualize os preços atuais do dispositivo antes de comprometer fundos. Os preços têm dois componentes: um **preço base do metro** e um **prêmio por dispositivo**. Você também pode visualizar preços e disponibilidade [aqui](https://data.doublezero.xyz/dz/shreds/devices).
+Os assentos são cobrados **por mês**, por máquina, no metro que você selecionar:
 
-**Todos os dispositivos:**
+| Metros | Preço |
+|--------|-------|
+| Frankfurt, Amsterdã | $1.500 / mês |
+| Londres, Nova York, Singapura, Tóquio | $900 / mês |
+| Todas as outras localizações | $450 / mês |
+
+---
+
+## Passo 3: Envie a Solicitação
+
+1. Acesse [https://doublezero.xyz/edge/subscribe](https://doublezero.xyz/edge/subscribe).
+2. Selecione **Solana Shreds**.
+3. Selecione a **cidade** (metro) que você precisa. Use a tabela acima e `doublezero latency` para escolher.
+4. Preencha o formulário de inscrição.
+
+Você atribuirá um DoubleZero ID (chave existente ou gere uma nova) a cada solicitação de feed na página de [contas](https://doublezero.xyz/shreds/account). A **chave privada correspondente deve estar presente na máquina que receberá os shreds** — não atribua uma pubkey cuja chave privada você não possa mover para esse host.
+
+Você escolhe um **metro** e uma **pubkey**. Você **não** vincula um IP público no momento da inscrição. Durante a assinatura, você pode mover o acesso entre IPs **dentro dos metros escolhidos**.
+
+Nossa equipe analisa as inscrições e entra em contato em tempo hábil (espere **2 dias úteis**).
+
+---
+
+## Passo 4: Conecte após a aprovação
+
+Depois que entrarmos em contato com você, você receberá uma fatura, e após o pagamento dessa fatura, conecte em cada máquina aprovada:
 
 ```bash
-doublezero-solana shreds price
+doublezero connect multicast --subscribe-feed solana-shreds-full
 ```
 
-**Dispositivo específico:**
-
-```bash
-doublezero-solana shreds price --device-code <Device_Name>
-doublezero-solana shreds price --device <PUBKEY>
-```
-
-**Todos os dispositivos em um metro:**
-
-```bash
-doublezero-solana shreds price --metro <PUBKEY>
-```
-
-Colunas de saída: `Device Code`, `Metro Code`, `Metro Name`, `Status`, `Settled Seats`, `Available Seats`, `Base Price (USDC)`, `Premium (USDC)`, `Epoch Price (USDC)`.
-
-O preço da epoch é o custo total por epoch para um assento naquele dispositivo (base + prêmio). Use `--wide` para mostrar chaves públicas completas, ou `--json` para saída em JSON.
-
-### 3. Comprar um Assento
-
-Compre um assento com um único comando. Isso inicializa seu assento, financia o escrow e solicita a alocação:
-
-```bash
-doublezero-solana shreds pay \
-  --device-code <Device_Name> \
-  --client-ip <Target_IP> \
-  --amount <Cost_Of_Seat>
-```
-
-**Parâmetros:**
-
-| Flag | Descrição |
-|------|-----------|
-| `--device <PUBKEY>` | Dispositivo alvo por chave pública (mutuamente exclusivo com `--device-code`) |
-| `--device-code <CODE>` | Dispositivo alvo por código legível (ex.: `<Device_Name>`) |
-| `--client-ip <IP>` | Endereço IPv4 público da sua máquina |
-| `--amount <USDC>` | USDC para financiar (formato decimal, ex.: `100` = 100 USDC). Deve atender ao preço mínimo da epoch. |
-| `--source-token-account <PUBKEY>` | Conta de origem USDC personalizada (padrão é a ATA da sua carteira) |
-| `--accept-partial-epoch` | Pular o aviso de epoch restante (veja abaixo) |
-| `--fee-payer <PATH>` | Usar uma carteira diferente para taxas de transação SOL |
-| `--dry-run` | Simular a transação sem executá-la |
-| `--with-compute-unit-price <PRICE>` | Definir um preço de unidade de computação para inclusão mais rápida durante congestionamento |
-
-Uma vez que seu assento é alocado, o daemon estabelece o túnel GRE automaticamente. Verifique sua conexão com:
+O acesso é habilitado na data de início escolhida (tipicamente 9:01 AM ET). Verifique o túnel com:
 
 ```bash
 doublezero status
 ```
 
-### Timing da Epoch
+---
 
-Os assentos são alocados por epoch Solana (~2 dias). Se menos de 10% da epoch atual restar quando você pagar, o CLI avisa que seu assento será alocado imediatamente, mas cobre apenas o restante da epoch atual. Um pagamento separado será deduzido do seu escrow quando a próxima epoch começar.
+## Faturamento
 
-!!! info "É aconselhável financiar mais de 1 epoch por vez para não perder seu assento. Você pode verificar o tempo restante em uma epoch [aqui](https://explorer.solana.com/)."
+Os assentos são cobrados **mensalmente**. Fique atento à data de expiração do assento.
 
-Você pode ignorar este aviso com `--accept-partial-epoch`.
-
-### Mantenha Seu Escrow Financiado
-
-!!! warning "Se o saldo do seu escrow estiver abaixo do preço da epoch na liquidação, seu assento não será alocado, o túnel será encerrado e você perderá sua permanência acumulada. A permanência determina sua prioridade para epochs futuras — perdê-la significa que você compete como um novato novamente."
-
-Você pode sobrefinanciar esta conta para financiar múltiplas epochs. Cada liquidação deduz o preço de uma epoch do seu escrow, e o saldo restante é transferido. Por exemplo, financiar 5x o preço por epoch mantém seu assento ativo por até 5 epochs sem refinanciamento.
-
-Para reabastecer seu escrow, execute `shreds pay` novamente a qualquer momento:
-
-```bash
-doublezero-solana shreds pay \
-  --device-code <Device_Name> \
-  --client-ip <Target_IP> \
-  --amount 500
-```
-
-Note que o `Target_IP` deve ser um endereço IPv4 público na máquina que receberá os shreds. Você pode encontrá-lo executando um comando como `curl -4 ifconfig.me` na máquina de destino.
-
-### Monitorar Assentos
-
-Esta seção detalha como visualizar assentos via CLI. Você também pode usar [https://data.doublezero.xyz/api/v1/docs](https://data.doublezero.xyz/api/v1/docs) para monitorar assentos e auxiliar no gerenciamento da sua conta escrow.
-
-Visualize seus assentos ativos e saldos de escrow:
-
-**Todos os seus assentos:**
-
-```bash
-doublezero-solana shreds list
-```
-
-**Filtrar por dispositivo:**
-
-```bash
-doublezero-solana shreds list --device-code <Device_Name>
-```
-
-**Filtrar por IP do cliente:**
-
-```bash
-doublezero-solana shreds list --client-ip <Target_IP>
-```
-
-**Filtrar por carteira:**
-
-```bash
-doublezero-solana shreds list --withdraw-authority <PUBKEY>
-```
-
-Colunas de saída: `Device Code`, `Client IP`, `Tenure`, `Balance (USDC)`, `Est. Epochs Paid`.
-
-A coluna "Est. Epochs Paid" mostra quantas epochs seu saldo atual cobre com os preços atuais. Se os preços mudarem, esta estimativa se ajusta.
-
-### Sacar Fundos
-
-Feche seu escrow e reembolse o USDC restante para sua carteira:
-
-```bash
-doublezero-solana shreds withdraw \
-  --device-code <Device_Name> \
-  --client-ip <Target_IP>
-```
-
-Você pode identificar o dispositivo por `--device <PUBKEY>` ou `--device-code <CODE>`, assim como outros comandos.
-
-Para enviar o reembolso para uma conta de token diferente:
-
-```bash
-doublezero-solana shreds withdraw \
-  --device-code <Device_Name> \
-  --client-ip <Target_IP> \
-  --refund-token-account <PUBKEY>
-```
-
-!!! warning "Sacar significa que você perde seu assento e a permanência acumulada."
+Você receberá uma fatura alguns dias antes do assento expirar. **O não pagamento leva à remoção do assento.**
 
 ---
 
 ## Endereços de Shred (IP vs Porta)
 
-Shreds de Líder e Shreds de Retransmissão de alto stake chegarão pela porta `7733`, pela interface `doublezero1`. A interface `doublezero0` é para tráfego unicast. A porta `5765` é um monitor de heartbeat dos publicadores de shreds — isso não conterá shreds.
+Os Leader Shreds e os Retransmit Shreds de alto stake chegarão pela porta `7733`, pela interface `doublezero1`. A interface `doublezero0` é para tráfego unicast. A porta `5765` é um monitor de heartbeat dos publicadores de shreds — ela não conterá shreds.
 
 Para consumo de shreds, o **endereço IP** identifica o fluxo multicast e a **porta** identifica o serviço UDP nesse fluxo.  
 Todos os fluxos de shred abaixo usam a porta UDP `7733` em `doublezero1`.
@@ -245,15 +120,15 @@ Você pode examinar os IPs de qualquer grupo multicast com:
 doublezero multicast group list
 ```
 
-### Shreds de Líder
+### Leader Shreds
 
 - `edge-solana-shreds`: `233.84.178.1:7733`
 
-### Shreds de Root
+### Root Shreds
 
 - `edge-solana-root`: `233.84.178.16:7733`
 
-### Shreds de Retransmissão
+### Retransmit Shreds
 
 - `edge-solana-retrans-eu`: `233.84.178.12:7733`
 - `edge-solana-retrans-apac`: `233.84.178.13:7733`
@@ -262,23 +137,23 @@ doublezero multicast group list
 
 ## Cabeçalho do Túnel GRE — XDP
 
-!!! note "O tráfego de shred entregue pela rede é encapsulado em GRE. Pode ser necessário remover o cabeçalho GRE antes de alimentar os dados no seu pipeline existente (ex.: um deshredder baseado em XDP)."
+!!! note "O tráfego de shreds entregue pela rede é encapsulado em GRE. Pode ser necessário remover o cabeçalho GRE antes de alimentar os dados no seu pipeline existente (por exemplo, um deshredder baseado em XDP)."
 
 ---
 
-## Ferramentas e Painéis
+## Ferramentas e Dashboards
 
-### [Placar do Edge](https://data.doublezero.xyz/dz/shreds/scoreboard)
+### [Edge Scoreboard](https://data.doublezero.xyz/dz/shreds/scoreboard)
 
-O Placar compara a velocidade de entrega de shreds entre o DoubleZero Edge e outros provedores, usando dados em nível de slot para comparar o desempenho em tempo real. Use este painel para ver as taxas de vitória dos shreds Edge contra outros provedores. Você pode visualizar resultados apenas para shreds de líder, além de comparação de feed completo. Você também pode detalhar por região para ver o desempenho esperado.
+O Scoreboard avalia a velocidade de entrega de shreds entre o DoubleZero Edge e outros provedores, usando dados em nível de slot para comparar o desempenho em tempo real. Use este dashboard para ver uma visão das taxas de vitória dos shreds Edge em relação a outros provedores. Você pode visualizar resultados apenas para leader shreds, além da comparação completa do feed. Também é possível detalhar por região para ver o desempenho esperado.
 
-### [Publicadores Edge](https://data.doublezero.xyz/dz/shreds/publishers)
+### [Edge Publishers](https://data.doublezero.xyz/dz/shreds/publishers)
 
-A métrica "Publishing Shreds" no canto superior esquerdo do painel mostra o percentual total de peso de stake de todos os validadores Solana publicando shreds de líder no DoubleZero Edge. Você pode ver detalhes de cada publicador na rede.
+A métrica "Publishing Shreds" no canto superior esquerdo do dashboard mostra o percentual total de peso de stake de todos os validadores Solana publicando leader shreds no DoubleZero Edge. Você pode ver detalhes de cada publicador na rede.
 
-### [Assinantes, Dispositivos e Atividade do Edge](https://data.doublezero.xyz/dz/shreds/subscribers)
+### [Assinantes, Dispositivos e Atividade Edge](https://data.doublezero.xyz/dz/shreds/subscribers)
 
-Você pode facilmente pesquisar seu IP de Cliente nesta página para assentos inscritos e visualizar o status. Clique em assinaturas de assentos específicas para ver o histórico de pagamentos e atividade. Você também pode visualizar dispositivos disponíveis na página de [Dispositivos](https://data.doublezero.xyz/dz/shreds/devices) e toda a atividade recente na página de [Atividade](https://data.doublezero.xyz/dz/shreds/activity).
+Você pode pesquisar seu IP de Cliente nesta página para assentos inscritos e visualizar o status. Você também pode ver os dispositivos disponíveis na página de [Dispositivos](https://data.doublezero.xyz/dz/shreds/devices) e toda a atividade recente na página de [Atividade](https://data.doublezero.xyz/dz/shreds/activity).
 
 ### Documentação da API de Dados
 
@@ -286,45 +161,28 @@ Para acesso programático aos endpoints de dados, consulte a documentação da A
 
 ---
 
-## Resolução de Problemas
+## Solução de Problemas
 
-Se você encontrar um problema não coberto aqui, por favor entre em contato pelo seu canal existente antes de tentar uma solução alternativa. Se você não tiver um canal, por favor pesquise no [Discord](https://discord.gg/U2fEb4Jq) e abra um ticket se necessário.
+Se você encontrar um problema não coberto aqui, entre em contato pelo seu canal existente antes de tentar contorná-lo. Se você não tem um canal, pesquise no [Discord](https://discord.gg/U2fEb4Jq) e abra um ticket se necessário.
 
 ### Certifique-se de que seu Cliente está atualizado:
 
 Execute: `sudo apt update && sudo apt install doublezero-solana`
 
-### Saldo de escrow insuficiente
-
-Se o saldo do seu escrow estiver abaixo do preço da epoch na liquidação, o assento não é alocado, o túnel é encerrado e a permanência é perdida. Recarregue com `shreds pay` antes da próxima liquidação.
-
-### Assento não alocado após o pagamento
-
-- Você pode ter pago tarde na epoch — o assento entra em vigor na próxima epoch.
-- Todos os assentos no dispositivo podem estar ocupados por incumbentes com maior permanência. Verifique assentos disponíveis com `shreds price`.
-- Se você sacou antes da liquidação, o assento não estava elegível.
-
-### Túnel não está subindo
+### O túnel não está subindo
 
 1. Verifique se o daemon está em execução: `sudo systemctl status doublezerod`
-2. Verifique se o reconciliador está habilitado: `doublezero enable`
-3. Verifique se as regras de firewall estão em vigor (GRE, BGP, PIM, tráfego de shred em `doublezero1`, porta 44880 em `doublezero0`)
-4. Verifique se seu assento está ativo para a epoch atual: `doublezero-solana shreds list`
+2. Verifique se as regras de firewall estão configuradas (GRE, BGP, PIM, tráfego de shreds em `doublezero1`, porta 44880 em `doublezero0`)
+3. Confirme que a fatura deste assento foi paga e a data de início já passou
+4. Execute `doublezero connect multicast --subscribe-feed solana-shreds-full` na máquina que possui a chave privada atribuída
 5. Verifique o status da sua conexão: `doublezero status`
 
-O IP do cliente do daemon é descoberto automaticamente a partir do IP público do seu host — verifique se ele corresponde ao `--client-ip` usado nos seus comandos de assento.
+O DoubleZero ID usado na página de contas deve corresponder à chave neste host.
 
-### Aviso de prompt de epoch
+### Assento expirado ou removido
 
-O CLI avisa quando menos de 10% da epoch resta. Suas opções:
-
-- Aceite com `--accept-partial-epoch` se você quiser o assento imediatamente
-- Aguarde a próxima epoch para obter cobertura de uma epoch completa
-
-### "Amount is below the current price"
-
-O comando `pay` valida seu valor contra o preço mínimo da epoch (base do metro + prêmio do dispositivo). Use `shreds price` para verificar os preços atuais e aumente seu valor.
+Os assentos são mensais. Se a fatura enviada antes da expiração não for paga, o assento é removido e o túnel não permanecerá ativo.
 
 ### "Multicast user already exists"
 
-Você já tem uma assinatura ativa por um caminho diferente. Desconecte primeiro com `doublezero disconnect`, depois tente novamente `shreds pay`.
+Você já tem uma assinatura ativa por um caminho diferente. Desconecte primeiro com `doublezero disconnect`, depois tente novamente `doublezero connect multicast --subscribe-feed solana-shreds-full`.

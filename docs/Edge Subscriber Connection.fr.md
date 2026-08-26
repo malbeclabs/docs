@@ -2,12 +2,15 @@
 description: Configurez un abonné edge pour recevoir les flux de shreds DoubleZero, y compris la configuration du client et les règles de pare-feu pour GRE, BGP, PIM et le trafic de shreds.
 ---
 
-# Connexion d'un abonné Edge
+# Connexion Abonné Edge
 !!! warning "En me connectant à DoubleZero, j'accepte les [Conditions d'utilisation de DoubleZero](https://doublezero.xyz/terms-protocol). Veuillez noter que les données sont destinées à votre usage interne uniquement et ne peuvent pas être retransmises (voir Section 2(e))."
+
+!!! warning "Déjà sur l'abonnement CLI ?"
+    Si vous vous êtes abonné via le **CLI** (`doublezero-solana shreds pay` / sièges escrow), utilisez la [page d'abonnement CLI](Edge Subscriber CLI.md) pour ces commandes. Ce système sera **décommissionné le 30 août 2026**. Les nouveaux abonnements suivent cette page.
 
 ## Étape 1 : Configuration de DoubleZero
 
-### 1. Configuration complète
+### Configuration complète
 
 Installez le [Solana CLI](https://docs.anza.xyz/cli/install).
 
@@ -15,9 +18,9 @@ Suivez les instructions de [configuration](setup.md) pour installer et configure
 
 Si vous avez déjà configuré DoubleZero, assurez-vous d'avoir la dernière version du CLI Doublezero-Solana avec `sudo apt update && sudo apt install doublezero-solana`
 
-### 2. Configurer le pare-feu
+### Configurer le pare-feu
 
-Autorisez le trafic GRE, BGP, PIM et les shreds.
+Autorisez le trafic GRE, BGP, PIM et shred.
 
 **iptables :**
 
@@ -41,219 +44,91 @@ sudo ufw allow in on doublezero1 to any port 7733 proto udp
 sudo ufw allow in on doublezero0 to any port 44880 proto udp
 ```
 
-### 3. Activer le réconciliateur
-
-Le réconciliateur surveille l'état onchain et provisionne automatiquement les tunnels lorsque votre siège est alloué. Il n'est pas activé par défaut.
-
-```bash
-doublezero enable
-```
-
 ---
 
-## Étape 2 : Configurer votre portefeuille
+## Étape 2 : Choisir un métro
 
-### 1. Créer une paire de clés Solana
-
-Le CLI `doublezero-solana` utilise une paire de clés Solana standard pour la gestion des sièges onchain. Si vous n'en avez pas :
-
-```bash
-solana-keygen new
-```
-
-Cela écrit dans `~/.config/solana/id.json`. Pour utiliser un chemin différent, passez `--keypair <path>` à toute commande `doublezero-solana`.
-
-Affichez l'adresse de votre portefeuille :
-
-```bash
-solana address
-```
-
-### 2. Alimenter votre portefeuille
-
-Votre portefeuille a besoin de deux jetons :
-
-- **SOL** — pour les frais de transaction Solana. Transférez des SOL vers l'adresse du portefeuille affichée ci-dessus.
-- **USDC** — pour le financement du siège. Le CLI prélève depuis le compte de jetons associé (ATA) de votre portefeuille pour le mint USDC du mainnet (`EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v`).
-
----
-
-## Étape 3 : Acheter un siège
-
-### 1. Trouver votre appareil le plus proche
-
-Avant d'acheter un siège, identifiez l'appareil ayant la latence la plus faible depuis votre machine :
+Identifiez l'emplacement à la latence la plus faible depuis la machine qui recevra les shreds :
 
 ```bash
 doublezero latency
 ```
 
-Notez le code de l'appareil avec le résultat de latence le plus faible (par ex., `<Device_Name>`). Vous l'utiliserez lors de l'achat d'un siège.
+Notez le métro / la ville du résultat à la latence la plus faible. Vous sélectionnerez cette ville sur le formulaire de candidature. Consultez la [carte de topologie](https://data.malbeclabs.com/topology/map?overlays=metroClustering%2Cbandwidth) pour voir comment les métros sont regroupés.
 
-### 2. Vérifier les tarifs
+### Tarification
 
-Consultez les tarifs actuels des appareils avant d'engager des fonds. La tarification comporte deux composantes : un **prix de base métro** et une **prime par appareil**. Vous pouvez également consulter les tarifs et la disponibilité [ici](https://data.doublezero.xyz/dz/shreds/devices).
+Les sièges sont facturés **par mois**, par machine, dans le métro que vous sélectionnez :
 
-**Tous les appareils :**
+| Métros | Prix |
+|--------|------|
+| Frankfurt, Amsterdam | 1 500 $ / mois |
+| London, New York, Singapore, Tokyo | 900 $ / mois |
+| Tous les autres emplacements | 450 $ / mois |
+
+---
+
+## Étape 3 : Soumettre la demande
+
+1. Rendez-vous sur [https://doublezero.xyz/edge/subscribe](https://doublezero.xyz/edge/subscribe).
+2. Sélectionnez **Solana Shreds**.
+3. Sélectionnez la **ville** (métro) dont vous avez besoin. Utilisez le tableau ci-dessus et `doublezero latency` pour choisir.
+4. Complétez le formulaire de candidature.
+
+Vous assignerez un DoubleZero ID (clé existante, ou en générer une nouvelle) à chaque demande de flux sur la page [comptes](https://doublezero.xyz/shreds/account). La **clé privée correspondante doit être présente sur la machine qui recevra les shreds** — n'assignez pas une clé publique dont vous ne pouvez pas déplacer la clé privée vers cet hôte.
+
+Vous choisissez un **métro** et une **clé publique**. Vous ne liez **pas** d'IP publique au moment de la candidature. Pendant l'abonnement, vous pouvez transférer l'accès entre les IPs **au sein des métros choisis**.
+
+Notre équipe examine les candidatures et vous contacte dans les meilleurs délais (comptez **2 jours ouvrés**).
+
+---
+
+## Étape 4 : Se connecter après approbation
+
+Après que nous vous ayons contacté, que vous ayez reçu une facture et que celle-ci soit payée, connectez-vous sur chaque machine approuvée :
 
 ```bash
-doublezero-solana shreds price
+doublezero connect multicast --subscribe-feed solana-shreds-full
 ```
 
-**Appareil spécifique :**
-
-```bash
-doublezero-solana shreds price --device-code <Device_Name>
-doublezero-solana shreds price --device <PUBKEY>
-```
-
-**Tous les appareils d'un métro :**
-
-```bash
-doublezero-solana shreds price --metro <PUBKEY>
-```
-
-Colonnes de sortie : `Device Code`, `Metro Code`, `Metro Name`, `Status`, `Settled Seats`, `Available Seats`, `Base Price (USDC)`, `Premium (USDC)`, `Epoch Price (USDC)`.
-
-Le prix par époque est le coût total par époque pour un siège sur cet appareil (base + prime). Utilisez `--wide` pour afficher les clés publiques complètes, ou `--json` pour une sortie JSON.
-
-### 3. Acheter un siège
-
-Achetez un siège avec une seule commande. Cela initialise votre siège, alimente le séquestre et demande l'allocation :
-
-```bash
-doublezero-solana shreds pay \
-  --device-code <Device_Name> \
-  --client-ip <Target_IP> \
-  --amount <Cost_Of_Seat>
-```
-
-**Paramètres :**
-
-| Drapeau | Description |
-|---------|-------------|
-| `--device <PUBKEY>` | Appareil cible par clé publique (mutuellement exclusif avec `--device-code`) |
-| `--device-code <CODE>` | Appareil cible par code lisible (par ex., `<Device_Name>`) |
-| `--client-ip <IP>` | Adresse IPv4 publique de votre machine |
-| `--amount <USDC>` | USDC à déposer (format décimal, par ex. `100` = 100 USDC). Doit atteindre le prix minimum par époque. |
-| `--source-token-account <PUBKEY>` | Compte source USDC personnalisé (par défaut, l'ATA de votre portefeuille) |
-| `--accept-partial-epoch` | Ignorer l'avertissement d'époque restante (voir ci-dessous) |
-| `--fee-payer <PATH>` | Utiliser un portefeuille différent pour les frais de transaction SOL |
-| `--dry-run` | Simuler la transaction sans l'exécuter |
-| `--with-compute-unit-price <PRICE>` | Définir un prix d'unité de calcul pour une inclusion plus rapide en cas de congestion |
-
-Une fois votre siège alloué, le démon établit automatiquement le tunnel GRE. Vérifiez votre connexion avec :
+L'accès est activé à la date de début choisie (généralement 9h01 ET). Vérifiez le tunnel avec :
 
 ```bash
 doublezero status
 ```
 
-### Synchronisation des époques
+---
 
-Les sièges sont alloués par époque Solana (~2 jours). S'il reste moins de 10 % de l'époque en cours lorsque vous payez, le CLI vous avertit que votre siège sera alloué immédiatement mais ne couvre que le reste de l'époque en cours. Un paiement séparé sera déduit de votre séquestre au début de la prochaine époque.
+## Facturation
 
-!!! info "Il est conseillé de financer plus d'une époque à la fois pour ne pas perdre votre siège. Vous pouvez vérifier le temps restant dans une époque [ici](https://explorer.solana.com/)."
+Les sièges sont facturés **mensuellement**. Surveillez la date d'expiration du siège.
 
-Vous pouvez contourner cet avertissement avec `--accept-partial-epoch`.
-
-### Maintenir votre séquestre alimenté
-
-!!! warning "Si le solde de votre séquestre est inférieur au prix de l'époque lors du règlement, votre siège ne sera pas alloué, le tunnel sera démonté et vous perdrez votre ancienneté accumulée. L'ancienneté détermine votre priorité pour les époques futures — la perdre signifie que vous êtes à nouveau en compétition comme un nouveau venu."
-
-Vous pouvez surfinancer ce compte pour couvrir plusieurs époques. Chaque règlement déduit le prix d'une époque de votre séquestre, et le solde restant est reporté. Par exemple, financer 5 fois le prix par époque maintient votre siège actif pendant 5 époques maximum sans refinancement.
-
-Pour recharger votre séquestre, exécutez `shreds pay` à nouveau à tout moment :
-
-```bash
-doublezero-solana shreds pay \
-  --device-code <Device_Name> \
-  --client-ip <Target_IP> \
-  --amount 500
-```
-
-Notez que le `Target_IP` doit être une adresse IPv4 publique sur la machine qui recevra les shreds. Vous pouvez la trouver en exécutant une commande comme `curl -4 ifconfig.me` sur la machine cible.
-
-### Surveiller les sièges
-
-Cette section détaille comment visualiser les sièges via le CLI. Vous pouvez également utiliser [https://data.doublezero.xyz/api/v1/docs](https://data.doublezero.xyz/api/v1/docs) pour surveiller les sièges et vous aider à gérer votre compte séquestre.
-
-Consultez vos sièges actifs et soldes de séquestre :
-
-**Tous vos sièges :**
-
-```bash
-doublezero-solana shreds list
-```
-
-**Filtrer par appareil :**
-
-```bash
-doublezero-solana shreds list --device-code <Device_Name>
-```
-
-**Filtrer par IP client :**
-
-```bash
-doublezero-solana shreds list --client-ip <Target_IP>
-```
-
-**Filtrer par portefeuille :**
-
-```bash
-doublezero-solana shreds list --withdraw-authority <PUBKEY>
-```
-
-Colonnes de sortie : `Device Code`, `Client IP`, `Tenure`, `Balance (USDC)`, `Est. Epochs Paid`.
-
-La colonne « Est. Epochs Paid » indique combien d'époques votre solde actuel couvre aux tarifs actuels. Si les prix changent, cette estimation s'ajuste.
-
-### Retirer des fonds
-
-Fermez votre séquestre et remboursez les USDC restants vers votre portefeuille :
-
-```bash
-doublezero-solana shreds withdraw \
-  --device-code <Device_Name> \
-  --client-ip <Target_IP>
-```
-
-Vous pouvez identifier l'appareil par `--device <PUBKEY>` ou `--device-code <CODE>`, comme pour les autres commandes.
-
-Pour envoyer le remboursement vers un compte de jetons différent :
-
-```bash
-doublezero-solana shreds withdraw \
-  --device-code <Device_Name> \
-  --client-ip <Target_IP> \
-  --refund-token-account <PUBKEY>
-```
-
-!!! warning "Retirer signifie que vous perdez votre siège et l'ancienneté accumulée."
+Vous recevrez une facture quelques jours avant l'expiration du siège. **Le non-paiement entraîne la suppression du siège.**
 
 ---
 
-## Adresses de shreds (IP vs Port)
+## Adresses de Shreds (IP vs Port)
 
-Les shreds de leader et les shreds de retransmission à fort enjeu arriveront sur le port `7733`, via l'interface `doublezero1`. L'interface `doublezero0` est destinée au trafic unicast. Le port `5765` est un moniteur de battement de cœur des éditeurs de shreds — il ne contiendra pas de shreds.
+Les Leader Shreds et les Retransmit Shreds à fort enjeu arriveront sur le port `7733`, via l'interface `doublezero1`. L'interface `doublezero0` est destinée au trafic unicast. Le port `5765` est un moniteur de battement de cœur provenant des éditeurs de shreds — il ne contiendra pas de shreds.
 
 Pour la consommation de shreds, l'**adresse IP** identifie le flux multicast et le **port** identifie le service UDP sur ce flux.  
 Tous les flux de shreds ci-dessous utilisent le port UDP `7733` sur `doublezero1`.
 
-Vous pouvez examiner les IPs de tout groupe multicast avec :
+Vous pouvez examiner les IPs de n'importe quel groupe multicast avec :
 
 ```bash
 doublezero multicast group list
 ```
 
-### Shreds de leader
+### Leader Shreds
 
 - `edge-solana-shreds`: `233.84.178.1:7733`
 
-### Shreds root
+### Root Shreds
 
 - `edge-solana-root`: `233.84.178.16:7733`
 
-### Shreds de retransmission
+### Retransmit Shreds
 
 - `edge-solana-retrans-eu`: `233.84.178.12:7733`
 - `edge-solana-retrans-apac`: `233.84.178.13:7733`
@@ -262,23 +137,23 @@ doublezero multicast group list
 
 ## En-tête du tunnel GRE — XDP
 
-!!! note "Le trafic de shreds livré sur le réseau est encapsulé en GRE. Vous devrez peut-être retirer l'en-tête GRE avant d'alimenter les données dans votre pipeline existant (par ex. un deshredder basé sur XDP)."
+!!! note "Le trafic de shreds livré sur le réseau est encapsulé en GRE. Vous devrez peut-être supprimer l'en-tête GRE avant d'injecter les données dans votre pipeline existant (par exemple, un deshredder basé sur XDP)."
 
 ---
 
 ## Outils et tableaux de bord
 
-### [Tableau des scores Edge](https://data.doublezero.xyz/dz/shreds/scoreboard)
+### [Edge Scoreboard](https://data.doublezero.xyz/dz/shreds/scoreboard)
 
-Le tableau des scores compare la vitesse de livraison des shreds entre DoubleZero Edge et d'autres fournisseurs, en utilisant des données au niveau des slots pour comparer les performances en temps réel. Utilisez ce tableau de bord pour voir les taux de victoire des shreds Edge par rapport aux autres fournisseurs. Vous pouvez consulter les résultats uniquement pour les shreds de leader, en plus de la comparaison du flux complet. Vous pouvez également affiner par région pour voir les performances attendues.
+Le Scoreboard évalue la vitesse de livraison des shreds sur DoubleZero Edge et d'autres fournisseurs, en utilisant des données au niveau des slots pour comparer les performances en temps réel. Utilisez ce tableau de bord pour voir les taux de victoire des shreds Edge par rapport aux autres fournisseurs. Vous pouvez consulter les résultats pour les leader shreds uniquement, en plus de la comparaison du flux complet. Vous pouvez également affiner par région pour voir les performances attendues.
 
-### [Éditeurs Edge](https://data.doublezero.xyz/dz/shreds/publishers)
+### [Edge Publishers](https://data.doublezero.xyz/dz/shreds/publishers)
 
-La métrique « Publishing Shreds » en haut à gauche du tableau de bord affiche le pourcentage total du poids de stake de tous les validateurs Solana publiant des shreds de leader sur DoubleZero Edge. Vous pouvez voir les détails de chaque éditeur sur le réseau.
+La métrique « Publishing Shreds » en haut à gauche du tableau de bord indique le pourcentage total du poids de stake de tous les validateurs Solana publiant des leader shreds sur DoubleZero Edge. Vous pouvez voir les détails de chaque éditeur sur le réseau.
 
 ### [Abonnés Edge, appareils et activité](https://data.doublezero.xyz/dz/shreds/subscribers)
 
-Vous pouvez facilement rechercher votre IP client sur cette page pour les sièges souscrits et consulter le statut. Cliquez sur des abonnements de sièges spécifiques pour voir l'historique des paiements et l'activité. Vous pouvez également consulter les appareils disponibles sur la page [Appareils](https://data.doublezero.xyz/dz/shreds/devices) et toute l'activité récente sur la page [Activité](https://data.doublezero.xyz/dz/shreds/activity).
+Vous pouvez rechercher votre IP Client sur cette page pour les sièges souscrits et voir leur statut. Vous pouvez également consulter les appareils disponibles sur la page [Appareils](https://data.doublezero.xyz/dz/shreds/devices) et toute l'activité récente sur la page [Activité](https://data.doublezero.xyz/dz/shreds/activity).
 
 ### Documentation de l'API de données
 
@@ -288,43 +163,26 @@ Pour un accès programmatique aux points de terminaison de données, consultez l
 
 ## Dépannage
 
-Si vous rencontrez un problème non couvert ici, veuillez nous contacter via votre canal existant avant de tenter un contournement. Si vous n'avez pas de canal, veuillez rechercher sur [Discord](https://discord.gg/U2fEb4Jq) et ouvrir un ticket si nécessaire.
+Si vous rencontrez un problème non couvert ici, veuillez nous contacter via votre canal existant avant de chercher une solution de contournement. Si vous n'avez pas de canal, veuillez chercher sur [Discord](https://discord.gg/U2fEb4Jq) et ouvrir un ticket si nécessaire.
 
 ### Assurez-vous que votre client est à jour :
 
 Exécutez : `sudo apt update && sudo apt install doublezero-solana`
 
-### Solde de séquestre insuffisant
-
-Si le solde de votre séquestre est inférieur au prix de l'époque lors du règlement, le siège n'est pas alloué, le tunnel est démonté et l'ancienneté est perdue. Rechargez avec `shreds pay` avant le prochain règlement.
-
-### Siège non alloué après paiement
-
-- Vous avez peut-être payé tard dans l'époque — le siège prend effet à l'époque suivante.
-- Tous les sièges de l'appareil peuvent être occupés par des titulaires ayant une ancienneté plus élevée. Vérifiez les sièges disponibles avec `shreds price`.
-- Si vous avez retiré avant le règlement, le siège n'était pas éligible.
-
 ### Le tunnel ne s'établit pas
 
 1. Vérifiez que le démon est en cours d'exécution : `sudo systemctl status doublezerod`
-2. Vérifiez que le réconciliateur est activé : `doublezero enable`
-3. Vérifiez que les règles de pare-feu sont en place (GRE, BGP, PIM, trafic de shreds sur `doublezero1`, port 44880 sur `doublezero0`)
-4. Vérifiez que votre siège est actif pour l'époque en cours : `doublezero-solana shreds list`
-5. Vérifiez l'état de votre connexion : `doublezero status`
+2. Vérifiez que les règles de pare-feu sont en place (GRE, BGP, PIM, trafic shred sur `doublezero1`, port 44880 sur `doublezero0`)
+3. Confirmez que la facture pour ce siège est payée et que la date de début est passée
+4. Exécutez `doublezero connect multicast --subscribe-feed solana-shreds-full` sur la machine qui détient la clé privée assignée
+5. Vérifiez le statut de votre connexion : `doublezero status`
 
-L'IP client du démon est découverte automatiquement à partir de l'IP publique de votre hôte — vérifiez qu'elle correspond au `--client-ip` utilisé dans vos commandes de siège.
+Le DoubleZero ID utilisé sur la page des comptes doit correspondre à la clé sur cet hôte.
 
-### Avertissement d'époque
+### Siège expiré ou supprimé
 
-Le CLI avertit lorsqu'il reste moins de 10 % de l'époque. Vos options :
-
-- Accepter avec `--accept-partial-epoch` si vous voulez le siège immédiatement
-- Attendre la prochaine époque pour obtenir une couverture d'époque complète
-
-### « Amount is below the current price »
-
-La commande `pay` valide votre montant par rapport au prix minimum par époque (base métro + prime appareil). Utilisez `shreds price` pour vérifier les tarifs actuels et augmenter votre montant.
+Les sièges sont mensuels. Si la facture envoyée avant l'expiration n'est pas payée, le siège est supprimé et le tunnel ne restera pas actif.
 
 ### « Multicast user already exists »
 
-Vous avez déjà un abonnement actif via un autre chemin. Déconnectez-vous d'abord avec `doublezero disconnect`, puis réessayez `shreds pay`.
+Vous avez déjà un abonnement actif via un chemin différent. Déconnectez-vous d'abord avec `doublezero disconnect`, puis réessayez `doublezero connect multicast --subscribe-feed solana-shreds-full`.

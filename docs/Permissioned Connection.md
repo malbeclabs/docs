@@ -23,41 +23,19 @@ User onboarding is currently permissioned for non-validators and RPCs. To begin 
 
 Permissioned Users will complete connection to DoubleZero Mainnet-beta, which is detailed on this page.
 
-## 1. Environment Configuration
+## 1. Confirm the client network
 
-Please follow the [setup](setup.md) instructions before proceeding.
+Please follow the [setup](setup.md) instructions before proceeding. Install the Mainnet-Beta or Testnet packages for the network you want — they use different package repos.
 
 The last step in setup was to disconnect from the network. This is to ensure that only one tunnel is open on your machine to DoubleZero, and that tunnel is on the correct network.
 
-To configure the DoubleZero Client CLI (`doublezero`) and daemon (`doublezerod`) to connect to **DoubleZero testnet**:
+Confirm with:
+
 ```bash
-DESIRED_DOUBLEZERO_ENV=testnet \
-	&& sudo mkdir -p /etc/systemd/system/doublezerod.service.d \
-	&& echo -e "[Service]\nExecStart=\nExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env $DESIRED_DOUBLEZERO_ENV" | sudo tee /etc/systemd/system/doublezerod.service.d/override.conf > /dev/null \
-	&& sudo systemctl daemon-reload \
-	&& sudo systemctl restart doublezerod \
-	&& doublezero config set --env $DESIRED_DOUBLEZERO_ENV  > /dev/null \
-	&& echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV"
-```
-To configure the DoubleZero Client CLI (`doublezero`) and daemon (`doublezerod`) to connect to **DoubleZero mainnet-beta**:
-```bash
-DESIRED_DOUBLEZERO_ENV=mainnet-beta \
-	&& sudo mkdir -p /etc/systemd/system/doublezerod.service.d \
-	&& echo -e "[Service]\nExecStart=\nExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env $DESIRED_DOUBLEZERO_ENV" | sudo tee /etc/systemd/system/doublezerod.service.d/override.conf > /dev/null \
-	&& sudo systemctl daemon-reload \
-	&& sudo systemctl restart doublezerod \
-	&& doublezero config set --env $DESIRED_DOUBLEZERO_ENV  > /dev/null \
-	&& echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV"
+doublezero status
 ```
 
-You should see the following output:
-```
-✅ doublezerod configured for environment mainnet-beta
-```
-You should see the following output:
-`
-✅ doublezerod configured for environment testnet
-`
+The `Network` column should match the network you intend to join. If it does not, use the copy-paste switch in [troubleshooting](troubleshooting.md#issue-wrong-doublezero-environment).
 
 After about 30 seconds you will see the DoubleZero devices available:
 
@@ -80,8 +58,6 @@ Example output (Testnet)
  9M7FfYYyjM4wGinKPofZRNmQFcCjCKRbXscGBUiXvXnG | dz-tor1-sw01  | 209.42.165.10   | 14.52ms  | 14.53ms  | 14.52ms  | true           
 ```
 Testnet output will be identical in structure, but with many more available devices.
-</details>
-
 
 ## 2. Contact the DoubleZero Foundation
 

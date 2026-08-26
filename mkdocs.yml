@@ -91,6 +91,7 @@ nav:
     - Connect validator (IBRL Testnet): DZ Testnet Connection.md
     - Publish shreds (Edge): Validator Multicast Connection.md
     - Subscribe to shreds (Edge): Edge Subscriber Connection.md
+    - Subscribe to shreds (CLI legacy): Edge Subscriber CLI.md
     - Permissioned / RPC: Permissioned Connection.md
     - Other multicast: Other Multicast Connection.md
     - Troubleshoot Edge: troubleshooting.md
