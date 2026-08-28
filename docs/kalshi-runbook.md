@@ -192,6 +192,7 @@ Replace the group IP with the row you subscribed.
 6. **Installer exit 0 ≠ tunnel up.** Missing access pass or credits: the script continues and still prints Done / a WebSocket URL. Trust `doublezero status`, not the installer footer.
 7. **Feed metro ≠ closest device.** Edge Connect attaches to the metro that serves the purchased feed. Forcing `--device` at the lowest-latency site fails if that metro does not serve the feed. The constraint is the **device**, not where the host sits (a host far from the serving metro can still attach to that device).
 8. **Stale `doublezero1`.** `tunnel already exists`, mixed `169.254.x` addresses, or BGP TCP never establishing to the inner peer → disconnect, delete the iface, connect again. Do not stack a second GRE on a dirty iface.
+9. **Never `docker rm -f` / `docker kill` the bridge.** `SIGKILL` skips the disconnect the entrypoint runs on `docker stop`, orphaning the onchain session and `doublezero1` in the host netns — gotcha 8, self-inflicted. See [Teardown](#teardown).
 
 ---
 
@@ -205,6 +206,31 @@ Replace the group IP with the row you subscribed.
 ```
 
 Full field list: [PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md).
+
+---
+
+## Teardown
+
+`docker stop` **is** the uninstall. The entrypoint stays PID 1 so its `TERM` trap can run a bounded `doublezero disconnect` while the daemon is still up, releasing the onchain session, the GRE tunnel and its routes. The installer creates the container with `--stop-timeout 60`, which is what gives that disconnect room to finish.
+
+```bash
+docker stop doublezero-edge-connect
+docker rm doublezero-edge-connect
+```
+
+Confirm the tunnel actually came down. The bridge ran with `--network host`, so a disconnect that did not happen leaves the iface orphaned on the host. Expect `Device "doublezero1" does not exist.`:
+
+```bash
+ip link show doublezero1
+```
+
+If it is still there, the previous session was not released — delete the iface and treat the onchain session as still held.
+
+The `doublezero-edge` CLI (if you installed it) versions independently of the bridge and is removed separately. Neither removal touches the Cloudsmith repo config, which is a normal `apt`/`dnf` source file:
+
+```bash
+sudo apt remove doublezero-edge   # or: sudo dnf remove doublezero-edge
+```
 
 ---
 
