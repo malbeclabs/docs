@@ -101,6 +101,7 @@ nav:
     - Overview: contribute-overview.md
     - Requirements & Architecture: contribute.md
     - Device Provisioning: contribute-provisioning.md
+    - Rewards Management: contribute-rewards.md
     - Operations: contribute-operations.md
     - OPS Management: contribute-ops-management.md
     - Geolocation: contribute-geolocation.md

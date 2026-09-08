@@ -88,8 +88,8 @@ Before you can provision a device, you need the physical hardware set up and som
 | Requirement | Why It's Needed |
 |-------------|-----------------|
 | **DZD Hardware** | Arista 7280CR3A switch (see [hardware specs](contribute.md#hardware-requirements)) |
-| **Rack Space** | 4U with proper airflow |
-| **Power** | Redundant feeds, ~4KW recommended |
+| **Rack Space** | 1U per DZD, with proper airflow. See [Rack & Power](contribute.md#rack-power-requirements) |
+| **Power** | Two independent feeds, each able to carry the whole load on its own. See [Rack & Power](contribute.md#rack-power-requirements) |
 | **Management Access** | SSH/console access to configure the switch |
 | **Internet Connectivity** | For metrics publishing and to fetch configuration from the controller |
 | **Public IPv4 Block** | Minimum /29 for the DZ prefix pool (see below) |
@@ -163,7 +163,9 @@ flowchart LR
 
 ## Phase 2: Account Setup
 
-In this phase, you create the cryptographic keys that identify you and your devices on the network.
+In this phase, you create the cryptographic keys that identify you and your devices on the network, and you say where your rewards should be paid.
+
+Three keys come out of this phase: a service key, a metrics publisher key, and a rewards manager key. Submit the public keys for all three to DZF together in [Step 2.4](#step-24-submit-keys-to-dzf). [Rewards Management](contribute-rewards.md) covers the rewards side in full.
 
 ### Where to Run the CLI
 
@@ -199,19 +201,25 @@ Think of keys like secure login credentials:
 
 - **Service Key**: Your contributor identity - used to run CLI commands
 - **Metrics Publisher Key**: Your device's identity for submitting telemetry data
+- **Rewards Manager Key**: Controls which wallets receive your rewards - see [Rewards Management](contribute-rewards.md)
 
-Both are cryptographic keypairs (a public key you share, a private key you keep secret).
+All three are cryptographic keypairs (a public key you share, a private key you keep secret).
 
 ```mermaid
 flowchart LR
     subgraph "Your Keys"
         SK[Service Key<br/>~/.config/solana/id.json]
         MK[Metrics Publisher Key<br/>~/.config/doublezero/metrics-publisher.json]
+        RK[Rewards Manager Key<br/>keep offline]
     end
 
     SK -->|Used for| CLI[CLI Commands<br/>doublezero device create<br/>doublezero link create]
     MK -->|Used for| TEL[Telemetry Agent<br/>Submits metrics onchain]
+    RK -->|Used for| REW[Rewards Portal<br/>Sets recipient wallets]
 ```
+
+!!! note "Keep the rewards manager key separate"
+    The service key and metrics publisher key live on your management server and switch. The rewards manager key controls where your money goes, so keep it off those machines. It is only needed when you change your recipient wallets.
 
 ### Step 2.1: Generate Your Service Key
 
@@ -231,19 +239,34 @@ This key is used by the Telemetry Agent to sign metric submissions.
 doublezero keygen -o ~/.config/doublezero/metrics-publisher.json
 ```
 
-### Step 2.3: Submit Keys to DZF
+### Step 2.3: Create Your Rewards Manager Wallet
+
+This is the third key. It controls which wallets receive your rewards, and it never holds them.
+
+Create a Solana wallet you control and can sign with, then fund it with about 0.01 SOL to cover transaction fees. A hardware wallet is a good choice. Do not reuse your service key.
+
+You only need the wallet at this point. You will set the wallets that actually receive your rewards in [Step 2.7](#step-27-set-your-reward-recipients), after DZF has registered this key.
+
+### Step 2.4: Submit Keys to DZF
 
 Contact the DoubleZero Foundation or Malbec Labs and provide:
 
 1. Your **service key public key**
-2. Your **GitHub username** (for repo access)
+2. Your **rewards manager public key** (from Step 2.3)
+3. Your **GitHub username** (for repo access)
+
+Send all three together. DZF registers the service key and the rewards manager key in separate onchain transactions, so sending them at the same time saves a round trip.
+
+!!! danger "Public keys only"
+    Never send a private key or a keypair file to anyone, including DZF. DZF only ever needs your public keys.
 
 They will:
 
 - Create your **contributor account** onchain
+- Register your **rewards manager key** against your service key
 - Grant access to the private **contributors repository**
 
-### Step 2.4: Verify Your Account
+### Step 2.5: Verify Your Account
 
 Once confirmed, verify your contributor account exists:
 
@@ -253,7 +276,16 @@ doublezero contributor list
 
 You should see your contributor code in the list.
 
-### Step 2.5: Access the Contributors Repository
+Check that your rewards manager key was registered too:
+
+```bash
+doublezero-solana revenue-distribution fetch contributor-rewards \
+    --service-key <YourServiceKeyPublicKey> -u mainnet-beta
+```
+
+The `manager` column should show your rewards manager public key. If it is empty, ask DZF to complete that step.
+
+### Step 2.6: Access the Contributors Repository
 
 The [malbeclabs/contributors](https://github.com/malbeclabs/contributors) repository contains:
 
@@ -263,6 +295,17 @@ The [malbeclabs/contributors](https://github.com/malbeclabs/contributors) reposi
 - Additional setup instructions
 
 Follow the instructions there for device-specific configuration.
+
+### Step 2.7: Set Your Reward Recipients
+
+Now say which wallets receive your rewards, and in what proportions. Do this before your device starts carrying traffic. Rewards build up from the moment your links are live, but the protocol cannot pay them out until you have nominated recipient wallets.
+
+Sign in to [doublezero.xyz/rewards](https://doublezero.xyz/rewards) with your rewards manager wallet, select your service key, then enter each recipient wallet and its percentage. The percentages must add up to 100.
+
+!!! warning "Each recipient needs a 2Z token account"
+    The protocol sends 2Z with a plain token transfer and does not create the token account for you. A recipient wallet with no 2Z token account causes that epoch's payout to fail.
+
+See [Rewards Management](contribute-rewards.md) for the full walkthrough, including the CLI alternative, how to check the token account, and how to verify the result.
 
 ---
 

@@ -21,16 +21,20 @@ Use this checklist to track your progress. **All items must be complete before y
 ### Phase 1: Prerequisites
 - [ ] DoubleZero CLI installed on a management server
 - [ ] Hardware procured and meets [requirements](contribute.md#hardware-requirements)
-- [ ] Data center rack space and power available (4U, 4KW recommended)
+- [ ] Data center rack space and power available (see [Rack & Power](contribute.md#rack-power-requirements))
 - [ ] DZD physically installed with management connectivity
 - [ ] Public IPv4 block allocated for DZ protocol (**see [DZ Prefix Rules](#dz-prefix-rules)**)
 
 ### Phase 2: Account Setup
 - [ ] Service keypair generated (`doublezero keygen`)
 - [ ] Metrics publisher keypair generated
-- [ ] Service key submitted to DZF for authorization
+- [ ] Rewards manager wallet created and funded with ~0.01 SOL
+- [ ] Service key, rewards manager key and GitHub username submitted to DZF (public keys only)
 - [ ] Contributor account created onchain (verify with `doublezero contributor list`)
+- [ ] Rewards manager key registered onchain by DZF
 - [ ] Access granted to [malbeclabs/contributors](https://github.com/malbeclabs/contributors) repository
+- [ ] Recipient wallets and percentages configured (**see [Rewards Management](contribute-rewards.md)**)
+- [ ] Each recipient wallet has a 2Z token account
 
 ### Phase 3: Device Provisioning
 - [ ] Base device configuration applied (from contributors repo)
@@ -127,6 +131,7 @@ New to DoubleZero? Here are the essential terms (see [full Glossary](glossary.md
 | **Telemetry Agent** | Collects TWAMP latency/loss metrics, submits to onchain ledger |
 | **Service Key** | Your contributor identity key for CLI operations |
 | **Metrics Publisher Key** | Key for signing telemetry submissions onchain |
+| **Rewards Manager Key** | Key that controls which wallets receive your rewards |
 
 ---
 
@@ -138,6 +143,7 @@ New to DoubleZero? Here are the essential terms (see [full Glossary](glossary.md
 |-------|-------------|
 | [Requirements & Architecture](contribute.md) | Hardware specs, network architecture, bandwidth options |
 | [Device Provisioning](contribute-provisioning.md) | Step-by-step: keys → repo access → device → links → agents |
+| [Rewards Management](contribute-rewards.md) | Setting the wallets that receive your 2Z rewards |
 | [Operations](contribute-operations.md) | Agent upgrades, link management, monitoring |
 | [Geoprobe Deployment](contribute-geolocation.md) | Deploying and configuring geoProbe agents for geolocation |
 | [Glossary](glossary.md) | All DoubleZero terminology defined |

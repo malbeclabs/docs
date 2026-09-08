@@ -162,6 +162,9 @@ A cryptographic keypair used to authenticate CLI operations. This is your contri
 ### Metrics Publisher Key
 A cryptographic keypair used by the [Telemetry Agent](#telemetry-agent) to sign metric submissions to the blockchain. Separate from the service key for security isolation. Stored at `~/.config/doublezero/metrics-publisher.json`.
 
+### Rewards Manager Key
+A cryptographic keypair that controls where a contributor's rewards are paid. It signs changes to the list of recipient wallets but never holds rewards itself. Registered against the contributor's [Service Key](#service-key) by [DZF](#dzf-doublezero-foundation). See [Rewards Management](contribute-rewards.md).
+
 ---
 
 ## Hardware & Software
