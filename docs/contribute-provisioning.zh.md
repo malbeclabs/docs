@@ -1,44 +1,44 @@
 ---
-description: 逐步指南：配置 DoubleZero 设备 (DZD) 并在链上注册其接口和角色。
+description: 配置 DoubleZero 设备 (DZD) 并在链上注册其接口和角色的分步指南。
 ---
 
 # 设备配置指南
 
-本指南将带您从头到尾完成 DoubleZero 设备 (DZD) 的配置。每个阶段对应[上线清单](contribute-overview.md#onboarding-checklist)中的相应步骤。
+本指南将引导您从头到尾完成 DoubleZero 设备 (DZD) 的配置。每个阶段对应[上线清单](contribute-overview.md#onboarding-checklist)中的步骤。
 
 ---
 
-## 整体架构概览
+## 整体架构
 
-本指南将引导您在链上注册基础设施，以便 DoubleZero 网络能够通过您的设备路由流量。设备注册得越完整，它对网络的价值就越大。完整的链上设备表示能够实现更好的故障排查、容量规划，并让控制器做出更明智的决策。随着时间推移，目标是让控制器承担更多的配置责任。
+本指南将引导您在链上注册基础设施，以便 DoubleZero 网络能够通过其路由流量。您的设备注册得越完整，对网络的价值就越大。设备在链上的完整表示有助于更好地进行故障排除、容量规划，并允许控制器做出明智的决策。随着时间推移，目标是让控制器承担更多的配置职责。
 
-### 核心概念
+### 关键概念
 
 **接口**
 
-DZD 上的接口有多种形式：以太网端口、端口通道（由多个以太网端口组成的 LAG）和环回接口。每个在网络中发挥作用的接口都需要在链上注册，并设置适当的标志，以便协议了解其功能。
+DZD 上的接口有多种形式：以太网端口、端口通道（由多个以太网端口组成的 LAG）和环回接口。每个在网络中发挥作用的接口都需要在链上注册并附上适当的标志，以便协议了解其功能。
 
 以太网端口和端口通道可以承担以下角色：
 
 | 标志 | 含义 |
 |------|------|
-| `--interface-dia dia` | 将接口标记为直接互联网接入上行链路 |
-| `--interface-cyoa <subtype>` | 声明用户如何通过该接口建立 GRE 隧道（例如通过公共互联网、通过私有对等链路） |
-| `--user-tunnel-endpoint true` | 该接口承载用户终止 GRE 隧道所用的公共 IP |
+| `--interface-dia dia` | 将该接口标记为直接互联网接入上行链路 |
+| `--interface-cyoa <subtype>` | 声明用户通过此接口建立 GRE 隧道的方式（例如通过公共互联网、通过私有对等链路） |
+| `--user-tunnel-endpoint true` | 此接口携带用户终止 GRE 隧道的公共 IP |
 
-用于 WAN 或 DZX 链路的接口不需要特定标志，只需注册其带宽，然后在创建链路时引用即可。
+用于 WAN 或 DZX 链路的接口不需要特定标志，它们仅注册带宽，然后在创建链路时被引用。
 
 环回接口有多种用途：
 
 | 环回接口 | 含义 |
 |----------|------|
-| **Loopback100 / 101** | 承载用户终止 GRE 隧道所用的公共 IP。使用 `--user-tunnel-endpoint true` 注册。 |
-| **Loopback255** (`vpnv4`) | 注册后控制器可以分配用于 BGP 路由器 ID、VPN-IPv4 对等（单播）、IS-IS 身份和段路由的 IP |
-| **Loopback256** (`ipv4`) | 注册后控制器可以分配用于 IPv4 BGP 对等（组播）和 MSDP 会话的 IP |
+| **Loopback100 / 101** | 携带用户终止 GRE 隧道的公共 IP。使用 `--user-tunnel-endpoint true` 注册。 |
+| **Loopback255** (`vpnv4`) | 注册后控制器可分配 IP，用于 BGP 路由器 ID、VPN-IPv4 对等（单播）、IS-IS 标识和段路由 |
+| **Loopback256** (`ipv4`) | 注册后控制器可分配 IP，用于 IPv4 BGP 对等（组播）和 MSDP 会话 |
 
 **链路**
 
-链路与接口分开注册，且接口必须先在链上存在，链路才能引用它们。创建 WAN 或 DZX 链路时，您需要指定一个已注册的接口作为链路的物理端点。并非所有接口都与链路关联：DIA、CYOA 和环回接口不连接到链路。
+链路与接口分开注册，且接口必须先在链上存在，链路才能引用它们。当您创建 WAN 或 DZX 链路时，需要指定一个已注册的接口作为链路的物理端点。并非所有接口都关联到链路：DIA、CYOA 和环回接口不连接到链路。
 
 | 术语 | 含义 |
 |------|------|
@@ -61,11 +61,11 @@ flowchart TB
             DZX_INTF["DZX 链路接口"]
             LO100["Loopback100/101<br/>(用户隧道端点)"]
         end
-        DZD2[您的另一个 DZD]
+        DZD2[您的其他 DZD]
     end
 
     subgraph Other Contributor
-        OtherDZD[对方的 DZD]
+        OtherDZD[其他贡献者的 DZD]
     end
 
     USERS["用户"]
@@ -74,29 +74,29 @@ flowchart TB
     WAN_INTF ---|WAN 链路| DZD2
     DZX_INTF ---|DZX 链路| OtherDZD
     USERS -.|GRE 隧道|.-> CYOA
-    CYOA ---|路由至| LO100
+    CYOA ---|路由到| LO100
 ```
 
 ---
 
 ## 阶段 1：前提条件
 
-在配置设备之前，您需要先完成物理硬件安装并分配一些 IP 地址。
+在配置设备之前，您需要完成物理硬件的安装并分配一些 IP 地址。
 
-### 准备事项
+### 所需条件
 
 | 要求 | 原因 |
 |------|------|
 | **DZD 硬件** | Arista 7280CR3A 交换机（参见[硬件规格](contribute.md#hardware-requirements)） |
-| **机柜空间** | 每个 DZD 需要 1U，确保良好的气流。参见[机柜与电源](contribute.md#rack-power-requirements) |
-| **电源** | 两路独立供电，每路都能独立承担全部负载。参见[机柜与电源](contribute.md#rack-power-requirements) |
-| **管理访问** | 通过 SSH/控制台访问来配置交换机 |
-| **互联网连接** | 用于发布指标数据和从控制器获取配置 |
-| **公共 IPv4 地址块** | DZ 前缀池至少需要 /29（见下文） |
+| **机架空间** | 每个 DZD 预留 2U（目前使用 1U），需确保良好的气流。参见[机架与电源](contribute.md#rack-power-requirements) |
+| **电源** | 两路独立供电，每路均能独立承担全部负载。参见[机架与电源](contribute.md#rack-power-requirements) |
+| **管理访问** | 通过 SSH/控制台访问以配置交换机 |
+| **互联网连接** | 用于发布指标和从控制器获取配置 |
+| **公共 IPv4 地址块** | DZ 前缀池最少需要 /29（见下文） |
 
 ### 安装 DoubleZero CLI
 
-DoubleZero CLI (`doublezero`) 在整个配置过程中用于注册设备、创建链路和管理您的贡献。它应安装在**管理服务器或虚拟机**上——而不是 DZD 交换机上。交换机只运行配置代理和遥测代理（在[阶段 4](#phase-4-link-establishment-agent-installation) 中安装）。
+DoubleZero CLI (`doublezero`) 在整个配置过程中用于注册设备、创建链路和管理您的贡献。它应安装在**管理服务器或虚拟机**上 — 而非 DZD 交换机本身。交换机仅运行配置代理和遥测代理（在[阶段 4](#phase-4-link-establishment-agent-installation) 中安装）。
 
 **Ubuntu / Debian：**
 ```bash
@@ -110,14 +110,14 @@ curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh | 
 sudo yum install doublezero
 ```
 
-验证守护进程正在运行：
+验证守护进程是否正在运行：
 ```bash
 sudo systemctl status doublezerod
 ```
 
 ### 了解您的 DZ 前缀
 
-DZ 前缀是 DoubleZero 协议用于 IP 分配管理的一组公共 IP 地址。
+您的 DZ 前缀是一组由 DoubleZero 协议管理的公共 IP 地址块，用于 IP 分配。
 
 ```mermaid
 flowchart LR
@@ -152,10 +152,10 @@ flowchart LR
 
     **要求：**
 
-    - 必须是**全球可路由（公共）**的 IPv4 地址
-    - 私有 IP 范围（10.x、172.16-31.x、192.168.x）会被智能合约拒绝
-    - **最小大小：/29**（8 个地址），推荐更大的前缀（例如 /28、/27）
-    - 整个地址块必须可用——不要预先分配任何地址
+    - 必须是**全局可路由（公共）**的 IPv4 地址
+    - 私有 IP 范围（10.x、172.16-31.x、192.168.x）将被智能合约拒绝
+    - **最小大小：/29**（8 个地址），建议使用更大的前缀（如 /28、/27）
+    - 整个地址块必须可用 — 不要预先分配任何地址
 
     如果您需要为自己的设备分配地址（DIA 接口 IP、管理等），请使用**单独的地址池**。
 
@@ -163,14 +163,14 @@ flowchart LR
 
 ## 阶段 2：账户设置
 
-在此阶段，您将创建用于在网络上标识您和您设备的加密密钥，并指定奖励支付地址。
+在此阶段，您将创建用于在网络上标识您和您设备的加密密钥，并设置奖励管理。
 
-此阶段将生成三个密钥：服务密钥、指标发布密钥和奖励管理密钥。请在[步骤 2.4](#step-24-submit-keys-to-dzf) 中将这三个密钥的公钥一并提交给 DZF。[奖励管理](contribute-rewards.md)详细介绍了奖励相关内容。
+这些步骤按特定顺序执行是有原因的：首先获取仓库访问权限，因为仓库包含后续步骤的说明，然后是密钥，再是奖励。某些步骤需要 DZF 先行操作才能继续，以下每个步骤都会说明这一点。
 
 ### CLI 运行位置
 
-!!! warning "请勿在交换机上安装 CLI"
-    DoubleZero CLI (`doublezero`) 应安装在**管理服务器或虚拟机**上，而不是 Arista 交换机上。
+!!! warning "不要在交换机上安装 CLI"
+    DoubleZero CLI (`doublezero`) 应安装在**管理服务器或虚拟机**上，而非 Arista 交换机上。
 
     ```mermaid
     flowchart LR
@@ -193,24 +193,24 @@ flowchart LR
     |--------------------|----------------|
     | `doublezero` CLI | 配置代理 |
     | 您的服务密钥对 | 遥测代理 |
-    | 您的指标发布密钥对 | 指标发布密钥对（副本） |
+    | 您的指标发布者密钥对 | 指标发布者密钥对（副本） |
 
 ### 什么是密钥？
 
 可以将密钥理解为安全登录凭据：
 
-- **服务密钥**：您的贡献者身份——用于运行 CLI 命令
-- **指标发布密钥**：您设备提交遥测数据的身份标识
-- **奖励管理密钥**：控制哪些钱包接收您的奖励——参见[奖励管理](contribute-rewards.md)
+- **服务密钥**：您的贡献者身份 - 用于运行 CLI 命令
+- **指标发布者密钥**：您设备提交遥测数据的身份标识
+- **奖励管理者密钥**：控制哪些钱包接收您的奖励 - 参见贡献者仓库中的[奖励管理](https://github.com/malbeclabs/contributors#rewards-management)
 
-三者都是加密密钥对（一个用于共享的公钥和一个需要保密的私钥）。
+这三个都是加密密钥对（一个公开共享的公钥和一个保密的私钥）。
 
 ```mermaid
 flowchart LR
     subgraph "您的密钥"
         SK[服务密钥<br/>~/.config/solana/id.json]
-        MK[指标发布密钥<br/>~/.config/doublezero/metrics-publisher.json]
-        RK[奖励管理密钥<br/>离线保管]
+        MK[指标发布者密钥<br/>~/.config/doublezero/metrics-publisher.json]
+        RK[奖励管理者密钥<br/>离线保存]
     end
 
     SK -->|用于| CLI[CLI 命令<br/>doublezero device create<br/>doublezero link create]
@@ -218,10 +218,16 @@ flowchart LR
     RK -->|用于| REW[奖励门户<br/>设置接收钱包]
 ```
 
-!!! note "单独保管奖励管理密钥"
-    服务密钥和指标发布密钥存放在您的管理服务器和交换机上。奖励管理密钥控制您的资金去向，因此请将其存放在这些机器之外。只有在更改接收钱包时才需要使用它。
+!!! note "将奖励管理者密钥单独保存"
+    服务密钥和指标发布者密钥存储在您的管理服务器和交换机上。奖励管理者密钥控制您的资金流向，因此请将其保存在这些机器之外。仅在更改接收钱包时才需要使用它。
 
-### 步骤 2.1：生成您的服务密钥
+### 步骤 2.1：申请贡献者仓库访问权限
+
+联系 DoubleZero Foundation 或 Malbec Labs，并提供您的 **GitHub 用户名**。
+
+他们会授予您访问私有 [malbeclabs/contributors](https://github.com/malbeclabs/contributors) 仓库的权限。请首先完成此步骤：该仓库包含基础设备配置、TCAM 和 ACL 配置文件，以及您在后续步骤中需要的奖励管理说明。
+
+### 步骤 2.2：生成您的服务密钥
 
 这是您与 DoubleZero 交互的主要身份标识。
 
@@ -229,42 +235,24 @@ flowchart LR
 doublezero keygen
 ```
 
-这会在默认位置创建一个密钥对。输出会显示您的**公钥**——这是您需要与 DZF 共享的内容。
+这将在默认位置创建一个密钥对。输出会显示您的**公钥** - 这是您将与 DZF 共享的内容。
 
-### 步骤 2.2：生成您的指标发布密钥
+### 步骤 2.3：生成您的指标发布者密钥
 
-此密钥由遥测代理用于签名指标提交。
+此密钥由遥测代理用于签署指标提交。
 
 ```bash
 doublezero keygen -o ~/.config/doublezero/metrics-publisher.json
 ```
 
-### 步骤 2.3：创建您的奖励管理钱包
+### 步骤 2.4：向 DZF 提交您的服务密钥
 
-这是第三个密钥。它控制哪些钱包接收您的奖励，但它本身不持有奖励。
+将您的**服务密钥公钥**发送给 DZF。
 
-创建一个您能控制和签名的 Solana 钱包，然后充入约 0.01 SOL 以支付交易手续费。硬件钱包是一个不错的选择。不要重复使用您的服务密钥。
+他们会在链上创建您的**贡献者账户**，并在完成后确认。
 
-目前您只需要准备好钱包。在 DZF 注册此密钥后，您将在[步骤 2.7](#step-27-set-your-reward-recipients) 中设置实际接收奖励的钱包。
-
-### 步骤 2.4：向 DZF 提交密钥
-
-联系 DoubleZero Foundation 或 Malbec Labs，提供以下信息：
-
-1. 您的**服务密钥公钥**
-2. 您的**奖励管理公钥**（来自步骤 2.3）
-3. 您的 **GitHub 用户名**（用于获取仓库访问权限）
-
-请一并发送所有三项。DZF 会通过单独的链上交易注册服务密钥和奖励管理密钥，因此同时发送可以减少一次往返。
-
-!!! danger "仅提供公钥"
-    切勿向任何人发送私钥或密钥对文件，包括 DZF。DZF 只需要您的公钥。
-
-他们将：
-
-- 在链上创建您的**贡献者账户**
-- 将您的**奖励管理密钥**与服务密钥关联注册
-- 授予您访问私有**贡献者仓库**的权限
+!!! danger "仅限公钥"
+    切勿向任何人（包括 DZF）发送私钥或密钥对文件。只需要公钥即可。
 
 ### 步骤 2.5：验证您的账户
 
@@ -276,36 +264,14 @@ doublezero contributor list
 
 您应该在列表中看到您的贡献者代码。
 
-同时检查您的奖励管理密钥是否已注册：
+### 步骤 2.6：设置奖励管理
 
-```bash
-doublezero-solana revenue-distribution fetch contributor-rewards \
-    --service-key <YourServiceKeyPublicKey> -u mainnet-beta
-```
+奖励管理决定哪些钱包接收您的贡献所赚取的 [2Z](glossary.md#2z-token)，以及各自的比例。
 
-`manager` 列应显示您的奖励管理公钥。如果为空，请要求 DZF 完成该步骤。
+请按照贡献者仓库中的[奖励管理](https://github.com/malbeclabs/contributors#rewards-management)说明操作，您在步骤 2.1 中已获得了该仓库的访问权限。
 
-### 步骤 2.6：访问贡献者仓库
-
-[malbeclabs/contributors](https://github.com/malbeclabs/contributors) 仓库包含：
-
-- 基础设备配置
-- TCAM 配置文件
-- ACL 配置
-- 额外的设置说明
-
-请按照其中的说明进行设备特定的配置。
-
-### 步骤 2.7：设置您的奖励接收方
-
-现在指定哪些钱包接收您的奖励，以及各自的比例。请在您的设备开始承载流量之前完成此操作。奖励从您的链路上线那一刻就开始累积，但在您指定接收钱包之前，协议无法进行支付。
-
-使用您的奖励管理钱包登录 [doublezero.xyz/rewards](https://doublezero.xyz/rewards)，选择您的服务密钥，然后输入每个接收钱包及其百分比。百分比之和必须为 100。
-
-!!! warning "每个接收方都需要 2Z 代币账户"
-    协议通过普通代币转账发送 2Z，不会为您创建代币账户。如果接收钱包没有 2Z 代币账户，会导致该纪元的支付失败。
-
-参见[奖励管理](contribute-rewards.md)获取完整操作指南，包括 CLI 替代方式、如何检查代币账户以及如何验证结果。
+!!! note "这不会阻碍您的其余设置"
+    您可以在未完成此步骤的情况下配置设备、建立链路并开始承载流量，因此请将以下阶段视为独立于此步骤。
 
 ---
 
@@ -315,7 +281,7 @@ doublezero-solana revenue-distribution fetch contributor-rewards \
 
 ### 了解设备类型
 
-**边缘设备（Edge）** — 仅接受用户连接
+**边缘（Edge）** — 仅接受用户连接
 
 ```mermaid
 flowchart LR
@@ -330,7 +296,7 @@ flowchart LR
     E_DZX <-->|DZX 链路| ED["DZD（不同贡献者）"]
 ```
 
-**中转设备（Transit）** — 在设备间转发流量，无用户连接
+**中转（Transit）** — 在设备之间传输流量，无用户连接
 
 ```mermaid
 flowchart LR
@@ -342,7 +308,7 @@ flowchart LR
     T_DZX <-->|DZX 链路| TD["DZD（不同贡献者）"]
 ```
 
-**混合设备（Hybrid）** — 用户连接和骨干传输兼备，最常见
+**混合（Hybrid）** — 用户连接和骨干网，最常见
 
 ```mermaid
 flowchart LR
@@ -359,21 +325,21 @@ flowchart LR
     H_DZX <-->|DZX 链路| HD["DZD（不同贡献者）"]
 ```
 
-| 类型 | 功能 | 适用场景 |
+| 类型 | 功能 | 使用场景 |
 |------|------|----------|
-| **边缘（Edge）** | 仅接受用户连接 | 单一位置，仅面向用户 |
-| **中转（Transit）** | 在设备间转发流量 | 骨干连接，无用户 |
-| **混合（Hybrid）** | 兼具用户连接和骨干功能 | 最常见——全能型 |
+| **边缘** | 仅接受用户连接 | 单一位置，仅面向用户 |
+| **中转** | 在设备之间传输流量 | 骨干网连接，无用户 |
+| **混合** | 用户连接和骨干网兼备 | 最常见 - 功能全面 |
 
-### 步骤 3.1：查找您的位置和交换点
+### 步骤 3.1：查找您的位置和交换节点
 
-在创建设备之前，查找您的数据中心位置和最近交换点的代码：
+在创建设备之前，查找您数据中心位置和最近交换节点的代码：
 
 ```bash
 # 列出可用位置（数据中心）
 doublezero location list
 
-# 列出可用交换点（互联点）
+# 列出可用交换节点（互联点）
 doublezero exchange list
 ```
 
@@ -421,17 +387,17 @@ doublezero device list | grep nyc-dz001
 
 | 参数 | 含义 |
 |------|------|
-| `--code` | 您设备的唯一名称（例如 `nyc-dz001`） |
+| `--code` | 设备的唯一名称（例如 `nyc-dz001`） |
 | `--contributor` | 您的贡献者代码（由 DZF 提供） |
 | `--device-type` | `hybrid`、`transit` 或 `edge` |
 | `--location` | 从 `location list` 获取的数据中心代码 |
-| `--exchange` | 从 `exchange list` 获取的最近交换点代码 |
+| `--exchange` | 从 `exchange list` 获取的最近交换节点代码 |
 | `--public-ip` | 用户通过互联网连接到您设备的公共 IP |
 | `--dz-prefixes` | 为用户分配的 IP 地址块 |
 
 ### 步骤 3.3：创建必需的环回接口
 
-每个设备都需要两个用于内部路由的环回接口：
+每个设备需要两个用于内部路由的环回接口：
 
 ```bash
 # VPNv4 环回
@@ -473,32 +439,32 @@ Signature: 7pQw2R...truncated...4xKm9
 
 ### 步骤 3.5：创建 CYOA 接口（适用于边缘/混合设备）
 
-混合和边缘 DZD 需要**两个公共 IP 地址**供用户终止其 GRE 隧道。用户可以通过单播、组播或两者同时连接，哪个 IP 服务于哪个用途会按用户轮换。
+混合和边缘 DZD 需要**两个公共 IP 地址**，供用户终止其 GRE 隧道。用户可能通过单播、组播或两者同时连接，哪个 IP 用于哪个用途会按用户轮换。
 
-两个 IP 都必须以 `--user-tunnel-endpoint true` 注册，可以在物理接口或环回接口上。这包括您在设备创建时提供的 IP——该 IP 仍需在此处显式注册。
+两个 IP 都必须使用 `--user-tunnel-endpoint true` 注册，可以在物理接口或环回接口上。这包括您在创建设备时提供的 IP，该 IP 仍需在此处显式注册。
 
-如果您的 IP 资源紧张，可以使用 DZ 前缀的第一个 `/32` 作为两个 IP 之一。
+如果您的 IP 资源有限，可以使用 DZ 前缀的第一个 `/32` 作为两个 IP 之一。
 
 #### CYOA 和 DIA
 
 | 类型 | 标志 | 用途 |
 |------|------|------|
 | DIA | `--interface-dia dia` | 将端口标记为直接互联网接入 |
-| CYOA | `--interface-cyoa <subtype>` | 声明用户如何将 GRE 隧道连接到您的设备 |
+| CYOA | `--interface-cyoa <subtype>` | 声明用户如何通过 GRE 隧道连接到您的设备 |
 
-CYOA 标志始终设置在**物理接口**（以太网端口或端口通道）上，不能设置在环回接口上。
+CYOA 标志始终设置在**物理接口**（以太网端口或端口通道）上。绝不在环回接口上设置。
 
 | CYOA 子类型 | 使用场景 |
 |-------------|----------|
 | `gre-over-dia` | 用户通过公共互联网连接。最常见。 |
-| `gre-over-private-peering` | 用户通过直连交叉连接或专用线路连接 |
-| `gre-over-public-peering` | 用户在互联网交换中心 (IX) 与您对等 |
-| `gre-over-fabric` | 用户同地部署，通过本地交换网络连接 |
-| `gre-over-cable` | 直接线缆连接到单个专用用户 |
+| `gre-over-private-peering` | 用户通过直连交叉连接或私有线路连接 |
+| `gre-over-public-peering` | 用户在互联网交换点 (IX) 与您对等 |
+| `gre-over-fabric` | 用户在同一机房，通过本地交换网络连接 |
+| `gre-over-cable` | 直接电缆连接到单个专用用户 |
 
 #### 场景 A：单物理接口
 
-一条连接到 ISP 的物理上行链路。Ethernet1/1 是 CYOA 和 DIA 接口，承载两个公共 IP 之一。Loopback100 承载第二个公共 IP。
+一条到 ISP 的物理上行链路。Ethernet1/1 是 CYOA 和 DIA 接口，携带两个公共 IP 中的一个。Loopback100 携带第二个公共 IP。
 
 ```mermaid
 flowchart LR
@@ -545,13 +511,13 @@ doublezero device interface create mydzd-nyc01 Loopback100 \
 
 #### 场景 B：端口通道（LAG）
 
-DZD 通过带有 IP 的端口通道连接到上游设备。端口通道承载一个公共 IP，作为 CYOA 端点。Loopback100 承载第二个公共 IP。
+DZD 通过带有 IP 的端口通道连接到上游设备。端口通道携带一个公共 IP，是 CYOA 端点。Loopback100 携带第二个公共 IP。
 
 ```mermaid
 flowchart LR
     USERS(["终端用户"])
 
-    subgraph SW["上游路由器/交换机"]
+    subgraph SW["上游路由器 / 交换机"]
         SWPC(["bond0
         203.0.113.2/30"])
     end
@@ -574,4 +540,52 @@ flowchart LR
 | 接口 | `--interface-cyoa` | `--interface-dia` | `--ip-net` | `--bandwidth` | `--cir` | `--routing-mode` | `--user-tunnel-endpoint` |
 |------|-------------------|------------------|------------|---------------|---------|-----------------|--------------------------|
 | Port-Channel1 | `gre-over-dia` | `dia` | 贡献者分配的 IP/子网 | LAG 组合速率 | 承诺速率 | `bgp` 或 `static` | `true` |
-| Loopback100 | — | —
+| Loopback100 | — | — | 您的公共 /32 | `0bps` | — | — | `true` |
+
+基于场景 B 执行的命令示例：
+```bash
+doublezero device interface create mydzd-fra01 Port-Channel1 \
+  --interface-cyoa gre-over-dia \
+  --interface-dia dia \
+  --ip-net 203.0.113.1/30 \
+  --bandwidth 20Gbps \
+  --cir 2Gbps \
+  --routing-mode bgp \
+  --user-tunnel-endpoint true
+
+doublezero device interface create mydzd-fra01 Loopback100 \
+  --ip-net 198.51.100.1/32 \
+  --bandwidth 0bps \
+  --user-tunnel-endpoint true
+```
+
+
+#### 场景 C：双物理上行链路连接到不同路由器
+
+每个物理接口连接到不同的上游路由器。两个公共 IP 分别位于 Loopback100 和 Loopback101 上，均注册为用户隧道端点。
+
+```mermaid
+flowchart LR
+    USERS(["终端用户"])
+
+    RA["路由器 A
+    203.0.113.2/30"]
+    RB["路由器 B
+    203.0.113.6/30"]
+
+    subgraph DZD["DZD"]
+        E1["Eth1/1
+        203.0.113.1/30
+        CYOA · DIA"]
+        E2["Eth2/1
+        203.0.113.5/30
+        CYOA · DIA"]
+        LO0["Loopback100
+        198.51.100.1/32\n        用户隧道端点"]
+        LO1["Loopback101
+        198.51.100.2/32\n        用户隧道端点"]
+        E1 --> LO0
+        E2 --> LO1
+    end
+
+    RA -- "10Gb

@@ -2,43 +2,43 @@
 description: Guia passo a passo para provisionar um Dispositivo DoubleZero (DZD) e registrar suas interfaces e funções on-chain.
 ---
 
-# Guia de Provisionamento de Dispositivos
+# Guia de Provisionamento de Dispositivo
 
-Este guia orienta você no provisionamento de um Dispositivo DoubleZero (DZD) do início ao fim. Cada fase corresponde ao [Checklist de Integração](contribute-overview.md#onboarding-checklist).
+Este guia orienta você por todo o provisionamento de um Dispositivo DoubleZero (DZD) do início ao fim. Cada fase corresponde à [Lista de Verificação de Integração](contribute-overview.md#onboarding-checklist).
 
 ---
 
-## Como Tudo Se Encaixa
+## Como Tudo se Encaixa
 
-Este guia orienta você no registro da sua infraestrutura on-chain para que a rede DoubleZero possa rotear tráfego através dela. Quanto mais completamente seu dispositivo estiver registrado, mais útil ele será para a rede. Uma representação on-chain completa do seu dispositivo permite melhor resolução de problemas, planejamento de capacidade e permite que o controlador tome decisões informadas. Com o tempo, o objetivo é que o controlador assuma mais responsabilidade de configuração.
+Este guia orienta você a registrar sua infraestrutura on-chain para que a rede DoubleZero possa rotear tráfego por ela. Quanto mais completo for o registro do seu dispositivo, mais útil ele será para a rede. Uma representação on-chain completa do seu dispositivo permite melhor diagnóstico de problemas, planejamento de capacidade e permite que o controlador tome decisões informadas. Com o tempo, o objetivo é que o controlador assuma mais responsabilidade de configuração.
 
 ### Conceitos-chave
 
 **Interfaces**
 
-As interfaces em um DZD vêm em diferentes formas: portas Ethernet, port channels (LAGs compostos por múltiplas portas Ethernet) e loopbacks. Cada interface que desempenha um papel na rede precisa ser registrada on-chain com as flags apropriadas para que o protocolo saiba o que ela faz.
+As interfaces em um DZD apresentam diferentes formas: portas Ethernet, canais de porta (LAGs compostos por múltiplas portas Ethernet) e loopbacks. Cada interface que desempenha uma função na rede precisa ser registrada on-chain com as flags apropriadas para que o protocolo saiba o que ela faz.
 
-Portas Ethernet e port channels podem desempenhar as seguintes funções:
+Portas Ethernet e canais de porta podem desempenhar as seguintes funções:
 
 | Flag | O que significa |
 |------|-----------------|
-| `--interface-dia dia` | Marca a interface como uplink de acesso direto à internet |
-| `--interface-cyoa <subtype>` | Declara como os usuários estabelecem túneis GRE através desta interface (ex: pela internet pública, via link de peering privado) |
-| `--user-tunnel-endpoint true` | Esta interface possui um IP público no qual os usuários terminam túneis GRE |
+| `--interface-dia dia` | Marca a interface como o uplink de acesso direto à internet |
+| `--interface-cyoa <subtype>` | Declara como os usuários estabelecem túneis GRE por esta interface (ex.: pela internet pública, via um link de peering privado) |
+| `--user-tunnel-endpoint true` | Esta interface carrega um IP público no qual os usuários terminam túneis GRE |
 
-Interfaces usadas para links WAN ou DZX não possuem uma flag específica — elas são registradas com sua largura de banda e então referenciadas quando o link é criado.
+Interfaces usadas para links WAN ou DZX não carregam uma flag específica; elas são registradas com sua largura de banda e então referenciadas quando o link é criado.
 
-Interfaces loopback servem a diversos propósitos:
+Interfaces loopback servem a vários propósitos:
 
 | Loopback | O que significa |
 |----------|-----------------|
-| **Loopback100 / 101** | Possuem IPs públicos nos quais os usuários terminam túneis GRE. Registrados com `--user-tunnel-endpoint true`. |
-| **Loopback255** (`vpnv4`) | Registrado para que o controlador possa atribuir um IP usado para router ID BGP, peering VPN-IPv4 (unicast), identidade IS-IS e segment routing |
-| **Loopback256** (`ipv4`) | Registrado para que o controlador possa atribuir um IP usado para peering BGP IPv4 (multicast) e sessões MSDP |
+| **Loopback100 / 101** | Carregam IPs públicos nos quais os usuários terminam túneis GRE. Registradas com `--user-tunnel-endpoint true`. |
+| **Loopback255** (`vpnv4`) | Registrada para que o controlador possa atribuir um IP usado para router ID BGP, peering VPN-IPv4 (unicast), identidade IS-IS e segment routing |
+| **Loopback256** (`ipv4`) | Registrada para que o controlador possa atribuir um IP usado para peering BGP IPv4 (multicast) e sessões MSDP |
 
 **Links**
 
-Links são registrados separadamente das interfaces, e as interfaces devem existir on-chain antes que um link possa referenciá-las. Quando você cria um link WAN ou DZX, você especifica uma interface já registrada como o endpoint físico do link. Nem todas as interfaces estão vinculadas a um link: interfaces DIA, CYOA e loopback não são conectadas a um link.
+Os links são registrados separadamente das interfaces, e as interfaces devem existir on-chain antes que um link possa referenciá-las. Quando você cria um link WAN ou DZX, você especifica uma interface já registrada como o endpoint físico do link. Nem todas as interfaces estão vinculadas a um link: interfaces DIA, CYOA e loopback não estão conectadas a um link.
 
 | Termo | O que significa |
 |-------|-----------------|
@@ -50,11 +50,11 @@ Links são registrados separadamente das interfaces, e as interfaces devem exist
 ```mermaid
 flowchart TB
     subgraph Onchain
-        SC[DoubleZero Ledger]
+        SC[Ledger DoubleZero]
     end
 
     subgraph Your Infrastructure
-        MGMT[Servidor de Gerenciamento<br/>DoubleZero CLI]
+        MGMT[Servidor de Gerenciamento<br/>CLI DoubleZero]
         subgraph DZD[Seu DZD]
             CYOA["Interface DIA · CYOA<br/>(uplink voltado ao usuário)"]
             WAN_INTF["Interface de link WAN"]
@@ -88,15 +88,15 @@ Antes de provisionar um dispositivo, você precisa ter o hardware físico config
 | Requisito | Por Que É Necessário |
 |-----------|----------------------|
 | **Hardware DZD** | Switch Arista 7280CR3A (veja [especificações de hardware](contribute.md#hardware-requirements)) |
-| **Espaço em Rack** | 1U por DZD, com fluxo de ar adequado. Veja [Rack e Energia](contribute.md#rack-power-requirements) |
-| **Energia** | Duas alimentações independentes, cada uma capaz de suportar toda a carga sozinha. Veja [Rack e Energia](contribute.md#rack-power-requirements) |
+| **Espaço em Rack** | 2U reservados por DZD (1U em uso atualmente), com fluxo de ar adequado. Veja [Rack & Energia](contribute.md#rack-power-requirements) |
+| **Energia** | Duas alimentações independentes, cada uma capaz de suportar toda a carga sozinha. Veja [Rack & Energia](contribute.md#rack-power-requirements) |
 | **Acesso de Gerenciamento** | Acesso SSH/console para configurar o switch |
-| **Conectividade com a Internet** | Para publicação de métricas e para buscar configuração do controlador |
+| **Conectividade com a Internet** | Para publicação de métricas e busca de configuração do controlador |
 | **Bloco IPv4 Público** | Mínimo /29 para o pool de prefixos DZ (veja abaixo) |
 
-### Instalar o CLI DoubleZero
+### Instale a CLI DoubleZero
 
-O CLI DoubleZero (`doublezero`) é usado durante todo o provisionamento para registrar dispositivos, criar links e gerenciar sua contribuição. Ele deve ser instalado em um **servidor de gerenciamento ou VM** — não no switch DZD em si. O switch executa apenas o Config Agent e o Telemetry Agent (instalados na [Fase 4](#fase-4-estabelecimento-de-links-instalação-de-agentes)).
+A CLI DoubleZero (`doublezero`) é usada durante todo o provisionamento para registrar dispositivos, criar links e gerenciar sua contribuição. Ela deve ser instalada em um **servidor de gerenciamento ou VM** — não no switch DZD em si. O switch executa apenas o Config Agent e o Telemetry Agent (instalados na [Fase 4](#fase-4-estabelecimento-de-links-instalacao-de-agentes)).
 
 **Ubuntu / Debian:**
 ```bash
@@ -137,24 +137,24 @@ flowchart LR
 **Como os prefixos DZ são usados:**
 
 - **Primeiro IP**: Reservado para seu dispositivo (atribuído à interface Loopback100)
-- **IPs restantes**: Alocados para tipos específicos de usuários conectando ao seu DZD:
+- **IPs restantes**: Alocados para tipos específicos de usuários que se conectam ao seu DZD:
     - Usuários `IBRLWithAllocatedIP`
     - Usuários `EdgeFiltering` (caso de uso futuro)
 - **Usuários IBRL**: NÃO consomem deste pool (eles usam seu próprio IP público)
 
 !!! warning "Regras do Prefixo DZ"
-    **Você NÃO PODE usar estes endereços para:**
+    **Você NÃO PODE usar esses endereços para:**
 
     - Seus próprios equipamentos de rede
-    - Links ponto a ponto em interfaces DIA
+    - Links ponto-a-ponto em interfaces DIA
     - Interfaces de gerenciamento
     - Qualquer infraestrutura fora do protocolo DZ
 
     **Requisitos:**
 
     - Devem ser endereços IPv4 **globalmente roteáveis (públicos)**
-    - Faixas de IP privado (10.x, 172.16-31.x, 192.168.x) são rejeitadas pelo smart contract
-    - **Tamanho mínimo: /29** (8 endereços), prefixos maiores são preferíveis (ex: /28, /27)
+    - Faixas de IP privadas (10.x, 172.16-31.x, 192.168.x) são rejeitadas pelo contrato inteligente
+    - **Tamanho mínimo: /29** (8 endereços), prefixos maiores são preferidos (ex.: /28, /27)
     - O bloco inteiro deve estar disponível — não pré-aloque nenhum endereço
 
     Se você precisar de endereços para seus próprios equipamentos (IPs de interface DIA, gerenciamento, etc.), use um **pool de endereços separado**.
@@ -163,19 +163,19 @@ flowchart LR
 
 ## Fase 2: Configuração da Conta
 
-Nesta fase, você cria as chaves criptográficas que identificam você e seus dispositivos na rede, e define onde suas recompensas devem ser pagas.
+Nesta fase, você cria as chaves criptográficas que identificam você e seus dispositivos na rede, e configura o gerenciamento de recompensas.
 
-Três chaves resultam desta fase: uma chave de serviço, uma chave de publicador de métricas e uma chave de gerenciador de recompensas. Envie as chaves públicas de todas as três para a DZF juntas no [Passo 2.4](#passo-24-enviar-chaves-para-a-dzf). [Gerenciamento de Recompensas](contribute-rewards.md) cobre o lado das recompensas em detalhes.
+As etapas são executadas nesta ordem por um motivo: acesso ao repositório primeiro, porque o repositório contém as instruções para as etapas posteriores, depois suas chaves, depois as recompensas. Algumas etapas precisam que a DZF atue antes que você possa continuar, e cada uma abaixo indica quando isso ocorre.
 
-### Onde Executar o CLI
+### Onde Executar a CLI
 
-!!! warning "NÃO instale o CLI no seu switch"
-    O CLI DoubleZero (`doublezero`) deve ser instalado em um **servidor de gerenciamento ou VM**, não no seu switch Arista.
+!!! warning "NÃO instale a CLI no seu switch"
+    A CLI DoubleZero (`doublezero`) deve ser instalada em um **servidor de gerenciamento ou VM**, não no seu switch Arista.
 
     ```mermaid
     flowchart LR
         subgraph "Servidor de Gerenciamento/VM"
-            CLI[DoubleZero CLI]
+            CLI[CLI DoubleZero]
             KEYS[Seus Pares de Chaves]
         end
 
@@ -193,15 +193,15 @@ Três chaves resultam desta fase: uma chave de serviço, uma chave de publicador
     |---------------------------------------|---------------------|
     | CLI `doublezero` | Config Agent |
     | Seu par de chaves de serviço | Telemetry Agent |
-    | Seu par de chaves de publicador de métricas | Par de chaves de publicador de métricas (cópia) |
+    | Seu par de chaves do publicador de métricas | Par de chaves do publicador de métricas (cópia) |
 
 ### O Que São Chaves?
 
-Pense nas chaves como credenciais seguras de login:
+Pense nas chaves como credenciais de login seguras:
 
-- **Chave de Serviço**: Sua identidade de contribuidor - usada para executar comandos do CLI
-- **Chave de Publicador de Métricas**: A identidade do seu dispositivo para enviar dados de telemetria
-- **Chave de Gerenciador de Recompensas**: Controla quais carteiras recebem suas recompensas - veja [Gerenciamento de Recompensas](contribute-rewards.md)
+- **Chave de Serviço**: Sua identidade como contribuidor - usada para executar comandos da CLI
+- **Chave do Publicador de Métricas**: A identidade do seu dispositivo para enviar dados de telemetria
+- **Chave do Gerenciador de Recompensas**: Controla quais carteiras recebem suas recompensas - veja [Gerenciamento de Recompensas](https://github.com/malbeclabs/contributors#rewards-management) no repositório de contribuidores
 
 Todas as três são pares de chaves criptográficas (uma chave pública que você compartilha, uma chave privada que você mantém em segredo).
 
@@ -209,19 +209,25 @@ Todas as três são pares de chaves criptográficas (uma chave pública que voc�
 flowchart LR
     subgraph "Suas Chaves"
         SK[Chave de Serviço<br/>~/.config/solana/id.json]
-        MK[Chave de Publicador de Métricas<br/>~/.config/doublezero/metrics-publisher.json]
-        RK[Chave de Gerenciador de Recompensas<br/>manter offline]
+        MK[Chave do Publicador de Métricas<br/>~/.config/doublezero/metrics-publisher.json]
+        RK[Chave do Gerenciador de Recompensas<br/>manter offline]
     end
 
-    SK -->|Usada para| CLI[Comandos CLI<br/>doublezero device create<br/>doublezero link create]
-    MK -->|Usada para| TEL[Telemetry Agent<br/>Envia métricas onchain]
+    SK -->|Usada para| CLI[Comandos da CLI<br/>doublezero device create<br/>doublezero link create]
+    MK -->|Usada para| TEL[Telemetry Agent<br/>Envia métricas on-chain]
     RK -->|Usada para| REW[Portal de Recompensas<br/>Define carteiras destinatárias]
 ```
 
-!!! note "Mantenha a chave de gerenciador de recompensas separada"
-    A chave de serviço e a chave de publicador de métricas ficam no seu servidor de gerenciamento e no switch. A chave de gerenciador de recompensas controla para onde seu dinheiro vai, então mantenha-a fora dessas máquinas. Ela só é necessária quando você altera suas carteiras destinatárias.
+!!! note "Mantenha a chave do gerenciador de recompensas separada"
+    A chave de serviço e a chave do publicador de métricas ficam no seu servidor de gerenciamento e no switch. A chave do gerenciador de recompensas controla para onde seu dinheiro vai, então mantenha-a fora dessas máquinas. Ela só é necessária quando você altera suas carteiras destinatárias.
 
-### Passo 2.1: Gerar Sua Chave de Serviço
+### Etapa 2.1: Solicitar Acesso ao Repositório de Contribuidores
+
+Entre em contato com a DoubleZero Foundation ou a Malbec Labs e forneça seu **nome de usuário do GitHub**.
+
+Eles concedem acesso ao repositório privado [malbeclabs/contributors](https://github.com/malbeclabs/contributors). Faça isso primeiro: o repositório contém a configuração base do dispositivo, os perfis TCAM e ACL, e as instruções de gerenciamento de recompensas que você precisará nas etapas seguintes.
+
+### Etapa 2.2: Gerar Sua Chave de Serviço
 
 Esta é sua identidade principal para interagir com o DoubleZero.
 
@@ -231,81 +237,41 @@ doublezero keygen
 
 Isso cria um par de chaves no local padrão. A saída mostra sua **chave pública** - é isso que você compartilhará com a DZF.
 
-### Passo 2.2: Gerar Sua Chave de Publicador de Métricas
+### Etapa 2.3: Gerar Sua Chave do Publicador de Métricas
 
-Esta chave é usada pelo Telemetry Agent para assinar envios de métricas.
+Esta chave é usada pelo Telemetry Agent para assinar os envios de métricas.
 
 ```bash
 doublezero keygen -o ~/.config/doublezero/metrics-publisher.json
 ```
 
-### Passo 2.3: Criar Sua Carteira de Gerenciador de Recompensas
+### Etapa 2.4: Enviar Sua Chave de Serviço à DZF
 
-Esta é a terceira chave. Ela controla quais carteiras recebem suas recompensas, e nunca as retém.
+Envie à DZF a **chave pública da sua chave de serviço**.
 
-Crie uma carteira Solana que você controle e possa assinar, depois financie-a com cerca de 0,01 SOL para cobrir taxas de transação. Uma carteira de hardware é uma boa escolha. Não reutilize sua chave de serviço.
-
-Você só precisa da carteira neste momento. Você definirá as carteiras que realmente recebem suas recompensas no [Passo 2.7](#passo-27-definir-seus-destinatários-de-recompensa), depois que a DZF tiver registrado esta chave.
-
-### Passo 2.4: Enviar Chaves para a DZF
-
-Entre em contato com a DoubleZero Foundation ou Malbec Labs e forneça:
-
-1. Sua **chave pública de serviço**
-2. Sua **chave pública de gerenciador de recompensas** (do Passo 2.3)
-3. Seu **nome de usuário do GitHub** (para acesso ao repositório)
-
-Envie as três juntas. A DZF registra a chave de serviço e a chave de gerenciador de recompensas em transações onchain separadas, então enviá-las ao mesmo tempo economiza uma ida e volta.
+Eles criam sua **conta de contribuidor** on-chain e confirmam quando estiver concluído.
 
 !!! danger "Apenas chaves públicas"
-    Nunca envie uma chave privada ou um arquivo de par de chaves para ninguém, incluindo a DZF. A DZF só precisa das suas chaves públicas.
+    Nunca envie uma chave privada ou um arquivo de par de chaves para ninguém, incluindo a DZF. Apenas a chave pública é necessária.
 
-Eles irão:
+### Etapa 2.5: Verificar Sua Conta
 
-- Criar sua **conta de contribuidor** onchain
-- Registrar sua **chave de gerenciador de recompensas** associada à sua chave de serviço
-- Conceder acesso ao **repositório privado de contribuidores**
-
-### Passo 2.5: Verificar Sua Conta
-
-Uma vez confirmado, verifique se sua conta de contribuidor existe:
+Após a confirmação, verifique se sua conta de contribuidor existe:
 
 ```bash
 doublezero contributor list
 ```
 
-Você deve ver seu código de contribuidor na lista.
+Você deverá ver seu código de contribuidor na lista.
 
-Verifique se sua chave de gerenciador de recompensas também foi registrada:
+### Etapa 2.6: Configurar o Gerenciamento de Recompensas
 
-```bash
-doublezero-solana revenue-distribution fetch contributor-rewards \
-    --service-key <SuaChavePublicaDeServico> -u mainnet-beta
-```
+O gerenciamento de recompensas decide quais carteiras recebem os [2Z](glossary.md#2z-token) que sua contribuição gera, e em quais proporções.
 
-A coluna `manager` deve mostrar sua chave pública de gerenciador de recompensas. Se estiver vazia, peça à DZF para completar essa etapa.
+Siga as instruções em [Gerenciamento de Recompensas](https://github.com/malbeclabs/contributors#rewards-management) no repositório de contribuidores, ao qual você agora tem acesso a partir da Etapa 2.1.
 
-### Passo 2.6: Acessar o Repositório de Contribuidores
-
-O repositório [malbeclabs/contributors](https://github.com/malbeclabs/contributors) contém:
-
-- Configurações base de dispositivos
-- Perfis TCAM
-- Configurações de ACL
-- Instruções adicionais de configuração
-
-Siga as instruções lá para configuração específica do dispositivo.
-
-### Passo 2.7: Definir Seus Destinatários de Recompensa
-
-Agora defina quais carteiras recebem suas recompensas, e em quais proporções. Faça isso antes que seu dispositivo comece a transportar tráfego. As recompensas se acumulam a partir do momento em que seus links estão ativos, mas o protocolo não pode pagá-las até que você tenha indicado carteiras destinatárias.
-
-Acesse [doublezero.xyz/rewards](https://doublezero.xyz/rewards) com sua carteira de gerenciador de recompensas, selecione sua chave de serviço e insira cada carteira destinatária e sua porcentagem. As porcentagens devem somar 100.
-
-!!! warning "Cada destinatário precisa de uma conta de token 2Z"
-    O protocolo envia 2Z com uma transferência de token simples e não cria a conta de token para você. Uma carteira destinatária sem conta de token 2Z faz com que o pagamento daquela época falhe.
-
-Veja [Gerenciamento de Recompensas](contribute-rewards.md) para o passo a passo completo, incluindo a alternativa via CLI, como verificar a conta de token e como verificar o resultado.
+!!! note "Isso não bloqueia o restante da sua configuração"
+    Você pode provisionar seu dispositivo, estabelecer links e começar a transportar tráfego sem isso configurado, então trate as fases abaixo como independentes disso.
 
 ---
 
@@ -361,13 +327,13 @@ flowchart LR
 
 | Tipo | O Que Faz | Quando Usar |
 |------|-----------|-------------|
-| **Edge** | Aceita apenas conexões de usuários | Localização única, apenas voltado ao usuário |
+| **Edge** | Aceita apenas conexões de usuários | Localização única, voltado apenas ao usuário |
 | **Transit** | Move tráfego entre dispositivos | Conectividade de backbone, sem usuários |
 | **Hybrid** | Conexões de usuários E backbone | Mais comum - faz tudo |
 
-### Passo 3.1: Encontrar Sua Localização e Exchange
+### Etapa 3.1: Encontre Sua Localização e Exchange
 
-Antes de criar seu dispositivo, consulte os códigos da localização do seu data center e do exchange mais próximo:
+Antes de criar seu dispositivo, procure os códigos da localização do seu data center e do exchange mais próximo:
 
 ```bash
 # Listar localizações disponíveis (data centers)
@@ -377,7 +343,7 @@ doublezero location list
 doublezero exchange list
 ```
 
-### Passo 3.2: Criar Seu Dispositivo Onchain
+### Etapa 3.2: Criar Seu Dispositivo On-chain
 
 Registre seu dispositivo na blockchain:
 
@@ -386,8 +352,8 @@ doublezero device create \
   --code <SEU_CODIGO_DE_DISPOSITIVO> \
   --contributor <SEU_CODIGO_DE_CONTRIBUIDOR> \
   --device-type hybrid \
-  --location <CODIGO_DA_LOCALIZACAO> \
-  --exchange <CODIGO_DO_EXCHANGE> \
+  --location <CODIGO_DE_LOCALIZACAO> \
+  --exchange <CODIGO_DE_EXCHANGE> \
   --public-ip <IP_PUBLICO_DO_DISPOSITIVO> \
   --dz-prefixes <SEU_PREFIXO_DZ>
 ```
@@ -417,19 +383,19 @@ Verifique se seu dispositivo foi criado:
 doublezero device list | grep nyc-dz001
 ```
 
-**Explicação dos parâmetros:**
+**Parâmetros explicados:**
 
 | Parâmetro | O Que Significa |
 |-----------|-----------------|
-| `--code` | Um nome único para seu dispositivo (ex: `nyc-dz001`) |
+| `--code` | Um nome único para seu dispositivo (ex.: `nyc-dz001`) |
 | `--contributor` | Seu código de contribuidor (fornecido pela DZF) |
 | `--device-type` | `hybrid`, `transit` ou `edge` |
 | `--location` | Código do data center obtido de `location list` |
 | `--exchange` | Código do exchange mais próximo obtido de `exchange list` |
-| `--public-ip` | O IP público onde os usuários se conectam ao seu dispositivo pela internet |
+| `--public-ip` | O IP público onde os usuários se conectam ao seu dispositivo via internet |
 | `--dz-prefixes` | Seu bloco de IPs alocado para usuários |
 
-### Passo 3.3: Criar Interfaces Loopback Obrigatórias
+### Etapa 3.3: Criar Interfaces Loopback Obrigatórias
 
 Todo dispositivo precisa de duas interfaces loopback para roteamento interno:
 
@@ -447,9 +413,9 @@ doublezero device interface create <CODIGO_DO_DISPOSITIVO> Loopback256 --loopbac
 Signature: 3mNx9K...truncated...8wRt5
 ```
 
-### Passo 3.4: Criar Interfaces Físicas
+### Etapa 3.4: Criar Interfaces Físicas
 
-Registre as interfaces físicas que serão usadas para links WAN ou DZX. Estas interfaces devem existir on-chain antes que você possa criar um link que as referencie. Neste passo você apenas registra a interface e sua largura de banda — o link é criado em um passo posterior.
+Registre as interfaces físicas que serão usadas para links WAN ou DZX. Essas interfaces devem existir on-chain antes que você possa criar um link que as referencie. Nesta etapa você apenas registra a interface e sua largura de banda; o link é criado em uma etapa posterior.
 
 ```bash
 doublezero device interface create <CODIGO_DO_DISPOSITIVO> <NOME_DA_INTERFACE> \
@@ -469,15 +435,15 @@ doublezero device interface create nyc-dz001 Ethernet1/1 \
 Signature: 7pQw2R...truncated...4xKm9
 ```
 
-Repita isso para cada interface que será usada como endpoint de link WAN ou DZX. Interfaces CYOA e DIA são registradas separadamente no próximo passo.
+Repita isso para cada interface que será usada como endpoint de link WAN ou DZX. As interfaces CYOA e DIA são registradas separadamente na próxima etapa.
 
-### Passo 3.5: Criar Interface CYOA (para dispositivos Edge/Hybrid)
+### Etapa 3.5: Criar Interface CYOA (para dispositivos Edge/Hybrid)
 
-DZDs hybrid e edge precisam de **dois endereços IP públicos** nos quais os usuários terminam seus túneis GRE. Os usuários podem se conectar via unicast, multicast ou ambos, e qual IP serve a qual propósito rotaciona por usuário.
+DZDs hybrid e edge precisam de **dois endereços IP públicos** nos quais os usuários terminam seus túneis GRE. Os usuários podem se conectar via unicast, multicast ou ambos, e qual IP serve a qual propósito é alternado por usuário.
 
-Ambos os IPs devem ser registrados com `--user-tunnel-endpoint true`, em uma interface física ou em um loopback. Isso inclui o IP que você forneceu no momento da criação do dispositivo — esse IP ainda precisa ser explicitamente registrado aqui.
+Ambos os IPs devem ser registrados com `--user-tunnel-endpoint true`, seja em uma interface física ou em um loopback. Isso inclui o IP que você forneceu no momento da criação do dispositivo — esse IP ainda precisa ser explicitamente registrado aqui.
 
-Se você tem restrição de IPs, pode usar o primeiro `/32` do seu prefixo DZ como um dos dois IPs.
+Se você estiver com restrição de IPs, pode usar o primeiro `/32` do seu prefixo DZ como um dos dois IPs.
 
 #### CYOA e DIA
 
@@ -486,19 +452,19 @@ Se você tem restrição de IPs, pode usar o primeiro `/32` do seu prefixo DZ co
 | DIA | `--interface-dia dia` | Marca a porta como acesso direto à internet |
 | CYOA | `--interface-cyoa <subtype>` | Declara como os usuários conectam túneis GRE ao seu dispositivo |
 
-A flag CYOA é sempre definida em uma **interface física** (porta Ethernet ou port channel). Nunca em um loopback.
+A flag CYOA é sempre definida em uma **interface física** (porta Ethernet ou canal de porta). Nunca em um loopback.
 
 | Subtipo CYOA | Quando usar |
 |--------------|-------------|
 | `gre-over-dia` | Usuários se conectam pela internet pública. Mais comum. |
 | `gre-over-private-peering` | Usuários se conectam via cross-connect direto ou circuito privado |
 | `gre-over-public-peering` | Usuários fazem peering com você em um Internet Exchange (IX) |
-| `gre-over-fabric` | Usuários estão co-localizados e se conectam via fabric local |
-| `gre-over-cable` | Conexão por cabo direto a um único usuário dedicado |
+| `gre-over-fabric` | Usuários estão co-localizados e se conectam por um fabric local |
+| `gre-over-cable` | Conexão direta por cabo com um único usuário dedicado |
 
 #### Cenário A: Interface física única
 
-Um único uplink físico para o ISP. Ethernet1/1 é a interface CYOA e DIA e possui um dos dois IPs públicos. Loopback100 possui o segundo IP público.
+Um único uplink físico para o ISP. Ethernet1/1 é a interface CYOA e DIA e carrega um dos dois IPs públicos. Loopback100 carrega o segundo IP público.
 
 ```mermaid
 flowchart LR
@@ -523,7 +489,7 @@ flowchart LR
 
 | Interface | `--interface-cyoa` | `--interface-dia` | `--ip-net` | `--bandwidth` | `--cir` | `--routing-mode` | `--user-tunnel-endpoint` |
 |-----------|-------------------|------------------|------------|---------------|---------|-----------------|--------------------------|
-| Ethernet1/1 | `gre-over-dia` | `dia` | IP/sub-rede atribuído pelo contribuidor | velocidade da porta | taxa garantida | `bgp` ou `static` | `true` |
+| Ethernet1/1 | `gre-over-dia` | `dia` | IP/sub-rede atribuído pelo contribuidor | velocidade da porta | taxa comprometida | `bgp` ou `static` | `true` |
 | Loopback100 | — | — | seu /32 público | `0bps` | — | — | `true` |
 
 Exemplo de comandos a executar baseados no Cenário A:
@@ -543,9 +509,9 @@ doublezero device interface create mydzd-nyc01 Loopback100 \
   --user-tunnel-endpoint true
 ```
 
-#### Cenário B: Port channel (LAG)
+#### Cenário B: Canal de porta (LAG)
 
-O DZD se conecta ao dispositivo upstream via um port channel com um IP. O port channel possui um IP público e é o endpoint CYOA. Loopback100 possui o segundo IP público.
+O DZD se conecta ao dispositivo upstream via um canal de porta com IP. O canal de porta carrega um IP público e é o endpoint CYOA. Loopback100 carrega o segundo IP público.
 
 ```mermaid
 flowchart LR
@@ -573,7 +539,7 @@ flowchart LR
 
 | Interface | `--interface-cyoa` | `--interface-dia` | `--ip-net` | `--bandwidth` | `--cir` | `--routing-mode` | `--user-tunnel-endpoint` |
 |-----------|-------------------|------------------|------------|---------------|---------|-----------------|--------------------------|
-| Port-Channel1 | `gre-over-dia` | `dia` | IP/sub-rede atribuído pelo contribuidor | velocidade combinada do LAG | taxa garantida | `bgp` ou `static` | `true` |
+| Port-Channel1 | `gre-over-dia` | `dia` | IP/sub-rede atribuído pelo contribuidor | velocidade combinada do LAG | taxa comprometida | `bgp` ou `static` | `true` |
 | Loopback100 | — | — | seu /32 público | `0bps` | — | — | `true` |
 
 Exemplo de comandos a executar baseados no Cenário B:
@@ -603,4 +569,38 @@ flowchart LR
     USERS(["Usuários Finais"])
 
     RA["Roteador A
-    203.0.113.2
+    203.0.113.2/30"]
+    RB["Roteador B
+    203.0.113.6/30"]
+
+    subgraph DZD["DZD"]
+        E1["Eth1/1
+        203.0.113.1/30
+        CYOA · DIA"]
+        E2["Eth2/1
+        203.0.113.5/30
+        CYOA · DIA"]
+        LO0["Loopback100
+        198.51.100.1/32\n        endpoint de túnel do usuário"]
+        LO1["Loopback101
+        198.51.100.2/32\n        endpoint de túnel do usuário"]
+        E1 --> LO0
+        E2 --> LO1
+    end
+
+    RA -- "10GbE" --- E1
+    RB -- "10GbE" --- E2
+    USERS -. "Túneis GRE" .-> LO0
+    USERS -. "Túneis GRE" .-> LO1
+```
+
+| Interface | `--interface-cyoa` | `--interface-dia` | `--ip-net` | `--bandwidth` | `--cir` | `--routing-mode` | `--user-tunnel-endpoint` |
+|-----------|-------------------|------------------|------------|---------------|---------|-----------------|--------------------------|
+| Ethernet1/1 | `gre-over-dia` | `dia` | IP/sub-rede atribuído pelo contribuidor | velocidade da porta | taxa comprometida | `bgp` ou `static` | — |
+| Ethernet2/1 | `gre-over-dia` | `dia` | IP/sub-rede atribuído pelo contribuidor | velocidade da porta | taxa comprometida | `bgp` ou `static` | — |
+| Loopback100 | — | — | seu /32 público | `0bps` | — | — | `true` |
+| Loopback101 | — | — | seu /32 público | `0bps` | — | — | `true` |
+
+Exemplo de comandos a executar baseados no Cenário C:
+```bash
+doublezero device interface create mydz

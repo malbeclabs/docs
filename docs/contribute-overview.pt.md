@@ -10,7 +10,7 @@ description: Visão geral e checklist de integração para se tornar um contribu
 Bem-vindo à documentação do contribuidor do DoubleZero. Esta seção cobre tudo o que você precisa para se tornar um contribuidor da rede.
 
 !!! tip "Interessado em se tornar um contribuidor da rede?"
-    Consulte a página [Requisitos e Arquitetura](contribute.md) para entender o hardware, a largura de banda e a conectividade necessários para contribuir com a rede DoubleZero.
+    Revise a página [Requisitos e Arquitetura](contribute.md) para entender o hardware, largura de banda e conectividade necessários para contribuir com a rede DoubleZero.
 
 ---
 
@@ -20,43 +20,59 @@ Use este checklist para acompanhar seu progresso. **Todos os itens devem ser con
 
 ### Fase 1: Pré-requisitos
 - [ ] DoubleZero CLI instalado em um servidor de gerenciamento
-- [ ] Hardware adquirido e atendendo aos [requisitos](contribute.md#hardware-requirements)
+- [ ] Hardware adquirido e atende aos [requisitos](contribute.md#hardware-requirements)
 - [ ] Espaço em rack e energia disponíveis no data center (veja [Rack e Energia](contribute.md#rack-power-requirements))
 - [ ] DZD fisicamente instalado com conectividade de gerenciamento
-- [ ] Bloco de IPv4 público alocado para o protocolo DZ (**veja [Regras de Prefixo DZ](#regras-de-prefixo-dz)**)
+- [ ] Bloco público IPv4 alocado para o protocolo DZ (**veja [Regras de Prefixo DZ](#regras-de-prefixo-dz)**)
 
-### Fase 2: Configuração de Conta
+### Fase 2: Configuração da Conta
+
+Esta fase alterna entre o contribuidor e a DZF. Cada item **DZF** deve ser confirmado antes que o próximo grupo possa começar.
+
+**Contribuidor**
+
+- [ ] Nome de usuário do GitHub enviado para a DZF
+
+**DZF**
+
+- [ ] Acesso concedido ao repositório [malbeclabs/contributors](https://github.com/malbeclabs/contributors)
+
+**Contribuidor**
+
 - [ ] Par de chaves de serviço gerado (`doublezero keygen`)
 - [ ] Par de chaves do publicador de métricas gerado
-- [ ] Carteira do gerenciador de recompensas criada e financiada com ~0.01 SOL
-- [ ] Chave de serviço, chave do gerenciador de recompensas e nome de usuário do GitHub enviados à DZF (apenas chaves públicas)
-- [ ] Conta de contribuidor criada onchain (verificar com `doublezero contributor list`)
-- [ ] Chave do gerenciador de recompensas registrada onchain pela DZF
-- [ ] Acesso concedido ao repositório [malbeclabs/contributors](https://github.com/malbeclabs/contributors)
-- [ ] Carteiras destinatárias e percentuais configurados (**veja [Gerenciamento de Recompensas](contribute-rewards.md)**)
-- [ ] Cada carteira destinatária possui uma conta de token 2Z
+- [ ] **Chave pública** da chave de serviço enviada para a DZF
 
-### Fase 3: Provisionamento de Dispositivo
-- [ ] Configuração base do dispositivo aplicada (do repositório contributors)
+**DZF**
+
+- [ ] Conta do contribuidor criada onchain
+
+**Contribuidor**
+
+- [ ] Conta do contribuidor verificada (`doublezero contributor list`)
+- [ ] Gerenciamento de recompensas configurado (não bloqueia a entrada em produção, **veja [Gerenciamento de Recompensas](https://github.com/malbeclabs/contributors#rewards-management) no repositório de contribuidores**)
+
+### Fase 3: Provisionamento do Dispositivo
+- [ ] Configuração base do dispositivo aplicada (do repositório de contribuidores)
 - [ ] Dispositivo criado onchain (`doublezero device create`)
 - [ ] Interfaces do dispositivo registradas
 - [ ] Interfaces de loopback criadas (Loopback255 vpnv4, Loopback256 ipv4)
 - [ ] Interfaces CYOA/DIA configuradas (se dispositivo edge/híbrido)
 
-### Fase 4: Estabelecimento de Links e Instalação de Agentes
+### Fase 4: Estabelecimento de Links e Instalação do Agente
 - [ ] Links WAN criados (se aplicável)
 - [ ] Link DZX criado (status: `requested`)
 - [ ] Link DZX aceito pelo contribuidor par
 - [ ] Config Agent instalado e em execução
-- [ ] Config Agent recebendo configuração do controller
+- [ ] Config Agent recebendo configuração do controlador
 - [ ] Telemetry Agent instalado e em execução
 - [ ] Publicador de métricas registrado onchain
 - [ ] Submissões de telemetria visíveis no ledger
 
-### Fase 5: Período de Teste dos Links
-- [ ] Todos os links drenados para período de teste de 24 horas
-- [ ] [metrics.doublezero.xyz](https://metrics.doublezero.xyz) mostra zero perda e zero erros por 24h
-- [ ] Links restaurados após teste limpo
+### Fase 5: Burn-in dos Links
+- [ ] Todos os links drenados para período de burn-in de 24 horas
+- [ ] [Painel de status dos links](https://data.doublezero.xyz/status/links) mostra zero perda e zero erros por 24h
+- [ ] Links restaurados após burn-in limpo
 
 ### Fase 6: Verificação e Ativação
 - [ ] `doublezero device list` mostra seu dispositivo (com `max_users = 0`)
@@ -64,19 +80,19 @@ Use este checklist para acompanhar seu progresso. **Todos os itens devem ser con
 - [ ] Logs do Config Agent mostram pulls de configuração bem-sucedidos
 - [ ] Logs do Telemetry Agent mostram submissões de métricas bem-sucedidas
 - [ ] **Coordenar com DZ/Malbec Labs** para executar teste de conectividade (conectar, receber rotas, rotear pelo DZ)
-- [ ] Após aprovação no teste, definir `max_users` para 96 via `doublezero device update`
+- [ ] Após o teste passar, definir `max_users` para 96 via `doublezero device update`
 
 ---
 
 ## Obtendo Ajuda
 
-Como parte da integração, a DZF adicionará você aos canais do Slack para contribuidores:
+Como parte da integração, a DZF adicionará você aos canais Slack de contribuidores:
 
-| Canal | Finalidade |
-|-------|------------|
-| **#dz-contributor-announcements** | Comunicações oficiais da DZF e Malbec Labs — atualizações de CLI/agentes, mudanças incompatíveis, avisos de segurança. Monitore para atualizações críticas; faça perguntas em threads. |
-| **#dz-contributor-incidents** | Eventos não planejados com impacto no serviço. Incidentes são publicados automaticamente via API/formulário web com severidade e dispositivos/links afetados. Discussão e troubleshooting acontecem em threads. |
-| **#dz-contributor-maintenance** | Atividades de manutenção planejada (upgrades, reparos). Agendadas via API/formulário web com horários planejados de início/fim. Discussão em threads. |
+| Canal | Propósito |
+|-------|-----------|
+| **#dz-contributor-announcements** | Comunicações oficiais da DZF e Malbec Labs — atualizações de CLI/agente, mudanças incompatíveis, anúncios de segurança. Monitore para atualizações críticas; faça perguntas em threads. |
+| **#dz-contributor-incidents** | Eventos não planejados com impacto no serviço. Incidentes são publicados automaticamente via API/formulário web com severidade e dispositivos/links afetados. Discussão e resolução de problemas acontecem em threads. |
+| **#dz-contributor-maintenance** | Atividades de manutenção planejada (atualizações, reparos). Agendadas via API/formulário web com horários planejados de início/fim. Discussão em threads. |
 | **#dz-contributor-ops** | Discussão aberta para todos os contribuidores — perguntas operacionais, ajuda com CLI, compartilhamento de runbooks e playbooks. |
 
 Você também receberá um **canal privado DZ/Malbec Labs** para suporte direto à sua organização.
@@ -88,10 +104,10 @@ Você também receberá um **canal privado DZ/Malbec Labs** para suporte direto 
 !!! warning "Crítico: Uso do Pool de Prefixos DZ"
     O pool de prefixos DZ que você fornece é **gerenciado pelo protocolo DoubleZero para alocação de IP**.
 
-    **Como os prefixos DZ são usados:**
+    **Como os prefixos DZ são utilizados:**
 
     - **Primeiro IP**: Reservado para seu dispositivo (atribuído à interface Loopback100)
-    - **IPs restantes**: Alocados para tipos específicos de usuários que se conectam ao seu DZD:
+    - **IPs restantes**: Alocados para tipos específicos de usuários conectando ao seu DZD:
         - Usuários `IBRLWithAllocatedIP`
         - Usuários `EdgeFiltering`
         - Publicadores multicast
@@ -99,7 +115,7 @@ Você também receberá um **canal privado DZ/Malbec Labs** para suporte direto 
 
     **Você NÃO PODE usar esses endereços para:**
 
-    - Seu próprio equipamento de rede
+    - Seus próprios equipamentos de rede
     - Links ponto a ponto em interfaces DIA
     - Interfaces de gerenciamento
     - Qualquer infraestrutura fora do protocolo DZ
@@ -107,11 +123,11 @@ Você também receberá um **canal privado DZ/Malbec Labs** para suporte direto 
     **Requisitos:**
 
     - Devem ser endereços IPv4 **globalmente roteáveis (públicos)**
-    - Faixas de IP privado (10.x, 172.16-31.x, 192.168.x) são rejeitadas pelo smart contract
+    - Faixas de IP privadas (10.x, 172.16-31.x, 192.168.x) são rejeitadas pelo smart contract
     - **Tamanho mínimo: /29** (8 endereços), prefixos maiores são preferíveis (ex.: /28, /27)
     - O bloco inteiro deve estar disponível - não pré-aloque nenhum endereço
 
-    Se você precisar de endereços para seu próprio equipamento (IPs de interface DIA, gerenciamento, etc.), use um **pool de endereços separado**.
+    Se você precisar de endereços para seus próprios equipamentos (IPs de interface DIA, gerenciamento, etc.), use um **pool de endereços separado**.
 
 ---
 
@@ -121,17 +137,17 @@ Novo no DoubleZero? Aqui estão os termos essenciais (veja o [Glossário complet
 
 | Termo | Definição |
 |-------|-----------|
-| **DZD** | DoubleZero Device - seu switch físico Arista executando agentes DZ |
-| **DZX** | DoubleZero Exchange - ponto de interconexão metropolitana onde contribuidores fazem peering |
+| **DZD** | DoubleZero Device - seu switch Arista físico executando agentes DZ |
+| **DZX** | DoubleZero Exchange - ponto de interconexão metropolitano onde contribuidores fazem peering |
 | **CYOA** | Choose Your Own Adventure - método de conectividade do usuário (GREOverDIA, GREOverFabric, etc.) |
-| **DIA** | Direct Internet Access - conectividade com a internet exigida por todos os DZDs para controller e telemetria, comumente usado como tipo CYOA para conectividade de usuários em dispositivos edge/híbridos |
+| **DIA** | Direct Internet Access - conectividade à internet exigida por todos os DZDs para controlador e telemetria, comumente usado como tipo CYOA para conectividade de usuários em dispositivos edge/híbridos |
 | **WAN Link** | Link entre seus próprios DZDs (mesmo contribuidor) |
 | **DZX Link** | Link para o DZD de outro contribuidor (requer aceitação mútua) |
-| **Config Agent** | Consulta o controller, aplica configuração ao seu DZD |
+| **Config Agent** | Consulta o controlador, aplica configuração ao seu DZD |
 | **Telemetry Agent** | Coleta métricas de latência/perda TWAMP, submete ao ledger onchain |
 | **Service Key** | Sua chave de identidade de contribuidor para operações via CLI |
 | **Metrics Publisher Key** | Chave para assinar submissões de telemetria onchain |
-| **Rewards Manager Key** | Chave que controla quais carteiras recebem suas recompensas |
+| **Rewards Manager Key** | Chave que controla quais carteiras recebem suas recompensas (veja o repositório de contribuidores) |
 
 ---
 
@@ -142,17 +158,16 @@ Novo no DoubleZero? Aqui estão os termos essenciais (veja o [Glossário complet
 | Guia | Descrição |
 |------|-----------|
 | [Requisitos e Arquitetura](contribute.md) | Especificações de hardware, arquitetura de rede, opções de largura de banda |
-| [Provisionamento de Dispositivo](contribute-provisioning.md) | Passo a passo: chaves → acesso ao repositório → dispositivo → links → agentes |
-| [Gerenciamento de Recompensas](contribute-rewards.md) | Configurando as carteiras que recebem suas recompensas 2Z |
+| [Provisionamento do Dispositivo](contribute-provisioning.md) | Passo a passo: acesso ao repositório → chaves → dispositivo → links → agentes |
 | [Operações](contribute-operations.md) | Atualizações de agentes, gerenciamento de links, monitoramento |
 | [Implantação do Geoprobe](contribute-geolocation.md) | Implantação e configuração de agentes geoProbe para geolocalização |
-| [Glossário](glossary.md) | Toda a terminologia do DoubleZero definida |
+| [Glossário](glossary.md) | Toda a terminologia DoubleZero definida |
 
 ---
 
-## Conceitos Básicos de Rede para Não-Engenheiros de Rede
+## Fundamentos de Rede para Não-Engenheiros de Rede
 
-Se você não tem formação em engenharia de redes, aqui está uma introdução aos conceitos usados nesta documentação:
+Se você não tem experiência em engenharia de redes, aqui está uma introdução aos conceitos utilizados nesta documentação:
 
 ### Endereçamento IP
 
@@ -162,7 +177,7 @@ Se você não tem formação em engenharia de redes, aqui está uma introdução
 
 ### Camadas de Rede
 
-- **Camada 1 (Física)**: Cabos, óptica, comprimentos de onda
+- **Camada 1 (Física)**: Cabos, ópticas, comprimentos de onda
 - **Camada 2 (Enlace de Dados)**: Switches, VLANs, endereços MAC
 - **Camada 3 (Rede)**: Roteadores, endereços IP, protocolos de roteamento
 
@@ -178,7 +193,7 @@ Se você não tem formação em engenharia de redes, aqui está uma introdução
 ### Específico do DoubleZero
 
 - **Onchain**: No DoubleZero, registros de dispositivos, configurações de links e telemetria são registrados no ledger do DoubleZero — tornando o estado da rede transparente e verificável por todos os participantes
-- **Controller**: Serviço que deriva a configuração do DZD a partir do estado onchain no ledger do DoubleZero
+- **Controlador**: Serviço que deriva a configuração do DZD a partir do estado onchain no ledger do DoubleZero
 
 ---
 
