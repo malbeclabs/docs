@@ -68,5 +68,4 @@ Target: 99.9% monthly availability.
 
 ## Pricing
 
-!!! note "$999/mo for peering"
-    No feed content. Peering is not bundled or discounted with Edge market data. See [Hyperliquid pricing](hyperliquid/index.md#pricing) for the full rate card and equal-access terms.
+$999/mo for peering. No feed content. Peering is not bundled or discounted with Edge market data. See [Hyperliquid pricing](hyperliquid/index.md#pricing) for the full rate card and equal-access terms.
