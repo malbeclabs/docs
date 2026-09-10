@@ -9,7 +9,7 @@ not published on the docs site.
 
 1. Connect the [DoubleZero MCP](mcp.md) (`https://data.doublezero.xyz/api/mcp`).
 2. Tell it this is a **Solana Mainnet-Beta validator**, the Linux host (or SSH), and where the validator identity keypair lives.
-3. Walk the steps below in order. Prefer to do it by hand? Use the [human guide](DZ Mainnet-beta Connection.md).
+3. Walk the steps below in order. Prefer to do it by hand? Use the [human guide](DZ%20Mainnet-beta%20Connection.md).
 
 **What success looks like:** `doublezero status` shows tunnel **up**, User Type **IBRL**, Network **mainnet-beta**. `Tunnel src` and `Doublezero IP` match the host public IPv4.
 
@@ -153,6 +153,6 @@ Expect BGP-learned routes via `doublezero0`.
 
 ## See also
 
-- [Validator Mainnet-Beta Connection](DZ Mainnet-beta Connection.md)
+- [Validator Connection in IBRL Mode](DZ Mainnet-beta Connection.md)
 - [Setup](setup.md)
 - Next: [Publish shreds (Edge)](solana-shreds-publisher-runbook.md)

@@ -5,8 +5,6 @@ description: Permissioned onboarding for non-validators and RPCs connecting to D
 # Non-Validator Permissioned Connection to DoubleZero in IBRL Mode
 !!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Service](https://doublezero.xyz/terms-protocol)"
 
-<div data-wizard-step="rpc-onboarding" markdown>
-
 ### Permissioned User Onboarding Overview
 
 User onboarding is currently permissioned for non-validators and RPCs. To begin the permissioned flow, please fill out [this form](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z). Here is what to expect during this process:
@@ -14,7 +12,6 @@ User onboarding is currently permissioned for non-validators and RPCs. To begin 
 - There may be fees associated with Permissioned User usage in the future.
 - After form submission monitor your primary Telegram contact.
 
-</div>
 
 ###  Connecting to Mainnet-Beta and Testnet in IBRL Mode
 
@@ -63,8 +60,6 @@ Testnet output will be identical in structure, but with many more available devi
 
 The DoubleZero foundation. You will need to provide your `DoubleZeroID`, your `Validator ID` (node ID), and the `public ipv4 address` you will be connecting from.
 
-
-<div data-wizard-step="rpc-connect-ibrl" markdown>
 
 ## 3. Connect in IBRL Mode
 
@@ -117,7 +112,6 @@ default via 149.28.38.1 dev enp1s0 proto dhcp src 149.28.38.64 metric 100
 ...
 ```
 
-</div>
 
 ### Up Next: Multicast
 

@@ -27,20 +27,15 @@ When onboarding to DoubleZero you will establish a **DoubleZero identity**, repr
 
 ## 1. Install DoubleZero Packages
 
-<div data-wizard-step="install-version-info" markdown>
-
 !!! info "Current Versions"
     | Package | Mainnet-Beta | Testnet |
     |---------|-------------|---------|
     | `doublezero` | `MAINNET_CLIENT_VERSION` | `TESTNET_CLIENT_VERSION` |
 
-</div>
 
 Follow these steps depending on your operating system:
 
 ### Ubuntu / Debian
-
-<div data-wizard-step="install-deb-mainnet-beta" markdown>
 
 The current recommended deployment for Mainnet-Beta is:
 ```bash
@@ -48,9 +43,6 @@ curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | 
 sudo apt-get install doublezero
 ```
 
-</div>
-
-<div data-wizard-step="install-deb-testnet" markdown>
 
 The current recommended deployment for Testnet is:
 ```bash
@@ -58,11 +50,8 @@ curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero-testnet/setup.d
 sudo apt-get install doublezero
 ```
 
-</div>
 
 ### Rocky Linux / RHEL
-
-<div data-wizard-step="install-rpm-mainnet-beta" markdown>
 
 The current recommended deployment for Mainnet-Beta is:
 ```bash
@@ -70,9 +59,6 @@ curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh | 
 sudo yum install doublezero
 ```
 
-</div>
-
-<div data-wizard-step="install-rpm-testnet" markdown>
 
 The current recommended deployment for Testnet is:
 ```bash
@@ -80,9 +66,6 @@ curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero-testnet/setup.r
 sudo yum install doublezero
 ```
 
-</div>
-
-<div data-wizard-step="install-network-warning" markdown>
 
 ??? info "Existing Users Only: Change a package from *Testnet to Mainnet-Beta*, or *Mainnet-Beta to Testnet*"
     When you install from one of the package repositories above it is specific to DoubleZero **Testnet** or **DoubleZero Mainnet Beta**. If you swap networks at any point you will need to remove the previously installed package repositories and update to the target repo.
@@ -118,10 +101,6 @@ sudo yum install doublezero
         ```
 
 
-</div>
-
-<div data-wizard-step="install-verify-daemon" markdown>
-
 #### Check the status of `doublezerod`
 
 After the package is installed, a new systemd unit is installed, activated and started. To see the status you may run:
@@ -129,15 +108,12 @@ After the package is installed, a new systemd unit is installed, activated and s
 sudo systemctl status doublezerod
 ```
 
-</div>
 
 ### Configure Firewall for GRE and BGP
 
 DoubleZero uses GRE tunneling (IP protocol 47) and BGP routing (tcp/179 on link-local addresses). Ensure your firewall allows these protocols:
 
 Allow GRE and BGP through iptables:
-
-<div data-wizard-step="firewall-gre-bgp-iptables" markdown>
 
 ```bash
 sudo iptables -A INPUT -p gre -j ACCEPT
@@ -146,11 +122,8 @@ sudo iptables -A INPUT -i doublezero0 -s 169.254.0.0/16 -d 169.254.0.0/16 -p tcp
 sudo iptables -A OUTPUT -o doublezero0 -s 169.254.0.0/16 -d 169.254.0.0/16 -p tcp --dport 179 -j ACCEPT
 ```
 
-</div>
 
 Or allow GRE and BGP through UFW:
-
-<div data-wizard-step="firewall-gre-bgp-ufw" markdown>
 
 ```bash
 sudo ufw allow proto gre from any to any
@@ -158,7 +131,6 @@ sudo ufw allow in on doublezero0 from 169.254.0.0/16 to 169.254.0.0/16 port 179 
 sudo ufw allow out on doublezero0 from 169.254.0.0/16 to 169.254.0.0/16 port 179 proto tcp
 ```
 
-</div>
 
 ## 2. Create New DoubleZero Identity
 

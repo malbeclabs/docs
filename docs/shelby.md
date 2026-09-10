@@ -5,8 +5,6 @@ description: Permissioned connection guide for Shelby Testnet users connecting t
 # Shelby
 !!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Service](https://doublezero.xyz/terms-protocol)"
 
-<div data-wizard-step="rpc-onboarding" markdown>
-
 ### Get your DoubleZeroID
 
 You will need to provide your `DoubleZeroID`, and the `public ipv4 address` on this [form](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z)
@@ -16,7 +14,6 @@ You will need to provide your `DoubleZeroID`, and the `public ipv4 address` on t
 - After form submission monitor your primary Telegram contact.
 - At this moment Shelby is only able to connect to DoubleZero Testnet.
 
-</div>
 
 ###  Connecting to Testnet in IBRL Mode
 
@@ -51,8 +48,6 @@ sudo ufw deny in to any port 39431 proto tcp
 
 The DoubleZero foundation. You will need to provide your `DoubleZeroID`, and the `public ipv4 address` you will be connecting from.
 
-
-<div data-wizard-step="rpc-connect-ibrl" markdown>
 
 ## 3. Connect in IBRL Mode
 
@@ -106,4 +101,3 @@ default via 149.28.38.1 dev enp1s0 proto dhcp src 149.28.38.64 metric 100
 ```
 
 
-</div>

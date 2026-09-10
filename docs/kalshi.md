@@ -59,8 +59,6 @@ Then verify `doublezero status` (expect `BGP Session Up` and your Kalshi group) 
 
 ### Buy a feed
 
-<div data-wizard-step="kalshi-buy-feed" markdown>
-
 Identify the lowest-latency device before purchasing:
 
 ```bash
@@ -69,7 +67,6 @@ doublezero latency
 
 Purchase at [https://doublezero.xyz/edge/subscribe](https://doublezero.xyz/edge/subscribe).
 
-</div>
 
 ### DoubleZero client setup
 
@@ -83,8 +80,6 @@ sudo apt update && sudo apt install doublezero
 
 Allow GRE, BGP, PIM, and the Kalshi feed traffic. Kalshi UDP ports live in `30000`–`59999`: the leading digit is the traffic class (`3` market data, `4` reference data, `5` snapshot) and the second digit is the feed, so reference is always market + `10000` and snapshot is always market + `20000`. Open the full band on `doublezero1` so new channels and feeds do not require another firewall change — see [Feed Addresses](#feed-addresses).
 
-<div data-wizard-step="kalshi-firewall-iptables" markdown>
-
 **iptables:**
 
 ```bash
@@ -96,9 +91,6 @@ sudo iptables -A OUTPUT -o doublezero1 -p pim -j ACCEPT
 sudo iptables -A INPUT -i doublezero1 -p udp --dport 30000:59999 -j ACCEPT
 ```
 
-</div>
-
-<div data-wizard-step="kalshi-firewall-ufw" markdown>
 
 **UFW:**
 
@@ -111,11 +103,8 @@ sudo ufw allow out on doublezero1 proto pim from any to any
 sudo ufw allow in on doublezero1 to any port 30000:59999 proto udp
 ```
 
-</div>
 
 ### Subscribe
-
-<div data-wizard-step="kalshi-subscribe" markdown>
 
 ```bash
 doublezero connect multicast --subscribe edge-kalshi-perps-tob
@@ -158,7 +147,6 @@ Your feeds appear in the `groups` column. Inspect group IPs with:
 doublezero multicast group list
 ```
 
-</div>
 
 ### Decode the wire yourself
 
