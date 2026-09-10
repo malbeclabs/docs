@@ -26,15 +26,31 @@ Use this checklist to track your progress. **All items must be complete before y
 - [ ] Public IPv4 block allocated for DZ protocol (**see [DZ Prefix Rules](#dz-prefix-rules)**)
 
 ### Phase 2: Account Setup
+
+This phase alternates between the contributor and DZF. Each **DZF** item has to be confirmed before the next group can start.
+
+**Contributor**
+
+- [ ] GitHub username sent to DZF
+
+**DZF**
+
+- [ ] Access granted to the [malbeclabs/contributors](https://github.com/malbeclabs/contributors) repository
+
+**Contributor**
+
 - [ ] Service keypair generated (`doublezero keygen`)
 - [ ] Metrics publisher keypair generated
-- [ ] Rewards manager wallet created and funded with ~0.01 SOL
-- [ ] Service key, rewards manager key and GitHub username submitted to DZF (public keys only)
-- [ ] Contributor account created onchain (verify with `doublezero contributor list`)
-- [ ] Rewards manager key registered onchain by DZF
-- [ ] Access granted to [malbeclabs/contributors](https://github.com/malbeclabs/contributors) repository
-- [ ] Recipient wallets and percentages configured (**see [Rewards Management](contribute-rewards.md)**)
-- [ ] Each recipient wallet has a 2Z token account
+- [ ] Service key **public key** sent to DZF
+
+**DZF**
+
+- [ ] Contributor account created onchain
+
+**Contributor**
+
+- [ ] Contributor account verified (`doublezero contributor list`)
+- [ ] Rewards management set up (does not block going live, **see [Rewards Management](https://github.com/malbeclabs/contributors#rewards-management) in the contributors repository**)
 
 ### Phase 3: Device Provisioning
 - [ ] Base device configuration applied (from contributors repo)
@@ -55,7 +71,7 @@ Use this checklist to track your progress. **All items must be complete before y
 
 ### Phase 5: Link Burn-in
 - [ ] All links drained for 24-hour burn-in period
-- [ ] [metrics.doublezero.xyz](https://metrics.doublezero.xyz) shows zero loss and zero errors for 24h
+- [ ] [Link status dashboard](https://data.doublezero.xyz/status/links) shows zero loss and zero errors for 24h
 - [ ] Links undrained after clean burn-in
 
 ### Phase 6: Verification & Activation
@@ -131,7 +147,7 @@ New to DoubleZero? Here are the essential terms (see [full Glossary](glossary.md
 | **Telemetry Agent** | Collects TWAMP latency/loss metrics, submits to onchain ledger |
 | **Service Key** | Your contributor identity key for CLI operations |
 | **Metrics Publisher Key** | Key for signing telemetry submissions onchain |
-| **Rewards Manager Key** | Key that controls which wallets receive your rewards |
+| **Rewards Manager Key** | Key that controls which wallets receive your rewards (see the contributors repository) |
 
 ---
 
@@ -142,8 +158,7 @@ New to DoubleZero? Here are the essential terms (see [full Glossary](glossary.md
 | Guide | Description |
 |-------|-------------|
 | [Requirements & Architecture](contribute.md) | Hardware specs, network architecture, bandwidth options |
-| [Device Provisioning](contribute-provisioning.md) | Step-by-step: keys → repo access → device → links → agents |
-| [Rewards Management](contribute-rewards.md) | Setting the wallets that receive your 2Z rewards |
+| [Device Provisioning](contribute-provisioning.md) | Step-by-step: repo access → keys → device → links → agents |
 | [Operations](contribute-operations.md) | Agent upgrades, link management, monitoring |
 | [Geoprobe Deployment](contribute-geolocation.md) | Deploying and configuring geoProbe agents for geolocation |
 | [Glossary](glossary.md) | All DoubleZero terminology defined |

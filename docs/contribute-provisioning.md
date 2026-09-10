@@ -88,7 +88,7 @@ Before you can provision a device, you need the physical hardware set up and som
 | Requirement | Why It's Needed |
 |-------------|-----------------|
 | **DZD Hardware** | Arista 7280CR3A switch (see [hardware specs](contribute.md#hardware-requirements)) |
-| **Rack Space** | 1U per DZD, with proper airflow. See [Rack & Power](contribute.md#rack-power-requirements) |
+| **Rack Space** | 2U reserved per DZD (1U in use today), with proper airflow. See [Rack & Power](contribute.md#rack-power-requirements) |
 | **Power** | Two independent feeds, each able to carry the whole load on its own. See [Rack & Power](contribute.md#rack-power-requirements) |
 | **Management Access** | SSH/console access to configure the switch |
 | **Internet Connectivity** | For metrics publishing and to fetch configuration from the controller |
@@ -163,9 +163,9 @@ flowchart LR
 
 ## Phase 2: Account Setup
 
-In this phase, you create the cryptographic keys that identify you and your devices on the network, and you say where your rewards should be paid.
+In this phase, you create the cryptographic keys that identify you and your devices on the network, and you set up rewards management.
 
-Three keys come out of this phase: a service key, a metrics publisher key, and a rewards manager key. Submit the public keys for all three to DZF together in [Step 2.4](#step-24-submit-keys-to-dzf). [Rewards Management](contribute-rewards.md) covers the rewards side in full.
+The steps run in this order for a reason: repository access first, because the repository holds the instructions for the later steps, then your keys, then rewards. Some steps need DZF to act before you can continue, and each one below says so.
 
 ### Where to Run the CLI
 
@@ -201,7 +201,7 @@ Think of keys like secure login credentials:
 
 - **Service Key**: Your contributor identity - used to run CLI commands
 - **Metrics Publisher Key**: Your device's identity for submitting telemetry data
-- **Rewards Manager Key**: Controls which wallets receive your rewards - see [Rewards Management](contribute-rewards.md)
+- **Rewards Manager Key**: Controls which wallets receive your rewards - see [Rewards Management](https://github.com/malbeclabs/contributors#rewards-management) in the contributors repository
 
 All three are cryptographic keypairs (a public key you share, a private key you keep secret).
 
@@ -221,7 +221,13 @@ flowchart LR
 !!! note "Keep the rewards manager key separate"
     The service key and metrics publisher key live on your management server and switch. The rewards manager key controls where your money goes, so keep it off those machines. It is only needed when you change your recipient wallets.
 
-### Step 2.1: Generate Your Service Key
+### Step 2.1: Request Contributors Repository Access
+
+Contact the DoubleZero Foundation or Malbec Labs and give them your **GitHub username**.
+
+They grant you access to the private [malbeclabs/contributors](https://github.com/malbeclabs/contributors) repository. Do this first: the repository holds the base device configuration, the TCAM and ACL profiles, and the rewards management instructions you need in the steps below.
+
+### Step 2.2: Generate Your Service Key
 
 This is your main identity for interacting with DoubleZero.
 
@@ -231,7 +237,7 @@ doublezero keygen
 
 This creates a keypair at the default location. The output shows your **public key** - this is what you'll share with DZF.
 
-### Step 2.2: Generate Your Metrics Publisher Key
+### Step 2.3: Generate Your Metrics Publisher Key
 
 This key is used by the Telemetry Agent to sign metric submissions.
 
@@ -239,32 +245,14 @@ This key is used by the Telemetry Agent to sign metric submissions.
 doublezero keygen -o ~/.config/doublezero/metrics-publisher.json
 ```
 
-### Step 2.3: Create Your Rewards Manager Wallet
+### Step 2.4: Submit Your Service Key to DZF
 
-This is the third key. It controls which wallets receive your rewards, and it never holds them.
+Send DZF your **service key public key**.
 
-Create a Solana wallet you control and can sign with, then fund it with about 0.01 SOL to cover transaction fees. A hardware wallet is a good choice. Do not reuse your service key.
-
-You only need the wallet at this point. You will set the wallets that actually receive your rewards in [Step 2.7](#step-27-set-your-reward-recipients), after DZF has registered this key.
-
-### Step 2.4: Submit Keys to DZF
-
-Contact the DoubleZero Foundation or Malbec Labs and provide:
-
-1. Your **service key public key**
-2. Your **rewards manager public key** (from Step 2.3)
-3. Your **GitHub username** (for repo access)
-
-Send all three together. DZF registers the service key and the rewards manager key in separate onchain transactions, so sending them at the same time saves a round trip.
+They create your **contributor account** onchain and confirm when it is done.
 
 !!! danger "Public keys only"
-    Never send a private key or a keypair file to anyone, including DZF. DZF only ever needs your public keys.
-
-They will:
-
-- Create your **contributor account** onchain
-- Register your **rewards manager key** against your service key
-- Grant access to the private **contributors repository**
+    Never send a private key or a keypair file to anyone, including DZF. Only the public key is ever needed.
 
 ### Step 2.5: Verify Your Account
 
@@ -276,36 +264,14 @@ doublezero contributor list
 
 You should see your contributor code in the list.
 
-Check that your rewards manager key was registered too:
+### Step 2.6: Set Up Rewards Management
 
-```bash
-doublezero-solana revenue-distribution fetch contributor-rewards \
-    --service-key <YourServiceKeyPublicKey> -u mainnet-beta
-```
+Rewards management decides which wallets receive the [2Z](glossary.md#2z-token) your contribution earns, and in what proportions.
 
-The `manager` column should show your rewards manager public key. If it is empty, ask DZF to complete that step.
+Follow [Rewards Management](https://github.com/malbeclabs/contributors#rewards-management) in the contributors repository, which you now have access to from Step 2.1.
 
-### Step 2.6: Access the Contributors Repository
-
-The [malbeclabs/contributors](https://github.com/malbeclabs/contributors) repository contains:
-
-- Base device configurations
-- TCAM profiles
-- ACL configurations
-- Additional setup instructions
-
-Follow the instructions there for device-specific configuration.
-
-### Step 2.7: Set Your Reward Recipients
-
-Now say which wallets receive your rewards, and in what proportions. Do this before your device starts carrying traffic. Rewards build up from the moment your links are live, but the protocol cannot pay them out until you have nominated recipient wallets.
-
-Sign in to [doublezero.xyz/rewards](https://doublezero.xyz/rewards) with your rewards manager wallet, select your service key, then enter each recipient wallet and its percentage. The percentages must add up to 100.
-
-!!! warning "Each recipient needs a 2Z token account"
-    The protocol sends 2Z with a plain token transfer and does not create the token account for you. A recipient wallet with no 2Z token account causes that epoch's payout to fail.
-
-See [Rewards Management](contribute-rewards.md) for the full walkthrough, including the CLI alternative, how to check the token account, and how to verify the result.
+!!! note "This does not block the rest of your setup"
+    You can provision your device, establish links and start carrying traffic without this in place, so treat the phases below as independent of it.
 
 ---
 
@@ -990,10 +956,26 @@ You should see "Starting telemetry collector" and "Starting submission loop".
 !!! warning "All new links must burn in before carrying traffic"
     New links must be **drained for at least 24 hours** before being activated for production traffic. This burn-in requirement is defined in [RFC12: Network Provisioning](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc12-network-provisioning.md), which specifies ~200,000 DZ Ledger slots (~20 hours) of clean metrics before a link is ready for service.
 
-With agents installed and running, monitor your links on [metrics.doublezero.xyz](https://metrics.doublezero.xyz) for at least 24 consecutive hours:
+With agents installed and running, monitor each new link for at least 24 consecutive hours.
 
-- **"DoubleZero Device-Link Latencies"** dashboard — verify **zero packet loss** on the link over time
-- **"DoubleZero Network Metrics"** dashboard — verify **zero errors** on your links
+Take the link's account key from the `account` column of `doublezero link list`, then open its page on the data portal:
+
+```
+https://data.doublezero.xyz/dz/links/<LINK_ACCOUNT_KEY>
+```
+
+The page opens on a 24 hour window, which is the burn-in period. Check that all of these stay clean for the whole window:
+
+| Chart | What to look for |
+|-------|------------------|
+| **Health** | No red bars. Hover a bar to see why it was flagged |
+| **Packet loss** | Flat at zero. Taken from the TWAMP measurements between the two devices |
+| **Interface issues** | Nothing plotted at all. Errors, FCS errors, discards and carrier transitions all appear here, with side A above the axis and side Z below it |
+| **Latency**, **Jitter** | Steady, with no steps or spikes |
+
+Carrier transitions deserve particular attention: they mean the link went down and came back up, so it is not stable yet even if the other charts look clean.
+
+To check several links at once, use the [link status dashboard](https://data.doublezero.xyz/status/links).
 
 Only undrain the link once the burn-in period shows a clean link with zero loss and zero errors.
 
@@ -1008,7 +990,7 @@ Run through this checklist to confirm everything is working.
 
     **Before setting `max_users` above 0, you must:**
 
-    1. Confirm all links have completed their **24-hour burn-in** with zero loss/errors on [metrics.doublezero.xyz](https://metrics.doublezero.xyz)
+    1. Confirm all links have completed their **24-hour burn-in** with zero loss/errors on the [link status dashboard](https://data.doublezero.xyz/status/links)
     2. **Coordinate with DZ/Malbec Labs** to run a connectivity test:
         - Can a test user connect to your device?
         - Does the user receive routes over the DZ network?
