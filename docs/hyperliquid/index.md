@@ -8,7 +8,7 @@ description: "DoubleZero Hyperliquid offerings: Edge market data feeds and peeri
 
 Hyperliquid has two products on DoubleZero: Edge market data feeds, and peering for non-validating nodes.
 
-| Offering | What it is | Who it's for | Price from | Guide |
+| Offering | What it is | Who it's for | Price | Guide |
 | --- | --- | --- | --- | --- |
 | **Market Data Feeds (Edge)** | Top-of-Book, Market-by-Order, and Order-Intent as UDP multicast on DoubleZero Edge. | Traders | from $900/mo | [Subscribe to Hyperliquid (Edge)](../hyperliquid-subscribe.md) |
 | **Peering** | One deduplicated Hyperliquid gossip feed via Block Proxy (no market data). | Non-validating nodes | $999/mo | [Peering Access](../hyperliquid-peering.md) |
@@ -56,13 +56,13 @@ $999/mo for peering, with no feed content.
 
 Price follows delivery region, not where the buyer sits. A Tokyo package delivers to Tokyo receivers; anywhere else needs the Global package.
 
-| Feed | Tokyo $/mo | Global $/mo |
+| Feed | Tokyo /mo | Global /mo |
 | --- | --- | --- |
-| Hyperliquid perps Top-of-Book (L1) | 900 | 1,500 |
-| Hyperliquid perps Market-by-Order (L4) | 3,000 | 5,000 |
-| trade.xyz perps Top-of-Book (L1) | 900 | 1,500 |
-| trade.xyz perps Market-by-Order (L4) | 3,000 | 5,000 |
-| Hyperliquid Order-Intent | 4,800 | 8,000 |
-| **Complete suite** | **9,000** | **15,000** |
+| Hyperliquid perps Top-of-Book (L1) | $900 | $1,500 |
+| Hyperliquid perps Market-by-Order (L4) | $3,000 | $5,000 |
+| trade.xyz perps Top-of-Book (L1) | $900 | $1,500 |
+| trade.xyz perps Market-by-Order (L4) | $3,000 | $5,000 |
+| Hyperliquid Order-Intent | $4,800 | $8,000 |
+| **All feeds (bundle 28% discount)** | **$9,000** | **$15,000** |
 
-Bought separately, the feeds total $12,600 (Tokyo) or $21,000 (Global). The complete suite is the bundled rate.
+Buying each feed alone totals $12,600/mo (Tokyo) or $21,000/mo (Global). The bundle row is the discounted price for all five together.

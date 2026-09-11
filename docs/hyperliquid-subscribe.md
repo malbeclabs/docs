@@ -34,7 +34,8 @@ For Edge Connect, finish subscription and connect on the host first, then run th
 
 ## Step 1: DoubleZero Setup
 
-### Complete Setup
+**Complete Setup**
+
 
 Follow the [setup](setup.md) instructions to install and configure the DoubleZero client.
 
@@ -44,7 +45,8 @@ If you have previously set up DoubleZero, ensure the client is current:
 sudo apt update && sudo apt install doublezero
 ```
 
-### Configure the Firewall
+**Configure the Firewall**
+
 
 Allow GRE, BGP, PIM, and Hyperliquid feed traffic on `doublezero1`. Hyperliquid UDP ports sit in `9000`–`11999` (Top-of-Book, Market-by-Order, and Order-Intent across publisher port sets). Open the full band so new port sets do not need another firewall change. See [Feed addresses](#feed-addresses).
 
@@ -86,20 +88,21 @@ doublezero latency
 
 Note the metro / city from the lowest-latency result. You will select that city on the application form. See the [topology map](https://data.malbeclabs.com/topology/map?overlays=metroClustering%2Cbandwidth) for how metros are grouped.
 
-### Pricing
+**Pricing**
+
 
 Feeds are priced by delivery region. The price follows where the data is delivered, not where the buyer is. A Tokyo package delivers to Tokyo receivers; delivery elsewhere needs the Global package.
 
-| Feed | Tokyo $/mo | Global $/mo |
+| Feed | Tokyo /mo | Global /mo |
 | --- | --- | --- |
-| Hyperliquid perps Top-of-Book (L1) | 900 | 1,500 |
-| Hyperliquid perps Market-by-Order (L4) | 3,000 | 5,000 |
-| trade.xyz perps Top-of-Book (L1) | 900 | 1,500 |
-| trade.xyz perps Market-by-Order (L4) | 3,000 | 5,000 |
-| Hyperliquid Order-Intent | 4,800 | 8,000 |
-| **Complete suite** | **9,000** | **15,000** |
+| Hyperliquid perps Top-of-Book (L1) | $900 | $1,500 |
+| Hyperliquid perps Market-by-Order (L4) | $3,000 | $5,000 |
+| trade.xyz perps Top-of-Book (L1) | $900 | $1,500 |
+| trade.xyz perps Market-by-Order (L4) | $3,000 | $5,000 |
+| Hyperliquid Order-Intent | $4,800 | $8,000 |
+| **All feeds (bundle 28% discount)** | **$9,000** | **$15,000** |
 
-Bought separately, the feeds total $12,600 (Tokyo) or $21,000 (Global); the complete suite is the bundled rate. Full rate card: [Hyperliquid pricing](hyperliquid/index.md#pricing).
+Buying each feed alone totals $12,600/mo (Tokyo) or $21,000/mo (Global). The bundle row is the discounted price for all five together. Full rate card: [Hyperliquid pricing](hyperliquid/index.md#pricing).
 
 ---
 
@@ -123,7 +126,7 @@ Our team reviews applications and contacts you in a timely manner (expect **2 bu
 After we contact you, you receive an invoice, and that invoice is paid, connect on each approved machine. Subscribe to the feeds you purchased:
 
 ```bash
-doublezero connect multicast --subscribe-feed edge-hyper-hl-tob
+doublezero connect multicast --subscribe-feed <name_of_feed>
 ```
 
 Multiple feeds, space-separated:
@@ -138,12 +141,7 @@ Access is enabled on your chosen start date. After access is provisioned, check 
 doublezero status
 ```
 
-Expect `BGP Session Up` on the correct DoubleZero network. Confirm subscribed feeds:
-
-```bash
-doublezero user list
-doublezero multicast group list
-```
+Expect `BGP Session Up` on the correct DoubleZero network.
 
 ---
 
@@ -204,7 +202,8 @@ Frames are little-endian fixed-size binary, at most **1,232** bytes per UDP data
 !!! note "Edge Connect"
     If you’re using `doublezero-edge-connect`, the feed is already decoded as JSON over WebSocket — skip manual decoding.
 
-### Use a reference parser
+**Use a reference parser**
+
 
 [`edge-multicast-ref`](https://github.com/malbeclabs/edge-multicast-ref) ships multicast subscribers that decode the wire format and republish it as JSON on a Unix socket:
 
@@ -213,13 +212,11 @@ Frames are little-endian fixed-size binary, at most **1,232** bytes per UDP data
 
 See the [main README](https://github.com/malbeclabs/edge-multicast-ref/blob/main/README.md#market-data-pipelines) for the full pipeline.
 
-### Write your own decoder
+**Write your own decoder**
 
 Decode against [edge-feed-spec](https://github.com/malbeclabs/edge-feed-spec). Start with the frame header, then the message layouts for the feed you are receiving.
 
----
-
-## GRE Tunnel Header — XDP
+**GRE Tunnel Header — XDP**
 
 Market-data traffic delivered over the network is GRE-encapsulated at the last mile. On `doublezero1`, the client presents plain UDP multicast. If you terminate GRE yourself (e.g. an XDP pipeline), strip the GRE header before feeding data into your decoder. See [`gre-decap`](https://github.com/malbeclabs/edge-multicast-ref/tree/main/gre-decap).
 
@@ -229,13 +226,15 @@ Market-data traffic delivered over the network is GRE-encapsulated at the last m
 
 If you run into an issue not covered here, please reach out over your existing channel before working around it. If you do not have a channel, see [Support](support.md).
 
-### Ensure your client is up to date
+**Ensure your client is up to date**
+
 
 ```bash
 sudo apt update && sudo apt install doublezero
 ```
 
-### Tunnel not coming up
+**Tunnel not coming up**
+
 
 1. Verify the daemon is running: `sudo systemctl status doublezerod`
 2. Verify firewall rules are in place (GRE, BGP, PIM, Hyperliquid UDP ports on `doublezero1`, port 44880 on `doublezero0`)
@@ -245,7 +244,8 @@ sudo apt update && sudo apt install doublezero
 
 The DoubleZero ID used on the accounts page must match the key on this host.
 
-### No packets after subscribe
+**No packets after subscribe**
+
 
 1. Confirm you are subscribed: `doublezero user list`
 2. Confirm the feed appears under your groups: `doublezero multicast group list`
@@ -253,14 +253,17 @@ The DoubleZero ID used on the accounts page must match the key on this host.
 4. For Order-Intent: `sudo tcpdump -ni doublezero1 host 233.84.178.19`
 5. Verify you are binding the correct port set for the publisher stream you want
 
-### Seat expired or removed
+**Seat expired or removed**
+
 
 Seats are monthly. If the invoice sent before expiry is not paid, the seat is removed and the tunnel will not stay up.
 
-### "Multicast user already exists"
+**"Multicast user already exists"**
+
 
 You already have an active subscription through a different path. Disconnect first with `doublezero disconnect`, then retry `doublezero connect multicast --subscribe-feed <feed>`.
 
-### AWS-specific
+**AWS-specific**
+
 
 Disable the source/destination check on the instance’s ENI. Without this, GRE-encapsulated multicast may be dropped.
