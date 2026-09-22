@@ -10,8 +10,8 @@ Hyperliquid has two products on DoubleZero: Edge market data feeds, and peering 
 
 | Offering | What it is | Who it's for | Price | Guide |
 | --- | --- | --- | --- | --- |
-| **Market Data Feeds (Edge)** | Top-of-Book, Market-by-Order, and Order-Intent as UDP multicast on DoubleZero Edge. | Traders | from $900/mo | [Subscribe to Hyperliquid (Edge)](../hyperliquid-subscribe.md) |
-| **Peering** | One deduplicated Hyperliquid gossip feed via Block Proxy (no market data). | Non-validating nodes | $999/mo | [Peering Access](../hyperliquid-peering.md) |
+| **Market Data Feeds (Edge)** | Top-of-Book, Market-by-Order, and Order-Intent as UDP multicast on DoubleZero Edge. | Traders | from $900/mo | [Subscribe to Hyperliquid (Edge)](edge.md) |
+| **Peering** | One deduplicated Hyperliquid gossip feed via Block Proxy (no market data). | Non-validating nodes | $999/mo | [Peering Access](peering.md) |
 
 ## Market Data Feeds (Edge)
 
@@ -33,7 +33,7 @@ Core feeds cover Hyperliquid native perps (`hl`) and [trade.xyz](https://trade.x
 
 Pricing is per feed and delivery region. We run multiple publishers so traders can fail over or pick the fastest stream.
 
-How to connect: [Subscribe to Hyperliquid (Edge)](../hyperliquid-subscribe.md). Same Edge path as other feeds: setup, choose a metro, submit a request, connect after approval.
+How to connect: [Subscribe to Hyperliquid (Edge)](edge.md). Same Edge path as other feeds: setup, choose a metro, submit a request, connect after approval.
 
 ## Peering
 
@@ -41,7 +41,7 @@ Peering is for non-validating nodes that need Hyperliquid gossip without taking 
 
 Each proxy looks like a single ordinary gossip peer to our nodes. Capacity grows by adding proxies; load on those nodes does not grow with peer count. Availability target is 99.9% monthly. The service does not include Edge market data feeds.
 
-How to connect: [Peering Access](../hyperliquid-peering.md).
+How to connect: [Peering Access](peering.md).
 
 ## Pricing
 
@@ -50,11 +50,11 @@ How to connect: [Peering Access](../hyperliquid-peering.md).
 
 ### Peering
 
-$999/mo for peering, with no feed content.
+$999/mo for peering, including mempool. One receiving host (IP) included. Does not include Edge market data feeds.
 
 ### Market Data Feeds (Edge)
 
-Price follows delivery region, not where the buyer sits. A Tokyo package delivers to Tokyo receivers; anywhere else needs the Global package.
+Price follows delivery region, not where the buyer sits. A Tokyo package delivers to Tokyo receivers; anywhere else needs the Global package. Two receiving hosts (IPs) are included per feed, per metro.
 
 | Feed | Tokyo /mo | Global /mo |
 | --- | --- | --- |

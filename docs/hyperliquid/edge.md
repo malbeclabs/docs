@@ -16,10 +16,10 @@ The Hyperliquid feeds deliver market data over DoubleZero Edge as UDP multicast.
 | `edge-hyper-xyz-mbo` | Full order-by-order book for trade.xyz perps (adds, cancels, executions) |
 | `edge-hyper-hl-orderintent` | Pre-consensus order, cancel, and modify submissions for Hyperliquid perps |
 
-Service overview and pricing: [Hyperliquid](hyperliquid/index.md).
+Service overview and pricing: [Hyperliquid](index.md).
 
 !!! note "Peering"
-    For Hyperliquid gossip peering (non-validating nodes), see [Peering Access](hyperliquid-peering.md).
+    For Hyperliquid gossip peering (non-validating nodes), see [Peering Access](peering.md).
 
 ## Which path should I take?
 
@@ -37,7 +37,7 @@ For Edge Connect, finish subscription and connect on the host first, then run th
 **Complete Setup**
 
 
-Follow the [setup](setup.md) instructions to install and configure the DoubleZero client.
+Follow the [setup](../setup.md) instructions to install and configure the DoubleZero client.
 
 If you have previously set up DoubleZero, ensure the client is current:
 
@@ -91,7 +91,7 @@ Note the metro / city from the lowest-latency result. You will select that city 
 **Pricing**
 
 
-Feeds are priced by delivery region. The price follows where the data is delivered, not where the buyer is. A Tokyo package delivers to Tokyo receivers; delivery elsewhere needs the Global package.
+Feeds are priced by delivery region. The price follows where the data is delivered, not where the buyer is. A Tokyo package delivers to Tokyo receivers; delivery elsewhere needs the Global package. Two receiving hosts (IPs) are included per feed, per metro.
 
 | Feed | Tokyo /mo | Global /mo |
 | --- | --- | --- |
@@ -102,7 +102,7 @@ Feeds are priced by delivery region. The price follows where the data is deliver
 | Hyperliquid Order-Intent | $4,800 | $8,000 |
 | **All feeds (bundle 28% discount)** | **$9,000** | **$15,000** |
 
-Buying each feed alone totals $12,600/mo (Tokyo) or $21,000/mo (Global). The bundle row is the discounted price for all five together. Full rate card: [Hyperliquid pricing](hyperliquid/index.md#pricing).
+Buying each feed alone totals $12,600/mo (Tokyo) or $21,000/mo (Global). The bundle row is the discounted price for all five together. Full rate card: [Hyperliquid pricing](index.md#pricing).
 
 ---
 
@@ -224,7 +224,7 @@ Market-data traffic delivered over the network is GRE-encapsulated at the last m
 
 ## Troubleshooting
 
-If you run into an issue not covered here, please reach out over your existing channel before working around it. If you do not have a channel, see [Support](support.md).
+If you run into an issue not covered here, please reach out over your existing channel before working around it. If you do not have a channel, see [Support](../support.md).
 
 **Ensure your client is up to date**
 

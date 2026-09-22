@@ -87,8 +87,8 @@ nav:
   - Connect your AI: mcp.md
   - Hyperliquid:
     - hyperliquid/index.md
-    - Subscribe to Hyperliquid (Edge): hyperliquid-subscribe.md
-    - Peering Access: hyperliquid-peering.md
+    - Subscribe to Hyperliquid (Edge): hyperliquid/edge.md
+    - Peering Access: hyperliquid/peering.md
   - Kalshi: kalshi.md
   - Solana:
     - Connect validator (IBRL): DZ Mainnet-beta Connection.md

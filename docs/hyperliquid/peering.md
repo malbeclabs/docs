@@ -4,19 +4,24 @@ description: "Hyperliquid peering: arbitrated gossip via Block Proxy for non-val
 
 # Peering Access
 
-Peering gives non-validating nodes a low-latency, deduplicated Hyperliquid gossip feed through a Block Proxy, including mempool. It does not include Edge market data feeds. For those, see [Subscribe to Hyperliquid (Edge)](hyperliquid-subscribe.md). Overview and rate card: [Hyperliquid](hyperliquid/index.md).
+Peering gives non-validating nodes a low-latency, deduplicated Hyperliquid gossip feed through a Block Proxy, including mempool. It does not include Edge market data feeds. For those, see [Subscribe to Hyperliquid (Edge)](edge.md). Overview and rate card: [Hyperliquid](index.md).
 
 | | |
 |--|--|
 | Who it's for | Non-validating nodes you operate |
 | What you get | One arbitrated gossip feed via Block Proxy (blocks + mempool) |
-| Receiving hosts | 2 IPs included per product, per metro |
+| Receiving hosts | 1 IP included |
 | Price | $999/mo (no Edge market data) |
 | Availability target | 99.9% monthly |
-| Provisioning | Expect 1–3 business days after we have your node details |
+| Provisioning | Expect 1–2 business days after we have your node details |
 
-!!! note "Connection steps"
-    Self-serve peering connect steps are not on this page yet. Use [Support](support.md) or your existing channel to start. Include your node's static public IP (and region). Expect peer details within 1–2 business days.
+## Request peering
+
+1. Go to [https://doublezero.xyz/edge/subscribe](https://doublezero.xyz/edge/subscribe).
+2. Select **Hyperliquid** peering and finish the application form.
+3. Include your node's static public IP (and region).
+
+Our team reviews requests and returns peer details. Expect **1–2 business days** after we have your node details. If you already have a channel, you can also start there or via [Support](../support.md).
 
 ## Why paid peering
 
@@ -74,4 +79,4 @@ Target: 99.9% monthly availability.
 
 ## Pricing
 
-$999/mo for peering. Includes mempool. Does not include Edge market data feeds. Two receiving hosts (IPs) are included per product, per metro. Peering is not bundled or discounted with Edge market data. See [Hyperliquid pricing](hyperliquid/index.md#pricing) for the full rate card and equal-access terms.
+$999/mo for peering. Includes mempool. Does not include Edge market data feeds. One receiving host (IP) is included. Peering is not bundled or discounted with Edge market data. See [Hyperliquid pricing](index.md#pricing) for the full rate card and equal-access terms.
