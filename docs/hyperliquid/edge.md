@@ -6,7 +6,7 @@ description: "Subscribe to Hyperliquid market data on DoubleZero Edge — setup,
 
 !!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Use](https://doublezero.xyz/terms-protocol). Please note that the data is for your internal purposes only and may not be retransmitted (see Section 2(e))."
 
-The Hyperliquid feeds deliver market data over DoubleZero Edge as UDP multicast. Five core feeds cover Hyperliquid native perps (`hl`) and [trade.xyz](https://trade.xyz) perps (`xyz`):
+The Hyperliquid feeds deliver market data over DoubleZero Edge as UDP multicast. Four core feeds cover Hyperliquid native perps (`hl`) and [trade.xyz](https://trade.xyz) perps (`xyz`):
 
 | Feed | Description |
 |------|-------------|
@@ -14,9 +14,8 @@ The Hyperliquid feeds deliver market data over DoubleZero Edge as UDP multicast.
 | `edge-hyper-hl-mbo` | Full order-by-order book for Hyperliquid perps (adds, cancels, executions) |
 | `edge-hyper-xyz-tob` | Best bid/offer and trade prints for trade.xyz perps |
 | `edge-hyper-xyz-mbo` | Full order-by-order book for trade.xyz perps (adds, cancels, executions) |
-| `edge-hyper-hl-orderintent` | Pre-consensus order, cancel, and modify submissions for Hyperliquid perps |
 
-Service overview and pricing: [Hyperliquid](index.md).
+Service overview: [Hyperliquid](index.md).
 
 !!! note "Peering"
     For Hyperliquid gossip peering (non-validating nodes), see [Peering Access](peering.md).
@@ -48,7 +47,7 @@ sudo apt update && sudo apt install doublezero
 **Configure the Firewall**
 
 
-Allow GRE, BGP, PIM, and Hyperliquid feed traffic on `doublezero1`. Hyperliquid UDP ports sit in `9000`–`11999` (Top-of-Book, Market-by-Order, and Order-Intent across publisher port sets). Open the full band so new port sets do not need another firewall change. See [Feed addresses](#feed-addresses).
+Allow GRE, BGP, PIM, and Hyperliquid feed traffic on `doublezero1`. Hyperliquid UDP ports sit in `9000`–`11999` (Top-of-Book and Market-by-Order across publisher port sets). Open the full band so new port sets do not need another firewall change. See [Feed addresses](#feed-addresses).
 
 **iptables:**
 
@@ -99,10 +98,7 @@ Feeds are priced by delivery region. The price follows where the data is deliver
 | Hyperliquid perps Market-by-Order (L4) | $3,000 | $5,000 |
 | trade.xyz perps Top-of-Book (L1) | $900 | $1,500 |
 | trade.xyz perps Market-by-Order (L4) | $3,000 | $5,000 |
-| Hyperliquid Order-Intent | $4,800 | $8,000 |
-| **All feeds (bundle 28% discount)** | **$9,000** | **$15,000** |
-
-Buying each feed alone totals $12,600/mo (Tokyo) or $21,000/mo (Global). The bundle row is the discounted price for all five together. Full rate card: [Hyperliquid pricing](index.md#pricing).
+| **All feeds (bundle ~30% discount)** | **$5,500** | **$9,000** |
 
 ---
 
@@ -117,7 +113,7 @@ You will assign a DoubleZero ID (existing key, or generate a new one) to each fe
 
 You pick a **metro** and a **pubkey**. You do **not** bind a public IP at application time. During the subscription you can move access between IPs **within the chosen metros**.
 
-Our team reviews applications and contacts you in a timely manner (expect **2 business days**).
+Our team reviews applications and contacts you in a timely manner (expect **1-3 business days**).
 
 ---
 
@@ -132,7 +128,7 @@ doublezero connect multicast --subscribe-feed <name_of_feed>
 Multiple feeds, space-separated:
 
 ```bash
-doublezero connect multicast --subscribe-feed edge-hyper-hl-tob edge-hyper-hl-mbo edge-hyper-xyz-tob edge-hyper-xyz-mbo edge-hyper-hl-orderintent
+doublezero connect multicast --subscribe-feed edge-hyper-hl-tob edge-hyper-hl-mbo edge-hyper-xyz-tob edge-hyper-xyz-mbo
 ```
 
 Access is enabled on your chosen start date. After access is provisioned, check the tunnel status with:
@@ -163,13 +159,12 @@ doublezero multicast group list
 
 | Feed | Description | Multicast group | Spec |
 |------|-------------|-----------------|------|
-| `edge-hyper-hl-tob` | Best bid/offer and trade prints for Hyperliquid perps | `233.84.178.15` | [top-of-book](https://github.com/malbeclabs/edge-feed-spec/blob/main/top-of-book/spec.md) |
-| `edge-hyper-hl-mbo` | Full order-by-order book for Hyperliquid perps | `233.84.178.15` | [market-by-order](https://github.com/malbeclabs/edge-feed-spec/blob/main/market-by-order/spec.md) |
-| `edge-hyper-xyz-tob` | Best bid/offer and trade prints for trade.xyz perps | `233.84.178.15` | [top-of-book](https://github.com/malbeclabs/edge-feed-spec/blob/main/top-of-book/spec.md) |
-| `edge-hyper-xyz-mbo` | Full order-by-order book for trade.xyz perps | `233.84.178.15` | [market-by-order](https://github.com/malbeclabs/edge-feed-spec/blob/main/market-by-order/spec.md) |
-| `edge-hyper-hl-orderintent` | Pre-consensus order, cancel, and modify submissions for Hyperliquid perps | `233.84.178.19` | [order-intent](https://github.com/malbeclabs/edge-feed-spec/blob/main/order-intent/spec.md) |
+| `edge-hyper-hl-tob` | Best bid/offer and trade prints for Hyperliquid perps | `233.84.178.27` | [top-of-book](https://github.com/malbeclabs/edge-feed-spec/blob/main/top-of-book/spec.md) |
+| `edge-hyper-hl-mbo` | Full order-by-order book for Hyperliquid perps | `233.84.178.28` | [market-by-order](https://github.com/malbeclabs/edge-feed-spec/blob/main/market-by-order/spec.md) |
+| `edge-hyper-xyz-tob` | Best bid/offer and trade prints for trade.xyz perps | `233.84.178.29` | [top-of-book](https://github.com/malbeclabs/edge-feed-spec/blob/main/top-of-book/spec.md) |
+| `edge-hyper-xyz-mbo` | Full order-by-order book for trade.xyz perps | `233.84.178.30` | [market-by-order](https://github.com/malbeclabs/edge-feed-spec/blob/main/market-by-order/spec.md) |
 
-Book feeds (TOB / MBO for Hyperliquid and trade.xyz) share `233.84.178.15`. Order-Intent uses `233.84.178.19`. Several publisher streams can share a group address on different ports; bind the ports for the stream you want.
+Each feed has its own multicast group address. Bind the ports for the stream you want on that group.
 
 Typical port layout (confirm live values before binding):
 
@@ -185,13 +180,6 @@ Typical port layout (confirm live values before binding):
 | H | `9701` | `9702` | `10701` | `10702` | `10703` |
 | I | `9201` | `9202` | `10201` | `10202` | `10203` |
 | J | `9401` | `9402` | `10401` | `10402` | `10403` |
-
-Order-Intent ports on `233.84.178.19`:
-
-| Port set | OI mktdata | OI refdata |
-|----------|------------|------------|
-| A | `11001` | `11002` |
-| B | `11201` | `11202` |
 
 Frames are little-endian fixed-size binary, at most **1,232** bytes per UDP datagram. Mainnet Top-of-Book and Market-by-Order frames typically use `source_id=1`; Market-by-Order frames use `channel_id=1`.
 
@@ -249,9 +237,8 @@ The DoubleZero ID used on the accounts page must match the key on this host.
 
 1. Confirm you are subscribed: `doublezero user list`
 2. Confirm the feed appears under your groups: `doublezero multicast group list`
-3. Capture on the tunnel, e.g. book data: `sudo tcpdump -ni doublezero1 host 233.84.178.15`
-4. For Order-Intent: `sudo tcpdump -ni doublezero1 host 233.84.178.19`
-5. Verify you are binding the correct port set for the publisher stream you want
+3. Capture on the tunnel, e.g. Hyperliquid TOB: `sudo tcpdump -ni doublezero1 host 233.84.178.27`
+4. Verify you are binding the correct port set for the publisher stream you want
 
 **Seat expired or removed**
 

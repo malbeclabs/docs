@@ -4,7 +4,7 @@ description: "Hyperliquid peering: arbitrated gossip via Block Proxy for non-val
 
 # Peering Access
 
-Peering gives non-validating nodes a low-latency, deduplicated Hyperliquid gossip feed through a Block Proxy, including mempool. It does not include Edge market data feeds. For those, see [Subscribe to Hyperliquid (Edge)](edge.md). Overview and rate card: [Hyperliquid](index.md).
+Peering gives non-validating nodes a low-latency, deduplicated Hyperliquid gossip feed through a Block Proxy, including mempool. It does not include Edge market data feeds. For those, see [Subscribe to Hyperliquid (Edge)](edge.md). Overview: [Hyperliquid](index.md).
 
 | | |
 |--|--|
@@ -17,11 +17,7 @@ Peering gives non-validating nodes a low-latency, deduplicated Hyperliquid gossi
 
 ## Request peering
 
-1. Go to [https://doublezero.xyz/edge/subscribe](https://doublezero.xyz/edge/subscribe).
-2. Select **Hyperliquid** peering and finish the application form.
-3. Include your node's static public IP (and region).
-
-Our team reviews requests and returns peer details. Expect **1–2 business days** after we have your node details. If you already have a channel, you can also start there or via [Support](../support.md).
+Contact DoubleZero for peering via [Telegram](https://t.me/doublezero_telegram_bot?start=fromwebsite). Include your node's static public IP (and region). Expect peer details within **1–3 business days** after we have your node details.
 
 ## Why paid peering
 
@@ -79,4 +75,4 @@ Target: 99.9% monthly availability.
 
 ## Pricing
 
-$999/mo for peering. Includes mempool. Does not include Edge market data feeds. One receiving host (IP) is included. Peering is not bundled or discounted with Edge market data. See [Hyperliquid pricing](index.md#pricing) for the full rate card and equal-access terms.
+$999/mo for peering. Includes mempool. Does not include Edge market data feeds. One receiving host (IP) is included. Peering is not bundled or discounted with Edge market data.
