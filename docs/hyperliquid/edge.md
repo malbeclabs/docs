@@ -17,9 +17,6 @@ The Hyperliquid feeds deliver market data over DoubleZero Edge as UDP multicast.
 
 Service overview: [Hyperliquid](index.md).
 
-!!! note "Peering"
-    For Hyperliquid gossip peering (non-validating nodes), see [Peering Access](peering.md).
-
 ## Which path should I take?
 
 | Mode | What you get | When to use |
@@ -56,7 +53,7 @@ sudo iptables -A OUTPUT -p gre -j ACCEPT
 sudo iptables -A INPUT -i doublezero1 -s 169.254.0.0/16 -d 169.254.0.0/16 -p tcp --dport 179 -j ACCEPT
 sudo iptables -A OUTPUT -o doublezero1 -s 169.254.0.0/16 -d 169.254.0.0/16 -p tcp --dport 179 -j ACCEPT
 sudo iptables -A OUTPUT -o doublezero1 -p pim -j ACCEPT
-# Hyperliquid market / reference / snapshot / order-intent (all feeds)
+# Hyperliquid market / reference / snapshot (all feeds)
 sudo iptables -A INPUT -i doublezero1 -p udp --dport 9000:11999 -j ACCEPT
 sudo iptables -A INPUT -i doublezero0 -p udp --dport 44880 -j ACCEPT
 ```
@@ -68,7 +65,7 @@ sudo ufw allow proto gre from any to any
 sudo ufw allow in on doublezero1 from 169.254.0.0/16 to 169.254.0.0/16 port 179 proto tcp
 sudo ufw allow out on doublezero1 from 169.254.0.0/16 to 169.254.0.0/16 port 179 proto tcp
 sudo ufw allow out on doublezero1 proto pim from any to any
-# Hyperliquid market / reference / snapshot / order-intent (all feeds)
+# Hyperliquid market / reference / snapshot (all feeds)
 sudo ufw allow in on doublezero1 to any port 9000:11999 proto udp
 sudo ufw allow in on doublezero0 to any port 44880 proto udp
 ```
@@ -113,13 +110,13 @@ You will assign a DoubleZero ID (existing key, or generate a new one) to each fe
 
 You pick a **metro** and a **pubkey**. You do **not** bind a public IP at application time. During the subscription you can move access between IPs **within the chosen metros**.
 
-Our team reviews applications and contacts you in a timely manner (expect **1-3 business days**).
+You will be contacted with more instructions in a timely manner (expect **1-3 business days**).
 
 ---
 
 ## Step 4: Connect after approval
 
-After we contact you, you receive an invoice, and that invoice is paid, connect on each approved machine. Subscribe to the feeds you purchased:
+After you submit the application, you will receive an invoice; once it is paid, you can connect on each approved machine. Subscribe to the feeds you purchased:
 
 ```bash
 doublezero connect multicast --subscribe-feed <name_of_feed>
@@ -145,7 +142,7 @@ Expect `BGP Session Up` on the correct DoubleZero network.
 
 Seats are charged **monthly**. Watch the seat expiration date.
 
-You will be invoiced a few days before the seat expires. **Not paying leads to removal of the seat.**
+You need to pay the invoice before the seat expires. **Not paying leads to removal of the seat.**
 
 ---
 

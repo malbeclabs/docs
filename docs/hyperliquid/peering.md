@@ -13,11 +13,10 @@ Peering gives non-validating nodes a low-latency, deduplicated Hyperliquid gossi
 | Receiving hosts | 1 IP included |
 | Price | $999/mo (no Edge market data) |
 | Availability target | 99.9% monthly |
-| Provisioning | Expect 1–2 business days after we have your node details |
 
 ## Request peering
 
-Contact DoubleZero for peering via [Telegram](https://t.me/doublezero_telegram_bot?start=fromwebsite). Include your node's static public IP (and region). Expect peer details within **1–3 business days** after we have your node details.
+More information about peering is available via [Telegram](https://t.me/doublezero_telegram_bot?start=fromwebsite). Include your node's static public IP (and region). Expect peer details within **1–3 business days** after we have your node details and payment is done.
 
 ## Why paid peering
 
@@ -25,7 +24,7 @@ Public Hyperliquid root peers are shared: slots are contended, peers rotate or r
 
 ## How it works
 
-- Two gossip sources: an A feed from the Foundation's non-validating node, and a B feed from a sentry.
+- Two gossip sources: an A feed from Hyper Foundation's non-validating node, and a B feed from a sentry.
 - Customers peer with a Block Proxy tier that scales horizontally. Each proxy peers with both of our non-validating nodes and looks like one ordinary gossip peer to each of them.
 - The proxy arbitrates A and B into one deduplicated gossip feed for its peers, so either source can drop without stopping the stream.
 - Add proxies to add capacity. Load on our non-validating nodes does not grow with peer count.
@@ -56,7 +55,7 @@ Public Hyperliquid root peers are shared: slots are contended, peers rotate or r
                           │   Peers   │
                           └───────────┘</code></pre>
 
-The Foundation node peers with our primary; a sentry feeds our secondary. Each Block Proxy peers with both, merges their feeds for its customers, and pulls bootstrap snapshots from the snapshot service when needed.
+Hyper Foundation node peers with our primary; a sentry feeds our secondary. Each Block Proxy peers with both, merges their feeds for its customers, and pulls bootstrap snapshots from the snapshot service when needed.
 
 ## Uptime
 

@@ -35,7 +35,7 @@ How to connect: [Subscribe to Hyperliquid (Edge)](edge.md).
 
 ## Peering
 
-Peering is for non-validating nodes that need Hyperliquid gossip without taking market data. You peer with a Block Proxy tier that merges two upstream gossip sources (Foundation and sentry) into one deduplicated feed, so either source can drop without stopping the stream.
+Peering is for non-validating nodes that need Hyperliquid gossip without taking market data. You peer with a Block Proxy tier that merges two upstream gossip sources (Hyper Foundation and sentry) into one deduplicated feed, so either source can drop without stopping the stream.
 
 Each proxy looks like a single ordinary gossip peer to our nodes. Capacity grows by adding proxies; load on those nodes does not grow with peer count. Availability target is 99.9% monthly. The service does not include Edge market data feeds.
 
