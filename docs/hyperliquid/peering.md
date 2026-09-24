@@ -4,7 +4,7 @@ description: "Hyperliquid peering: arbitrated gossip via Block Proxy for non-val
 
 # Peering Access
 
-Peering gives non-validating nodes a low-latency, deduplicated Hyperliquid gossip feed through a Block Proxy, including mempool. It does not include Edge market data feeds. For those, see [Subscribe to Hyperliquid (Edge)](edge.md). Overview: [Hyperliquid](index.md).
+Peering gives non-validating nodes a low-latency, deduplicated Hyperliquid gossip feed through a Block Proxy, including mempool. It does not include Edge market data feeds. For those, see [Subscribe to Hyperliquid (Edge)](/hyperliquid/edge/). Overview: [Hyperliquid](/hyperliquid/).
 
 | | |
 |--|--|

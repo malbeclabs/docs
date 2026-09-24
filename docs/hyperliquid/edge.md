@@ -15,7 +15,7 @@ The Hyperliquid feeds deliver market data over DoubleZero Edge as UDP multicast.
 | `hyper-xyz-tob` | Best bid/offer and trade prints for trade.xyz perps |
 | `hyper-xyz-mbo` | Full order-by-order book for trade.xyz perps (adds, cancels, executions) |
 
-Service overview: [Hyperliquid](index.md).
+Service overview: [Hyperliquid](/hyperliquid/).
 
 ## Which path should I take?
 
@@ -26,7 +26,7 @@ Service overview: [Hyperliquid](index.md).
 
 Shared steps first: firewall, metro, apply, and pay (Steps 1–3). After approval, [Step 4](#step-4-connect-after-approval) splits — **Edge Connect** or **native**. Do not mix them on the same host.
 
-Want an AI to do the install with you? Connect the [DoubleZero MCP](../mcp.md) and ask it to walk you through Hyperliquid Edge.
+Want an AI to do the install with you? Connect the [DoubleZero MCP](/mcp/) and ask it to walk you through Hyperliquid Edge.
 
 ---
 
@@ -35,7 +35,7 @@ Want an AI to do the install with you? Connect the [DoubleZero MCP](../mcp.md) a
 **Complete Setup**
 
 
-Follow the [setup](../setup.md) instructions to install and configure the DoubleZero client on the host.
+Follow the [setup](/setup/) instructions to install and configure the DoubleZero client on the host.
 
 If you have previously set up DoubleZero on the host for native use, ensure the client is current:
 
@@ -124,7 +124,7 @@ After you submit the application, you will receive an invoice; once it is paid, 
 
 ### 4a. Edge Connect
 
-If a host `doublezerod` is already running (from [setup](../setup.md)), stop it first — it fights the container’s daemon for the same tunnel:
+If a host `doublezerod` is already running (from [setup](/setup/)), stop it first — it fights the container’s daemon for the same tunnel:
 
 ```bash
 sudo systemctl stop doublezerod
@@ -151,7 +151,7 @@ docker exec doublezero-edge-connect doublezero status
 
 Expect `BGP Session Up` and your `edge-hyper-…` group(s) subscribed.
 
-Then open the WebSocket (`ws://127.0.0.1:8081`). Contract: [PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md). Full walkthrough: [MCP](../mcp.md) runbook `hyperliquid-edge`.
+Then open the WebSocket (`ws://127.0.0.1:8081`). Contract: [PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md). Full walkthrough: [MCP](/mcp/) runbook `hyperliquid-edge`.
 
 ### 4b. Native multicast
 
@@ -235,7 +235,7 @@ Market-data traffic delivered over the network is GRE-encapsulated at the last m
 
 ## Troubleshooting
 
-If you run into an issue not covered here, please reach out over your existing channel before working around it. If you do not have a channel, see [Support](../support.md).
+If you run into an issue not covered here, please reach out over your existing channel before working around it. If you do not have a channel, see [Support](/support/).
 
 **Ensure your client is up to date**
 
