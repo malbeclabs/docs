@@ -222,10 +222,35 @@ Please ensure that the full /29 pool is available for the DZ protocol.  Any requ
 
 #### Rack & Power Requirements
 
-| Requirement  | Specification |
-|-------------|--------------|
-| Rack Space  | 4U           |
-| Power       | 4KW (recommended) |
+The figures below are **per DZD**, so per data center. A 100G or 10G bandwidth contribution puts one DZD at each end of the link, so plan this twice.
+
+##### Rack space
+
+| Item | Rack units | Needed |
+|------|-----------|--------|
+| DZD switch (Arista 7280CR3A-32S or 7130LBR) | 1U | Now |
+| Edge filtering appliance | 1U | Later, on edge and hybrid devices only |
+
+**Reserve 2U per DZD.** One unit is in use today. Keep the second free so the edge filtering appliance can go in next to the switch without a rack move. Leave room for airflow and cable management as your facility requires.
+
+##### Power
+
+| Item | Typical draw |
+|------|-------------|
+| Arista 7280CR3A-32S | ~300 W |
+| Optics, per 100G QSFP | ~5 W |
+
+**Order 2 kW per DZD, split across two independent feeds.** Size each feed to carry the whole load on its own. The switch runs redundant power supplies, and after a feed failure one of them may be all you have left.
+
+2 kW is comfortable rather than tight. A switch-only DZD, which is what almost every deployment runs today, draws well under 500 W with all its optics lit. The rest of the 2 kW is set aside for the edge filtering appliance, which holds the FPGAs and goes in later.
+
+!!! warning "Do not over-order power"
+    You pay for the power you reserve, whether you draw it or not. A DZD is a single rack unit of switching, not a compute chassis, so it draws far less than its rack position could supply. Reserving more than 2 kW per DZD means paying for capacity that sits idle.
+
+!!! note "Check your own hardware before you order"
+    These are guideline figures from our own deployments. Your real draw depends on your power supply configuration, how many ports you light up, and which optics you choose. Confirm against the power supply ratings in the vendor datasheet for the exact hardware you buy.
+
+    Do not trim the order to the bare minimum either. The power has to be available in the rack, and adding a feed later usually means a new order with the facility, which can take weeks.
 
 ---
 
