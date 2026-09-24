@@ -51,17 +51,17 @@ sudo iptables -A INPUT -i doublezero1 -p udp --dport 5765 -j ACCEPT
 
 | Group code | Kind | Multicast group | Market | Reference | Snapshot |
 |------------|------|-----------------|--------|-----------|----------|
-| `hyper-hl-tob` | TOB | `233.84.178.27` | `20000` | `20001` | — |
-| `hyper-hl-mbo` | MBO | `233.84.178.28` | `20010` | `20011` | `20012` |
-| `hyper-xyz-tob` | TOB | `233.84.178.29` | `20100` | `20101` | — |
-| `hyper-xyz-mbo` | MBO | `233.84.178.30` | `20110` | `20111` | `20112` |
+| `edge-hyper-hl-tob` | TOB | `233.84.178.27` | `20000` | `20001` | — |
+| `edge-hyper-hl-mbo` | MBO | `233.84.178.28` | `20010` | `20011` | `20012` |
+| `edge-hyper-xyz-tob` | TOB | `233.84.178.29` | `20100` | `20101` | — |
+| `edge-hyper-xyz-mbo` | MBO | `233.84.178.30` | `20110` | `20111` | `20112` |
 
 Ports: reference = market + `1`; snapshot (MBO only) = market + `2`. Hyperliquid native perps use `source_id=1`; trade.xyz perps use `source_id=7`.
 
 Confirm the live group IP for your env:
 
 ```bash
-docker exec doublezero-edge-connect doublezero multicast group get --code hyper-hl-tob
+docker exec doublezero-edge-connect doublezero multicast group get --code edge-hyper-hl-tob
 ```
 
 **Edge Connect note:** the bridge matches `code` and multicast **group IP** from its feed registry to what `doublezero status` reports. A code/IP mismatch fails **silently** (receiver never starts — watch bridge logs / metrics, not only BGP).
@@ -104,18 +104,18 @@ A `⚠️` on **Lowest Latency Device** while **Current Device** is another metr
 
 ### 3. Ensure the Hyperliquid group is subscribed
 
-Prefer the feed the installer already joined. If status already shows `S:hyper-…`, skip this step.
+Prefer the feed the installer already joined. If status already shows `S:edge-hyper-…`, skip this step.
 
-`--subscribe-feed` takes the **feed account name** from the pass. `--subscribe` takes the **group code** (e.g. `hyper-hl-tob`). They are not interchangeable. Subscribing a code or name that is not on the pass fails.
+Connect with the **feed code** (no `edge-` prefix), e.g. `hyper-hl-tob`. The multicast **group code** in the [Feed map](#feed-map) and in `doublezero status` is `edge-hyper-…` — do not pass that to connect. `--subscribe-feed` and `--subscribe` both take the feed code from the pass. Subscribing a code that is not on the pass fails.
 
-Only run an extra subscribe if the group you bought is missing from `doublezero status`. Prefer the **Feed account** form when using an Edge seat / access-pass identity:
+Only run an extra subscribe if the group you bought is missing from `doublezero status`. Prefer `--subscribe-feed` when using an Edge seat / access-pass identity:
 
 ```bash
 docker exec doublezero-edge-connect \
-  doublezero connect multicast --subscribe-feed <feed-account-name>
+  doublezero connect multicast --subscribe-feed <feed-code>
 ```
 
-Or by group code (use the code that matches `Joined feed(s):`, not a feed you did not buy):
+Or with `--subscribe` (same feed codes — use what the pass joined, not a feed you did not buy):
 
 ```bash
 # TOB example — swap for -mbo / xyz if that is what the pass joined
@@ -123,7 +123,7 @@ docker exec doublezero-edge-connect \
   doublezero connect multicast --subscribe hyper-hl-tob
 ```
 
-Multiple feeds: space-separate codes.
+Multiple feeds, space-separated:
 
 ```bash
 docker exec doublezero-edge-connect \
@@ -138,7 +138,7 @@ docker exec doublezero-edge-connect \
 docker exec doublezero-edge-connect doublezero status
 ```
 
-Expect: `BGP Session Up`, and your Hyperliquid group(s) listed (e.g. `S:hyper-hl-tob`).
+Expect: `BGP Session Up`, and your Hyperliquid group(s) listed (e.g. `S:edge-hyper-hl-tob`).
 
 If status is `Pending BGP Session` for more than ~30s, wait. If it becomes **`Network Unreachable`** (outer GRE / `Tunnel Dst` may still ping), you likely have a leftover tunnel from a previous attempt:
 
@@ -148,7 +148,7 @@ sudo ip link del doublezero1 2>/dev/null || true
 docker exec doublezero-edge-connect doublezero connect multicast
 ```
 
-Re-run `doublezero status`. Expect `BGP Session Up` and `S:hyper-…`.
+Re-run `doublezero status`. Expect `BGP Session Up` and `S:edge-hyper-…`.
 
 ```bash
 docker exec doublezero-edge-connect doublezero status --json

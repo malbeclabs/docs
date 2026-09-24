@@ -149,7 +149,7 @@ docker exec doublezero-edge-connect doublezero status
     echo "alias dz='sudo docker exec -it doublezero-edge-connect doublezero'" >> ~/.bashrc && source ~/.bashrc
     ```
 
-Expect `BGP Session Up` and your `hyper-…` group(s) subscribed.
+Expect `BGP Session Up` and your `edge-hyper-…` group(s) subscribed.
 
 Then open the WebSocket (`ws://127.0.0.1:8081`). Contract: [PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md). Full walkthrough: [MCP](../mcp.md) runbook `hyperliquid-edge`.
 
@@ -158,7 +158,7 @@ Then open the WebSocket (`ws://127.0.0.1:8081`). Contract: [PROTOCOL.md](https:/
 On the host that holds the assigned private key (with host `doublezerod` running), subscribe to the feeds you purchased:
 
 ```bash
-doublezero connect multicast --subscribe-feed <name_of_feed>
+doublezero connect multicast --subscribe-feed <feed-code>
 ```
 
 Multiple feeds, space-separated:
@@ -268,7 +268,7 @@ If a purchased feed is missing from `doublezero status`, subscribe inside the co
 
 ```bash
 docker exec doublezero-edge-connect \
-  doublezero connect multicast --subscribe-feed <name_of_feed>
+  doublezero connect multicast --subscribe-feed <feed-code>
 ```
 
 Multiple feeds, space-separated:
@@ -292,7 +292,7 @@ You already have an active subscription through a different path. Disconnect fir
 - **Edge Connect:** `docker exec doublezero-edge-connect doublezero disconnect`
 - **Native:** `doublezero disconnect`
 
-Then retry `doublezero connect multicast --subscribe-feed <feed>` on the same path (container or host).
+Then retry `doublezero connect multicast --subscribe-feed <feed-code>` on the same path (container or host).
 
 **AWS-specific**
 
