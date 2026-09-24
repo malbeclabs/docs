@@ -87,11 +87,6 @@ nav:
   - Welcome: index.md
   - Setup: setup.md
   - Connect your AI: mcp.md
-  - Hyperliquid:
-    - hyperliquid/index.md
-    - Subscribe to Hyperliquid (Edge): hyperliquid/edge.md
-    - Peering Access: hyperliquid/peering.md
-  - Kalshi: kalshi.md
   - Solana:
     - Connect validator (IBRL): DZ Mainnet-beta Connection.md
     - Publish shreds (Edge): Validator Multicast Connection.md
@@ -100,6 +95,11 @@ nav:
     - Permissioned / RPC: Permissioned Connection.md
     - Troubleshoot Edge: troubleshooting.md
     - Validator Rewards: Validator Rewards.md
+  - Hyperliquid:
+    - hyperliquid/index.md
+    - Subscribe to Hyperliquid (Edge): hyperliquid/edge.md
+    - Peering Access: hyperliquid/peering.md
+  - Kalshi: kalshi.md
   - Shelby: shelby.md
   - Contributors:
     - Overview: contribute-overview.md
