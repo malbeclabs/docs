@@ -2,32 +2,29 @@
 description: Incorporación con permisos para no validadores y RPCs que se conectan a DoubleZero Mainnet-Beta y Testnet en modo IBRL.
 ---
 
-# Conexión con permisos para no validadores a DoubleZero en modo IBRL
+# Conexión con permisos de no validadores a DoubleZero en modo IBRL
 !!! warning "Al conectarme a DoubleZero acepto los [Términos de Servicio de DoubleZero](https://doublezero.xyz/terms-protocol)"
-
-<div data-wizard-step="rpc-onboarding" markdown>
 
 ### Descripción general de la incorporación de usuarios con permisos
 
-La incorporación de usuarios actualmente requiere permisos para no validadores y RPCs. Para iniciar el flujo con permisos, por favor complete [este formulario](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z). Esto es lo que puede esperar durante este proceso:
+La incorporación de usuarios actualmente requiere permisos para no validadores y RPCs. Para iniciar el flujo con permisos, complete [este formulario](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z). Esto es lo que puede esperar durante este proceso:
 
 - Puede haber tarifas asociadas con el uso de usuarios con permisos en el futuro.
 - Después de enviar el formulario, monitoree su contacto principal de Telegram.
 
-</div>
 
 ### Conexión a Mainnet-Beta y Testnet en modo IBRL
 
 !!! Note inline end
-    El modo IBRL no requiere reiniciar los clientes validadores, ya que utiliza su dirección IP pública existente.
+    El modo IBRL no requiere reiniciar los clientes validadores, porque utiliza su dirección IP pública existente.
 
 Los usuarios con permisos completarán la conexión a DoubleZero Mainnet-beta, lo cual se detalla en esta página.
 
 ## 1. Confirmar la red del cliente
 
-Por favor siga las instrucciones de [configuración](setup.md) antes de continuar. Instale los paquetes de Mainnet-Beta o Testnet para la red que desee — utilizan diferentes repositorios de paquetes.
+Siga las instrucciones de [configuración](setup.md) antes de continuar. Instale los paquetes de Mainnet-Beta o Testnet para la red que desee — utilizan diferentes repositorios de paquetes.
 
-El último paso en la configuración fue desconectarse de la red. Esto es para asegurar que solo un túnel esté abierto en su máquina hacia DoubleZero, y que ese túnel esté en la red correcta.
+El último paso en la configuración fue desconectarse de la red. Esto es para asegurar que solo haya un túnel abierto en su máquina hacia DoubleZero, y que ese túnel esté en la red correcta.
 
 Confirme con:
 
@@ -35,9 +32,9 @@ Confirme con:
 doublezero status
 ```
 
-La columna `Network` debe coincidir con la red a la que desea unirse. Si no coincide, utilice el cambio de copiar y pegar en [solución de problemas](troubleshooting.md#issue-wrong-doublezero-environment).
+La columna `Network` debe coincidir con la red a la que desea unirse. Si no coincide, use el interruptor de copiar y pegar en [resolución de problemas](troubleshooting.md#issue-wrong-doublezero-environment).
 
-Después de aproximadamente 30 segundos verá los dispositivos de DoubleZero disponibles:
+Después de aproximadamente 30 segundos verá los dispositivos DoubleZero disponibles:
 
 ```bash
 doublezero latency
@@ -61,12 +58,10 @@ La salida de Testnet será idéntica en estructura, pero con muchos más disposi
 
 ## 2. Contactar a la Fundación DoubleZero
 
-La Fundación DoubleZero. Necesitará proporcionar su `DoubleZeroID`, su `Validator ID` (ID de nodo) y la `public ipv4 address` desde la cual se conectará.
+La fundación DoubleZero. Deberá proporcionar su `DoubleZeroID`, su `Validator ID` (ID de nodo) y la `public ipv4 address` desde la cual se conectará.
 
 
-<div data-wizard-step="rpc-connect-ibrl" markdown>
-
-## 3. Conectar en modo IBRL
+## 3. Conectarse en modo IBRL
 
 En el servidor, con el usuario que se conectará a DoubleZero, ejecute el comando `connect` para establecer la conexión a DoubleZero.
 
@@ -87,7 +82,7 @@ Public IP detected: 137.184.101.183 - If you want to use a different IP, you can
     Service provisioned with status: ok
 ✅  User Provisioned
 ```
-Espere un minuto para que el túnel se complete. Hasta que el túnel esté completado, la salida de su estado puede devolver "down" o "Unknown"
+Espere un minuto para que el túnel se complete. Hasta que el túnel esté completado, su salida de estado puede devolver "down" o "Unknown"
 
 Verifique su conexión:
 
@@ -117,7 +112,6 @@ default via 149.28.38.1 dev enp1s0 proto dhcp src 149.28.38.64 metric 100
 ...
 ```
 
-</div>
 
 ### Siguiente paso: Multicast
 

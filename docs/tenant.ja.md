@@ -1,27 +1,34 @@
+---
+description: DoubleZero のテナントと接続パスを選択してください — Solana バリデーター、RPC、Kalshi マーケットデータ、Shelby、または新しいプロトコルなど、ユースケースに合ったものをお選びください。
+---
+
 # テナント
-!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
 
+DoubleZero のテナントとは、類似したプロファイルと接続要件を持つユーザーのグループであり、通常、異なるブロックチェーンエコシステム、データ転送レイヤー、または分散システムを表します。
 
-DoubleZeroのテナントは、類似したプロフィールと接続要件を持つユーザーグループで、通常は異なるブロックチェーンエコシステム、データ転送レイヤー、または分散システムを表しています。
-
-以下の表を確認し、DoubleZeroネットワークとの連携方法を最もよく表すユースケースを選択してください。
+以下の表を確認し、DoubleZero Network との連携方法として最適なユースケースを選択してください。
 
 Solana
 
 | ユースケース | 次のステップ |
 |-------------|---------|
-| Solanaメインネットバリデーター（バックアップ含む） | [DoubleZero Mainnet-Beta接続](https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/) |
-| Solanaテストネットバリデーター（バックアップ含む） | [DoubleZero Testnet接続](https://docs.malbeclabs.com/DZ%20Testnet%20Connection/) |
-| 非バリデーター - RPC等 | [DoubleZero Mainnet-BetaおよびTestnet接続](Permissioned%20Connection.md) |
+| Solana バリデーター（mainnet-beta または testnet）、バックアップを含む | [IBRL モードでのバリデーター接続](<DZ Mainnet-beta Connection.md>) |
+| バリデーター以外 - RPC、その他 | [DoubleZero Mainnet-Beta および Testnet 接続](Permissioned%20Connection.md) |
+
+Kalshi
+
+| ユースケース | 次のステップ |
+|-------------|---------|
+| Kalshi マーケットデータフィードの購読 | [Kalshi](kalshi.md) |
 
 Shelby
 
 | ユースケース | 次のステップ |
 |-------------|---------|
-| Shelby Testnet RPCおよびストレージノード | [DoubleZero Testnet接続](shelby.md) |
+| Shelby Testnet RPC およびストレージノード | [DoubleZero Testnet 接続](shelby.md) |
 
 新規テナント
 
 | ユースケース | 次のステップ |
 -------------|---------|
-| DoubleZeroを活用する新しいプロトコル、アプリケーション、またはその他のユースケース | [新規テナントの追加](New%20Tenant.md) |
+| DoubleZero を活用する新しいプロトコル、アプリケーション、またはその他のユースケースをお持ちの場合 | [新規テナントの追加](New%20Tenant.md) |

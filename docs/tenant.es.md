@@ -1,27 +1,34 @@
+---
+description: Elija el inquilino y la ruta de conexión de DoubleZero que coincida con su caso de uso — validadores de Solana, RPCs, datos de mercado de Kalshi, Shelby o un nuevo protocolo.
+---
+
 # Inquilinos
-!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
 
+Los inquilinos en DoubleZero son grupos de usuarios con perfiles y requisitos de conexión similares, que generalmente representan diferentes ecosistemas de blockchain, capas de transferencia de datos o sistemas distribuidos.
 
-Los inquilinos en DoubleZero son grupos de usuarios con perfiles similares y requisitos de conexión, que típicamente representan diferentes ecosistemas blockchain, capas de transferencia de datos u otros sistemas distribuidos.
-
-Examine la tabla a continuación y elija el caso de uso que mejor describa cómo planea interactuar con la red DoubleZero.
+Examine la tabla a continuación y elija el caso de uso que mejor describa cómo planea interactuar con la Red DoubleZero.
 
 Solana
 
-| Caso de Uso | Siguiente Paso |
+| Caso de uso | Siguiente paso |
 |-------------|---------|
-| Validador Solana Mainnet, incluyendo respaldos | [Conexión DoubleZero Mainnet-Beta](https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/) |
-| Validador Solana Testnet, incluyendo respaldos | [Conexión DoubleZero Testnet](https://docs.malbeclabs.com/DZ%20Testnet%20Connection/) |
-| No validadores - RPCs y otros. | [Conexión DoubleZero Mainnet-Beta y Testnet](Permissioned%20Connection.md) |
+| Validador de Solana (mainnet-beta o testnet), incluyendo respaldos | [Conexión de Validador en Modo IBRL](<DZ Mainnet-beta Connection.md>) |
+| No Validadores - RPCs y otros. | [Conexión a DoubleZero Mainnet-Beta y Testnet](Permissioned%20Connection.md) |
+
+Kalshi
+
+| Caso de uso | Siguiente paso |
+|-------------|---------|
+| Suscripción a los feeds de datos de mercado de Kalshi | [Kalshi](kalshi.md) |
 
 Shelby
 
-| Caso de Uso | Siguiente Paso |
+| Caso de uso | Siguiente paso |
 |-------------|---------|
-| RPCs y Nodos de Almacenamiento Shelby Testnet | [Conexión DoubleZero Testnet](shelby.md) |
+| RPCs y Nodos de Almacenamiento de Shelby Testnet | [Conexión a DoubleZero Testnet](shelby.md) |
 
 Nuevo Inquilino
 
-| Caso de Uso | Siguiente Paso |
+| Caso de uso | Siguiente paso |
 -------------|---------|
-| Tienes un nuevo protocolo, aplicación u otro caso de uso para aprovechar DoubleZero | [Agregar un Nuevo Inquilino](New%20Tenant.md) |
+| Tiene un nuevo protocolo, aplicación u otro caso de uso para aprovechar DoubleZero | [Agregar un Nuevo Inquilino](New%20Tenant.md) |

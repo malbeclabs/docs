@@ -2,11 +2,11 @@
 description: Configurez un abonné edge pour recevoir les flux de shreds DoubleZero, y compris la configuration du client et les règles de pare-feu pour GRE, BGP, PIM et le trafic de shreds.
 ---
 
-# Connexion Abonné Edge
+# Connexion d'un abonné Edge
 !!! warning "En me connectant à DoubleZero, j'accepte les [Conditions d'utilisation de DoubleZero](https://doublezero.xyz/terms-protocol). Veuillez noter que les données sont destinées à votre usage interne uniquement et ne peuvent pas être retransmises (voir Section 2(e))."
 
 !!! warning "Déjà sur l'abonnement CLI ?"
-    Si vous vous êtes abonné via le **CLI** (`doublezero-solana shreds pay` / sièges escrow), utilisez la [page d'abonnement CLI](Edge Subscriber CLI.md) pour ces commandes. Ce système sera **décommissionné le 30 août 2026**. Les nouveaux abonnements suivent cette page.
+    Si vous vous êtes abonné via le **CLI** (`doublezero-solana shreds pay` / sièges escrow), utilisez la [page d'abonnement CLI](Edge Subscriber CLI.md) pour ces commandes. Ce système sera **mis hors service le 30 août 2026**. Les nouveaux abonnements suivent cette page.
 
 ## Étape 1 : Configuration de DoubleZero
 
@@ -16,11 +16,11 @@ Installez le [Solana CLI](https://docs.anza.xyz/cli/install).
 
 Suivez les instructions de [configuration](setup.md) pour installer et configurer le client DoubleZero.
 
-Si vous avez déjà configuré DoubleZero, assurez-vous d'avoir la dernière version du CLI Doublezero-Solana avec `sudo apt update && sudo apt install doublezero-solana`
+Si vous avez précédemment configuré DoubleZero, assurez-vous d'avoir la dernière version du CLI Doublezero-Solana avec `sudo apt update && sudo apt install doublezero-solana`
 
 ### Configurer le pare-feu
 
-Autorisez le trafic GRE, BGP, PIM et shred.
+Autorisez le trafic GRE, BGP, PIM et de shreds.
 
 **iptables :**
 
@@ -54,7 +54,7 @@ Identifiez l'emplacement à la latence la plus faible depuis la machine qui rece
 doublezero latency
 ```
 
-Notez le métro / la ville du résultat à la latence la plus faible. Vous sélectionnerez cette ville sur le formulaire de candidature. Consultez la [carte de topologie](https://data.malbeclabs.com/topology/map?overlays=metroClustering%2Cbandwidth) pour voir comment les métros sont regroupés.
+Notez le métro / la ville du résultat avec la latence la plus faible. Vous sélectionnerez cette ville dans le formulaire de demande. Consultez la [carte de la topologie](https://data.malbeclabs.com/topology/map?overlays=metroClustering%2Cbandwidth) pour voir comment les métros sont regroupés.
 
 ### Tarification
 
@@ -73,29 +73,31 @@ Les sièges sont facturés **par mois**, par machine, dans le métro que vous s�
 1. Rendez-vous sur [https://doublezero.xyz/edge/subscribe](https://doublezero.xyz/edge/subscribe).
 2. Sélectionnez **Solana Shreds**.
 3. Sélectionnez la **ville** (métro) dont vous avez besoin. Utilisez le tableau ci-dessus et `doublezero latency` pour choisir.
-4. Complétez le formulaire de candidature.
+4. Complétez le formulaire de demande.
 
 Vous assignerez un DoubleZero ID (clé existante, ou en générer une nouvelle) à chaque demande de flux sur la page [comptes](https://doublezero.xyz/shreds/account). La **clé privée correspondante doit être présente sur la machine qui recevra les shreds** — n'assignez pas une clé publique dont vous ne pouvez pas déplacer la clé privée vers cet hôte.
 
-Vous choisissez un **métro** et une **clé publique**. Vous ne liez **pas** d'IP publique au moment de la candidature. Pendant l'abonnement, vous pouvez transférer l'accès entre les IPs **au sein des métros choisis**.
+Vous choisissez un **métro** et une **clé publique**. Vous ne liez **pas** une IP publique au moment de la demande. Pendant l'abonnement, vous pouvez déplacer l'accès entre les IP **au sein des métros choisis**.
 
-Notre équipe examine les candidatures et vous contacte dans les meilleurs délais (comptez **2 jours ouvrés**).
+Vous serez contacté avec des instructions supplémentaires dans les meilleurs délais (prévoyez **1 à 3 jours ouvrables**).
 
 ---
 
 ## Étape 4 : Se connecter après approbation
 
-Après que nous vous ayons contacté, que vous ayez reçu une facture et que celle-ci soit payée, connectez-vous sur chaque machine approuvée :
+Après avoir soumis la demande, vous recevrez une facture ; une fois celle-ci payée, connectez-vous sur chaque machine approuvée. L'accès est activé à la date de début que vous avez choisie.
 
 ```bash
 doublezero connect multicast --subscribe-feed solana-shreds-full
 ```
 
-L'accès est activé à la date de début choisie (généralement 9h01 ET). Vérifiez le tunnel avec :
+Vérifiez le tunnel :
 
 ```bash
 doublezero status
 ```
+
+Attendez-vous à `BGP Session Up` sur le réseau DoubleZero correct.
 
 ---
 
@@ -103,18 +105,18 @@ doublezero status
 
 Les sièges sont facturés **mensuellement**. Surveillez la date d'expiration du siège.
 
-Vous recevrez une facture quelques jours avant l'expiration du siège. **Le non-paiement entraîne la suppression du siège.**
+Vous devez payer la facture avant l'expiration du siège. **Le non-paiement entraîne la suppression du siège.**
 
 ---
 
-## Adresses de Shreds (IP vs Port)
+## Adresses des shreds (IP vs Port)
 
-Les Leader Shreds et les Retransmit Shreds à fort enjeu arriveront sur le port `7733`, via l'interface `doublezero1`. L'interface `doublezero0` est destinée au trafic unicast. Le port `5765` est un moniteur de battement de cœur provenant des éditeurs de shreds — il ne contiendra pas de shreds.
+Les Leader Shreds et les Retransmit Shreds à forte mise arriveront sur le port `7733`, via l'interface `doublezero1`. L'interface `doublezero0` est destinée au trafic unicast. Le port `5765` est un moniteur de heartbeat provenant des éditeurs de shreds — il ne contiendra pas de shreds.
 
 Pour la consommation de shreds, l'**adresse IP** identifie le flux multicast et le **port** identifie le service UDP sur ce flux.  
 Tous les flux de shreds ci-dessous utilisent le port UDP `7733` sur `doublezero1`.
 
-Vous pouvez examiner les IPs de n'importe quel groupe multicast avec :
+Vous pouvez examiner les IP de n'importe quel groupe multicast avec :
 
 ```bash
 doublezero multicast group list
@@ -137,7 +139,7 @@ doublezero multicast group list
 
 ## En-tête du tunnel GRE — XDP
 
-!!! note "Le trafic de shreds livré sur le réseau est encapsulé en GRE. Vous devrez peut-être supprimer l'en-tête GRE avant d'injecter les données dans votre pipeline existant (par exemple, un deshredder basé sur XDP)."
+!!! note "Le trafic de shreds livré sur le réseau est encapsulé en GRE. Vous devrez peut-être retirer l'en-tête GRE avant d'injecter les données dans votre pipeline existant (par exemple, un deshredder basé sur XDP)."
 
 ---
 
@@ -145,15 +147,15 @@ doublezero multicast group list
 
 ### [Edge Scoreboard](https://data.doublezero.xyz/dz/shreds/scoreboard)
 
-Le Scoreboard évalue la vitesse de livraison des shreds sur DoubleZero Edge et d'autres fournisseurs, en utilisant des données au niveau des slots pour comparer les performances en temps réel. Utilisez ce tableau de bord pour voir les taux de victoire des shreds Edge par rapport aux autres fournisseurs. Vous pouvez consulter les résultats pour les leader shreds uniquement, en plus de la comparaison du flux complet. Vous pouvez également affiner par région pour voir les performances attendues.
+Le Scoreboard évalue la vitesse de livraison des shreds à travers DoubleZero Edge et d'autres fournisseurs, en utilisant des données au niveau des slots pour comparer les performances en temps réel. Utilisez ce tableau de bord pour voir les taux de victoire des shreds Edge par rapport aux autres fournisseurs. Vous pouvez consulter les résultats pour les leader shreds uniquement, en plus de la comparaison du flux complet. Vous pouvez également affiner par région pour voir les performances attendues.
 
 ### [Edge Publishers](https://data.doublezero.xyz/dz/shreds/publishers)
 
-La métrique « Publishing Shreds » en haut à gauche du tableau de bord indique le pourcentage total du poids de stake de tous les validateurs Solana publiant des leader shreds sur DoubleZero Edge. Vous pouvez voir les détails de chaque éditeur sur le réseau.
+La métrique « Publishing Shreds » en haut à gauche du tableau de bord affiche le pourcentage total du poids de mise de tous les validateurs Solana publiant des leader shreds sur DoubleZero Edge. Vous pouvez voir les détails de chaque éditeur sur le réseau.
 
-### [Abonnés Edge, appareils et activité](https://data.doublezero.xyz/dz/shreds/subscribers)
+### [Edge Subscribers, Devices and Activity](https://data.doublezero.xyz/dz/shreds/subscribers)
 
-Vous pouvez rechercher votre IP Client sur cette page pour les sièges souscrits et voir leur statut. Vous pouvez également consulter les appareils disponibles sur la page [Appareils](https://data.doublezero.xyz/dz/shreds/devices) et toute l'activité récente sur la page [Activité](https://data.doublezero.xyz/dz/shreds/activity).
+Vous pouvez rechercher votre IP client sur cette page pour les sièges souscrits et consulter le statut. Vous pouvez également voir les appareils disponibles sur la page [Devices](https://data.doublezero.xyz/dz/shreds/devices) et toute l'activité récente sur la page [Activity](https://data.doublezero.xyz/dz/shreds/activity).
 
 ### Documentation de l'API de données
 
@@ -163,7 +165,7 @@ Pour un accès programmatique aux points de terminaison de données, consultez l
 
 ## Dépannage
 
-Si vous rencontrez un problème non couvert ici, veuillez nous contacter via votre canal existant avant de chercher une solution de contournement. Si vous n'avez pas de canal, veuillez chercher sur [Discord](https://discord.gg/U2fEb4Jq) et ouvrir un ticket si nécessaire.
+Si vous rencontrez un problème non couvert ici, veuillez nous contacter via votre canal existant avant de tenter un contournement. Si vous n'avez pas de canal, veuillez rechercher sur [Discord](https://discord.gg/U2fEb4Jq) et ouvrir un ticket si nécessaire.
 
 ### Assurez-vous que votre client est à jour :
 
@@ -171,8 +173,8 @@ Exécutez : `sudo apt update && sudo apt install doublezero-solana`
 
 ### Le tunnel ne s'établit pas
 
-1. Vérifiez que le démon est en cours d'exécution : `sudo systemctl status doublezerod`
-2. Vérifiez que les règles de pare-feu sont en place (GRE, BGP, PIM, trafic shred sur `doublezero1`, port 44880 sur `doublezero0`)
+1. Vérifiez que le daemon est en cours d'exécution : `sudo systemctl status doublezerod`
+2. Vérifiez que les règles de pare-feu sont en place (GRE, BGP, PIM, trafic de shreds sur `doublezero1`, port 44880 sur `doublezero0`)
 3. Confirmez que la facture pour ce siège est payée et que la date de début est passée
 4. Exécutez `doublezero connect multicast --subscribe-feed solana-shreds-full` sur la machine qui détient la clé privée assignée
 5. Vérifiez le statut de votre connexion : `doublezero status`
@@ -181,7 +183,7 @@ Le DoubleZero ID utilisé sur la page des comptes doit correspondre à la clé s
 
 ### Siège expiré ou supprimé
 
-Les sièges sont mensuels. Si la facture envoyée avant l'expiration n'est pas payée, le siège est supprimé et le tunnel ne restera pas actif.
+Les sièges sont mensuels. Si la facture n'est pas payée avant l'expiration, le siège est supprimé et le tunnel ne restera pas actif.
 
 ### « Multicast user already exists »
 

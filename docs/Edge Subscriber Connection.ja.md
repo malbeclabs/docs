@@ -1,12 +1,12 @@
 ---
-description: エッジサブスクライバーを設定して DoubleZero シュレッドフィードを受信する方法（クライアントのセットアップ、GRE・BGP・PIM・シュレッドトラフィック用のファイアウォールルールを含む）。
+description: GRE、BGP、PIM、およびシュレッドトラフィック用のクライアントセットアップとファイアウォールルールを含む、DoubleZero シュレッドフィードを受信するためのエッジサブスクライバーのセットアップ。
 ---
 
 # エッジサブスクライバー接続
-!!! warning "DoubleZero に接続することにより、[DoubleZero 利用規約](https://doublezero.xyz/terms-protocol)に同意したものとみなされます。データはお客様の内部目的のみに使用可能であり、再送信は禁止されていますのでご注意ください（セクション 2(e) 参照）。"
+!!! warning "DoubleZero に接続することにより、[DoubleZero 利用規約](https://doublezero.xyz/terms-protocol) に同意したものとみなされます。データはお客様の内部目的のみに使用され、再送信は許可されていません（セクション 2(e) を参照）。"
 
-!!! warning "CLI サブスクリプションをすでにご利用中ですか？"
-    **CLI** 経由でサブスクライブした場合（`doublezero-solana shreds pay` / エスクローシート）、それらのコマンドについては [CLI サブスクリプションページ](Edge Subscriber CLI.md)をご参照ください。このシステムは **2026 年 8 月 30 日に廃止予定** です。新規サブスクリプションは本ページに従ってください。
+!!! warning "すでに CLI サブスクリプションをご利用ですか？"
+    **CLI** を通じてサブスクライブした場合（`doublezero-solana shreds pay` / エスクローシート）、それらのコマンドについては [CLI サブスクリプションページ](Edge Subscriber CLI.md) を参照してください。このシステムは **2026年8月30日に廃止予定** です。新規サブスクリプションはこのページに従ってください。
 
 ## ステップ 1: DoubleZero セットアップ
 
@@ -14,9 +14,9 @@ description: エッジサブスクライバーを設定して DoubleZero シュ�
 
 [Solana CLI](https://docs.anza.xyz/cli/install) をインストールします。
 
-[セットアップ](setup.md)手順に従って、DoubleZero クライアントのインストールと設定を行います。
+[セットアップ](setup.md) 手順に従って、DoubleZero クライアントをインストールおよび設定します。
 
-以前に DoubleZero をセットアップ済みの場合は、`sudo apt update && sudo apt install doublezero-solana` で最新の Doublezero-Solana CLI に更新してください。
+以前に DoubleZero をセットアップしたことがある場合は、`sudo apt update && sudo apt install doublezero-solana` で最新の Doublezero-Solana CLI がインストールされていることを確認してください。
 
 ### ファイアウォールの設定
 
@@ -54,16 +54,16 @@ sudo ufw allow in on doublezero0 to any port 44880 proto udp
 doublezero latency
 ```
 
-最も低レイテンシの結果からメトロ / 都市を確認してください。申請フォームでその都市を選択します。メトロのグループ分けについては[トポロジマップ](https://data.malbeclabs.com/topology/map?overlays=metroClustering%2Cbandwidth)をご参照ください。
+最も低レイテンシの結果からメトロ / 都市を確認してください。申請フォームでその都市を選択します。メトロのグループ分けについては [トポロジマップ](https://data.malbeclabs.com/topology/map?overlays=metroClustering%2Cbandwidth) を参照してください。
 
 ### 料金
 
-シートは選択したメトロにおいて、マシンごとに**月額**で課金されます：
+シートは、選択したメトロにおいて、マシンごとに **月額** で請求されます：
 
 | メトロ | 料金 |
-|--------|------|
-| Frankfurt, Amsterdam | $1,500 / 月 |
-| London, New York, Singapore, Tokyo | $900 / 月 |
+|--------|-------|
+| フランクフルト、アムステルダム | $1,500 / 月 |
+| ロンドン、ニューヨーク、シンガポール、東京 | $900 / 月 |
 | その他すべてのロケーション | $450 / 月 |
 
 ---
@@ -72,47 +72,49 @@ doublezero latency
 
 1. [https://doublezero.xyz/edge/subscribe](https://doublezero.xyz/edge/subscribe) にアクセスします。
 2. **Solana Shreds** を選択します。
-3. 必要な**都市**（メトロ）を選択します。上記の料金表と `doublezero latency` を参考に選んでください。
+3. 必要な **都市**（メトロ）を選択します。上記の表と `doublezero latency` を使用して選択してください。
 4. 申請フォームを完了します。
 
-[アカウント](https://doublezero.xyz/shreds/account)ページで、各フィードリクエストに DoubleZero ID（既存のキー、または新規生成）を割り当てます。対応する**秘密鍵はシュレッドを受信するマシン上に存在する必要があります** — そのホストに移動できない秘密鍵の公開鍵は割り当てないでください。
+[アカウント](https://doublezero.xyz/shreds/account) ページで、各フィードリクエストに DoubleZero ID（既存のキー、または新しいキーを生成）を割り当てます。対応する **秘密鍵はシュレッドを受信するマシン上に存在する必要があります** — そのホストに移動できない秘密鍵の公開鍵は割り当てないでください。
 
-選択するのは**メトロ**と**公開鍵**です。申請時にパブリック IP をバインドする必要は**ありません**。サブスクリプション期間中、**選択したメトロ内で** IP 間のアクセス移動が可能です。
+**メトロ** と **公開鍵** を選択します。申請時にパブリック IP をバインドする **必要はありません**。サブスクリプション期間中、**選択したメトロ内で** IP 間のアクセスを移動できます。
 
-当チームが申請を審査し、速やかにご連絡いたします（**2 営業日**を目安としてください）。
+タイムリーに追加の手順についてご連絡いたします（**1〜3 営業日** を想定してください）。
 
 ---
 
 ## ステップ 4: 承認後の接続
 
-当チームからご連絡後、請求書を受領し、お支払いが完了したら、承認された各マシンで接続します：
+申請を送信すると、請求書が届きます。支払いが完了したら、承認された各マシンで接続します。アクセスは選択した開始日に有効になります。
 
 ```bash
 doublezero connect multicast --subscribe-feed solana-shreds-full
 ```
 
-選択した開始日（通常は東部時間午前 9:01）にアクセスが有効化されます。トンネルの状態を以下で確認してください：
+トンネルを確認します：
 
 ```bash
 doublezero status
 ```
 
----
-
-## 課金
-
-シートは**月額**で課金されます。シートの有効期限にご注意ください。
-
-シートの有効期限の数日前に請求書が送付されます。**未払いの場合、シートは削除されます。**
+正しい DoubleZero ネットワークで `BGP Session Up` が表示されることを確認してください。
 
 ---
 
-## シュレッドアドレス（IP とポート）
+## 請求
 
-リーダーシュレッドおよび高ステークのリトランスミットシュレッドは、`doublezero1` インターフェース上のポート `7733` で到着します。`doublezero0` インターフェースはユニキャストトラフィック用です。ポート `5765` はシュレッドパブリッシャーからのハートビートモニターであり、シュレッドは含まれません。
+シートは **月額** で請求されます。シートの有効期限にご注意ください。
 
-シュレッドの受信では、**IP アドレス**がマルチキャストストリームを識別し、**ポート**がそのストリーム上の UDP サービスを識別します。
-以下のすべてのシュレッドストリームは、`doublezero1` 上の UDP ポート `7733` を使用します。
+シートの有効期限が切れる前に請求書を支払う必要があります。**未払いの場合、シートは削除されます。**
+
+---
+
+## シュレッドアドレス（IP と ポート）
+
+リーダーシュレッドと高ステークのリトランスミットシュレッドは、`doublezero1` インターフェース上のポート `7733` で到着します。`doublezero0` インターフェースはユニキャストトラフィック用です。ポート `5765` はシュレッドパブリッシャーからのハートビートモニターであり、シュレッドは含まれません。
+
+シュレッドの消費において、**IP アドレス** はマルチキャストストリームを識別し、**ポート** はそのストリーム上の UDP サービスを識別します。  
+以下のすべてのシュレッドストリームは `doublezero1` 上の UDP ポート `7733` を使用します。
 
 任意のマルチキャストグループの IP は以下で確認できます：
 
@@ -137,52 +139,52 @@ doublezero multicast group list
 
 ## GRE トンネルヘッダー — XDP
 
-!!! note "ネットワーク経由で配信されるシュレッドトラフィックは GRE カプセル化されています。既存のパイプライン（例：XDP ベースのデシュレッダー）にデータを投入する前に、GRE ヘッダーを除去する必要がある場合があります。"
+!!! note "ネットワーク経由で配信されるシュレッドトラフィックは GRE カプセル化されています。既存のパイプライン（例：XDP ベースのデシュレッダー）にデータを送る前に、GRE ヘッダーを除去する必要がある場合があります。"
 
 ---
 
 ## ツールとダッシュボード
 
-### [エッジスコアボード](https://data.doublezero.xyz/dz/shreds/scoreboard)
+### [Edge スコアボード](https://data.doublezero.xyz/dz/shreds/scoreboard)
 
-スコアボードは、スロットレベルのデータを使用して DoubleZero Edge と他のプロバイダー間のシュレッド配信速度をベンチマークし、リアルタイムでパフォーマンスを比較します。このダッシュボードを使用して、他のプロバイダーに対する Edge シュレッドの勝率を確認できます。リーダーシュレッドのみの結果や、フルフィードの比較を表示できます。また、リージョン別にドリルダウンして期待されるパフォーマンスを確認することも可能です。
+スコアボードは、DoubleZero Edge と他のプロバイダー間のシュレッド配信速度を、スロットレベルのデータを使用してリアルタイムでパフォーマンスを比較するベンチマークです。このダッシュボードを使用して、他のプロバイダーに対する Edge シュレッドの勝率を確認できます。リーダーシュレッドのみの結果や、フルフィードの比較を表示できます。また、リージョンごとにドリルダウンして、期待されるパフォーマンスを確認することもできます。
 
-### [エッジパブリッシャー](https://data.doublezero.xyz/dz/shreds/publishers)
+### [Edge パブリッシャー](https://data.doublezero.xyz/dz/shreds/publishers)
 
-ダッシュボード左上の「Publishing Shreds」メトリクスは、DoubleZero Edge でリーダーシュレッドを公開しているすべての Solana バリデーターの合計ステークウェイト割合を示しています。ネットワーク上の各パブリッシャーの詳細を確認できます。
+ダッシュボードの左上にある「Publishing Shreds」メトリクスは、DoubleZero Edge でリーダーシュレッドを公開しているすべての Solana バリデーターのステークウェイトの合計パーセンテージを示しています。ネットワーク上の各パブリッシャーの詳細を確認できます。
 
-### [エッジサブスクライバー、デバイス、アクティビティ](https://data.doublezero.xyz/dz/shreds/subscribers)
+### [Edge サブスクライバー、デバイス、アクティビティ](https://data.doublezero.xyz/dz/shreds/subscribers)
 
-このページでクライアント IP を検索して、サブスクライブ済みのシートとステータスを確認できます。また、[デバイス](https://data.doublezero.xyz/dz/shreds/devices)ページで利用可能なデバイスを、[アクティビティ](https://data.doublezero.xyz/dz/shreds/activity)ページで最近のすべてのアクティビティを表示できます。
+このページでクライアント IP を検索して、サブスクライブ済みのシートとステータスを確認できます。また、[デバイス](https://data.doublezero.xyz/dz/shreds/devices) ページで利用可能なデバイスを確認したり、[アクティビティ](https://data.doublezero.xyz/dz/shreds/activity) ページですべての最近のアクティビティを確認したりすることもできます。
 
 ### データ API ドキュメント
 
-データエンドポイントへのプログラマティックアクセスについては、API ドキュメントをご参照ください：[https://data.doublezero.xyz/api/v1/docs](https://data.doublezero.xyz/api/v1/docs)。
+データエンドポイントへのプログラムによるアクセスについては、API ドキュメントを参照してください: [https://data.doublezero.xyz/api/v1/docs](https://data.doublezero.xyz/api/v1/docs)。
 
 ---
 
 ## トラブルシューティング
 
-ここでカバーされていない問題が発生した場合は、回避策を講じる前に既存のチャネルからお問い合わせください。チャネルをお持ちでない場合は、[Discord](https://discord.gg/U2fEb4Jq) を検索し、必要に応じてチケットを作成してください。
+ここで取り上げられていない問題が発生した場合は、回避策を講じる前に、既存のチャネルを通じてお問い合わせください。チャネルがない場合は、[Discord](https://discord.gg/U2fEb4Jq) で検索し、必要に応じてチケットを作成してください。
 
-### クライアントが最新であることを確認：
+### クライアントが最新であることを確認してください：
 
 実行: `sudo apt update && sudo apt install doublezero-solana`
 
-### トンネルが起動しない
+### トンネルが確立されない
 
 1. デーモンが実行中であることを確認: `sudo systemctl status doublezerod`
 2. ファイアウォールルールが設定されていることを確認（GRE、BGP、PIM、`doublezero1` 上のシュレッドトラフィック、`doublezero0` 上のポート 44880）
 3. このシートの請求書が支払い済みで、開始日を過ぎていることを確認
 4. 割り当てられた秘密鍵を保持するマシンで `doublezero connect multicast --subscribe-feed solana-shreds-full` を実行
-5. 接続状態を確認: `doublezero status`
+5. 接続ステータスを確認: `doublezero status`
 
-アカウントページで使用した DoubleZero ID は、このホスト上のキーと一致する必要があります。
+アカウントページで使用される DoubleZero ID は、このホスト上のキーと一致する必要があります。
 
 ### シートの期限切れまたは削除
 
-シートは月額制です。有効期限前に送付された請求書が未払いの場合、シートは削除され、トンネルは維持されません。
+シートは月額制です。有効期限前に請求書が支払われない場合、シートは削除され、トンネルは維持されません。
 
-### 「Multicast user already exists」
+### "Multicast user already exists"
 
-別の経路で既にアクティブなサブスクリプションがあります。まず `doublezero disconnect` で切断してから、`doublezero connect multicast --subscribe-feed solana-shreds-full` を再試行してください。
+別の経路でアクティブなサブスクリプションが既に存在します。まず `doublezero disconnect` で切断してから、`doublezero connect multicast --subscribe-feed solana-shreds-full` を再試行してください。

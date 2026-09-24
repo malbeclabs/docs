@@ -7,15 +7,15 @@ description: Guia passo a passo para instalar o doublezerod e conectar seu valid
 !!! info "Terminologia"
     Novo no DoubleZero? Consulte o [Glossário](glossary.md) para definições de termos como [doublezerod](glossary.md#doublezerod), [IBRL](glossary.md#ibrl-increase-bandwidth-reduce-latency) e [DZD](glossary.md#dzd-doublezero-device).
 
-!!! warning "Ao conectar-me ao DoubleZero, concordo com os [Termos de Serviço do DoubleZero](https://doublezero.xyz/terms-protocol)"
+!!! warning "Ao conectar-se ao DoubleZero, eu concordo com os [Termos de Serviço do DoubleZero](https://doublezero.xyz/terms-protocol)"
 
 
 ## Pré-requisitos
 !!! warning inline end
     Para validadores: o DoubleZero precisa ser instalado diretamente no host do seu validador, não em um contêiner.
-- Conectividade com a internet com um endereço IP público (sem NAT)
+- Conectividade com a internet com endereço IP público (sem NAT)
 - Servidor x86_64
-- Sistema operacional compatível: Ubuntu 22.04+ ou Debian 11+, ou Rocky Linux / RHEL 9+
+- SO suportado: Ubuntu 22.04+ ou Debian 11+, ou Rocky Linux / RHEL 9+
 - Privilégios root ou sudo no servidor onde o DoubleZero será executado
 - Opcional, mas útil: jq e curl para depuração
 
@@ -23,24 +23,19 @@ description: Guia passo a passo para instalar o doublezerod e conectar seu valid
 
 O DoubleZero Testnet e o DoubleZero Mainnet-Beta são redes fisicamente distintas. Por favor, escolha a rede apropriada durante a instalação.
 
-Ao ingressar no DoubleZero, você estabelecerá uma **identidade DoubleZero**, representada por uma chave pública chamada **DoubleZero ID**. Essa chave faz parte de como o DoubleZero reconhece sua máquina.
+Ao integrar-se ao DoubleZero, você estabelecerá uma **identidade DoubleZero**, representada por uma chave pública chamada **DoubleZero ID**. Essa chave faz parte de como o DoubleZero reconhece sua máquina.
 
 ## 1. Instalar os Pacotes do DoubleZero
-
-<div data-wizard-step="install-version-info" markdown>
 
 !!! info "Versões Atuais"
     | Pacote | Mainnet-Beta | Testnet |
     |---------|-------------|---------|
     | `doublezero` | `MAINNET_CLIENT_VERSION` | `TESTNET_CLIENT_VERSION` |
 
-</div>
 
-Siga estes passos de acordo com o seu sistema operacional:
+Siga estas etapas de acordo com seu sistema operacional:
 
 ### Ubuntu / Debian
-
-<div data-wizard-step="install-deb-mainnet-beta" markdown>
 
 A implantação recomendada atual para Mainnet-Beta é:
 ```bash
@@ -48,9 +43,6 @@ curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | 
 sudo apt-get install doublezero
 ```
 
-</div>
-
-<div data-wizard-step="install-deb-testnet" markdown>
 
 A implantação recomendada atual para Testnet é:
 ```bash
@@ -58,11 +50,8 @@ curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero-testnet/setup.d
 sudo apt-get install doublezero
 ```
 
-</div>
 
 ### Rocky Linux / RHEL
-
-<div data-wizard-step="install-rpm-mainnet-beta" markdown>
 
 A implantação recomendada atual para Mainnet-Beta é:
 ```bash
@@ -70,9 +59,6 @@ curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh | 
 sudo yum install doublezero
 ```
 
-</div>
-
-<div data-wizard-step="install-rpm-testnet" markdown>
 
 A implantação recomendada atual para Testnet é:
 ```bash
@@ -80,16 +66,13 @@ curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero-testnet/setup.r
 sudo yum install doublezero
 ```
 
-</div>
-
-<div data-wizard-step="install-network-warning" markdown>
 
 ??? info "Apenas para Usuários Existentes: Alterar um pacote de *Testnet para Mainnet-Beta*, ou *Mainnet-Beta para Testnet*"
-    Quando você instala a partir de um dos repositórios de pacotes acima, ele é específico para o DoubleZero **Testnet** ou **DoubleZero Mainnet Beta**. Se você trocar de rede em algum momento, precisará remover os repositórios de pacotes instalados anteriormente e atualizar para o repositório de destino.
+    Quando você instala a partir de um dos repositórios de pacotes acima, ele é específico para o DoubleZero **Testnet** ou **DoubleZero Mainnet Beta**. Se você trocar de rede em algum momento, será necessário remover os repositórios de pacotes previamente instalados e atualizar para o repositório de destino.
 
     Este exemplo mostrará a migração de Testnet para Mainnet-Beta
 
-    Os mesmos passos podem ser realizados para migrar de Mainnet-Beta para Testnet, substituindo o passo 3 pelo comando de instalação para Testnet acima.
+    As mesmas etapas podem ser concluídas para migrar de Mainnet-Beta para Testnet, substituindo a etapa 3 pelo comando de instalação para Testnet acima.
 
 
     1. Encontrar Arquivos de Repositório Antigos
@@ -102,7 +85,7 @@ sudo yum install doublezero
 
     2. Remover Arquivos de Repositório Antigos
 
-        Remova os arquivos de repositório antigos encontrados no passo anterior, por exemplo
+        Remova os arquivos de repositório antigos encontrados na etapa anterior, por exemplo
 
         ```
         sudo rm /etc/apt/sources.list.d/malbeclabs-doublezero.list
@@ -118,10 +101,6 @@ sudo yum install doublezero
         ```
 
 
-</div>
-
-<div data-wizard-step="install-verify-daemon" markdown>
-
 #### Verificar o status do `doublezerod`
 
 Após a instalação do pacote, uma nova unidade systemd é instalada, ativada e iniciada. Para ver o status, você pode executar:
@@ -129,15 +108,12 @@ Após a instalação do pacote, uma nova unidade systemd é instalada, ativada e
 sudo systemctl status doublezerod
 ```
 
-</div>
 
 ### Configurar Firewall para GRE e BGP
 
-O DoubleZero utiliza tunelamento GRE (protocolo IP 47) e roteamento BGP (tcp/179 em endereços link-local). Certifique-se de que seu firewall permita esses protocolos:
+O DoubleZero usa tunelamento GRE (protocolo IP 47) e roteamento BGP (tcp/179 em endereços link-local). Certifique-se de que seu firewall permite esses protocolos:
 
 Permitir GRE e BGP através do iptables:
-
-<div data-wizard-step="firewall-gre-bgp-iptables" markdown>
 
 ```bash
 sudo iptables -A INPUT -p gre -j ACCEPT
@@ -146,11 +122,8 @@ sudo iptables -A INPUT -i doublezero0 -s 169.254.0.0/16 -d 169.254.0.0/16 -p tcp
 sudo iptables -A OUTPUT -o doublezero0 -s 169.254.0.0/16 -d 169.254.0.0/16 -p tcp --dport 179 -j ACCEPT
 ```
 
-</div>
 
 Ou permitir GRE e BGP através do UFW:
-
-<div data-wizard-step="firewall-gre-bgp-ufw" markdown>
 
 ```bash
 sudo ufw allow proto gre from any to any
@@ -158,7 +131,6 @@ sudo ufw allow in on doublezero0 from 169.254.0.0/16 to 169.254.0.0/16 port 179 
 sudo ufw allow out on doublezero0 from 169.254.0.0/16 to 169.254.0.0/16 port 179 proto tcp
 ```
 
-</div>
 
 ## 2. Criar Nova Identidade DoubleZero
 
@@ -169,15 +141,15 @@ doublezero keygen
 ```
 
 !!! info
-    Se você possui um ID existente que gostaria de usar, pode seguir estes passos opcionais.
+    Se você possui um ID existente que gostaria de usar, pode seguir estas etapas opcionais.
 
-    Criar diretório de configuração do doublezero
+    Criar o diretório de configuração do doublezero
 
     ```
     mkdir -p ~/.config/doublezero
     ```
 
-    Copie ou crie um link do `id.json` que você deseja usar com o DoubleZero para o diretório de configuração do doublezero.
+    Copie ou vincule o `id.json` que deseja usar com o DoubleZero para o diretório de configuração do doublezero.
 
     ```
     sudo cp </path/to/id.json> ~/.config/doublezero/
@@ -197,13 +169,13 @@ YourDoubleZeroAddress11111111111111111111111111111
 
 ## 4. Verificar se o doublezerod descobriu dispositivos DZ
 
-Antes de conectar, certifique-se de que o `doublezerod` descobriu e realizou ping em cada um dos switches DZ testnet disponíveis:
+Antes de conectar, certifique-se de que o `doublezerod` descobriu e fez ping em cada um dos switches DZ testnet disponíveis:
 
 ```
 doublezero latency
 ```
 
-Exemplo de saída:
+Saída de exemplo:
 
 ```
 $ doublezero latency
@@ -229,7 +201,7 @@ Verifique
 doublezero status
 ```
 
-se estiver `up` execute:
+se estiver `up`, execute:
 
 ```bash
 doublezero disconnect
@@ -244,7 +216,7 @@ A conexão ao DoubleZero será diferente com base no seu caso de uso. No DoubleZ
 
 # Opcional: Habilitar Métricas Prometheus
 
-Operadores familiarizados com métricas Prometheus podem querer habilitá-las para monitoramento do DoubleZero. Isso fornece visibilidade sobre o desempenho do cliente DoubleZero, status da conexão e saúde operacional.
+Operadores familiarizados com métricas Prometheus podem querer habilitá-las para monitoramento do DoubleZero. Isso fornece visibilidade sobre o desempenho do cliente DoubleZero, status de conexão e saúde operacional.
 
 ## Quais Métricas Estão Disponíveis
 
@@ -252,24 +224,24 @@ O DoubleZero expõe várias métricas importantes:
 - **Informações de Build**: Versão, hash do commit e data de build
 - **Status da Sessão**: Se a sessão do DoubleZero está ativa
 - **Métricas de Conexão**: Latência e informações de conectividade
-- **Dados de Desempenho**: Throughput e taxas de erro
+- **Dados de Desempenho**: Taxa de transferência e taxas de erro
 
 ## Habilitar Métricas Prometheus
 
-Para habilitar as métricas Prometheus no cliente DoubleZero, siga estes passos:
+Para habilitar métricas Prometheus no cliente DoubleZero, siga estas etapas:
 
 ### 1. Modificar o comando de inicialização do serviço systemd do doublezerod
 
-Crie ou edite a configuração de override do systemd:
+Crie ou edite a configuração de substituição do systemd:
 
 ```bash
 sudo mkdir -p /etc/systemd/system/doublezerod.service.d/
 sudo nano /etc/systemd/system/doublezerod.service.d/override.conf
 ```
 
-Substitua por esta configuração:
+Substitua com esta configuração:
 
-Note que a flag `-env` precisa apontar para `testnet` ou `mainnet-beta` dependendo de qual rede você deseja coletar dados. No bloco de exemplo, `testnet` é utilizado. Você pode substituí-lo por `mainnet-beta` se necessário.
+Note que a flag `-env` precisa apontar para `testnet` ou `mainnet-beta` dependendo de qual rede você deseja coletar dados. No bloco de exemplo, `testnet` é usado. Você pode substituí-lo por `mainnet-beta` se necessário.
 
 ```ini
 [Service]
@@ -325,4 +297,4 @@ Para visualização, você pode criar um dashboard Grafana usando as métricas d
 - Status da sessão ao longo do tempo
 - Informações de build
 - Tendências de latência de conexão
-- Monitoramento de taxa de erros
+- Monitoramento de taxa de erro

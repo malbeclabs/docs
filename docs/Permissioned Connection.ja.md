@@ -1,33 +1,30 @@
 ---
-description: IBRL モードで DoubleZero Mainnet-Beta および Testnet に接続する非バリデーターおよび RPC 向けの許可制オンボーディング。
+description: IBRLモードでDoubleZero Mainnet-BetaおよびTestnetに接続する非バリデーターおよびRPC向けの許可制オンボーディング。
 ---
 
-# IBRL モードでの非バリデーター許可制 DoubleZero 接続
-!!! warning "DoubleZero に接続することにより、[DoubleZero 利用規約](https://doublezero.xyz/terms-protocol)に同意したものとみなされます"
-
-<div data-wizard-step="rpc-onboarding" markdown>
+# IBRLモードでのDoubleZeroへの非バリデーター許可制接続
+!!! warning "DoubleZeroに接続することにより、[DoubleZero利用規約](https://doublezero.xyz/terms-protocol)に同意したものとみなされます"
 
 ### 許可制ユーザーオンボーディングの概要
 
-現在、非バリデーターおよび RPC のユーザーオンボーディングは許可制となっています。許可制フローを開始するには、[こちらのフォーム](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z)にご記入ください。このプロセスで予想される事項は以下の通りです：
+現在、非バリデーターおよびRPCのユーザーオンボーディングは許可制となっています。許可制フローを開始するには、[こちらのフォーム](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z)にご記入ください。このプロセスで想定される事項は以下の通りです：
 
-- 将来、許可制ユーザーの利用に料金が発生する場合があります。
-- フォーム送信後、主要な Telegram 連絡先をご確認ください。
+- 将来的に、許可制ユーザーの利用に関連する手数料が発生する場合があります。
+- フォーム送信後、主要なTelegram連絡先を確認してください。
 
-</div>
 
-### IBRL モードでの Mainnet-Beta および Testnet への接続
+### Mainnet-BetaおよびTestnetへのIBRLモードでの接続
 
 !!! Note inline end
-    IBRL モードでは、既存のパブリック IP アドレスを使用するため、バリデータークライアントの再起動は不要です。
+    IBRLモードは既存のパブリックIPアドレスを使用するため、バリデータークライアントの再起動は不要です。
 
-許可制ユーザーは、このページで詳述される DoubleZero Mainnet-beta への接続を完了します。
+許可制ユーザーは、このページで詳述されているDoubleZero Mainnet-betaへの接続を完了します。
 
 ## 1. クライアントネットワークの確認
 
-先に進む前に、[セットアップ](setup.md)の手順に従ってください。接続したいネットワーク向けの Mainnet-Beta または Testnet パッケージをインストールしてください — それぞれ異なるパッケージリポジトリを使用します。
+続行する前に、[セットアップ](setup.md)の手順に従ってください。接続したいネットワーク用のMainnet-BetaまたはTestnetパッケージをインストールしてください。それぞれ異なるパッケージリポジトリを使用します。
 
-セットアップの最後のステップはネットワークからの切断でした。これは、マシン上で DoubleZero へのトンネルが1つだけ開いており、そのトンネルが正しいネットワークに接続されていることを確認するためです。
+セットアップの最後のステップは、ネットワークからの切断でした。これは、お使いのマシンからDoubleZeroへのトンネルが1つだけ開かれていること、そしてそのトンネルが正しいネットワーク上にあることを確認するためです。
 
 以下のコマンドで確認してください：
 
@@ -35,9 +32,9 @@ description: IBRL モードで DoubleZero Mainnet-Beta および Testnet に接�
 doublezero status
 ```
 
-`Network` 列が参加予定のネットワークと一致していることを確認してください。一致しない場合は、[トラブルシューティング](troubleshooting.md#issue-wrong-doublezero-environment)のコピー＆ペースト切り替えを使用してください。
+`Network` 列が参加しようとしているネットワークと一致していることを確認してください。一致しない場合は、[トラブルシューティング](troubleshooting.md#issue-wrong-doublezero-environment)のコピー＆ペースト切り替え手順を使用してください。
 
-約30秒後に、利用可能な DoubleZero デバイスが表示されます：
+約30秒後に、利用可能なDoubleZeroデバイスが表示されます：
 
 ```bash
 doublezero latency
@@ -57,18 +54,16 @@ doublezero latency
  9LFtjDzohKvCBzSquQD4YtL3HwuvkKBDE7KSzb8ztV2b | dz-mtl11-sw01 | 134.195.161.10  | 9.88ms   | 10.01ms  | 9.95ms   | true      
  9M7FfYYyjM4wGinKPofZRNmQFcCjCKRbXscGBUiXvXnG | dz-tor1-sw01  | 209.42.165.10   | 14.52ms  | 14.53ms  | 14.52ms  | true           
 ```
-Testnet の出力は構造的には同一ですが、利用可能なデバイスがさらに多く表示されます。
+Testnetの出力は構造的には同一ですが、利用可能なデバイスの数がさらに多くなります。
 
-## 2. DoubleZero Foundation への連絡
+## 2. DoubleZero Foundationへの連絡
 
-DoubleZero Foundation に連絡してください。`DoubleZeroID`、`Validator ID`（ノード ID）、および接続元の `public ipv4 address` を提供する必要があります。
+DoubleZero Foundationに連絡してください。`DoubleZeroID`、`Validator ID`（ノードID）、および接続元の `public ipv4 address` を提供する必要があります。
 
 
-<div data-wizard-step="rpc-connect-ibrl" markdown>
+## 3. IBRLモードでの接続
 
-## 3. IBRL モードで接続
-
-サーバー上で、DoubleZero に接続するユーザーとして `connect` コマンドを実行し、DoubleZero への接続を確立します。
+サーバー上で、DoubleZeroに接続するユーザーとして `connect` コマンドを実行し、DoubleZeroへの接続を確立します。
 
 ```bash
 doublezero connect ibrl
@@ -87,7 +82,7 @@ Public IP detected: 137.184.101.183 - If you want to use a different IP, you can
     Service provisioned with status: ok
 ✅  User Provisioned
 ```
-トンネルが完了するまで1分間お待ちください。トンネルが完了するまで、ステータス出力は「down」または「Unknown」を返す場合があります。
+トンネルが完了するまで1分お待ちください。トンネルが完了するまで、ステータス出力は「down」または「Unknown」を返す場合があります。
 
 接続を確認してください：
 
@@ -102,7 +97,7 @@ up            | 2025-09-10 12:16:03 UTC | doublezero0 | 137.184.101.183 | 64.86.
 ```
 ステータスが `up` であれば、正常に接続されています。
 
-以下のコマンドを実行することで、DoubleZero 上の他のユーザーによって伝播されたルートを確認できます：
+以下のコマンドを実行することで、DoubleZero上の他のユーザーによって伝播されたルートを確認できます：
 
 ```
 ip route
@@ -117,8 +112,7 @@ default via 149.28.38.1 dev enp1s0 proto dhcp src 149.28.38.64 metric 100
 ...
 ```
 
-</div>
 
 ### 次のステップ：マルチキャスト
 
-このセットアップが完了し、マルチキャストの使用を予定している場合は、[次のページ](Other%20Multicast%20Connection.md)に進んでください。
+このセットアップを完了し、マルチキャストの使用を予定している場合は、[次のページ](Other%20Multicast%20Connection.md)に進んでください。

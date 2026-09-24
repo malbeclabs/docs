@@ -1,27 +1,34 @@
+---
+description: Scegli il tenant e il percorso di connessione DoubleZero più adatto al tuo caso d'uso — validatori Solana, RPC, dati di mercato Kalshi, Shelby o un nuovo protocollo.
+---
+
 # Tenant
-!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
 
+I tenant su DoubleZero sono gruppi di utenti con profili e requisiti di connessione simili, che rappresentano tipicamente diversi ecosistemi blockchain, livelli di trasferimento dati o sistemi distribuiti.
 
-I tenant su DoubleZero sono gruppi di utenti con profili e requisiti di connessione simili, che tipicamente rappresentano diversi ecosistemi blockchain, livelli di trasferimento dati o sistemi distribuiti.
-
-Esamina la tabella seguente e scegli il caso d'uso che descrive meglio come intendi interagire con la rete DoubleZero.
+Esamina la tabella seguente e scegli il caso d'uso che meglio descrive come intendi interagire con la rete DoubleZero.
 
 Solana
 
-| Caso d'Uso | Prossimo Passo |
+| Caso d'uso | Prossimo passo |
 |-------------|---------|
-| Validatore Solana Mainnet, inclusi i backup | [Connessione DoubleZero Mainnet-Beta](https://docs.malbeclabs.com/DZ%20Mainnet-beta%20Connection/) |
-| Validatore Solana Testnet, inclusi i backup | [Connessione DoubleZero Testnet](https://docs.malbeclabs.com/DZ%20Testnet%20Connection/) |
+| Validatore Solana (mainnet-beta o testnet), inclusi i backup | [Connessione Validatore in modalità IBRL](<DZ Mainnet-beta Connection.md>) |
 | Non-Validatori - RPC e altri. | [Connessione DoubleZero Mainnet-Beta e Testnet](Permissioned%20Connection.md) |
+
+Kalshi
+
+| Caso d'uso | Prossimo passo |
+|-------------|---------|
+| Iscrizione ai feed di dati di mercato Kalshi | [Kalshi](kalshi.md) |
 
 Shelby
 
-| Caso d'Uso | Prossimo Passo |
+| Caso d'uso | Prossimo passo |
 |-------------|---------|
-| RPC Shelby Testnet e Nodi di Storage | [Connessione DoubleZero Testnet](shelby.md) |
+| RPC e nodi di archiviazione Shelby Testnet | [Connessione DoubleZero Testnet](shelby.md) |
 
 Nuovo Tenant
 
-| Caso d'Uso | Prossimo Passo |
+| Caso d'uso | Prossimo passo |
 -------------|---------|
-| Hai un nuovo protocollo, applicazione o altro caso d'uso per sfruttare DoubleZero | [Aggiungi un Nuovo Tenant](New%20Tenant.md) |
+| Hai un nuovo protocollo, un'applicazione o un altro caso d'uso per sfruttare DoubleZero | [Aggiungi un nuovo tenant](New%20Tenant.md) |

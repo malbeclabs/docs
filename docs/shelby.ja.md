@@ -1,32 +1,31 @@
-# ShelbyテストネットユーザーのIBRLモードでのDoubleZero接続
-!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+---
+description: IBRLモードでDoubleZeroに接続するShelbyテストネットユーザー向けの許可制接続ガイド。
+---
 
-!!! warning "DoubleZeroに接続することで、[DoubleZeroサービス利用規約](https://doublezero.xyz/terms-protocol)に同意します"
-
-<div data-wizard-step="rpc-onboarding" markdown>
+# Shelby
+!!! warning "DoubleZeroに接続することにより、[DoubleZero利用規約](https://doublezero.xyz/terms-protocol)に同意したものとみなされます"
 
 ### DoubleZeroIDの取得
 
-`DoubleZeroID`と`公開IPv4アドレス`をこちらの[フォーム](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z)で提供する必要があります。
+`DoubleZeroID`と`public ipv4 address`をこちらの[フォーム](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z)で提出する必要があります。
 
 
-- 将来的にPermissionedユーザーの使用に手数料が発生する場合があります。
-- フォーム送信後、主要なTelegram連絡先を監視してください。
-- 現時点でShelbyはDoubleZeroテストネットにのみ接続可能です。
+- 将来的に許可制ユーザーの利用に料金が発生する可能性があります。
+- フォーム送信後、主要なTelegram連絡先を確認してください。
+- 現時点では、ShelbyはDoubleZeroテストネットにのみ接続可能です。
 
-</div>
 
-### IBRLモードでのテストネット接続
+### テストネットへのIBRLモードでの接続
 
-ShelbyのPermissionedユーザーはDoubleZeroテストネットへの接続を完了します。詳細はこのページに記載されています。
+Shelby許可制ユーザーは、このページで詳細に説明されているDoubleZeroテストネットへの接続を完了します。
 
 ## 1. 環境設定
 
-続行する前に[セットアップ](setup.md)手順に従ってください。
+続行する前に、[セットアップ](setup.md)手順に従ってください。
 
-セットアップの最後のステップはネットワークから切断することでした。これにより、マシン上のDoubleZeroへのトンネルが1つだけ開いており、そのトンネルが正しいネットワーク上にあることを確認します。
+セットアップの最後のステップはネットワークからの切断でした。これは、DoubleZeroへのトンネルがマシン上で1つだけ開かれ、そのトンネルが正しいネットワーク上にあることを確認するためです。
 
-DoubleZero上のShelbyテナントに接続するようにDoubleZeroクライアントCLI（`doublezero`）を設定するには：
+DoubleZeroクライアントCLI（`doublezero`）をDoubleZero上のShelbyテナントに接続するように設定するには：
 ```bash
 doublezero config set --tenant shelby
 ```
@@ -47,20 +46,18 @@ sudo ufw deny in to any port 39431 proto tcp
 
 ## 2. DoubleZero Foundationへの連絡
 
-DoubleZero Foundationに連絡します。接続元の`DoubleZeroID`と`公開IPv4アドレス`を提供する必要があります。
+DoubleZero Foundationに連絡してください。接続元の`DoubleZeroID`と`public ipv4 address`を提供する必要があります。
 
-
-<div data-wizard-step="rpc-connect-ibrl" markdown>
 
 ## 3. IBRLモードでの接続
 
-DoubleZeroに接続するユーザーで、サーバー上で`connect`コマンドを実行してDoubleZeroへの接続を確立します。
+サーバー上で、DoubleZeroに接続するユーザーとして`connect`コマンドを実行し、DoubleZeroへの接続を確立します。
 
 ```bash
 doublezero connect ibrl
 ```
 
-以下のようなプロビジョニングを示す出力が表示されます：
+以下のようなプロビジョニングを示す出力が表示されるはずです：
 
 ```
 DoubleZero Service Provisioning
@@ -73,7 +70,7 @@ Public IP detected: 137.184.101.183 - If you want to use a different IP, you can
     Service provisioned with status: ok
 ✅  User Provisioned
 ```
-トンネルが完了するまで1分待ちます。トンネルが完了するまで、ステータス出力が「down」または「Unknown」を返す場合があります。
+トンネルが完了するまで1分間お待ちください。トンネルが完了するまで、ステータス出力が「down」または「Unknown」を返す場合があります。
 
 接続を確認します：
 
@@ -86,9 +83,9 @@ doublezero status
 Tunnel status | Last Session Update     | Tunnel Name | Tunnel src      | Tunnel dst   | DoubleZero IP   | User Type
 up            | 2025-09-10 12:16:03 UTC | doublezero0 | 137.184.101.183 | 64.86.249.22 | 137.184.101.183 | IBRL
 ```
-`up`のステータスは正常に接続されていることを意味します。
+ステータスが`up`であれば、正常に接続されています。
 
-次のコマンドを実行することでDoubleZero上の他のユーザーによって伝搬されたルートを確認できます：
+DoubleZero上の他のユーザーによって伝播されたルートを確認するには、以下を実行します：
 
 ```
 ip route
@@ -102,6 +99,3 @@ default via 149.28.38.1 dev enp1s0 proto dhcp src 149.28.38.64 metric 100
 5.39.251.202 via 169.254.0.68 dev doublezero0 proto bgp src 149.28.38.64
 ...
 ```
-
-
-</div>

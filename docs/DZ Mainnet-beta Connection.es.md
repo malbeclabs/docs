@@ -1,60 +1,112 @@
 ---
-description: Conecta un validador de Solana Mainnet-Beta y hasta tres respaldos a DoubleZero en modo IBRL, incluyendo la prueba de identidad y la solicitud de conexión.
+description: Conecta un validador de Solana (mainnet-beta o testnet) y hasta tres respaldos a DoubleZero en modo IBRL, incluyendo la prueba de identidad y la solicitud de conexión.
 ---
 
-# Conexión de Validador Mainnet-Beta en Modo IBRL
-!!! warning "Al conectarme a DoubleZero, acepto los [Términos de Servicio de DoubleZero](https://doublezero.xyz/terms-protocol)"
+# Conexión de Validador en Modo IBRL
 
+!!! warning "Al conectarme a DoubleZero acepto los [Términos de Servicio de DoubleZero](https://doublezero.xyz/terms-protocol)"
 
+??? warning "Al conectarme al testnet de DoubleZero acepto los términos del Acuerdo de Evaluación establecidos aquí (haz clic para expandir)"
+    <span style="font-size:14px;">DoubleZero Testnet</span>
+    Acuerdo de Evaluación
 
-### Conexión a Mainnet-Beta en Modo IBRL
+    Al acceder o utilizar la Solución (definida a continuación), usted acepta a partir de
+    la primera fecha de dicho acceso (la "**Fecha Efectiva**") que este
+    Acuerdo de Evaluación (el "**Acuerdo**") establece los términos y
+    condiciones bajo los cuales DoubleZero Foundation ("**DZF**") le proporcionará
+    a usted ("**Usuario**" o "**usted**") acceso a la Solución en base de
+    evaluación. En consideración de las promesas mutuas contenidas en el presente, usted acepta lo
+    siguiente:
+
+    <span style="font-size:14px;">1. DEFINICIONES.</span>
+
+    <span style="font-size:14px;">1.1 "**Información Confidencial**"</span> significa toda y cualquier información divulgada por cualquiera de las partes a la otra que sea designada como confidencial, o que de otro modo deba entenderse como confidencial, incluyendo pero no limitándose a, la Solución, planes de producto, planes de negocio, secretos comerciales, tecnología, o cualquier otra información propietaria.
+
+    <span style="font-size:14px;">1.2 "**Solución**" </span> significa la versión testnet de la infraestructura de red de alto rendimiento de DoubleZero para proyectos web3 ("**Testnet**") y el servicio de filtrado en el borde relacionado con ancho de banda integrado ("**Servicio de Información**"), el Software DZ (definido a continuación), todos y cualesquiera materiales proporcionados por DZF relacionados con el Software DZ ("**Documentación**"), y otros materiales que DZF proporcione al Usuario en virtud del presente.
+
+    <span style="font-size:14px;">2. ACCESO. </span>
+
+    <span style="font-size:14px;">2.1 ^^Acceso a la Solución^^.</span> Sujeto a los términos y condiciones de este Acuerdo, DZF proporcionará al Usuario acceso a la Solución a través de Internet. El acceso del Usuario es un uso no exclusivo, no transferible y limitado de la Solución para permitir al Usuario evaluar únicamente el Servicio de Información. Con respecto a cualquier software que comprenda la Solución ("**Software DZ**"), DZF por la presente otorga al Usuario una licencia limitada y revocable, durante el Período de Evaluación, para copiar, descargar, hacer un número razonable de copias, ejecutar e implementar (según corresponda) dicho Software DZ únicamente como lo contempla la Documentación.
+
+    <span style="font-size:14px;">2.2 ^^Restricciones^^. </span>El Usuario puede utilizar la Solución de conformidad con este Acuerdo desde la Fecha Efectiva hasta su terminación por DZF (el "**Período de Evaluación**"). El Usuario entiende que cualquier derecho de uso de la Solución más allá del Período de Evaluación estará sujeto a un acuerdo comercial separado entre las partes con respecto al mismo, incluyendo el pago de tarifas. El Usuario no deberá, y no permitirá que ningún tercero: (i) modifique o cree obras derivadas basadas en la Solución o cualquier porción de la misma; (ii) reproduzca la Solución excepto según lo expresamente permitido por este Acuerdo; (iii) sublicencie, distribuya, venda, preste, alquile, arriende, transfiera u otorgue derechos sobre la totalidad o cualquier porción de la Solución o proporcione acceso a la Solución a terceros, en base a un bureau de servicios o de otro modo, excepto como oferta de los Servicios de Información a través de o en conexión con la plataforma o producto del Usuario y no de forma independiente; o (iv) utilice la Solución de manera distinta a la prevista en el presente.
+
+    <span style="font-size:14px;">2.3 ^^Propiedad^^.</span> DZF retiene todos los derechos, títulos e intereses, incluyendo los derechos de propiedad intelectual, sobre la Solución.
+
+    <span style="font-size:14px;">3 RETROALIMENTACIÓN.</span>
+    DZF puede solicitar periódicamente que el Usuario proporcione, y el Usuario acepta proporcionar a DZF, retroalimentación sobre el uso, operación y funcionalidad de la Solución ("Retroalimentación"). El Usuario por la presente otorga a DZF un derecho y licencia no exclusivos, mundiales, perpetuos, irrevocables, libres de regalías, totalmente pagados, totalmente sublicenciables y transferibles para usar e incorporar la Retroalimentación en cualquier producto y servicio, para fabricar, usar, vender, ofrecer a la venta, importar y explotar de otro modo dichos productos y servicios, y para usar, copiar, distribuir y explotar de otro modo la Retroalimentación sin restricción.
+
+    <span style="font-size:14px;">4. VIGENCIA Y TERMINACIÓN.</span>
+
+    <span style="font-size:14px;">4.1 ^^Vigencia^^.</span> Este Acuerdo entrará en vigor a partir de la Fecha Efectiva y permanecerá en plena vigencia y efecto durante el Período de Evaluación. Cualquiera de las partes puede terminar este Acuerdo inmediatamente por conveniencia, por cualquier razón o sin razón alguna, mediante notificación escrita a la otra parte (el correo electrónico será suficiente).
+
+    <span style="font-size:14px;">4.1 ^^Efectos de la Terminación^^.</span> Tras la terminación de este Acuerdo por cualquier razón: (i) los derechos otorgados al Usuario en virtud del presente terminarán inmediatamente; (ii) el Usuario deberá discontinuar inmediatamente cualquier uso de la Solución y deberá devolver o destruir toda la Documentación y cualquier Software DZ bajo su control; (iii) cada parte deberá devolver o destruir con prontitud toda la Información Confidencial y propiedad de la otra parte; y (iv) las Secciones 2.2, 2.3, 3, 4.2, y 5 a 8 sobrevivirán.
+
+    <span style="font-size:14px;">5. CONFIDENCIALIDAD.</span>
+    Cada parte acepta que utilizará la Información Confidencial de la otra parte únicamente para cumplir sus obligaciones y ejercer sus derechos bajo este Acuerdo y no divulgará, ni permitirá que se divulgue, la misma, excepto según lo permitido de otro modo en el presente. Sin embargo, cualquiera de las partes puede divulgar Información Confidencial a su personal, abogados y otros representantes que tengan necesidad de conocerla y estén sujetos a obligaciones de confidencialidad no menos protectoras que las establecidas en este Acuerdo; y según lo requiera la ley (en cuyo caso la parte receptora proporcionará a la parte divulgadora notificación previa de ello y oportunidad de impugnar dicha divulgación, y minimizará dicha divulgación en la medida permitida por la ley aplicable). Las obligaciones de confidencialidad de esta Sección 5 no se aplicarán a información que: (a) sea o se convierta en generalmente conocida o disponible públicamente sin culpa de la parte receptora; (b) fuera debidamente conocida por la parte receptora, sin restricción, antes de la divulgación por la parte divulgadora; (c) fuera debidamente divulgada a la parte receptora, sin restricción, por otra persona con la autoridad legal para hacerlo; o (d) sea desarrollada independientemente por la parte receptora sin uso de o referencia a la Información Confidencial de la parte divulgadora. Cada parte acepta ejercer la debida diligencia en la protección de la Información Confidencial de la otra parte contra el uso y divulgación no autorizados. En caso de incumplimiento real o amenaza de incumplimiento de las disposiciones de esta Sección o de las licencias contenidas en el presente, la parte no incumplidora tendrá derecho a buscar medidas cautelares inmediatas y otras medidas equitativas, sin renunciar a ningún otro derecho o recurso disponible para ella. El Usuario es responsable de mantener la Solución y el secreto de cualquier contraseña, frase semilla o código que proporcione acceso a la Solución como Información Confidencial de DZF. Nada en el presente limita o restringe el derecho o capacidad de DZF de usar datos sobre el rendimiento, disponibilidad, uso, integridad y seguridad de la Solución. Si cualquiera de las partes incumple, o amenaza con incumplir las disposiciones de esta Sección 5, cada parte acepta que la parte no incumplidora no tendrá un recurso adecuado en derecho y por lo tanto tiene derecho a medidas cautelares inmediatas y otras medidas equitativas, sin fianza y sin la necesidad de demostrar daños monetarios reales.
+
+    <span style="font-size:14px;">6. DESCARGO DE GARANTÍA; LIMITACIÓN DE RESPONSABILIDAD.</span>
+
+    <span style="font-size:14px;">6.1 ^^DESCARGO DE GARANTÍA^^.</span> LA SOLUCIÓN SE PROPORCIONA "TAL CUAL" SIN GARANTÍA DE NINGÚN TIPO. DZF NO OTORGA GARANTÍAS, YA SEAN EXPRESAS, IMPLÍCITAS, LEGALES O DE OTRO TIPO CON RESPECTO A LA SOLUCIÓN Y LA DOCUMENTACIÓN, INCLUYENDO SU CONDICIÓN, CONFORMIDAD CON CUALQUIER REPRESENTACIÓN O DESCRIPCIÓN, Y DZF RENUNCIA ESPECÍFICAMENTE A TODAS LAS GARANTÍAS IMPLÍCITAS DE COMERCIABILIDAD, APTITUD PARA UN PROPÓSITO PARTICULAR, TÍTULO Y NO INFRACCIÓN.
+
+    <span style="font-size:14px;">6.2 ^^LIMITACIÓN DE RESPONSABILIDAD^^.</span>
+    EXCEPTO POR UN INCUMPLIMIENTO DE LAS SECCIONES 2.1, 2.2 Y 5, EN NINGÚN CASO NINGUNA DE LAS PARTES SERÁ RESPONSABLE ANTE LA OTRA POR DAÑOS INDIRECTOS, INCIDENTALES, ESPECIALES U OTROS DAÑOS CONSECUENTES, INCLUYENDO SIN LIMITACIÓN DAÑOS POR PÉRDIDA DE BENEFICIOS O USO O PÉRDIDA DE DATOS, INCURRIDOS POR USTED O CUALQUIER TERCERO, QUE SURJAN DE O ESTÉN RELACIONADOS CON ESTE ACUERDO, YA SEA EN UNA ACCIÓN CONTRACTUAL, EXTRACONTRACTUAL O DE OTRO TIPO, INCLUSO SI LA OTRA PARTE HA SIDO ADVERTIDA DE LA POSIBILIDAD DE DICHOS DAÑOS. EN NINGÚN CASO LA RESPONSABILIDAD AGREGADA DE DZF QUE SURJA DE O ESTÉ RELACIONADA CON ESTE ACUERDO EXCEDERÁ CIEN DÓLARES (\$100), YA SEA EN UNA ACCIÓN CONTRACTUAL, EXTRACONTRACTUAL O DE OTRO TIPO. **LAS LIMITACIONES ANTERIORES SE APLICARÁN SIN PERJUICIO DEL FALLO DEL PROPÓSITO ESENCIAL DE CUALQUIER RECURSO LIMITADO EN EL PRESENTE.** LAS PARTES ACUERDAN QUE LAS LIMITACIONES ANTERIORES REPRESENTAN UNA ASIGNACIÓN RAZONABLE DEL RIESGO BAJO ESTE ACUERDO.
+
+    <span style="font-size:14px;">7. LEY APLICABLE.</span>
+    Este Acuerdo y todos los asuntos que surjan de o estén relacionados con este Acuerdo se regirán, interpretarán y construirán de conformidad con las leyes de las Islas Caimán. Si surgiera una controversia, disputa o reclamación de o en relación con este Acuerdo ("Disputa"), la parte correspondiente, según proceda, deberá dar un aviso de 30 días de dicha Disputa a las otras partes (la "Notificación de Disputa"). Si la Disputa no se resolviera al vencimiento de 30 días después del envío de la Notificación de Disputa, la parte correspondiente podrá iniciar procedimientos de arbitraje según lo previsto en el presente. Si la Disputa permaneciera al vencimiento de 30 días después del envío de la Notificación de Disputa, la Disputa se resolverá mediante arbitraje administrado por el Cayman International Mediation & Arbitration Centre (CI-MAC) de conformidad con las Reglas de Arbitraje de CI-MAC (las "Reglas de Arbitraje") vigentes a la fecha de este Acuerdo, cuyas Reglas de Arbitraje se consideran incorporadas por referencia a esta cláusula, y regido por la Ley de Arbitraje (según enmendada). La sede del arbitraje será George Town, Gran Caimán, Islas Caimán y se regirá por la ley de las Islas Caimán. El idioma del arbitraje será el inglés. El arbitraje será determinado por un único árbitro designado de conformidad con las Reglas de Arbitraje. Cualquier laudo o decisión emitida por el árbitro será por escrito y será definitiva y vinculante para las partes sin derecho de apelación, y la ejecución de cualquier laudo así obtenido podrá inscribirse o ejecutarse ante cualquier tribunal con jurisdicción al respecto. Ninguna acción legal o en equidad basada en cualquier reclamación que surja de o esté relacionada con este Acuerdo se interpondrá ante ningún tribunal de ninguna jurisdicción. Si fuera necesario algún litigio o arbitraje para hacer cumplir los términos de este Acuerdo, la parte vencedora tendrá derecho a que sus honorarios de abogados sean pagados por la otra parte. Cada parte renuncia a cualquier derecho que pueda tener para invocar la doctrina de forum non conveniens, para alegar que no está sujeta a la jurisdicción de dicho arbitraje o tribunales o para objetar la competencia territorial en la medida en que cualquier procedimiento se presente de conformidad con el presente. </span>
+
+    <span style="font-size:14px;">8. DISPOSICIONES GENERALES.</span>
+    Este Acuerdo no podrá ser transferido ni cedido por el Usuario sin el consentimiento previo por escrito de DZF. DZF podrá ceder libremente este Acuerdo. Todas las notificaciones que deban enviarse en virtud del presente se enviarán por correo electrónico (a DZF: legal@doublezero.xyz) y se considerarán recibidas el día siguiente al envío (con confirmación de transmisión). Si alguna disposición de este Acuerdo se considera inválida o inaplicable, las disposiciones restantes de este Acuerdo permanecerán en plena vigencia y efecto. La renuncia por cualquiera de las partes a cualquier incumplimiento de este Acuerdo no constituirá una renuncia a ningún otro incumplimiento posterior. Ninguna de las partes será responsable por cualquier retraso o fallo en el cumplimiento debido a causas de fuerza mayor, terremotos, escasez de suministros, dificultades de transporte, conflictos laborales, disturbios, guerra, incendios, epidemias y eventos similares fuera de su control, sean o no previsibles. Este Acuerdo junto con cualquier anexo constituye el acuerdo completo entre las partes y reemplaza todos los acuerdos o representaciones anteriores o contemporáneos, escritos u orales, concernientes al objeto del presente. Este Acuerdo no podrá ser modificado ni enmendado excepto por escrito firmado por un representante debidamente autorizado de cada parte.
+
+Elige la red DoubleZero que coincida con tu clúster de Solana: `mainnet-beta` o `testnet`. Instala los paquetes correspondientes en [configuración](setup.md), y usa esa misma red para cada comando a continuación.
 
 !!! Note inline end
     El modo IBRL no requiere reiniciar los clientes del validador, porque utiliza tu dirección IP pública existente.
 
-Los Validadores de Solana Mainnet completarán la conexión a DoubleZero Mainnet-beta, lo cual se detalla en esta página.
+Los validadores de Solana se conectan a DoubleZero en modo IBRL siguiendo los pasos de esta página.
 
 Cada validador de Solana tiene su propio **par de claves de identidad**; de este, se extrae la clave pública conocida como el **ID de nodo**. Esta es la huella digital única del validador en la red de Solana.
 
-Con el DoubleZeroID y el ID de nodo identificados, probarás la propiedad de tu máquina. Esto se hace creando un mensaje que incluye el DoubleZeroID firmado con la clave de identidad del validador. La firma criptográfica resultante sirve como prueba verificable de que controlas el validador.
+Con el DoubleZeroID y el ID de nodo identificados, demostrarás la propiedad de tu máquina. Esto se hace creando un mensaje que incluye el DoubleZeroID firmado con la clave de identidad del validador. La firma criptográfica resultante sirve como prueba verificable de que controlas el validador.
 
-Finalmente, enviarás una **solicitud de conexión a DoubleZero**. Esta solicitud comunica: *"Aquí está mi identidad, aquí está la prueba de propiedad, y aquí está cómo pretendo conectarme."* DoubleZero valida esta información, acepta la prueba y aprovisiona el acceso a la red para el validador en DoubleZero.
+Finalmente, enviarás una **solicitud de conexión a DoubleZero**. Esta solicitud comunica: *"Aquí está mi identidad, aquí está la prueba de propiedad, y así es como pretendo conectarme."* DoubleZero valida esta información, acepta la prueba y aprovisiona el acceso a la red para el validador en DoubleZero.
 
-Esta guía permite registrar 1 Validador Primario y hasta 3 máquinas de respaldo/conmutación por error al mismo tiempo.
+Esta guía permite que 1 Validador Primario se registre a sí mismo, y hasta 3 máquinas de respaldo/conmutación por error al mismo tiempo.
 
-## Prerrequisitos
+## Requisitos Previos
 
 - Solana CLI instalado y en $PATH
-- Para validadores: Permiso de acceso al archivo del par de claves de identidad del validador (por ejemplo, validator-keypair.json) bajo el usuario sol
+- Para validadores: Permiso para acceder al archivo del par de claves de identidad del validador (p. ej., validator-keypair.json) bajo el usuario sol
 - Para validadores: Verificar que la clave de identidad del validador de Solana que se conecta tiene al menos 1 SOL
 - Las reglas del firewall permiten conexiones salientes para DoubleZero y Solana RPC según sea necesario, incluyendo
  GRE (ip proto 47) y BGP (169.254.0.0/16 en tcp/179)
 
 !!! info
-    El ID del Validador se verificará contra el gossip de Solana para determinar la IP de destino. La IP de destino y el DoubleZero ID se utilizarán luego al abrir un túnel GRE entre tu máquina y el Dispositivo DoubleZero de destino.
+    El ID del Validador se verificará contra el gossip de Solana para determinar la IP objetivo. La IP objetivo y el DoubleZero ID se utilizarán entonces al abrir un túnel GRE entre tu máquina y el Dispositivo DoubleZero objetivo.
 
-    Considere: En el caso de que tengas un ID basura y un ID Primario en la misma IP, solo se utilizará el ID Primario en el registro de la máquina. Esto se debe a que el ID basura no aparecerá en el gossip y, por lo tanto, no se puede usar para verificar la IP de la máquina de destino.
+    Considera: En el caso donde tengas un ID basura y un ID Primario en la misma IP, solo el ID Primario se usará en el registro de la máquina. Esto se debe a que el ID basura no aparecerá en el gossip, y por lo tanto no puede usarse para verificar la IP de la máquina objetivo.
 
 ## 1. Confirmar la red del cliente
 
-Por favor sigue las instrucciones de [configuración](setup.md) antes de continuar. Instala los paquetes de **Mainnet-Beta** — Testnet y Mainnet-Beta usan repositorios de paquetes diferentes.
+Por favor sigue las instrucciones de [configuración](setup.md) antes de continuar. Instala los paquetes para **mainnet-beta** o **testnet**. Usan diferentes repositorios de paquetes.
 
 El último paso en la configuración fue desconectarse de la red. Esto es para asegurar que solo un túnel esté abierto en tu máquina hacia DoubleZero, y que ese túnel esté en la red correcta.
 
-Confirma que el cliente está en mainnet-beta:
+Confirma que el cliente está en la red que elegiste:
 
 ```bash
 doublezero status
 ```
 
-La columna `Network` debería ser `mainnet-beta`. Si es `testnet`, o instalaste el paquete incorrecto, usa el interruptor de copiar y pegar en [solución de problemas](troubleshooting.md#issue-wrong-doublezero-environment).
+La columna `Network` debería mostrar `mainnet-beta` o `testnet`, coincidiendo con tu clúster de Solana. Si es incorrecta, o instalaste el paquete equivocado, usa el cambio de copiar y pegar en [solución de problemas](troubleshooting.md#issue-wrong-doublezero-environment).
 
 Después de aproximadamente 30 segundos verás los dispositivos DoubleZero disponibles:
 
 ```bash
 doublezero latency
 ```
-Salida de ejemplo (Mainnet-Beta)
+
+Salida de ejemplo (mainnet-beta; testnet se ve igual pero con menos dispositivos):
+
 ```bash
  pubkey                                       | code          | ip              | min      | max      | avg      | reachable
  2hPMFJHh5BPX42ygBvuYYJfCv9q7g3rRR3ZRsUgtaqUi | dz-ny7-sw01   | 137.239.213.162 | 1.74ms   | 1.92ms   | 1.84ms   | true
@@ -69,49 +121,43 @@ Salida de ejemplo (Mainnet-Beta)
  9LFtjDzohKvCBzSquQD4YtL3HwuvkKBDE7KSzb8ztV2b | dz-mtl11-sw01 | 134.195.161.10  | 9.88ms   | 10.01ms  | 9.95ms   | true
  9M7FfYYyjM4wGinKPofZRNmQFcCjCKRbXscGBUiXvXnG | dz-tor1-sw01  | 209.42.165.10   | 14.52ms  | 14.53ms  | 14.52ms  | true
 ```
-La salida de Testnet será idéntica en estructura, pero con menos dispositivos.
 
 ## 2. Abrir el puerto 44880
 
 Los usuarios necesitan abrir el puerto 44880 para utilizar algunas [funciones de enrutamiento](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc7-client-route-liveness.md).
 
-Para abrir el puerto 44880 podrías actualizar las tablas IP de la siguiente manera:
-
-<div data-wizard-step="firewall-iptables" markdown>
+Para abrir el puerto 44880 puedes actualizar las tablas IP de la siguiente manera:
 
 ```
 sudo iptables -A INPUT -i doublezero0 -p udp --dport 44880 -j ACCEPT
 sudo iptables -A OUTPUT -o doublezero0 -p udp --dport 44880 -j ACCEPT
 ```
 
-</div>
 
-nota los flags `-i doublezero0`, `-o doublezero0` que restringen esta regla solo a la interfaz DoubleZero
+nota los flags `-i doublezero0`, `-o doublezero0` que restringen esta regla solo a la interfaz de DoubleZero
 
 O UFW de la siguiente manera:
-
-<div data-wizard-step="firewall-ufw" markdown>
 
 ```
 sudo ufw allow in on doublezero0 to any port 44880 proto udp
 sudo ufw allow out on doublezero0 to any port 44880 proto udp
 ```
 
-</div>
 
-nota los flags `in on doublezero0`, `out on doublezero0` que restringen esta regla solo a la interfaz DoubleZero
+nota los flags `in on doublezero0`, `out on doublezero0` que restringen esta regla solo a la interfaz de DoubleZero
 
-## 3. Atestiguar la Propiedad del Validador
+## 3. Atestar la Propiedad del Validador
 
-<div data-wizard-step="mainnet-find-validator" markdown>
+!!! note "Flag de red"
+    Los comandos de Passport a continuación usan `-u mainnet-beta`. En testnet, usa `-u testnet` (o `-ut`) en su lugar.
 
-Con tu Entorno DoubleZero configurado, ahora es momento de atestiguar la Propiedad de tu Validador.
+Con tu Entorno DoubleZero configurado, ahora es momento de atestar la Propiedad de tu Validador.
 
 El DoubleZero ID que creaste en la [configuración](setup.md) de tu validador primario debe usarse en todas las máquinas de respaldo.
 
 El ID en tu máquina primaria se puede encontrar con `doublezero address`. El mismo ID debe estar en `~/.config/doublezero/id.json` en todas las máquinas del clúster.
 
-Para lograr esto, primero verificarás que la máquina desde la que estás ejecutando los comandos es tu **Validador Primario** con:
+Para lograr esto, primero verificarás que la máquina desde la que ejecutas los comandos es tu **Validador Primario** con:
 
 ```
 doublezero-solana passport find-validator -u mainnet-beta
@@ -133,10 +179,10 @@ In Leader scheduler
 ```
 
 !!! info
-    El mismo flujo de trabajo se usa para una o muchas máquinas.
+    El mismo flujo de trabajo se usa para una o varias máquinas.
     Para registrar una sola máquina, excluye los argumentos "--backup-validator-ids" o "backup_ids=" de cualquier comando en esta página.
 
-Ahora, en todas las máquinas de respaldo en las que pretendes ejecutar tu **Validador Primario**, ejecuta lo siguiente:
+Ahora, en todas las máquinas de respaldo donde pretendes ejecutar tu **Validador Primario**, ejecuta lo siguiente:
 ```
 doublezero-solana passport find-validator -u mainnet-beta
 ```
@@ -155,16 +201,12 @@ In Not in Leader scheduler
 ```
 Esta salida es esperada. El nodo de respaldo no puede estar en el programa de líderes al momento de la creación del pase.
 
-Ahora ejecutarás este comando en **todas las máquinas de respaldo** en las que planeas usar la cuenta de voto e identidad de tu **Validador Primario**.
+Ahora ejecutarás este comando en **todas las máquinas de respaldo** donde planeas usar la cuenta de voto y la identidad de tu **Validador Primario**.
 
-</div>
-
-
-<div data-wizard-step="mainnet-prepare-access" markdown>
 
 ### Preparar la Conexión
 
-Ejecuta el siguiente comando en la máquina del **Validador Primario**. Esta es la máquina en la que tienes stake activo, que está en el programa de líderes con tu ID de validador primario en el gossip de Solana en la máquina desde la que estás ejecutando el comando:
+Ejecuta el siguiente comando en la máquina del **Validador Primario**. Esta es la máquina donde tienes stake activo, que está en el programa de líderes con tu ID de validador primario en el gossip de Solana en la máquina desde la que ejecutas el comando:
 
 ```
 doublezero-solana passport prepare-validator-access -u mainnet-beta \
@@ -211,11 +253,8 @@ Backup validator 🖥️ 🛡️:
 ```
 Nota la salida al final de este comando. Es la estructura para el siguiente paso.
 
-</div>
 
 ## 4. Generar la Firma
-
-<div data-wizard-step="mainnet-sign-message" markdown>
 
 Al final del último paso, recibimos una salida preformateada para `solana sign-offchain-message`
 
@@ -230,101 +269,4 @@ De la salida anterior ejecutaremos este comando en la máquina del **Validador P
 **Salida:**
 
 ```
-  Signature111111rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7
-```
-
-</div>
-
-## 5. Iniciar una Solicitud de Conexión en DoubleZero
-
-<div data-wizard-step="mainnet-request-access" markdown>
-
-Usa el comando `request-validator-access` para crear una cuenta en Solana para la solicitud de conexión. El agente DoubleZero Sentinel detecta la nueva cuenta, valida su identidad y firma, y crea el pase de acceso en DoubleZero para que el servidor pueda establecer una conexión.
-
-
-Usa el ID de nodo, DoubleZeroID y la firma.
-
-!!! note inline end
-      En este ejemplo usamos `-k /home/user/.config/solana/id.json` para encontrar la Identidad del validador. Usa la ubicación apropiada para tu despliegue local.
-
-```
-doublezero-solana passport request-validator-access -k <path to keypair> -u mainnet-beta \
---primary-validator-id ValidatorIdentity111111111111111111111111111 \
---backup-validator-ids ValidatorIdentity222222222222222222222222222,ValidatorIdentity33333333333333333333333333,ValidatorIdentity444444444444444444444444444 \
---signature Signature111111rrNykTByK2DgJET3U6MdjSa7xgFivS9AHyhdSG6AbYTeczUNJSjYPwBGqpmNGkoWk9NvS3W7 --doublezero-address YourDoubleZeroAddress11111111111111111111111111111
-```
-
-**Salida:**
-
-Esta salida se puede usar para ver la transacción en un explorador de Solana. Asegúrate de cambiar el explorador a mainnet. Esta verificación es opcional.
-
-```bash
-Request Solana validator access: Transaction22222222VaB8FMqM2wEBXyV5THpKRXWrPtDQxmTjHJHiAWteVYTsc7Gjz4hdXxvYoZXGeHkrEayp
-```
-
-Si tiene éxito, DoubleZero registrará el primario con sus respaldos. Ahora puedes conmutar entre las IPs registradas en el pase de acceso. DoubleZero mantendrá la conectividad automáticamente al cambiar a nodos de respaldo registrados de esta manera.
-
-</div>
-
-## 6. Conectar en Modo IBRL
-
-<div data-wizard-step="mainnet-connect-ibrl" markdown>
-
-En el servidor, con el usuario que se conectará a DoubleZero, ejecuta el comando `connect` para establecer la conexión con DoubleZero.
-
-```
-doublezero connect ibrl
-```
-
-Deberías ver una salida indicando el aprovisionamiento, como:
-
-```
-DoubleZero Service Provisioning
-🔗  Start Provisioning User...
-Public IP detected: 137.184.101.183 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
-🔍  Provisioning User for IP: 137.184.101.183
-    User account created
-    Connected to device: nyc-dz001
-    The user has been successfully activated
-    Service provisioned with status: ok
-✅  User Provisioned
-```
-Espera un minuto para que el túnel GRE termine de configurarse. Hasta que el túnel GRE termine de configurarse, la salida de tu estado puede devolver "down" o "Unknown"
-
-Verifica tu conexión:
-
-```bash
-doublezero status
-```
-
-**Salida:**
-!!! note inline end
-    Examina esta salida. Observa que el `Tunnel src` y la `DoubleZero IP` coinciden con la dirección IPv4 pública de tu máquina.
-    <!--`Tunnel dst` es la dirección del dispositivo DZ al que estás conectado.-->
-
-```bash
- Tunnel status | Last Session Update     | Tunnel Name | Tunnel src    | Tunnel dst     | Doublezero IP | User Type | Current Device | Lowest Latency Device | Metro     | Network
- up            | 2025-10-20 12:12:55 UTC | doublezero0 | 11.11.11.111 | 12.34.56.789 | 11.11.11.111 | IBRL      | ams-dz001      | ✅ ams-dz001          | Amsterdam | mainnet-beta
-```
-Un estado de `up` significa que estás conectado exitosamente.
-
-Podrás ver las rutas propagadas por otros usuarios en DoubleZero ejecutando:
-
-```
-ip route
-```
-
-
-```
-default via 149.28.38.1 dev enp1s0 proto dhcp src 149.28.38.64 metric 100
-5.39.216.186 via 169.254.0.68 dev doublezero0 proto bgp src 149.28.38.64
-5.39.251.201 via 169.254.0.68 dev doublezero0 proto bgp src 149.28.38.64
-5.39.251.202 via 169.254.0.68 dev doublezero0 proto bgp src 149.28.38.64
-...
-```
-
-</div>
-
-### Siguiente Paso: Publicación de Shreds vía Multicast
-
-Si has completado esta configuración y planeas publicar shreds vía multicast, continúa a la [siguiente página](Validator%20Multicast%20Connection.md).
+  Signature111111rrNykTByK2DgJET
