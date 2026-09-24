@@ -45,7 +45,17 @@ DZ_ASSUME_YES=1 \
 
 `DZ_SECRET` is a `DZ_…` access token **or** the path to the Solana keypair JSON that owns your access pass / feed purchase.
 
-Then verify `doublezero status` (expect `BGP Session Up` and your Kalshi group) and connect a WebSocket client to `:8081`.
+If a host `doublezerod` is already running, stop it first — it fights the container’s daemon for the same tunnel:
+
+```bash
+sudo systemctl stop doublezerod
+```
+
+Then verify status **inside the container** (expect `BGP Session Up` and your Kalshi group) and connect a WebSocket client to `:8081`:
+
+```bash
+docker exec doublezero-edge-connect doublezero status
+```
 
 **Full steps, verification, and gotchas:** connect the [DoubleZero MCP](mcp.md) and ask it to walk you through Edge Connect for Kalshi.  
 **WebSocket contract:** [PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md).
@@ -226,9 +236,10 @@ A publisher restart advances the reset count in the frame header. Discard state 
 
 ### Tunnel not coming up
 
-1. Verify the daemon is running: `sudo systemctl status doublezerod` (native path) or that the Edge Connect container is up
-2. Verify firewall rules are in place (GRE, BGP, PIM, and the feed ports on `doublezero1`)
-3. Check your connection status: `doublezero status` — expect `BGP Session Up` on the correct DoubleZero network
+1. **Edge Connect:** run status in the container — `docker exec doublezero-edge-connect doublezero status`. Host `doublezero status` often fails while the feed is fine (container owns the daemon). Confirm host `doublezerod` is stopped.
+2. **Native:** verify the host daemon is running: `sudo systemctl status doublezerod`
+3. Verify firewall rules are in place (GRE, BGP, PIM, and the feed ports on `doublezero1`)
+4. Check connection status from the same place you connected (container or host) — expect `BGP Session Up` on the correct DoubleZero network
 
 The client IP is auto-discovered from your host's public IP. Verify it matches the IP you used when purchasing the feed.
 

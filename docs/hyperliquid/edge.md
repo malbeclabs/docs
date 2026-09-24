@@ -21,10 +21,10 @@ Service overview: [Hyperliquid](index.md).
 
 | Mode | What you get | When to use |
 |------|----------------|-------------|
-| **Native multicast** | Subscribe on `doublezero1`, decode binary UDP yourself (or with reference parsers) | Default for full control |
 | **Edge Connect** | [`doublezero-edge-connect`](https://github.com/malbeclabs/doublezero-edge-connect) — decode + normalized JSON WebSocket | Fastest to a usable quote stream |
+| **Native multicast** | Subscribe on `doublezero1`, decode binary UDP yourself (or with reference parsers) | Full control of the wire |
 
-For Edge Connect, finish subscription and connect on the host first, then run the container instead of decoding by hand.
+Shared steps first: firewall, metro, apply, and pay (Steps 1–3). After approval, [Step 4](#step-4-connect-after-approval) splits — **Edge Connect** or **native**. Do not mix them on the same host.
 
 Want an AI to do the install with you? Connect the [DoubleZero MCP](../mcp.md) and ask it to walk you through Hyperliquid Edge.
 
@@ -35,9 +35,11 @@ Want an AI to do the install with you? Connect the [DoubleZero MCP](../mcp.md) a
 **Complete Setup**
 
 
-Follow the [setup](../setup.md) instructions to install and configure the DoubleZero client.
+For **native multicast**, follow the [setup](../setup.md) instructions to install and configure the DoubleZero client on the host (including `doublezerod`).
 
-If you have previously set up DoubleZero, ensure the client is current:
+For **Edge Connect**, you still need a DoubleZero ID for the application form, and the host firewall rules below. Skip enabling a long-running host `doublezerod` if you will use Edge Connect — the container runs its own daemon.
+
+If you have previously set up DoubleZero on the host for native use, ensure the client is current:
 
 ```bash
 sudo apt update && sudo apt install doublezero
@@ -46,7 +48,7 @@ sudo apt update && sudo apt install doublezero
 **Configure the Firewall**
 
 
-Allow GRE, BGP, PIM, and Hyperliquid feed traffic on `doublezero1`. Hyperliquid UDP ports sit in `20000`–`20999` (Top-of-Book and Market-by-Order market, reference, and snapshot). Open the full band so new feeds do not need another firewall change. See [Feed addresses](#feed-addresses).
+Allow GRE, BGP, PIM, and Hyperliquid feed traffic on `doublezero1`. Hyperliquid UDP ports sit in `20000`–`20999` (Top-of-Book and Market-by-Order market, reference, and snapshot). Also allow UDP `5765` for DoubleZero heartbeats on the tunnel. Open the feed band so new feeds do not need another firewall change. See [Feed addresses](#feed-addresses).
 
 **iptables:**
 
@@ -57,7 +59,8 @@ sudo iptables -A OUTPUT -o doublezero1 -s 169.254.0.0/16 -d 169.254.0.0/16 -p tc
 sudo iptables -A OUTPUT -o doublezero1 -p pim -j ACCEPT
 # Hyperliquid market / reference / snapshot (all feeds)
 sudo iptables -A INPUT -i doublezero1 -p udp --dport 20000:20999 -j ACCEPT
-sudo iptables -A INPUT -i doublezero0 -p udp --dport 44880 -j ACCEPT
+# DoubleZero heartbeats
+sudo iptables -A INPUT -i doublezero1 -p udp --dport 5765 -j ACCEPT
 ```
 
 **UFW:**
@@ -69,7 +72,8 @@ sudo ufw allow out on doublezero1 from 169.254.0.0/16 to 169.254.0.0/16 port 179
 sudo ufw allow out on doublezero1 proto pim from any to any
 # Hyperliquid market / reference / snapshot (all feeds)
 sudo ufw allow in on doublezero1 to any port 20000:20999 proto udp
-sudo ufw allow in on doublezero0 to any port 44880 proto udp
+# DoubleZero heartbeats
+sudo ufw allow in on doublezero1 to any port 5765 proto udp
 ```
 
 You may tighten these rules to only the ports for the feeds you subscribe to (see [Feed addresses](#feed-addresses)).
@@ -118,7 +122,53 @@ You will be contacted with more instructions in a timely manner (expect **1-3 bu
 
 ## Step 4: Connect after approval
 
-After you submit the application, you will receive an invoice; once it is paid, you can connect on each approved machine. Subscribe to the feeds you purchased:
+After you submit the application, you will receive an invoice; once it is paid, connect on each approved machine. Access is enabled on your chosen start date. Pick **one** path below.
+
+### 4a. Edge Connect
+
+Install [doublezero-edge-connect](https://github.com/malbeclabs/doublezero-edge-connect) **after** approval and payment. The bridge joins DoubleZero inside a `--network host` container and serves normalized JSON on `ws://<host>:8081`.
+
+If a host `doublezerod` is already running (from [setup](../setup.md)), stop it first — it fights the container’s daemon for the same tunnel:
+
+```bash
+sudo systemctl stop doublezerod
+```
+
+```bash
+DZ_SECRET=/path/to/keypair.json \
+DZ_FEEDS=HYPERLIQUID \
+DZ_ASSUME_YES=1 \
+  curl -fsSL https://get.doublezero.xyz/connect | bash
+```
+
+`DZ_SECRET` is a `DZ_…` access token **or** the path to the DoubleZero ID that owns this seat (same ID as on the accounts page).
+
+**All `doublezero` commands go through the container**, not the host CLI:
+
+```bash
+docker exec doublezero-edge-connect doublezero status
+```
+
+Expect `BGP Session Up` and your `edge-hyper-…` group(s). If a purchased feed is missing, subscribe inside the container:
+
+```bash
+docker exec doublezero-edge-connect \
+  doublezero connect multicast --subscribe-feed <name_of_feed>
+```
+
+Multiple feeds, space-separated:
+
+```bash
+docker exec doublezero-edge-connect \
+  doublezero connect multicast --subscribe-feed \
+    edge-hyper-hl-tob edge-hyper-hl-mbo edge-hyper-xyz-tob edge-hyper-xyz-mbo
+```
+
+Then open the WebSocket (`ws://127.0.0.1:8081`). Contract: [PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md). Full walkthrough: MCP runbook `hyperliquid-edge`.
+
+### 4b. Native multicast
+
+On the host that holds the assigned private key (with host `doublezerod` running), subscribe to the feeds you purchased:
 
 ```bash
 doublezero connect multicast --subscribe-feed <name_of_feed>
@@ -130,13 +180,13 @@ Multiple feeds, space-separated:
 doublezero connect multicast --subscribe-feed edge-hyper-hl-tob edge-hyper-hl-mbo edge-hyper-xyz-tob edge-hyper-xyz-mbo
 ```
 
-Access is enabled on your chosen start date. After access is provisioned, check the tunnel status with:
+Check the tunnel:
 
 ```bash
 doublezero status
 ```
 
-Expect `BGP Session Up` on the correct DoubleZero network.
+Expect `BGP Session Up` on the correct DoubleZero network. Then decode the wire yourself — see [Decode the feed](#decode-the-feed).
 
 ---
 
@@ -150,7 +200,7 @@ You need to pay the invoice before the seat expires. **Not paying leads to remov
 
 ## Feed addresses
 
-IP picks the multicast group. Port picks the stream on that group. Check live values with:
+IP picks the multicast group. Port picks the stream on that group. Check IP live values with:
 
 ```bash
 doublezero multicast group list
@@ -163,9 +213,11 @@ doublezero multicast group list
 | `edge-hyper-xyz-tob` | Best bid/offer and trade prints for trade.xyz perps | `233.84.178.29` | `20100` | `20101` | — | [top-of-book](https://github.com/malbeclabs/edge-feed-spec/blob/main/top-of-book/spec.md) |
 | `edge-hyper-xyz-mbo` | Full order-by-order book for trade.xyz perps | `233.84.178.30` | `20110` | `20111` | `20112` | [market-by-order](https://github.com/malbeclabs/edge-feed-spec/blob/main/market-by-order/spec.md) |
 
-Each feed has its own multicast group address. Bind ports: reference = market + `1`; snapshot (MBO only) = market + `2`. Confirm live values with `doublezero multicast group list` before binding.
+Each feed has its own multicast group address. Ports: reference = market + `1`; snapshot (MBO only) = market + `2`. We suggest binding market and reference together; for MBO, also bind snapshot.
 
-Frames are little-endian fixed-size binary, at most **1,232** bytes per UDP datagram. Hyperliquid native perps use `source_id=1`; trade.xyz perps use `source_id=7`.
+You may also see small UDP packets on port `5765` on `doublezero1` — DoubleZero heartbeats, not market data.
+
+Frames are little-endian fixed-size binary. Hyperliquid native perps use `source_id=1`; trade.xyz perps use `source_id=7`.
 
 ---
 
@@ -208,13 +260,12 @@ sudo apt update && sudo apt install doublezero
 **Tunnel not coming up**
 
 
-1. Verify the daemon is running: `sudo systemctl status doublezerod`
-2. Verify firewall rules are in place (GRE, BGP, PIM, Hyperliquid UDP ports on `doublezero1`, port 44880 on `doublezero0`)
-3. Confirm the invoice for this seat is paid and the start date has passed
-4. Run `doublezero connect multicast --subscribe-feed <feed>` on the machine that holds the assigned private key
-5. Check your connection status: `doublezero status`
-
-The DoubleZero ID used on the accounts page must match the key on this host.
+1. **Edge Connect:** run status in the container — `docker exec doublezero-edge-connect doublezero status`. Host `doublezero status` often fails while the feed is fine (container owns the daemon). Confirm host `doublezerod` is stopped.
+2. **Native:** verify the host daemon is running: `sudo systemctl status doublezerod`
+3. Verify firewall rules are in place (GRE, BGP, PIM, Hyperliquid UDP ports and `5765` on `doublezero1`)
+4. Confirm the invoice for this seat is paid and the start date has passed
+5. Run connect on the path you chose ([4a](#4a-edge-connect) or [4b](#4b-native-multicast)) with the key that matches the accounts page
+6. Expect `BGP Session Up` from the same place you ran connect (container or host)
 
 **No packets after subscribe**
 
@@ -222,17 +273,22 @@ The DoubleZero ID used on the accounts page must match the key on this host.
 1. Confirm you are subscribed: `doublezero user list`
 2. Confirm the feed appears under your groups: `doublezero multicast group list`
 3. Capture on the tunnel, e.g. Hyperliquid TOB: `sudo tcpdump -ni doublezero1 host 233.84.178.27`
-4. Verify you are binding the correct market / reference / snapshot ports for the feed you want
+4. Prefer binding market and reference together (and snapshot for MBO) for the feed you want
 
 **Seat expired or removed**
 
 
-Seats are monthly. If the invoice sent before expiry is not paid, the seat is removed and the tunnel will not stay up.
+Seats are monthly. If the invoice is not paid before expiry, the seat is removed and the tunnel will not stay up.
 
 **"Multicast user already exists"**
 
 
-You already have an active subscription through a different path. Disconnect first with `doublezero disconnect`, then retry `doublezero connect multicast --subscribe-feed <feed>`.
+You already have an active subscription through a different path. Disconnect first, then retry connect:
+
+- **Edge Connect:** `docker exec doublezero-edge-connect doublezero disconnect`
+- **Native:** `doublezero disconnect`
+
+Then retry `doublezero connect multicast --subscribe-feed <feed>` on the same path (container or host).
 
 **AWS-specific**
 

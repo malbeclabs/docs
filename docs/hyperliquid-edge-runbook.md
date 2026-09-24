@@ -8,7 +8,7 @@ description: LLM-oriented runbook — request Hyperliquid Edge feeds, install Ed
     You do not need to run every command yourself. This page is written so an AI assistant can follow it with you.
 
     1. Connect the [DoubleZero MCP](mcp.md) (`https://data.doublezero.xyz/api/mcp`) so the agent can load this runbook itself via `get_onboarding_runbook`.
-    2. Tell it your Linux host (or how to SSH to it), where your access secret lives (`DZ_SECRET`: a `DZ_…` token or the path to your keypair file), and what you want — for example: *install Edge Connect and subscribe to Hyperliquid perps TOB*.
+    2. Tell it your Linux host (or how to SSH to it), where your access secret lives (`DZ_SECRET`: a `DZ_…` token or the path to your DoubleZero ID), and what you want — for example: *install Edge Connect and subscribe to Hyperliquid perps TOB*.
     3. Paste back any errors it asks for. It should follow the steps below in order.
 
     Prefer to do it by hand? Start at [Prerequisites](#prerequisites).
@@ -27,11 +27,12 @@ By connecting, the user agrees to the [DoubleZero Terms of Use](https://doubleze
 |------|--------|
 | Linux/amd64 host | Installer target. |
 | Public IP on the host | Must match an IP entitled for the purchased feed (two receiving hosts per feed, per metro). Override detection with `DZ_CLIENT_IP` if behind NAT. |
-| Access secret (`DZ_SECRET`) | A `DZ_…` token **or** path to the Solana keypair JSON that owns the access pass / feed purchase. Private key must be on the machine that receives the feed. |
+| Access secret (`DZ_SECRET`) | A `DZ_…` token **or** path to the DoubleZero ID that owns the access pass / feed purchase. The matching private key must be on the machine that receives the feed. |
 | Approved Hyperliquid feed | Request at [doublezero.xyz/edge/subscribe](https://doublezero.xyz/edge/subscribe), wait for contact (**1–3 business days**), pay the invoice, then connect. |
 | Metro | Pick the delivery city with `doublezero latency` when applying. Tokyo package delivers to Tokyo receivers; anywhere else needs Global. |
 | GRE (IP proto 47) allowed | Cloud SG / firewall. On AWS, disable ENI source/dest check. |
 | UDP `20000`–`20999` inbound on `doublezero1` | Market / reference / snapshot. Open the full band so new feeds do not need another firewall change. |
+| UDP `5765` inbound on `doublezero1` | DoubleZero heartbeats (not market data). |
 
 The installer may print `!! No access pass… Continuing` and still exit 0. That is **not** connected. Look for `Access pass OK` and a later `BGP Session Up`. Treat `disconnected` + `Insufficient balance` / missing pass as a hard stop.
 
@@ -40,6 +41,7 @@ Firewall sketch (after the tunnel exists, `doublezero1` is present):
 ```bash
 sudo iptables -A OUTPUT -p gre -j ACCEPT
 sudo iptables -A INPUT -i doublezero1 -p udp --dport 20000:20999 -j ACCEPT
+sudo iptables -A INPUT -i doublezero1 -p udp --dport 5765 -j ACCEPT
 # also allow BGP/PIM as in the full Hyperliquid Edge guide if you harden INPUT by default
 ```
 
@@ -82,7 +84,7 @@ You pick a **metro** and a **pubkey**. You do **not** bind a public IP at applic
 `DZ_SECRET` is the identity that holds your Edge access pass / purchased feed. Set it to either:
 
 - a **`DZ_…` access token** you were issued, or
-- the **path to a Solana keypair JSON** (the same keypair authorized for this seat).
+- the **path to your DoubleZero ID** (the same ID authorized for this seat).
 
 ```bash
 # example: keypair file
@@ -201,7 +203,7 @@ Replace the group IP with the row you subscribed.
 2. **Silent non-activation.** Wrong `code` or group IP in the bridge registry ⇒ no receiver, no WS market-data, little noise. Diff `doublezero status --json` groups vs feed registry.
 3. **Host `doublezerod` vs container.** Edge Connect uses host networking and its own daemon. A host-level `doublezerod` fighting over the same UDP/GRE path will break the container — stop the host daemon when running the bridge.
 4. **WS only with market-data subscription.** Shreds-only (or no market feed) ⇒ no `:8081` service by design.
-5. **Port band.** Firewall must allow `20000:20999` on `doublezero1`, not only GRE. Decapsulated UDP re-enters `INPUT` on the tunnel iface.
+5. **Port band.** Firewall must allow `20000:20999` and `5765` on `doublezero1`, not only GRE. Decapsulated UDP re-enters `INPUT` on the tunnel iface.
 6. **Installer exit 0 ≠ tunnel up.** Missing access pass or credits: the script continues and still prints Done / a WebSocket URL. Trust `doublezero status`, not the installer footer.
 7. **Feed metro ≠ closest device.** Edge Connect attaches to the metro that serves the purchased feed. Forcing `--device` at the lowest-latency site fails if that metro does not serve the feed. The constraint is the **device**, not where the host sits (a host far from the serving metro can still attach to that device).
 8. **Stale `doublezero1`.** `tunnel already exists`, mixed `169.254.x` addresses, or BGP TCP never establishing to the inner peer → disconnect, delete the iface, connect again. Do not stack a second GRE on a dirty iface.
