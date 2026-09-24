@@ -17,6 +17,8 @@ exclude_docs: |
   solana-shreds-publisher-runbook.*.md
   kalshi-runbook.md
   kalshi-runbook.*.md
+  hyperliquid-edge-runbook.md
+  hyperliquid-edge-runbook.*.md
 theme:
   name: material
   custom_dir: overrides
