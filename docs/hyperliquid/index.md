@@ -21,10 +21,10 @@ Core feeds cover Hyperliquid native perps (`hl`) and [trade.xyz](https://trade.x
 
 | Feed | Description |
 |------|-------------|
-| `edge-hyper-hl-tob` | Best bid/offer and trade prints for Hyperliquid perps |
-| `edge-hyper-hl-mbo` | Full order-by-order book for Hyperliquid perps (adds, cancels, executions) |
-| `edge-hyper-xyz-tob` | Best bid/offer and trade prints for trade.xyz perps |
-| `edge-hyper-xyz-mbo` | Full order-by-order book for trade.xyz perps (adds, cancels, executions) |
+| `hyper-hl-tob` | Best bid/offer and trade prints for Hyperliquid perps |
+| `hyper-hl-mbo` | Full order-by-order book for Hyperliquid perps (adds, cancels, executions) |
+| `hyper-xyz-tob` | Best bid/offer and trade prints for trade.xyz perps |
+| `hyper-xyz-mbo` | Full order-by-order book for trade.xyz perps (adds, cancels, executions) |
 
 - Top-of-Book and Trades: best bid and offer per instrument, plus trade prints.
 - Market-by-Order: every resting order (add, cancel, execution), with in-band snapshot and delta recovery.

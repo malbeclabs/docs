@@ -10,10 +10,10 @@ The Hyperliquid feeds deliver market data over DoubleZero Edge as UDP multicast.
 
 | Feed | Description |
 |------|-------------|
-| `edge-hyper-hl-tob` | Best bid/offer and trade prints for Hyperliquid perps |
-| `edge-hyper-hl-mbo` | Full order-by-order book for Hyperliquid perps (adds, cancels, executions) |
-| `edge-hyper-xyz-tob` | Best bid/offer and trade prints for trade.xyz perps |
-| `edge-hyper-xyz-mbo` | Full order-by-order book for trade.xyz perps (adds, cancels, executions) |
+| `hyper-hl-tob` | Best bid/offer and trade prints for Hyperliquid perps |
+| `hyper-hl-mbo` | Full order-by-order book for Hyperliquid perps (adds, cancels, executions) |
+| `hyper-xyz-tob` | Best bid/offer and trade prints for trade.xyz perps |
+| `hyper-xyz-mbo` | Full order-by-order book for trade.xyz perps (adds, cancels, executions) |
 
 Service overview: [Hyperliquid](index.md).
 
@@ -35,9 +35,7 @@ Want an AI to do the install with you? Connect the [DoubleZero MCP](../mcp.md) a
 **Complete Setup**
 
 
-For **native multicast**, follow the [setup](../setup.md) instructions to install and configure the DoubleZero client on the host (including `doublezerod`).
-
-For **Edge Connect**, you still need a DoubleZero ID for the application form, and the host firewall rules below. Skip enabling a long-running host `doublezerod` if you will use Edge Connect — the container runs its own daemon.
+Follow the [setup](../setup.md) instructions to install and configure the DoubleZero client on the host.
 
 If you have previously set up DoubleZero on the host for native use, ensure the client is current:
 
@@ -126,22 +124,17 @@ After you submit the application, you will receive an invoice; once it is paid, 
 
 ### 4a. Edge Connect
 
-Install [doublezero-edge-connect](https://github.com/malbeclabs/doublezero-edge-connect) **after** approval and payment. The bridge joins DoubleZero inside a `--network host` container and serves normalized JSON on `ws://<host>:8081`.
-
 If a host `doublezerod` is already running (from [setup](../setup.md)), stop it first — it fights the container’s daemon for the same tunnel:
 
 ```bash
 sudo systemctl stop doublezerod
 ```
 
-```bash
-DZ_SECRET=/path/to/keypair.json \
-DZ_FEEDS=HYPERLIQUID \
-DZ_ASSUME_YES=1 \
-  curl -fsSL https://get.doublezero.xyz/connect | bash
-```
+Install [doublezero-edge-connect](https://github.com/malbeclabs/doublezero-edge-connect) **after** approval and payment. The bridge joins DoubleZero inside a `--network host` container and serves normalized JSON on `ws://<host>:8081`.
 
-`DZ_SECRET` is a `DZ_…` access token **or** the path to the DoubleZero ID that owns this seat (same ID as on the accounts page).
+```bash
+curl -fsSL https://get.doublezero.xyz/connect | bash
+```
 
 **All `doublezero` commands go through the container**, not the host CLI:
 
@@ -149,20 +142,14 @@ DZ_ASSUME_YES=1 \
 docker exec doublezero-edge-connect doublezero status
 ```
 
-Expect `BGP Session Up` and your `edge-hyper-…` group(s). If a purchased feed is missing, subscribe inside the container:
+!!! tip
+    You can create an alias for easy commands to the container. This example enables `dz status` to work the same as `doublezero status` inside the container:
 
-```bash
-docker exec doublezero-edge-connect \
-  doublezero connect multicast --subscribe-feed <name_of_feed>
-```
+    ```bash
+    echo "alias dz='sudo docker exec -it doublezero-edge-connect doublezero'" >> ~/.bashrc && source ~/.bashrc
+    ```
 
-Multiple feeds, space-separated:
-
-```bash
-docker exec doublezero-edge-connect \
-  doublezero connect multicast --subscribe-feed \
-    edge-hyper-hl-tob edge-hyper-hl-mbo edge-hyper-xyz-tob edge-hyper-xyz-mbo
-```
+Expect `BGP Session Up` and your `hyper-…` group(s) subscribed.
 
 Then open the WebSocket (`ws://127.0.0.1:8081`). Contract: [PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md). Full walkthrough: MCP runbook `hyperliquid-edge`.
 
@@ -177,7 +164,7 @@ doublezero connect multicast --subscribe-feed <name_of_feed>
 Multiple feeds, space-separated:
 
 ```bash
-doublezero connect multicast --subscribe-feed edge-hyper-hl-tob edge-hyper-hl-mbo edge-hyper-xyz-tob edge-hyper-xyz-mbo
+doublezero connect multicast --subscribe-feed hyper-hl-tob hyper-hl-mbo hyper-xyz-tob hyper-xyz-mbo
 ```
 
 Check the tunnel:
@@ -208,10 +195,10 @@ doublezero multicast group list
 
 | Feed | Description | Multicast group | Market | Reference | Snapshot | Spec |
 |------|-------------|-----------------|--------|-----------|----------|------|
-| `edge-hyper-hl-tob` | Best bid/offer and trade prints for Hyperliquid perps | `233.84.178.27` | `20000` | `20001` | — | [top-of-book](https://github.com/malbeclabs/edge-feed-spec/blob/main/top-of-book/spec.md) |
-| `edge-hyper-hl-mbo` | Full order-by-order book for Hyperliquid perps | `233.84.178.28` | `20010` | `20011` | `20012` | [market-by-order](https://github.com/malbeclabs/edge-feed-spec/blob/main/market-by-order/spec.md) |
-| `edge-hyper-xyz-tob` | Best bid/offer and trade prints for trade.xyz perps | `233.84.178.29` | `20100` | `20101` | — | [top-of-book](https://github.com/malbeclabs/edge-feed-spec/blob/main/top-of-book/spec.md) |
-| `edge-hyper-xyz-mbo` | Full order-by-order book for trade.xyz perps | `233.84.178.30` | `20110` | `20111` | `20112` | [market-by-order](https://github.com/malbeclabs/edge-feed-spec/blob/main/market-by-order/spec.md) |
+| `hyper-hl-tob` | Best bid/offer and trade prints for Hyperliquid perps | `233.84.178.27` | `20000` | `20001` | — | [top-of-book](https://github.com/malbeclabs/edge-feed-spec/blob/main/top-of-book/spec.md) |
+| `hyper-hl-mbo` | Full order-by-order book for Hyperliquid perps | `233.84.178.28` | `20010` | `20011` | `20012` | [market-by-order](https://github.com/malbeclabs/edge-feed-spec/blob/main/market-by-order/spec.md) |
+| `hyper-xyz-tob` | Best bid/offer and trade prints for trade.xyz perps | `233.84.178.29` | `20100` | `20101` | — | [top-of-book](https://github.com/malbeclabs/edge-feed-spec/blob/main/top-of-book/spec.md) |
+| `hyper-xyz-mbo` | Full order-by-order book for trade.xyz perps | `233.84.178.30` | `20110` | `20111` | `20112` | [market-by-order](https://github.com/malbeclabs/edge-feed-spec/blob/main/market-by-order/spec.md) |
 
 Each feed has its own multicast group address. Ports: reference = market + `1`; snapshot (MBO only) = market + `2`. We suggest binding market and reference together; for MBO, also bind snapshot.
 
@@ -274,6 +261,23 @@ sudo apt update && sudo apt install doublezero
 2. Confirm the feed appears under your groups: `doublezero multicast group list`
 3. Capture on the tunnel, e.g. Hyperliquid TOB: `sudo tcpdump -ni doublezero1 host 233.84.178.27`
 4. Prefer binding market and reference together (and snapshot for MBO) for the feed you want
+
+**Purchased feed missing (Edge Connect)**
+
+If a purchased feed is missing from `doublezero status`, subscribe inside the container:
+
+```bash
+docker exec doublezero-edge-connect \
+  doublezero connect multicast --subscribe-feed <name_of_feed>
+```
+
+Multiple feeds, space-separated:
+
+```bash
+docker exec doublezero-edge-connect \
+  doublezero connect multicast --subscribe-feed \
+    hyper-hl-tob hyper-hl-mbo hyper-xyz-tob hyper-xyz-mbo
+```
 
 **Seat expired or removed**
 
