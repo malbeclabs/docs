@@ -26,6 +26,8 @@ Service overview: [Hyperliquid](index.md).
 
 For Edge Connect, finish subscription and connect on the host first, then run the container instead of decoding by hand.
 
+Want an AI to do the install with you? Connect the [DoubleZero MCP](../mcp.md) and ask it to walk you through Hyperliquid Edge.
+
 ---
 
 ## Step 1: DoubleZero Setup
@@ -44,7 +46,7 @@ sudo apt update && sudo apt install doublezero
 **Configure the Firewall**
 
 
-Allow GRE, BGP, PIM, and Hyperliquid feed traffic on `doublezero1`. Hyperliquid UDP ports sit in `9000`–`11999` (Top-of-Book and Market-by-Order across publisher port sets). Open the full band so new port sets do not need another firewall change. See [Feed addresses](#feed-addresses).
+Allow GRE, BGP, PIM, and Hyperliquid feed traffic on `doublezero1`. Hyperliquid UDP ports sit in `20000`–`20999` (Top-of-Book and Market-by-Order market, reference, and snapshot). Open the full band so new feeds do not need another firewall change. See [Feed addresses](#feed-addresses).
 
 **iptables:**
 
@@ -54,7 +56,7 @@ sudo iptables -A INPUT -i doublezero1 -s 169.254.0.0/16 -d 169.254.0.0/16 -p tcp
 sudo iptables -A OUTPUT -o doublezero1 -s 169.254.0.0/16 -d 169.254.0.0/16 -p tcp --dport 179 -j ACCEPT
 sudo iptables -A OUTPUT -o doublezero1 -p pim -j ACCEPT
 # Hyperliquid market / reference / snapshot (all feeds)
-sudo iptables -A INPUT -i doublezero1 -p udp --dport 9000:11999 -j ACCEPT
+sudo iptables -A INPUT -i doublezero1 -p udp --dport 20000:20999 -j ACCEPT
 sudo iptables -A INPUT -i doublezero0 -p udp --dport 44880 -j ACCEPT
 ```
 
@@ -66,11 +68,11 @@ sudo ufw allow in on doublezero1 from 169.254.0.0/16 to 169.254.0.0/16 port 179 
 sudo ufw allow out on doublezero1 from 169.254.0.0/16 to 169.254.0.0/16 port 179 proto tcp
 sudo ufw allow out on doublezero1 proto pim from any to any
 # Hyperliquid market / reference / snapshot (all feeds)
-sudo ufw allow in on doublezero1 to any port 9000:11999 proto udp
+sudo ufw allow in on doublezero1 to any port 20000:20999 proto udp
 sudo ufw allow in on doublezero0 to any port 44880 proto udp
 ```
 
-You may tighten these rules to only the port sets for the feeds you subscribe to (see [Feed addresses](#feed-addresses)).
+You may tighten these rules to only the ports for the feeds you subscribe to (see [Feed addresses](#feed-addresses)).
 
 ---
 
@@ -154,31 +156,16 @@ IP picks the multicast group. Port picks the stream on that group. Check live va
 doublezero multicast group list
 ```
 
-| Feed | Description | Multicast group | Spec |
-|------|-------------|-----------------|------|
-| `edge-hyper-hl-tob` | Best bid/offer and trade prints for Hyperliquid perps | `233.84.178.27` | [top-of-book](https://github.com/malbeclabs/edge-feed-spec/blob/main/top-of-book/spec.md) |
-| `edge-hyper-hl-mbo` | Full order-by-order book for Hyperliquid perps | `233.84.178.28` | [market-by-order](https://github.com/malbeclabs/edge-feed-spec/blob/main/market-by-order/spec.md) |
-| `edge-hyper-xyz-tob` | Best bid/offer and trade prints for trade.xyz perps | `233.84.178.29` | [top-of-book](https://github.com/malbeclabs/edge-feed-spec/blob/main/top-of-book/spec.md) |
-| `edge-hyper-xyz-mbo` | Full order-by-order book for trade.xyz perps | `233.84.178.30` | [market-by-order](https://github.com/malbeclabs/edge-feed-spec/blob/main/market-by-order/spec.md) |
+| Feed | Description | Multicast group | Market | Reference | Snapshot | Spec |
+|------|-------------|-----------------|--------|-----------|----------|------|
+| `edge-hyper-hl-tob` | Best bid/offer and trade prints for Hyperliquid perps | `233.84.178.27` | `20000` | `20001` | — | [top-of-book](https://github.com/malbeclabs/edge-feed-spec/blob/main/top-of-book/spec.md) |
+| `edge-hyper-hl-mbo` | Full order-by-order book for Hyperliquid perps | `233.84.178.28` | `20010` | `20011` | `20012` | [market-by-order](https://github.com/malbeclabs/edge-feed-spec/blob/main/market-by-order/spec.md) |
+| `edge-hyper-xyz-tob` | Best bid/offer and trade prints for trade.xyz perps | `233.84.178.29` | `20100` | `20101` | — | [top-of-book](https://github.com/malbeclabs/edge-feed-spec/blob/main/top-of-book/spec.md) |
+| `edge-hyper-xyz-mbo` | Full order-by-order book for trade.xyz perps | `233.84.178.30` | `20110` | `20111` | `20112` | [market-by-order](https://github.com/malbeclabs/edge-feed-spec/blob/main/market-by-order/spec.md) |
 
-Each feed has its own multicast group address. Bind the ports for the stream you want on that group.
+Each feed has its own multicast group address. Bind ports: reference = market + `1`; snapshot (MBO only) = market + `2`. Confirm live values with `doublezero multicast group list` before binding.
 
-Typical port layout (confirm live values before binding):
-
-| Port set | TOB mktdata | TOB refdata | MBO mktdata | MBO refdata | MBO snapshot |
-|----------|-------------|-------------|-------------|-------------|--------------|
-| A | `9601` | `9602` | `10601` | `10602` | `10603` |
-| B | `9801` | `9802` | `10801` | `10802` | `10803` |
-| C | `9101` | `9102` | `10101` | `10102` | `10103` |
-| D | `9901` | `9902` | `10901` | `10902` | `10903` |
-| E | `9501` | `9502` | `10501` | `10502` | `10503` |
-| F | `9001` | `9002` | `10001` | `10002` | `10003` |
-| G | `9301` | `9302` | `10301` | `10302` | `10303` |
-| H | `9701` | `9702` | `10701` | `10702` | `10703` |
-| I | `9201` | `9202` | `10201` | `10202` | `10203` |
-| J | `9401` | `9402` | `10401` | `10402` | `10403` |
-
-Frames are little-endian fixed-size binary, at most **1,232** bytes per UDP datagram. Mainnet Top-of-Book and Market-by-Order frames typically use `source_id=1`; Market-by-Order frames use `channel_id=1`.
+Frames are little-endian fixed-size binary, at most **1,232** bytes per UDP datagram. Hyperliquid native perps use `source_id=1`; trade.xyz perps use `source_id=7`.
 
 ---
 
@@ -235,7 +222,7 @@ The DoubleZero ID used on the accounts page must match the key on this host.
 1. Confirm you are subscribed: `doublezero user list`
 2. Confirm the feed appears under your groups: `doublezero multicast group list`
 3. Capture on the tunnel, e.g. Hyperliquid TOB: `sudo tcpdump -ni doublezero1 host 233.84.178.27`
-4. Verify you are binding the correct port set for the publisher stream you want
+4. Verify you are binding the correct market / reference / snapshot ports for the feed you want
 
 **Seat expired or removed**
 
