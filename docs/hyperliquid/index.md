@@ -10,8 +10,8 @@ Hyperliquid has two products on DoubleZero: Edge market data feeds, and peering 
 
 | Offering | What it is | Who it's for | Guide |
 | --- | --- | --- | --- |
-| **Market Data Feeds (Edge)** | Top-of-Book and Market-by-Order as UDP multicast on DoubleZero Edge. | Traders | [Subscribe to Hyperliquid (Edge)](edge.md) |
-| **Peering** | One deduplicated Hyperliquid gossip feed via Block Proxy (no market data). | Non-validating nodes | [Peering Access](peering.md) |
+| **Market Data Feeds (Edge)** | Top-of-Book and Market-by-Order as UDP multicast on DoubleZero Edge. | Traders | [Subscribe to Hyperliquid (Edge)](/hyperliquid/edge/) |
+| **Peering** | One deduplicated Hyperliquid gossip feed via Block Proxy (no market data). | Non-validating nodes | [Peering Access](/hyperliquid/peering/) |
 
 ## Market Data Feeds (Edge)
 
@@ -31,7 +31,7 @@ Core feeds cover Hyperliquid native perps (`hl`) and [trade.xyz](https://trade.x
 
 We run multiple publishers so traders can fail over or pick the fastest stream.
 
-How to connect: [Subscribe to Hyperliquid (Edge)](edge.md).
+How to connect: [Subscribe to Hyperliquid (Edge)](/hyperliquid/edge/).
 
 ## Peering
 
@@ -39,4 +39,4 @@ Peering is for non-validating nodes that need Hyperliquid gossip without taking 
 
 Each proxy looks like a single ordinary gossip peer to our nodes. Capacity grows by adding proxies; load on those nodes does not grow with peer count. Availability target is 99.9% monthly. The service does not include Edge market data feeds.
 
-How to connect: [Peering Access](peering.md).
+How to connect: [Peering Access](/hyperliquid/peering/).
