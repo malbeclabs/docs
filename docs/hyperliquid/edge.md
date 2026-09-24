@@ -151,7 +151,7 @@ docker exec doublezero-edge-connect doublezero status
 
 Expect `BGP Session Up` and your `hyper-…` group(s) subscribed.
 
-Then open the WebSocket (`ws://127.0.0.1:8081`). Contract: [PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md). Full walkthrough: MCP runbook `hyperliquid-edge`.
+Then open the WebSocket (`ws://127.0.0.1:8081`). Contract: [PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md). Full walkthrough: [MCP](../mcp.md) runbook `hyperliquid-edge`.
 
 ### 4b. Native multicast
 
