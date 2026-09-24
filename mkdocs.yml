@@ -17,6 +17,8 @@ exclude_docs: |
   solana-shreds-publisher-runbook.*.md
   kalshi-runbook.md
   kalshi-runbook.*.md
+  hyperliquid-edge-runbook.md
+  hyperliquid-edge-runbook.*.md
 theme:
   name: material
   custom_dir: overrides
@@ -85,17 +87,19 @@ nav:
   - Welcome: index.md
   - Setup: setup.md
   - Connect your AI: mcp.md
-  - Kalshi: kalshi.md
   - Solana:
-    - Connect validator (IBRL Mainnet): DZ Mainnet-beta Connection.md
-    - Connect validator (IBRL Testnet): DZ Testnet Connection.md
+    - Connect validator (IBRL): DZ Mainnet-beta Connection.md
     - Publish shreds (Edge): Validator Multicast Connection.md
     - Subscribe to shreds (Edge): Edge Subscriber Connection.md
     - Subscribe to shreds (CLI legacy): Edge Subscriber CLI.md
     - Permissioned / RPC: Permissioned Connection.md
-    - Other multicast: Other Multicast Connection.md
     - Troubleshoot Edge: troubleshooting.md
     - Validator Rewards: Validator Rewards.md
+  - Hyperliquid:
+    - hyperliquid/index.md
+    - Subscribe to Hyperliquid (Edge): hyperliquid/edge.md
+    - Peering Access: hyperliquid/peering.md
+  - Kalshi: kalshi.md
   - Shelby: shelby.md
   - Contributors:
     - Overview: contribute-overview.md
@@ -107,6 +111,7 @@ nav:
     - Decommissioning: contribute-decommission.md
   - Reference:
     - Architecture: architecture.md
+    - Other multicast: Other Multicast Connection.md
     - Geolocation: geolocation.md
     - Glossary: glossary.md
   - Support: support.md
@@ -133,10 +138,8 @@ markdown_extensions:
       title: On this page
 extra_css:
   - stylesheets/extra.css
-  - stylesheets/wizard.css
 extra_javascript:
   - javascripts/cloudsmith-versions.js
-  - javascripts/connection-wizard.js
   - javascripts/page-toolbar.js
   - javascripts/nav-accordion.js
   - javascripts/toc-page-top.js

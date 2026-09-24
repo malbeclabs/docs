@@ -200,6 +200,18 @@ pre,
   font-family: var(--dz-font-mono);
 }
 
+/* Box-drawing diagrams: site mono may lack glyph widths; use system mono + no wrap */
+.md-typeset pre.ascii-diagram,
+.md-typeset pre.ascii-diagram code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.72rem;
+  line-height: 1.25;
+  white-space: pre;
+  overflow-x: auto;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
 /* Suisse body · Reckless headings only */
 .md-typeset {
   font-size: 0.84rem;

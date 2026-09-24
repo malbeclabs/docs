@@ -96,7 +96,7 @@
     });
   }
 
-  // Expose refresh function for dynamically generated content (e.g., connection wizard)
+  // Expose refresh function for dynamically generated content
   window.__dzRefreshVersions = function() {
     var keys = Object.keys(versionCache);
     for (var i = 0; i < keys.length; i++) {

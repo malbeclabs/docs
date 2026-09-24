@@ -45,7 +45,17 @@ DZ_ASSUME_YES=1 \
 
 `DZ_SECRET` is a `DZ_…` access token **or** the path to the Solana keypair JSON that owns your access pass / feed purchase.
 
-Then verify `doublezero status` (expect `BGP Session Up` and your Kalshi group) and connect a WebSocket client to `:8081`.
+If a host `doublezerod` is already running, stop it first — it fights the container’s daemon for the same tunnel:
+
+```bash
+sudo systemctl stop doublezerod
+```
+
+Then verify status **inside the container** (expect `BGP Session Up` and your Kalshi group) and connect a WebSocket client to `:8081`:
+
+```bash
+docker exec doublezero-edge-connect doublezero status
+```
 
 **Full steps, verification, and gotchas:** connect the [DoubleZero MCP](mcp.md) and ask it to walk you through Edge Connect for Kalshi.  
 **WebSocket contract:** [PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md).
@@ -59,8 +69,6 @@ Then verify `doublezero status` (expect `BGP Session Up` and your Kalshi group) 
 
 ### Buy a feed
 
-<div data-wizard-step="kalshi-buy-feed" markdown>
-
 Identify the lowest-latency device before purchasing:
 
 ```bash
@@ -69,7 +77,6 @@ doublezero latency
 
 Purchase at [https://doublezero.xyz/edge/subscribe](https://doublezero.xyz/edge/subscribe).
 
-</div>
 
 ### DoubleZero client setup
 
@@ -83,8 +90,6 @@ sudo apt update && sudo apt install doublezero
 
 Allow GRE, BGP, PIM, and the Kalshi feed traffic. Kalshi UDP ports live in `30000`–`59999`: the leading digit is the traffic class (`3` market data, `4` reference data, `5` snapshot) and the second digit is the feed, so reference is always market + `10000` and snapshot is always market + `20000`. Open the full band on `doublezero1` so new channels and feeds do not require another firewall change — see [Feed Addresses](#feed-addresses).
 
-<div data-wizard-step="kalshi-firewall-iptables" markdown>
-
 **iptables:**
 
 ```bash
@@ -96,9 +101,6 @@ sudo iptables -A OUTPUT -o doublezero1 -p pim -j ACCEPT
 sudo iptables -A INPUT -i doublezero1 -p udp --dport 30000:59999 -j ACCEPT
 ```
 
-</div>
-
-<div data-wizard-step="kalshi-firewall-ufw" markdown>
 
 **UFW:**
 
@@ -111,11 +113,8 @@ sudo ufw allow out on doublezero1 proto pim from any to any
 sudo ufw allow in on doublezero1 to any port 30000:59999 proto udp
 ```
 
-</div>
 
 ### Subscribe
-
-<div data-wizard-step="kalshi-subscribe" markdown>
 
 ```bash
 doublezero connect multicast --subscribe edge-kalshi-perps-tob
@@ -158,7 +157,6 @@ Your feeds appear in the `groups` column. Inspect group IPs with:
 doublezero multicast group list
 ```
 
-</div>
 
 ### Decode the wire yourself
 
@@ -238,9 +236,10 @@ A publisher restart advances the reset count in the frame header. Discard state 
 
 ### Tunnel not coming up
 
-1. Verify the daemon is running: `sudo systemctl status doublezerod` (native path) or that the Edge Connect container is up
-2. Verify firewall rules are in place (GRE, BGP, PIM, and the feed ports on `doublezero1`)
-3. Check your connection status: `doublezero status` — expect `BGP Session Up` on the correct DoubleZero network
+1. **Edge Connect:** run status in the container — `docker exec doublezero-edge-connect doublezero status`. Host `doublezero status` often fails while the feed is fine (container owns the daemon). Confirm host `doublezerod` is stopped.
+2. **Native:** verify the host daemon is running: `sudo systemctl status doublezerod`
+3. Verify firewall rules are in place (GRE, BGP, PIM, and the feed ports on `doublezero1`)
+4. Check connection status from the same place you connected (container or host) — expect `BGP Session Up` on the correct DoubleZero network
 
 The client IP is auto-discovered from your host's public IP. Verify it matches the IP you used when purchasing the feed.
 

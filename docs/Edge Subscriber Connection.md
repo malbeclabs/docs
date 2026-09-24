@@ -79,23 +79,25 @@ You will assign a DoubleZero ID (existing key, or generate a new one) to each fe
 
 You pick a **metro** and a **pubkey**. You do **not** bind a public IP at application time. During the subscription you can move access between IPs **within the chosen metros**.
 
-Our team reviews applications and contacts you in a timely manner (expect **2 business days**).
+You will be contacted with more instructions in a timely manner (expect **1-3 business days**).
 
 ---
 
 ## Step 4: Connect after approval
 
-After we contact you, you receive an invoice, and that invoice is paid, connect on each approved machine:
+After you submit the application, you will receive an invoice; once it is paid, connect on each approved machine. Access is enabled on your chosen start date.
 
 ```bash
 doublezero connect multicast --subscribe-feed solana-shreds-full
 ```
 
-Access is enabled on your chosen start date, after access is provisioned you may check the tunnel status with:
+Check the tunnel:
 
 ```bash
 doublezero status
 ```
+
+Expect `BGP Session Up` on the correct DoubleZero network.
 
 ---
 
@@ -103,7 +105,7 @@ doublezero status
 
 Seats are charged **monthly**. Watch the seat expiration date.
 
-You will be invoiced a few days before the seat expires. **Not paying leads to removal of the seat.**
+You need to pay the invoice before the seat expires. **Not paying leads to removal of the seat.**
 
 ---
 
@@ -181,7 +183,7 @@ The DoubleZero ID used on the accounts page must match the key on this host.
 
 ### Seat expired or removed
 
-Seats are monthly. If the invoice sent before expiry is not paid, the seat is removed and the tunnel will not stay up.
+Seats are monthly. If the invoice is not paid before expiry, the seat is removed and the tunnel will not stay up.
 
 ### "Multicast user already exists"
 
