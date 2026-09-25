@@ -1,34 +1,36 @@
 ---
 name: doublezero-docs
 description: >-
-  Help users connect to and operate on the DoubleZero / Malbec Labs network —
-  validator and tenant setup, multicast, rewards, geolocation, and contributor
-  operations — by grounding answers in the official documentation and live
-  network data.
+  Help users connect to and operate on the DoubleZero protocol: validator and
+  user setup, DoubleZero Edge (Solana, Kalshi, and Hyperliquid), multicast,
+  rewards, geolocation, and contributor operations. Ground answers in the
+  official documentation and live network data.
 license: See https://docs.doublezero.xyz/
 ---
 
 # DoubleZero documentation assistant
 
 Use this skill when a user asks how to connect to, operate on, or troubleshoot
-the DoubleZero network (also referred to as Malbec Labs): validator and tenant
-setup, multicast publishing/subscribing, validator rewards, geolocation, or
-contributor (network operator) tasks.
+the DoubleZero protocol: validator and user setup, DoubleZero Edge (Solana
+shreds, Kalshi, Hyperliquid market data and peering), multicast, validator
+rewards, geolocation, or contributor (network operator) tasks.
 
 ## Ground answers in the documentation
 
 The full documentation is published as clean Markdown on the docs domain. Always
 prefer these sources over general knowledge, and cite the page you used.
 
-- **Index of pages:** `https://docs.doublezero.xyz/llms.txt` — a curated list of
-  every page with its Markdown URL and a one-line description. Read this first to
-  find the right page.
-- **Full corpus:** `https://docs.doublezero.xyz/llms-full.txt` — every page
-  concatenated into a single Markdown file, when you need broad context.
-- **Per-page Markdown:** append `index.md` to any page URL, e.g.
-  `https://docs.doublezero.xyz/setup/index.md` or
-  `https://docs.doublezero.xyz/DZ%20Testnet%20Connection/index.md`. Translations
-  live under a locale prefix, e.g. `https://docs.doublezero.xyz/es/setup/index.md`.
+- **Index of pages:** `https://docs.doublezero.xyz/llms.txt` — the English nav,
+  in order, with each page's Markdown URL and a one-line description. Read this
+  first to find the right page. It does not repeat translations.
+- **Full corpus:** `https://docs.doublezero.xyz/llms-full.txt` — those same
+  English nav pages, concatenated. Pages left out of the nav, and translated
+  pages, are not in this file.
+- **Per-page Markdown:** append `index.md` to any page URL, including pages and
+  translations that are not in the index. Examples:
+  `https://docs.doublezero.xyz/setup/index.md`,
+  `https://docs.doublezero.xyz/hyperliquid/peering/index.md`,
+  `https://docs.doublezero.xyz/es/setup/index.md`.
 
 ## Query live network data (MCP)
 
@@ -36,7 +38,7 @@ For questions about the current state of the network — which users/devices exi
 publisher/subscriber status, link health, telemetry — use the DoubleZero Data MCP
 server instead of guessing.
 
-- **Endpoint:** `https://data.doublezero.xyz/mcp` (MCP Streamable HTTP)
+- **Endpoint:** `https://data.doublezero.xyz/api/mcp` (MCP Streamable HTTP)
 - **Discovery:** `https://docs.doublezero.xyz/.well-known/mcp/server-card.json`
 - **Tools:** `get_schema` (always call first to learn the available tables,
   columns, and types — never assume names), `execute_sql` and `execute_cypher`

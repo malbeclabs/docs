@@ -5,7 +5,7 @@
   },
   "transport": {
     "type": "streamable-http",
-    "endpoint": "https://data.doublezero.xyz/mcp"
+    "endpoint": "https://data.doublezero.xyz/api/mcp"
   },
   "capabilities": {
     "tools": true,
