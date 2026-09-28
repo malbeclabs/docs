@@ -5,7 +5,8 @@ on:
     types: [opened, synchronize, reopened]
     paths:
       - 'docs/**.md'
-  # Catches PRs merged before their translation finished; opens a translation PR.
+  # Catches pages merged with an out-of-date translation (translations.json records the
+  # source hash each one was made from); opens a translation PR.
   push:
     branches: [main]
     paths:
@@ -31,6 +32,7 @@ permissions:
 jobs:
   translate:
     runs-on: ubuntu-latest
+    timeout-minutes: 180
     # PRs: skip the bot's own commits (prevents loops) and fork PRs (no secret access).
     if: >
       github.event_name != 'pull_request' || (
@@ -40,7 +42,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          # Non-PR runs pin the triggering commit, so a later merge can't widen --since's range.
+          # Non-PR runs pin the triggering commit, so a later merge can't widen --changed's range.
           ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.sha }}
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -62,28 +64,29 @@ jobs:
         run: |
           case "$EVENT" in
             pull_request)
-              python scripts/translate.py --pr-base "$PR_BASE" ;;
+              python scripts/translate.py --changed "$PR_BASE" ;;
             push)
               if [ "$PUSH_BEFORE" = "0000000000000000000000000000000000000000" ]; then
                 echo "New branch push; nothing to compare against."
                 exit 0
               fi
-              python scripts/translate.py --since "$PUSH_BEFORE" --skip-translated ;;
+              python scripts/translate.py --changed "$PUSH_BEFORE" ;;
             workflow_dispatch)
               if [ -n "$FILES_INPUT" ]; then
                 IFS=',' read -ra FILES <<< "$FILES_INPUT"
                 python scripts/translate.py --files "${FILES[@]}"
               else
-                python scripts/translate.py --stale
+                python scripts/translate.py
               fi ;;
           esac
 
       - name: Commit translations to PR branch
-        if: github.event_name == 'pull_request'
+        # Runs after a partial failure too: finished translations land and the job stays red.
+        if: ${{ !cancelled() && github.event_name == 'pull_request' }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/
+          git add docs/ translations.json
           if git diff --cached --quiet; then
             echo "No translation changes."
             exit 0
@@ -92,7 +95,7 @@ jobs:
           git push origin HEAD:${{ github.head_ref }}
 
       - name: Open translation PR
-        if: github.event_name != 'pull_request'
+        if: ${{ !cancelled() && github.event_name != 'pull_request' }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TARGET: ${{ github.ref_name }}
@@ -100,7 +103,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/
+          git add docs/ translations.json
           if git diff --cached --quiet; then
             echo "No translation changes."
             exit 0
