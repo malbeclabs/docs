@@ -1,5 +1,5 @@
 ---
-description: Choose the DoubleZero tenant and connection path that matches your use case — Solana validators, RPCs, Kalshi market data, Shelby, or a new protocol.
+description: Choose the DoubleZero tenant and connection path that matches your use case — Solana validators, RPCs, Kalshi and Phoenix market data, Shelby, or a new protocol.
 ---
 
 # Tenants
@@ -20,6 +20,12 @@ Kalshi
 | Use Case | Next Stop |
 |-------------|---------|
 | Subscribing to the Kalshi market data feeds | [Kalshi](kalshi.md) |
+
+Phoenix
+
+| Use Case | Next Stop |
+|-------------|---------|
+| Subscribing to the Phoenix market data feeds | [Phoenix](phoenix.md) |
 
 Shelby
 

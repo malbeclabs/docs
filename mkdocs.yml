@@ -17,6 +17,8 @@ exclude_docs: |
   solana-shreds-publisher-runbook.*.md
   kalshi-runbook.md
   kalshi-runbook.*.md
+  phoenix-runbook.md
+  phoenix-runbook.*.md
   hyperliquid-edge-runbook.md
   hyperliquid-edge-runbook.*.md
 validation:
@@ -102,6 +104,7 @@ nav:
     - Subscribe to Hyperliquid (Edge): hyperliquid/edge.md
     - Peering Access: hyperliquid/peering.md
   - Kalshi: kalshi.md
+  - Phoenix: phoenix.md
   - Shelby: shelby.md
   - Contributors:
     - Overview: contribute-overview.md

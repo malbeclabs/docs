@@ -32,6 +32,7 @@ SECTIONS = [
     ("Setup", ["setup.md"]),
     ("Connect your AI", ["mcp.md"]),
     ("Kalshi", ["kalshi.md"]),
+    ("Phoenix", ["phoenix.md"]),
     (
         "Solana",
         [
