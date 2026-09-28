@@ -172,7 +172,13 @@ def main():
 
     if args.files is not None or os.environ.get("CHANGED_FILES", "").strip():
         files = args.files if args.files is not None else os.environ["CHANGED_FILES"].split("\n")
-        plan = {f.strip(): list(target_langs) for f in files if f.strip() and _is_source(f.strip())}
+        files = [f.strip() for f in files if f.strip()]
+        if args.files is not None:
+            # Hand-picked files: a typo must fail the run, not pass as "nothing to translate".
+            bad = [f for f in files if not (_is_source(f) and os.path.isfile(f))]
+            if bad:
+                sys.exit(f"Not English source pages under docs/: {', '.join(bad)}")
+        plan = {f: list(target_langs) for f in files if _is_source(f)}
     elif args.pr_base:
         plan = plan_pr(args.pr_base, target_langs)
     elif args.since:
