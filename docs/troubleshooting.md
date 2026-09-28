@@ -157,15 +157,11 @@ This issue is often related to the GRE tunnel being successfully activated betwe
 **Symptoms:**
 - `doublezero connect ibrl` was successful. However, `doublezero status` returns `down` or `unknown`
     ```
-    doublezero connect ibrl                                                                                                                                                                                                                                                                                                                                  
-    DoubleZero Service Provisioning
-    🔗  Start Provisioning User...
-    Public IP detected: 111.11.11.11 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
-    🔍  Provisioning User for IP: 111.11.11.11
-    User account created
-    Connected to device: nyc-dz001
-    The user has been successfully activated
-    Service provisioned with status: ok
+    doublezero connect ibrl
+    ⚡  Connecting to mainnet-beta...
+        DoubleZero ID: <your DoubleZero ID>
+    ⚡  Provisioning for IP: 111.11.11.11
+        Device selected: nyc-dz001
     ✅  User Provisioned
     ```
 
@@ -303,16 +299,13 @@ This is not an error, but can be an optimization. Below is a best practice which
 
     output
     ```
-    DoubleZero Service Provisioning
-    🔗  Start Provisioning User...
-    Public IP detected: 111.11.11.11 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
-    🔍  Provisioning User for IP: 111.11.11.11
-    User account created
-    Connected to device: dz-ny7-sw01 
-    Service provisioned with status: ok
+    ⚡  Connecting to mainnet-beta...
+        DoubleZero ID: <your DoubleZero ID>
+    ⚡  Provisioning for IP: 111.11.11.11
+        Device selected: dz-ny7-sw01
     ✅  User Provisioned
     ```
-    notice in the above output that we `Connected to device: dz-ny7-sw01` this is the desired result from our initial investigation in step 1, where we discovered that `dz-ny7-sw01` was the device with the lowest latency.
+    notice in the above output that `Device selected: dz-ny7-sw01` this is the desired result from our initial investigation in step 1, where we discovered that `dz-ny7-sw01` was the device with the lowest latency.
 
 ### Issue: wrong DoubleZero environment {#issue-wrong-doublezero-environment}
 

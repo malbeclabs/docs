@@ -1,5 +1,5 @@
 ---
-description: LLM-oriented runbook — buy a Kalshi feed, install Edge Connect, subscribe, and verify normalized quotes on the WebSocket. Served to the MCP via GitHub raw; not published on the docs site.
+description: LLM-oriented runbook — buy a Kalshi feed, install Edge Connect, subscribe, and verify decoded quotes on the WebSocket. Served to the MCP via GitHub raw; not published on the docs site.
 ---
 
 # Kalshi + Edge Connect — runbook
@@ -15,7 +15,7 @@ description: LLM-oriented runbook — buy a Kalshi feed, install Edge Connect, s
 
 **Not this page:** choosing between Edge Connect and native multicast — start at the [Kalshi getting started](kalshi.md) page. Raw wire decode — path 2 on that page and [edge-feed-spec](https://github.com/malbeclabs/edge-feed-spec). WebSocket contract — [PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md).
 
-**What success looks like:** the tunnel shows `BGP Session Up`, you are subscribed to at least one Kalshi group, the bridge is listening on `ws://<host>:8081`, and (when the publisher is live) you see `instrument` / `quote` (or `book`) JSON messages with `source: "KALSHI"`.
+**What success looks like:** the tunnel shows `BGP Session Up`, you are subscribed to at least one Kalshi group, the bridge is listening on `ws://<host>:8081`, and (when the publisher is live) you see `instrument` / `quote` (or `book`) JSON messages with `"source_name":"KALSHI"` and `"source_id":3`.
 
 ---
 
@@ -24,7 +24,7 @@ description: LLM-oriented runbook — buy a Kalshi feed, install Edge Connect, s
 | Need | Notes |
 |------|--------|
 | Linux/amd64 host | Installer target. |
-| Public IP on the host | Must match the IP authorized when the feed / access pass was issued (or the any-IP `0.0.0.0` pass). Override detection with `DZ_CLIENT_IP` if behind NAT. |
+| Public IP on the host | Must match the IP authorized when the feed / access pass was issued (or the any-IP `0.0.0.0` pass). The connect inside the container detects its own IP. `DZ_CLIENT_IP` only changes the IP the installer's access-pass pre-check uses; it does not help behind NAT. |
 | Access secret (`DZ_SECRET`) | A `DZ_…` token **or** path to the Solana keypair JSON that owns the access pass / feed purchase. |
 | Account credits | The identity in `DZ_SECRET` must have available DoubleZero credits. `Insufficient balance` means recharge that account before connect can succeed. |
 | Purchased Kalshi feed | Buy at [doublezero.xyz/edge/subscribe](https://doublezero.xyz/edge/subscribe) before expecting traffic. |
@@ -45,12 +45,14 @@ sudo iptables -A INPUT -i doublezero1 -p udp --dport 30000:59999 -j ACCEPT
 
 ## Feed map
 
-| Group code | Kind | Multicast group | Market | Reference | Snapshot |
-|------------|------|-----------------|--------|-----------|----------|
-| `edge-kalshi-perps-tob` | TOB | `233.84.178.3` | `31000` | `41000` | — |
-| `edge-kalshi-perps-mbp` | MBP | `233.84.178.4` | `32000` | `42000` | `52000` |
-| `edge-kalshi-sports-tob` | TOB | `233.84.178.17` | `33000`+id | `43000`+id | — |
-| `edge-kalshi-sports-mbp` | MBP | `233.84.178.20` | `34000`+id | `44000`+id | `54000`+id |
+| Feed code | Group code | Kind | Multicast group | Market | Reference | Snapshot |
+|-----------|------------|------|-----------------|--------|-----------|----------|
+| `kalshi-perps-tob` | `edge-kalshi-perps-tob` | TOB | `233.84.178.3` | `31000` | `41000` | — |
+| `kalshi-perps-mbp` | `edge-kalshi-perps-mbp` | MBP | `233.84.178.4` | `32000` | `42000` | `52000` |
+| `kalshi-sports-tob` | `edge-kalshi-sports-tob` | TOB | `233.84.178.17` | `33000`+id | `43000`+id | — |
+| `kalshi-sports-mbp` | `edge-kalshi-sports-mbp` | MBP | `233.84.178.20` | `34000`+id | `44000`+id | `54000`+id |
+
+Subscribe with the **feed code**. `doublezero status` reports the **group code**.
 
 Confirm the live group IP for your env:
 
@@ -58,7 +60,7 @@ Confirm the live group IP for your env:
 docker exec doublezero-edge-connect doublezero multicast group get --code edge-kalshi-perps-tob
 ```
 
-**Edge Connect note:** the bridge matches `code` and multicast **group IP** from its hardcoded feed table to what `doublezero status` reports. A code/IP mismatch fails **silently** (receiver never starts — watch bridge logs / metrics, not only BGP).
+**Edge Connect note:** the bridge activates a receiver when a group **code** in its feed registry matches what `doublezero status` reports. A code that does not match fails **silently**: no receiver, nothing on the WebSocket. A wrong group IP in the registry does not stop activation; the receiver starts and warns `no market data; … rejoining`.
 
 ---
 
@@ -73,17 +75,17 @@ docker exec doublezero-edge-connect doublezero multicast group get --code edge-k
 
 ```bash
 # example: keypair file
-DZ_SECRET=/path/to/keypair.json \
-DZ_FEEDS=KALSHI \
-DZ_ASSUME_YES=1 \
-  curl -fsSL https://get.doublezero.xyz/connect | bash
+curl -fsSL https://get.doublezero.xyz/connect | \
+  DZ_SECRET=/path/to/keypair.json DZ_FEEDS=KALSHI DZ_ASSUME_YES=1 bash
 ```
+
+The variables must come **after the pipe**, on `bash`. Placed before `curl`, they only reach `curl`: without a TTY the installer exits with `No secret provided`, and with one it prompts for the secret and ignores `DZ_FEEDS` and `DZ_ASSUME_YES`.
 
 If you omit `DZ_SECRET`, the installer prompts once. With it set, the install is non-interactive.
 
 What this does: prep host (Docker, `tun`/`ip_gre`, `rmem_max`) → run `doublezero-edge-connect` container (`--network host`) → run `doublezero connect multicast` inside it → serve WS on `:8081` when a **market-data** subscription is active.
 
-Watch the installer for `Access pass OK` and `Joined feed(s): …`. That feed list is what this identity actually purchased. Do not assume Top of Book (`edge-kalshi-perps-tob`) unless it appears there.
+Watch the installer for `Access pass OK` and `Joined feed(s): …`. `Joined feed(s)` lists only the purchased feeds joined in the chosen metro with a free seat. Other purchased feeds print `Skipped…`, and a re-run prints `Already joined`. Do not assume Top of Book (`edge-kalshi-perps-tob`) unless it was joined.
 
 A `⚠️` on **Lowest Latency Device** while **Current Device** is another metro is normal when the feed is only served from that metro. Do not pass `--device` to the closer site unless you know the feed is provisioned there — you will get *feed is not provisioned on the access pass* / *is served from that metro*.
 
@@ -91,31 +93,24 @@ A `⚠️` on **Lowest Latency Device** while **Current Device** is another metr
 
 Prefer the feed the installer already joined. If status already shows `S:edge-kalshi-…`, skip this step.
 
-`--subscribe-feed` takes the **feed account name** from the pass (e.g. `kalshi-perps-mbp`). `--subscribe` takes the **group code** (e.g. `edge-kalshi-perps-mbp`). They are not interchangeable. Subscribing a code or name that is not on the pass fails.
+Only if a purchased feed is missing from `doublezero status`, join it. A bare connect joins every purchased feed (client v0.35.0 or later):
 
-Only run an extra subscribe if the group you bought is missing from `doublezero status`. Prefer the **Feed account** form when using an Edge seat / access-pass identity:
+```bash
+docker exec doublezero-edge-connect doublezero connect multicast
+```
+
+Or name feeds by **feed code**, space-separated:
 
 ```bash
 docker exec doublezero-edge-connect \
-  doublezero connect multicast --subscribe-feed <feed-account-name>
+  doublezero connect multicast --subscribe-feed \
+    kalshi-perps-tob kalshi-perps-mbp \
+    kalshi-sports-tob kalshi-sports-mbp
 ```
 
-Or by group code (use the code that matches `Joined feed(s):`, not a feed you did not buy):
+Do not use the per-metro feed **name** (fails with `feed … not found`) or `--subscribe <group code>` (fails on an Edge seat pass with `A Feed account is required for this EdgeSeat access pass`).
 
-```bash
-# MBP example — swap for -tob / sports if that is what the pass joined
-docker exec doublezero-edge-connect \
-  doublezero connect multicast --subscribe edge-kalshi-perps-mbp
-```
-
-Multiple feeds: space-separate codes.
-
-```bash
-docker exec doublezero-edge-connect \
-  doublezero connect multicast --subscribe \
-    edge-kalshi-perps-tob edge-kalshi-perps-mbp \
-    edge-kalshi-sports-tob edge-kalshi-sports-mbp
-```
+A feed code you have not bought fails with `feed <address> is not provisioned on the access pass`. With no feeds bought at all, a bare connect prints `The AccessPass has no authorized multicast groups; nothing to connect to.`
 
 ### 3. Verify tunnel + subscription
 
@@ -139,11 +134,13 @@ Re-run `doublezero status`. Expect `BGP Session Up` and `S:edge-kalshi-…`.
 docker exec doublezero-edge-connect doublezero status --json
 ```
 
+Check that the reconciler activated the Kalshi receiver. The line is logged **once**, at activation, so search the whole log rather than a recent window:
+
 ```bash
-docker logs --since 2m doublezero-edge-connect 2>&1 | grep -iE 'kalshi|activating|receiver|8081|error|warn'
+docker logs doublezero-edge-connect 2>&1 | grep -iE 'activating market-data receiver|kalshi'
 ```
 
-Expect the reconciler to **activate** the Kalshi receiver for the subscribed code(s). `:8081` and `activating market-data receiver` can lag the tunnel by one refresh (default 30s). BGP Up + port down is not a failure yet — wait, then grep the logs again. No activation after that wait ⇒ code/IP table mismatch or feed not purchased.
+Activation can lag the tunnel by one refresh (default 30s). BGP Up + no activation line yet is not a failure — wait, then check again. Still nothing ⇒ group code mismatch or feed not purchased. The WebSocket in steps 4–5 is the final check.
 
 ### 4. Open the WebSocket
 
@@ -156,10 +153,10 @@ npx wscat -c ws://127.0.0.1:8081
 Optional filter (after connect):
 
 ```json
-{"method":"subscribe","subscription":{"venue":"KALSHI"}}
+{"method":"subscribe","subscription":{"source_name":"KALSHI"}}
 ```
 
-(Also accepted: `source` instead of deprecated `venue` — see PROTOCOL.md.)
+(`source_name` is matched case-insensitively. The deprecated `venue` key still works — see PROTOCOL.md.)
 
 With no subscription message you get the firehose of every active venue on this host.
 
@@ -168,8 +165,8 @@ With no subscription message you get the firehose of every active venue on this 
 | Check | Healthy signal |
 |-------|----------------|
 | WS accepts TCP | Connect succeeds; optional subscribe ack |
-| Instruments | `{"type":"instrument",...,"source":"KALSHI",...}` after connect (when refdata has been seen) |
-| Quotes / book | `quote` (TOB) or `book` (MBP) with `source":"KALSHI"` |
+| Instruments | `{"type":"instrument",...,"source_name":"KALSHI","source_id":3,...}` after connect (when refdata has been seen) |
+| Quotes / book | `quote` (TOB) or `book` (MBP) with `"source_name":"KALSHI"` |
 | Quiet market | Heartbeats / refdata may flow without quotes; do not treat “no quote yet” alone as a tunnel failure |
 
 Capture on the tunnel (optional):
@@ -185,11 +182,11 @@ Replace the group IP with the row you subscribed.
 ## Gotchas
 
 1. **Buy before subscribe.** No purchase ⇒ tunnel can look fine, UDP stays empty.
-2. **Silent non-activation.** Wrong `code` or group IP in the bridge table ⇒ no receiver, no WS market-data, little noise. Diff `doublezero status --json` groups vs bridge feed registry.
+2. **Silent non-activation.** A group code missing from the bridge registry ⇒ no receiver, no WS market data, little noise. Diff `doublezero status --json` groups vs the bridge feed registry.
 3. **Host `doublezerod` vs container.** Edge Connect uses host networking and its own daemon. A host-level `doublezerod` fighting over the same UDP/GRE path will break the container — stop the host daemon when running the bridge.
 4. **WS only with market-data subscription.** Shreds-only (or no market feed) ⇒ no `:8081` service by design.
 5. **Port band.** Firewall must allow `30000:59999` on `doublezero1`, not only GRE. Decapsulated UDP re-enters `INPUT` on the tunnel iface.
-6. **Installer exit 0 ≠ tunnel up.** Missing access pass or credits: the script continues and still prints Done / a WebSocket URL. Trust `doublezero status`, not the installer footer.
+6. **Installer exit 0 ≠ tunnel up.** A failed or pending connect prints `NOT CONNECTED` or `Not connected yet`, and the installer still exits 0. Trust `doublezero status`, not the exit code.
 7. **Feed metro ≠ closest device.** Edge Connect attaches to the metro that serves the purchased feed. Forcing `--device` at the lowest-latency site fails if that metro does not serve the feed. The constraint is the **device**, not where the host sits (a host far from the serving metro can still attach to that device).
 8. **Stale `doublezero1`.** `tunnel already exists`, mixed `169.254.x` addresses, or BGP TCP never establishing to the inner peer → disconnect, delete the iface, connect again. Do not stack a second GRE on a dirty iface.
 9. **Never `docker rm -f` / `docker kill` the bridge.** `SIGKILL` skips the disconnect the entrypoint runs on `docker stop`, orphaning the onchain session and `doublezero1` in the host netns — gotcha 8, self-inflicted. See [Teardown](#teardown).
@@ -200,9 +197,10 @@ Replace the group IP with the row you subscribed.
 
 ```text
 1. TCP connect ws://HOST:8081
-2. (optional) send {"method":"subscribe","subscription":{"venue":"KALSHI"}}
-3. On message: ignore unknown types; key books on (source, channel, instrument_id), not symbol alone
-4. Use instrument.price_exponent / qty_exponent for display tick size; quote fields are already decimal
+2. (optional) send {"method":"subscribe","subscription":{"source_name":"KALSHI"}}
+3. On message: ignore unknown types; key books on (source_id, channel, instrument_id), not symbol alone
+4. Quote prices and sizes are already decimal. The tradable tick is tick_size × 10^price_exponent;
+   tick_size alone is a raw fixed-point value
 ```
 
 Full field list: [PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md).

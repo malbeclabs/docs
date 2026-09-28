@@ -21,7 +21,7 @@ Service overview: [Hyperliquid](index.md).
 
 | Mode | What you get | When to use |
 |------|----------------|-------------|
-| **Edge Connect** | [`doublezero-edge-connect`](https://github.com/malbeclabs/doublezero-edge-connect) — decode + normalized JSON WebSocket | Fastest to a usable quote stream |
+| **Edge Connect** | [`doublezero-edge-connect`](https://github.com/malbeclabs/doublezero-edge-connect) — decoded JSON over WebSocket | Fastest to a usable quote stream |
 | **Native multicast** | Subscribe on `doublezero1`, decode binary UDP yourself (or with reference parsers) | Full control of the wire |
 
 Shared steps first: firewall, metro, apply, and pay (Steps 1–3). After approval, [Step 4](#step-4-connect-after-approval) splits — **Edge Connect** or **native**. Do not mix them on the same host.
@@ -67,12 +67,13 @@ sudo iptables -A INPUT -i doublezero1 -p udp --dport 5765 -j ACCEPT
 sudo ufw allow proto gre from any to any
 sudo ufw allow in on doublezero1 from 169.254.0.0/16 to 169.254.0.0/16 port 179 proto tcp
 sudo ufw allow out on doublezero1 from 169.254.0.0/16 to 169.254.0.0/16 port 179 proto tcp
-sudo ufw allow out on doublezero1 proto pim from any to any
 # Hyperliquid market / reference / snapshot (all feeds)
 sudo ufw allow in on doublezero1 to any port 20000:20999 proto udp
 # DoubleZero heartbeats
 sudo ufw allow in on doublezero1 to any port 5765 proto udp
 ```
+
+UFW has no `pim` protocol. Outbound PIM is allowed by UFW's default outgoing policy; if you deny outgoing traffic, add a raw rule for PIM in `/etc/ufw/before.rules`.
 
 You may tighten these rules to only the ports for the feeds you subscribe to (see [Feed addresses](#feed-addresses)).
 
@@ -130,7 +131,7 @@ If a host `doublezerod` is already running (from [setup](../setup.md)), stop it 
 sudo systemctl stop doublezerod
 ```
 
-Install [doublezero-edge-connect](https://github.com/malbeclabs/doublezero-edge-connect) **after** approval and payment. The bridge joins DoubleZero inside a `--network host` container and serves normalized JSON on `ws://<host>:8081`.
+Install [doublezero-edge-connect](https://github.com/malbeclabs/doublezero-edge-connect) **after** approval and payment. The bridge joins DoubleZero inside a `--network host` container and serves decoded JSON on `ws://<host>:8081`.
 
 ```bash
 curl -fsSL https://get.doublezero.xyz/connect | bash

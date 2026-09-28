@@ -19,7 +19,7 @@ Two paths. Prefer Edge Connect unless you need to own the decoder.
 
 | # | Path | Best for | Effort |
 |---|------|----------|--------|
-| **1** | [Edge Connect](#1-edge-connect-recommended) | Agents and apps that want a simple CLI and a normalized JSON WebSocket | Lowest |
+| **1** | [Edge Connect](#1-edge-connect-recommended) | Agents and apps that want a simple CLI and decoded JSON over WebSocket | Lowest |
 | **2** | [Native multicast](#2-native-multicast-advanced) | Building your own decoder against the raw wire | Highest |
 
 Before any path: purchase the feeds you need at [doublezero.xyz/edge/subscribe](https://doublezero.xyz/edge/subscribe). By purchasing, you agree to the [DoubleZero Terms of Use](https://doublezero.xyz/terms-protocol) and [Kalshi Terms of Service](https://doublezero.xyz/dz-edge-kalshi-terms).
@@ -30,20 +30,18 @@ Want an AI to do the install with you? Connect the [DoubleZero MCP](mcp.md) and 
 
 ## 1. Edge Connect (recommended) {#1-edge-connect-recommended}
 
-**Start here.** [doublezero-edge-connect](https://github.com/malbeclabs/doublezero-edge-connect) is the agent-friendly path: one install command, the host joins DoubleZero, and your app consumes **normalized JSON over WebSocket** (`ws://<host>:8081`) instead of decoding binary multicast.
+**Start here.** [doublezero-edge-connect](https://github.com/malbeclabs/doublezero-edge-connect) is the agent-friendly path: one install command, the host joins DoubleZero, and your app consumes **decoded JSON over WebSocket** (`ws://<host>:8081`) instead of decoding binary multicast.
 
 The team evolves Edge Connect to meet the needs of its expanding user base. This is the easiest method of connection, and should be used unless you have a specific technical need.
 
 Short version:
 
 ```bash
-DZ_SECRET=/path/to/keypair.json \
-DZ_FEEDS=KALSHI \
-DZ_ASSUME_YES=1 \
-  curl -fsSL https://get.doublezero.xyz/connect | bash
+curl -fsSL https://get.doublezero.xyz/connect | \
+  DZ_SECRET=/path/to/keypair.json DZ_FEEDS=KALSHI DZ_ASSUME_YES=1 bash
 ```
 
-`DZ_SECRET` is a `DZ_…` access token **or** the path to the Solana keypair JSON that owns your access pass / feed purchase.
+The variables go after the pipe so the installer (`bash`) receives them. `DZ_SECRET` is a `DZ_…` access token **or** the path to the Solana keypair JSON that owns your access pass / feed purchase.
 
 If a host `doublezerod` is already running, stop it first — it fights the container’s daemon for the same tunnel:
 
@@ -67,17 +65,6 @@ docker exec doublezero-edge-connect doublezero status
 !!! warning "Deeper technical knowledge required"
     Native multicast means you join the group yourself and decode the **raw** Edge wire format on your host. Only the most technically capable users should take this path. You will need to read and understand the specs, starting with [market-by-price/spec.md](https://github.com/malbeclabs/edge-feed-spec/blob/main/market-by-price/spec.md) and the rest of [edge-feed-spec](https://github.com/malbeclabs/edge-feed-spec). Prefer [Edge Connect](#1-edge-connect-recommended) unless you have a hard requirement to own the decoder.
 
-### Buy a feed
-
-Identify the lowest-latency device before purchasing:
-
-```bash
-doublezero latency
-```
-
-Purchase at [https://doublezero.xyz/edge/subscribe](https://doublezero.xyz/edge/subscribe).
-
-
 ### DoubleZero client setup
 
 Follow the [setup](setup.md) instructions to install and configure the DoubleZero client. Keep the client current:
@@ -85,6 +72,16 @@ Follow the [setup](setup.md) instructions to install and configure the DoubleZer
 ```bash
 sudo apt update && sudo apt install doublezero
 ```
+
+### Buy a feed
+
+With `doublezerod` running, identify the lowest-latency device before purchasing:
+
+```bash
+doublezero latency
+```
+
+Purchase at [https://doublezero.xyz/edge/subscribe](https://doublezero.xyz/edge/subscribe).
 
 ### Configure the firewall
 
@@ -108,44 +105,36 @@ sudo iptables -A INPUT -i doublezero1 -p udp --dport 30000:59999 -j ACCEPT
 sudo ufw allow proto gre from any to any
 sudo ufw allow in on doublezero1 from 169.254.0.0/16 to 169.254.0.0/16 port 179 proto tcp
 sudo ufw allow out on doublezero1 from 169.254.0.0/16 to 169.254.0.0/16 port 179 proto tcp
-sudo ufw allow out on doublezero1 proto pim from any to any
 # Kalshi market / reference / snapshot (all feeds)
 sudo ufw allow in on doublezero1 to any port 30000:59999 proto udp
 ```
 
+UFW has no `pim` protocol. Outbound PIM is allowed by UFW's default outgoing policy; if you deny outgoing traffic, add a raw rule for PIM in `/etc/ufw/before.rules`.
+
 
 ### Subscribe
 
-```bash
-doublezero connect multicast --subscribe edge-kalshi-perps-tob
-```
-
-Multiple feeds, space-separated:
+Join every feed you purchased (client v0.35.0 or later):
 
 ```bash
-doublezero connect multicast --subscribe edge-kalshi-perps-tob edge-kalshi-perps-mbp edge-kalshi-sports-tob edge-kalshi-sports-mbp
+doublezero connect multicast
 ```
 
-Example provisioning output:
+Or name the feeds by **feed code**, space-separated:
 
-```
-DoubleZero Service Provisioning
-🔗  Start Provisioning User...
-Public IP detected: 137.174.145.145 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
-    DoubleZero ID: <your dz_id>
-🔍  Provisioning User for IP: <your public ip>
-    The Device has been selected: <the doublezero device you are connecting to>
-    Service provisioned with status: ok
-✅  User Provisioned
+```bash
+doublezero connect multicast --subscribe-feed kalshi-perps-tob kalshi-perps-mbp kalshi-sports-tob kalshi-sports-mbp
 ```
 
-Wait about 60 seconds, then:
+Use the feed codes (`kalshi-…`), not the per-metro feed names and not the group codes (`edge-kalshi-…`). Subscribing by group code with `--subscribe` fails on a purchased pass.
+
+Expect `✅  User Provisioned`. Wait about 60 seconds, then:
 
 ```bash
 doublezero status
 ```
 
-Expect `BGP Session Up` on the correct DoubleZero network. As a subscriber, your DoubleZero IP matches your Tunnel Src IP.
+Expect `BGP Session Up` on the correct DoubleZero network.
 
 ```bash
 doublezero user list --client-ip <your ip>
@@ -160,19 +149,20 @@ doublezero multicast group list
 
 ### Decode the wire yourself
 
-Schema version is **`3`** — discard frames whose version your decoder does not implement. Authoritative layouts: [edge-feed-spec](https://github.com/malbeclabs/edge-feed-spec), including [market-by-price/spec.md](https://github.com/malbeclabs/edge-feed-spec/blob/main/market-by-price/spec.md).
+Schema version is **`3`** — discard datagrams whose version your decoder does not implement. Authoritative layouts: [edge-feed-spec](https://github.com/malbeclabs/edge-feed-spec), including [market-by-price/spec.md](https://github.com/malbeclabs/edge-feed-spec/blob/main/market-by-price/spec.md).
 
-Every datagram opens with a frame header, followed by one or more application messages packed up to the MTU. Frames are little-endian and fixed-layout.
+Every datagram opens with a 24-byte datagram header, followed by one or more application messages packed up to the MTU. Datagrams are little-endian and fixed-layout.
 
 | Field | Notes |
 |-------|-------|
+| Magic | `u16` at offset 0: `0x445A` on TOB, `0x4442` on MBP. Validate it. |
 | Schema version | `3` |
-| Channel ID | Demultiplex streams sharing a port |
-| Sequence | Monotonic per channel — use for gap detection |
+| Channel ID | Demultiplex channels sharing a port |
+| Sequence | Monotonic per source IP address, Channel ID, and destination port — each port has its own series. Use for gap detection. |
 | Send timestamp | Nanoseconds since the Unix epoch |
-| Message count | Messages packed into this frame |
-| Reset count | Advances per session. An increase means cold-start your state. |
-| Frame length | Total bytes |
+| Message count | Messages packed into this datagram |
+| Reset count | Any change (including the `255` → `0` wrap) is a reset; discard that publisher's channel state. MBP can also bump it mid-session on a venue-wide re-seed. |
+| Datagram length | Total bytes |
 
 #### Application messages (TOB)
 
@@ -182,31 +172,32 @@ Every datagram opens with a frame header, followed by one or more application me
 | InstrumentDefinition | `0x02` | 130 B | reference | Symbol, exponents, tick and lot, expiry |
 | Quote | `0x03` | 60 B | market | Best bid and ask, price and size, update flags |
 | Trade | `0x04` | 52 B | market | Price, size, aggressor side, trade ID |
-| ChannelReset | `0x05` | 12 B | both | Session start or restart |
-| EndOfSession | `0x06` | 12 B | both | Clean shutdown |
-| ManifestSummary | `0x07` | 24 B | reference | Active-set fingerprint and instrument count |
+| EndOfSession | `0x06` | 12 B | market | Clean shutdown |
+| ManifestSummary | `0x07` | 24 B | reference | Valid flag, Manifest Seq change counter, instrument count, timestamp |
 | PerpStats | `0x30` | 124 B | sibling | Funding, mark and oracle prices, open interest, day volume |
 
-Kalshi's source ID in the edge-feed-spec registry is `3`. Read `price_exponent` and `qty_exponent` from each `InstrumentDefinition` — do not hardcode them.
+Kalshi's Source ID in the edge-feed-spec registry is `3`. Read `price_exponent` and `qty_exponent` from each `InstrumentDefinition` — do not hardcode them.
 
 MBP feeds use the market-by-price message set. See the market-by-price and reference-data specs in edge-feed-spec.
 
-Delivery is fire-and-forget UDP with no retransmit. Recover missed datagrams from the reference-data cycle (and the snapshot plane on MBP feeds), which is re-emitted on a cadence rather than once.
+Delivery is fire-and-forget UDP with no retransmit, and the reference-data port does not repair market data: it only repeats `InstrumentDefinition` (at most every 30 s) and `ManifestSummary` (at most every 1 s). A lost TOB Quote stays lost until that market's best bid or ask changes. Only MBP feeds have a repair path — the snapshot cycle — and an MBP cold start must bind the snapshot port. Deduplicate trades on **(instrument ID, trade ID)**, never trade ID alone.
 
 ---
 
 ## Feed Addresses {#feed-addresses}
 
-| Feed | Description | Multicast group | Market data | Reference data | Snapshot |
-|------|-------------|-----------------|-------------|----------------|----------|
-| `edge-kalshi-perps-tob` | Perps top-of-book | `233.84.178.3` | `31000` | `41000` | — |
-| `edge-kalshi-perps-mbp` | Perps market-by-price | `233.84.178.4` | `32000` | `42000` | `52000` |
-| `edge-kalshi-sports-tob` | Sports top-of-book | `233.84.178.17` | `33000` + id | `43000` + id | — |
-| `edge-kalshi-sports-mbp` | Sports market-by-price | `233.84.178.20` | `34000` + id | `44000` + id | `54000` + id |
+| Feed code | Group code | Description | Multicast group | Market data | Reference data | Snapshot |
+|-----------|------------|-------------|-----------------|-------------|----------------|----------|
+| `kalshi-perps-tob` | `edge-kalshi-perps-tob` | Perps top-of-book | `233.84.178.3` | `31000` | `41000` | — |
+| `kalshi-perps-mbp` | `edge-kalshi-perps-mbp` | Perps market-by-price | `233.84.178.4` | `32000` | `42000` | `52000` |
+| `kalshi-sports-tob` | `edge-kalshi-sports-tob` | Sports top-of-book | `233.84.178.17` | `33000` + id | `43000` + id | — |
+| `kalshi-sports-mbp` | `edge-kalshi-sports-mbp` | Sports market-by-price | `233.84.178.20` | `34000` + id | `44000` + id | `54000` + id |
+
+Subscribe with the feed code; `doublezero status` and `multicast group list` show the group code.
 
 Port scheme: leading digit is traffic class (`3` market, `4` reference, `5` snapshot); second digit is the feed. Reference is market + `10000`; snapshot is market + `20000`. Perps ports are fixed. Sports ports are `base + channel id` (for example, id `10` on `edge-kalshi-sports-mbp` uses `34010` / `44010` / `54010`).
 
-The group selects the feed; the port selects market data, reference data, or snapshot within it. Multicast replication happens per source and group, and the fabric never inspects the UDP port, so joining a group delivers everything on that group across your Edge Connect link. The port is a socket filter applied on your own host after the bytes arrive.
+The group selects the feed; the port selects market data, reference data, or snapshot within it. Multicast replication happens per source IP address and group, and the fabric never inspects the UDP port, so joining a group delivers everything on that group across your Edge Connect link. The port is a socket filter applied on your own host after the bytes arrive.
 
 ---
 
@@ -228,11 +219,11 @@ Run: `sudo apt update && sudo apt install doublezero`
 
 ### Sequence gaps
 
-Sequence is monotonic per channel. A gap means dropped datagrams; the next reference-data cycle restores instrument state.
+Track sequence per source IP address, Channel ID, and destination port; a decoder keyed on Channel ID alone sees false gaps. A real gap means dropped datagrams. On MBP feeds, the affected markets recover from the next snapshot cycle. On TOB feeds there is no repair: a market's quote is current again once its best bid or ask next changes.
 
-### Frames stop then restart with a new reset count
+### Reset count changes
 
-A publisher restart advances the reset count in the frame header. Discard state from the prior session and cold-start from the next reference-data cycle.
+Any change in the reset count means that publisher restarted or re-seeded the channel. Discard state for that source IP address and channel, collect definitions from the reference-data port again, and on MBP feeds rebuild books from the snapshot port.
 
 ### Tunnel not coming up
 
