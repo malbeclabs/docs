@@ -5,10 +5,24 @@ on:
     types: [opened, synchronize, reopened]
     paths:
       - 'docs/**.md'
+  # Catches PRs merged before their translation finished; opens a translation PR.
+  push:
+    branches: [main]
+    paths:
+      - 'docs/**.md'
+  # Manual run from the Actions tab; opens a translation PR against the chosen branch.
+  workflow_dispatch:
+    inputs:
+      files:
+        description: 'English sources to translate, comma-separated (empty = every missing or outdated translation)'
+        required: false
+        default: ''
 
 concurrency:
-  group: translate-${{ github.head_ref }}
-  cancel-in-progress: true
+  # PR runs supersede each other; push and manual runs must never cancel one another,
+  # since each only knows about its own changes.
+  group: translate-${{ github.event_name == 'pull_request' && github.head_ref || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 permissions:
   contents: write
@@ -17,14 +31,16 @@ permissions:
 jobs:
   translate:
     runs-on: ubuntu-latest
-    # Skip the bot's own commits (prevents loops) and fork PRs (no secret access).
+    # PRs: skip the bot's own commits (prevents loops) and fork PRs (no secret access).
     if: >
-      github.actor != 'github-actions[bot]' &&
-      github.event.pull_request.head.repo.full_name == github.repository
+      github.event_name != 'pull_request' || (
+        github.actor != 'github-actions[bot]' &&
+        github.event.pull_request.head.repo.full_name == github.repository
+      )
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.head_ref }}
+          ref: ${{ github.event_name == 'pull_request' && github.head_ref || github.ref }}
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -34,35 +50,35 @@ jobs:
 
       - run: pip install anthropic
 
-      - name: Find changed source docs
-        id: changed
-        run: |
-          BASE="${{ github.event.pull_request.base.sha }}"
-          # Only source .md files — exclude already-translated ones (e.g. index.es.md)
-          # and MCP runbooks (git/raw only, not on the public site).
-          CHANGED=$(git diff --name-only "$BASE" HEAD -- docs/ \
-            | grep '\.md$' \
-            | grep -vE '\.[a-z]{2,3}\.md$' \
-            | grep -vE '(^|/)runbooks\.md$|(^|/).*-runbook\.md$' \
-            || true)
-          echo "Source files changed:"
-          echo "$CHANGED"
-          {
-            echo "files<<EOF"
-            echo "$CHANGED"
-            echo "EOF"
-          } >> "$GITHUB_OUTPUT"
-
       - name: Translate
-        if: steps.changed.outputs.files != ''
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          CHANGED_FILES: ${{ steps.changed.outputs.files }}
           LANGUAGES: "zh,ja,ko,pt,es,fr,it"
-        run: python scripts/translate.py
+          EVENT: ${{ github.event_name }}
+          PR_BASE: ${{ github.event.pull_request.base.sha }}
+          PUSH_BEFORE: ${{ github.event.before }}
+          FILES_INPUT: ${{ inputs.files }}
+        run: |
+          case "$EVENT" in
+            pull_request)
+              python scripts/translate.py --pr-base "$PR_BASE" ;;
+            push)
+              if [ "$PUSH_BEFORE" = "0000000000000000000000000000000000000000" ]; then
+                echo "New branch push; nothing to compare against."
+                exit 0
+              fi
+              python scripts/translate.py --since "$PUSH_BEFORE" --skip-translated ;;
+            workflow_dispatch)
+              if [ -n "$FILES_INPUT" ]; then
+                IFS=',' read -ra FILES <<< "$FILES_INPUT"
+                python scripts/translate.py --files "${FILES[@]}"
+              else
+                python scripts/translate.py --stale
+              fi ;;
+          esac
 
       - name: Commit translations to PR branch
-        if: steps.changed.outputs.files != ''
+        if: github.event_name == 'pull_request'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -73,3 +89,27 @@ jobs:
           fi
           git commit -m "chore: auto-translate docs"
           git push origin HEAD:${{ github.head_ref }}
+
+      - name: Open translation PR
+        if: github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TARGET: ${{ github.ref_name }}
+          BRANCH: chore/auto-translate-${{ github.run_id }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/
+          if git diff --cached --quiet; then
+            echo "No translation changes."
+            exit 0
+          fi
+          FILES=$(git diff --cached --name-only | sed 's/^/- `/; s/$/`/')
+          git checkout -b "$BRANCH"
+          git commit -m "chore: auto-translate docs"
+          git push origin "$BRANCH"
+          gh pr create --base "$TARGET" --head "$BRANCH" \
+            --title "chore: auto-translate docs" \
+            --body "Automated translations from the \`${{ github.event_name }}\` run on \`$TARGET\` ([run](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})).
+
+          $FILES"
