@@ -24,15 +24,18 @@ Rules:
 - Preserve ALL markdown formatting exactly: headings, bold, italic, lists, tables, admonitions, code fences
 - Do NOT translate: code blocks, inline code, file paths, URLs, hostnames, IP addresses, CLI commands,
   flags, env variable names, config keys, YAML/TOML keys, product names, brand names
+- Do NOT translate heading IDs like `{#feed-addresses}` or in-page link anchors like `(#feed-addresses)`;
+  copy them exactly so jump links keep working in every language
 - Translate all human-readable prose, headings, descriptions, and UI labels
 - Keep the exact same document structure, blank lines, and whitespace patterns
 - Output ONLY the translated document — no preamble, no explanation"""
 
 
 def translate(content: str, lang_name: str) -> str:
-    message = client.messages.create(
+    # Long outputs require streaming; the SDK rejects large max_tokens on plain create().
+    with client.messages.stream(
         model="claude-opus-4-6",
-        max_tokens=8192,
+        max_tokens=64000,
         system=SYSTEM_PROMPT,
         messages=[
             {
@@ -40,7 +43,10 @@ def translate(content: str, lang_name: str) -> str:
                 "content": f"Translate the following documentation to {lang_name}:\n\n{content}",
             }
         ],
-    )
+    ) as stream:
+        message = stream.get_final_message()
+    if message.stop_reason != "end_turn":
+        raise RuntimeError(f"incomplete translation (stop_reason={message.stop_reason})")
     return message.content[0].text
 
 
