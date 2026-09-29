@@ -12,7 +12,7 @@ For an overview of the geolocation architecture and measurement flows, see the [
 
 ---
 
-## Prerequisites
+## Prerequisites {#prerequisites}
 
 !!! warning "DZD Telemetry Agent Version"
     Parent DZDs must run **device telemetry agent version 0.17.0 or newer** to support the geolocation service. Earlier versions do not include the probe discovery, TWAMP pinging, and offset-publishing extensions required for geolocation. Verify agent versions before deploying a probe — a probe paired with an older DZD will not receive offsets.
@@ -28,7 +28,7 @@ Before deploying a geoProbe, ensure you have:
 
 ---
 
-## Installation
+## Installation {#installation}
 
 Install both the agent daemon and the doublezero CLI:
 
@@ -44,11 +44,11 @@ sudo apt install doublezero-geoprobe-agent doublezero
 
 ---
 
-## Onchain Registration
+## Onchain Registration {#onchain-registration}
 
 Probe registration requires foundation authorization. Coordinate with DZF before proceeding.
 
-### Step 1: Register the probe
+### Step 1: Register the probe {#step-1-register-the-probe}
 
 ```bash
 doublezero geolocation probe create \
@@ -65,7 +65,7 @@ doublezero geolocation probe create \
 | `--public-ip` | Public IPv4 address where the probe listens |
 | `--signing-pubkey` | Public key used to sign offsets and telemetry |
 
-### Step 2: Link parent DZDs
+### Step 2: Link parent DZDs {#step-2-link-parent-dzds}
 
 ```bash
 doublezero geolocation probe add-parent \
@@ -77,7 +77,7 @@ Each parent DZD must be an activated device in the Serviceability Program. DZDs 
 
 ---
 
-## Running the Agent
+## Running the Agent {#running-the-agent}
 
 ```bash
 doublezero-geoprobe-agent \
@@ -86,7 +86,7 @@ doublezero-geoprobe-agent \
   --geoprobe-pubkey <probe-onchain-pubkey>
 ```
 
-### Required Flags
+### Required Flags {#required-flags}
 
 | Flag | Description |
 |------|-------------|
@@ -96,7 +96,7 @@ doublezero-geoprobe-agent \
 
 Alternatively, use `--ledger-rpc-url` instead of `--env` to specify a custom Solana RPC endpoint.
 
-### Optional Flags
+### Optional Flags {#optional-flags}
 
 | Flag | Default | Description |
 |------|---------|-------------|
@@ -112,7 +112,7 @@ Alternatively, use `--ledger-rpc-url` instead of `--env` to specify a custom Sol
 
 ---
 
-## Ports and Firewall
+## Ports and Firewall {#ports-and-firewall}
 
 The geoprobe agent requires several ports open:
 
@@ -128,7 +128,7 @@ The geoprobe agent requires several ports open:
 
 ---
 
-## Monitoring
+## Monitoring {#monitoring}
 
 Enable the Prometheus metrics endpoint for operational visibility:
 
@@ -153,7 +153,7 @@ See the [Operations guide](contribute-operations.md#monitoring) for general guid
 
 ---
 
-## Probe Management Commands
+## Probe Management Commands {#probe-management-commands}
 
 The `doublezero geolocation` CLI provides the following subcommands for managing probes:
 

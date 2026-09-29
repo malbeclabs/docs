@@ -72,7 +72,7 @@ Finally, you will submit a **connection request to DoubleZero**. This request co
 
 This guide allows for 1 Primary Validator to register itself, and up to 3 backup/failover machines at the same time.
 
-## Prerequisites
+## Prerequisites {#prerequisites}
 
 - Solana CLI installed and on $PATH
 - For validators: Permission to access to the validator identity keypair file (e.g., validator-keypair.json) under the sol user
@@ -85,7 +85,7 @@ This guide allows for 1 Primary Validator to register itself, and up to 3 backup
 
     Consider: In the case where you have a junk ID and Primary ID on at the same IP, only the Primary ID will be used in registration of the machine. This is because the junk ID will not appear in gossip, and therefore cannot be used to verify the IP of the target machine.
 
-## 1. Confirm the client network
+## 1. Confirm the client network {#1-confirm-the-client-network}
 
 Please follow the [setup](setup.md) instructions before proceeding. Install the packages for **mainnet-beta** or **testnet**. They use different package repos.
 
@@ -122,7 +122,7 @@ Example output (mainnet-beta; testnet looks the same but with fewer devices):
  9M7FfYYyjM4wGinKPofZRNmQFcCjCKRbXscGBUiXvXnG | dz-tor1-sw01  | 209.42.165.10   | 14.52ms  | 14.53ms  | 14.52ms  | true
 ```
 
-## 2. Open port 44880
+## 2. Open port 44880 {#2-open-port-44880}
 
 Users need to open port 44880 to utilize some [routing features](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc7-client-route-liveness.md).
 
@@ -146,7 +146,7 @@ sudo ufw allow out on doublezero0 to any port 44880 proto udp
 
 note the `in on doublezero0`, `out on doublezero0` flags which restrict this rule to only the DoubleZero interface
 
-## 3. Attest Validator Ownership
+## 3. Attest Validator Ownership {#3-attest-validator-ownership}
 
 !!! note "Network flag"
     Passport commands below use `-u mainnet-beta`. On testnet, use `-u testnet` (or `-ut`) instead.
@@ -204,7 +204,7 @@ This output is expected. The backup node cannot be in the leader schedule at tim
 You will now run this command on **all backup machines** you plan to use your **Primary Validator** vote account, and identity on.
 
 
-### Prepare the Connection
+### Prepare the Connection {#prepare-the-connection}
 
 Run the following command on the **Primary Validator** machine. This is the machine you have active stake on, that is in the leader schedule with your primary validator ID in solana gossip on the machine you are running the command from:
 
@@ -254,7 +254,7 @@ Backup validator 🖥️ 🛡️:
 Note the output at the end of this command. It is the structure for the next step.
 
 
-## 4. Generate Signature
+## 4. Generate Signature {#4-generate-signature}
 
 At the end of the last step, we received a pre-formatted output for `solana sign-offchain-message`
 
@@ -273,7 +273,7 @@ From the above output we will run this command on the **Primary Validator** mach
 ```
 
 
-## 5. Initiate a Connection Request in DoubleZero
+## 5. Initiate a Connection Request in DoubleZero {#5-initiate-a-connection-request-in-doublezero}
 
 Use the `request-validator-access` command to create an account on Solana for the connection request. The DoubleZero Sentinel agent detects the new account, validates its identity and signature, and creates the access pass in DoubleZero so the server can establish a connection.
 
@@ -301,7 +301,7 @@ Request Solana validator access: Transaction22222222VaB8FMqM2wEBXyV5THpKRXWrPtDQ
 If successful, DoubleZero will register the primary with its backups. You may now failover between the IPs registered in the access pass. DoubleZero will maintain connectivity automatically when switching to backup nodes registered in this way.
 
 
-## 6. Connect in IBRL Mode
+## 6. Connect in IBRL Mode {#6-connect-in-ibrl-mode}
 
 On the server, with the user which will connect to DoubleZero, run the `connect` command to establish the connection to DoubleZero.
 
@@ -360,6 +360,6 @@ default via 149.28.38.1 dev enp1s0 proto dhcp src 149.28.38.64 metric 100
 ```
 
 
-### Up Next: Publishing Shreds via Multicast
+### Up Next: Publishing Shreds via Multicast {#up-next-publishing-shreds-via-multicast}
 
 If you have completed this setup and plan publishing shreds via multicast, proceed to the [next page](Validator%20Multicast%20Connection.md).

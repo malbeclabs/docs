@@ -314,7 +314,7 @@ This is not an error, but can be an optimization. Below is a best practice which
     ```
     notice in the above output that we `Connected to device: dz-ny7-sw01` this is the desired result from our initial investigation in step 1, where we discovered that `dz-ny7-sw01` was the device with the lowest latency.
 
-### Issue: wrong DoubleZero environment
+### Issue: wrong DoubleZero environment {#issue-wrong-doublezero-environment}
 
 Mainnet-Beta and Testnet use different package repos. `doublezero status` shows which network the client is on (`Network` column). If a user installed the wrong client, or the daemon is still pointed at the other env, use these copy-paste switches.
 

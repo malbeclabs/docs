@@ -9,13 +9,13 @@ description: Use DoubleZero Data with your own AI assistant via the Model Contex
 
 Use DoubleZero Data with your own AI assistant via the [Model Context Protocol (MCP)](https://modelcontextprotocol.io). The same server is documented in the data app at [data.doublezero.xyz/docs/mcp](https://data.doublezero.xyz/docs/mcp).
 
-## What’s an MCP?
+## What’s an MCP? {#whats-an-mcp}
 
 MCP is an open standard that lets an AI agent call tools on an external service. Without it, the model only knows what you paste into the chat. With it, the agent can read DoubleZero docs, load an onboarding runbook, and query public network data on your behalf.
 
 DoubleZero runs **one** MCP. Point any compatible client at the endpoint below.
 
-## Endpoint
+## Endpoint {#endpoint}
 
 ```
 https://data.doublezero.xyz/api/mcp
@@ -23,7 +23,7 @@ https://data.doublezero.xyz/api/mcp
 
 No login is required. The server uses [Streamable HTTP](https://modelcontextprotocol.io/docs/concepts/transports#streamable-http) transport.
 
-## Available tools
+## Available tools {#available-tools}
 
 | Tool | Description |
 |------|-------------|
@@ -50,14 +50,14 @@ Every tool is read-only: it cannot place trades, move funds, or see your keypair
 
 Use `https://data.doublezero.xyz/api/mcp` on every platform.
 
-### Claude Desktop & Codex Desktop
+### Claude Desktop & Codex Desktop {#claude-desktop-codex-desktop}
 
 1. Go to **Settings**
 2. Click **Manage Connectors**
 3. Click **Add Custom Connector**
 4. Enter the endpoint URL above
 
-### Code editors & IDEs
+### Code editors & IDEs {#code-editors-ides}
 
 Works with Claude Code, Cursor, Windsurf, Continue, and other MCP-compatible tools. Add a `.mcp.json` file to your project root:
 
@@ -103,11 +103,11 @@ Works with Claude Code, Cursor, Windsurf, Continue, and other MCP-compatible too
 
     Any MCP-compatible client can use the endpoint URL (Streamable HTTP). Name the server `doublezero`.
 
-## Rate limits
+## Rate limits {#rate-limits}
 
 Tool calls are rate limited to 100 requests per minute per IP. If you hit the limit, calls return an error — wait a moment and retry.
 
-## Troubleshooting
+## Troubleshooting {#troubleshooting}
 
 - Confirm the client shows **doublezero** as connected. Disconnect and add the URL again if it does not.
 - The URL must be exactly `https://data.doublezero.xyz/api/mcp` (include `/api/mcp`).

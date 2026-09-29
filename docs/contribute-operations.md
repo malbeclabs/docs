@@ -214,7 +214,7 @@ show agent doublezero-telemetry log
 
 ---
 
-## Monitoring
+## Monitoring {#monitoring}
 
 > ⚠️ **Important:**
 >
@@ -299,7 +299,7 @@ doublezero_device_telemetry_agent_peer_discovery_not_found_tunnels{local_device_
 
 ## Link Management
 
-### Link Draining
+### Link Draining {#link-draining}
 
 Link draining allows contributors to gracefully remove a link from active service for maintenance or troubleshooting. There are two drain states:
 

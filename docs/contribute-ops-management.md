@@ -65,7 +65,7 @@ For programmatic access instead of the web form:
 
 An incident is an unplanned service-impacting event.
 
-### Severity Levels
+### Severity Levels {#severity-levels}
 
 Assign severity based on the impact to the DoubleZero network. You can update severity as the situation evolves.
 

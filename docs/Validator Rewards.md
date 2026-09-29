@@ -74,7 +74,7 @@ The command prints the `Node ID`, `Rewards owner`, `Rewards mint`, the resolved 
 
 ---
 
-## Apendix: Offchain Path Alternative
+## Apendix: Offchain Path Alternative {#apendix-offchain-path-alternative}
 
 Three sub-steps: prepare, sign, configure.
 

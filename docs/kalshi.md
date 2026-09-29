@@ -28,7 +28,7 @@ Want an AI to do the install with you? Connect the [DoubleZero MCP](mcp.md) and 
 
 ---
 
-## 1. Edge Connect (recommended)
+## 1. Edge Connect (recommended) {#1-edge-connect-recommended}
 
 **Start here.** [doublezero-edge-connect](https://github.com/malbeclabs/doublezero-edge-connect) is the agent-friendly path: one install command, the host joins DoubleZero, and your app consumes **normalized JSON over WebSocket** (`ws://<host>:8081`) instead of decoding binary multicast.
 
@@ -62,7 +62,7 @@ docker exec doublezero-edge-connect doublezero status
 
 ---
 
-## 2. Native multicast (advanced)
+## 2. Native multicast (advanced) {#2-native-multicast-advanced}
 
 !!! warning "Deeper technical knowledge required"
     Native multicast means you join the group yourself and decode the **raw** Edge wire format on your host. Only the most technically capable users should take this path. You will need to read and understand the specs, starting with [market-by-price/spec.md](https://github.com/malbeclabs/edge-feed-spec/blob/main/market-by-price/spec.md) and the rest of [edge-feed-spec](https://github.com/malbeclabs/edge-feed-spec). Prefer [Edge Connect](#1-edge-connect-recommended) unless you have a hard requirement to own the decoder.
@@ -195,7 +195,7 @@ Delivery is fire-and-forget UDP with no retransmit. Recover missed datagrams fro
 
 ---
 
-## Feed Addresses
+## Feed Addresses {#feed-addresses}
 
 | Feed | Description | Multicast group | Market data | Reference data | Snapshot |
 |------|-------------|-----------------|-------------|----------------|----------|

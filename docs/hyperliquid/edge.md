@@ -118,11 +118,11 @@ You will be contacted with more instructions in a timely manner (expect **1-3 bu
 
 ---
 
-## Step 4: Connect after approval
+## Step 4: Connect after approval {#step-4-connect-after-approval}
 
 After you submit the application, you will receive an invoice; once it is paid, connect on each approved machine. Access is enabled on your chosen start date. Pick **one** path below.
 
-### 4a. Edge Connect
+### 4a. Edge Connect {#4a-edge-connect}
 
 If a host `doublezerod` is already running (from [setup](../setup.md)), stop it first — it fights the container’s daemon for the same tunnel:
 
@@ -153,7 +153,7 @@ Expect `BGP Session Up` and your `edge-hyper-…` group(s) subscribed.
 
 Then open the WebSocket (`ws://127.0.0.1:8081`). Contract: [PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md). Full walkthrough: [MCP](../mcp.md) runbook `hyperliquid-edge`.
 
-### 4b. Native multicast
+### 4b. Native multicast {#4b-native-multicast}
 
 On the host that holds the assigned private key (with host `doublezerod` running), subscribe to the feeds you purchased:
 
@@ -185,7 +185,7 @@ You need to pay the invoice before the seat expires. **Not paying leads to remov
 
 ---
 
-## Feed addresses
+## Feed addresses {#feed-addresses}
 
 IP picks the multicast group. Port picks the stream on that group. Check IP live values with:
 
@@ -208,7 +208,7 @@ Frames are little-endian fixed-size binary. Hyperliquid native perps use `source
 
 ---
 
-## Decode the feed
+## Decode the feed {#decode-the-feed}
 
 !!! note "Edge Connect"
     If you’re using `doublezero-edge-connect`, the feed is already decoded as JSON over WebSocket — skip manual decoding.

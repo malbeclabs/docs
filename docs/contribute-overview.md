@@ -14,7 +14,7 @@ Welcome to the DoubleZero contributor documentation. This section covers everyth
 
 ---
 
-## Onboarding Checklist
+## Onboarding Checklist {#onboarding-checklist}
 
 Use this checklist to track your progress. **All items must be complete before your contribution is technically operational.**
 
@@ -79,7 +79,7 @@ You will also get a **private DZ/Malbec Labs channel** for direct support for yo
 
 ---
 
-## DZ Prefix Rules
+## DZ Prefix Rules {#dz-prefix-rules}
 
 !!! warning "Critical: DZ Prefix Pool Usage"
     The DZ prefix pool you provide is **managed by the DoubleZero protocol for IP allocation**.

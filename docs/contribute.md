@@ -117,7 +117,7 @@ This option is attractive as it ensures dedicated bandwidth for DoubleZero, is s
 
 ---
 
-## Hardware Requirements
+## Hardware Requirements {#hardware-requirements}
 
 ### 100Gbps Bandwidth Contribution
 
@@ -135,7 +135,7 @@ Note that quantities below reflect equipment needed in two data centers, i.e. th
 | Management                  |            | No            | 1   | Determined by contributor's own internal management policies.                                                                                                    |
 | Console                     |            | No             | 1   | Determined by contributor's own internal management policies.                                                                                                    |
 
-#### DZD Network Hardware
+#### DZD Network Hardware {#dzd-network-hardware}
 
 | Make     | Model            | Part Number           | DZ Requirement | QTY | Note |
 |----------|-----------------|----------------------|----------------|-----|-----------------------------------------------------------|
