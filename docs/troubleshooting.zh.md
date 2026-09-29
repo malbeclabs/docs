@@ -1,16 +1,16 @@
 ---
-description: 诊断常见的 DoubleZero 连接问题，包含参考命令、预期输出以及获取进一步支持的途径。
+description: 诊断常见的 DoubleZero 连接问题，包含参考命令、预期输出以及获取进一步支持的方式。
 ---
 
 # 故障排除
 
-本指南将涵盖各种问题，并持续更新。如果您完成本指南后仍需进一步支持，可以在 [DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701) Discord 中寻求帮助。
+本指南将涵盖各种问题，并持续更新。如果您完成本指南后仍需进一步支持，可以在 [DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701) Discord 频道中寻求帮助。
 
 
-## 常用命令和输出
+## 常用命令及输出
 
-首先，检查以下命令的输出及其预期结果。这些将帮助您进行更详细的故障排除。
-如果您提交工单，可能会被要求提供这些命令的输出。
+首先，检查以下命令的输出及其预期结果。这些将协助您进行更详细的故障排除。
+如果您提交工单，可能会被要求提供这些输出。
 
 #### 1. 检查版本
 命令：
@@ -36,20 +36,20 @@ MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2
 
 #### 3. 验证您的 Access Pass
 
-示例公钥：`MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2`，运行命令时请将其替换为您的公钥。
+示例公钥：`MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2`，运行命令时请替换为您的公钥。
 
 命令：
 
 `doublezero access-pass list | grep MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2`
 
-输出：[注意我们使用 `doublezero access-pass list | awk 'NR==1 || /MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2/'` 来在输出中显示表头]
+输出：[注意，我们使用 `doublezero access-pass list | awk 'NR==1 || /MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2/'` 以在输出中显示表头]
 ```
 account                                      | accesspass_type                                                | ip              | user_payer                                   | last_access_epoch | remaining_epoch | connections | status       | owner
 
 2XHCWm8Sef1GirhAhAJVA8WTXToPT6gFYP7fA9mWMShR | prepaid                                                        | 141.14.14.14   | MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2 | MAX               | MAX             | 0           | requested    | DZfHh2vjXFqt8zfNbT1afm8PGuCm3BrQKegC5THtKFdn 
 ```
 [comment]: # ()
-#### 4. 检查 DoubleZero 账本积分
+#### 4. 检查 DoubleZero 账本额度
 命令：
 
 `doublezero balance`
@@ -95,11 +95,11 @@ account                                      | accesspass_type                  
 [comment]: # ()
 
 # 故障排除示例
-现在我们已经了解了基本输出以及健康部署中的预期结果，接下来我们可以查看一些常见的故障排除示例。
+现在我们已经检查了基本输出以及健康部署中的预期结果，接下来可以查看一些常见的故障排除示例。
 
 ### 问题：❌ Error creating user
 
-此问题通常与预期的公钥/IP 配对和用户尝试访问 DoubleZero 时使用的公钥/IP 配对不匹配有关。
+此问题通常与预期的公钥/IP 配对与用户尝试访问 DoubleZero 时使用的公钥/IP 配对不匹配有关。
 
 **症状：**
 - 使用 `doublezero connect ibrl` 连接时，用户遇到 `❌ Error creating user`
@@ -114,7 +114,7 @@ account                                      | accesspass_type                  
     ```
     MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2
     ```
-2. 验证此地址是否在允许列表中：
+2. 验证该地址已被加入允许列表：
 
     `doublezero access-pass list | awk 'NR==1 || /MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2/'`
 
@@ -124,10 +124,10 @@ account                                      | accesspass_type                  
 
     FHyoPs7U23MuSTtepEyXUtSAEffEpFpJGoYvug8X2sWY | prepaid                                                        | 141.14.14.14   | MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2 | MAX               | MAX             | 0           | requested    | DZfHh2vjXFqt8zfNbT1afm8PGuCm3BrQKegC5THtKFdn 
     ```
-     `doublezero address` 输出的公钥必须与 user_payer 公钥匹配，并且您尝试连接时使用的 IP 地址必须与 Access-Pass 中的 ip 匹配。
+     `doublezero address` 输出的公钥必须与 user_payer 公钥匹配，并且您尝试连接的 IP 地址必须与 Access-Pass 中的 ip 匹配。
     `doublezero address` 默认从 ~/.config/doublezero/ 中的 id.json 文件获取。请参阅[此处的步骤 6](<setup.md>)
     
-3. 如果以上信息看起来正确但您在连接时仍然收到错误，或者如果以上映射不正确，请在 [DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701) 联系支持
+3. 如果以上信息看起来正确但连接时仍然出错，或者以上映射不正确，请在 [DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701) 联系支持团队
 
 ### 问题：❌ Error provisioning service: malformed stuff: cannot provision multiple tunnels at the same time
 此错误表示设备已经连接到 DoubleZero。
@@ -145,14 +145,14 @@ account                                      | accesspass_type                  
     Tunnel status | Last Session Update     | Tunnel Name | Tunnel src    | Tunnel dst     | Doublezero IP | User Type | Current Device | Lowest Latency Device | Metro     | Network 
     up            | 2025-10-20 12:12:55 UTC | doublezero0 | 11.11.11.111 | 12.34.56.789 | 11.11.11.111 | IBRL      | ams-dz001      | ✅ ams-dz001          | Amsterdam | testnet
     ```
-2. -`up`- 表示连接正常。
-3. 出现此错误是因为使用该特定 DoubleZero IP 到 DoubleZero 的隧道已经在此机器上处于活动状态。
+2. -`up`- 表示连接健康。
+3. 出现此错误是因为使用该特定 DoubleZero IP 到 DoubleZero 的隧道已在此机器上处于活动状态。
 
-    此错误通常在 DoubleZero 客户端升级后遇到。DoubleZero 升级会自动重启 doublezerod 服务，如果您在服务重启前已连接，则会自动重新连接。
+    此错误通常在 DoubleZero 客户端升级后出现。DoubleZero 升级会自动重启 doublezerod 服务，如果您在服务重启之前已连接，它会自动重新连接。
 
 
 ### 问题：DoubleZero 状态为 unknown 或 down
-此问题通常与 GRE 隧道在服务器和 DoubleZero 设备之间成功激活，但防火墙阻止了 BGP 会话建立有关。因此，您无法从网络接收路由或通过 DoubleZero 发送流量。
+此问题通常与以下情况有关：服务器和 DoubleZero 设备之间的 GRE 隧道已成功激活，但防火墙阻止了 BGP 会话的建立。因此，您无法从网络接收路由或通过 DoubleZero 发送流量。
 
 **症状：**
 - `doublezero connect ibrl` 执行成功。但是，`doublezero status` 返回 `down` 或 `unknown`
@@ -177,11 +177,11 @@ account                                      | accesspass_type                  
 **解决方案：**
 1. 检查您的防火墙规则！
 
-   DoubleZero 使用链路本地地址空间 169.254.0.0/16 作为您的机器和 DoubleZero 设备之间的 GRE 隧道接口。169.254.0.0/16 通常是"不可路由"的地址空间，因此良好的安全实践会建议您阻止与该地址空间的通信。您需要在防火墙中允许一条规则，使源 169.254.0.0/16 能够与目标 169.254.0.0/16 在 tcp 端口 179 上通信。该规则需要放置在任何拒绝 169.254.0.0/16 流量的规则之前。
+   DoubleZero 使用链路本地地址空间：169.254.0.0/16 作为您的机器和 DoubleZero 设备之间的 GRE 隧道接口。169.254.0.0/16 通常是"不可路由"的地址空间，因此良好的安全实践会建议您阻止与该地址空间的通信。您需要在防火墙中添加一条规则，允许源 169.254.0.0/16 与目标 169.254.0.0/16 在 tcp 端口 179 上通信。该规则需要放置在任何拒绝 169.254.0.0/16 流量的规则之上。
 
-    在 ufw 等防火墙中，您可以运行 `sudo ufw status` 来查看防火墙规则
+    在像 ufw 这样的防火墙中，您可以运行 `sudo ufw status` 来查看防火墙规则
 
-    示例输出，可能类似于 Solana 验证者的配置。
+    示例输出，可能类似于 Solana 验证节点的配置：
     ```
     To                         Action      From
     --                         ------      ----
@@ -200,13 +200,13 @@ account                                      | accesspass_type                  
     192.168.0.0/16             DENY OUT    Anywhere
     ```
 
-    在上面的输出中，您可以看到除了指定的端口外，所有到 169.254.0.0/16 的流量都被拒绝了。
-    `sudo ufw insert <N> allow proto tcp from 169.254.0.0/16 to 169.254.0.0/16 port 179` 将规则插入到第 <N> 个位置。即如果 N = 1，则此规则将作为第一条规则插入。
+    在上述输出中，您可以看到除了指定端口外，所有到 169.254.0.0/16 的流量都被拒绝。
+    `sudo ufw insert <N> allow proto tcp from 169.254.0.0/16 to 169.254.0.0/16 port 179` 将规则插入到第 <N> 个位置。例如，如果 N = 1，则将此规则插入为第一条规则。
     `sudo ufw status numbered` 将显示规则的编号顺序。
     
 ### 问题：最近的 DoubleZero 设备已更改
 
-这不是一个错误，而是一个优化建议。以下是一个可以不时手动运行或自动化的最佳实践。
+这不是一个错误，而是一个优化建议。以下是一个最佳实践，可以不定期运行或自动化执行。
 
 **解决方案：**
 
@@ -224,31 +224,31 @@ account                                      | accesspass_type                  
         ```
         注意上面延迟最低的设备是 `dz-ny7-sw01`
 
-        我们希望连接到此设备。：
+        我们希望连接到此设备：
 
-2. 确认您是否已连接到目标设备
-    - 运行 `doublezero user list --env testnet | grep 111.11.11.11`，将 `111.11.11.11` 替换为已连接到 DoubleZero 的设备的公共 IPv4 地址。您也可以使用您的验证者 ID 或 doublezero ID。
+2. 确定您是否已连接到目标设备
+    - 运行 `doublezero user list --env testnet | grep 111.11.11.11`，将 `111.11.11.11` 替换为您连接到 DoubleZero 的设备公网 IPv4 地址。您也可以使用验证节点 ID 或 doublezero ID。
 
         输出
         ```
         account                                      | user_type           | groups                        | device       | location    | cyoa_type  | client_ip       | dz_ip           | accesspass                                                      | tunnel_id | tunnel_net       | status    | owner                                        
         6QRU1ivJnKGHpom2BdzH9PiTRkJ5WhunPNLtfYcqVisW | IBRL                |                               | dz-ny7-sw01     | New York    | GREOverDIA | 111.11.11.11    | 111.11.11.11    | Prepaid: (MAX)                                                  | 514       | 111.254.1.111/31 | activated | DZfHh2vjXFqt8zfNbT1afm8PGuCm3BrQKegC5THtKFdn 
         ```
-        在此示例中，我们已经连接到了最近的设备。无需更多步骤，可以在此停止。
+        在此示例中，我们已经连接到最近的设备。无需更多步骤，到此即可停止。
 
 
-        让我们考虑如果输出是这样的情况
+        现在假设输出如下：
          ```
         account                                      | user_type           | groups                        | device       | location    | cyoa_type  | client_ip       | dz_ip           | accesspass                                                      | tunnel_id | tunnel_net       | status    | owner                                        
         6QRU1ivJnKGHpom2BdzH9PiTRkJ5WhunPNLtfYcqVisW | IBRL                |                               | fra-dz-001-x     | New York    | GREOverDIA | 111.11.11.11    | 111.11.11.11    | Prepaid: (MAX)                                                  | 514       | 111.254.1.111/31 | activated | DZfHh2vjXFqt8zfNbT1afm8PGuCm3BrQKegC5THtKFdn 
         ```
-        这将是一个次优连接。让我们考虑是否需要重新连接。
+        这将是一个非最优连接。让我们考虑是否需要重新连接。
 
         在连接之前，我们将检查设备是否有可用的用户隧道。
 
 3. 可选：检查网络中的可用设备
 
-    为了教学目的，我们首先：
+    出于学习目的，我们首先：
     - 运行 `doublezero device list` 获取完整的设备列表。我们提取了 2 个设备作为示例来解释输出。
 
         输出：
@@ -257,24 +257,24 @@ account                                      | accesspass_type                  
         GphgLkA7JDVtkDQZCiDrwrDvaUs8r8XczEae1KkV6CGQ | ams001-dz002  | jump_       | EQX-AM4   | ams      | switch      | 149.11.64.57    | 38.246.201.64/27                 | 69    | 128       | activated |          | H647kAwTcWsGXZUK3BTr1JyTBZmbNcYyCmRFFCEnXUVp 
         7FfrX8YbvbzM8A1ojNynP9BjiKpK9rrmhdEdchB2myhG | dz-fr5-sw01   | glxy        | EQX-FR5   | fra      | switch      | 89.222.118.225  | 89.222.118.228/30                | 0     | 0         | activated |          | 5YbNrJHJJoiRwVEvgAWRGdFRG9gRdZ47hLCKSym8bqbp 
         ```
-        注意上面 `ams001-dz002` 有 69 个用户，最大用户数为 128。该设备还可以添加 59 个用户。
+        注意上面 `ams001-dz002` 有 69 个用户，最大用户数为 128。此设备还可以添加 59 个用户。
 
         然而，`dz-fr5-sw01` 有 0 个用户，最大用户数也为 0。您将无法连接到此设备。最大用户数为 0 意味着该设备不接受任何连接。
 
-        现在让我们回到连接最近设备的步骤。
+        现在让我们回到连接最近设备的操作。
 
-4. 确认目标设备是否有可用连接
+4. 确定目标设备是否有可用连接
     - 运行 `doublezero device list | grep dz-ny7-sw01`，将 `dz-ny7-sw01` 替换为您的目标设备
 
         输出
         ```
         2hPMFJHh5BPX42ygBvuYYJfCv9q7g3rRR3ZRsUgtaqUi | dz-ny7-sw01   | glxy        | EQX-NY7   | nyc      | switch      | 137.239.213.162 | 137.239.216.164/31               | 29    | 128       | activated |          | 5YbNrJHJJoiRwVEvgAWRGdFRG9gRdZ47hLCKSym8bqbp 
         ```
-        在此我们可以看到 `dz-ny7-sw01` 有可用的连接空间。
+        这里我们可以看到 `dz-ny7-sw01` 有可用的连接空间。
 
 5. 连接到最近的 DoubleZero 设备
 
-    我们将先断开连接，然后重新连接到 DoubleZero。
+    我们将断开连接，然后重新连接到 DoubleZero。
 
     首先运行
     - `doublezero disconnect`
@@ -289,7 +289,7 @@ account                                      | accesspass_type                  
         🔍  User Account deleted
         ✅  Deprovisioning Complete
         ```
-    现在我们通过以下命令检查状态以确认断开连接
+    现在我们检查状态以确认断开连接
     - `doublezero status`
 
     输出
@@ -298,7 +298,7 @@ account                                      | accesspass_type                  
     Tunnel status | Last Session Update | Tunnel Name | Tunnel src | Tunnel dst | Doublezero IP | User Type 
     disconnected  | no session data     |             |            |            |               |    
     ```
-    最后我们通过以下命令重新连接
+    最后我们重新连接
     - `doublezero connect ibrl`
 
     输出
@@ -312,13 +312,13 @@ account                                      | accesspass_type                  
     Service provisioned with status: ok
     ✅  User Provisioned
     ```
-    注意上面的输出中我们 `Connected to device: dz-ny7-sw01`，这是我们在步骤 1 中初始调查的预期结果，当时我们发现 `dz-ny7-sw01` 是延迟最低的设备。
+    注意上述输出中我们 `Connected to device: dz-ny7-sw01`，这是我们在步骤 1 中初始调查的预期结果，当时我们发现 `dz-ny7-sw01` 是延迟最低的设备。
 
-### 问题：错误的 DoubleZero 环境
+### 问题：DoubleZero 环境错误
 
-Mainnet-Beta 和 Testnet 使用不同的软件包仓库。`doublezero status` 显示客户端所在的网络（`Network` 列）。如果用户安装了错误的客户端，或者守护进程仍然指向另一个环境，请使用以下可直接复制粘贴的切换命令。
+Mainnet-Beta 和 Testnet 使用不同的软件包仓库。`doublezero status` 显示客户端所在的网络（`Network` 列）。如果用户安装了错误的客户端，或守护进程仍指向另一个环境，请使用以下可直接复制粘贴的切换命令。
 
-将 DoubleZero 客户端 CLI (`doublezero`) 和守护进程 (`doublezerod`) 配置为连接到 **DoubleZero testnet**：
+将 DoubleZero 客户端 CLI（`doublezero`）和守护进程（`doublezerod`）配置为连接到 **DoubleZero testnet**：
 
 ```bash
 DESIRED_DOUBLEZERO_ENV=testnet \
@@ -330,7 +330,7 @@ DESIRED_DOUBLEZERO_ENV=testnet \
 	&& echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV"
 ```
 
-将 DoubleZero 客户端 CLI (`doublezero`) 和守护进程 (`doublezerod`) 配置为连接到 **DoubleZero mainnet-beta**：
+将 DoubleZero 客户端 CLI（`doublezero`）和守护进程（`doublezerod`）配置为连接到 **DoubleZero mainnet-beta**：
 
 ```bash
 DESIRED_DOUBLEZERO_ENV=mainnet-beta \
@@ -342,11 +342,11 @@ DESIRED_DOUBLEZERO_ENV=mainnet-beta \
 	&& echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV"
 ```
 
-您应该看到：`✅ doublezerod configured for environment mainnet-beta`（或 `testnet`）。然后 `doublezero status` 应该显示匹配的 `Network`。
+您应该看到：`✅ doublezerod configured for environment mainnet-beta`（或 `testnet`）。然后 `doublezero status` 应显示匹配的 `Network`。
 
-### 问题：`doublezero status` 返回某些字段为 N/A
+### 问题：`doublezero status` 部分字段返回 N/A
 
-此问题通常与当前守护进程和客户端与建立已连接 DZ 隧道时使用的守护进程和客户端不匹配有关。
+此问题通常与以下情况有关：当前的守护进程和客户端版本与建立已连接 DZ 隧道时使用的守护进程和客户端版本不匹配。
 
 **症状：**
 - 运行 `doublezero status` 时，用户在某些字段中看到 `N/A`
@@ -365,12 +365,12 @@ DESIRED_DOUBLEZERO_ENV=mainnet-beta \
     up            | 2025-10-20 20:06:18 UTC | doublezero0 | 149.28.38.64 | 64.86.249.22 | 149.28.38.64  | IBRL      | N/A            | ✅ dz-ny7-sw01        | N/A   | mainnet-beta
     ```
 
-    注意上面的示例输出中，`Tunnel status` 为 `up`。我们的 `Network` 是 `mainnet-beta`。然而，`Current Device` 和 `Metro` 为 `N/A`
+    注意上面的示例输出中 `Tunnel status` 为 `up`。我们的 `Network` 是 `mainnet-beta`。然而，`Current Device` 和 `Metro` 为 `N/A`
 
-    这表明您的机器上有一个不在当前环境中的开放隧道。
-    在这种情况下，`up` 状态加上在 `mainnet-beta` 上未找到 `Current Device`，告诉我们隧道实际上在 testnet 上！
+    这表明您的机器上存在一个不在当前环境中的已打开隧道。
+    在这种情况下，`up` 状态加上在 `mainnet-beta` 上未找到 `Current Device`，向我们揭示了隧道实际上在 testnet 上！
  
-2. 使用[错误的 DoubleZero 环境](#问题错误的-doublezero-环境)中的复制粘贴命令切换环境。使用与返回 `N/A` 的 `Network` 值相反的环境。
+2. 使用[DoubleZero 环境错误](#issue-wrong-doublezero-environment)中的复制粘贴命令切换环境。使用与返回 `N/A` 的 `Network` 值相反的环境。
 
 3. 检查您的状态
 
@@ -384,4 +384,6 @@ DESIRED_DOUBLEZERO_ENV=mainnet-beta \
 
     ``` 
     Tunnel status | Last Session Update     | Tunnel Name | Tunnel src   | Tunnel dst   | Doublezero IP | User Type | Current Device | Lowest Latency Device | Metro    | Network 
-    up            | 2025-10-21 12:32:12 UTC | doublezero0 | 149.28.38.64 | 64.86.249.22 | 149.28.38.64  | IBRL      | nyc-dz001      | ✅ nyc-dz001          | New York | test
+    up            | 2025-10-21 12:32:12 UTC | doublezero0 | 149.28.38.64 | 64.86.249.22 | 149.28.38.64  | IBRL      | nyc-dz001      | ✅ nyc-dz001          | New York | testnet 
+    ```
+所有字段均已填充，说明您现在处于正确的环境中。

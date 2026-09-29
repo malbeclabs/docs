@@ -1,39 +1,36 @@
-# Autre Connexion Multicast
-!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+---
+description: Connectez-vous à DoubleZero en mode multicast pour publier ou vous abonner à un ou plusieurs flux.
+---
 
-!!! warning "En me connectant à DoubleZero, j'accepte les [Conditions d'Utilisation de DoubleZero](https://doublezero.xyz/terms-protocol)"
+# Autre connexion Multicast
+!!! warning "En me connectant à DoubleZero, j'accepte les [Conditions d'utilisation de DoubleZero](https://doublezero.xyz/terms-protocol)"
+ 
+Informations détaillées de connexion : 
 
-
-|Cas d'Utilisation | Première Étape | Une fois approuvé, connectez-vous via :|
-|---------|------------|---------------------------|
-|S'abonner à Jito Shredstream | Contactez Jito pour approbation. | ```doublezero connect multicast --subscribe jito-shredstream``` |
-
-Informations de connexion détaillées :
-
-### 1. Installation du Client DoubleZero
+### 1. Installation du client DoubleZero
 Veuillez suivre les instructions de [configuration](setup.md) pour installer et configurer le client DoubleZero.
 
-### 2. Instructions de Connexion
+### 2. Instructions de connexion 
 
 Connectez-vous à DoubleZero en mode Multicast
-En tant qu'éditeur :
+En tant qu'éditeur : 
 
-```doublezero connect multicast --publish <nom du flux>```
+```doublezero connect multicast --publish <feed name>```
 
-ou en tant qu'abonné :
+ou en tant qu'abonné : 
 
-```doublezero connect multicast --subscribe <nom du flux>```
+```doublezero connect multicast --subscribe <feed name>```
 
-ou pour publier et s'abonner :
+ou pour publier et s'abonner : 
 
-```doublezero connect multicast --publish <nom du flux> --subscribe <nom du flux>```
+```doublezero connect multicast --publish <feed name> --subscribe <feed name>```
 
-Pour publier ou s'abonner à plusieurs flux, vous pouvez inclure plusieurs noms de flux séparés par des espaces.
+Pour publier ou vous abonner à plusieurs flux, vous pouvez inclure plusieurs noms de flux séparés par des espaces.
 Cela peut également être utilisé pour publier et s'abonner à des flux de publication.
-Par exemple
+Par exemple 
 ```doublezero connect multicast --subscribe feed1 feed2 feed3```
 
-Vous devriez voir une sortie similaire à ce qui suit :
+Vous devriez voir une sortie similaire à la suivante :
 ```
 DoubleZero Service Provisioning
 🔗  Start Provisioning User to devnet...
@@ -45,16 +42,16 @@ Public IP detected: 137.174.145.145 - If you want to use a different IP, you can
     Service provisioned with status: ok
 ✅  User Provisioned
 ```
-### 3. Vérifiez votre connexion multicast active.
+### 3. Vérifiez votre connexion multicast active. 
 Attendez 60 secondes puis exécutez
 
 ```
 doublezero status
 ```
 Résultat attendu :
-- Session BGP active sur le bon réseau DoubleZero
-- Si vous êtes un éditeur, votre IP DoubleZero sera différente de votre IP Source Tunnel. C'est normal.
-- Si vous êtes uniquement abonné, votre IP DoubleZero sera identique à votre IP Source Tunnel.
+- Session BGP active sur le bon réseau DoubleZero 
+- Si vous êtes un éditeur, votre IP DoubleZero sera différente de votre IP Tunnel Src. C'est le comportement attendu. 
+- Si vous êtes uniquement abonné, votre IP DoubleZero sera la même que votre IP Tunnel Src. 
 
 ```
 ~$ doublezero status
@@ -62,7 +59,7 @@ Résultat attendu :
  BGP Session Up | 2026-02-11 20:46:20 UTC | doublezero1 | 137.174.145.145 | 100.0.0.1  | 198.18.0.1    | Multicast | ams-dz001      | ✅ ams-dz001         | Amsterdam | Testnet
 ```
 
-Vérifiez les groupes auxquels vous êtes connecté :
+Vérifiez les groupes auxquels vous êtes connecté : 
 ```
 doublezero user list --client-ip <your ip>
 ```

@@ -1,7 +1,9 @@
+---
+description: Ponte en contacto para incorporar un nuevo sistema distribuido o protocolo a la red DoubleZero.
+---
+
 # Nuevo Inquilino
-!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
 
-
-Si desea que su sistema distribuido aproveche la red DoubleZero, con gusto le ayudaremos con cualquier pregunta técnica que tenga.
+Si deseas que tu sistema distribuido aproveche la red DoubleZero, estaremos encantados de ayudarte con cualquier pregunta técnica que puedas tener.
 
 [Formulario de Contacto](https://docs.google.com/forms/d/e/1FAIpQLSdp11kHtmcaKaLfYRZA92ylOvucipY86CdjVKdiggNdjlZniw/viewform)

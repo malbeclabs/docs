@@ -1,39 +1,36 @@
+---
+description: マルチキャストモードで DoubleZero に接続し、1つ以上のフィードをパブリッシュまたはサブスクライブします。
+---
+
 # その他のマルチキャスト接続
-!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+!!! warning "DoubleZero に接続することにより、[DoubleZero 利用規約](https://doublezero.xyz/terms-protocol)に同意したものとみなされます"
+ 
+詳細な接続情報: 
 
-!!! warning "DoubleZeroに接続することで、[DoubleZeroサービス利用規約](https://doublezero.xyz/terms-protocol)に同意します"
+### 1. DoubleZero クライアントのインストール
+[セットアップ](setup.md)の手順に従って、DoubleZero クライアントをインストールおよび設定してください。
 
+### 2. 接続手順 
 
-|ユースケース | 最初のステップ | 承認後の接続方法：|
-|---------|------------|---------------------------|
-|Jitoシュレッドストリームをサブスクライブ | 承認のためJitoに連絡 | ```doublezero connect multicast --subscribe jito-shredstream``` |
+マルチキャストモードで DoubleZero に接続します
+パブリッシャーとして: 
 
-詳細な接続情報：
+```doublezero connect multicast --publish <feed name>```
 
-### 1. DoubleZeroクライアントのインストール
-DoubleZeroクライアントのインストールと設定については、[セットアップ](setup.md)手順に従ってください。
+またはサブスクライバーとして: 
 
-### 2. 接続手順
+```doublezero connect multicast --subscribe <feed name>```
 
-マルチキャストモードでDoubleZeroに接続します。
-パブリッシャーとして：
+またはパブリッシュとサブスクライブの両方: 
 
-```doublezero connect multicast --publish <フィード名>```
+```doublezero connect multicast --publish <feed name> --subscribe <feed name>```
 
-またはサブスクライバーとして：
-
-```doublezero connect multicast --subscribe <フィード名>```
-
-またはパブリッシュとサブスクライブの両方：
-
-```doublezero connect multicast --publish <フィード名> --subscribe <フィード名>```
-
-複数のフィードをパブリッシュまたはサブスクライブするには、スペースで区切って複数のフィード名を含めることができます。
-これを使ってパブリッシュフィードのパブリッシュとサブスクライブにも使用できます。
-例：
+複数のフィードをパブリッシュまたはサブスクライブするには、複数のフィード名をスペース区切りで指定できます。
+これはパブリッシュフィードへのパブリッシュとサブスクライブにも使用できます。
+例 
 ```doublezero connect multicast --subscribe feed1 feed2 feed3```
 
-以下のような出力が表示されるはずです：
+以下のような出力が表示されるはずです:
 ```
 DoubleZero Service Provisioning
 🔗  Start Provisioning User to devnet...
@@ -45,17 +42,16 @@ Public IP detected: 137.174.145.145 - If you want to use a different IP, you can
     Service provisioned with status: ok
 ✅  User Provisioned
 ```
-
-### 3. アクティブなマルチキャスト接続の確認
-60秒待ってから実行します：
+### 3. アクティブなマルチキャスト接続を確認する 
+60秒待ってから以下を実行してください
 
 ```
 doublezero status
 ```
-期待される結果：
-- 正しいDoubleZeroネットワーク上でBGPセッションが稼働中
-- パブリッシャーの場合、DoubleZero IPはTunnel Src IPと異なります。これは正常です。
-- サブスクライバーのみの場合、DoubleZero IPはTunnel Src IPと同じになります。
+期待される結果:
+- 正しい DoubleZero ネットワーク上で BGP セッションが Up であること 
+- パブリッシャーの場合、DoubleZero IP は Tunnel Src IP と異なります。これは想定どおりの動作です。 
+- サブスクライバーのみの場合、DoubleZero IP は Tunnel Src IP と同じになります。 
 
 ```
 ~$ doublezero status
@@ -63,7 +59,7 @@ doublezero status
  BGP Session Up | 2026-02-11 20:46:20 UTC | doublezero1 | 137.174.145.145 | 100.0.0.1  | 198.18.0.1    | Multicast | ams-dz001      | ✅ ams-dz001         | Amsterdam | Testnet
 ```
 
-接続しているグループを確認します：
+接続しているグループを確認します: 
 ```
 doublezero user list --client-ip <your ip>
 ```
