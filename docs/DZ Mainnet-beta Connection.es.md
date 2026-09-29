@@ -6,7 +6,7 @@ description: Conecta un validador de Solana (mainnet-beta o testnet) y hasta tre
 
 !!! warning "Al conectarme a DoubleZero acepto los [Términos de Servicio de DoubleZero](https://doublezero.xyz/terms-protocol)"
 
-??? warning "Al conectarme al testnet de DoubleZero acepto los términos del Acuerdo de Evaluación establecidos aquí (clic para expandir)"
+??? warning "Al conectarme al testnet de DoubleZero acepto los términos del Acuerdo de Evaluación establecidos aquí (haz clic para expandir)"
     <span style="font-size:14px;">DoubleZero Testnet</span>
     Evaluation Agreement
 
@@ -57,39 +57,39 @@ description: Conecta un validador de Solana (mainnet-beta o testnet) y hasta tre
     <span style="font-size:14px;">8. GENERAL PROVISIONS.</span>
     This Agreement may not be transferred or assigned by User without the prior written consent of DZF. DZF may freely assign this Agreement. All notices required to be sent hereunder shall be sent by email (to DZF: legal@doublezero.xyz) and deemed received the day after sending (with transmission confirmed). If any provision of this Agreement is held to be invalid or unenforceable, the remaining provisions of this Agreement will remain in full force and effect. The waiver by either party of any default or breach of this Agreement shall not constitute a waiver of any other or subsequent default or breach. Neither party shall be liable for any delay or failure in performance due to acts of God, earthquakes, shortages of supplies, transportation difficulties, labor disputes, riots, war, fire, epidemics, and similar occurrences beyond its control, whether or not foreseeable. This Agreement together with any attachments constitutes the complete agreement between the parties and supersedes all prior or contemporaneous agreements or representations, written or oral, concerning the subject matter herein. This Agreement may not be modified or amended except in writing signed by a duly authorized representative of each party.
 
-Elige la red de DoubleZero que coincida con tu clúster de Solana: `mainnet-beta` o `testnet`. Instala los paquetes correspondientes en la [configuración](setup.md) y usa esa misma red para cada comando a continuación.
+Elige la red de DoubleZero que corresponda a tu clúster de Solana: `mainnet-beta` o `testnet`. Instala los paquetes correspondientes en [configuración](setup.md), y usa esa misma red para cada comando a continuación.
 
 !!! Note inline end
     El modo IBRL no requiere reiniciar los clientes del validador, porque utiliza tu dirección IP pública existente.
 
 Los validadores de Solana se conectan a DoubleZero en modo IBRL siguiendo los pasos de esta página.
 
-Cada validador de Solana tiene su propio **par de claves de identidad**; de este se extrae la clave pública conocida como el **ID de nodo**. Esta es la huella digital única del validador en la red de Solana.
+Cada validador de Solana tiene su propio **par de claves de identidad**; de este se extrae la clave pública conocida como el **ID del nodo**. Esta es la huella digital única del validador en la red de Solana.
 
-Con el DoubleZeroID y el ID de nodo identificados, demostrarás la propiedad de tu máquina. Esto se realiza creando un mensaje que incluye el DoubleZeroID firmado con la clave de identidad del validador. La firma criptográfica resultante sirve como prueba verificable de que tú controlas el validador.
+Con el DoubleZeroID y el ID del nodo identificados, demostrarás la propiedad de tu máquina. Esto se hace creando un mensaje que incluye el DoubleZeroID firmado con la clave de identidad del validador. La firma criptográfica resultante sirve como prueba verificable de que controlas el validador.
 
 Finalmente, enviarás una **solicitud de conexión a DoubleZero**. Esta solicitud comunica: *"Aquí está mi identidad, aquí está la prueba de propiedad, y aquí está cómo pretendo conectarme."* DoubleZero valida esta información, acepta la prueba y aprovisiona el acceso a la red para el validador en DoubleZero.
 
 Esta guía permite que 1 Validador Primario se registre a sí mismo, y hasta 3 máquinas de respaldo/conmutación por error al mismo tiempo.
 
-## Prerrequisitos {#prerequisites}
+## Requisitos Previos {#prerequisites}
 
 - Solana CLI instalado y en $PATH
-- Para validadores: Permiso para acceder al archivo del par de claves de identidad del validador (p. ej., validator-keypair.json) bajo el usuario sol
-- Para validadores: Verificar que la clave de identidad del validador de Solana que se va a conectar tenga al menos 1 SOL
-- Las reglas del firewall permiten conexiones salientes para DoubleZero y Solana RPC según sea necesario, incluyendo
+- Para validadores: Permiso para acceder al archivo del par de claves de identidad del validador (por ejemplo, validator-keypair.json) bajo el usuario sol
+- Para validadores: Verificar que la clave de Identidad del validador de Solana que se va a conectar tenga al menos 1 SOL
+- Las reglas de firewall permiten conexiones salientes para DoubleZero y Solana RPC según sea necesario, incluyendo
  GRE (ip proto 47) y BGP (169.254.0.0/16 en tcp/179)
 
 !!! info
-    El ID del Validador se verificará contra el gossip de Solana para determinar la IP de destino. La IP de destino y el DoubleZero ID se utilizarán entonces al abrir un túnel GRE entre tu máquina y el Dispositivo DoubleZero de destino.
+    El ID del Validador se verificará contra el gossip de Solana para determinar la IP de destino. La IP de destino y el DoubleZero ID se utilizarán entonces al abrir un túnel GRE entre tu máquina y el dispositivo DoubleZero de destino.
 
-    Considera: En el caso de que tengas un ID basura y un ID Primario en la misma IP, solo el ID Primario se usará en el registro de la máquina. Esto se debe a que el ID basura no aparecerá en gossip y, por lo tanto, no se puede usar para verificar la IP de la máquina de destino.
+    Considerar: En el caso donde tengas un ID descartable y un ID Primario en la misma IP, solo el ID Primario se usará en el registro de la máquina. Esto se debe a que el ID descartable no aparecerá en gossip y, por lo tanto, no puede usarse para verificar la IP de la máquina de destino.
 
 ## 1. Confirmar la red del cliente {#1-confirm-the-client-network}
 
-Por favor, sigue las instrucciones de [configuración](setup.md) antes de continuar. Instala los paquetes para **mainnet-beta** o **testnet**. Utilizan diferentes repositorios de paquetes.
+Por favor sigue las instrucciones de [configuración](setup.md) antes de continuar. Instala los paquetes para **mainnet-beta** o **testnet**. Usan diferentes repositorios de paquetes.
 
-El último paso en la configuración fue desconectarse de la red. Esto es para asegurar que solo haya un túnel abierto en tu máquina hacia DoubleZero, y que ese túnel esté en la red correcta.
+El último paso en la configuración fue desconectarse de la red. Esto es para asegurar que solo un túnel esté abierto en tu máquina hacia DoubleZero, y que ese túnel esté en la red correcta.
 
 Confirma que el cliente está en la red que elegiste:
 
@@ -97,7 +97,7 @@ Confirma que el cliente está en la red que elegiste:
 doublezero status
 ```
 
-La columna `Network` debería ser `mainnet-beta` o `testnet`, coincidiendo con tu clúster de Solana. Si es incorrecto, o instalaste el paquete equivocado, usa el cambio de copiar y pegar en [solución de problemas](troubleshooting.md#issue-wrong-doublezero-environment).
+La columna `Network` debería ser `mainnet-beta` o `testnet`, coincidiendo con tu clúster de Solana. Si es incorrecta, o instalaste el paquete equivocado, usa el cambio de copiar y pegar en [solución de problemas](troubleshooting.md#issue-wrong-doublezero-environment).
 
 Después de aproximadamente 30 segundos verás los dispositivos DoubleZero disponibles:
 
@@ -105,7 +105,7 @@ Después de aproximadamente 30 segundos verás los dispositivos DoubleZero dispo
 doublezero latency
 ```
 
-Ejemplo de salida (mainnet-beta; testnet se ve igual pero con menos dispositivos):
+Salida de ejemplo (mainnet-beta; testnet se ve igual pero con menos dispositivos):
 
 ```bash
  pubkey                                       | code          | ip              | min      | max      | avg      | reachable
@@ -124,9 +124,9 @@ Ejemplo de salida (mainnet-beta; testnet se ve igual pero con menos dispositivos
 
 ## 2. Abrir el puerto 44880 {#2-open-port-44880}
 
-Los usuarios necesitan abrir el puerto 44880 para utilizar algunas [funciones de enrutamiento](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc7-client-route-liveness.md).
+Los usuarios necesitan abrir el puerto 44880 para utilizar algunas [funcionalidades de enrutamiento](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc7-client-route-liveness.md).
 
-Para abrir el puerto 44880 podrías actualizar las tablas IP de la siguiente manera:
+Para abrir el puerto 44880 podrías actualizar las tablas de IP como:
 
 ```
 sudo iptables -A INPUT -i doublezero0 -p udp --dport 44880 -j ACCEPT
@@ -134,9 +134,9 @@ sudo iptables -A OUTPUT -o doublezero0 -p udp --dport 44880 -j ACCEPT
 ```
 
 
-nota los flags `-i doublezero0`, `-o doublezero0` que restringen esta regla únicamente a la interfaz de DoubleZero
+observa los flags `-i doublezero0`, `-o doublezero0` que restringen esta regla únicamente a la interfaz DoubleZero
 
-O UFW de la siguiente manera:
+O UFW como:
 
 ```
 sudo ufw allow in on doublezero0 to any port 44880 proto udp
@@ -144,7 +144,7 @@ sudo ufw allow out on doublezero0 to any port 44880 proto udp
 ```
 
 
-nota los flags `in on doublezero0`, `out on doublezero0` que restringen esta regla únicamente a la interfaz de DoubleZero
+observa los flags `in on doublezero0`, `out on doublezero0` que restringen esta regla únicamente a la interfaz DoubleZero
 
 ## 3. Atestiguar la Propiedad del Validador {#3-attest-validator-ownership}
 
@@ -163,7 +163,7 @@ Para lograr esto, primero verificarás que la máquina desde la que estás ejecu
 doublezero-solana passport find-validator -u mainnet-beta
 ```
 
-Esto verifica que el validador está registrado en gossip y aparece en la programación de líderes.
+Esto verifica que el validador esté registrado en gossip y aparezca en el calendario de líderes.
 
 Salida esperada:
 
@@ -179,7 +179,7 @@ In Leader scheduler
 ```
 
 !!! info
-    El mismo flujo de trabajo se utiliza para una o varias máquinas.
+    El mismo flujo de trabajo se usa para una o varias máquinas.
     Para registrar una sola máquina, excluye los argumentos "--backup-validator-ids" o "backup_ids=" de cualquier comando en esta página.
 
 Ahora, en todas las máquinas de respaldo donde pretendes ejecutar tu **Validador Primario**, ejecuta lo siguiente:
@@ -199,14 +199,14 @@ Gossip IP: 22.22.22.222
 In Not in Leader scheduler
  ✅ This validator can only connect as a backup in DoubleZero 🖥️  🛟. It is not leader scheduled and cannot act as a primary validator.
 ```
-Esta salida es esperada. El nodo de respaldo no puede estar en la programación de líderes en el momento de la creación del pase.
+Esta salida es esperada. El nodo de respaldo no puede estar en el calendario de líderes al momento de crear el pase.
 
-Ahora ejecutarás este comando en **todas las máquinas de respaldo** donde planeas usar la cuenta de voto e identidad de tu **Validador Primario**.
+Ahora ejecutarás este comando en **todas las máquinas de respaldo** en las que planeas usar la cuenta de voto y la identidad de tu **Validador Primario**.
 
 
 ### Preparar la Conexión {#prepare-the-connection}
 
-Ejecuta el siguiente comando en la máquina del **Validador Primario**. Esta es la máquina en la que tienes stake activo, que está en la programación de líderes con el ID de tu validador primario en el gossip de Solana en la máquina desde la que estás ejecutando el comando:
+Ejecuta el siguiente comando en la máquina del **Validador Primario**. Esta es la máquina donde tienes stake activo, que está en el calendario de líderes con tu ID de validador primario en solana gossip en la máquina desde la que estás ejecutando el comando:
 
 ```
 doublezero-solana passport prepare-validator-access -u mainnet-beta \
@@ -216,7 +216,7 @@ doublezero-solana passport prepare-validator-access -u mainnet-beta \
 ```
 
 
-Ejemplo de salida:
+Salida de ejemplo:
 
 ```
 DoubleZero Passport - Prepare Validator Access Request
@@ -251,10 +251,10 @@ Backup validator 🖥️ 🛡️:
      -k <identity-keypair-file.json>
 
 ```
-Nota la salida al final de este comando. Es la estructura para el siguiente paso.
+Observa la salida al final de este comando. Es la estructura para el siguiente paso.
 
 
-## 4. Generar la Firma {#4-generate-signature}
+## 4. Generar Firma {#4-generate-signature}
 
 Al final del último paso, recibimos una salida preformateada para `solana sign-offchain-message`
 
@@ -278,7 +278,7 @@ De la salida anterior ejecutaremos este comando en la máquina del **Validador P
 Usa el comando `request-validator-access` para crear una cuenta en Solana para la solicitud de conexión. El agente DoubleZero Sentinel detecta la nueva cuenta, valida su identidad y firma, y crea el pase de acceso en DoubleZero para que el servidor pueda establecer una conexión.
 
 
-Usa el ID de nodo, el DoubleZeroID y la firma.
+Usa el ID del nodo, el DoubleZeroID y la firma.
 
 !!! note inline end
       En este ejemplo usamos `-k /home/user/.config/solana/id.json` para encontrar la Identidad del validador. Usa la ubicación apropiada para tu despliegue local.
@@ -298,7 +298,7 @@ Esta salida se puede usar para ver la transacción en un explorador de Solana. A
 Request Solana validator access: Transaction22222222VaB8FMqM2wEBXyV5THpKRXWrPtDQxmTjHJHiAWteVYTsc7Gjz4hdXxvYoZXGeHkrEayp
 ```
 
-Si tiene éxito, DoubleZero registrará el primario con sus respaldos. Ahora puedes conmutar entre las IPs registradas en el pase de acceso. DoubleZero mantendrá la conectividad automáticamente al cambiar a nodos de respaldo registrados de esta manera.
+Si tiene éxito, DoubleZero registrará el primario con sus respaldos. Ahora puedes hacer conmutación por error entre las IPs registradas en el pase de acceso. DoubleZero mantendrá la conectividad automáticamente al cambiar a nodos de respaldo registrados de esta manera.
 
 
 ## 6. Conectar en Modo IBRL {#6-connect-in-ibrl-mode}
@@ -312,17 +312,13 @@ doublezero connect ibrl
 Deberías ver una salida indicando el aprovisionamiento, como:
 
 ```
-DoubleZero Service Provisioning
-🔗  Start Provisioning User...
-Public IP detected: 137.184.101.183 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
-🔍  Provisioning User for IP: 137.184.101.183
-    User account created
-    Connected to device: nyc-dz001
-    The user has been successfully activated
-    Service provisioned with status: ok
+⚡  Connecting to mainnet-beta...
+    DoubleZero ID: <your DoubleZero ID>
+⚡  Provisioning for IP: <your public ip>
+    Device selected: <the doublezero device you are connecting to>
 ✅  User Provisioned
 ```
-Espera un minuto para que el túnel GRE termine de configurarse. Hasta que el túnel GRE termine de configurarse, la salida de estado puede devolver "down" o "Unknown"
+Espera un minuto para que el túnel GRE termine de configurarse. Hasta que el túnel GRE termine de configurarse, la salida de tu estado puede devolver "down" o "Unknown"
 
 Verifica tu conexión:
 
@@ -332,7 +328,7 @@ doublezero status
 
 **Salida:**
 !!! note inline end
-    Examina esta salida. Nota que el `Tunnel src` y la `DoubleZero IP` coinciden con la dirección IPv4 pública de tu máquina.
+    Examina esta salida. Observa que el `Tunnel src` y el `DoubleZero IP` coinciden con la dirección IPv4 pública de tu máquina.
     <!--`Tunnel dst` es la dirección del dispositivo DZ al que estás conectado.-->
 
 ```bash

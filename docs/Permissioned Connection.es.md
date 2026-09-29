@@ -9,20 +9,20 @@ description: Incorporación con permisos para no validadores y RPCs que se conec
 
 La incorporación de usuarios actualmente requiere permisos para no validadores y RPCs. Para iniciar el flujo con permisos, por favor complete [este formulario](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z). Esto es lo que puede esperar durante este proceso:
 
-- Puede haber tarifas asociadas con el uso de Usuarios con Permisos en el futuro.
+- Puede haber tarifas asociadas con el uso de usuarios con permisos en el futuro.
 - Después de enviar el formulario, monitoree su contacto principal de Telegram.
 
 
-###  Conexión a Mainnet-Beta y Testnet en modo IBRL
+### Conexión a Mainnet-Beta y Testnet en modo IBRL
 
 !!! Note inline end
     El modo IBRL no requiere reiniciar los clientes validadores, porque utiliza su dirección IP pública existente.
 
-Los Usuarios con Permisos completarán la conexión a DoubleZero Mainnet-beta, lo cual se detalla en esta página.
+Los usuarios con permisos completarán la conexión a DoubleZero Mainnet-beta, lo cual se detalla en esta página.
 
 ## 1. Confirmar la red del cliente
 
-Por favor siga las instrucciones de [configuración](setup.md) antes de continuar. Instale los paquetes de Mainnet-Beta o Testnet para la red que desee — utilizan repositorios de paquetes diferentes.
+Por favor siga las instrucciones de [configuración](setup.md) antes de continuar. Instale los paquetes de Mainnet-Beta o Testnet para la red que desee — utilizan diferentes repositorios de paquetes.
 
 El último paso en la configuración fue desconectarse de la red. Esto es para asegurar que solo un túnel esté abierto en su máquina hacia DoubleZero, y que ese túnel esté en la red correcta.
 
@@ -32,7 +32,7 @@ Confirme con:
 doublezero status
 ```
 
-La columna `Network` debe coincidir con la red a la que pretende unirse. Si no coincide, use el cambio de copiar y pegar en [solución de problemas](troubleshooting.md#issue-wrong-doublezero-environment).
+La columna `Network` debe coincidir con la red a la que desea unirse. Si no coincide, use el cambio de copiar y pegar en [solución de problemas](troubleshooting.md#issue-wrong-doublezero-environment).
 
 Después de aproximadamente 30 segundos verá los dispositivos DoubleZero disponibles:
 
@@ -58,31 +58,27 @@ La salida de Testnet será idéntica en estructura, pero con muchos más disposi
 
 ## 2. Contactar a la Fundación DoubleZero
 
-La fundación DoubleZero. Deberá proporcionar su `DoubleZeroID`, su `Validator ID` (ID de nodo) y la `public ipv4 address` desde la cual se conectará.
+La fundación DoubleZero. Necesitará proporcionar su `DoubleZeroID`, su `Validator ID` (ID del nodo) y la `public ipv4 address` desde la que se conectará.
 
 
 ## 3. Conectar en modo IBRL
 
-En el servidor, con el usuario que se conectará a DoubleZero, ejecute el comando `connect` para establecer la conexión con DoubleZero.
+En el servidor, con el usuario que se conectará a DoubleZero, ejecute el comando `connect` para establecer la conexión a DoubleZero.
 
 ```bash
 doublezero connect ibrl
 ```
 
-Debería ver una salida indicando el aprovisionamiento, como:
+Debería ver una salida que indica el aprovisionamiento, como:
 
 ```
-DoubleZero Service Provisioning
-🔗  Start Provisioning User...
-Public IP detected: 137.184.101.183 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
-🔍  Provisioning User for IP: 137.184.101.183
-    User account created
-    Connected to device: nyc-dz001
-    The user has been successfully activated
-    Service provisioned with status: ok
+⚡  Connecting to mainnet-beta...
+    DoubleZero ID: <your DoubleZero ID>
+⚡  Provisioning for IP: <your public ip>
+    Device selected: <the doublezero device you are connecting to>
 ✅  User Provisioned
 ```
-Espere un minuto para que el túnel se complete. Hasta que el túnel se haya completado, la salida de su estado puede devolver "down" o "Unknown"
+Espere un minuto para que el túnel se complete. Hasta que el túnel esté completado, la salida de su estado puede devolver "down" o "Unknown"
 
 Verifique su conexión:
 

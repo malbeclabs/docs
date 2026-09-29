@@ -25,21 +25,18 @@ o para publicar y suscribirse:
 
 ```doublezero connect multicast --publish <feed name> --subscribe <feed name>```
 
-Para publicar o suscribirse a múltiples feeds, puede incluir varios nombres de feeds separados por espacios.
+Para publicar o suscribirse a múltiples feeds, puede incluir múltiples nombres de feed separados por espacios.
 Esto también se puede usar para publicar y suscribirse a feeds de publicación.
 Por ejemplo 
 ```doublezero connect multicast --subscribe feed1 feed2 feed3```
 
 Debería ver una salida similar a la siguiente:
 ```
-DoubleZero Service Provisioning
-🔗  Start Provisioning User to devnet...
-Public IP detected: 137.174.145.145 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
-    DoubleZero ID: <your dz_id>
-🔍  Provisioning User for IP: <your public ip>
-    Creating an account for the IP: <your public ip>
-    The Device has been selected: <the doublezero device you are connecting to>
-    Service provisioned with status: ok
+⚡  Connecting to devnet...
+    DoubleZero ID: <your DoubleZero ID>
+⚡  Provisioning for IP: <your public ip>
+    Creating account for IP: <your public ip>
+    Device selected: <the doublezero device you are connecting to>
 ✅  User Provisioned
 ```
 ### 3. Verifique su conexión multicast activa. 
@@ -50,8 +47,8 @@ doublezero status
 ```
 Resultado esperado:
 - Sesión BGP activa en la red DoubleZero correcta 
-- Si usted es un publicador, su IP de DoubleZero será diferente a su IP de origen del túnel. Esto es esperado. 
-- Si usted es solo un suscriptor, su IP de DoubleZero será la misma que su IP de origen del túnel. 
+- Si es publicador, su IP de DoubleZero será diferente a su IP de origen del túnel. Esto es esperado.
+- Si es solo suscriptor, `doublezero status` deja la IP de DoubleZero en blanco. `doublezero user list` la muestra.
 
 ```
 ~$ doublezero status

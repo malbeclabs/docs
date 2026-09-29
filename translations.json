@@ -1,12 +1,12 @@
 {
   "docs/DZ Mainnet-beta Connection.md": {
-    "es": "90adc9adfcda1fe267a3263facdcdefb6cc99a93",
-    "fr": "90adc9adfcda1fe267a3263facdcdefb6cc99a93",
-    "it": "90adc9adfcda1fe267a3263facdcdefb6cc99a93",
-    "ja": "90adc9adfcda1fe267a3263facdcdefb6cc99a93",
-    "ko": "90adc9adfcda1fe267a3263facdcdefb6cc99a93",
-    "pt": "90adc9adfcda1fe267a3263facdcdefb6cc99a93",
-    "zh": "90adc9adfcda1fe267a3263facdcdefb6cc99a93"
+    "es": "e9f05a7d6d0279ef5810da2d6907761eb4d7793e",
+    "fr": "e9f05a7d6d0279ef5810da2d6907761eb4d7793e",
+    "it": "e9f05a7d6d0279ef5810da2d6907761eb4d7793e",
+    "ja": "e9f05a7d6d0279ef5810da2d6907761eb4d7793e",
+    "ko": "e9f05a7d6d0279ef5810da2d6907761eb4d7793e",
+    "pt": "e9f05a7d6d0279ef5810da2d6907761eb4d7793e",
+    "zh": "e9f05a7d6d0279ef5810da2d6907761eb4d7793e"
   },
   "docs/DZ Testnet Connection.md": {
     "es": "d06ca59129aee5647b94ed36392bc1f0344e2a23",
@@ -18,22 +18,22 @@
     "zh": "d06ca59129aee5647b94ed36392bc1f0344e2a23"
   },
   "docs/Edge Subscriber CLI.md": {
-    "es": "a6da96f1d8611e1b0299beddcb51c14c8e0e6b8e",
-    "fr": "a6da96f1d8611e1b0299beddcb51c14c8e0e6b8e",
-    "it": "a6da96f1d8611e1b0299beddcb51c14c8e0e6b8e",
-    "ja": "a6da96f1d8611e1b0299beddcb51c14c8e0e6b8e",
-    "ko": "a6da96f1d8611e1b0299beddcb51c14c8e0e6b8e",
-    "pt": "a6da96f1d8611e1b0299beddcb51c14c8e0e6b8e",
-    "zh": "a6da96f1d8611e1b0299beddcb51c14c8e0e6b8e"
+    "es": "e40768560bd1d6081fcb7a7174bea4c41ef82e1b",
+    "fr": "e40768560bd1d6081fcb7a7174bea4c41ef82e1b",
+    "it": "e40768560bd1d6081fcb7a7174bea4c41ef82e1b",
+    "ja": "e40768560bd1d6081fcb7a7174bea4c41ef82e1b",
+    "ko": "e40768560bd1d6081fcb7a7174bea4c41ef82e1b",
+    "pt": "e40768560bd1d6081fcb7a7174bea4c41ef82e1b",
+    "zh": "e40768560bd1d6081fcb7a7174bea4c41ef82e1b"
   },
   "docs/Edge Subscriber Connection.md": {
-    "es": "ffdc7164922299044c6287fc860be3068d4aa1e3",
-    "fr": "ffdc7164922299044c6287fc860be3068d4aa1e3",
-    "it": "ffdc7164922299044c6287fc860be3068d4aa1e3",
-    "ja": "ffdc7164922299044c6287fc860be3068d4aa1e3",
-    "ko": "ffdc7164922299044c6287fc860be3068d4aa1e3",
-    "pt": "ffdc7164922299044c6287fc860be3068d4aa1e3",
-    "zh": "ffdc7164922299044c6287fc860be3068d4aa1e3"
+    "es": "e902a083675e607e1614cae56cb1fa68a6dcda46",
+    "fr": "e902a083675e607e1614cae56cb1fa68a6dcda46",
+    "it": "e902a083675e607e1614cae56cb1fa68a6dcda46",
+    "ja": "e902a083675e607e1614cae56cb1fa68a6dcda46",
+    "ko": "e902a083675e607e1614cae56cb1fa68a6dcda46",
+    "pt": "e902a083675e607e1614cae56cb1fa68a6dcda46",
+    "zh": "e902a083675e607e1614cae56cb1fa68a6dcda46"
   },
   "docs/New Tenant.md": {
     "es": "034e9bb11240bca7634131025a97daa79cae922d",
@@ -45,22 +45,22 @@
     "zh": "034e9bb11240bca7634131025a97daa79cae922d"
   },
   "docs/Other Multicast Connection.md": {
-    "es": "dcaf6d8461a715d9f456d01c010e1cccf93f21ca",
-    "fr": "dcaf6d8461a715d9f456d01c010e1cccf93f21ca",
-    "it": "dcaf6d8461a715d9f456d01c010e1cccf93f21ca",
-    "ja": "dcaf6d8461a715d9f456d01c010e1cccf93f21ca",
-    "ko": "dcaf6d8461a715d9f456d01c010e1cccf93f21ca",
-    "pt": "dcaf6d8461a715d9f456d01c010e1cccf93f21ca",
-    "zh": "dcaf6d8461a715d9f456d01c010e1cccf93f21ca"
+    "es": "6d1e144190f0e4afedf5c408dc6c6efc43c64d66",
+    "fr": "6d1e144190f0e4afedf5c408dc6c6efc43c64d66",
+    "it": "6d1e144190f0e4afedf5c408dc6c6efc43c64d66",
+    "ja": "6d1e144190f0e4afedf5c408dc6c6efc43c64d66",
+    "ko": "6d1e144190f0e4afedf5c408dc6c6efc43c64d66",
+    "pt": "6d1e144190f0e4afedf5c408dc6c6efc43c64d66",
+    "zh": "6d1e144190f0e4afedf5c408dc6c6efc43c64d66"
   },
   "docs/Permissioned Connection.md": {
-    "es": "bd0563765917adba6ef4b642b4b08c7c2292e143",
-    "fr": "bd0563765917adba6ef4b642b4b08c7c2292e143",
-    "it": "bd0563765917adba6ef4b642b4b08c7c2292e143",
-    "ja": "bd0563765917adba6ef4b642b4b08c7c2292e143",
-    "ko": "bd0563765917adba6ef4b642b4b08c7c2292e143",
-    "pt": "bd0563765917adba6ef4b642b4b08c7c2292e143",
-    "zh": "bd0563765917adba6ef4b642b4b08c7c2292e143"
+    "es": "47453c7ce70c7d94006007e4f44fda87170bead7",
+    "fr": "47453c7ce70c7d94006007e4f44fda87170bead7",
+    "it": "47453c7ce70c7d94006007e4f44fda87170bead7",
+    "ja": "47453c7ce70c7d94006007e4f44fda87170bead7",
+    "ko": "47453c7ce70c7d94006007e4f44fda87170bead7",
+    "pt": "47453c7ce70c7d94006007e4f44fda87170bead7",
+    "zh": "47453c7ce70c7d94006007e4f44fda87170bead7"
   },
   "docs/Swapping-sol-to-2z.md": {
     "es": "7a42a11bc63259c0ff66d6eb4ad5284a4316151c",
@@ -189,13 +189,13 @@
     "zh": "1ddd1bb045ab281787873f7fb6be40cf9d3d96a8"
   },
   "docs/hyperliquid/edge.md": {
-    "es": "df81d2e24b096ffad7ded78552010c40619951e2",
-    "fr": "df81d2e24b096ffad7ded78552010c40619951e2",
-    "it": "df81d2e24b096ffad7ded78552010c40619951e2",
-    "ja": "df81d2e24b096ffad7ded78552010c40619951e2",
-    "ko": "df81d2e24b096ffad7ded78552010c40619951e2",
-    "pt": "df81d2e24b096ffad7ded78552010c40619951e2",
-    "zh": "df81d2e24b096ffad7ded78552010c40619951e2"
+    "es": "507e0d679921cb694f0904f0abd9c2f14db56612",
+    "fr": "507e0d679921cb694f0904f0abd9c2f14db56612",
+    "it": "507e0d679921cb694f0904f0abd9c2f14db56612",
+    "ja": "507e0d679921cb694f0904f0abd9c2f14db56612",
+    "ko": "507e0d679921cb694f0904f0abd9c2f14db56612",
+    "pt": "507e0d679921cb694f0904f0abd9c2f14db56612",
+    "zh": "507e0d679921cb694f0904f0abd9c2f14db56612"
   },
   "docs/hyperliquid/index.md": {
     "es": "354bc234b7a544a1e9915be1f86ba555cca46a5d",
@@ -225,13 +225,13 @@
     "zh": "462212ba4ac53fe6d6fd935ffebe042c56de2695"
   },
   "docs/kalshi.md": {
-    "es": "60b660ab64c1664a5012680ab6eabc05dd1fa3ad",
-    "fr": "60b660ab64c1664a5012680ab6eabc05dd1fa3ad",
-    "it": "60b660ab64c1664a5012680ab6eabc05dd1fa3ad",
-    "ja": "60b660ab64c1664a5012680ab6eabc05dd1fa3ad",
-    "ko": "60b660ab64c1664a5012680ab6eabc05dd1fa3ad",
-    "pt": "60b660ab64c1664a5012680ab6eabc05dd1fa3ad",
-    "zh": "60b660ab64c1664a5012680ab6eabc05dd1fa3ad"
+    "es": "5b14bfe5252b4cdc538023c8f782f5af7ff59b67",
+    "fr": "5b14bfe5252b4cdc538023c8f782f5af7ff59b67",
+    "it": "5b14bfe5252b4cdc538023c8f782f5af7ff59b67",
+    "ja": "5b14bfe5252b4cdc538023c8f782f5af7ff59b67",
+    "ko": "5b14bfe5252b4cdc538023c8f782f5af7ff59b67",
+    "pt": "5b14bfe5252b4cdc538023c8f782f5af7ff59b67",
+    "zh": "5b14bfe5252b4cdc538023c8f782f5af7ff59b67"
   },
   "docs/mcp.md": {
     "es": "afc8b4a760ab97da805aeb27935c88883b5d5079",
@@ -251,6 +251,15 @@
     "pt": "5f595cf58daa824d97ba10c1da17143af0df670e",
     "zh": "5f595cf58daa824d97ba10c1da17143af0df670e"
   },
+  "docs/phoenix.md": {
+    "es": "39d03d5eadfcfcfad6201e176501683cb396b938",
+    "fr": "39d03d5eadfcfcfad6201e176501683cb396b938",
+    "it": "39d03d5eadfcfcfad6201e176501683cb396b938",
+    "ja": "39d03d5eadfcfcfad6201e176501683cb396b938",
+    "ko": "39d03d5eadfcfcfad6201e176501683cb396b938",
+    "pt": "39d03d5eadfcfcfad6201e176501683cb396b938",
+    "zh": "39d03d5eadfcfcfad6201e176501683cb396b938"
+  },
   "docs/setup.md": {
     "es": "1b7e83a6228305c35c091cedf95d43a406915919",
     "fr": "1b7e83a6228305c35c091cedf95d43a406915919",
@@ -261,13 +270,13 @@
     "zh": "1b7e83a6228305c35c091cedf95d43a406915919"
   },
   "docs/shelby.md": {
-    "es": "3ba8c84e891dba1b00303abde9e4a97f47e55148",
-    "fr": "3ba8c84e891dba1b00303abde9e4a97f47e55148",
-    "it": "3ba8c84e891dba1b00303abde9e4a97f47e55148",
-    "ja": "3ba8c84e891dba1b00303abde9e4a97f47e55148",
-    "ko": "3ba8c84e891dba1b00303abde9e4a97f47e55148",
-    "pt": "3ba8c84e891dba1b00303abde9e4a97f47e55148",
-    "zh": "3ba8c84e891dba1b00303abde9e4a97f47e55148"
+    "es": "686712a4be77ed742288c94c91de55f37d6d489e",
+    "fr": "686712a4be77ed742288c94c91de55f37d6d489e",
+    "it": "686712a4be77ed742288c94c91de55f37d6d489e",
+    "ja": "686712a4be77ed742288c94c91de55f37d6d489e",
+    "ko": "686712a4be77ed742288c94c91de55f37d6d489e",
+    "pt": "686712a4be77ed742288c94c91de55f37d6d489e",
+    "zh": "686712a4be77ed742288c94c91de55f37d6d489e"
   },
   "docs/support.md": {
     "es": "bcdd3d02d04f5113addf8f3096de6fc6cc8a3ed9",
@@ -279,21 +288,21 @@
     "zh": "bcdd3d02d04f5113addf8f3096de6fc6cc8a3ed9"
   },
   "docs/tenant.md": {
-    "es": "431ebf66f89b12264397ded0e4eda1d32fcaaca5",
-    "fr": "431ebf66f89b12264397ded0e4eda1d32fcaaca5",
-    "it": "431ebf66f89b12264397ded0e4eda1d32fcaaca5",
-    "ja": "431ebf66f89b12264397ded0e4eda1d32fcaaca5",
-    "ko": "431ebf66f89b12264397ded0e4eda1d32fcaaca5",
-    "pt": "431ebf66f89b12264397ded0e4eda1d32fcaaca5",
-    "zh": "431ebf66f89b12264397ded0e4eda1d32fcaaca5"
+    "es": "d7337d79133d6173669924729deb4fec285297a7",
+    "fr": "d7337d79133d6173669924729deb4fec285297a7",
+    "it": "d7337d79133d6173669924729deb4fec285297a7",
+    "ja": "d7337d79133d6173669924729deb4fec285297a7",
+    "ko": "d7337d79133d6173669924729deb4fec285297a7",
+    "pt": "d7337d79133d6173669924729deb4fec285297a7",
+    "zh": "d7337d79133d6173669924729deb4fec285297a7"
   },
   "docs/troubleshooting.md": {
-    "es": "88cb6bb9e2e21f9f563dc50e4081cb6b3ee7c31b",
-    "fr": "88cb6bb9e2e21f9f563dc50e4081cb6b3ee7c31b",
-    "it": "88cb6bb9e2e21f9f563dc50e4081cb6b3ee7c31b",
-    "ja": "88cb6bb9e2e21f9f563dc50e4081cb6b3ee7c31b",
-    "ko": "88cb6bb9e2e21f9f563dc50e4081cb6b3ee7c31b",
-    "pt": "88cb6bb9e2e21f9f563dc50e4081cb6b3ee7c31b",
-    "zh": "88cb6bb9e2e21f9f563dc50e4081cb6b3ee7c31b"
+    "es": "12f3cac40ead8ed27068ca5f9aac47b2db3a4f87",
+    "fr": "12f3cac40ead8ed27068ca5f9aac47b2db3a4f87",
+    "it": "12f3cac40ead8ed27068ca5f9aac47b2db3a4f87",
+    "ja": "12f3cac40ead8ed27068ca5f9aac47b2db3a4f87",
+    "ko": "12f3cac40ead8ed27068ca5f9aac47b2db3a4f87",
+    "pt": "12f3cac40ead8ed27068ca5f9aac47b2db3a4f87",
+    "zh": "12f3cac40ead8ed27068ca5f9aac47b2db3a4f87"
   }
 }

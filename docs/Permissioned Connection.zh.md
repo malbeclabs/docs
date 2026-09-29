@@ -1,15 +1,15 @@
 ---
-description: 以 IBRL 模式连接到 DoubleZero Mainnet-Beta 和 Testnet 的非验证者和 RPC 许可准入流程。
+description: 以 IBRL 模式连接到 DoubleZero Mainnet-Beta 和 Testnet 的非验证者与 RPC 的许可制准入流程。
 ---
 
-# 以 IBRL 模式许可连接非验证者到 DoubleZero
+# 非验证者以 IBRL 模式许可连接到 DoubleZero
 !!! warning "连接到 DoubleZero 即表示我同意 [DoubleZero 服务条款](https://doublezero.xyz/terms-protocol)"
 
-### 许可用户准入概述
+### 许可制用户准入概述
 
-目前非验证者和 RPC 的用户准入采用许可制。要开始许可流程，请填写[此表单](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z)。以下是此流程中的注意事项：
+目前非验证者和 RPC 的用户准入采用许可制。要开始许可流程，请填写[此表单](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z)。以下是该流程中需要了解的事项：
 
-- 未来许可用户的使用可能会产生相关费用。
+- 未来许可制用户的使用可能会产生相关费用。
 - 提交表单后，请关注您的主要 Telegram 联系方式。
 
 
@@ -18,13 +18,13 @@ description: 以 IBRL 模式连接到 DoubleZero Mainnet-Beta 和 Testnet 的非
 !!! Note inline end
     IBRL 模式不需要重启验证者客户端，因为它使用您现有的公共 IP 地址。
 
-许可用户将完成到 DoubleZero Mainnet-beta 的连接，详细信息见本页面。
+许可制用户将完成到 DoubleZero Mainnet-beta 的连接，详细说明见本页。
 
 ## 1. 确认客户端网络
 
-请在继续之前按照[设置](setup.md)说明进行操作。为您要加入的网络安装 Mainnet-Beta 或 Testnet 软件包——它们使用不同的软件包仓库。
+请在继续之前按照[设置](setup.md)说明操作。根据您要加入的网络安装 Mainnet-Beta 或 Testnet 软件包——它们使用不同的软件包仓库。
 
-设置的最后一步是断开与网络的连接。这是为了确保您的机器上只有一个到 DoubleZero 的隧道处于打开状态，并且该隧道连接到正确的网络。
+设置的最后一步是断开网络连接。这是为了确保您的机器上只有一个到 DoubleZero 的隧道处于打开状态，并且该隧道连接到正确的网络。
 
 使用以下命令确认：
 
@@ -32,7 +32,7 @@ description: 以 IBRL 模式连接到 DoubleZero Mainnet-Beta 和 Testnet 的非
 doublezero status
 ```
 
-`Network` 列应与您打算加入的网络匹配。如果不匹配，请使用[故障排除](troubleshooting.md#issue-wrong-doublezero-environment)中的复制粘贴切换命令。
+`Network` 列应与您打算加入的网络一致。如果不一致，请使用[故障排除](troubleshooting.md#issue-wrong-doublezero-environment)中的复制粘贴切换方法。
 
 大约 30 秒后，您将看到可用的 DoubleZero 设备：
 
@@ -54,7 +54,7 @@ doublezero latency
  9LFtjDzohKvCBzSquQD4YtL3HwuvkKBDE7KSzb8ztV2b | dz-mtl11-sw01 | 134.195.161.10  | 9.88ms   | 10.01ms  | 9.95ms   | true      
  9M7FfYYyjM4wGinKPofZRNmQFcCjCKRbXscGBUiXvXnG | dz-tor1-sw01  | 209.42.165.10   | 14.52ms  | 14.53ms  | 14.52ms  | true           
 ```
-Testnet 输出的结构相同，但可用设备会更多。
+Testnet 的输出结构相同，但会有更多可用设备。
 
 ## 2. 联系 DoubleZero 基金会
 
@@ -63,26 +63,22 @@ Testnet 输出的结构相同，但可用设备会更多。
 
 ## 3. 以 IBRL 模式连接
 
-在服务器上，使用将要连接到 DoubleZero 的用户，运行 `connect` 命令以建立到 DoubleZero 的连接。
+在服务器上，使用将连接到 DoubleZero 的用户，运行 `connect` 命令以建立到 DoubleZero 的连接。
 
 ```bash
 doublezero connect ibrl
 ```
 
-您应该会看到表示正在配置的输出，例如：
+您应该看到指示正在配置的输出，例如：
 
 ```
-DoubleZero Service Provisioning
-🔗  Start Provisioning User...
-Public IP detected: 137.184.101.183 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
-🔍  Provisioning User for IP: 137.184.101.183
-    User account created
-    Connected to device: nyc-dz001
-    The user has been successfully activated
-    Service provisioned with status: ok
+⚡  Connecting to mainnet-beta...
+    DoubleZero ID: <your DoubleZero ID>
+⚡  Provisioning for IP: <your public ip>
+    Device selected: <the doublezero device you are connecting to>
 ✅  User Provisioned
 ```
-请等待一分钟以完成隧道建立。在隧道建立完成之前，您的状态输出可能会返回 "down" 或 "Unknown"。
+等待一分钟以完成隧道建立。在隧道完成之前，您的状态输出可能返回 "down" 或 "Unknown"。
 
 验证您的连接：
 
@@ -113,6 +109,6 @@ default via 149.28.38.1 dev enp1s0 proto dhcp src 149.28.38.64 metric 100
 ```
 
 
-### 下一步：组播
+### 下一步：Multicast
 
-如果您已完成此设置并计划使用组播，请继续查看[下一页](Other%20Multicast%20Connection.md)。
+如果您已完成此设置并计划使用 Multicast，请继续前往[下一页](Other%20Multicast%20Connection.md)。

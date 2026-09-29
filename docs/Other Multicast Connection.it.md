@@ -1,5 +1,5 @@
 ---
-description: Connettiti a DoubleZero in modalità multicast per pubblicare o iscriverti a uno o più feed.
+description: Connettiti a DoubleZero in modalità multicast per pubblicare o sottoscrivere uno o più feed.
 ---
 
 # Altra Connessione Multicast
@@ -21,25 +21,22 @@ o come subscriber:
 
 ```doublezero connect multicast --subscribe <feed name>```
 
-o per pubblicare e iscriversi: 
+o per pubblicare e sottoscrivere: 
 
 ```doublezero connect multicast --publish <feed name> --subscribe <feed name>```
 
-Per pubblicare o iscriversi a più feed puoi includere più nomi di feed separati da spazi.
-Questo può essere utilizzato anche per pubblicare e iscriversi a feed di pubblicazione.
+Per pubblicare o sottoscrivere più feed puoi includere più nomi di feed separati da spazi.
+Questo può essere utilizzato anche per pubblicare e sottoscrivere feed di pubblicazione.
 Ad esempio 
 ```doublezero connect multicast --subscribe feed1 feed2 feed3```
 
 Dovresti vedere un output simile al seguente:
 ```
-DoubleZero Service Provisioning
-🔗  Start Provisioning User to devnet...
-Public IP detected: 137.174.145.145 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
-    DoubleZero ID: <your dz_id>
-🔍  Provisioning User for IP: <your public ip>
-    Creating an account for the IP: <your public ip>
-    The Device has been selected: <the doublezero device you are connecting to>
-    Service provisioned with status: ok
+⚡  Connecting to devnet...
+    DoubleZero ID: <your DoubleZero ID>
+⚡  Provisioning for IP: <your public ip>
+    Creating account for IP: <your public ip>
+    Device selected: <the doublezero device you are connecting to>
 ✅  User Provisioned
 ```
 ### 3. Verifica la tua connessione multicast attiva. 
@@ -50,8 +47,8 @@ doublezero status
 ```
 Risultato atteso:
 - Sessione BGP attiva sulla rete DoubleZero corretta 
-- Se sei un publisher, il tuo DoubleZero IP sarà diverso dal tuo Tunnel Src IP. Questo è previsto. 
-- Se sei solo un subscriber, il tuo DoubleZero IP sarà lo stesso del tuo Tunnel Src IP. 
+- Se sei un publisher, il tuo IP DoubleZero sarà diverso dal tuo Tunnel Src IP. Questo è previsto.
+- Se sei solo un subscriber, `doublezero status` lascia vuoto l'IP DoubleZero. `doublezero user list` lo mostra.
 
 ```
 ~$ doublezero status
