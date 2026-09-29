@@ -1,5 +1,5 @@
 ---
-description: DoubleZero コントリビューター向けの継続的な運用タスク — エージェントのアップグレード、デバイスおよびインターフェースの更新、リンク管理、インシデント記録。
+description: DoubleZeroコントリビューター向けの継続的な運用タスク — エージェントのアップグレード、デバイスおよびインターフェースの更新、リンク管理、インシデントログ。
 ---
 
 # コントリビューター向け運用ガイド
@@ -7,33 +7,33 @@ description: DoubleZero コントリビューター向けの継続的な運用�
 
 このガイドでは、DoubleZero デバイス（DZD）を維持するための継続的な運用タスクについて説明します。エージェントのアップグレード、デバイス/インターフェースの更新、リンク管理などが含まれます。
 
-## インシデントおよびメンテナンスの記録
+## インシデント＆メンテナンスログ
 
-計画されたメンテナンスまたは予期しないリンク/デバイスの問題は、[OPS Management ポータル](contribute-ops-management.md)に記録する必要があります。これにより、すべてのコントリビューターがネットワーク全体で何が起きているかを把握でき、重複した調査を回避できます。
+計画的なメンテナンスや予期しないリンク/デバイスの問題は、[OPS管理ポータル](contribute-ops-management.md)に記録する必要があります。これにより、すべてのコントリビューターがネットワーク全体で何が起きているかを把握でき、重複した調査を避けることができます。
 
-- **計画作業**（例：光モジュールの交換、予定されたキャリアメンテナンス）：作業を開始する前にメンテナンスレコードを作成してください。
-- **予期しない問題**（例：リンクダウン、インターフェースエラー、パケットロス）：調査を開始したらすぐにインシデントを作成してください。
+- **計画作業**（例：光モジュールの交換、キャリアの定期メンテナンス）：作業を開始する前にメンテナンスレコードを作成してください。
+- **予期しない問題**（例：リンクダウン、インターフェースエラー、パケットロス）：調査を開始したらすぐにインシデントを起票してください。
 
-チケットの作成方法とオンボーディング手順については、[OPS Management ガイド](contribute-ops-management.md)を参照してください。
+チケットのオンボーディング手順と作成方法については、[OPS管理ガイド](contribute-ops-management.md)を参照してください。
 
 ---
 
-**前提条件**: このガイドを使用する前に、以下を完了していることを確認してください：
+**前提条件**: このガイドを使用する前に、以下が完了していることを確認してください：
 
 - [デバイスプロビジョニングガイド](contribute-provisioning.md)を完了していること
-- DZD が Config エージェントと Telemetry エージェントの両方が稼働し、完全に運用可能な状態であること
+- DZDがConfigエージェントとTelemetryエージェントの両方が実行された状態で完全に稼働していること
 
 ---
 
 ## デバイスの更新
 
-初期プロビジョニング後にデバイスの設定を変更するには、`doublezero device update` を使用します。
+初回プロビジョニング後にデバイス設定を変更するには、`doublezero device update` を使用します。
 
 ```bash
 doublezero device update --pubkey <DEVICE_PUBKEY> [OPTIONS]
 ```
 
-**一般的な更新オプション:**
+**一般的な更新オプション：**
 
 | オプション | 説明 |
 |--------|-------------|
@@ -51,9 +51,9 @@ doublezero device update --pubkey <DEVICE_PUBKEY> [OPTIONS]
 doublezero device interface update <DEVICE> <NAME> [OPTIONS]
 ```
 
-CYOA/DIA 設定を含むインターフェースオプションの完全なリストについては、[インターフェースの作成](contribute-provisioning.md#step-35-create-cyoa-interface-for-edgehybrid-devices)を参照してください。
+CYOA/DIA設定を含むインターフェースオプションの完全なリストについては、[インターフェースの作成](contribute-provisioning.md#step-35-create-cyoa-interface-for-edgehybrid-devices)を参照してください。
 
-**例 - 既存のインターフェースに CYOA 設定を追加:**
+**例 - 既存のインターフェースにCYOA設定を追加：**
 
 ```bash
 doublezero device interface update lax-dz001 Ethernet1/2 \
@@ -66,15 +66,15 @@ doublezero device interface update lax-dz001 Ethernet1/2 \
 ### インターフェースの一覧表示
 
 ```bash
-doublezero device interface list              # すべてのデバイスの全インターフェース
+doublezero device interface list              # すべてのデバイスのすべてのインターフェース
 doublezero device interface list <DEVICE>     # 特定のデバイスのインターフェース
 ```
 
 ---
 
-## Config エージェントのアップグレード
+## Configエージェントのアップグレード
 
-Config エージェントの新しいバージョンがリリースされた場合、以下の手順に従ってアップグレードしてください。
+Configエージェントの新しいバージョンがリリースされた場合、以下の手順に従ってアップグレードしてください。
 
 ### 1. 最新バージョンのダウンロード
 
@@ -104,7 +104,7 @@ switch(config)# exit
 switch# show extensions
 ```
 
-以下のコマンドを実行して旧バージョンを削除します。`<OLD_VERSION>` を上記の出力で確認した旧バージョンに置き換えてください：
+以下のコマンドを実行して旧バージョンを削除します。`<OLD_VERSION>` を上記の出力から得た旧バージョンに置き換えてください：
 ```
 switch# delete flash:doublezero-agent_<OLD_VERSION>_linux_amd64.rpm
 switch# delete extension:doublezero-agent_<OLD_VERSION>_linux_amd64.rpm
@@ -118,7 +118,7 @@ switch# extension AGENT_FILENAME
 switch# copy installed-extensions boot-extensions
 ```
 
-### 5. エージェントの再起動
+### 5. エージェントの有効化
 
 ```
 switch# configure
@@ -130,12 +130,12 @@ switch(config)# exit
 
 ### 6. アップグレードの確認
 
-Status が "A, I, B" であることを確認します。
+ステータスが「A, I, B」と表示されるはずです。
 ```
 switch# show extensions
 ```
 
-### 7. Config エージェントのログ出力の確認
+### 7. Configエージェントのログ出力の確認
 
 ```
 show agent doublezero-agent log
@@ -143,9 +143,9 @@ show agent doublezero-agent log
 
 ---
 
-## Telemetry エージェントのアップグレード
+## Telemetryエージェントのアップグレード
 
-Telemetry エージェントの新しいバージョンがリリースされた場合、以下の手順に従ってアップグレードしてください。
+Telemetryエージェントの新しいバージョンがリリースされた場合、以下の手順に従ってアップグレードしてください。
 
 ### 1. 最新バージョンのダウンロード
 
@@ -175,7 +175,7 @@ switch(config)# exit
 switch# show extensions
 ```
 
-以下のコマンドを実行して旧バージョンを削除します。`<OLD_VERSION>` を上記の出力で確認した旧バージョンに置き換えてください：
+以下のコマンドを実行して旧バージョンを削除します。`<OLD_VERSION>` を上記の出力から得た旧バージョンに置き換えてください：
 ```
 switch# delete flash:doublezero-device-telemetry-agent_<OLD_VERSION>_linux_amd64.rpm
 switch# delete extension:doublezero-device-telemetry-agent_<OLD_VERSION>_linux_amd64.rpm
@@ -189,7 +189,7 @@ switch# extension TELEMETRY_FILENAME
 switch# copy installed-extensions boot-extensions
 ```
 
-### 5. エージェントの再起動
+### 5. エージェントの有効化
 
 ```
 switch# configure
@@ -201,12 +201,12 @@ switch(config)# exit
 
 ### 6. アップグレードの確認
 
-Status が "A, I, B" であることを確認します。
+ステータスが「A, I, B」と表示されるはずです。
 ```
 switch# show extensions
 ```
 
-### 7. Telemetry エージェントのログ出力の確認
+### 7. Telemetryエージェントのログ出力の確認
 
 ```
 show agent doublezero-telemetry log
@@ -214,23 +214,23 @@ show agent doublezero-telemetry log
 
 ---
 
-## モニタリング
+## モニタリング {#monitoring}
 
-> ⚠️ **重要:**
+> ⚠️ **重要：**
 >
->  1. 以下の設定例では、エージェントが管理 VRF を使用しているかどうかに注意してください。
->  2. Config エージェントと Telemetry エージェントは、デフォルトでメトリクスエンドポイントに同じリスニングポート（:8080）を使用します。両方のメトリクスを有効にする場合は、`-metrics-addr` フラグを使用して各エージェントに固有のリスニングポートを設定してください。
+>  1. 以下の設定例について、エージェントが管理VRFを使用しているかどうかに注意してください。
+>  2. ConfigエージェントとTelemetryエージェントは、デフォルトでメトリクスエンドポイントに同じリスニングポート（:8080）を使用します。両方でメトリクスを有効にする場合は、`-metrics-addr` フラグを使用して各エージェントに一意のリスニングポートを設定してください。
 
-### Config エージェントのメトリクス
+### Configエージェントのメトリクス
 
-DoubleZero デバイス上の Config エージェントは、`doublezero-agent` デーモン設定で `-metrics-enable` フラグを設定することにより、Prometheus 互換のメトリクスを公開できます。デフォルトのリスニングポートは tcp/8080 ですが、`-metrics-addr` を使用して環境に合わせて変更できます：
+DoubleZeroデバイス上のConfigエージェントは、`doublezero-agent` デーモン設定で `-metrics-enable` フラグを設定することで、prometheus互換のメトリクスを公開できます。デフォルトのリスニングポートはtcp/8080ですが、`-metrics-addr` で環境に合わせて変更できます：
 ```
 daemon doublezero-agent
    exec /usr/local/bin/doublezero-agent -pubkey $PUBKEY -controller $CONTROLLER_ADDR -metrics-enable -metrics-addr 10.0.0.11:2112
    no shutdown
 ```
 
-以下の DoubleZero 固有のメトリクスが、Go 固有のランタイムメトリクスとともに公開されます：
+以下のDoubleZero固有のメトリクスが、goランタイム固有のメトリクスとともに公開されます：
 ```
 $ curl -s 10.0.0.11:2112/metrics | grep doublezero
 
@@ -253,20 +253,20 @@ doublezero_agent_get_config_errors_total 0
 
 #### 重要度の高いエラー
 
-- `up` - これはスクレイプインスタンスが正常で到達可能な場合に Prometheus が自動的に生成する時系列メトリクスです。そうでない場合、エージェントに到達できないか、エージェントが実行されていません。
-- `doublezero_agent_apply_config_errors_total` - エージェントが適用しようとした設定が失敗しました。この状況では、この問題が解決されるまで、ユーザーはデバイスにオンボードできず、オンチェーンの設定変更も適用されません。
-- `doublezero_agent_get_config_errors_total` - ローカルの Config エージェントが DoubleZero コントローラーと通信できないことを示しています。多くの場合、これはデバイスの管理接続の問題が原因です。上記のメトリクスと同様に、この問題が解決されるまで、ユーザーはデバイスにオンボードできず、オンチェーンの設定変更も適用されません。
+- `up` - これは、スクレイプインスタンスが正常でアクセス可能な場合にprometheusが自動的に生成する時系列メトリクスです。正常でない場合、エージェントにアクセスできないか、エージェントが実行されていません。
+- `doublezero_agent_apply_config_errors_total` - エージェントが適用しようとした設定が失敗しました。この状況では、問題が解決されるまでユーザーはデバイスにオンボードできず、オンチェーンの設定変更も適用されません。
+- `doublezero_agent_get_config_errors_total` - ローカルのConfigエージェントがDoubleZeroコントローラーと通信できないことを示します。ほとんどの場合、デバイスの管理接続性の問題が原因です。上記のメトリクスと同様に、問題が解決されるまでユーザーはデバイスにオンボードできず、オンチェーンの設定変更も適用されません。
 
-### Telemetry エージェントのメトリクス
+### Telemetryエージェントのメトリクス
 
-DoubleZero デバイス上の Telemetry エージェントは、`doublezero-telemetry` デーモン設定で `-metrics-enable` フラグを設定することにより、Prometheus 互換のメトリクスを公開できます。デフォルトのリスニングポートは tcp/8080 ですが、`-metrics-addr` を使用して環境に合わせて変更できます：
+DoubleZeroデバイス上のTelemetryエージェントは、`doublezero-telemetry` デーモン設定で `-metrics-enable` フラグを設定することで、prometheus互換のメトリクスを公開できます。デフォルトのリスニングポートはtcp/8080ですが、`-metrics-addr` で環境に合わせて変更できます：
 ```
 daemon doublezero-telemetry
    exec /usr/local/bin/doublezero-telemetry  --local-device-pubkey $PUBKEY --env $ENV --keypair $KEY_PAIR -metrics-enable --metrics-addr 10.0.0.11:2113
    no shutdown
 ```
 
-以下の DoubleZero 固有のメトリクスが、Go 固有のランタイムメトリクスとともに公開されます：
+以下のDoubleZero固有のメトリクスが、goランタイム固有のメトリクスとともに公開されます：
 ```
 $ curl -s 10.0.0.11:2113/metrics | grep doublezero
 
@@ -292,21 +292,21 @@ doublezero_device_telemetry_agent_peer_discovery_not_found_tunnels{local_device_
 
 #### 重要度の高いエラー
 
-- `up` - これはスクレイプインスタンスが正常で到達可能な場合に Prometheus が自動的に生成する時系列メトリクスです。そうでない場合、エージェントに到達できないか、エージェントが実行されていません。
-- `doublezero_device_telemetry_agent_errors_total` で `error_type` が `submitter_failed_to_write_samples` の場合 - これは Telemetry エージェントがサンプルをオンチェーンに書き込めないことを示しており、デバイスの管理接続の問題が原因である可能性があります。
+- `up` - これは、スクレイプインスタンスが正常でアクセス可能な場合にprometheusが自動的に生成する時系列メトリクスです。正常でない場合、エージェントにアクセスできないか、エージェントが実行されていません。
+- `doublezero_device_telemetry_agent_errors_total` で `error_type` が `submitter_failed_to_write_samples` の場合 - これは、Telemetryエージェントがサンプルをオンチェーンに書き込めないことを示す信号であり、デバイスの管理接続性の問題が原因である可能性があります。
 
 ---
 
 ## リンク管理
 
-### リンクドレイン
+### リンクドレイン {#link-draining}
 
-リンクドレインにより、コントリビューターはメンテナンスやトラブルシューティングのために、リンクをアクティブサービスからグレースフルに取り外すことができます。2 つのドレイン状態があります：
+リンクドレインにより、コントリビューターはメンテナンスやトラブルシューティングのために、リンクをアクティブなサービスからグレースフルに除外できます。2つのドレイン状態があります：
 
-| ステータス | IS-IS の動作 | 説明 |
+| ステータス | IS-ISの動作 | 説明 |
 |--------|----------------|-------------|
-| `soft-drained` | メトリクスを 1,000,000 に設定 | リンクの優先度が下がります。代替パスが利用可能な場合はそちらが使用されますが、このリンクが唯一の選択肢の場合は引き続き使用されます。 |
-| `hard-drained` | パッシブに設定 | リンクがルーティングから完全に除外されます。このリンクを通過するトラフィックはありません。 |
+| `soft-drained` | メトリクスを1,000,000に設定 | リンクの優先度が下がります。代替パスが利用可能な場合はそちらが使用されますが、このリンクが唯一の選択肢の場合は引き続き使用されます。 |
+| `hard-drained` | パッシブに設定 | リンクがルーティングから完全に除外されます。このリンクを通過するトラフィックはなくなります。 |
 
 ### 状態遷移
 
@@ -318,15 +318,15 @@ activated → hard-drained ✓
 soft-drained → hard-drained ✓
 hard-drained → soft-drained ✓
 soft-drained → activated ✓
-hard-drained → activated ✗ (まず soft-drained を経由する必要があります)
+hard-drained → activated ✗ (先にsoft-drainedを経由する必要があります)
 ```
 
-> ⚠️ **注意:**
-> `hard-drained` から直接 `activated` に移行することはできません。まず `soft-drained` に遷移してから、`activated` に移行する必要があります。
+> ⚠️ **注意：**
+> `hard-drained` から `activated` に直接遷移することはできません。まず `soft-drained` に遷移してから、`activated` に遷移する必要があります。
 
 ### リンクのソフトドレイン
 
-ソフトドレインは、IS-IS メトリクスを 1,000,000 に設定することでリンクの優先度を下げます。トラフィックは代替パスを優先しますが、必要に応じてこのリンクを使用することもできます。
+ソフトドレインは、IS-ISメトリクスを1,000,000に設定することでリンクの優先度を下げます。トラフィックは代替パスを優先しますが、必要に応じてこのリンクを使用することもできます。
 
 ```bash
 doublezero link update --pubkey <LINK_PUBKEY> --status soft-drained
@@ -334,28 +334,28 @@ doublezero link update --pubkey <LINK_PUBKEY> --status soft-drained
 
 ### リンクのハードドレイン
 
-ハードドレインは、IS-IS をパッシブモードに設定することで、リンクをルーティングから完全に除外します。このリンクを通過するトラフィックはありません。
+ハードドレインは、IS-ISをパッシブモードに設定することで、リンクをルーティングから完全に除外します。このリンクを通過するトラフィックはなくなります。
 
 ```bash
 doublezero link update --pubkey <LINK_PUBKEY> --status hard-drained
 ```
 
-### リンクのアクティブ状態への復元
+### リンクのアクティブ状態への復帰
 
-ドレインされたリンクを通常の運用状態に戻すには：
+ドレインされたリンクを通常の動作状態に戻すには：
 
 ```bash
-# soft-drained からの場合
+# soft-drainedからの場合
 doublezero link update --pubkey <LINK_PUBKEY> --status activated
 
-# hard-drained からの場合（まず soft-drained を経由する必要があります）
+# hard-drainedからの場合（先にsoft-drainedを経由する必要があります）
 doublezero link update --pubkey <LINK_PUBKEY> --status soft-drained
 doublezero link update --pubkey <LINK_PUBKEY> --status activated
 ```
 
 ### 遅延オーバーライド
 
-遅延オーバーライド機能により、コントリビューターは実際の測定遅延値を変更せずに、リンクの実効遅延を一時的に変更できます。これは、リンクをプライマリパスからセカンダリパスに一時的に降格させる場合に便利です。
+遅延オーバーライド機能により、コントリビューターは実際の測定遅延値を変更することなく、リンクの有効遅延を一時的に変更できます。これは、リンクをプライマリパスからセカンダリパスに一時的に降格させる場合に便利です。
 
 ### 遅延オーバーライドの設定
 
@@ -367,13 +367,13 @@ doublezero link update --pubkey <LINK_PUBKEY> --delay-override-ms 100
 
 有効な値は `0.01` から `1000` ミリ秒です。
 
-### 遅延オーバーライドのクリア
+### 遅延オーバーライドの解除
 
-オーバーライドを削除し、実際の測定遅延に戻すには：
+オーバーライドを削除して実際の測定遅延に戻すには：
 
 ```bash
 doublezero link update --pubkey <LINK_PUBKEY> --delay-override-ms 0
 ```
 
-> ⚠️ **注意:**
-> リンクがソフトドレイン状態の場合、優先度の引き下げを確実にするために、`delay_ms` と `delay_override_ms` の両方が 1000ms（1 秒）にオーバーライドされます。
+> ⚠️ **注意：**
+> リンクがソフトドレイン状態の場合、優先度の低下を確実にするため、`delay_ms` と `delay_override_ms` の両方が1000ms（1秒）にオーバーライドされます。

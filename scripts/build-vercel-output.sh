@@ -17,13 +17,15 @@ mkdir -p .vercel/output/static
 # which shell globs and some copy tools silently skip.
 tar -xf "$SITE_TAR" -C .vercel/output/static
 
-# trailingSlash matches mkdocs use_directory_urls, so /setup and /setup/ do not
-# become two distinct URLs. The error route serves mkdocs' own 404.html.
+# Prebuilt output ignores vercel.json-style "trailingSlash", so the redirect is
+# an explicit route. Without it /hyperliquid is served as-is and relative links
+# (edge/, ../setup/) resolve one directory too high. .well-known must stay
+# unredirected. The error route serves mkdocs' 404.html.
 cat > .vercel/output/config.json <<'JSON'
 {
   "version": 3,
-  "trailingSlash": true,
   "routes": [
+    { "src": "^/(?!\\.well-known(?:/|$))((?:[^/]+/)*[^/.]+)$", "headers": { "Location": "/$1/" }, "status": 308 },
     { "handle": "error" },
     { "src": "/.*", "status": 404, "dest": "/404.html" }
   ]

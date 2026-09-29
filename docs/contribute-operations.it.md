@@ -5,29 +5,29 @@ description: Attività operative continuative per i contributori DoubleZero — 
 # Guida operativa per i contributori
 
 
-Questa guida copre le attività operative continuative per la manutenzione dei tuoi DoubleZero Device (DZD), inclusi gli aggiornamenti degli agent, gli aggiornamenti di dispositivi/interfacce e la gestione dei link.
+Questa guida copre le attività operative continuative per la manutenzione dei vostri DoubleZero Device (DZD), inclusi l'aggiornamento degli agent, gli aggiornamenti di dispositivi/interfacce e la gestione dei link.
 
-## Registrazione incidenti e manutenzione
+## Registrazione di incidenti e manutenzioni
 
-Qualsiasi manutenzione pianificata o problema non pianificato relativo a link/dispositivi deve essere registrato nel [portale OPS Management](contribute-ops-management.md). Questo garantisce a tutti i contributori visibilità su ciò che accade nella rete ed evita indagini duplicate.
+Qualsiasi manutenzione pianificata o problema non pianificato relativo a link/dispositivi deve essere registrato nel [portale OPS Management](contribute-ops-management.md). Questo offre a tutti i contributori visibilità su ciò che sta accadendo nella rete ed evita indagini duplicate.
 
-- **Lavori pianificati** (es. sostituzione di un'ottica, manutenzione programmata del carrier): crea un record di manutenzione prima di iniziare.
-- **Problemi non pianificati** (es. link down, errori di interfaccia, perdita di pacchetti): apri un incidente non appena inizi l'indagine.
+- **Interventi pianificati** (ad es. sostituzione di un'ottica, manutenzione programmata del carrier): creare un record di manutenzione prima di iniziare.
+- **Problemi non pianificati** (ad es. link down, errori di interfaccia, packet loss): aprire un incidente non appena si inizia a investigare.
 
-Consulta la [guida OPS Management](contribute-ops-management.md) per le procedure di onboarding e la creazione dei ticket.
+Consultare la [guida OPS Management](contribute-ops-management.md) per i passaggi di onboarding e come creare i ticket.
 
 ---
 
-**Prerequisiti**: Prima di utilizzare questa guida, assicurati di aver:
+**Prerequisiti**: Prima di utilizzare questa guida, assicurarsi di aver:
 
-- Completato la [Guida al Provisioning dei Dispositivi](contribute-provisioning.md)
-- Il tuo DZD è completamente operativo con entrambi gli agent Config e Telemetry in esecuzione
+- Completato la [Guida al Provisioning del Dispositivo](contribute-provisioning.md)
+- Il vostro DZD è completamente operativo con entrambi gli agent Config e Telemetry in esecuzione
 
 ---
 
 ## Aggiornamenti del dispositivo
 
-Usa `doublezero device update` per modificare le impostazioni del dispositivo dopo il provisioning iniziale.
+Utilizzare `doublezero device update` per modificare le impostazioni del dispositivo dopo il provisioning iniziale.
 
 ```bash
 doublezero device update --pubkey <DEVICE_PUBKEY> [OPTIONS]
@@ -37,21 +37,21 @@ doublezero device update --pubkey <DEVICE_PUBKEY> [OPTIONS]
 
 | Opzione | Descrizione |
 |---------|-------------|
-| `--device-type <TYPE>` | Cambia la modalità operativa: `hybrid`, `transit`, `edge` (vedi [Tipi di dispositivo](contribute-provisioning.md#understanding-device-types)) |
-| `--location <LOCATION>` | Sposta il dispositivo in una posizione diversa |
-| `--metrics-publisher <PUBKEY>` | Cambia la chiave del metrics publisher |
+| `--device-type <TYPE>` | Cambiare la modalità operativa: `hybrid`, `transit`, `edge` (vedi [Tipi di dispositivo](contribute-provisioning.md#understanding-device-types)) |
+| `--location <LOCATION>` | Spostare il dispositivo in una posizione diversa |
+| `--metrics-publisher <PUBKEY>` | Cambiare la chiave del publisher delle metriche |
 
 ---
 
 ## Aggiornamenti delle interfacce
 
-Usa `doublezero device interface update` per modificare le interfacce esistenti. Questo comando accetta le stesse opzioni di `interface create`.
+Utilizzare `doublezero device interface update` per modificare le interfacce esistenti. Questo comando accetta le stesse opzioni di `interface create`.
 
 ```bash
 doublezero device interface update <DEVICE> <NAME> [OPTIONS]
 ```
 
-Per l'elenco completo delle opzioni di interfaccia, incluse le impostazioni CYOA/DIA, vedi [Creazione delle interfacce](contribute-provisioning.md#step-35-create-cyoa-interface-for-edgehybrid-devices).
+Per l'elenco completo delle opzioni di interfaccia incluse le impostazioni CYOA/DIA, consultare [Creazione delle interfacce](contribute-provisioning.md#step-35-create-cyoa-interface-for-edgehybrid-devices).
 
 **Esempio - Aggiungere impostazioni CYOA a un'interfaccia esistente:**
 
@@ -63,20 +63,20 @@ doublezero device interface update lax-dz001 Ethernet1/2 \
   --cir 1000
 ```
 
-### Elenco delle interfacce
+### Elencare le interfacce
 
 ```bash
-doublezero device interface list              # Tutte le interfacce su tutti i dispositivi
-doublezero device interface list <DEVICE>     # Interfacce per un dispositivo specifico
+doublezero device interface list              # All interfaces across all devices
+doublezero device interface list <DEVICE>     # Interfaces for a specific device
 ```
 
 ---
 
 ## Aggiornamento del Config Agent
 
-Quando viene rilasciata una nuova versione del Config Agent, segui questi passaggi per l'aggiornamento.
+Quando viene rilasciata una nuova versione del Config Agent, seguire questi passaggi per l'aggiornamento.
 
-### 1. Scarica l'ultima versione
+### 1. Scaricare l'ultima versione
 
 ```
 switch# bash
@@ -87,7 +87,7 @@ $ sudo bash
 $ exit
 ```
 
-### 2. Arresta l'agent
+### 2. Arrestare l'agent
 
 ```
 switch# configure
@@ -97,20 +97,20 @@ switch(config-daemon-doublezero-agent)# exit
 switch(config)# exit
 ```
 
-### 3. Rimuovi la vecchia versione
+### 3. Rimuovere la vecchia versione
 
-Prima, trova il nome del file della vecchia versione:
+Per prima cosa, trovare il nome del file della vecchia versione:
 ```
 switch# show extensions
 ```
 
-Esegui i seguenti comandi per rimuovere la vecchia versione. Sostituisci `<OLD_VERSION>` con la vecchia versione dall'output precedente:
+Eseguire i seguenti comandi per rimuovere la vecchia versione. Sostituire `<OLD_VERSION>` con la vecchia versione dall'output precedente:
 ```
 switch# delete flash:doublezero-agent_<OLD_VERSION>_linux_amd64.rpm
 switch# delete extension:doublezero-agent_<OLD_VERSION>_linux_amd64.rpm
 ```
 
-### 4. Installa la nuova versione
+### 4. Installare la nuova versione
 
 ```
 switch# copy flash:AGENT_FILENAME extension:
@@ -118,7 +118,7 @@ switch# extension AGENT_FILENAME
 switch# copy installed-extensions boot-extensions
 ```
 
-### 5. Riavvia l'agent
+### 5. Riattivare l'agent
 
 ```
 switch# configure
@@ -128,14 +128,14 @@ switch(config-daemon-doublezero-agent)# exit
 switch(config)# exit
 ```
 
-### 6. Verifica l'aggiornamento
+### 6. Verificare l'aggiornamento
 
 Lo Status dovrebbe essere "A, I, B".
 ```
 switch# show extensions
 ```
 
-### 7. Verifica l'output del log del Config Agent
+### 7. Verificare l'output del log del Config Agent
 
 ```
 show agent doublezero-agent log
@@ -145,9 +145,9 @@ show agent doublezero-agent log
 
 ## Aggiornamento del Telemetry Agent
 
-Quando viene rilasciata una nuova versione del Telemetry Agent, segui questi passaggi per l'aggiornamento.
+Quando viene rilasciata una nuova versione del Telemetry Agent, seguire questi passaggi per l'aggiornamento.
 
-### 1. Scarica l'ultima versione
+### 1. Scaricare l'ultima versione
 
 ```
 switch# bash
@@ -158,7 +158,7 @@ $ sudo bash
 $ exit
 ```
 
-### 2. Arresta l'agent
+### 2. Arrestare l'agent
 
 ```
 switch# configure
@@ -168,20 +168,20 @@ switch(config-daemon-doublezero-telemetry)# exit
 switch(config)# exit
 ```
 
-### 3. Rimuovi la vecchia versione
+### 3. Rimuovere la vecchia versione
 
-Prima, trova il nome del file della vecchia versione:
+Per prima cosa, trovare il nome del file della vecchia versione:
 ```
 switch# show extensions
 ```
 
-Esegui i seguenti comandi per rimuovere la vecchia versione. Sostituisci `<OLD_VERSION>` con la vecchia versione dall'output precedente:
+Eseguire i seguenti comandi per rimuovere la vecchia versione. Sostituire `<OLD_VERSION>` con la vecchia versione dall'output precedente:
 ```
 switch# delete flash:doublezero-device-telemetry-agent_<OLD_VERSION>_linux_amd64.rpm
 switch# delete extension:doublezero-device-telemetry-agent_<OLD_VERSION>_linux_amd64.rpm
 ```
 
-### 4. Installa la nuova versione
+### 4. Installare la nuova versione
 
 ```
 switch# copy flash:TELEMETRY_FILENAME extension:
@@ -189,7 +189,7 @@ switch# extension TELEMETRY_FILENAME
 switch# copy installed-extensions boot-extensions
 ```
 
-### 5. Riavvia l'agent
+### 5. Riattivare l'agent
 
 ```
 switch# configure
@@ -199,14 +199,14 @@ switch(config-daemon-doublezero-telemetry)# exit
 switch(config)# exit
 ```
 
-### 6. Verifica l'aggiornamento
+### 6. Verificare l'aggiornamento
 
 Lo Status dovrebbe essere "A, I, B".
 ```
 switch# show extensions
 ```
 
-### 7. Verifica l'output del log del Telemetry Agent
+### 7. Verificare l'output del log del Telemetry Agent
 
 ```
 show agent doublezero-telemetry log
@@ -214,23 +214,23 @@ show agent doublezero-telemetry log
 
 ---
 
-## Monitoraggio
+## Monitoraggio {#monitoring}
 
 > ⚠️ **Importante:**
 >
->  1. Per gli esempi di configurazione seguenti, presta attenzione al fatto che i tuoi agent stiano utilizzando o meno un VRF di gestione.
->  2. Il configuration agent e il telemetry agent utilizzano la stessa porta di ascolto (:8080) per il loro endpoint di metriche per impostazione predefinita. Se stai abilitando le metriche su entrambi, usa il flag `-metrics-addr` per impostare porte di ascolto univoche per ciascun agent.
+>  1. Per gli esempi di configurazione seguenti, prestare attenzione al fatto che i vostri agent utilizzino o meno un VRF di management.
+>  2. Il configuration agent e il telemetry agent utilizzano la stessa porta di ascolto (:8080) per il loro endpoint delle metriche per impostazione predefinita. Se si abilitano le metriche su entrambi, utilizzare il flag `-metrics-addr` per impostare porte di ascolto univoche per ciascun agent.
 
 ### Metriche del Config Agent
 
-Il configuration agent sul dispositivo DoubleZero ha la capacità di esporre metriche compatibili con Prometheus impostando il flag `-metrics-enable` nella configurazione del daemon `doublezero-agent`. La porta di ascolto predefinita è tcp/8080, ma può essere modificata per adattarsi all'ambiente tramite `-metrics-addr`:
+Il configuration agent sul dispositivo DoubleZero ha la capacità di esporre metriche compatibili con prometheus impostando il flag `-metrics-enable` nella configurazione del daemon `doublezero-agent`. La porta di ascolto predefinita è tcp/8080 ma può essere modificata per adattarsi all'ambiente tramite `-metrics-addr`:
 ```
 daemon doublezero-agent
    exec /usr/local/bin/doublezero-agent -pubkey $PUBKEY -controller $CONTROLLER_ADDR -metrics-enable -metrics-addr 10.0.0.11:2112
    no shutdown
 ```
 
-Le seguenti metriche specifiche di DoubleZero vengono esposte insieme alle metriche di runtime specifiche di Go:
+Le seguenti metriche specifiche di DoubleZero sono esposte insieme alle metriche runtime specifiche di go:
 ```
 $ curl -s 10.0.0.11:2112/metrics | grep doublezero
 
@@ -251,22 +251,22 @@ doublezero_agent_build_info{commit="4378018f",date="2025-09-23T14:07:48Z",versio
 doublezero_agent_get_config_errors_total 0
 ```
 
-#### Errori ad alto segnale
+#### Errori ad alto impatto
 
-- `up` - Questa è la metrica time series generata automaticamente da Prometheus se l'istanza di scrape è sana e raggiungibile. Se non lo è, l'agent non è raggiungibile oppure non è in esecuzione.
-- `doublezero_agent_apply_config_errors_total` - La configurazione che l'agent sta tentando di applicare è fallita. In questa situazione, gli utenti non potranno eseguire l'onboarding sul dispositivo e le modifiche alla configurazione on-chain non saranno applicate fino alla risoluzione del problema.
-- `doublezero_agent_get_config_errors_total` - Questo indica che il configuration agent locale non riesce a comunicare con il controller DoubleZero. Nella maggior parte dei casi, ciò può essere dovuto a un problema con la connettività di gestione sul dispositivo. Come per la metrica precedente, gli utenti non potranno eseguire l'onboarding sul dispositivo e le modifiche alla configurazione on-chain non saranno applicate fino alla risoluzione del problema.
+- `up` - Questa è la metrica di serie temporale generata automaticamente da prometheus se l'istanza di scrape è attiva e raggiungibile. In caso contrario, l'agent non è raggiungibile oppure non è in esecuzione.
+- `doublezero_agent_apply_config_errors_total` - La configurazione che l'agent sta tentando di applicare è fallita. In questa situazione, gli utenti non potranno effettuare l'onboarding sul dispositivo e le modifiche di configurazione onchain non verranno applicate fino alla risoluzione del problema.
+- `doublezero_agent_get_config_errors_total` - Questo segnala che il configuration agent locale non riesce a comunicare con il controller DoubleZero. Nella maggior parte dei casi, ciò può essere dovuto a un problema con la connettività di management sul dispositivo. Come per la metrica precedente, gli utenti non potranno effettuare l'onboarding sul dispositivo e le modifiche di configurazione onchain non verranno applicate fino alla risoluzione del problema.
 
 ### Metriche del Telemetry Agent
 
-Il telemetry agent sul dispositivo DoubleZero ha la capacità di esporre metriche compatibili con Prometheus impostando il flag `-metrics-enable` nella configurazione del daemon `doublezero-telemetry`. La porta di ascolto predefinita è tcp/8080, ma può essere modificata per adattarsi all'ambiente tramite `-metrics-addr`:
+Il telemetry agent sul dispositivo DoubleZero ha la capacità di esporre metriche compatibili con prometheus impostando il flag `-metrics-enable` nella configurazione del daemon `doublezero-telemetry`. La porta di ascolto predefinita è tcp/8080 ma può essere modificata per adattarsi all'ambiente tramite `-metrics-addr`:
 ```
 daemon doublezero-telemetry
    exec /usr/local/bin/doublezero-telemetry  --local-device-pubkey $PUBKEY --env $ENV --keypair $KEY_PAIR -metrics-enable --metrics-addr 10.0.0.11:2113
    no shutdown
 ```
 
-Le seguenti metriche specifiche di DoubleZero vengono esposte insieme alle metriche di runtime specifiche di Go:
+Le seguenti metriche specifiche di DoubleZero sono esposte insieme alle metriche runtime specifiche di go:
 ```
 $ curl -s 10.0.0.11:2113/metrics | grep doublezero
 
@@ -290,27 +290,27 @@ doublezero_device_telemetry_agent_errors_total{error_type="submitter_retries_exh
 doublezero_device_telemetry_agent_peer_discovery_not_found_tunnels{local_device_pk="8PQkip3CxWhQTdP7doCyhT2kwjSL2csRTdnRg2zbDPs1"} 0
 ```
 
-#### Errori ad alto segnale
+#### Errori ad alto impatto
 
-- `up` - Questa è la metrica time series generata automaticamente da Prometheus se l'istanza di scrape è sana e raggiungibile. Se non lo è, l'agent non è raggiungibile oppure non è in esecuzione.
-- `doublezero_device_telemetry_agent_errors_total` con `error_type` uguale a `submitter_failed_to_write_samples` - Questo indica che il telemetry agent non riesce a scrivere i campioni on-chain, il che potrebbe essere dovuto a problemi di connettività di gestione sul dispositivo.
+- `up` - Questa è la metrica di serie temporale generata automaticamente da prometheus se l'istanza di scrape è attiva e raggiungibile. In caso contrario, l'agent non è raggiungibile oppure non è in esecuzione.
+- `doublezero_device_telemetry_agent_errors_total` con un `error_type` di `submitter_failed_to_write_samples` - Questo è un segnale che il telemetry agent non riesce a scrivere i campioni onchain, il che potrebbe essere dovuto a problemi di connettività di management sul dispositivo.
 
 ---
 
 ## Gestione dei link
 
-### Drenaggio dei link
+### Draining dei link {#link-draining}
 
-Il drenaggio dei link consente ai contributori di rimuovere in modo controllato un link dal servizio attivo per manutenzione o risoluzione dei problemi. Esistono due stati di drenaggio:
+Il draining dei link consente ai contributori di rimuovere con grazia un link dal servizio attivo per manutenzione o troubleshooting. Esistono due stati di drain:
 
 | Stato | Comportamento IS-IS | Descrizione |
 |-------|---------------------|-------------|
-| `soft-drained` | Metrica impostata a 1.000.000 | Il link è deprioritizzato. Il traffico utilizzerà percorsi alternativi se disponibili, ma continuerà a usare questo link se è l'unica opzione. |
+| `soft-drained` | Metrica impostata a 1.000.000 | Il link è deprioritizzato. Il traffico utilizzerà percorsi alternativi se disponibili, ma utilizzerà comunque questo link se è l'unica opzione. |
 | `hard-drained` | Impostato su passive | Il link è completamente rimosso dal routing. Nessun traffico attraverserà questo link. |
 
 ### Transizioni di stato
 
-Sono consentite le seguenti transizioni di stato:
+Le seguenti transizioni di stato sono consentite:
 
 ```
 activated → soft-drained ✓
@@ -318,37 +318,37 @@ activated → hard-drained ✓
 soft-drained → hard-drained ✓
 hard-drained → soft-drained ✓
 soft-drained → activated ✓
-hard-drained → activated ✗ (deve prima passare per soft-drained)
+hard-drained → activated ✗ (must go through soft-drained first)
 ```
 
 > ⚠️ **Nota:**
 > Non è possibile passare direttamente da `hard-drained` ad `activated`. È necessario prima transitare a `soft-drained`, poi ad `activated`.
 
-### Soft drain di un link
+### Soft Drain di un link
 
-Il soft drain deprioritizza un link impostando la sua metrica IS-IS a 1.000.000. Il traffico preferirà percorsi alternativi ma potrà comunque utilizzare questo link se necessario.
+Il soft draining deprioritizza un link impostando la sua metrica IS-IS a 1.000.000. Il traffico preferirà percorsi alternativi ma può comunque utilizzare questo link se necessario.
 
 ```bash
 doublezero link update --pubkey <LINK_PUBKEY> --status soft-drained
 ```
 
-### Hard drain di un link
+### Hard Drain di un link
 
-L'hard drain rimuove completamente il link dal routing impostando IS-IS in modalità passive. Nessun traffico attraverserà questo link.
+L'hard draining rimuove completamente il link dal routing impostando IS-IS in modalità passive. Nessun traffico attraverserà questo link.
 
 ```bash
 doublezero link update --pubkey <LINK_PUBKEY> --status hard-drained
 ```
 
-### Ripristino di un link allo stato attivo
+### Ripristinare un link allo stato attivo
 
 Per riportare un link drenato al funzionamento normale:
 
 ```bash
-# Da soft-drained
+# From soft-drained
 doublezero link update --pubkey <LINK_PUBKEY> --status activated
 
-# Da hard-drained (deve prima passare per soft-drained)
+# From hard-drained (must go through soft-drained first)
 doublezero link update --pubkey <LINK_PUBKEY> --status soft-drained
 doublezero link update --pubkey <LINK_PUBKEY> --status activated
 ```

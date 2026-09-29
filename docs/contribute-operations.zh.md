@@ -1,33 +1,33 @@
 ---
-description: DoubleZero 贡献者的日常运维任务 — 代理升级、设备和接口更新、链路管理以及事件记录。
+description: DoubleZero 贡献者的持续运维任务 — 代理升级、设备和接口更新、链路管理以及事件记录。
 ---
 
 # 贡献者运维指南
 
 
-本指南涵盖维护 DoubleZero 设备 (DZD) 的日常运维任务，包括代理升级、设备/接口更新和链路管理。
+本指南涵盖维护 DoubleZero 设备 (DZD) 的持续运维任务，包括代理升级、设备/接口更新和链路管理。
 
 ## 事件与维护记录
 
-任何计划内的维护或计划外的链路/设备问题都应在 [OPS 管理门户](contribute-ops-management.md) 中记录。这使所有贡献者能够了解整个网络中正在发生的情况，避免重复排查。
+任何计划内维护或计划外链路/设备问题都应在 [OPS Management 门户](contribute-ops-management.md)中记录。这使所有贡献者能够了解整个网络中正在发生的事情，并避免重复排查。
 
 - **计划内工作**（例如更换光模块、运营商计划维护）：在开始之前创建维护记录。
 - **计划外问题**（例如链路中断、接口错误、丢包）：在开始排查时立即创建事件工单。
 
-请参阅 [OPS 管理指南](contribute-ops-management.md) 了解接入步骤和工单创建方法。
+请参阅 [OPS Management 指南](contribute-ops-management.md)了解入门步骤和如何创建工单。
 
 ---
 
 **前提条件**：在使用本指南之前，请确保您已：
 
-- 完成 [设备配置指南](contribute-provisioning.md)
-- 您的 DZD 已完全运行，Config 和 Telemetry 代理均已启动
+- 完成[设备配置指南](contribute-provisioning.md)
+- 您的 DZD 已完全运行，Config 和 Telemetry 代理均在运行中
 
 ---
 
 ## 设备更新
 
-使用 `doublezero device update` 在初始配置完成后修改设备设置。
+使用 `doublezero device update` 在初始配置后修改设备设置。
 
 ```bash
 doublezero device update --pubkey <DEVICE_PUBKEY> [OPTIONS]
@@ -37,8 +37,8 @@ doublezero device update --pubkey <DEVICE_PUBKEY> [OPTIONS]
 
 | 选项 | 描述 |
 |--------|-------------|
-| `--device-type <TYPE>` | 更改运行模式：`hybrid`、`transit`、`edge`（参见 [设备类型](contribute-provisioning.md#understanding-device-types)） |
-| `--location <LOCATION>` | 将设备移至其他位置 |
+| `--device-type <TYPE>` | 更改运行模式：`hybrid`、`transit`、`edge`（参见[设备类型](contribute-provisioning.md#understanding-device-types)） |
+| `--location <LOCATION>` | 将设备迁移到不同位置 |
 | `--metrics-publisher <PUBKEY>` | 更改指标发布者密钥 |
 
 ---
@@ -51,7 +51,7 @@ doublezero device update --pubkey <DEVICE_PUBKEY> [OPTIONS]
 doublezero device interface update <DEVICE> <NAME> [OPTIONS]
 ```
 
-有关接口选项（包括 CYOA/DIA 设置）的完整列表，请参阅 [创建接口](contribute-provisioning.md#step-35-create-cyoa-interface-for-edgehybrid-devices)。
+有关接口选项的完整列表（包括 CYOA/DIA 设置），请参阅[创建接口](contribute-provisioning.md#step-35-create-cyoa-interface-for-edgehybrid-devices)。
 
 **示例 - 为现有接口添加 CYOA 设置：**
 
@@ -104,7 +104,7 @@ switch(config)# exit
 switch# show extensions
 ```
 
-运行以下命令移除旧版本。将 `<OLD_VERSION>` 替换为上述输出中的旧版本号：
+运行以下命令移除旧版本。将 `<OLD_VERSION>` 替换为上面输出中的旧版本号：
 ```
 switch# delete flash:doublezero-agent_<OLD_VERSION>_linux_amd64.rpm
 switch# delete extension:doublezero-agent_<OLD_VERSION>_linux_amd64.rpm
@@ -130,7 +130,7 @@ switch(config)# exit
 
 ### 6. 验证升级
 
-状态应显示为 "A, I, B"。
+Status 应显示为 "A, I, B"。
 ```
 switch# show extensions
 ```
@@ -175,7 +175,7 @@ switch(config)# exit
 switch# show extensions
 ```
 
-运行以下命令移除旧版本。将 `<OLD_VERSION>` 替换为上述输出中的旧版本号：
+运行以下命令移除旧版本。将 `<OLD_VERSION>` 替换为上面输出中的旧版本号：
 ```
 switch# delete flash:doublezero-device-telemetry-agent_<OLD_VERSION>_linux_amd64.rpm
 switch# delete extension:doublezero-device-telemetry-agent_<OLD_VERSION>_linux_amd64.rpm
@@ -201,7 +201,7 @@ switch(config)# exit
 
 ### 6. 验证升级
 
-状态应显示为 "A, I, B"。
+Status 应显示为 "A, I, B"。
 ```
 switch# show extensions
 ```
@@ -214,23 +214,23 @@ show agent doublezero-telemetry log
 
 ---
 
-## 监控
+## 监控 {#monitoring}
 
 > ⚠️ **重要：**
 >
->  1. 对于以下配置示例，请注意您的代理是否使用了管理 VRF。
->  2. 配置代理和遥测代理默认使用相同的监听端口（:8080）作为指标端点。如果您需要同时启用两者的指标，请使用 `-metrics-addr` 标志为每个代理设置不同的监听端口。
+>  1. 对于以下配置示例，请注意您的代理是否正在使用管理 VRF。
+>  2. 配置代理和遥测代理默认使用相同的监听端口 (:8080) 作为其指标端点。如果您同时启用两者的指标功能，请使用 `-metrics-addr` 标志为每个代理设置唯一的监听端口。
 
 ### Config 代理指标
 
-DoubleZero 设备上的配置代理可以通过在 `doublezero-agent` 守护进程配置中设置 `-metrics-enable` 标志来暴露 Prometheus 兼容的指标。默认监听端口为 tcp/8080，但可以通过 `-metrics-addr` 根据环境需要进行更改：
+DoubleZero 设备上的配置代理能够通过在 `doublezero-agent` 守护进程配置中设置 `-metrics-enable` 标志来暴露与 prometheus 兼容的指标。默认监听端口为 tcp/8080，但可以通过 `-metrics-addr` 更改以适应环境：
 ```
 daemon doublezero-agent
    exec /usr/local/bin/doublezero-agent -pubkey $PUBKEY -controller $CONTROLLER_ADDR -metrics-enable -metrics-addr 10.0.0.11:2112
    no shutdown
 ```
 
-以下 DoubleZero 特定指标会与 Go 运行时指标一起暴露：
+以下 DoubleZero 特定指标与 go 特定运行时指标一起暴露：
 ```
 $ curl -s 10.0.0.11:2112/metrics | grep doublezero
 
@@ -253,20 +253,20 @@ doublezero_agent_get_config_errors_total 0
 
 #### 高信号错误
 
-- `up` - 这是 Prometheus 在抓取实例健康且可达时自动生成的时序指标。如果该指标不可用，则说明代理不可达或代理未运行。
+- `up` - 这是 prometheus 在抓取实例健康且可达时自动生成的时间序列指标。如果不可达，则表示代理不可访问或代理未运行。
 - `doublezero_agent_apply_config_errors_total` - 代理尝试应用的配置失败。在这种情况下，用户将无法接入该设备，链上配置变更在问题解决之前也不会被应用。
-- `doublezero_agent_get_config_errors_total` - 表示本地配置代理无法与 DoubleZero 控制器通信。在大多数情况下，这可能是由于设备的管理连接问题。与上述指标类似，用户将无法接入该设备，链上配置变更在问题解决之前也不会被应用。
+- `doublezero_agent_get_config_errors_total` - 这表明本地配置代理无法与 DoubleZero 控制器通信。在大多数情况下，这可能是由于设备上的管理连接问题。与上述指标类似，用户将无法接入该设备，链上配置变更在问题解决之前也不会被应用。
 
 ### Telemetry 代理指标
 
-DoubleZero 设备上的遥测代理可以通过在 `doublezero-telemetry` 守护进程配置中设置 `-metrics-enable` 标志来暴露 Prometheus 兼容的指标。默认监听端口为 tcp/8080，但可以通过 `-metrics-addr` 根据环境需要进行更改：
+DoubleZero 设备上的遥测代理能够通过在 `doublezero-telemetry` 守护进程配置中设置 `-metrics-enable` 标志来暴露与 prometheus 兼容的指标。默认监听端口为 tcp/8080，但可以通过 `-metrics-addr` 更改以适应环境：
 ```
 daemon doublezero-telemetry
    exec /usr/local/bin/doublezero-telemetry  --local-device-pubkey $PUBKEY --env $ENV --keypair $KEY_PAIR -metrics-enable --metrics-addr 10.0.0.11:2113
    no shutdown
 ```
 
-以下 DoubleZero 特定指标会与 Go 运行时指标一起暴露：
+以下 DoubleZero 特定指标与 go 特定运行时指标一起暴露：
 ```
 $ curl -s 10.0.0.11:2113/metrics | grep doublezero
 
@@ -292,21 +292,21 @@ doublezero_device_telemetry_agent_peer_discovery_not_found_tunnels{local_device_
 
 #### 高信号错误
 
-- `up` - 这是 Prometheus 在抓取实例健康且可达时自动生成的时序指标。如果该指标不可用，则说明代理不可达或代理未运行。
-- `doublezero_device_telemetry_agent_errors_total`（`error_type` 为 `submitter_failed_to_write_samples`）- 表示遥测代理无法将样本写入链上，这可能是由于设备的管理连接问题。
+- `up` - 这是 prometheus 在抓取实例健康且可达时自动生成的时间序列指标。如果不可达，则表示代理不可访问或代理未运行。
+- `doublezero_device_telemetry_agent_errors_total`，`error_type` 为 `submitter_failed_to_write_samples` - 这表明遥测代理无法将样本写入链上，这可能是由于设备上的管理连接问题。
 
 ---
 
 ## 链路管理
 
-### 链路排空
+### 链路排空 {#link-draining}
 
-链路排空允许贡献者优雅地将链路从活跃服务中移除，以进行维护或故障排查。有两种排空状态：
+链路排空允许贡献者在维护或故障排查时优雅地将链路从活跃服务中移除。有两种排空状态：
 
 | 状态 | IS-IS 行为 | 描述 |
 |--------|----------------|-------------|
-| `soft-drained` | Metric 设置为 1,000,000 | 链路被降低优先级。如果有可用的备选路径，流量将使用备选路径，但如果该链路是唯一选择，流量仍会使用它。 |
-| `hard-drained` | 设置为 passive | 链路完全从路由中移除。没有流量会经过此链路。 |
+| `soft-drained` | Metric 设置为 1,000,000 | 链路被降低优先级。流量将优先使用备选路径（如果可用），但如果这是唯一的选项，仍会使用此链路。 |
+| `hard-drained` | 设置为 passive | 链路完全从路由中移除。不会有流量经过此链路。 |
 
 ### 状态转换
 
@@ -322,11 +322,11 @@ hard-drained → activated ✗ (must go through soft-drained first)
 ```
 
 > ⚠️ **注意：**
-> 您不能直接从 `hard-drained` 转为 `activated`。必须先转换为 `soft-drained`，然后再转为 `activated`。
+> 不能直接从 `hard-drained` 转换到 `activated`。必须先转换到 `soft-drained`，然后再转换到 `activated`。
 
 ### 软排空链路
 
-软排空通过将链路的 IS-IS metric 设置为 1,000,000 来降低其优先级。流量会优先选择备选路径，但在必要时仍可使用此链路。
+软排空通过将链路的 IS-IS metric 设置为 1,000,000 来降低其优先级。流量将优先使用备选路径，但在必要时仍可使用此链路。
 
 ```bash
 doublezero link update --pubkey <LINK_PUBKEY> --status soft-drained
@@ -334,15 +334,15 @@ doublezero link update --pubkey <LINK_PUBKEY> --status soft-drained
 
 ### 硬排空链路
 
-硬排空通过将 IS-IS 设置为 passive 模式来完全从路由中移除链路。没有流量会经过此链路。
+硬排空通过将 IS-IS 设置为 passive 模式，将链路完全从路由中移除。不会有流量经过此链路。
 
 ```bash
 doublezero link update --pubkey <LINK_PUBKEY> --status hard-drained
 ```
 
-### 恢复链路为活跃状态
+### 将链路恢复为活跃状态
 
-要将已排空的链路恢复到正常运行状态：
+将已排空的链路恢复为正常运行：
 
 ```bash
 # From soft-drained
@@ -355,25 +355,25 @@ doublezero link update --pubkey <LINK_PUBKEY> --status activated
 
 ### 延迟覆盖
 
-延迟覆盖功能允许贡献者临时更改链路的有效延迟，而不修改实际测量的延迟值。这对于将链路从主路径临时降级为备用路径非常有用。
+延迟覆盖功能允许贡献者临时更改链路的有效延迟值，而不修改实际测量的延迟值。这对于将链路从主路径临时降级为备选路径非常有用。
 
 ### 设置延迟覆盖
 
-要覆盖链路的延迟（使其在路由中不被优先选择）：
+覆盖链路的延迟（使其在路由中不太被优先选择）：
 
 ```bash
 doublezero link update --pubkey <LINK_PUBKEY> --delay-override-ms 100
 ```
 
-有效值范围为 `0.01` 到 `1000` 毫秒。
+有效值为 `0.01` 到 `1000` 毫秒。
 
 ### 清除延迟覆盖
 
-要移除覆盖并恢复使用实际测量的延迟：
+移除覆盖值并恢复使用实际测量的延迟：
 
 ```bash
 doublezero link update --pubkey <LINK_PUBKEY> --delay-override-ms 0
 ```
 
 > ⚠️ **注意：**
-> 当链路处于软排空状态时，`delay_ms` 和 `delay_override_ms` 都会被覆盖为 1000ms（1 秒），以确保降低优先级。
+> 当链路处于软排空状态时，`delay_ms` 和 `delay_override_ms` 都会被覆盖为 1000ms（1 秒）以确保降低优先级。

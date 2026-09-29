@@ -8,23 +8,23 @@ description: 在 DoubleZero Edge 上获取 Kalshi 市场数据 — Edge Connect 
 
 Kalshi 数据源通过 DoubleZero Edge 网络以 UDP 组播方式传输永续合约和体育市场数据。共有四个数据源：
 
-- 永续合约最优报价（TOB）
-- 永续合约按价格分层行情（MBP）
-- 体育最优报价（TOB）
-- 体育按价格分层行情（MBP）
+- 永续合约最优报价 (TOB)
+- 永续合约按价格分层行情 (MBP)
+- 体育最优报价 (TOB)
+- 体育按价格分层行情 (MBP)
 
 ## 我应该选择哪条路径？
 
-两条路径。除非您需要自己控制解码器，否则优先选择 Edge Connect。
+两条路径。除非您需要自行控制解码器，否则建议优先使用 Edge Connect。
 
 | # | 路径 | 最适合 | 工作量 |
 |---|------|--------|--------|
-| **1** | [Edge Connect](#1-edge-connect-recommended) | 需要简单 CLI 和标准化 JSON WebSocket 的代理和应用 | 最低 |
-| **2** | [原生组播](#2-native-multicast-advanced) | 针对原始线路数据构建自己的解码器 | 最高 |
+| **1** | [Edge Connect](#1-edge-connect-recommended) | 希望使用简单 CLI 和标准化 JSON WebSocket 的代理和应用 | 最低 |
+| **2** | [原生组播](#2-native-multicast-advanced) | 针对原始线路格式构建自己的解码器 | 最高 |
 
 在选择任何路径之前：请在 [doublezero.xyz/edge/subscribe](https://doublezero.xyz/edge/subscribe) 购买您需要的数据源。购买即表示您同意 [DoubleZero 使用条款](https://doublezero.xyz/terms-protocol) 和 [Kalshi 服务条款](https://doublezero.xyz/dz-edge-kalshi-terms)。
 
-想让 AI 协助您完成安装？连接 [DoubleZero MCP](mcp.md) 并让它引导您完成 Kalshi / Edge Connect 的配置。
+想让 AI 协助您完成安装？连接 [DoubleZero MCP](mcp.md)，让它引导您完成 Kalshi / Edge Connect 的设置。
 
 ---
 
@@ -34,7 +34,7 @@ Kalshi 数据源通过 DoubleZero Edge 网络以 UDP 组播方式传输永续合
 
 团队持续改进 Edge Connect 以满足不断增长的用户群需求。这是最简单的连接方式，除非您有特定的技术需求，否则应使用此方式。
 
-简短版本：
+简要版本：
 
 ```bash
 DZ_SECRET=/path/to/keypair.json \
@@ -43,21 +43,21 @@ DZ_ASSUME_YES=1 \
   curl -fsSL https://get.doublezero.xyz/connect | bash
 ```
 
-`DZ_SECRET` 是 `DZ_…` 访问令牌**或**拥有您的访问通行证/数据源购买的 Solana 密钥对 JSON 文件路径。
+`DZ_SECRET` 是一个 `DZ_…` 访问令牌**或**拥有您的访问通行证/数据源购买的 Solana 密钥对 JSON 文件路径。
 
-如果主机上已有 `doublezerod` 在运行，请先停止它 — 它会与容器的守护进程争用同一隧道：
+如果主机上已有 `doublezerod` 在运行，请先停止它 — 它会与容器的守护进程争夺同一隧道：
 
 ```bash
 sudo systemctl stop doublezerod
 ```
 
-然后**在容器内**验证状态（应显示 `BGP Session Up` 和您的 Kalshi 组），并将 WebSocket 客户端连接到 `:8081`：
+然后在**容器内部**验证状态（应看到 `BGP Session Up` 和您的 Kalshi 组），并将 WebSocket 客户端连接到 `:8081`：
 
 ```bash
 docker exec doublezero-edge-connect doublezero status
 ```
 
-**完整步骤、验证和注意事项：** 连接 [DoubleZero MCP](mcp.md) 并让它引导您完成 Kalshi 的 Edge Connect 配置。
+**完整步骤、验证和注意事项：** 连接 [DoubleZero MCP](mcp.md)，让它引导您完成 Kalshi 的 Edge Connect 设置。  
 **WebSocket 协议：** [PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md)。
 
 ---
@@ -65,7 +65,7 @@ docker exec doublezero-edge-connect doublezero status
 ## 2. 原生组播（高级） {#2-native-multicast-advanced}
 
 !!! warning "需要更深入的技术知识"
-    原生组播意味着您自己加入组播组并在主机上解码**原始** Edge 线路格式。只有技术能力最强的用户才应选择此路径。您需要阅读并理解规范，从 [market-by-price/spec.md](https://github.com/malbeclabs/edge-feed-spec/blob/main/market-by-price/spec.md) 和 [edge-feed-spec](https://github.com/malbeclabs/edge-feed-spec) 的其余部分开始。除非您有必须自己控制解码器的硬性需求，否则请优先选择 [Edge Connect](#1-edge-connect-recommended)。
+    原生组播意味着您自行加入组并在主机上解码**原始** Edge 线路格式。只有技术能力最强的用户才应选择此路径。您需要阅读并理解规范，从 [market-by-price/spec.md](https://github.com/malbeclabs/edge-feed-spec/blob/main/market-by-price/spec.md) 和 [edge-feed-spec](https://github.com/malbeclabs/edge-feed-spec) 的其余部分开始。除非您有必须自行控制解码器的硬性需求，否则请优先使用 [Edge Connect](#1-edge-connect-recommended)。
 
 ### 购买数据源
 
@@ -88,7 +88,7 @@ sudo apt update && sudo apt install doublezero
 
 ### 配置防火墙
 
-允许 GRE、BGP、PIM 和 Kalshi 数据源流量。Kalshi UDP 端口范围为 `30000`–`59999`：首位数字是流量类别（`3` 行情数据，`4` 参考数据，`5` 快照），第二位数字是数据源，因此参考数据端口始终是行情数据端口 + `10000`，快照端口始终是行情数据端口 + `20000`。在 `doublezero1` 上开放整个端口段，这样新通道和数据源不需要再次修改防火墙 — 参见[数据源地址](#feed-addresses)。
+允许 GRE、BGP、PIM 和 Kalshi 数据源流量。Kalshi UDP 端口范围为 `30000`–`59999`：首位数字是流量类别（`3` 市场数据，`4` 参考数据，`5` 快照），第二位数字是数据源编号，因此参考数据端口始终为市场数据端口 + `10000`，快照端口始终为市场数据端口 + `20000`。在 `doublezero1` 上开放整个端口范围，这样新的通道和数据源不需要再次修改防火墙 — 参见[数据源地址](#feed-addresses)。
 
 **iptables：**
 
@@ -97,7 +97,7 @@ sudo iptables -A OUTPUT -p gre -j ACCEPT
 sudo iptables -A INPUT -i doublezero1 -s 169.254.0.0/16 -d 169.254.0.0/16 -p tcp --dport 179 -j ACCEPT
 sudo iptables -A OUTPUT -o doublezero1 -s 169.254.0.0/16 -d 169.254.0.0/16 -p tcp --dport 179 -j ACCEPT
 sudo iptables -A OUTPUT -o doublezero1 -p pim -j ACCEPT
-# Kalshi 行情 / 参考 / 快照（所有数据源）
+# Kalshi 市场 / 参考 / 快照（所有数据源）
 sudo iptables -A INPUT -i doublezero1 -p udp --dport 30000:59999 -j ACCEPT
 ```
 
@@ -109,7 +109,7 @@ sudo ufw allow proto gre from any to any
 sudo ufw allow in on doublezero1 from 169.254.0.0/16 to 169.254.0.0/16 port 179 proto tcp
 sudo ufw allow out on doublezero1 from 169.254.0.0/16 to 169.254.0.0/16 port 179 proto tcp
 sudo ufw allow out on doublezero1 proto pim from any to any
-# Kalshi 行情 / 参考 / 快照（所有数据源）
+# Kalshi 市场 / 参考 / 快照（所有数据源）
 sudo ufw allow in on doublezero1 to any port 30000:59999 proto udp
 ```
 
@@ -120,7 +120,7 @@ sudo ufw allow in on doublezero1 to any port 30000:59999 proto udp
 doublezero connect multicast --subscribe edge-kalshi-perps-tob
 ```
 
-多个数据源，以空格分隔：
+多个数据源，用空格分隔：
 
 ```bash
 doublezero connect multicast --subscribe edge-kalshi-perps-tob edge-kalshi-perps-mbp edge-kalshi-sports-tob edge-kalshi-sports-mbp
@@ -145,13 +145,13 @@ Public IP detected: 137.174.145.145 - If you want to use a different IP, you can
 doublezero status
 ```
 
-应在正确的 DoubleZero 网络上显示 `BGP Session Up`。作为订阅者，您的 DoubleZero IP 与您的 Tunnel Src IP 一致。
+应看到在正确的 DoubleZero 网络上显示 `BGP Session Up`。作为订阅者，您的 DoubleZero IP 与您的 Tunnel Src IP 匹配。
 
 ```bash
 doublezero user list --client-ip <your ip>
 ```
 
-您的数据源显示在 `groups` 列中。查看组播组 IP：
+您的数据源显示在 `groups` 列中。使用以下命令查看组 IP：
 
 ```bash
 doublezero multicast group list
@@ -160,9 +160,9 @@ doublezero multicast group list
 
 ### 自行解码线路数据
 
-Schema 版本为 **`3`** — 丢弃您的解码器未实现的版本的帧。权威布局定义：[edge-feed-spec](https://github.com/malbeclabs/edge-feed-spec)，包括 [market-by-price/spec.md](https://github.com/malbeclabs/edge-feed-spec/blob/main/market-by-price/spec.md)。
+Schema 版本为 **`3`** — 丢弃您的解码器未实现版本的帧。权威布局定义：[edge-feed-spec](https://github.com/malbeclabs/edge-feed-spec)，包括 [market-by-price/spec.md](https://github.com/malbeclabs/edge-feed-spec/blob/main/market-by-price/spec.md)。
 
-每个数据报以帧头开始，后跟一条或多条应用消息，打包至 MTU 上限。帧采用小端字节序和固定布局。
+每个数据报以帧头开始，后跟一个或多个应用消息，打包至 MTU 上限。帧采用小端字节序和固定布局。
 
 | 字段 | 说明 |
 |------|------|
@@ -170,96 +170,96 @@ Schema 版本为 **`3`** — 丢弃您的解码器未实现的版本的帧。权
 | 通道 ID | 用于解复用共享端口的流 |
 | 序列号 | 每通道单调递增 — 用于间隙检测 |
 | 发送时间戳 | 自 Unix 纪元以来的纳秒数 |
-| 消息计数 | 此帧中打包的消息数 |
+| 消息数量 | 此帧中打包的消息数 |
 | 重置计数 | 每会话递增。增加意味着需要冷启动您的状态。 |
 | 帧长度 | 总字节数 |
 
-#### 应用消息（TOB）
+#### 应用消息 (TOB)
 
-| 类型 | ID | 大小 | 端口 | 携带内容 |
-|------|----|------|------|----------|
-| 心跳 | `0x01` | 16 B | 行情 | 市场静默时的存活信号 |
+| 类型 | ID | 大小 | 端口 | 内容 |
+|------|----|------|------|------|
+| 心跳 | `0x01` | 16 B | 市场 | 市场安静时的存活检测 |
 | 合约定义 | `0x02` | 130 B | 参考 | 代码、指数、最小变动价位和手数、到期时间 |
-| 报价 | `0x03` | 60 B | 行情 | 最优买卖价、价格和数量、更新标志 |
-| 成交 | `0x04` | 52 B | 行情 | 价格、数量、主动方、成交 ID |
+| 报价 | `0x03` | 60 B | 市场 | 最优买卖价、价格和数量、更新标志 |
+| 成交 | `0x04` | 52 B | 市场 | 价格、数量、主动方向、成交 ID |
 | 通道重置 | `0x05` | 12 B | 两者 | 会话开始或重启 |
 | 会话结束 | `0x06` | 12 B | 两者 | 正常关闭 |
 | 清单摘要 | `0x07` | 24 B | 参考 | 活跃集合指纹和合约数量 |
-| 永续合约统计 | `0x30` | 124 B | 关联 | 资金费率、标记价和预言机价格、持仓量、日成交量 |
+| 永续合约统计 | `0x30` | 124 B | 关联 | 资金费率、标记价格和预言机价格、未平仓量、日交易量 |
 
-Kalshi 在 edge-feed-spec 注册表中的源 ID 为 `3`。从每个 `InstrumentDefinition` 中读取 `price_exponent` 和 `qty_exponent` — 不要硬编码。
+Kalshi 在 edge-feed-spec 注册表中的源 ID 为 `3`。从每个 `InstrumentDefinition` 中读取 `price_exponent` 和 `qty_exponent` — 不要硬编码它们。
 
-MBP 数据源使用按价格分层行情消息集。请参阅 edge-feed-spec 中的 market-by-price 和 reference-data 规范。
+MBP 数据源使用按价格分层行情消息集。参见 edge-feed-spec 中的 market-by-price 和 reference-data 规范。
 
-传输采用即发即弃的 UDP，无重传。通过参考数据循环（以及 MBP 数据源上的快照层面）恢复丢失的数据报，参考数据按周期重复发送而非仅发送一次。
+传输采用即发即忘的 UDP，不进行重传。通过参考数据循环（以及 MBP 数据源上的快照平面）恢复丢失的数据报，参考数据按固定周期重复发送而非仅发送一次。
 
 ---
 
 ## 数据源地址 {#feed-addresses}
 
-| 数据源 | 描述 | 组播组 | 行情数据 | 参考数据 | 快照 |
+| 数据源 | 描述 | 组播组 | 市场数据 | 参考数据 | 快照 |
 |--------|------|--------|----------|----------|------|
 | `edge-kalshi-perps-tob` | 永续合约最优报价 | `233.84.178.3` | `31000` | `41000` | — |
 | `edge-kalshi-perps-mbp` | 永续合约按价格分层行情 | `233.84.178.4` | `32000` | `42000` | `52000` |
 | `edge-kalshi-sports-tob` | 体育最优报价 | `233.84.178.17` | `33000` + id | `43000` + id | — |
 | `edge-kalshi-sports-mbp` | 体育按价格分层行情 | `233.84.178.20` | `34000` + id | `44000` + id | `54000` + id |
 
-端口方案：首位数字是流量类别（`3` 行情，`4` 参考，`5` 快照）；第二位数字是数据源。参考数据端口 = 行情数据端口 + `10000`；快照端口 = 行情数据端口 + `20000`。永续合约端口固定。体育端口为 `基础端口 + 通道 id`（例如，`edge-kalshi-sports-mbp` 上 id 为 `10` 的通道使用 `34010` / `44010` / `54010`）。
+端口方案：首位数字是流量类别（`3` 市场，`4` 参考，`5` 快照）；第二位数字是数据源编号。参考数据端口 = 市场数据端口 + `10000`；快照端口 = 市场数据端口 + `20000`。永续合约端口固定。体育端口为 `基础端口 + 通道 id`（例如，`edge-kalshi-sports-mbp` 上 id 为 `10` 时使用 `34010` / `44010` / `54010`）。
 
-组播组选择数据源；端口在其中选择行情数据、参考数据或快照。组播复制按源和组进行，网络结构不会检查 UDP 端口，因此加入一个组播组会通过您的 Edge Connect 链路传送该组上的所有数据。端口是在字节到达后在您自己的主机上应用的套接字过滤器。
+组播组选择数据源；端口选择其中的市场数据、参考数据或快照。组播复制按源和组进行，网络结构不检查 UDP 端口，因此加入一个组会通过您的 Edge Connect 链路接收该组上的所有数据。端口是在字节到达后在您自己的主机上应用的套接字过滤器。
 
 ---
 
 ## 故障排除
 
-如果您遇到此处未涵盖的问题，请在尝试变通方案之前通过您现有的渠道联系我们。如果您没有渠道，请参阅[支持](support.md)。
+如果您遇到此处未涵盖的问题，请在尝试解决之前通过您现有的渠道联系我们。如果您没有现有渠道，请参见[支持](support.md)。
 
-### 确保您的客户端是最新的
+### 确保您的客户端是最新版本
 
 运行：`sudo apt update && sudo apt install doublezero`
 
 ### 没有数据报到达
 
-1. 确认已在 [https://doublezero.xyz/edge/subscribe](https://doublezero.xyz/edge/subscribe) 购买了数据源。未购买的数据源不会传送任何流量。
+1. 确认已在 [https://doublezero.xyz/edge/subscribe](https://doublezero.xyz/edge/subscribe) 购买了数据源。未购买的数据源不会传输任何流量。
 2. 确认 BGP 已建立：`doublezero status` 应在正确的 DoubleZero 网络上显示 `BGP Session Up`。
 3. 确认订阅处于活跃状态：`doublezero user list --client-ip <your ip>` 应在 `groups` 下列出该数据源。
-4. 确认在正确的接口上加入了组播组。组播数据到达 `doublezero1`，而非 `doublezero0`。
+4. 确认组播已在正确的接口上加入。组播通过 `doublezero1` 到达，而非 `doublezero0`。
 5. 确认防火墙允许数据源的 UDP 端口在 `doublezero1` 上入站。
 
 ### 序列号间隙
 
-序列号每通道单调递增。间隙意味着丢失了数据报；下一个参考数据循环会恢复合约状态。
+序列号在每个通道内单调递增。间隙意味着数据报丢失；下一个参考数据循环将恢复合约状态。
 
 ### 帧停止后以新的重置计数重新开始
 
-发布者重启会使帧头中的重置计数递增。丢弃先前会话的状态，从下一个参考数据循环冷启动。
+发布者重启会使帧头中的重置计数递增。丢弃先前会话的状态，并从下一个参考数据循环进行冷启动。
 
-### 隧道无法建立
+### 隧道未建立
 
-1. **Edge Connect：** 在容器内运行状态检查 — `docker exec doublezero-edge-connect doublezero status`。主机上的 `doublezero status` 经常在数据源正常时失败（容器拥有守护进程）。确认主机上的 `doublezerod` 已停止。
-2. **原生方式：** 验证主机守护进程正在运行：`sudo systemctl status doublezerod`
-3. 验证防火墙规则已就位（GRE、BGP、PIM 以及 `doublezero1` 上的数据源端口）
-4. 从连接的同一位置（容器或主机）检查连接状态 — 应在正确的 DoubleZero 网络上显示 `BGP Session Up`
+1. **Edge Connect：** 在容器内运行状态检查 — `docker exec doublezero-edge-connect doublezero status`。数据源正常运行时，主机上的 `doublezero status` 通常会失败（容器拥有守护进程）。确认主机上的 `doublezerod` 已停止。
+2. **原生方式：** 验证主机守护进程是否正在运行：`sudo systemctl status doublezerod`
+3. 验证防火墙规则已就位（GRE、BGP、PIM，以及 `doublezero1` 上的数据源端口）
+4. 从您连接的相同位置（容器或主机）检查连接状态 — 应在正确的 DoubleZero 网络上看到 `BGP Session Up`
 
-客户端 IP 从您主机的公网 IP 自动发现。验证它与您购买数据源时使用的 IP 一致。
+客户端 IP 从您主机的公网 IP 自动发现。验证它与您购买数据源时使用的 IP 是否匹配。
 
 ---
 
 ## 研究参考设计
 
-可选。如果您已在主机上拥有 DoubleZero 隧道和订阅，并希望**记录和绘制**数据源数据，研究参考设计通过 Docker Compose 运行组播 → 解析器 → topofbook-bot → ClickHouse → Grafana：
+可选。如果您已经在主机上拥有 DoubleZero 隧道和订阅，并希望**记录和绘制**数据源数据，研究参考设计通过 Docker Compose 运行 组播 → 解析器 → topofbook-bot → ClickHouse → Grafana：
 
 [github.com/malbeclabs/edge-multicast-ref/tree/main/demo](https://github.com/malbeclabs/edge-multicast-ref/tree/main/demo)
 
-将 `.env` 指向您的 Kalshi 组播组和端口（参见[数据源地址](#feed-addresses)），然后：
+将 `.env` 指向您的 Kalshi 组和端口（参见[数据源地址](#feed-addresses)），然后：
 
 ```bash
 cd demo
 cp .env.example .env
-# 设置 DZ_MULTICAST_GROUP, DZ_MARKETDATA_PORT, DZ_REFDATA_PORT, DZ_INTERFACE=doublezero1
+# set DZ_MULTICAST_GROUP, DZ_MARKETDATA_PORT, DZ_REFDATA_PORT, DZ_INTERFACE=doublezero1
 docker compose up -d --build
 ```
 
-Grafana 通常位于主机的 `http://localhost:3000`。详细信息和仪表板：[demo README](https://github.com/malbeclabs/edge-multicast-ref/blob/main/demo/README.md)。
+Grafana 通常在主机的 `http://localhost:3000` 上可访问。详细信息和仪表板：[demo README](https://github.com/malbeclabs/edge-multicast-ref/blob/main/demo/README.md)。
 
-这只是将您已经接收的数据可视化。它不能替代数据源购买、订阅或上述任何一种连接路径。
+这是对您已经接收的数据进行可视化。它不能替代数据源购买、订阅或上述任何连接路径。

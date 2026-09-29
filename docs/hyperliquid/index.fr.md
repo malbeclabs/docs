@@ -6,37 +6,37 @@ description: "Offres DoubleZero pour Hyperliquid : flux de données de marché E
 
 *Aperçu*
 
-Hyperliquid propose deux produits sur DoubleZero : les flux de données de marché Edge et le peering pour les nœuds non-validateurs.
+Hyperliquid propose deux produits sur DoubleZero : les flux de données de marché Edge, et le peering pour les nœuds non-validateurs.
 
 | Offre | Description | Public cible | Guide |
 | --- | --- | --- | --- |
-| **Market Data Feeds (Edge)** | Top-of-Book et Market-by-Order en multicast UDP sur DoubleZero Edge. | Traders | [S'abonner à Hyperliquid (Edge)](/hyperliquid/edge/) |
-| **Peering** | Un flux gossip Hyperliquid dédupliqué via Block Proxy (sans données de marché). | Nœuds non-validateurs | [Accès au Peering](/hyperliquid/peering/) |
+| **Flux de données de marché (Edge)** | Top-of-Book et Market-by-Order en UDP multicast sur DoubleZero Edge. | Traders | [S'abonner à Hyperliquid (Edge)](edge.md) |
+| **Peering** | Un flux gossip Hyperliquid dédupliqué via Block Proxy (pas de données de marché). | Nœuds non-validateurs | [Accès au peering](peering.md) |
 
-## Market Data Feeds (Edge)
+## Flux de données de marché (Edge)
 
-Les publishers reconstruisent le carnet d'ordres et envoient des messages binaires de taille fixe en multicast UDP sur DoubleZero Edge.
+Les éditeurs reconstruisent le carnet d'ordres et envoient des messages binaires de taille fixe en UDP multicast sur DoubleZero Edge.
 
-Les flux principaux couvrent les perps natifs Hyperliquid (`hl`) et les perps [trade.xyz](https://trade.xyz) (`xyz`) :
+Les flux principaux couvrent les contrats perpétuels natifs Hyperliquid (`hl`) et les contrats perpétuels [trade.xyz](https://trade.xyz) (`xyz`) :
 
 | Flux | Description |
 |------|-------------|
-| `hyper-hl-tob` | Meilleure offre/demande et transactions pour les perps Hyperliquid |
-| `hyper-hl-mbo` | Carnet d'ordres complet ordre par ordre pour les perps Hyperliquid (ajouts, annulations, exécutions) |
-| `hyper-xyz-tob` | Meilleure offre/demande et transactions pour les perps trade.xyz |
-| `hyper-xyz-mbo` | Carnet d'ordres complet ordre par ordre pour les perps trade.xyz (ajouts, annulations, exécutions) |
+| `hyper-hl-tob` | Meilleure offre/demande et impressions de transactions pour les perpétuels Hyperliquid |
+| `hyper-hl-mbo` | Carnet d'ordres complet ordre par ordre pour les perpétuels Hyperliquid (ajouts, annulations, exécutions) |
+| `hyper-xyz-tob` | Meilleure offre/demande et impressions de transactions pour les perpétuels trade.xyz |
+| `hyper-xyz-mbo` | Carnet d'ordres complet ordre par ordre pour les perpétuels trade.xyz (ajouts, annulations, exécutions) |
 
-- Top-of-Book et Trades : meilleure offre et demande par instrument, plus les transactions.
-- Market-by-Order : chaque ordre au repos (ajout, annulation, exécution), avec snapshot intégré et récupération par delta.
+- Top-of-Book et Transactions : meilleure offre et demande par instrument, ainsi que les impressions de transactions.
+- Market-by-Order : chaque ordre au repos (ajout, annulation, exécution), avec snapshot intrabande et récupération delta.
 
-Nous faisons tourner plusieurs publishers afin que les traders puissent basculer en cas de panne ou choisir le flux le plus rapide.
+Nous exploitons plusieurs éditeurs afin que les traders puissent basculer ou choisir le flux le plus rapide.
 
-Comment se connecter : [S'abonner à Hyperliquid (Edge)](/hyperliquid/edge/).
+Comment se connecter : [S'abonner à Hyperliquid (Edge)](edge.md).
 
 ## Peering
 
-Le peering est destiné aux nœuds non-validateurs qui ont besoin du gossip Hyperliquid sans recevoir les données de marché. Vous vous connectez à un niveau Block Proxy qui fusionne deux sources gossip en amont (Hyper Foundation et sentry) en un seul flux dédupliqué, de sorte que l'une ou l'autre source peut tomber sans interrompre le flux.
+Le peering est destiné aux nœuds non-validateurs qui ont besoin du gossip Hyperliquid sans recevoir les données de marché. Vous vous connectez à un niveau Block Proxy qui fusionne deux sources gossip en amont (Hyper Foundation et sentry) en un flux unique dédupliqué, de sorte que l'une ou l'autre source peut tomber sans interrompre le flux.
 
-Chaque proxy apparaît comme un unique pair gossip ordinaire pour vos nœuds. La capacité augmente en ajoutant des proxies ; la charge sur ces nœuds n'augmente pas avec le nombre de pairs. L'objectif de disponibilité est de 99,9 % par mois. Le service n'inclut pas les flux de données de marché Edge.
+Chaque proxy apparaît comme un simple pair gossip ordinaire pour vos nœuds. La capacité augmente en ajoutant des proxys ; la charge sur ces nœuds n'augmente pas avec le nombre de pairs. L'objectif de disponibilité est de 99,9 % par mois. Le service n'inclut pas les flux de données de marché Edge.
 
-Comment se connecter : [Accès au Peering](/hyperliquid/peering/).
+Comment se connecter : [Accès au peering](peering.md).

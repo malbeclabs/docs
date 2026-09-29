@@ -1,16 +1,16 @@
 ---
-description: DoubleZero の一般的な接続問題を診断するためのリファレンスコマンド、期待される出力、およびさらなるサポートの取得先について説明します。
+description: DoubleZero の一般的な接続問題を診断するためのリファレンスコマンド、期待される出力、およびサポートの取得先について説明します。
 ---
 
 # トラブルシューティング
 
-このガイドではさまざまな問題を取り上げており、随時更新されます。このガイドを完了しても問題が解決しない場合は、[DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701) Discord でさらなるサポートを受けることができます。
+このガイドではさまざまな問題を取り上げており、継続的に更新されています。ガイドを一通り確認しても問題が解決しない場合は、[DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701) Discord でサポートを受けることができます。
 
 
-## よく使うコマンドと出力
+## 一般的なコマンドと出力
 
-まず、以下のコマンドの出力と、期待される出力を確認してください。これらはより詳細なトラブルシューティングに役立ちます。
-チケットを開いた場合、これらの出力を求められることがあります。
+まず、以下のコマンドの出力と期待される出力を確認してください。これらはより詳細なトラブルシューティングに役立ちます。
+チケットを作成する場合、これらの出力を求められることがあります。
 
 #### 1. バージョンの確認
 コマンド:
@@ -42,7 +42,7 @@ MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2
 
 `doublezero access-pass list | grep MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2`
 
-出力: [ヘッダーも表示するために `doublezero access-pass list | awk 'NR==1 || /MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2/'` を使用しています]
+出力: [注：この出力ではヘッダーも表示するために `doublezero access-pass list | awk 'NR==1 || /MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2/'` を使用しています]
 ```
 account                                      | accesspass_type                                                | ip              | user_payer                                   | last_access_epoch | remaining_epoch | connections | status       | owner
 
@@ -74,7 +74,7 @@ account                                      | accesspass_type                  
 [comment]: # (in next iteration add "up" "unknown" and "down" explainers, which then link to a sectino below for troubleshooting undesired states.)
 
 
-#### 6. レイテンシの確認
+#### 6. レイテンシーの確認
 コマンド:
 
 `doublezero latency`
@@ -95,17 +95,17 @@ account                                      | accesspass_type                  
 [comment]: # ()
 
 # トラブルシューティング例
-基本的な出力と、正常なデプロイメントで期待される内容を確認したので、一般的なトラブルシューティング例を見ていきましょう。
+基本的な出力と正常なデプロイメントで期待される内容を確認したので、一般的なトラブルシューティング例を見ていきましょう。
 
 ### 問題: ❌ Error creating user
 
-この問題は通常、期待される公開鍵/IPの組み合わせと、ユーザーが DoubleZero にアクセスしようとしている公開鍵/IPの組み合わせが一致しないことに関連しています。
+この問題は、期待される公開鍵/IPの組み合わせと、ユーザーが DoubleZero にアクセスしようとしている公開鍵/IPの組み合わせの不一致に関連していることが一般的です。
 
 **症状:**
-- `doublezero connect ibrl` で接続しようとすると、`❌ Error creating user` が発生する
+- `doublezero connect ibrl` で接続する際に `❌ Error creating user` が表示される
 
 
-**解決策:**
+**解決方法:**
 1. 確認
 
     `doublezero address`
@@ -124,19 +124,19 @@ account                                      | accesspass_type                  
 
     FHyoPs7U23MuSTtepEyXUtSAEffEpFpJGoYvug8X2sWY | prepaid                                                        | 141.14.14.14   | MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2 | MAX               | MAX             | 0           | requested    | DZfHh2vjXFqt8zfNbT1afm8PGuCm3BrQKegC5THtKFdn 
     ```
-     `doublezero address` の公開鍵は user_payer の公開鍵と一致する必要があり、接続元の IP アドレスはアクセスパスの ip と一致する必要があります。
-    `doublezero address` はデフォルトで ~/.config/doublezero/ にある id.json ファイルから取得されます。[こちらのステップ6](<setup.md>)を参照してください。
+     `doublezero address` の公開鍵は user_payer の公開鍵と一致している必要があり、接続元のIPアドレスはアクセスパスの ip と一致している必要があります。
+    `doublezero address` はデフォルトで ~/.config/doublezero/ 内の id.json ファイルから取得されます。[こちらの手順6](<setup.md>)を参照してください。
     
-3. 上記が正しいにもかかわらず接続時にエラーが発生する場合、または上記のマッピングが正しくない場合は、[DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701) でサポートにお問い合わせください。
+3. 上記が正しいにもかかわらず接続時にエラーが発生する場合、または上記のマッピングが正しくない場合は、[DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701) でサポートに問い合わせてください。
 
 ### 問題: ❌ Error provisioning service: malformed stuff: cannot provision multiple tunnels at the same time
 このエラーは、デバイスが既に DoubleZero に接続されていることを示しています。
 
 **症状:**
 - ユーザーが DoubleZero に接続しようとする
-- `❌ Error provisioning service: malformed stuff: cannot provision multiple tunnels at the same time` が発生する。
+- `❌ Error provisioning service: malformed stuff: cannot provision multiple tunnels at the same time` が表示される。
 
-**解決策:**
+**解決方法:**
 1. 確認
     `doublezero status`
 
@@ -146,13 +146,13 @@ account                                      | accesspass_type                  
     up            | 2025-10-20 12:12:55 UTC | doublezero0 | 11.11.11.111 | 12.34.56.789 | 11.11.11.111 | IBRL      | ams-dz001      | ✅ ams-dz001          | Amsterdam | testnet
     ```
 2. -`up`- は正常な接続を示しています。
-3. このエラーは、特定の DoubleZero IP を使用した DoubleZero へのトンネルが既にこのマシン上でアクティブであるために表示されます。
+3. このエラーは、特定の DoubleZero IP を使用した DoubleZero へのトンネルがこのマシン上で既にアクティブであるために表示されます。
 
-    このエラーは DoubleZero クライアントのアップグレード後によく発生します。DoubleZero のアップグレードは自動的に doublezerod サービスを再起動し、サービス再起動前に接続していた場合は再接続します。
+    このエラーは DoubleZero クライアントのアップグレード後によく発生します。DoubleZero のアップグレードは自動的に doublezerod サービスを再起動し、サービス再起動前に接続されていた場合は再接続されます。
 
 
 ### 問題: DoubleZero のステータスが unknown または down
-この問題は、サーバーと DoubleZero デバイス間の GRE トンネルは正常に確立されたものの、ファイアウォールが BGP セッションの確立を妨げていることに関連していることが多いです。このため、ネットワークからルートを受信できず、DoubleZero 経由でトラフィックを送信できません。
+この問題は、サーバーと DoubleZero デバイス間の GRE トンネルの確立には成功しているものの、ファイアウォールが BGP セッションの確立を妨げていることに関連していることが多いです。このため、ネットワークからルートを受信できず、DoubleZero 経由でトラフィックを送信できません。
 
 **症状:**
 - `doublezero connect ibrl` は成功した。しかし、`doublezero status` が `down` または `unknown` を返す
@@ -174,14 +174,14 @@ account                                      | accesspass_type                  
     up            | 2025-10-20 12:12:55 UTC | doublezero0 | 11.11.11.111 | 12.34.56.789 | 11.11.11.111 | IBRL      | ams-dz001      | ✅ ams-dz001          | Amsterdam | testnet
     ```
 
-**解決策:**
+**解決方法:**
 1. ファイアウォールルールを確認してください！
 
-   DoubleZero は、マシンと DoubleZero デバイス間の GRE トンネルインターフェースにリンクローカルアドレス空間 169.254.0.0/16 を使用します。169.254.0.0/16 は通常「ルーティング不可」な空間であるため、優れたセキュリティプラクティスではこの空間への通信のブロックが推奨されます。ファイアウォールで src 169.254.0.0/16 から dst 169.254.0.0/16 への tcp ポート 179 での通信を許可するルールを設定する必要があります。このルールは、169.254.0.0/16 へのトラフィックを拒否するルールよりも上位に配置する必要があります。
+   DoubleZero は、お使いのマシンと DoubleZero デバイス間の GRE トンネルインターフェースにリンクローカルアドレス空間 169.254.0.0/16 を使用します。169.254.0.0/16 は通常「ルーティング不可」な空間であるため、セキュリティのベストプラクティスではこの空間との通信をブロックすることが推奨されます。ファイアウォールで、送信元 169.254.0.0/16 から宛先 169.254.0.0/16 への tcp ポート 179 での通信を許可するルールを設定する必要があります。このルールは、169.254.0.0/16 へのトラフィックを拒否するルールよりも上位に配置する必要があります。
 
-    ufw のようなファイアウォールでは、`sudo ufw status` を実行してファイアウォールルールを確認できます。
+    ufw のようなファイアウォールでは `sudo ufw status` を実行してファイアウォールルールを確認できます。
 
-    Solana バリデーターが使用するような設定の出力例:
+    Solana バリデーターで見られるような出力例:
     ```
     To                         Action      From
     --                         ------      ----
@@ -200,17 +200,17 @@ account                                      | accesspass_type                  
     192.168.0.0/16             DENY OUT    Anywhere
     ```
 
-    上記の出力では、指定されたポートを除く 169.254.0.0/16 へのすべてのトラフィックが拒否されていることがわかります。
-    `sudo ufw insert <N> allow proto tcp from 169.254.0.0/16 to 169.254.0.0/16 port 179` でルールを <N> の位置に挿入します。例: N = 1 の場合、このルールが最初のルールとして挿入されます。
+    上記の出力では、指定されたポートを除き、169.254.0.0/16 へのすべてのトラフィックが拒否されていることがわかります。
+    `sudo ufw insert <N> allow proto tcp from 169.254.0.0/16 to 169.254.0.0/16 port 179` で <N> の位置にルールを挿入します。例：N = 1 の場合、このルールは最初のルールとして挿入されます。
     `sudo ufw status numbered` でルールの番号順を確認できます。
     
-### 問題: 最寄りの DoubleZero デバイスが変わった
+### 問題: 最寄りの DoubleZero デバイスが変更された
 
-これはエラーではありませんが、最適化の機会です。以下は、定期的に実行するか、自動化できるベストプラクティスです。
+これはエラーではありませんが、最適化の機会です。以下は定期的に実行するか、自動化できるベストプラクティスです。
 
-**解決策:**
+**解決方法:**
 
-1. 最寄りのデバイスへのレイテンシを確認
+1. 最寄りのデバイスへのレイテンシーを確認
     - `doublezero latency` を実行
 
         出力
@@ -222,12 +222,12 @@ account                                      | accesspass_type                  
          8J691gPwzy9FzUZQ4SmC6jJcY7By8kZXfbJwRfQ8ns31 | nyc002-dz002  | 38.122.35.137   | 2.33ms   | 2.39ms   | 2.37ms   | true      
          FEML4XsDPN3WfmyFAXzE2xzyYqSB9kFCRrMik8JqN6kT | nyc001-dz001  | 38.104.167.29   | 2.29ms   | 2.59ms   | 2.40ms   | true   
         ```
-        上記で最寄りのデバイスは `dz-ny7-sw01` です。
+        上記で最寄りのデバイスは `dz-ny7-sw01` であることに注目してください。
 
         このデバイスに接続したいと思います。:
 
-2. ターゲットデバイスに既に接続されているかどうかを確認
-    - `doublezero user list --env testnet | grep 111.11.11.11` を実行します。`111.11.11.11` を DoubleZero に接続しているデバイスのパブリック IPv4 アドレスに置き換えてください。バリデーター ID または doublezero ID も使用できます。
+2. ターゲットデバイスに既に接続されているか確認
+    - `doublezero user list --env testnet | grep 111.11.11.11` を実行。`111.11.11.11` を DoubleZero に接続されているデバイスのパブリック IPv4 アドレスに置き換えてください。バリデーター ID または doublezero ID を使用することもできます。
 
         出力
         ```
@@ -242,14 +242,14 @@ account                                      | accesspass_type                  
         account                                      | user_type           | groups                        | device       | location    | cyoa_type  | client_ip       | dz_ip           | accesspass                                                      | tunnel_id | tunnel_net       | status    | owner                                        
         6QRU1ivJnKGHpom2BdzH9PiTRkJ5WhunPNLtfYcqVisW | IBRL                |                               | fra-dz-001-x     | New York    | GREOverDIA | 111.11.11.11    | 111.11.11.11    | Prepaid: (MAX)                                                  | 514       | 111.254.1.111/31 | activated | DZfHh2vjXFqt8zfNbT1afm8PGuCm3BrQKegC5THtKFdn 
         ```
-        これは最適でない接続です。再接続が必要かどうかを検討しましょう。
+        これは最適でない接続です。再接続が必要かどうか検討しましょう。
 
-        接続前に、デバイスに利用可能なユーザートンネルがあるかどうかを確認します。
+        接続する前に、デバイスに利用可能なユーザートンネルがあるか確認します。
 
-3. オプション: ネットワーク上の利用可能なデバイスを確認
+3. オプション: ネットワーク上の利用可能なデバイスを調べる
 
-    教育目的でまず:
-    - `doublezero device list` を実行して全デバイスのリストを取得します。出力を説明するために2つのデバイスを例として取り上げます。
+    学習目的でまず:
+    - `doublezero device list` を実行してデバイスの全リストを取得します。出力を説明するために、例として2つのデバイスを取り上げます。
 
         出力:
         ```
@@ -257,14 +257,14 @@ account                                      | accesspass_type                  
         GphgLkA7JDVtkDQZCiDrwrDvaUs8r8XczEae1KkV6CGQ | ams001-dz002  | jump_       | EQX-AM4   | ams      | switch      | 149.11.64.57    | 38.246.201.64/27                 | 69    | 128       | activated |          | H647kAwTcWsGXZUK3BTr1JyTBZmbNcYyCmRFFCEnXUVp 
         7FfrX8YbvbzM8A1ojNynP9BjiKpK9rrmhdEdchB2myhG | dz-fr5-sw01   | glxy        | EQX-FR5   | fra      | switch      | 89.222.118.225  | 89.222.118.228/30                | 0     | 0         | activated |          | 5YbNrJHJJoiRwVEvgAWRGdFRG9gRdZ47hLCKSym8bqbp 
         ```
-        上記で `ams001-dz002` は 69 ユーザーで、最大 128 ユーザーです。このデバイスはあと 59 ユーザーを追加できます。
+        上記で `ams001-dz002` は 69 ユーザーで、最大ユーザー数は 128 です。このデバイスはあと 59 ユーザーを追加できます。
 
-        しかし、`dz-fr5-sw01` は 0 ユーザーで、最大 0 ユーザーです。このデバイスには接続できません。最大ユーザー数が 0 のため、このデバイスは接続を受け付けていません。
+        一方、`dz-fr5-sw01` は 0 ユーザーで、最大ユーザー数も 0 です。このデバイスには接続できません。最大ユーザー数が 0 のため、接続を受け付けていません。
 
-        では、最寄りのデバイスへの接続に戻りましょう。
+        それでは、最寄りのデバイスへの接続に戻りましょう。
 
-4. ターゲットデバイスに利用可能な接続があるかどうかを確認
-    - `doublezero device list | grep dz-ny7-sw01` を実行します。`dz-ny7-sw01` をターゲットデバイスに置き換えてください。
+4. ターゲットデバイスに利用可能な接続があるか確認
+    - `doublezero device list | grep dz-ny7-sw01` を実行。`dz-ny7-sw01` をターゲットデバイスに置き換えてください。
 
         出力
         ```
@@ -274,7 +274,7 @@ account                                      | accesspass_type                  
 
 5. 最寄りの DoubleZero デバイスに接続
 
-    切断してから、doublezero に再接続します。
+    切断してから DoubleZero に再接続します。
 
     まず実行
     - `doublezero disconnect`
@@ -289,7 +289,7 @@ account                                      | accesspass_type                  
         🔍  User Account deleted
         ✅  Deprovisioning Complete
         ```
-    次に、以下で切断を確認します
+    次に、切断を確認するためにステータスを確認します
     - `doublezero status`
 
     出力
@@ -298,7 +298,7 @@ account                                      | accesspass_type                  
     Tunnel status | Last Session Update | Tunnel Name | Tunnel src | Tunnel dst | Doublezero IP | User Type 
     disconnected  | no session data     |             |            |            |               |    
     ```
-    最後に、以下で再接続します
+    最後に再接続します
     - `doublezero connect ibrl`
 
     出力
@@ -312,13 +312,13 @@ account                                      | accesspass_type                  
     Service provisioned with status: ok
     ✅  User Provisioned
     ```
-    上記の出力で `Connected to device: dz-ny7-sw01` に接続したことに注目してください。これは、ステップ1の最初の調査で `dz-ny7-sw01` が最も低いレイテンシのデバイスであることを発見した際の、望ましい結果です。
+    上記の出力で `Connected to device: dz-ny7-sw01` に接続したことに注目してください。これは手順1の初期調査で `dz-ny7-sw01` が最もレイテンシーの低いデバイスであることを発見した際の、期待される結果です。
 
-### 問題: DoubleZero の環境が間違っている
+### 問題: DoubleZero 環境が間違っている {#issue-wrong-doublezero-environment}
 
-Mainnet-Beta と Testnet は異なるパッケージリポジトリを使用します。`doublezero status` はクライアントが接続しているネットワークを表示します（`Network` 列）。ユーザーが間違ったクライアントをインストールした場合や、デーモンがまだ別の環境を指している場合は、以下のコピー＆ペーストコマンドで切り替えてください。
+Mainnet-Beta と Testnet は異なるパッケージリポジトリを使用します。`doublezero status` はクライアントが接続しているネットワークを表示します（`Network` 列）。ユーザーが間違ったクライアントをインストールした場合、またはデーモンがまだ別の環境を指している場合は、以下のコピー＆ペーストコマンドで切り替えてください。
 
-DoubleZero クライアント CLI (`doublezero`) およびデーモン (`doublezerod`) を **DoubleZero testnet** に接続するよう設定するには:
+DoubleZero クライアント CLI（`doublezero`）とデーモン（`doublezerod`）を **DoubleZero testnet** に接続するよう設定するには:
 
 ```bash
 DESIRED_DOUBLEZERO_ENV=testnet \
@@ -330,7 +330,7 @@ DESIRED_DOUBLEZERO_ENV=testnet \
 	&& echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV"
 ```
 
-DoubleZero クライアント CLI (`doublezero`) およびデーモン (`doublezerod`) を **DoubleZero mainnet-beta** に接続するよう設定するには:
+DoubleZero クライアント CLI（`doublezero`）とデーモン（`doublezerod`）を **DoubleZero mainnet-beta** に接続するよう設定するには:
 
 ```bash
 DESIRED_DOUBLEZERO_ENV=mainnet-beta \
@@ -346,7 +346,7 @@ DESIRED_DOUBLEZERO_ENV=mainnet-beta \
 
 ### 問題: `doublezero status` の一部のフィールドが N/A を返す
 
-この問題は通常、現在のデーモンとクライアントと、接続済みの DZ トンネルが確立された時点のデーモンおよびクライアントとの間の不一致に関連しています。
+この問題は、現在のデーモンとクライアントが、接続中の DZ トンネルが確立された際のデーモンとクライアントと一致していないことに関連していることが一般的です。
 
 **症状:**
 - `doublezero status` を実行すると、一部のフィールドに `N/A` が表示される
@@ -354,7 +354,7 @@ DESIRED_DOUBLEZERO_ENV=mainnet-beta \
 
 
 
-**解決策:**
+**解決方法:**
 1. 実行
 `doublezero status`
 
@@ -368,13 +368,13 @@ DESIRED_DOUBLEZERO_ENV=mainnet-beta \
     上記の出力例で、`Tunnel status` が `up` であることに注目してください。`Network` は `mainnet-beta` です。しかし、`Current Device` と `Metro` が `N/A` になっています。
 
     これは、現在の環境にないトンネルがマシン上で開いていることを示しています。
-    この場合、`up` ステータスであるにもかかわらず `mainnet-beta` で `Current Device` が見つからないことは、トンネルが testnet 上にあることを示しています！
+    この場合、`up` ステータスで `mainnet-beta` 上に `Current Device` が見つからないことは、トンネルが testnet 上にあることを示しています！
  
-2. [DoubleZero の環境が間違っている](#issue-wrong-doublezero-environment) のコピー＆ペーストコマンドを使用して環境を切り替えます。`N/A` を返している `Network` 値の反対の環境を使用してください。
+2. [DoubleZero 環境が間違っている](#issue-wrong-doublezero-environment)のコピー＆ペーストコマンドを使用して環境を切り替えてください。`N/A` を返している `Network` 値の反対の環境を使用してください。
 
 3. ステータスを確認
 
-    環境を切り替えた後、以下を実行します:
+    環境を切り替えた後、以下を実行:
 
     ```
     doublezero status
@@ -386,4 +386,4 @@ DESIRED_DOUBLEZERO_ENV=mainnet-beta \
     Tunnel status | Last Session Update     | Tunnel Name | Tunnel src   | Tunnel dst   | Doublezero IP | User Type | Current Device | Lowest Latency Device | Metro    | Network 
     up            | 2025-10-21 12:32:12 UTC | doublezero0 | 149.28.38.64 | 64.86.249.22 | 149.28.38.64  | IBRL      | nyc-dz001      | ✅ nyc-dz001          | New York | testnet 
     ```
-すべてのフィールドが入力されていれば、正しい環境に接続されています。
+すべてのフィールドが表示されていれば、正しい環境に接続されています。

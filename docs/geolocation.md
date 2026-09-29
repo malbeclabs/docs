@@ -10,7 +10,7 @@ Use cases include regulatory compliance (e.g., GDPR — proving validators opera
 
 ---
 
-## How it works
+## How it works {#how-it-works}
 
 ```mermaid
 flowchart LR
@@ -65,7 +65,7 @@ Offset results are cryptographically signed, and delivered via UDP to the target
 
 **Important:** Geolocation reports RTT only — not inferred distance or coordinates. A common way to use this would be to divide the RTT by 2, and then multiply by the speed of light through glass (~200km/ms) to provide a radius around the DZD coordinates that the target is located within. How you interpret RTT (e.g., computing a maximum-distance radius) is up to you.
 
-### Probe flow types
+### Probe flow types {#probe-flow-types}
 
 There are three ways a probe can measure a target:
 
@@ -82,9 +82,9 @@ In all cases, the DZD <-> geoProbe measurement happens the same way. Only the di
 
 ---
 
-## Prerequisites
+## Prerequisites {#prerequisites}
 
-### 1. DoubleZero ID with credits
+### 1. DoubleZero ID with credits {#1-doublezero-id-with-credits}
 
 Geolocation users need a funded DoubleZero ID. You do not need to connect to the DoubleZero network (no access pass required), but your key needs credits on the DoubleZero ledger to create a user account and manage targets — each add/remove target operation costs credits.
 
@@ -97,13 +97,13 @@ doublezero address   # get your pubkey
 
 Contact the DoubleZero team with your pubkey to get your ID funded. Fund it to a higher-than-typical amount if you expect to add and remove targets dynamically.
 
-### 2. 2Z token account
+### 2. 2Z token account {#2-2z-token-account}
 
 You need a [2Z token](glossary.md#2z-token) account. Service fees are deducted from this account on a per-epoch basis.
 
 ---
 
-## Installation
+## Installation {#installation}
 
 On a management computer:
 ```bash
@@ -123,7 +123,7 @@ This installs the `doublezero-geoprobe-target` (outbound) and `doublezero-geopro
 
 ---
 
-## Check your balance
+## Check your balance {#check-your-balance}
 
 ```bash
 doublezero balance
@@ -131,9 +131,9 @@ doublezero balance
 
 ---
 
-## Setup
+## Setup {#setup}
 
-### Step 1: Create a geolocation user
+### Step 1: Create a geolocation user {#step-1-create-a-geolocation-user}
 
 ```bash
 doublezero geolocation user create \
@@ -148,7 +148,7 @@ doublezero geolocation user create \
 !!! note "Account activation"
     After creating a user, contact the DoubleZero Foundation to activate your account. Payment status must be marked active before probing begins.
 
-### Step 2: List available probes
+### Step 2: List available probes {#step-2-list-available-probes}
 
 ```bash
 doublezero geolocation probe list
@@ -156,7 +156,7 @@ doublezero geolocation probe list
 
 Note the **code** or **public_ip**, and the **signing_pubkey** (for inbound targets) of the probe you want to use.
 
-### Step 3: Add a target
+### Step 3: Add a target {#step-3-add-a-target}
 
 === "Outbound (probe sends TWAMP to target)"
 
@@ -205,7 +205,7 @@ Note the **code** or **public_ip**, and the **signing_pubkey** (for inbound targ
     `--probe`: the code of the geoProbe that will measure the target (e.g. `ams-mn-gp1`)
     `--target-pk`: public key of the keypair the target will use to sign messages — the probe only accepts messages from registered public keys
 
-### Step 3b: Set a result destination (optional)
+### Step 3b: Set a result destination (optional) {#step-3b-set-a-result-destination-optional}
 
 Configure an alternate `host:port` where composite LocationOffset results are delivered for any Outbound target types. This replaces sending the LocationOffset to the target and is configured on a per-user basis. If different per-target behavior is needed, it is required to set up two users, one for each desired behavior type.
 
@@ -225,7 +225,7 @@ Use `user get` to verify your result destination:
 doublezero geolocation user get --user <your-user-code>
 ```
 
-### Step 4: Run the target application
+### Step 4: Run the target application {#step-4-run-the-target-application}
 
 Both outbound and inbound flows require running an application on the target device. Reference implementations with examples are available in Go — you can run them directly or use them as a starting point for your own integration.
 
@@ -258,9 +258,9 @@ The target sender uses a two-probe-pair mechanism: it sends two pre-signed [TWAM
 
 ---
 
-## Command reference
+## Command reference {#command-reference}
 
-### `doublezero geolocation user`
+### `doublezero geolocation user` {#doublezero-geolocation-user}
 
 | Subcommand | Description |
 |------------|-------------|
@@ -273,7 +273,7 @@ The target sender uses a two-probe-pair mechanism: it sends two pre-signed [TWAM
 | `set-result-destination` | Set an alternate host:port for offset delivery |
 | `update-payment` | Update payment status (foundation use) |
 
-### `doublezero geolocation probe`
+### `doublezero geolocation probe` {#doublezero-geolocation-probe}
 
 | Subcommand | Description |
 |------------|-------------|
@@ -285,7 +285,7 @@ The target sender uses a two-probe-pair mechanism: it sends two pre-signed [TWAM
 | `add-parent` | Link a DZD as a parent of the probe |
 | `remove-parent` | Remove a parent DZD |
 
-### Global flags
+### Global flags {#global-flags}
 
 | Flag | Description |
 |------|-------------|

@@ -8,35 +8,35 @@ description: "DoubleZero Hyperliquid の提供サービス: Edge マーケット
 
 Hyperliquid は DoubleZero 上で2つのプロダクトを提供しています: Edge マーケットデータフィードと、非バリデーティングノード向けピアリングです。
 
-| サービス | 内容 | 対象 | ガイド |
+| 提供サービス | 内容 | 対象者 | ガイド |
 | --- | --- | --- | --- |
-| **マーケットデータフィード (Edge)** | DoubleZero Edge 上の UDP マルチキャストによる Top-of-Book および Market-by-Order。 | トレーダー | [Hyperliquid (Edge) のサブスクライブ](/hyperliquid/edge/) |
-| **ピアリング** | Block Proxy 経由の重複排除済み Hyperliquid ゴシップフィード（マーケットデータなし）。 | 非バリデーティングノード | [ピアリングアクセス](/hyperliquid/peering/) |
+| **Market Data Feeds (Edge)** | DoubleZero Edge 上の UDP マルチキャストによる Top-of-Book および Market-by-Order | トレーダー | [Subscribe to Hyperliquid (Edge)](edge.md) |
+| **Peering** | Block Proxy 経由の重複排除済み Hyperliquid ゴシップフィード（マーケットデータなし） | 非バリデーティングノード | [Peering Access](peering.md) |
 
-## マーケットデータフィード (Edge)
+## Market Data Feeds (Edge)
 
-パブリッシャーがオーダーブックを再構築し、固定サイズのバイナリメッセージを DoubleZero Edge 上で UDP マルチキャストとして送信します。
+パブリッシャーはオーダーブックを再構築し、固定サイズのバイナリメッセージを DoubleZero Edge 上で UDP マルチキャストとして送信します。
 
-コアフィードは Hyperliquid ネイティブのパーペチュアル（`hl`）と [trade.xyz](https://trade.xyz) パーペチュアル（`xyz`）をカバーしています:
+コアフィードは Hyperliquid ネイティブのパーペチュアル（`hl`）および [trade.xyz](https://trade.xyz) パーペチュアル（`xyz`）をカバーしています:
 
 | フィード | 説明 |
 |------|-------------|
-| `hyper-hl-tob` | Hyperliquid パーペチュアルのベストビッド/オファーおよび約定プリント |
-| `hyper-hl-mbo` | Hyperliquid パーペチュアルのフルオーダー単位ブック（追加、キャンセル、約定） |
-| `hyper-xyz-tob` | trade.xyz パーペチュアルのベストビッド/オファーおよび約定プリント |
-| `hyper-xyz-mbo` | trade.xyz パーペチュアルのフルオーダー単位ブック（追加、キャンセル、約定） |
+| `hyper-hl-tob` | Hyperliquid パーペチュアルの最良気配値（ベストビッド/オファー）およびトレードプリント |
+| `hyper-hl-mbo` | Hyperliquid パーペチュアルの全注文単位のブック（追加、キャンセル、約定） |
+| `hyper-xyz-tob` | trade.xyz パーペチュアルの最良気配値（ベストビッド/オファー）およびトレードプリント |
+| `hyper-xyz-mbo` | trade.xyz パーペチュアルの全注文単位のブック（追加、キャンセル、約定） |
 
-- Top-of-Book およびトレード: 銘柄ごとのベストビッドとオファー、および約定プリント。
-- Market-by-Order: すべてのレスティングオーダー（追加、キャンセル、約定）、インバンドスナップショットおよびデルタリカバリ付き。
+- Top-of-Book and Trades: 各銘柄のベストビッドとオファー、およびトレードプリント。
+- Market-by-Order: すべてのレスティングオーダー（追加、キャンセル、約定）、インバンドスナップショットとデルタリカバリを含む。
 
 複数のパブリッシャーを運用しているため、トレーダーはフェイルオーバーや最速ストリームの選択が可能です。
 
-接続方法: [Hyperliquid (Edge) のサブスクライブ](/hyperliquid/edge/)。
+接続方法: [Subscribe to Hyperliquid (Edge)](edge.md)。
 
-## ピアリング
+## Peering
 
-ピアリングは、マーケットデータを取得せずに Hyperliquid ゴシップが必要な非バリデーティングノード向けのサービスです。Block Proxy ティアとピアリングすることで、2つの上流ゴシップソース（Hyper Foundation とセントリー）を1つの重複排除済みフィードに統合し、いずれかのソースが落ちてもストリームが停止しないようにします。
+Peering は、マーケットデータを取得せずに Hyperliquid ゴシップを必要とする非バリデーティングノード向けです。Block Proxy ティアとピアリングすることで、2つの上流ゴシップソース（Hyper Foundation とセントリー）を1つの重複排除済みフィードに統合し、いずれかのソースがダウンしてもストリームが停止しないようにしています。
 
-各プロキシはノードからは通常のゴシップピア1台のように見えます。キャパシティはプロキシの追加で拡張でき、ピア数が増えてもノードへの負荷は増加しません。可用性目標は月間 99.9% です。本サービスに Edge マーケットデータフィードは含まれません。
+各プロキシはノードから見ると、通常の単一ゴシップピアのように見えます。キャパシティはプロキシの追加によって拡張でき、ピア数が増加してもそれらのノードの負荷は増加しません。可用性目標は月間 99.9% です。本サービスに Edge マーケットデータフィードは含まれません。
 
-接続方法: [ピアリングアクセス](/hyperliquid/peering/)。
+接続方法: [Peering Access](peering.md)。

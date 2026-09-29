@@ -1,60 +1,60 @@
 ---
-description: Guia passo a passo para provisionar um Dispositivo DoubleZero (DZD) e registrar suas interfaces e funções on-chain.
+description: Guia passo a passo para provisionamento de um DoubleZero Device (DZD) e registro de suas interfaces e funções on-chain.
 ---
 
 # Guia de Provisionamento de Dispositivo
 
-Este guia orienta você no provisionamento de um Dispositivo DoubleZero (DZD) do início ao fim. Cada fase corresponde à [Lista de Verificação de Integração](contribute-overview.md#onboarding-checklist).
+Este guia orienta você no provisionamento de um DoubleZero Device (DZD) do início ao fim. Cada fase corresponde ao [Checklist de Onboarding](contribute-overview.md#onboarding-checklist).
 
 ---
 
-## Como Tudo Se Conecta
+## Como Tudo se Encaixa
 
-Este guia orienta você no registro da sua infraestrutura on-chain para que a rede DoubleZero possa rotear tráfego através dela. Quanto mais completo for o registro do seu dispositivo, mais útil ele será para a rede. Uma representação on-chain completa do seu dispositivo permite melhor resolução de problemas, planejamento de capacidade e possibilita que o controlador tome decisões informadas. Com o tempo, o objetivo é que o controlador assuma mais responsabilidade na configuração.
+Este guia orienta você no registro da sua infraestrutura on-chain para que a rede DoubleZero possa rotear tráfego através dela. Quanto mais completamente seu dispositivo estiver registrado, mais útil ele será para a rede. Uma representação on-chain completa do seu dispositivo permite melhor resolução de problemas, planejamento de capacidade e permite que o controlador tome decisões informadas. Com o tempo, o objetivo é que o controlador assuma mais responsabilidade de configuração.
 
 ### Conceitos principais
 
 **Interfaces**
 
-As interfaces em um DZD vêm em diferentes formas: portas Ethernet, port channels (LAGs compostos por múltiplas portas Ethernet) e loopbacks. Cada interface que desempenha uma função na rede precisa ser registrada on-chain com as flags apropriadas para que o protocolo saiba o que ela faz.
+Interfaces em um DZD vêm em diferentes formas: portas Ethernet, port channels (LAGs compostos por múltiplas portas Ethernet) e loopbacks. Cada interface que desempenha um papel na rede precisa ser registrada on-chain com as flags apropriadas para que o protocolo saiba qual é sua função.
 
-Portas Ethernet e port channels podem desempenhar as seguintes funções:
+Portas Ethernet e port channels podem desempenhar os seguintes papéis:
 
 | Flag | O que significa |
-|------|----------------|
+|------|-----------------|
 | `--interface-dia dia` | Marca a interface como uplink de acesso direto à internet |
-| `--interface-cyoa <subtype>` | Declara como os usuários estabelecem túneis GRE através desta interface (ex.: pela internet pública, via um link de peering privado) |
+| `--interface-cyoa <subtype>` | Declara como os usuários estabelecem túneis GRE através desta interface (ex.: pela internet pública, via link de peering privado) |
 | `--user-tunnel-endpoint true` | Esta interface carrega um IP público no qual os usuários terminam túneis GRE |
 
 Interfaces usadas para links WAN ou DZX não possuem uma flag específica — elas são registradas com sua largura de banda e então referenciadas quando o link é criado.
 
-Interfaces loopback servem a vários propósitos:
+Interfaces de loopback servem a diversos propósitos:
 
 | Loopback | O que significa |
-|----------|----------------|
-| **Loopback100 / 101** | Carregam IPs públicos nos quais os usuários terminam túneis GRE. Registradas com `--user-tunnel-endpoint true`. |
-| **Loopback255** (`vpnv4`) | Registrada para que o controlador possa atribuir um IP usado para router ID BGP, peering VPN-IPv4 (unicast), identidade IS-IS e segment routing |
-| **Loopback256** (`ipv4`) | Registrada para que o controlador possa atribuir um IP usado para peering BGP IPv4 (multicast) e sessões MSDP |
+|----------|-----------------|
+| **Loopback100 / 101** | Carregam IPs públicos nos quais os usuários terminam túneis GRE. Registrados com `--user-tunnel-endpoint true`. |
+| **Loopback255** (`vpnv4`) | Registrado para que o controlador possa atribuir um IP usado para router ID BGP, peering VPN-IPv4 (unicast), identidade IS-IS e segment routing |
+| **Loopback256** (`ipv4`) | Registrado para que o controlador possa atribuir um IP usado para peering BGP IPv4 (multicast) e sessões MSDP |
 
 **Links**
 
-Links são registrados separadamente das interfaces, e as interfaces devem existir on-chain antes que um link possa referenciá-las. Quando você cria um link WAN ou DZX, você especifica uma interface já registrada como o endpoint físico do link. Nem todas as interfaces estão vinculadas a um link: interfaces DIA, CYOA e loopback não são conectadas a um link.
+Links são registrados separadamente das interfaces, e as interfaces devem existir on-chain antes que um link possa referenciá-las. Quando você cria um link WAN ou DZX, você especifica uma interface já registrada como endpoint físico do link. Nem todas as interfaces estão vinculadas a um link: interfaces DIA, CYOA e loopback não são conectadas a um link.
 
 | Termo | O que significa |
-|-------|----------------|
-| **Link WAN** | Um link entre dois dos seus próprios DZDs |
-| **Link DZX** | Um link entre seu DZD e o DZD de outro contribuidor |
+|-------|-----------------|
+| **WAN Link** | Um link entre dois dos seus próprios DZDs |
+| **DZX Link** | Um link entre o seu DZD e o DZD de outro contribuidor |
 
 ### Visão geral da arquitetura
 
 ```mermaid
 flowchart TB
     subgraph Onchain
-        SC[Ledger DoubleZero]
+        SC[DoubleZero Ledger]
     end
 
     subgraph Your Infrastructure
-        MGMT[Servidor de Gerenciamento<br/>CLI DoubleZero]
+        MGMT[Servidor de Gerenciamento<br/>DoubleZero CLI]
         subgraph DZD[Seu DZD]
             CYOA["Interface DIA · CYOA<br/>(uplink voltado ao usuário)"]
             WAN_INTF["Interface de link WAN"]
@@ -71,8 +71,8 @@ flowchart TB
     USERS["Usuários"]
 
     MGMT -.->|Registra dispositivos,<br/>links, interfaces| SC
-    WAN_INTF ---|Link WAN| DZD2
-    DZX_INTF ---|Link DZX| OtherDZD
+    WAN_INTF ---|WAN Link| DZD2
+    DZX_INTF ---|DZX Link| OtherDZD
     USERS -.|Túnel GRE|.-> CYOA
     CYOA ---|roteia para| LO100
 ```
@@ -81,22 +81,22 @@ flowchart TB
 
 ## Fase 1: Pré-requisitos
 
-Antes de provisionar um dispositivo, você precisa ter o hardware físico configurado e alguns endereços IP alocados.
+Antes de provisionar um dispositivo, você precisa do hardware físico configurado e alguns endereços IP alocados.
 
 ### O Que Você Precisa
 
 | Requisito | Por Que É Necessário |
-|-----------|---------------------|
+|-----------|----------------------|
 | **Hardware DZD** | Switch Arista 7280CR3A (veja [especificações de hardware](contribute.md#hardware-requirements)) |
-| **Espaço em Rack** | 4U com ventilação adequada |
+| **Espaço no Rack** | 4U com fluxo de ar adequado |
 | **Energia** | Alimentação redundante, ~4KW recomendado |
 | **Acesso de Gerenciamento** | Acesso SSH/console para configurar o switch |
-| **Conectividade com a Internet** | Para publicação de métricas e para obter configuração do controlador |
-| **Bloco IPv4 Público** | Mínimo /29 para o pool de prefixos DZ (veja abaixo) |
+| **Conectividade com a Internet** | Para publicação de métricas e para buscar configuração do controlador |
+| **Bloco de IPv4 Público** | Mínimo /29 para o pool de prefixos DZ (veja abaixo) |
 
-### Instalar a CLI DoubleZero
+### Instale o DoubleZero CLI
 
-A CLI DoubleZero (`doublezero`) é usada durante todo o provisionamento para registrar dispositivos, criar links e gerenciar sua contribuição. Ela deve ser instalada em um **servidor de gerenciamento ou VM** — não no switch DZD em si. O switch executa apenas o Config Agent e o Telemetry Agent (instalados na [Fase 4](#phase-4-link-establishment-agent-installation)).
+O DoubleZero CLI (`doublezero`) é usado durante todo o provisionamento para registrar dispositivos, criar links e gerenciar sua contribuição. Ele deve ser instalado em um **servidor de gerenciamento ou VM** — não no switch DZD em si. O switch executa apenas o Config Agent e o Telemetry Agent (instalados na [Fase 4](#phase-4-link-establishment-agent-installation)).
 
 **Ubuntu / Debian:**
 ```bash
@@ -117,7 +117,7 @@ sudo systemctl status doublezerod
 
 ### Entendendo Seu Prefixo DZ
 
-Seu prefixo DZ é um bloco de endereços IP públicos que o protocolo DoubleZero gerencia para alocação de IPs.
+Seu prefixo DZ é um bloco de endereços IP públicos que o protocolo DoubleZero gerencia para alocação de IP.
 
 ```mermaid
 flowchart LR
@@ -134,10 +134,10 @@ flowchart LR
     IP3 -->|Alocado para| U2[Usuário 2]
 ```
 
-**Como os prefixos DZ são utilizados:**
+**Como os prefixos DZ são usados:**
 
 - **Primeiro IP**: Reservado para seu dispositivo (atribuído à interface Loopback100)
-- **IPs restantes**: Alocados para tipos específicos de usuários conectando ao seu DZD:
+- **IPs restantes**: Alocados para tipos específicos de usuários que se conectam ao seu DZD:
     - Usuários `IBRLWithAllocatedIP`
     - Usuários `EdgeFiltering` (caso de uso futuro)
 - **Usuários IBRL**: NÃO consomem deste pool (eles usam seu próprio IP público)
@@ -145,7 +145,7 @@ flowchart LR
 !!! warning "Regras do Prefixo DZ"
     **Você NÃO PODE usar esses endereços para:**
 
-    - Seu próprio equipamento de rede
+    - Seus próprios equipamentos de rede
     - Links ponto a ponto em interfaces DIA
     - Interfaces de gerenciamento
     - Qualquer infraestrutura fora do protocolo DZ
@@ -153,11 +153,11 @@ flowchart LR
     **Requisitos:**
 
     - Devem ser endereços IPv4 **globalmente roteáveis (públicos)**
-    - Faixas de IP privadas (10.x, 172.16-31.x, 192.168.x) são rejeitadas pelo smart contract
+    - Faixas de IP privado (10.x, 172.16-31.x, 192.168.x) são rejeitadas pelo smart contract
     - **Tamanho mínimo: /29** (8 endereços), prefixos maiores são preferíveis (ex.: /28, /27)
     - O bloco inteiro deve estar disponível — não pré-aloque nenhum endereço
 
-    Se você precisar de endereços para seu próprio equipamento (IPs de interface DIA, gerenciamento, etc.), use um **pool de endereços separado**.
+    Se você precisar de endereços para seus próprios equipamentos (IPs de interface DIA, gerenciamento, etc.), use um **pool de endereços separado**.
 
 ---
 
@@ -165,16 +165,16 @@ flowchart LR
 
 Nesta fase, você cria as chaves criptográficas que identificam você e seus dispositivos na rede.
 
-### Onde Executar a CLI
+### Onde Executar o CLI
 
-!!! warning "NÃO instale a CLI no seu switch"
-    A CLI DoubleZero (`doublezero`) deve ser instalada em um **servidor de gerenciamento ou VM**, não no seu switch Arista.
+!!! warning "NÃO instale o CLI no seu switch"
+    O DoubleZero CLI (`doublezero`) deve ser instalado em um **servidor de gerenciamento ou VM**, não no seu switch Arista.
 
     ```mermaid
     flowchart LR
         subgraph "Servidor de Gerenciamento/VM"
-            CLI[CLI DoubleZero]
-            KEYS[Seus Pares de Chaves]
+            CLI[DoubleZero CLI]
+            KEYS[Seus Keypairs]
         end
 
         subgraph "Seu Switch DZD"
@@ -183,22 +183,22 @@ Nesta fase, você cria as chaves criptográficas que identificam você e seus di
         end
 
         CLI -->|Cria dispositivos, links| BC[Blockchain]
-        CA -->|Obtém configuração| CTRL[Controlador]
+        CA -->|Busca config| CTRL[Controlador]
         TA -->|Envia métricas| BC
     ```
 
     | Instalar no Servidor de Gerenciamento | Instalar no Switch |
-    |---------------------------------------|-------------------|
+    |---------------------------------------|---------------------|
     | CLI `doublezero` | Config Agent |
-    | Seu par de chaves de serviço | Telemetry Agent |
-    | Seu par de chaves do publicador de métricas | Par de chaves do publicador de métricas (cópia) |
+    | Seu keypair de serviço | Telemetry Agent |
+    | Seu keypair de metrics publisher | Keypair de metrics publisher (cópia) |
 
 ### O Que São Chaves?
 
 Pense nas chaves como credenciais de login seguras:
 
-- **Chave de Serviço**: Sua identidade como contribuidor — usada para executar comandos CLI
-- **Chave do Publicador de Métricas**: A identidade do seu dispositivo para enviar dados de telemetria
+- **Chave de Serviço**: Sua identidade de contribuidor — usada para executar comandos CLI
+- **Chave de Metrics Publisher**: A identidade do seu dispositivo para enviar dados de telemetria
 
 Ambas são pares de chaves criptográficas (uma chave pública que você compartilha, uma chave privada que você mantém em segredo).
 
@@ -206,14 +206,14 @@ Ambas são pares de chaves criptográficas (uma chave pública que você compart
 flowchart LR
     subgraph "Suas Chaves"
         SK[Chave de Serviço<br/>~/.config/solana/id.json]
-        MK[Chave do Publicador de Métricas<br/>~/.config/doublezero/metrics-publisher.json]
+        MK[Chave de Metrics Publisher<br/>~/.config/doublezero/metrics-publisher.json]
     end
 
     SK -->|Usada para| CLI[Comandos CLI<br/>doublezero device create<br/>doublezero link create]
-    MK -->|Usada para| TEL[Telemetry Agent<br/>Envia métricas onchain]
+    MK -->|Usada para| TEL[Telemetry Agent<br/>Envia métricas on-chain]
 ```
 
-### Passo 2.1: Gerar Sua Chave de Serviço
+### Passo 2.1: Gere Sua Chave de Serviço
 
 Esta é sua identidade principal para interagir com o DoubleZero.
 
@@ -223,7 +223,7 @@ doublezero keygen
 
 Isso cria um par de chaves no local padrão. A saída mostra sua **chave pública** — é isso que você compartilhará com a DZF.
 
-### Passo 2.2: Gerar Sua Chave do Publicador de Métricas
+### Passo 2.2: Gere Sua Chave de Metrics Publisher
 
 Esta chave é usada pelo Telemetry Agent para assinar envios de métricas.
 
@@ -231,19 +231,19 @@ Esta chave é usada pelo Telemetry Agent para assinar envios de métricas.
 doublezero keygen -o ~/.config/doublezero/metrics-publisher.json
 ```
 
-### Passo 2.3: Enviar Chaves para a DZF
+### Passo 2.3: Envie as Chaves para a DZF
 
-Entre em contato com a DoubleZero Foundation ou a Malbec Labs e forneça:
+Entre em contato com a DoubleZero Foundation ou Malbec Labs e forneça:
 
 1. Sua **chave pública da chave de serviço**
-2. Seu **nome de usuário no GitHub** (para acesso ao repositório)
+2. Seu **nome de usuário do GitHub** (para acesso ao repositório)
 
 Eles irão:
 
-- Criar sua **conta de contribuidor** onchain
-- Conceder acesso ao repositório privado de **contribuidores**
+- Criar sua **conta de contribuidor** on-chain
+- Conceder acesso ao **repositório privado de contribuidores**
 
-### Passo 2.4: Verificar Sua Conta
+### Passo 2.4: Verifique Sua Conta
 
 Uma vez confirmado, verifique se sua conta de contribuidor existe:
 
@@ -253,7 +253,7 @@ doublezero contributor list
 
 Você deve ver seu código de contribuidor na lista.
 
-### Passo 2.5: Acessar o Repositório de Contribuidores
+### Passo 2.5: Acesse o Repositório de Contribuidores
 
 O repositório [malbeclabs/contributors](https://github.com/malbeclabs/contributors) contém:
 
@@ -268,9 +268,9 @@ Siga as instruções lá para configuração específica do dispositivo.
 
 ## Fase 3: Provisionamento do Dispositivo
 
-Agora você registrará seu dispositivo físico na blockchain e configurará suas interfaces.
+Agora você vai registrar seu dispositivo físico na blockchain e configurar suas interfaces.
 
-### Entendendo os Tipos de Dispositivo
+### Entendendo os Tipos de Dispositivo {#understanding-device-types}
 
 **Edge** — aceita apenas conexões de usuários
 
@@ -284,7 +284,7 @@ flowchart LR
         E_CYOA --- E_TUN
     end
     EU["Usuários"] -.|Túnel GRE|.-> E_CYOA
-    E_DZX <-->|Link DZX| ED["DZD (contribuidor diferente)"]
+    E_DZX <-->|DZX Link| ED["DZD (contribuidor diferente)"]
 ```
 
 **Transit** — move tráfego entre dispositivos, sem conexões de usuários
@@ -295,8 +295,8 @@ flowchart LR
         T_WAN["Interface de link WAN"]
         T_DZX["Interface de link DZX"]
     end
-    T_WAN <-->|Link WAN| T2["DZD (mesmo contribuidor)"]
-    T_DZX <-->|Link DZX| TD["DZD (contribuidor diferente)"]
+    T_WAN <-->|WAN Link| T2["DZD (mesmo contribuidor)"]
+    T_DZX <-->|DZX Link| TD["DZD (contribuidor diferente)"]
 ```
 
 **Hybrid** — conexões de usuários e backbone, mais comum
@@ -312,19 +312,19 @@ flowchart LR
         H_CYOA --- H_TUN
     end
     HU["Usuários"] -.|Túnel GRE|.-> H_CYOA
-    H_WAN <-->|Link WAN| H2["DZD (mesmo contribuidor)"]
-    H_DZX <-->|Link DZX| HD["DZD (contribuidor diferente)"]
+    H_WAN <-->|WAN Link| H2["DZD (mesmo contribuidor)"]
+    H_DZX <-->|DZX Link| HD["DZD (contribuidor diferente)"]
 ```
 
 | Tipo | O Que Faz | Quando Usar |
 |------|-----------|-------------|
 | **Edge** | Aceita apenas conexões de usuários | Localização única, voltado apenas para usuários |
-| **Transit** | Move tráfego entre dispositivos | Conectividade de backbone, sem usuários |
+| **Transit** | Move tráfego entre dispositivos | Conectividade backbone, sem usuários |
 | **Hybrid** | Conexões de usuários E backbone | Mais comum — faz tudo |
 
-### Passo 3.1: Encontrar Sua Localização e Exchange
+### Passo 3.1: Encontre Sua Localização e Exchange
 
-Antes de criar seu dispositivo, consulte os códigos do local do seu data center e do exchange mais próximo:
+Antes de criar seu dispositivo, consulte os códigos da localização do seu data center e da exchange mais próxima:
 
 ```bash
 # Listar localizações disponíveis (data centers)
@@ -334,7 +334,7 @@ doublezero location list
 doublezero exchange list
 ```
 
-### Passo 3.2: Criar Seu Dispositivo Onchain
+### Passo 3.2: Crie Seu Dispositivo On-chain {#step-32-create-your-device-onchain}
 
 Registre seu dispositivo na blockchain:
 
@@ -374,19 +374,19 @@ Verifique se seu dispositivo foi criado:
 doublezero device list | grep nyc-dz001
 ```
 
-**Parâmetros explicados:**
+**Explicação dos parâmetros:**
 
 | Parâmetro | O Que Significa |
-|-----------|----------------|
+|-----------|-----------------|
 | `--code` | Um nome único para seu dispositivo (ex.: `nyc-dz001`) |
 | `--contributor` | Seu código de contribuidor (fornecido pela DZF) |
 | `--device-type` | `hybrid`, `transit` ou `edge` |
 | `--location` | Código do data center obtido de `location list` |
-| `--exchange` | Código do exchange mais próximo obtido de `exchange list` |
+| `--exchange` | Código da exchange mais próxima obtido de `exchange list` |
 | `--public-ip` | O IP público onde os usuários se conectam ao seu dispositivo via internet |
 | `--dz-prefixes` | Seu bloco de IP alocado para usuários |
 
-### Passo 3.3: Criar Interfaces Loopback Obrigatórias
+### Passo 3.3: Crie as Interfaces Loopback Obrigatórias
 
 Todo dispositivo precisa de duas interfaces loopback para roteamento interno:
 
@@ -404,9 +404,9 @@ doublezero device interface create <CODIGO_DO_DISPOSITIVO> Loopback256 --loopbac
 Signature: 3mNx9K...truncated...8wRt5
 ```
 
-### Passo 3.4: Criar Interfaces Físicas
+### Passo 3.4: Crie as Interfaces Físicas
 
-Registre as interfaces físicas que serão usadas para links WAN ou DZX. Essas interfaces devem existir on-chain antes que você possa criar um link que as referencie. Neste passo, você apenas registra a interface e sua largura de banda — o link é criado em um passo posterior.
+Registre as interfaces físicas que serão usadas para links WAN ou DZX. Essas interfaces devem existir on-chain antes que você possa criar um link que as referencie. Neste passo você apenas registra a interface e sua largura de banda — o link é criado em um passo posterior.
 
 ```bash
 doublezero device interface create <CODIGO_DO_DISPOSITIVO> <NOME_DA_INTERFACE> \
@@ -428,18 +428,18 @@ Signature: 7pQw2R...truncated...4xKm9
 
 Repita isso para cada interface que será usada como endpoint de link WAN ou DZX. Interfaces CYOA e DIA são registradas separadamente no próximo passo.
 
-### Passo 3.5: Criar Interface CYOA (para dispositivos Edge/Hybrid)
+### Passo 3.5: Crie a Interface CYOA (para dispositivos Edge/Hybrid) {#step-35-create-cyoa-interface-for-edgehybrid-devices}
 
-DZDs hybrid e edge precisam de **dois endereços IP públicos** nos quais os usuários terminam seus túneis GRE. Os usuários podem se conectar via unicast, multicast ou ambos, e qual IP serve a qual propósito alterna por usuário.
+DZDs hybrid e edge precisam de **dois endereços IP públicos** nos quais os usuários terminam seus túneis GRE. Usuários podem se conectar via unicast, multicast ou ambos, e qual IP serve para qual finalidade alterna por usuário.
 
-Ambos os IPs devem ser registrados com `--user-tunnel-endpoint true`, em uma interface física ou em um loopback. Isso inclui o IP que você forneceu no momento da criação do dispositivo — esse IP ainda precisa ser explicitamente registrado aqui.
+Ambos os IPs devem ser registrados com `--user-tunnel-endpoint true`, seja em uma interface física ou loopback. Isso inclui o IP que você forneceu no momento da criação do dispositivo — esse IP ainda precisa ser explicitamente registrado aqui.
 
-Se você tem restrição de IPs, pode usar o primeiro `/32` do seu prefixo DZ como um dos dois IPs.
+Se você tem restrição de IP, pode usar o primeiro `/32` do seu prefixo DZ como um dos dois IPs.
 
 #### CYOA e DIA
 
-| Tipo | Flag | Propósito |
-|------|------|-----------|
+| Tipo | Flag | Finalidade |
+|------|------|------------|
 | DIA | `--interface-dia dia` | Marca a porta como acesso direto à internet |
 | CYOA | `--interface-cyoa <subtype>` | Declara como os usuários conectam túneis GRE ao seu dispositivo |
 
@@ -450,8 +450,8 @@ A flag CYOA é sempre definida em uma **interface física** (porta Ethernet ou p
 | `gre-over-dia` | Usuários se conectam pela internet pública. Mais comum. |
 | `gre-over-private-peering` | Usuários se conectam via cross-connect direto ou circuito privado |
 | `gre-over-public-peering` | Usuários fazem peering com você em um Internet Exchange (IX) |
-| `gre-over-fabric` | Usuários são co-localizados e se conectam via fabric local |
-| `gre-over-cable` | Conexão direta por cabo para um único usuário dedicado |
+| `gre-over-fabric` | Usuários estão co-localizados e se conectam via fabric local |
+| `gre-over-cable` | Conexão direta por cabo a um único usuário dedicado |
 
 #### Cenário A: Interface física única
 
@@ -502,7 +502,7 @@ doublezero device interface create mydzd-nyc01 Loopback100 \
 
 #### Cenário B: Port channel (LAG)
 
-O DZD se conecta ao dispositivo upstream via um port channel com um IP. O port channel carrega um IP público e é o endpoint CYOA. Loopback100 carrega o segundo IP público.
+O DZD se conecta ao dispositivo upstream via port channel com um IP. O port channel carrega um IP público e é o endpoint CYOA. Loopback100 carrega o segundo IP público.
 
 ```mermaid
 flowchart LR
@@ -530,7 +530,7 @@ flowchart LR
 
 | Interface | `--interface-cyoa` | `--interface-dia` | `--ip-net` | `--bandwidth` | `--cir` | `--routing-mode` | `--user-tunnel-endpoint` |
 |-----------|-------------------|------------------|------------|---------------|---------|-----------------|--------------------------|
-| Port-Channel1 | `gre-over-dia` | `dia` | IP/sub-rede atribuído pelo contribuidor | velocidade LAG combinada | taxa comprometida | `bgp` ou `static` | `true` |
+| Port-Channel1 | `gre-over-dia` | `dia` | IP/sub-rede atribuído pelo contribuidor | velocidade combinada do LAG | taxa comprometida | `bgp` ou `static` | `true` |
 | Loopback100 | — | — | seu /32 público | `0bps` | — | — | `true` |
 
 Exemplo de comandos a executar baseado no Cenário B:
@@ -553,7 +553,7 @@ doublezero device interface create mydzd-fra01 Loopback100 \
 
 #### Cenário C: Uplinks físicos duplos para roteadores separados
 
-Cada interface física se conecta a um roteador upstream diferente. Os dois IPs públicos ficam em Loopback100 e Loopback101, ambos registrados como endpoints de túnel do usuário.
+Cada interface física se conecta a um roteador upstream diferente. Os dois IPs públicos ficam em Loopback100 e Loopback101, ambos registrados como endpoints de túnel de usuário.
 
 ```mermaid
 flowchart LR
@@ -621,7 +621,7 @@ doublezero device interface create mydzd-ams01 Loopback101 \
   --user-tunnel-endpoint true
 ```
 
-### Passo 3.6: Verificar Seu Dispositivo
+### Passo 3.6: Verifique Seu Dispositivo
 
 ```bash
 doublezero device list
@@ -638,9 +638,9 @@ Seu dispositivo deve aparecer com status `activated`.
 
 ---
 
-## Fase 4: Estabelecimento de Links e Instalação de Agentes
+## Fase 4: Estabelecimento de Links e Instalação de Agentes {#phase-4-link-establishment-agent-installation}
 
-Links conectam seu dispositivo ao restante da rede DoubleZero.
+Links conectam seu dispositivo ao resto da rede DoubleZero.
 
 ### Entendendo Links
 
@@ -655,16 +655,16 @@ flowchart LR
         O1[DZD deles<br/>NYC]
     end
 
-    D1 ---|Link WAN<br/>Mesmo contribuidor| D2
-    D1 ---|Link DZX<br/>Contribuidores diferentes| O1
+    D1 ---|WAN Link<br/>Mesmo contribuidor| D2
+    D1 ---|DZX Link<br/>Contribuidores diferentes| O1
 ```
 
 | Tipo de Link | Conecta | Aceitação |
-|-------------|---------|-----------|
-| **Link WAN** | Dois dos SEUS dispositivos | Automática (você é dono de ambos) |
-| **Link DZX** | Seu dispositivo ao de OUTRO contribuidor | Requer aceitação do outro |
+|--------------|---------|-----------|
+| **WAN Link** | Dois dos SEUS dispositivos | Automática (você é dono de ambos) |
+| **DZX Link** | Seu dispositivo ao de OUTRO contribuidor | Requer aceitação deles |
 
-### Passo 4.1: Criar Links WAN (se você possui múltiplos dispositivos)
+### Passo 4.1: Crie Links WAN (se você tiver múltiplos dispositivos)
 
 Links WAN conectam seus próprios dispositivos:
 
@@ -704,7 +704,7 @@ doublezero link create wan \
 Signature: 5tNm7K...truncated...9pRw2
 ```
 
-### Passo 4.2: Criar Links DZX
+### Passo 4.2: Crie Links DZX
 
 Links DZX conectam seu dispositivo diretamente ao DZD de outro contribuidor:
 
@@ -712,9 +712,9 @@ Links DZX conectam seu dispositivo diretamente ao DZD de outro contribuidor:
 doublezero link create dzx \
   --code <CODIGO_DISPOSITIVO_A:CODIGO_DISPOSITIVO_Z> \
   --contributor <SEU_CONTRIBUIDOR> \
-  --side-a <CODIGO_SEU_DISPOSITIVO> \
+  --side-a <CODIGO_DO_SEU_DISPOSITIVO> \
   --side-a-interface <SUA_INTERFACE> \
-  --side-z <CODIGO_OUTRO_DISPOSITIVO> \
+  --side-z <CODIGO_DISPOSITIVO_OUTRO> \
   --bandwidth <LARGURA_DE_BANDA em Kbps, Mbps ou Gbps> \
   --mtu <MTU> \
   --delay-ms <ATRASO> \
@@ -742,7 +742,7 @@ doublezero link accept \
 Signature: 6vQt9L...truncated...3wPm4
 ```
 
-### Passo 4.3: Verificar Links
+### Passo 4.3: Verifique os Links
 
 ```bash
 doublezero link list
@@ -755,11 +755,11 @@ doublezero link list
  8vkYpXaBW8RuknJq...                         | nyc-dz001:lax-dz001 | acme        | nyc-dz001   | Ethernet3/1       | lax-dz001   | Ethernet3/1       | WAN       | 10Gbps    | 9000 | 65.00ms  | 1.00ms    | 0.00ms            | 42        | 172.16.0.84/31  | activated | pending | 5FMtd5Woq5XAAg54...
 ```
 
-Links devem mostrar status `activated` uma vez que ambos os lados estejam configurados.
+Os links devem mostrar status `activated` quando ambos os lados estiverem configurados.
 
 ---
 
-### Instalação de Agentes
+### Instalação dos Agentes
 
 Dois agentes de software são executados no seu DZD:
 
@@ -771,21 +771,21 @@ flowchart TB
         HW[Hardware/Software do Switch]
     end
 
-    CA -->|Consulta configuração| CTRL[Serviço do Controlador]
-    CA -->|Aplica configuração| HW
+    CA -->|Busca config| CTRL[Serviço do Controlador]
+    CA -->|Aplica config| HW
 
     HW -->|Métricas| TA
-    TA -->|Envia onchain| BC[Ledger DoubleZero]
+    TA -->|Envia on-chain| BC[DoubleZero Ledger]
 ```
 
 | Agente | O Que Faz |
 |--------|-----------|
-| **Config Agent** | Obtém configuração do controlador, aplica no seu switch |
-| **Telemetry Agent** | Mede latência/perda para outros dispositivos, reporta métricas onchain |
+| **Config Agent** | Busca configuração do controlador e a aplica no seu switch |
+| **Telemetry Agent** | Mede latência/perda para outros dispositivos e reporta métricas on-chain |
 
-### Passo 4.4: Instalar o Config Agent
+### Passo 4.4: Instale o Config Agent {#step-44-install-config-agent}
 
-#### Habilitar a API no seu switch
+#### Habilite a API no seu switch
 
 Adicione à configuração EOS:
 
@@ -798,12 +798,12 @@ management api eos-sdk-rpc
 ```
 
 !!! note "Nota sobre VRF"
-    Substitua `default` pelo nome da sua VRF de gerenciamento, se for diferente (ex.: `management`).
+    Substitua `default` pelo nome da sua VRF de gerenciamento se for diferente (ex.: `management`).
 
-#### Baixar e instalar o agente
+#### Baixe e instale o agente
 
 ```bash
-# Entrar no bash no switch
+# Entre no bash do switch
 switch# bash
 $ sudo bash
 # cd /mnt/flash
@@ -811,13 +811,13 @@ $ sudo bash
 # exit
 $ exit
 
-# Instalar como extensão EOS
+# Instale como extensão EOS
 switch# copy flash:AGENT_FILENAME extension:
 switch# extension AGENT_FILENAME
 switch# copy installed-extensions boot-extensions
 ```
 
-#### Verificar a extensão
+#### Verifique a extensão
 
 ```bash
 switch# show extensions
@@ -833,7 +833,7 @@ AGENT_FILENAME    MAINNET_CLIENT_VERSION/1             A, I, B    1
 A: available | NA: not available | I: installed | F: forced | B: install at boot
 ```
 
-#### Configurar e iniciar o agente
+#### Configure e inicie o agente
 
 Adicione à configuração EOS:
 
@@ -847,16 +847,16 @@ daemon doublezero-agent
     O IP e a porta do controlador podem ser encontrados no repositório de contribuidores ao qual você recebeu acesso no Passo 2.5.
 
 !!! note "Nota sobre VRF"
-    Se sua VRF de gerenciamento não é `default` (ou seja, o namespace não é `ns-default`), prefixe o comando exec com `exec /sbin/ip netns exec ns-<VRF>`. Por exemplo, se sua VRF é `management`:
+    Se sua VRF de gerenciamento não for `default` (ou seja, o namespace não é `ns-default`), prefixe o comando exec com `exec /sbin/ip netns exec ns-<VRF>`. Por exemplo, se sua VRF for `management`:
     ```
     daemon doublezero-agent
         exec /sbin/ip netns exec ns-management /usr/local/bin/doublezero-agent -pubkey <PUBKEY_DO_SEU_DISPOSITIVO>
         no shut
     ```
 
-Obtenha a pubkey do seu dispositivo em `doublezero device list` (coluna `account`).
+Obtenha a pubkey do seu dispositivo de `doublezero device list` (coluna `account`).
 
-#### Verificar se está em execução
+#### Verifique se está em execução
 
 ```bash
 switch# show agent doublezero-agent logs
@@ -864,25 +864,25 @@ switch# show agent doublezero-agent logs
 
 Você deve ver "Starting doublezero-agent" e conexões bem-sucedidas com o controlador.
 
-### Passo 4.5: Instalar o Telemetry Agent
+### Passo 4.5: Instale o Telemetry Agent {#step-45-install-telemetry-agent}
 
-#### Copiar a chave do publicador de métricas para seu dispositivo
+#### Copie a chave de metrics publisher para seu dispositivo
 
 ```bash
 scp ~/.config/doublezero/metrics-publisher.json <IP_DO_SWITCH>:/mnt/flash/metrics-publisher-keypair.json
 ```
 
-#### Registrar o publicador de métricas onchain
+#### Registre o metrics publisher on-chain
 
 ```bash
 doublezero device update \
   --pubkey <CONTA_DO_DISPOSITIVO> \
-  --metrics-publisher <PUBKEY_DO_PUBLICADOR_DE_METRICAS>
+  --metrics-publisher <PUBKEY_DO_METRICS_PUBLISHER>
 ```
 
 Obtenha a pubkey do seu arquivo metrics-publisher.json.
 
-#### Baixar e instalar o agente
+#### Baixe e instale o agente
 
 ```bash
 switch# bash
@@ -892,13 +892,13 @@ $ sudo bash
 # exit
 $ exit
 
-# Instalar como extensão EOS
+# Instale como extensão EOS
 switch# copy flash:TELEMETRY_FILENAME extension:
 switch# extension TELEMETRY_FILENAME
 switch# copy installed-extensions boot-extensions
 ```
 
-#### Verificar a extensão
+#### Verifique a extensão
 
 ```bash
 switch# show extensions
@@ -914,7 +914,7 @@ TELEMETRY_FILENAME    MAINNET_CLIENT_VERSION/1             A, I, B    1
 A: available | NA: not available | I: installed | F: forced | B: install at boot
 ```
 
-#### Configurar e iniciar o agente
+#### Configure e inicie o agente
 
 Adicione à configuração EOS:
 
@@ -925,14 +925,14 @@ daemon doublezero-telemetry
 ```
 
 !!! note "Nota sobre VRF"
-    Se sua VRF de gerenciamento não é `default` (ou seja, o namespace não é `ns-default`), adicione `--management-namespace ns-<VRF>` ao comando exec. Por exemplo, se sua VRF é `management`:
+    Se sua VRF de gerenciamento não for `default` (ou seja, o namespace não é `ns-default`), adicione `--management-namespace ns-<VRF>` ao comando exec. Por exemplo, se sua VRF for `management`:
     ```
     daemon doublezero-telemetry
         exec /usr/local/bin/doublezero-telemetry --management-namespace ns-management --local-device-pubkey <CONTA_DO_DISPOSITIVO> --env mainnet --keypair /mnt/flash/metrics-publisher-keypair.json
         no shut
     ```
 
-#### Verificar se está em execução
+#### Verifique se está em execução
 
 ```bash
 switch# show agent doublezero-telemetry logs
@@ -945,20 +945,20 @@ Você deve ver "Starting telemetry collector" e "Starting submission loop".
 ## Fase 5: Burn-in do Link
 
 !!! warning "Todos os novos links devem passar por burn-in antes de transportar tráfego"
-    Novos links devem ficar **drenados por pelo menos 24 horas** antes de serem ativados para tráfego de produção. Este requisito de burn-in é definido no [RFC12: Network Provisioning](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc12-network-provisioning.md), que especifica ~200.000 slots do DZ Ledger (~20 horas) de métricas limpas antes que um link esteja pronto para serviço.
+    Novos links devem permanecer **drenados por pelo menos 24 horas** antes de serem ativados para tráfego de produção. Este requisito de burn-in é definido no [RFC12: Network Provisioning](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc12-network-provisioning.md), que especifica ~200.000 slots do DZ Ledger (~20 horas) de métricas limpas antes que um link esteja pronto para serviço.
 
 Com os agentes instalados e em execução, monitore seus links em [metrics.doublezero.xyz](https://metrics.doublezero.xyz) por pelo menos 24 horas consecutivas:
 
 - Dashboard **"DoubleZero Device-Link Latencies"** — verifique **zero perda de pacotes** no link ao longo do tempo
 - Dashboard **"DoubleZero Network Metrics"** — verifique **zero erros** nos seus links
 
-Só desbloqueie o link quando o período de burn-in mostrar um link limpo com zero perda e zero erros.
+Só retire o dreno do link quando o período de burn-in mostrar um link limpo com zero perda e zero erros.
 
 ---
 
 ## Fase 6: Verificação e Ativação
 
-Percorra esta lista de verificação para confirmar que tudo está funcionando.
+Passe por este checklist para confirmar que tudo está funcionando.
 
 !!! warning "Seu dispositivo começa bloqueado (`max_users = 0`)"
     Quando um dispositivo é criado, `max_users` é definido como **0** por padrão. Isso significa que nenhum usuário pode se conectar a ele ainda. Isso é intencional — você deve verificar que tudo funciona antes de aceitar tráfego de usuários.
@@ -967,7 +967,7 @@ Percorra esta lista de verificação para confirmar que tudo está funcionando.
 
     1. Confirmar que todos os links completaram seu **burn-in de 24 horas** com zero perda/erros em [metrics.doublezero.xyz](https://metrics.doublezero.xyz)
     2. **Coordenar com DZ/Malbec Labs** para executar um teste de conectividade:
-        - Um usuário de teste consegue se conectar ao seu dispositivo?
+        - Um usuário de teste pode se conectar ao seu dispositivo?
         - O usuário recebe rotas pela rede DZ?
         - O usuário consegue rotear tráfego pela rede DZ de ponta a ponta?
     3. Somente após DZ/ML confirmar que os testes passaram, defina max_users para 96:
@@ -1002,7 +1002,7 @@ doublezero device interface list | grep <CODIGO_DO_SEU_DISPOSITIVO>
  nyc-dz001 | Ethernet1/1 | physical | none  | none | none | 0 | 0 | 1500 | static | 0 |                 | 0  | false | activated
 ```
 
-### Verificações de Link
+### Verificações dos Links
 
 ```bash
 # Links devem mostrar status "activated"
@@ -1015,12 +1015,12 @@ doublezero link list | grep <CODIGO_DO_SEU_DISPOSITIVO>
  8vkYpXaBW8RuknJq... | nyc-lax-wan01 | acme | nyc-dz001 | Ethernet3/1 | lax-dz001 | Ethernet3/1 | WAN | 10Gbps | 9000 | 65.00ms | 1.00ms | 0.00ms | 42 | 172.16.0.84/31 | activated | pending | 5FMtd5Woq5XAAg54...
 ```
 
-### Verificações de Agentes
+### Verificações dos Agentes
 
 No switch:
 
 ```bash
-# Config agent deve mostrar pulls de configuração bem-sucedidos
+# Config agent deve mostrar buscas de config bem-sucedidas
 switch# show agent doublezero-agent logs | tail -20
 
 # Telemetry agent deve mostrar envios bem-sucedidos
@@ -1031,11 +1031,11 @@ switch# show agent doublezero-telemetry logs | tail -20
 
 ```mermaid
 flowchart TB
-    subgraph "Lista de Verificação"
+    subgraph "Checklist de Verificação"
         D[Status do Dispositivo: activated?]
         I[Interfaces: registradas?]
         L[Links: activated?]
-        CA[Config Agent: obtendo configuração?]
+        CA[Config Agent: buscando config?]
         TA[Telemetry Agent: enviando métricas?]
     end
 
@@ -1058,12 +1058,12 @@ flowchart TB
 - Confira se os códigos de localização e exchange são válidos
 - Certifique-se de que o prefixo DZ é uma faixa de IP público válida
 
-### Link preso no status "requested"
+### Link travado no status "requested"
 
 - Links DZX requerem aceitação pelo outro contribuidor
 - Entre em contato com eles para executar `doublezero link accept`
 
-### Config Agent não conecta
+### Config Agent não conectando
 
 - Verifique se a rede de gerenciamento tem acesso à internet
 - Confira se a configuração de VRF corresponde à sua configuração
@@ -1071,14 +1071,14 @@ flowchart TB
 
 ### Telemetry Agent não enviando
 
-- Verifique se a chave do publicador de métricas está registrada onchain
-- Confira se o arquivo de par de chaves existe no switch
+- Verifique se a chave de metrics publisher está registrada on-chain
+- Confira se o arquivo de keypair existe no switch
 - Certifique-se de que a pubkey da conta do dispositivo está correta
 
 ---
 
 ## Próximos Passos
 
-- Revise o [Guia de Operações](contribute-operations.md) para atualizações de agentes e gerenciamento de links
-- Consulte o [Glossário](glossary.md) para definições de termos
+- Consulte o [Guia de Operações](contribute-operations.md) para atualizações de agentes e gerenciamento de links
+- Confira o [Glossário](glossary.md) para definições de termos
 - Entre em contato com DZF/Malbec Labs se encontrar problemas

@@ -1,15 +1,15 @@
 ---
-description: Diagnostica problemas comunes de conexión de DoubleZero con comandos de referencia, salidas esperadas y dónde obtener soporte adicional.
+description: Diagnostique problemas comunes de conexión con DoubleZero mediante comandos de referencia, salidas esperadas e indicaciones sobre dónde obtener soporte adicional.
 ---
 
-# Solución de problemas
+# Resolución de problemas
 
-Esta guía cubrirá una variedad de problemas y se actualiza continuamente. Si completa la guía, puede buscar soporte adicional en el discord de [DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701).
+Esta guía cubrirá una variedad de problemas y se actualiza continuamente. Si completa la guía y necesita más ayuda, puede buscar soporte adicional en el discord de [DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701).
 
 
 ## Comandos comunes y sus salidas
 
-Para comenzar, examine la salida de los siguientes comandos y su salida esperada. Estos le ayudarán en una solución de problemas más detallada.
+Para comenzar, examine la salida de los siguientes comandos y sus salidas esperadas. Estos le ayudarán en una resolución de problemas más detallada.
 Si abre un ticket, es posible que le soliciten sus salidas.
 
 #### 1. Verificar la versión
@@ -36,7 +36,7 @@ MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2
 
 #### 3. Verificar su Access Pass
 
-Pubkey de ejemplo: `MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2` reemplace esto con su pubkey al ejecutar el comando.
+Clave pública de ejemplo: `MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2` reemplace esto con su clave pública al ejecutar el comando.
 
 Comando:
 
@@ -94,12 +94,12 @@ Salida de ejemplo:
 ```
 [comment]: # ()
 
-# Ejemplos de solución de problemas
-Ahora que hemos examinado las salidas básicas y lo que se espera en un despliegue saludable, podemos examinar algunos ejemplos comunes de solución de problemas.
+# Ejemplos de resolución de problemas
+Ahora que hemos examinado las salidas básicas y lo que se espera en un despliegue saludable, podemos examinar algunos ejemplos comunes de resolución de problemas.
 
 ### Problema: ❌ Error creating user
 
-Este problema generalmente está relacionado con una discrepancia entre el emparejamiento esperado de pubkey/IP y el emparejamiento de pubkey/IP con el que el usuario está intentando acceder a DoubleZero.
+Este problema generalmente está relacionado con una discrepancia entre el par clave pública/IP esperado y el par clave pública/IP con el que el usuario intenta acceder a DoubleZero.
 
 **Síntomas:**
 - Al conectarse con `doublezero connect ibrl` el usuario encuentra `❌ Error creating user`
@@ -114,7 +114,7 @@ Este problema generalmente está relacionado con una discrepancia entre el empar
     ```
     MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2
     ```
-2. Verifique que esta dirección está en la lista de permitidos:
+2. Verifique que esta dirección esté en la lista de permitidos:
 
     `doublezero access-pass list | awk 'NR==1 || /MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2/'`
 
@@ -124,10 +124,10 @@ Este problema generalmente está relacionado con una discrepancia entre el empar
 
     FHyoPs7U23MuSTtepEyXUtSAEffEpFpJGoYvug8X2sWY | prepaid                                                        | 141.14.14.14   | MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2 | MAX               | MAX             | 0           | requested    | DZfHh2vjXFqt8zfNbT1afm8PGuCm3BrQKegC5THtKFdn 
     ```
-     La pubkey de `doublezero address` debe coincidir con la pubkey de user_payer y la dirección IP desde la que está intentando conectarse debe coincidir con la ip en el Access-Pass.
+     La clave pública de `doublezero address` debe coincidir con la clave pública de user_payer y la dirección IP desde la que intenta conectarse debe coincidir con la ip en el Access-Pass.
     `doublezero address` se obtiene del archivo id.json en ~/.config/doublezero/ por defecto. Consulte el [paso 6 aquí](<setup.md>)
     
-3. Si lo anterior parece correcto y está obteniendo un error al conectarse, o si el mapeo anterior es incorrecto, por favor contacte con soporte en [DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701)
+3. Si lo anterior se ve correcto y está obteniendo un error al conectarse, o si el mapeo anterior es incorrecto, contacte al soporte en [DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701)
 
 ### Problema: ❌ Error provisioning service: malformed stuff: cannot provision multiple tunnels at the same time
 Este error indica que un dispositivo ya está conectado a DoubleZero.
@@ -146,13 +146,13 @@ Este error indica que un dispositivo ya está conectado a DoubleZero.
     up            | 2025-10-20 12:12:55 UTC | doublezero0 | 11.11.11.111 | 12.34.56.789 | 11.11.11.111 | IBRL      | ams-dz001      | ✅ ams-dz001          | Amsterdam | testnet
     ```
 2. -`up`- indica una conexión saludable.
-3. El error aparece porque un túnel hacia DoubleZero con la IP específica de DoubleZero ya está activo en esta máquina.
+3. El error aparece porque un túnel hacia DoubleZero con la IP de DoubleZero específica ya está activo en esta máquina.
 
-    Este error se encuentra frecuentemente después de una actualización del cliente DoubleZero. Las actualizaciones de DoubleZero reinician automáticamente el servicio doublezerod y lo reconectarán si estaba conectado antes del reinicio del servicio.
+    Este error se encuentra frecuentemente después de una actualización del cliente DoubleZero. Las actualizaciones de DoubleZero reinician automáticamente el servicio doublezerod y le reconectarán si estaba conectado antes del reinicio del servicio.
 
 
 ### Problema: El estado de DoubleZero es unknown o down
-Este problema a menudo está relacionado con que el túnel GRE se activó exitosamente entre el servidor y el dispositivo DoubleZero, pero un firewall está impidiendo el establecimiento de la sesión BGP. Debido a esto, no está recibiendo rutas de la red ni enviando tráfico a través de DoubleZero.
+Este problema está frecuentemente relacionado con que el túnel GRE se activó exitosamente entre el servidor y el dispositivo DoubleZero, pero un firewall está impidiendo el establecimiento de la sesión BGP. Debido a esto, no está recibiendo rutas de la red ni enviando tráfico a través de DoubleZero.
 
 **Síntomas:**
 - `doublezero connect ibrl` fue exitoso. Sin embargo, `doublezero status` devuelve `down` o `unknown`
@@ -177,11 +177,11 @@ Este problema a menudo está relacionado con que el túnel GRE se activó exitos
 **Soluciones:**
 1. ¡Verifique sus reglas de firewall!
 
-   DoubleZero utiliza el espacio de direcciones link local: 169.254.0.0/16 para las interfaces del túnel GRE entre su máquina y el dispositivo DoubleZero. 169.254.0.0/16 es típicamente un espacio "no enrutable" y por lo tanto las buenas prácticas de seguridad recomendarán bloquear las comunicaciones hacia/desde este espacio. Necesitará permitir una regla en su firewall que habilite a src 169.254.0.0/16 comunicarse con dst 169.254.0.0/16 en el puerto tcp 179. Esa regla deberá colocarse por encima de cualquier regla que deniegue el tráfico hacia 169.254.0.0/16.
+   DoubleZero utiliza espacio de direcciones link local: 169.254.0.0/16 para las interfaces del túnel GRE entre su máquina y el dispositivo DoubleZero. 169.254.0.0/16 es típicamente espacio "no enrutable" y por lo tanto las buenas prácticas de seguridad recomendarán bloquear las comunicaciones hacia/desde este espacio. Necesitará permitir una regla en su firewall que habilite que src 169.254.0.0/16 se comunique con dst 169.254.0.0/16 en el puerto tcp 179. Esa regla deberá colocarse por encima de cualquier regla que deniegue tráfico hacia 169.254.0.0/16.
 
     En un firewall como ufw puede ejecutar `sudo ufw status` para ver las reglas del firewall y
 
-    Salida de ejemplo que puede ser algo similar a lo que tendría un validador de Solana.
+    Salida de ejemplo que puede ser similar a lo que tendría un validador de Solana.
     ```
     To                         Action      From
     --                         ------      ----
@@ -200,13 +200,13 @@ Este problema a menudo está relacionado con que el túnel GRE se activó exitos
     192.168.0.0/16             DENY OUT    Anywhere
     ```
 
-    En la salida anterior puede ver que todo el tráfico hacia 169.254.0.0/16, excepto los puertos especificados, está denegado.
+    En la salida anterior se ve que todo el tráfico hacia 169.254.0.0/16, excepto para los puertos especificados, está denegado.
     `sudo ufw insert <N> allow proto tcp from 169.254.0.0/16 to 169.254.0.0/16 port 179` para insertar la regla en la posición <N>. Es decir, si N = 1 entonces insertará esta regla como la primera regla.
     `sudo ufw status numbered` le mostrará el orden numérico de las reglas.
     
 ### Problema: El dispositivo DoubleZero más cercano ha cambiado
 
-Esto no es un error, pero puede ser una optimización. A continuación se muestra una mejor práctica que puede ejecutarse de vez en cuando, o automatizarse.
+Esto no es un error, pero puede ser una optimización. A continuación se presenta una buena práctica que puede ejecutarse de vez en cuando o automatizarse.
 
 **Soluciones:**
 
@@ -244,9 +244,9 @@ Esto no es un error, pero puede ser una optimización. A continuación se muestr
         ```
         Esta sería una conexión subóptima. Consideremos si es necesaria una reconexión.
 
-        Antes de conectarse, verificaremos si el dispositivo tiene túneles de usuario disponibles.
+        Antes de conectarnos, verificaremos si el dispositivo tiene túneles de usuario disponibles.
 
-3. Opcional: examinar la red en busca de dispositivos disponibles
+3. Opcional: examine la red en busca de dispositivos disponibles
 
     Con fines educativos primero:
     - ejecute `doublezero device list` para obtener una lista completa de dispositivos. Hemos extraído 2 dispositivos como ejemplo para explicar la salida.
@@ -261,7 +261,7 @@ Esto no es un error, pero puede ser una optimización. A continuación se muestr
 
         Sin embargo, `dz-fr5-sw01` tiene 0 usuarios y 0 usuarios máximos. No podrá conectarse a este dispositivo. Con un máximo de usuarios de 0, el dispositivo no acepta ninguna conexión.
 
-        Ahora volvamos a conectarnos a nuestro dispositivo más cercano.
+        Ahora regresemos a conectarnos a nuestro dispositivo más cercano.
 
 4. Determine si el dispositivo objetivo tiene una conexión disponible
     - ejecute `doublezero device list | grep dz-ny7-sw01` reemplace `dz-ny7-sw01` con su dispositivo objetivo
@@ -312,11 +312,11 @@ Esto no es un error, pero puede ser una optimización. A continuación se muestr
     Service provisioned with status: ok
     ✅  User Provisioned
     ```
-    observe en la salida anterior que nos `Connected to device: dz-ny7-sw01` este es el resultado deseado de nuestra investigación inicial en el paso 1, donde descubrimos que `dz-ny7-sw01` era el dispositivo con la latencia más baja.
+    note en la salida anterior que nos `Connected to device: dz-ny7-sw01` este es el resultado deseado de nuestra investigación inicial en el paso 1, donde descubrimos que `dz-ny7-sw01` era el dispositivo con la latencia más baja.
 
-### Problema: Entorno de DoubleZero incorrecto
+### Problema: entorno DoubleZero incorrecto {#issue-wrong-doublezero-environment}
 
-Mainnet-Beta y Testnet utilizan repositorios de paquetes diferentes. `doublezero status` muestra a qué red está conectado el cliente (columna `Network`). Si un usuario instaló el cliente incorrecto, o el daemon todavía apunta al otro entorno, use estos cambios de copiar y pegar.
+Mainnet-Beta y Testnet utilizan diferentes repositorios de paquetes. `doublezero status` muestra en qué red está el cliente (columna `Network`). Si un usuario instaló el cliente incorrecto, o el daemon todavía apunta al otro entorno, use estos comandos para copiar y pegar.
 
 Para configurar el CLI del cliente DoubleZero (`doublezero`) y el daemon (`doublezerod`) para conectarse a **DoubleZero testnet**:
 
@@ -365,12 +365,12 @@ Este problema generalmente está relacionado con una discrepancia entre el daemo
     up            | 2025-10-20 20:06:18 UTC | doublezero0 | 149.28.38.64 | 64.86.249.22 | 149.28.38.64  | IBRL      | N/A            | ✅ dz-ny7-sw01        | N/A   | mainnet-beta
     ```
 
-    Observe en nuestra salida de ejemplo anterior que el `Tunnel status` es `up`. Nuestro `Network` es `mainnet-beta`. Sin embargo, `Current Device` y `Metro` son `N/A`
+    Note en nuestra salida de ejemplo anterior que el `Tunnel status` es `up`. Nuestro `Network` es `mainnet-beta`. Sin embargo, `Current Device` y `Metro` son `N/A`
 
     Esto es indicativo de un túnel abierto en su máquina que no está en su entorno actual.
     En este caso, el estado `up`, sin `Current Device` encontrado en `mainnet-beta`, nos revela que ¡nuestro túnel está en testnet!
  
-2. Cambie de entorno usando los comandos de copiar y pegar en [entorno de DoubleZero incorrecto](#problema-entorno-de-doublezero-incorrecto). Use el opuesto del valor de `Network` que está devolviendo `N/A`.
+2. Cambie de entorno usando los comandos para copiar y pegar en [entorno DoubleZero incorrecto](#issue-wrong-doublezero-environment). Use el opuesto del valor de `Network` que está devolviendo `N/A`.
 
 3. Verifique su estado
 
@@ -386,4 +386,4 @@ Este problema generalmente está relacionado con una discrepancia entre el daemo
     Tunnel status | Last Session Update     | Tunnel Name | Tunnel src   | Tunnel dst   | Doublezero IP | User Type | Current Device | Lowest Latency Device | Metro    | Network 
     up            | 2025-10-21 12:32:12 UTC | doublezero0 | 149.28.38.64 | 64.86.249.22 | 149.28.38.64  | IBRL      | nyc-dz001      | ✅ nyc-dz001          | New York | testnet 
     ```
-Con todos los campos completados, ahora se encuentra en el entorno correcto.
+Con todos los campos completos, ahora se encuentra en el entorno correcto.

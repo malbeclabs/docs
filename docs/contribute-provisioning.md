@@ -270,7 +270,7 @@ Follow the instructions there for device-specific configuration.
 
 Now you'll register your physical device on the blockchain and configure its interfaces.
 
-### Understanding Device Types
+### Understanding Device Types {#understanding-device-types}
 
 **Edge** — accepts user connections only
 
@@ -334,7 +334,7 @@ doublezero location list
 doublezero exchange list
 ```
 
-### Step 3.2: Create Your Device Onchain
+### Step 3.2: Create Your Device Onchain {#step-32-create-your-device-onchain}
 
 Register your device on the blockchain:
 
@@ -428,7 +428,7 @@ Signature: 7pQw2R...truncated...4xKm9
 
 Repeat this for each interface that will be used as a WAN or DZX link endpoint. CYOA and DIA interfaces are registered separately in the next step.
 
-### Step 3.5: Create CYOA Interface (for Edge/Hybrid devices)
+### Step 3.5: Create CYOA Interface (for Edge/Hybrid devices) {#step-35-create-cyoa-interface-for-edgehybrid-devices}
 
 Hybrid and edge DZDs need **two public IP addresses** that users terminate their GRE tunnels on. Users may connect via unicast, multicast, or both, and which IP serves which purpose rotates per user.
 
@@ -638,7 +638,7 @@ Your device should appear with status `activated`.
 
 ---
 
-## Phase 4: Link Establishment & Agent Installation
+## Phase 4: Link Establishment & Agent Installation {#phase-4-link-establishment-agent-installation}
 
 Links connect your device to the rest of the DoubleZero network.
 
@@ -783,7 +783,7 @@ flowchart TB
 | **Config Agent** | Pulls configuration from controller, applies it to your switch |
 | **Telemetry Agent** | Measures latency/loss to other devices, reports metrics onchain |
 
-### Step 4.4: Install Config Agent
+### Step 4.4: Install Config Agent {#step-44-install-config-agent}
 
 #### Enable the API on your switch
 
@@ -864,7 +864,7 @@ switch# show agent doublezero-agent logs
 
 You should see "Starting doublezero-agent" and successful controller connections.
 
-### Step 4.5: Install Telemetry Agent
+### Step 4.5: Install Telemetry Agent {#step-45-install-telemetry-agent}
 
 #### Copy the metrics publisher key to your device
 

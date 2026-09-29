@@ -1,94 +1,88 @@
 ---
-description: Solana バリデーター（mainnet-beta または testnet）と最大3台のバックアップを IBRL モードで DoubleZero に接続します。ID の証明と接続リクエストの手順を含みます。
+description: Solanaバリデーター（mainnet-betaまたはtestnet）と最大3台のバックアップをIBRLモードでDoubleZeroに接続します。IDの証明と接続リクエストの手順を含みます。
 ---
 
-# IBRL モードでのバリデーター接続
+# IBRLモードでのバリデーター接続
 
-!!! warning "DoubleZero に接続することで、[DoubleZero 利用規約](https://doublezero.xyz/terms-protocol)に同意したものとみなされます"
+!!! warning "DoubleZeroに接続することにより、[DoubleZero利用規約](https://doublezero.xyz/terms-protocol)に同意します"
 
-??? warning "DoubleZero テストネットに接続することで、以下に記載された評価契約の条件に同意したものとみなされます（クリックして展開）"
+??? warning "DoubleZero testnetに接続することにより、以下に記載される評価契約の条件に同意します（クリックして展開）"
     <span style="font-size:14px;">DoubleZero Testnet</span>
-    Evaluation Agreement
+    評価契約
 
-    By accessing or using the Solution (defined below), you agree as of the
-    first date of such access (the "**Effective Date**") that this
-    Evaluation Agreement (the "**Agreement**") sets forth the terms and
-    conditions under which DoubleZero Foundation ("**DZF**") will provide
-    you ("**User**" or "**you**") access to the Solution on an evaluation
-    basis. In consideration of the mutual promises herein, you agree as
-    follows:
+    ソリューション（以下に定義）にアクセスまたは使用することにより、お客様は当該アクセスの最初の日付（以下「**発効日**」）をもって、本評価契約（以下「**本契約**」）がDoubleZero Foundation（以下「**DZF**」）がお客様（以下「**ユーザー**」または「**お客様**」）に評価目的でソリューションへのアクセスを提供する条件を定めるものであることに同意するものとします。本契約における相互の約束を考慮し、お客様は以下のとおり同意するものとします：
 
-    <span style="font-size:14px;">1. DEFINITIONS.</span>
+    <span style="font-size:14px;">1. 定義</span>
 
-    <span style="font-size:14px;">1.1 "**Confidential Information**"</span> means any and all information disclosed by either party to the other which is designated as confidential, or which should otherwise be understood to be confidential, including but not limited to, the Solution, product plans, business plans, trade secrets, technology, or any other proprietary information.
+    <span style="font-size:14px;">1.1 「**機密情報**」</span>とは、いずれかの当事者が相手方に開示した情報であって、機密として指定されたもの、またはその他機密として理解されるべきもののすべてを意味し、ソリューション、製品計画、事業計画、営業秘密、技術、またはその他の専有情報を含みますがこれらに限定されません。
 
-    <span style="font-size:14px;">1.2 "**Solution**" </span> means the testnet version of the DoubleZero high-performance network infrastructure for web3 projects ("**Testnet**") and related edge filtering service with integrated bandwidth ("**Information Service**") the DZ Software (defined below), any and all materials provided by DZF relating to the DZ Software ("**Documentation**"), and other materials that DZF provides to User hereunder.
+    <span style="font-size:14px;">1.2 「**ソリューション**」</span>とは、web3プロジェクト向けDoubleZero高性能ネットワークインフラストラクチャのtestnetバージョン（以下「**Testnet**」）および統合帯域幅を備えた関連エッジフィルタリングサービス（以下「**情報サービス**」）、DZソフトウェア（以下に定義）、DZソフトウェアに関連してDZFが提供するすべての資料（以下「**ドキュメント**」）、およびDZFが本契約に基づきユーザーに提供するその他の資料を意味します。
 
-    <span style="font-size:14px;">2. ACCESS. </span>
+    <span style="font-size:14px;">2. アクセス</span>
 
-    <span style="font-size:14px;">2.1 ^^Access to Solution^^.</span> Subject to the terms and conditions of this Agreement, DZF will provide User access to the Solution through the Internet. User's access is a non-exclusive, non-transferable, limited use of the Solution to enable User to evaluate the Information Service only. With respect to any software comprising the Solution ("**DZ Software**"), DZF hereby grants User a limited, revocable license, during the Evaluation Period, to copy, download, make a reasonable number of copies of, run, and deploy (as applicable) such DZ Software solely as contemplated by the Documentation.
+    <span style="font-size:14px;">2.1 ^^ソリューションへのアクセス^^。</span>本契約の条件に従い、DZFはインターネットを通じてユーザーにソリューションへのアクセスを提供します。ユーザーのアクセスは、情報サービスのみを評価するためのソリューションの非独占的、譲渡不可、限定的な使用です。ソリューションを構成するソフトウェア（以下「**DZソフトウェア**」）に関して、DZFは本契約により、評価期間中、ドキュメントに記載された目的のためにのみ、当該DZソフトウェアをコピー、ダウンロード、合理的な数のコピーの作成、実行、および（該当する場合）デプロイするための限定的かつ取消可能なライセンスをユーザーに付与します。
 
-    <span style="font-size:14px;">2.2 ^^Restrictions^^. </span>User may use the Solution in accordance with this Agreement from the Effective Date until terminated by DZF (the "**Evaluation Period**"). User understands that any rights to use the Solution beyond the Evaluation Period will be subject to a separate commercial agreement between the parties with respect thereto, including the payment of fees. User shall not, and shall not permit any third party to: (i) modify or create any derivative works based on the Solution or any portion thereof; (ii) reproduce the Solution except as expressly permitted by this Agreement; (iii) sublicense, distribute, sell, lend, rent, lease, transfer, or grant any rights in or to all or any portion of the Solution or provide access to the Solution to third parties, on a service bureau basis or otherwise, except as an offering of the Information Services through or in connection with User's platform or product and not on a standalone basis; or (iv) use the Solution other than as provided herein.
+    <span style="font-size:14px;">2.2 ^^制限^^。</span>ユーザーは、発効日からDZFにより終了されるまで（以下「**評価期間**」）、本契約に従ってソリューションを使用することができます。ユーザーは、評価期間を超えてソリューションを使用する権利は、料金の支払いを含む、当事者間の別途商業契約に従うものであることを理解します。ユーザーは、第三者に対して以下を行わず、また許可しないものとします：(i) ソリューションまたはその一部に基づく派生物の変更または作成；(ii) 本契約で明示的に許可された場合を除くソリューションの複製；(iii) スタンドアロンベースではなく、ユーザーのプラットフォームまたは製品を通じて、またはそれに関連して情報サービスの提供としての場合を除く、ソリューションの全部または一部のサブライセンス、配布、販売、貸出、賃貸、リース、譲渡、もしくは権利の付与、またはサービスビューローベースその他の方法で第三者にソリューションへのアクセスを提供すること；または(iv) 本契約に定める以外のソリューションの使用。
 
-    <span style="font-size:14px;">2.3 ^^Ownership^^.</span> DZF retains all right, title and interest, including intellectual property rights, in and to the Solution.
+    <span style="font-size:14px;">2.3 ^^所有権^^。</span>DZFは、ソリューションに関するすべての権利、権原および利益（知的財産権を含む）を保持します。
 
-    <span style="font-size:14px;">3 FEEDBACK.</span>
-    DZF may periodically request that User provide, and User agrees to provide to DZF, feedback regarding the use, operation, and functionality of the Solution ("Feedback"). User hereby grants DZF a non-exclusive, worldwide, perpetual, irrevocable, royalty-free, fully paid-up, fully sublicensable and transferable right and license to use and incorporate Feedback into any products and services, to make, use, sell, offer for sale, import, and otherwise exploit such products and services, and to otherwise use, copy, distribute, and otherwise exploit the Feedback without restriction.
+    <span style="font-size:14px;">3 フィードバック</span>
+    DZFは、ユーザーにソリューションの使用、操作、および機能に関するフィードバック（以下「フィードバック」）の提供を定期的に要請する場合があり、ユーザーはDZFにフィードバックを提供することに同意します。ユーザーは、DZFに対し、フィードバックを製品およびサービスに使用および組み込み、当該製品およびサービスを製造、使用、販売、販売の申出、輸入、およびその他の方法で利用し、その他フィードバックを制限なく使用、コピー、配布、およびその他の方法で利用するための非独占的、全世界的、永久的、取消不能、ロイヤリティフリー、全額支払済み、完全にサブライセンス可能かつ譲渡可能な権利およびライセンスを付与します。
 
-    <span style="font-size:14px;">4. TERM AND TERMINATION.</span>
+    <span style="font-size:14px;">4. 期間および終了</span>
 
-    <span style="font-size:14px;">4.1 ^^Term^^.</span> This Agreement will commence as of the Effective Date and will remain in full force and effect for the Evaluation Period. Either party may terminate this Agreement immediately for convenience, for any reason or no reason, upon written notice to the other party (email to suffice).
+    <span style="font-size:14px;">4.1 ^^期間^^。</span>本契約は発効日に開始し、評価期間中完全に有効であるものとします。いずれの当事者も、理由の有無にかかわらず、相手方への書面による通知（電子メールで足りる）をもって、本契約を直ちに便宜上終了することができます。
 
-    <span style="font-size:14px;">4.1 ^^Effects of Termination^^.</span> Upon termination of this Agreement for any reason: (i) the rights granted to User hereunder will immediately terminate; (ii) User shall immediately discontinue any use of the Solution and shall return or destroy all Documentation and any DZ Software under its control; (iii) each party shall promptly return or destroy all Confidential Information and property of the other party; and (iv) Sections 2.2, 2.3, 3, 4.2, and 5 through 8 will survive.
+    <span style="font-size:14px;">4.1 ^^終了の効果^^。</span>理由の如何を問わず本契約が終了した場合：(i) 本契約に基づきユーザーに付与された権利は直ちに終了します；(ii) ユーザーはソリューションの使用を直ちに中止し、管理下にあるすべてのドキュメントおよびDZソフトウェアを返却または破棄するものとします；(iii) 各当事者は、相手方のすべての機密情報および財産を速やかに返却または破棄するものとします；(iv) 第2.2条、第2.3条、第3条、第4.2条、および第5条から第8条は存続するものとします。
 
-    <span style="font-size:14px;">5. CONFIDENTIALITY.</span>
-    Each party agrees that it will use the Confidential Information of the other party solely to perform its obligations and exercise its rights under this Agreement and it will not disclose, or permit to be disclosed, the same, except as otherwise permitted hereunder. However, either party may disclose Confidential Information to its personnel, attorneys, and other representatives who have a need to know and are bound by confidentiality obligations no less protective than those set forth in this Agreement; and as required by law (in which case the receiving party will provide the disclosing party with prior notice thereof and opportunity to contest such disclosure, and will minimize such disclosure to the extent permitted by applicable law). The obligations of confidentiality in this Section 5 shall not apply to information that: (a) is or becomes generally known or publicly available through no fault of the receiving party; (b) was properly known to the receiving party, without restriction, prior to disclosure by the disclosing party; (c) was properly disclosed to the receiving party, without restriction, by another person with the legal authority to do so; or (d) is independently developed by the receiving party without use of or reference to the disclosing party's Confidential Information. Each party agrees to exercise due care in protecting the Confidential Information of the other party from unauthorized use and disclosure. In the event of actual or threatened breach of the provisions of this Section or the licenses contained herein, the non-breaching party will be entitled to seek immediate injunctive and other equitable relief, without waiving any other rights or remedies available to it. User is responsible for maintaining the Solution and the secrecy of any passwords, seed phrases, or codes that provide access to the Solution as the Confidential Information of DZF. Nothing herein limits or restricts DZF's right or ability to use data regarding the performance, availability, usage, integrity and security of the Solution. If either party breaches, or threatens to breach the provisions of this Section 5, each party agrees that the non-breaching party will have no adequate remedy at law and is therefore entitled to immediate injunctive and other equitable relief, without bond and without the necessity of showing actual money damages.
+    <span style="font-size:14px;">5. 機密保持</span>
+    各当事者は、相手方の機密情報を本契約に基づく義務の履行および権利の行使のためにのみ使用し、本契約で別途許可される場合を除き、これを開示せず、また開示を許可しないことに同意します。ただし、いずれの当事者も、知る必要があり本契約に定めるものと同等以上の機密保持義務に拘束される自社の人員、弁護士、およびその他の代理人に対して機密情報を開示することができます。また、法律により要求される場合（その場合、受領当事者は開示当事者に事前通知およびかかる開示に異議を申し立てる機会を提供し、適用法により許可される範囲でかかる開示を最小限に抑えるものとします）にも開示できます。本第5条における機密保持義務は、以下の情報には適用されないものとします：(a) 受領当事者の過失によらず一般に知られまたは公に利用可能となった情報；(b) 開示当事者による開示前に、制限なく受領当事者が適切に知っていた情報；(c) 法的権限を有する他の者により、制限なく受領当事者に適切に開示された情報；または(d) 開示当事者の機密情報の使用または参照なく受領当事者が独自に開発した情報。各当事者は、相手方の機密情報を不正使用および開示から保護するために相当の注意を払うことに同意します。本条の規定または本契約に含まれるライセンスに対する実際のまたは脅かされた違反が発生した場合、違反していない当事者は、利用可能な他の権利または救済を放棄することなく、即時の差止命令およびその他の衡平法上の救済を求める権利を有するものとします。ユーザーは、ソリューションおよびソリューションへのアクセスを提供するパスワード、シードフレーズ、またはコードの秘密をDZFの機密情報として維持する責任を負います。本契約のいかなる条項も、ソリューションのパフォーマンス、可用性、使用状況、整合性、およびセキュリティに関するデータを使用するDZFの権利または能力を制限するものではありません。いずれかの当事者が本第5条の規定に違反し、または違反する恐れがある場合、各当事者は、違反していない当事者が法律上適切な救済を有さず、したがって保証金なしに、実際の金銭的損害を示す必要なく、即時の差止命令およびその他の衡平法上の救済を受ける権利を有することに同意します。
 
-    <span style="font-size:14px;">6. WARRANTY DISCLAIMER; LIMITATION OF LIABILITY.</span>
+    <span style="font-size:14px;">6. 保証の免責；責任の制限</span>
 
-    <span style="font-size:14px;">6.1 ^^WARRANTY DISCLAIMER^^.</span> THE SOLUTION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND. DZF MAKES NO WARRANTIES, WHETHER EXPRESS, IMPLIED, STATUTORY OR OTHERWISE WITH RESPECT TO THE SOLUTION AND DOCUMENTATION INCLUDING THEIR CONDITION, CONFORMITY TO ANY REPRESENTATION OR DESCRIPTION, AND DZF SPECIFICALLY DISCLAIMS ALL IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.
+    <span style="font-size:14px;">6.1 ^^保証の免責^^。</span>ソリューションは、いかなる種類の保証もなく「現状のまま」提供されます。DZFは、ソリューションおよびドキュメントに関して、その状態、表現または説明への適合性を含め、明示、黙示、法定またはその他を問わず、いかなる保証も行わず、DZFは、商品性、特定目的への適合性、権原、および非侵害のすべての黙示の保証を明示的に否認します。
 
-    <span style="font-size:14px;">6.2 ^^LIMITATION OF LIABILITY^^.</span>
-    EXCEPT FOR A BREACH OF SECTIONS 2.1, 2.2, AND 5, IN NO EVENT SHALL EITHER PARTY BE LIABLE TO THE OTHER FOR INDIRECT, INCIDENTAL, SPECIAL OR OTHER CONSEQUENTIAL DAMAGES, INCLUDING WITHOUT LIMITATION DAMAGES FOR LOSS OF PROFITS OR USE OR LOSS OF DATA, INCURRED BY YOU OR ANY THIRD PARTY, ARISING OUT OF OR RELATED TO THIS AGREEMENT WHETHER IN AN ACTION IN CONTRACT, TORT, OR OTHERWISE, EVEN IF THE OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. IN NO EVENT SHALL DZF'S AGGREGATE LIABILITY ARISING OUT OF OR RELATED TO THIS AGREEMENT EXCEED ONE HUNDRED DOLLARS (\$100), WHETHER AN ACTION IN CONTRACT, TORT, OR OTHERWISE. **THE FOREGOING LIMITATIONS WILL APPLY NOTWITHSTANDING THE FAILURE OF ESSENTIAL PURPOSE OF ANY LIMITED REMEDY HEREIN.** THE PARTIES AGREE THAT THE FOREGOING LIMITATIONS REPRESENT A REASONABLE ALLOCATION OF RISK UNDER THIS AGREEMENT.
+    <span style="font-size:14px;">6.2 ^^責任の制限^^。</span>
+    第2.1条、第2.2条、および第5条の違反を除き、いかなる場合においても、いずれの当事者も、契約、不法行為、またはその他の行為における本契約に起因するまたは関連する間接的、付随的、特別またはその他の結果的損害（利益の損失もしくは使用の損失、またはデータの損失に対する損害を含みますがこれらに限定されません）について、相手方がかかる損害の可能性を知らされていた場合であっても、お客様またはいかなる第三者に対しても責任を負わないものとします。いかなる場合においても、本契約に起因するまたは関連するDZFの累積責任は、契約、不法行為、またはその他の行為にかかわらず、100米ドル（$100）を超えないものとします。**上記の制限は、本契約における限定的救済の本質的目的が達成されない場合であっても適用されるものとします。** 当事者は、上記の制限が本契約の下での合理的なリスク配分を表すことに同意します。
 
-    <span style="font-size:14px;">7. GOVERNING LAW.</span>
-    This Agreement and all matters arising out of or relating to this Agreement shall be governed, interpreted and constructed in accordance with the laws of the Cayman Islands. Should a controversy, dispute or claim arise out of or in relation to this Agreement ("Dispute"), the relevant party as appropriate, must give 30 days' notice of such Dispute to the other parties (the "Notice of Dispute"). Should the Dispute not be resolved at the expiration of 30 days after service of the Notice of Dispute, the relevant party may commence arbitration proceedings as provided herein. Should the Dispute remain at the expiration of 30 days after service of the Notice of Dispute, the Dispute shall be settled by arbitration administered by the Cayman International Mediation & Arbitration Centre (CI-MAC) in accordance with the CI-MAC Arbitration Rules (the "Arbitration Rules") in force as at the date of this Agreement, which Arbitration Rules are deemed to be incorporated by reference to this clause, and governed by the Arbitration Act (as amended). The arbitration shall be seated in George Town, Grand Cayman, Cayman Islands and governed by Cayman Islands law. The language of the arbitration shall be English. The arbitration shall be determined by a sole arbitrator to be appointed in accordance with the Arbitration Rules. Any award or decision made by the arbitrator shall be in writing and shall be final and binding on the parties without any right of appeal, and judgment upon any award thus obtained may be entered in or enforced by any court having jurisdiction thereof. No action at law or in equity based upon any claim arising out of or related to this Agreement shall be instituted in any court of any jurisdiction. If any litigation or arbitration is necessary to enforce the terms of this Agreement, the prevailing party will be entitled to have their attorney fees paid by the other party. Each party waives any right it may have to assert the doctrine of forum non conveniens, to assert that it is not subject to the jurisdiction of such arbitration or courts or to object to venue to the extent any proceeding is brought in accordance herewith. </span>
+    <span style="font-size:14px;">7. 準拠法</span>
+    本契約およびそれに起因するまたは関連するすべての事項は、ケイマン諸島の法律に従って準拠、解釈および構築されるものとします。本契約に起因するまたは関連する論争、紛争または請求（以下「紛争」）が生じた場合、適切な関連当事者は、かかる紛争について相手方当事者に30日前の通知（以下「紛争通知」）を行わなければなりません。紛争通知の送達後30日の満了時に紛争が解決されない場合、関連当事者は本契約に定める仲裁手続を開始することができます。紛争通知の送達後30日の満了時に紛争が残っている場合、紛争はケイマン国際調停仲裁センター（CI-MAC）が管理する仲裁により、本契約の日付時点で有効なCI-MAC仲裁規則（以下「仲裁規則」）に従って解決されるものとし、当該仲裁規則は本条に参照により組み込まれたものとみなされ、仲裁法（改正版）に準拠するものとします。仲裁はケイマン諸島グランドケイマン、ジョージタウンを仲裁地とし、ケイマン諸島法に準拠するものとします。仲裁の言語は英語とします。仲裁は、仲裁規則に従って選任される単独仲裁人により判断されるものとします。仲裁人が下した裁定または決定は書面によるものとし、上訴権なく当事者に対して最終的かつ拘束力を有するものとし、かかる裁定に基づく判決は、管轄権を有するいかなる裁判所においても登録または執行することができるものとします。本契約に起因するまたは関連する請求に基づく法律上または衡平法上のいかなる訴訟も、いかなる法域のいかなる裁判所にも提起されないものとします。本契約の条件を執行するために訴訟または仲裁が必要な場合、勝訴当事者は弁護士費用を相手方当事者に負担させる権利を有するものとします。各当事者は、不便宜法廷の法理を主張し、かかる仲裁または裁判所の管轄に服さないと主張し、または本契約に従って手続が提起される範囲で管轄地に異議を申し立てる権利を放棄するものとします。</span>
 
-    <span style="font-size:14px;">8. GENERAL PROVISIONS.</span>
-    This Agreement may not be transferred or assigned by User without the prior written consent of DZF. DZF may freely assign this Agreement. All notices required to be sent hereunder shall be sent by email (to DZF: legal@doublezero.xyz) and deemed received the day after sending (with transmission confirmed). If any provision of this Agreement is held to be invalid or unenforceable, the remaining provisions of this Agreement will remain in full force and effect. The waiver by either party of any default or breach of this Agreement shall not constitute a waiver of any other or subsequent default or breach. Neither party shall be liable for any delay or failure in performance due to acts of God, earthquakes, shortages of supplies, transportation difficulties, labor disputes, riots, war, fire, epidemics, and similar occurrences beyond its control, whether or not foreseeable. This Agreement together with any attachments constitutes the complete agreement between the parties and supersedes all prior or contemporaneous agreements or representations, written or oral, concerning the subject matter herein. This Agreement may not be modified or amended except in writing signed by a duly authorized representative of each party.
+    <span style="font-size:14px;">8. 一般条項</span>
+    本契約は、DZFの事前の書面による同意なく、ユーザーにより譲渡または移転することはできません。DZFは本契約を自由に譲渡することができます。本契約に基づき送付が必要なすべての通知は電子メール（DZF宛：legal@doublezero.xyz）により送付されるものとし、送信の翌日（送信が確認された場合）に受領されたものとみなされます。本契約のいずれかの条項が無効または執行不能であると判断された場合、本契約の残りの条項は完全に有効であるものとします。いずれかの当事者による本契約の不履行または違反の放棄は、他のまたはその後の不履行または違反の放棄を構成するものではありません。いずれの当事者も、天災、地震、物資の不足、輸送上の困難、労働争議、暴動、戦争、火災、伝染病、およびその管理を超えた類似の事象（予見可能であるか否かを問わず）による履行の遅延または不履行について責任を負わないものとします。本契約は、添付書類とともに、当事者間の完全な合意を構成し、本契約の主題に関するすべての先行または同時の合意または表明（書面または口頭を問わず）に優先するものとします。本契約は、各当事者の正当な権限を有する代表者が署名した書面によってのみ変更または修正することができます。
 
-Solana クラスターに一致する DoubleZero ネットワークを選択してください：`mainnet-beta` または `testnet`。[セットアップ](setup.md)で対応するパッケージをインストールし、以下のすべてのコマンドで同じネットワークを使用してください。
+お使いのSolanaクラスターに一致するDoubleZeroネットワークを選択してください：`mainnet-beta`または`testnet`。[セットアップ](setup.md)で対応するパッケージをインストールし、以下のすべてのコマンドで同じネットワークを使用してください。
 
 !!! Note inline end
-    IBRL モードでは、既存のパブリック IP アドレスを使用するため、バリデータークライアントの再起動は不要です。
+    IBRLモードでは、既存のパブリックIPアドレスを使用するため、バリデータークライアントの再起動は不要です。
 
-Solana バリデーターは、このページの手順に従って IBRL モードで DoubleZero に接続します。
+Solanaバリデーターは、このページの手順に従ってIBRLモードでDoubleZeroに接続します。
 
-各 Solana バリデーターには固有の**アイデンティティキーペア**があり、そこから**ノード ID** と呼ばれる公開鍵を抽出します。これは Solana ネットワーク上でのバリデーターの一意のフィンガープリントです。
+各Solanaバリデーターには独自の**IDキーペア**があり、そこから**ノードID**と呼ばれる公開鍵を抽出します。これはSolanaネットワーク上でのバリデーターの一意のフィンガープリントです。
 
-DoubleZeroID とノード ID が特定できたら、マシンの所有権を証明します。これは、バリデーターのアイデンティティキーで署名された DoubleZeroID を含むメッセージを作成することで行われます。生成された暗号署名は、あなたがバリデーターを管理していることの検証可能な証拠として機能します。
+DoubleZeroIDとノードIDが特定されたら、マシンの所有権を証明します。これはバリデーターのIDキーで署名されたDoubleZeroIDを含むメッセージを作成することで行われます。結果として得られる暗号署名は、バリデーターを管理していることの検証可能な証拠となります。
 
-最後に、**DoubleZero への接続リクエスト**を送信します。このリクエストは次のことを伝えます：*「これが私の ID であり、これが所有権の証明であり、こうして接続する予定です。」* DoubleZero はこの情報を検証し、証明を受け入れ、DoubleZero 上でバリデーターのネットワークアクセスをプロビジョニングします。
+最後に、**DoubleZeroへの接続リクエスト**を提出します。このリクエストは次のことを伝えます：*「こちらが私のID、こちらが所有権の証明、そしてこちらが接続方法です。」* DoubleZeroはこの情報を検証し、証明を受理し、DoubleZero上でバリデーターのネットワークアクセスをプロビジョニングします。
 
 このガイドでは、1台のプライマリバリデーターの登録と、同時に最大3台のバックアップ/フェイルオーバーマシンの登録が可能です。
 
-## 前提条件
+## 前提条件 {#prerequisites}
 
-- Solana CLI がインストールされ、$PATH に設定されていること
-- バリデーターの場合：sol ユーザーでバリデーターアイデンティティキーペアファイル（例：validator-keypair.json）へのアクセス権限があること
-- バリデーターの場合：接続する Solana バリデーターのアイデンティティキーに少なくとも 1 SOL があることを確認すること
-- DoubleZero および Solana RPC に必要なアウトバウンド接続がファイアウォールルールで許可されていること（GRE（ip proto 47）および BGP（169.254.0.0/16 の tcp/179）を含む）
+- Solana CLIがインストールされ、$PATHに設定されていること
+- バリデーターの場合：solユーザーの下でバリデーターIDキーペアファイル（例：validator-keypair.json）にアクセスする権限があること
+- バリデーターの場合：接続するSolanaバリデーターのIDキーに最低1 SOLが存在することを確認すること
+- ファイアウォールルールがDoubleZeroおよびSolana RPCに必要なアウトバウンド接続を許可していること（GRE（ip proto 47）およびBGP（169.254.0.0/16のtcp/179）を含む）
 
 !!! info
-    バリデーター ID は Solana gossip と照合してターゲット IP を特定します。ターゲット IP と DoubleZero ID は、マシンとターゲット DoubleZero デバイス間で GRE トンネルを開く際に使用されます。
+    バリデーターIDはSolana gossipと照合され、ターゲットIPが決定されます。ターゲットIPとDoubleZero IDは、マシンとターゲットDoubleZeroデバイス間のGREトンネルを開く際に使用されます。
 
-    注意：ジャンク ID とプライマリ ID が同じ IP にある場合、マシンの登録にはプライマリ ID のみが使用されます。これは、ジャンク ID は gossip に表示されないため、ターゲットマシンの IP を検証するために使用できないためです。
+    注意：ジャンクIDとプライマリIDが同じIPにある場合、マシン登録にはプライマリIDのみが使用されます。これは、ジャンクIDがgossipに表示されず、ターゲットマシンのIPの検証に使用できないためです。
 
-## 1. クライアントネットワークの確認
+## 1. クライアントネットワークの確認 {#1-confirm-the-client-network}
 
-先に進む前に、[セットアップ](setup.md)の手順に従ってください。**mainnet-beta** または **testnet** 用のパッケージをインストールします。それぞれ異なるパッケージリポジトリを使用します。
+先に進む前に、[セットアップ](setup.md)の手順に従ってください。**mainnet-beta**または**testnet**用のパッケージをインストールしてください。異なるパッケージリポジトリを使用します。
 
-セットアップの最後のステップはネットワークからの切断でした。これは、マシン上で DoubleZero へのトンネルが1つだけ開いており、そのトンネルが正しいネットワーク上にあることを確認するためです。
+セットアップの最後のステップはネットワークからの切断でした。これは、マシン上でDoubleZeroへのトンネルが1つだけ開かれ、そのトンネルが正しいネットワーク上にあることを確認するためです。
 
 クライアントが選択したネットワーク上にあることを確認します：
 
@@ -96,15 +90,15 @@ DoubleZeroID とノード ID が特定できたら、マシンの所有権を証
 doublezero status
 ```
 
-`Network` 列が `mainnet-beta` または `testnet` であり、Solana クラスターと一致している必要があります。間違っている場合、または間違ったパッケージをインストールした場合は、[トラブルシューティング](troubleshooting.md#issue-wrong-doublezero-environment)のコピー＆ペースト切り替え手順を使用してください。
+`Network`列は`mainnet-beta`または`testnet`であり、Solanaクラスターと一致している必要があります。間違っている場合、または間違ったパッケージをインストールした場合は、[トラブルシューティング](troubleshooting.md#issue-wrong-doublezero-environment)のコピー＆ペーストによる切り替え手順を使用してください。
 
-約30秒後に、利用可能な DoubleZero デバイスが表示されます：
+約30秒後に利用可能なDoubleZeroデバイスが表示されます：
 
 ```bash
 doublezero latency
 ```
 
-出力例（mainnet-beta; testnet も同様ですがデバイス数は少なくなります）：
+出力例（mainnet-beta；testnetも同じ形式ですがデバイス数が少なくなります）：
 
 ```bash
  pubkey                                       | code          | ip              | min      | max      | avg      | reachable
@@ -121,11 +115,11 @@ doublezero latency
  9M7FfYYyjM4wGinKPofZRNmQFcCjCKRbXscGBUiXvXnG | dz-tor1-sw01  | 209.42.165.10   | 14.52ms  | 14.53ms  | 14.52ms  | true
 ```
 
-## 2. ポート 44880 を開く
+## 2. ポート44880の開放 {#2-open-port-44880}
 
-一部の[ルーティング機能](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc7-client-route-liveness.md)を利用するには、ポート 44880 を開く必要があります。
+一部の[ルーティング機能](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc7-client-route-liveness.md)を利用するために、ポート44880を開放する必要があります。
 
-ポート 44880 を開くには、以下のように IP テーブルを更新します：
+ポート44880を開放するには、以下のようにIPテーブルを更新できます：
 
 ```
 sudo iptables -A INPUT -i doublezero0 -p udp --dport 44880 -j ACCEPT
@@ -133,9 +127,9 @@ sudo iptables -A OUTPUT -o doublezero0 -p udp --dport 44880 -j ACCEPT
 ```
 
 
-`-i doublezero0`、`-o doublezero0` フラグにより、このルールが DoubleZero インターフェースのみに制限されることに注意してください。
+`-i doublezero0`、`-o doublezero0`フラグにより、このルールはDoubleZeroインターフェースのみに制限されます
 
-または UFW を使用する場合：
+またはUFWを使用する場合：
 
 ```
 sudo ufw allow in on doublezero0 to any port 44880 proto udp
@@ -143,26 +137,26 @@ sudo ufw allow out on doublezero0 to any port 44880 proto udp
 ```
 
 
-`in on doublezero0`、`out on doublezero0` フラグにより、このルールが DoubleZero インターフェースのみに制限されることに注意してください。
+`in on doublezero0`、`out on doublezero0`フラグにより、このルールはDoubleZeroインターフェースのみに制限されます
 
-## 3. バリデーター所有権の証明
+## 3. バリデーター所有権の証明 {#3-attest-validator-ownership}
 
 !!! note "ネットワークフラグ"
-    以下の Passport コマンドでは `-u mainnet-beta` を使用しています。テストネットの場合は、代わりに `-u testnet`（または `-ut`）を使用してください。
+    以下のPassportコマンドは`-u mainnet-beta`を使用しています。testnetの場合は、代わりに`-u testnet`（または`-ut`）を使用してください。
 
-DoubleZero 環境が設定できたら、バリデーターの所有権を証明します。
+DoubleZero環境が設定されたので、次はバリデーターの所有権を証明します。
 
-プライマリバリデーターの[セットアップ](setup.md)で作成した DoubleZero ID は、すべてのバックアップマシンで使用する必要があります。
+プライマリバリデーターの[セットアップ](setup.md)で作成したDoubleZero IDは、すべてのバックアップマシンで使用する必要があります。
 
-プライマリマシンの ID は `doublezero address` で確認できます。同じ ID がクラスター内のすべてのマシンの `~/.config/doublezero/id.json` に存在する必要があります。
+プライマリマシンのIDは`doublezero address`で確認できます。同じIDがクラスター内のすべてのマシンの`~/.config/doublezero/id.json`に存在する必要があります。
 
-これを行うには、まずコマンドを実行しているマシンが**プライマリバリデーター**であることを確認します：
+これを実行するために、まずコマンドを実行しているマシンが**プライマリバリデーター**であることを以下のコマンドで確認します：
 
 ```
 doublezero-solana passport find-validator -u mainnet-beta
 ```
 
-これにより、バリデーターが gossip に登録されており、リーダースケジュールに表示されていることが確認されます。
+これにより、バリデーターがgossipに登録されており、リーダースケジュールに表示されていることが確認されます。
 
 期待される出力：
 
@@ -178,8 +172,8 @@ In Leader scheduler
 ```
 
 !!! info
-    1台でも複数台でも同じワークフローが使用されます。
-    1台のマシンのみを登録する場合は、このページのコマンドから "--backup-validator-ids" または "backup_ids=" の引数を除外してください。
+    1台でも複数台でも同じワークフローを使用します。
+    1台のマシンのみを登録する場合は、このページのすべてのコマンドから引数 "--backup-validator-ids" または "backup_ids=" を除外してください。
 
 次に、**プライマリバリデーター**を実行する予定のすべてのバックアップマシンで以下を実行します：
 ```
@@ -198,14 +192,14 @@ Gossip IP: 22.22.22.222
 In Not in Leader scheduler
  ✅ This validator can only connect as a backup in DoubleZero 🖥️  🛟. It is not leader scheduled and cannot act as a primary validator.
 ```
-この出力は想定通りです。バックアップノードはパス作成時にリーダースケジュールに含まれていてはいけません。
+この出力は期待どおりです。バックアップノードはパス作成時にリーダースケジュールに入ることはできません。
 
-**プライマリバリデーター**の投票アカウントとアイデンティティを使用する予定の**すべてのバックアップマシン**でこのコマンドを実行します。
+**プライマリバリデーター**の投票アカウントとIDを使用する予定のある**すべてのバックアップマシン**でこのコマンドを実行します。
 
 
-### 接続の準備
+### 接続の準備 {#prepare-the-connection}
 
-**プライマリバリデーター**マシンで以下のコマンドを実行します。これは、アクティブなステークがあり、リーダースケジュールに含まれ、コマンドを実行しているマシン上の solana gossip にプライマリバリデーター ID が存在するマシンです：
+**プライマリバリデーター**マシンで以下のコマンドを実行します。これは、アクティブなステークがあり、リーダースケジュールに入っていて、コマンドを実行しているマシン上のsolana gossipにプライマリバリデーターIDが存在するマシンです：
 
 ```
 doublezero-solana passport prepare-validator-access -u mainnet-beta \
@@ -250,14 +244,14 @@ Backup validator 🖥️ 🛡️:
      -k <identity-keypair-file.json>
 
 ```
-このコマンドの最後に表示される出力に注目してください。これが次のステップの構造です。
+このコマンドの最後の出力に注目してください。これは次のステップの構造です。
 
 
-## 4. 署名の生成
+## 4. 署名の生成 {#4-generate-signature}
 
-前のステップの最後に、`solana sign-offchain-message` の事前フォーマットされた出力を受け取りました。
+前のステップの最後に、`solana sign-offchain-message`のフォーマット済み出力を受け取りました。
 
-上記の出力を使用して、**プライマリバリデーター**マシンでこのコマンドを実行します。
+上記の出力から、**プライマリバリデーター**マシンでこのコマンドを実行します。
 
 ```
   solana sign-offchain-message \
@@ -272,15 +266,15 @@ Backup validator 🖥️ 🛡️:
 ```
 
 
-## 5. DoubleZero への接続リクエストの開始
+## 5. DoubleZeroでの接続リクエストの開始 {#5-initiate-a-connection-request-in-doublezero}
 
-`request-validator-access` コマンドを使用して、接続リクエスト用の Solana アカウントを作成します。DoubleZero Sentinel エージェントが新しいアカウントを検出し、ID と署名を検証し、サーバーが接続を確立できるように DoubleZero でアクセスパスを作成します。
+`request-validator-access`コマンドを使用して、接続リクエスト用のSolana上のアカウントを作成します。DoubleZero Sentinelエージェントが新しいアカウントを検出し、そのIDと署名を検証し、サーバーが接続を確立できるようにDoubleZeroでアクセスパスを作成します。
 
 
-ノード ID、DoubleZeroID、および署名を使用します。
+ノードID、DoubleZeroID、および署名を使用します。
 
 !!! note inline end
-      この例では、バリデーターアイデンティティを見つけるために `-k /home/user/.config/solana/id.json` を使用しています。ローカルデプロイメントに応じた適切なパスを使用してください。
+      この例では、バリデーターIDを見つけるために`-k /home/user/.config/solana/id.json`を使用しています。お使いのローカルデプロイメントに適切なパスを使用してください。
 
 ```
 doublezero-solana passport request-validator-access -k <path to keypair> -u mainnet-beta \
@@ -291,18 +285,18 @@ doublezero-solana passport request-validator-access -k <path to keypair> -u main
 
 **出力：**
 
-この出力は、Solana エクスプローラーでトランザクションを確認するために使用できます。クラスターに合わせてエクスプローラーを mainnet-beta または testnet に設定してください。この検証は任意です。
+この出力はSolanaエクスプローラーでトランザクションを確認するために使用できます。クラスターに合わせてエクスプローラーをmainnet-betaまたはtestnetに設定してください。この検証は任意です。
 
 ```bash
 Request Solana validator access: Transaction22222222VaB8FMqM2wEBXyV5THpKRXWrPtDQxmTjHJHiAWteVYTsc7Gjz4hdXxvYoZXGeHkrEayp
 ```
 
-成功すると、DoubleZero はプライマリとそのバックアップを登録します。これにより、アクセスパスに登録された IP 間でフェイルオーバーが可能になります。この方法で登録されたバックアップノードに切り替える際、DoubleZero は自動的に接続を維持します。
+成功すると、DoubleZeroはプライマリとそのバックアップを登録します。アクセスパスに登録されたIP間でフェイルオーバーが可能になります。DoubleZeroは、この方法で登録されたバックアップノードに切り替える際、自動的に接続を維持します。
 
 
-## 6. IBRL モードで接続
+## 6. IBRLモードでの接続 {#6-connect-in-ibrl-mode}
 
-サーバー上で、DoubleZero に接続するユーザーとして `connect` コマンドを実行し、DoubleZero への接続を確立します。
+サーバー上で、DoubleZeroに接続するユーザーで`connect`コマンドを実行し、DoubleZeroへの接続を確立します。
 
 ```
 doublezero connect ibrl
@@ -321,7 +315,7 @@ Public IP detected: 137.184.101.183 - If you want to use a different IP, you can
     Service provisioned with status: ok
 ✅  User Provisioned
 ```
-GRE トンネルのセットアップが完了するまで1分間お待ちください。GRE トンネルのセットアップが完了するまで、ステータス出力が "down" または "Unknown" を返す場合があります。
+GREトンネルのセットアップが完了するまで1分間お待ちください。GREトンネルのセットアップが完了するまで、ステータス出力は「down」または「Unknown」を返す場合があります。
 
 接続を確認します：
 
@@ -331,19 +325,19 @@ doublezero status
 
 **出力：**
 !!! note inline end
-    この出力を確認してください。`Tunnel src` と `DoubleZero IP` がマシンのパブリック IPv4 アドレスと一致していることに注目してください。
-    <!--`Tunnel dst` は接続先の DZ デバイスのアドレスです。-->
+    この出力を確認してください。`Tunnel src`と`DoubleZero IP`がマシンのパブリックIPv4アドレスと一致していることに注目してください。
+    <!--`Tunnel dst`は接続先のDZデバイスのアドレスです。-->
 
 ```bash
  Tunnel status | Last Session Update     | Tunnel Name | Tunnel src    | Tunnel dst     | Doublezero IP | User Type | Current Device | Lowest Latency Device | Metro     | Network
  up            | 2025-10-20 12:12:55 UTC | doublezero0 | 11.11.11.111 | 12.34.56.789 | 11.11.11.111 | IBRL      | ams-dz001      | ✅ ams-dz001          | Amsterdam | mainnet-beta
 ```
 
-（テストネットで接続した場合、`Network` には `testnet` と表示されます。）
+（testnetで接続した場合、`Network`には`testnet`と表示されます。）
 
-ステータスが `up` であれば、正常に接続されています。
+ステータスが`up`であれば、接続は正常に確立されています。
 
-以下を実行することで、DoubleZero 上の他のユーザーによって伝播されたルートを確認できます：
+DoubleZero上の他のユーザーによって伝播されたルートは、以下のコマンドで確認できます：
 
 ```
 ip route
@@ -359,6 +353,6 @@ default via 149.28.38.1 dev enp1s0 proto dhcp src 149.28.38.64 metric 100
 ```
 
 
-### 次のステップ：マルチキャスト経由でのシュレッド配信
+### 次のステップ：マルチキャストによるシュレッドの配信 {#up-next-publishing-shreds-via-multicast}
 
-このセットアップを完了し、マルチキャスト経由でのシュレッド配信を予定している場合は、[次のページ](Validator%20Multicast%20Connection.md)に進んでください。
+このセットアップが完了し、マルチキャストによるシュレッドの配信を計画している場合は、[次のページ](Validator%20Multicast%20Connection.md)に進んでください。
