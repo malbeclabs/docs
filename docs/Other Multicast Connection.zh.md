@@ -1,5 +1,5 @@
 ---
-description: 以多播模式连接到 DoubleZero，以发布或订阅一个或多个 feed。
+description: 以多播模式连接到 DoubleZero，发布或订阅一个或多个 feed。
 ---
 
 # 其他多播连接
@@ -25,21 +25,18 @@ description: 以多播模式连接到 DoubleZero，以发布或订阅一个或�
 
 ```doublezero connect multicast --publish <feed name> --subscribe <feed name>```
 
-要发布或订阅多个 feed，您可以包含多个以空格分隔的 feed 名称。
-这也可以用于发布和订阅发布 feed。
+要发布或订阅多个 feed，可以用空格分隔包含多个 feed 名称。
+这也可用于发布和订阅发布 feed。
 例如
 ```doublezero connect multicast --subscribe feed1 feed2 feed3```
 
-您应该看到类似以下的输出：
+您应该会看到类似以下的输出：
 ```
-DoubleZero Service Provisioning
-🔗  Start Provisioning User to devnet...
-Public IP detected: 137.174.145.145 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
-    DoubleZero ID: <your dz_id>
-🔍  Provisioning User for IP: <your public ip>
-    Creating an account for the IP: <your public ip>
-    The Device has been selected: <the doublezero device you are connecting to>
-    Service provisioned with status: ok
+⚡  Connecting to devnet...
+    DoubleZero ID: <your DoubleZero ID>
+⚡  Provisioning for IP: <your public ip>
+    Creating account for IP: <your public ip>
+    Device selected: <the doublezero device you are connecting to>
 ✅  User Provisioned
 ```
 ### 3. 验证您的活跃多播连接。
@@ -49,9 +46,9 @@ Public IP detected: 137.174.145.145 - If you want to use a different IP, you can
 doublezero status
 ```
 预期结果：
-- BGP 会话在正确的 DoubleZero 网络上处于 Up 状态
-- 如果您是发布者，您的 DoubleZero IP 将与您的 Tunnel Src IP 不同。这是预期行为。
-- 如果您仅是订阅者，您的 DoubleZero IP 将与您的 Tunnel Src IP 相同。
+- BGP 会话在正确的 DoubleZero 网络上已建立
+- 如果您是发布者，您的 DoubleZero IP 将与您的 Tunnel Src IP 不同。这是正常的。
+- 如果您仅是订阅者，`doublezero status` 会将 DoubleZero IP 留空。`doublezero user list` 会显示它。
 
 ```
 ~$ doublezero status
@@ -59,7 +56,7 @@ doublezero status
  BGP Session Up | 2026-02-11 20:46:20 UTC | doublezero1 | 137.174.145.145 | 100.0.0.1  | 198.18.0.1    | Multicast | ams-dz001      | ✅ ams-dz001         | Amsterdam | Testnet
 ```
 
-验证您连接的组：
+验证您已连接的组：
 ```
 doublezero user list --client-ip <your ip>
 ```

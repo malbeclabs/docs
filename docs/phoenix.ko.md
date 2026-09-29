@@ -1,0 +1,264 @@
+---
+description: DoubleZero Edge에서 Phoenix 무기한 선물 시장 데이터 수신 — Edge Connect 또는 네이티브 멀티캐스트.
+---
+
+# Phoenix Edge 구독자 연결
+
+!!! warning "DoubleZero에 연결함으로써 [DoubleZero 이용 약관](https://doublezero.xyz/terms-protocol)에 동의합니다. 데이터는 내부 용도로만 사용 가능하며 재전송할 수 없습니다(섹션 2(e) 참조)."
+
+Phoenix 피드는 DoubleZero Edge 네트워크를 통해 Phoenix 무기한 선물 시장 데이터를 UDP 멀티캐스트로 전달합니다. 두 가지 피드가 있습니다:
+
+- Top of Book (TOB): 최우선 매수/매도호가 및 체결 정보
+- Market by Price (MBP): 가격 수준별 호가 깊이 및 체결 정보
+
+## 가격 {#pricing}
+
+피드는 **월 단위**로 청구됩니다:
+
+| 피드 | 가격 |
+|------|-------|
+| `phoenix-tob` | $50 / 월 |
+| `phoenix-mbp` | $100 / 월 |
+
+## 어떤 경로를 선택해야 하나요? {#which-path-should-i-take}
+
+| # | 경로 | 적합 대상 | 난이도 |
+|---|------|----------|--------|
+| **1** | [Edge Connect](#1-edge-connect-recommended) | 간단한 CLI와 WebSocket을 통한 디코딩된 JSON을 원하는 에이전트 및 앱 | 최저 |
+| **2** | [네이티브 멀티캐스트](#2-native-multicast-advanced) | 원시 와이어 포맷에 대해 자체 디코더를 구축하는 경우 | 최고 |
+
+어떤 경로든 시작하기 전에: [doublezero.xyz/edge/subscribe](https://doublezero.xyz/edge/subscribe)에서 필요한 피드를 구매하세요. 구매함으로써 [DoubleZero 이용 약관](https://doublezero.xyz/terms-protocol)에 동의하게 됩니다.
+
+AI가 설치를 도와주길 원하시나요? [DoubleZero MCP](mcp.md)를 연결하고 Phoenix / Edge Connect 설정을 안내해 달라고 요청하세요.
+
+---
+
+## 1. Edge Connect (권장) {#1-edge-connect-recommended}
+
+**여기서 시작하세요.** [doublezero-edge-connect](https://github.com/malbeclabs/doublezero-edge-connect)는 에이전트 친화적인 경로입니다: 설치 명령 한 번이면 호스트가 DoubleZero에 참여하고, 앱은 바이너리 멀티캐스트를 디코딩하는 대신 **WebSocket을 통한 디코딩된 JSON** (`ws://<host>:8081`)을 소비합니다.
+
+Edge Connect는 확장되는 사용자 기반의 요구를 충족합니다. 가장 쉬운 연결 방법이며, 특정 기술적 요구가 없는 한 이 방법을 사용해야 합니다.
+
+요약 버전:
+
+```bash
+curl -fsSL https://get.doublezero.xyz/connect | \
+  DZ_SECRET=/path/to/keypair.json DZ_FEEDS=PHOENIX DZ_ASSUME_YES=1 bash
+```
+
+변수는 파이프 뒤에 위치하여 설치 프로그램(`bash`)이 이를 수신합니다. `DZ_SECRET`은 `DZ_…` 액세스 토큰 **또는** 액세스 패스 / 피드 구매를 소유한 Solana 키페어 JSON 파일의 경로입니다.
+
+호스트에서 `doublezerod`가 이미 실행 중인 경우, 호스트 데몬과 컨테이너의 자체 데몬이 모두 UDP 포트 `44880`에 바인딩하므로 컨테이너의 데몬은 시작 직후 종료됩니다. 설치 프로그램은 호스트 데몬을 중지하고 비활성화할 것을 제안하며, `DZ_ASSUME_YES=1`이 설정된 경우 묻지 않고 실행합니다. 직접 수행하려면:
+
+```bash
+sudo systemctl stop doublezerod
+sudo systemctl disable doublezerod
+```
+
+그런 다음 **컨테이너 내부에서** 상태를 확인하고(`BGP Session Up` 및 Phoenix 그룹이 표시되어야 함) WebSocket 클라이언트를 `:8081`에 연결하세요:
+
+```bash
+docker exec doublezero-edge-connect doublezero status
+```
+
+Edge Connect는 Phoenix 퍼블리셔 간의 중재를 수행하므로, WebSocket 클라이언트는 각 업데이트의 사본 하나만 수신합니다.
+
+**전체 단계, 검증 및 주의사항:** [DoubleZero MCP](mcp.md)를 연결하고 Phoenix용 Edge Connect 설정을 안내해 달라고 요청하세요.  
+**WebSocket 계약:** [PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md).
+
+---
+
+## 2. 네이티브 멀티캐스트 (고급) {#2-native-multicast-advanced}
+
+!!! warning "깊은 기술 지식 필요"
+    네이티브 멀티캐스트는 직접 그룹에 참여하고 호스트에서 **원시** Edge 와이어 포맷을 디코딩하는 것을 의미합니다. 기술적으로 가장 숙련된 사용자만 이 경로를 선택해야 합니다. [market-by-price/spec.md](https://github.com/malbeclabs/edge-feed-spec/blob/main/market-by-price/spec.md)와 나머지 [edge-feed-spec](https://github.com/malbeclabs/edge-feed-spec)부터 시작하여 사양을 읽고 이해해야 합니다. 디코더를 직접 소유해야 하는 확실한 요구 사항이 없다면 [Edge Connect](#1-edge-connect-recommended)를 선호하세요.
+
+### DoubleZero 클라이언트 설정 {#doublezero-client-setup}
+
+[설정](setup.md) 지침에 따라 DoubleZero 클라이언트를 설치하고 구성하세요. 클라이언트를 최신 상태로 유지하세요:
+
+```bash
+sudo apt update && sudo apt install doublezero
+```
+
+### 피드 구매 {#buy-a-feed}
+
+`doublezerod`가 실행 중인 상태에서 구매 전에 최저 지연 시간 장치를 확인하세요:
+
+```bash
+doublezero latency
+```
+
+[https://doublezero.xyz/edge/subscribe](https://doublezero.xyz/edge/subscribe)에서 구매하세요.
+
+### 방화벽 구성 {#configure-the-firewall}
+
+GRE, BGP, PIM 및 Phoenix 피드 트래픽을 허용하세요. Phoenix UDP 포트는 `9201`–`9213` 범위입니다: `9201`/`9202`는 Top of Book 시장 및 참조 데이터를 전달하고, `9211`/`9212`/`9213`은 Market by Price 시장, 참조 및 스냅샷 데이터를 전달합니다. [피드 주소](#feed-addresses)를 참조하세요.
+
+**iptables:**
+
+```bash
+sudo iptables -A OUTPUT -p gre -j ACCEPT
+sudo iptables -A INPUT -i doublezero1 -s 169.254.0.0/16 -d 169.254.0.0/16 -p tcp --dport 179 -j ACCEPT
+sudo iptables -A OUTPUT -o doublezero1 -s 169.254.0.0/16 -d 169.254.0.0/16 -p tcp --dport 179 -j ACCEPT
+sudo iptables -A OUTPUT -o doublezero1 -p pim -j ACCEPT
+# Phoenix 시장 / 참조 / 스냅샷 (양쪽 피드 모두)
+sudo iptables -A INPUT -i doublezero1 -p udp --dport 9201:9213 -j ACCEPT
+```
+
+
+**UFW:**
+
+```bash
+sudo ufw allow proto gre from any to any
+sudo ufw allow in on doublezero1 from 169.254.0.0/16 to 169.254.0.0/16 port 179 proto tcp
+sudo ufw allow out on doublezero1 from 169.254.0.0/16 to 169.254.0.0/16 port 179 proto tcp
+# Phoenix 시장 / 참조 / 스냅샷 (양쪽 피드 모두)
+sudo ufw allow in on doublezero1 to any port 9201:9213 proto udp
+```
+
+UFW에는 `pim` 프로토콜이 없습니다. 아웃바운드 PIM은 UFW의 기본 발신 정책에 의해 허용됩니다. 발신 트래픽을 거부하는 경우 `/etc/ufw/before.rules`에 PIM용 원시 규칙을 추가하세요.
+
+
+### 구독 {#subscribe}
+
+구매한 모든 피드에 참여하세요 (클라이언트 v0.35.0 이상):
+
+```bash
+doublezero connect multicast
+```
+
+또는 **피드 코드**로 피드를 지정하세요:
+
+```bash
+doublezero connect multicast --subscribe-feed phoenix-tob phoenix-mbp
+```
+
+피드 코드 `phoenix-tob` / `phoenix-mbp`를 사용하세요. 메트로별 피드 이름(`phoenix-tob-cmh` 등)이나 그룹 코드(`edge-phoenix-…`)를 사용하지 마세요. `--subscribe`로 그룹 코드를 사용하여 구독하면 구매한 패스에서 실패합니다.
+
+`✅  User Provisioned`이 표시되어야 합니다. 약 60초 후:
+
+```bash
+doublezero status
+```
+
+올바른 DoubleZero 네트워크에서 `BGP Session Up`이 표시되어야 합니다.
+
+```bash
+doublezero user list --client-ip <your ip>
+```
+
+피드가 `groups` 열에 나타납니다. 그룹 IP를 확인하려면:
+
+```bash
+doublezero multicast group list
+```
+
+
+### 와이어 직접 디코딩 {#decode-the-wire-yourself}
+
+스키마 버전은 **`3`**입니다 — 디코더가 구현하지 않은 버전의 데이터그램은 폐기하세요. 공식 레이아웃: [edge-feed-spec](https://github.com/malbeclabs/edge-feed-spec), [top-of-book/spec.md](https://github.com/malbeclabs/edge-feed-spec/blob/main/top-of-book/spec.md), [market-by-price/spec.md](https://github.com/malbeclabs/edge-feed-spec/blob/main/market-by-price/spec.md) 및 [GLOSSARY](https://github.com/malbeclabs/edge-feed-spec/blob/main/GLOSSARY.md) 포함.
+
+모든 데이터그램은 24바이트 데이터그램 헤더로 시작하고, 그 뒤에 MTU까지 패킹된 하나 이상의 애플리케이션 메시지가 따릅니다. 데이터그램은 리틀 엔디안이며 고정 레이아웃입니다.
+
+| 필드 | 참고 |
+|-------|-------|
+| Magic | 오프셋 0의 `u16`: TOB에서는 `0x445A`, MBP에서는 `0x4442`. 검증하세요. |
+| 스키마 버전 | `3` |
+| 채널 ID | 양쪽 Phoenix 피드 모두 채널 `1` 사용 |
+| 시퀀스 | 소스 IP 주소, 채널 ID 및 대상 포트별로 단조 증가 — 각 포트는 자체 시리즈를 가집니다. 갭 감지에 사용하세요. |
+| 전송 타임스탬프 | Unix 에포크 이후 나노초 |
+| 메시지 수 | 이 데이터그램에 패킹된 메시지 수 |
+| 리셋 카운트 | 모든 변경(`255` → `0` 래핑 포함)은 리셋입니다; 해당 퍼블리셔의 채널 상태를 폐기하세요. MBP는 전체 거래소 재시드 시 세션 중간에도 이를 증가시킬 수 있습니다. |
+| 데이터그램 길이 | 총 바이트 수 |
+
+**둘 이상의 퍼블리셔가 각 Phoenix 피드를 전송합니다**, 동일한 그룹, 채널 및 포트에서. 채널 ID뿐만 아니라 소스 IP 주소로도 모든 채널 및 종목 상태를 키로 지정하세요. 그렇지 않으면 두 퍼블리셔의 시퀀스 시리즈가 하나로 인터리브됩니다. 네이티브 구독자는 퍼블리셔당 각 체결의 사본 하나를 수신합니다.
+
+#### 애플리케이션 메시지 (TOB) {#application-messages-tob}
+
+| 유형 | ID | 크기 | 포트 | 전달 내용 |
+|------|----|------|------|---------|
+| Heartbeat | `0x01` | 16 B | market | 시장이 조용할 때의 활성 상태 |
+| InstrumentDefinition | `0x02` | 130 B | reference | 심볼, 지수, 틱 및 로트, 만기 |
+| Quote | `0x03` | 60 B | market | 최우선 매수/매도호가, 가격 및 수량, 업데이트 플래그 |
+| Trade | `0x04` | 52 B | market | 가격, 수량, 공격자 방향, 체결 ID |
+| EndOfSession | `0x06` | 12 B | market | 정상 종료 |
+| ManifestSummary | `0x07` | 24 B | reference | 유효 플래그, Manifest Seq 변경 카운터, 종목 수, 타임스탬프 |
+
+Phoenix는 `0x08` (Liquidation)을 전송하지 않습니다. edge-feed-spec 레지스트리에서 Phoenix의 Source ID는 `2`입니다. 각 `InstrumentDefinition`에서 `price_exponent`와 `qty_exponent`를 읽으세요 — 하드코딩하지 마세요. 지수는 가격 정밀도이며 틱이 아닙니다: Phoenix의 BTC는 지수 `-2`와 틱 크기 `100`을 사용하므로 정수 달러 단위로 움직입니다.
+
+MBP 피드는 market-by-price 메시지 세트를 사용합니다. edge-feed-spec의 market-by-price 및 reference-data 사양을 참조하세요. 양쪽 피드는 동일한 퍼블리셔 프로세스에서 제공되므로 종목 ID를 공유하며, MBP 시장 데이터 포트는 TOB와 동일한 체결 정보를 전달합니다. Phoenix 체결 ID는 시장별 시퀀스 번호이므로, 체결 ID만이 아닌 **(종목 ID, 체결 ID)**로 체결을 중복 제거하세요.
+
+전달은 재전송 없는 fire-and-forget UDP이며, 참조 데이터 포트는 시장 데이터를 복구하지 않습니다: `InstrumentDefinition`(최소 30초마다 한 번)과 `ManifestSummary`(최소 1초마다 한 번)만 반복합니다. 손실된 TOB Quote는 해당 시장의 최우선 매수 또는 매도호가가 변경될 때까지 손실된 상태로 남습니다. MBP만 복구 경로(스냅샷 사이클)를 가지며, MBP 콜드 스타트 시 스냅샷 포트에 바인딩해야 합니다.
+
+---
+
+## 피드 주소 {#feed-addresses}
+
+| 피드 코드 | 그룹 코드 | 설명 | 멀티캐스트 그룹 | 시장 데이터 | 참조 데이터 | 스냅샷 |
+|-----------|------------|-------------|-----------------|-------------|----------------|----------|
+| `phoenix-tob` | `edge-phoenix-tob` | 무기한 선물 최우선 호가 및 체결 | `233.84.178.24` | `9201` | `9202` | — |
+| `phoenix-mbp` | `edge-phoenix-mbp` | 무기한 선물 가격별 호가 깊이 | `233.84.178.25` | `9211` | `9212` | `9213` |
+
+피드 코드로 구독하세요; `doublezero status` 및 `multicast group list`에서는 그룹 코드가 표시됩니다.
+
+그룹은 피드를 선택하고, 포트는 그 안에서 시장 데이터, 참조 데이터 또는 스냅샷을 선택합니다. 멀티캐스트 복제는 소스 IP 주소 및 그룹별로 이루어지며, 패브릭은 UDP 포트를 검사하지 않으므로 그룹에 참여하면 DoubleZero 터널을 통해 해당 그룹의 모든 데이터가 전달됩니다. 포트는 바이트가 도착한 후 호스트에서 적용되는 소켓 필터입니다.
+
+---
+
+## 문제 해결 {#troubleshooting}
+
+여기서 다루지 않는 문제가 발생하면, 우회하기 전에 기존 채널을 통해 문의하세요. 채널이 없는 경우 [지원](support.md)을 참조하세요.
+
+### 클라이언트가 최신 상태인지 확인 {#ensure-your-client-is-up-to-date}
+
+실행: `sudo apt update && sudo apt install doublezero`
+
+### 데이터그램이 도착하지 않음 {#no-datagrams-arriving}
+
+1. [https://doublezero.xyz/edge/subscribe](https://doublezero.xyz/edge/subscribe)에서 피드가 구매되었는지 확인하세요. 구매하지 않은 피드는 트래픽을 전달하지 않습니다.
+2. BGP가 활성 상태인지 확인하세요: `doublezero status`에서 올바른 DoubleZero 네트워크에 `BGP Session Up`이 표시되어야 합니다.
+3. 구독이 활성 상태인지 확인하세요: `doublezero user list --client-ip <your ip>`에서 `groups` 아래에 피드가 나열되어야 합니다.
+4. 올바른 인터페이스에서 그룹에 참여했는지 확인하세요. 멀티캐스트는 `doublezero0`이 아닌 `doublezero1`에 도착합니다.
+5. 방화벽이 `doublezero1`에서 피드의 UDP 포트 인바운드를 허용하는지 확인하세요.
+
+### 시퀀스 갭 {#sequence-gaps}
+
+소스 IP 주소, 채널 ID 및 대상 포트별로 시퀀스를 추적하세요; 채널 ID만으로 키를 지정한 디코더는 가짜 갭을 감지합니다. 실제 갭은 데이터그램이 드롭되었음을 의미합니다. MBP에서는 영향받은 시장이 다음 스냅샷 사이클에서 복구됩니다. TOB에는 복구가 없습니다: 시장의 호가는 최우선 매수 또는 매도호가가 다음에 변경될 때 비로소 최신 상태가 됩니다.
+
+### 리셋 카운트 변경 {#reset-count-changes}
+
+리셋 카운트의 모든 변경은 해당 퍼블리셔가 채널을 재시작하거나 재시드했음을 의미합니다. 해당 소스 IP 주소 및 채널의 상태를 폐기하고, 참조 데이터 포트에서 정의를 다시 수집하며, MBP에서는 스냅샷 포트로부터 오더북을 재구성하세요.
+
+### 터널이 올라오지 않음 {#tunnel-not-coming-up}
+
+1. **Edge Connect:** 컨테이너 내에서 상태를 실행하세요 — `docker exec doublezero-edge-connect doublezero status`. 호스트의 `doublezero status`는 피드가 정상인데도 실패하는 경우가 많습니다(컨테이너가 데몬을 소유). 호스트 `doublezerod`가 중지되었는지 확인하세요.
+2. **네이티브:** 호스트 데몬이 실행 중인지 확인하세요: `sudo systemctl status doublezerod`
+3. 방화벽 규칙이 적용되어 있는지 확인하세요 (GRE, BGP, PIM 및 `doublezero1`의 피드 포트)
+4. 연결한 동일한 위치(컨테이너 또는 호스트)에서 연결 상태를 확인하세요 — 올바른 DoubleZero 네트워크에서 `BGP Session Up`이 표시되어야 합니다
+
+클라이언트 IP는 호스트의 공용 IP에서 자동 검색됩니다. 피드 구매 시 사용한 IP와 일치하는지 확인하세요.
+
+---
+
+## 리서치 참조 설계 {#research-reference-design}
+
+선택 사항. 호스트에서 이미 DoubleZero 터널과 구독이 있고 피드 데이터를 **기록하고 차트화**하려는 경우, 리서치 참조 설계는 멀티캐스트 → 파서 → topofbook-bot → ClickHouse → Grafana를 Docker Compose로 실행합니다:
+
+[github.com/malbeclabs/edge-multicast-ref/tree/main/demo](https://github.com/malbeclabs/edge-multicast-ref/tree/main/demo)
+
+이것은 데모를 Phoenix TOB로 지정합니다([피드 주소](#feed-addresses) 참조):
+
+```bash
+cd demo
+cp .env.example .env
+sed -i -e 's/^DZ_MULTICAST_GROUP=.*/DZ_MULTICAST_GROUP=233.84.178.24/' \
+       -e 's/^DZ_MARKETDATA_PORT=.*/DZ_MARKETDATA_PORT=9201/' \
+       -e 's/^DZ_REFDATA_PORT=.*/DZ_REFDATA_PORT=9202/' \
+       -e 's/^DZ_INTERFACE=.*/DZ_INTERFACE=doublezero1/' .env
+docker compose up -d --build
+```
+
+Grafana는 일반적으로 호스트의 `http://localhost:3000`에서 접근 가능합니다. 세부 정보 및 대시보드: [데모 README](https://github.com/malbeclabs/edge-multicast-ref/blob/main/demo/README.md).
+
+이것은 이미 수신 중인 데이터를 시각화합니다. 피드 구매, 구독 또는 위의 연결 경로를 대체하지 않습니다.

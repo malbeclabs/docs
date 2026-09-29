@@ -1,16 +1,16 @@
 ---
-description: 일반적인 DoubleZero 연결 문제를 참조 명령어, 예상 출력, 추가 지원 받는 방법과 함께 진단합니다.
+description: 일반적인 DoubleZero 연결 문제를 참고 명령어, 예상 출력, 추가 지원 받는 방법과 함께 진단합니다.
 ---
 
 # 문제 해결
 
-이 가이드는 다양한 문제를 다루며, 지속적으로 업데이트됩니다. 가이드를 모두 완료한 후에도 추가 지원이 필요하면 [DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701) Discord에서 도움을 받을 수 있습니다.
+이 가이드는 다양한 문제를 다루며 지속적으로 업데이트됩니다. 가이드를 모두 따른 후에도 문제가 해결되지 않으면 [DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701) Discord에서 추가 지원을 받을 수 있습니다.
 
 
 ## 일반 명령어 및 출력
 
-먼저, 다음 명령어의 출력과 예상 출력을 확인하세요. 이 정보는 더 자세한 문제 해결에 도움이 됩니다.
-티켓을 열면 해당 출력을 요청받을 수 있습니다.
+먼저 다음 명령어의 출력과 예상 출력을 확인하세요. 이 정보는 보다 자세한 문제 해결에 도움이 됩니다.
+티켓을 열 경우 이 출력을 요청받을 수 있습니다.
 
 #### 1. 버전 확인
 명령어: 
@@ -36,13 +36,13 @@ MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2
 
 #### 3. Access Pass 확인
 
-샘플 pubkey: `MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2` 명령어 실행 시 본인의 pubkey로 대체하세요.
+샘플 pubkey: `MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2` 명령어 실행 시 본인의 pubkey로 교체하세요.
 
 명령어: 
 
 `doublezero access-pass list | grep MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2`
 
-출력: [참고로 이 출력에서 헤더를 표시하기 위해 `doublezero access-pass list | awk 'NR==1 || /MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2/'`를 사용합니다]
+출력: [참고로 `doublezero access-pass list | awk 'NR==1 || /MTAwoHgKyTwwDGJo2dye6EWqyTn27JRwXxaDEaeMqe2/'`를 사용하여 이 출력에서 헤더도 함께 표시합니다]
 ```
 account                                      | accesspass_type                                                | ip              | user_payer                                   | last_access_epoch | remaining_epoch | connections | status       | owner
 
@@ -94,15 +94,15 @@ account                                      | accesspass_type                  
 ```
 [comment]: # ()
 
-# 문제 해결 예시
-기본 출력과 정상 배포 시 예상되는 결과를 확인했으니, 이제 몇 가지 일반적인 문제 해결 예시를 살펴보겠습니다.
+# 문제 해결 예제
+기본 출력과 정상 배포에서의 예상 출력을 확인했으므로 이제 몇 가지 일반적인 문제 해결 예제를 살펴보겠습니다.
 
 ### 문제: ❌ Error creating user
 
-이 문제는 일반적으로 예상되는 pubkey/IP 쌍과 사용자가 DoubleZero에 접속하려는 pubkey/IP 쌍 간의 불일치와 관련이 있습니다.
+이 문제는 일반적으로 예상되는 pubkey/IP 쌍과 사용자가 DoubleZero에 접속하려는 pubkey/IP 쌍이 일치하지 않는 경우에 발생합니다.
 
 **증상:**
-- `doublezero connect ibrl`로 연결할 때 `❌ Error creating user`가 발생합니다
+- `doublezero connect ibrl`로 연결 시 `❌ Error creating user`가 발생합니다
 
 
 **해결 방법:**
@@ -127,14 +127,14 @@ account                                      | accesspass_type                  
      `doublezero address`의 pubkey는 user_payer pubkey와 일치해야 하며, 연결하려는 IP 주소는 Access-Pass의 ip와 일치해야 합니다. 
     `doublezero address`는 기본적으로 ~/.config/doublezero/에 있는 id.json 파일에서 가져옵니다. [여기 6단계](<setup.md>)를 참조하세요.
     
-3. 위 내용이 올바른데도 연결 시 오류가 발생하거나 위 매핑이 올바르지 않은 경우 [DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701)에서 지원팀에 문의하세요.
+3. 위 내용이 정확한데도 연결 시 오류가 발생하거나, 위 매핑이 올바르지 않은 경우 [DoubleZero Tech](https://discord.com/channels/1341597747932958802/1344323790464880701)에서 지원팀에 문의하세요.
 
 ### 문제: ❌ Error provisioning service: malformed stuff: cannot provision multiple tunnels at the same time
-이 오류는 장치가 이미 DoubleZero에 연결되어 있음을 나타냅니다.
+이 오류는 디바이스가 이미 DoubleZero에 연결되어 있음을 나타냅니다.
 
 **증상:**
 - 사용자가 DoubleZero에 연결을 시도합니다
-- `❌ Error provisioning service: malformed stuff: cannot provision multiple tunnels at the same time`가 발생합니다.
+- `❌ Error provisioning service: malformed stuff: cannot provision multiple tunnels at the same time`이 발생합니다.
 
 **해결 방법:**
 1. 확인
@@ -145,27 +145,23 @@ account                                      | accesspass_type                  
     Tunnel status | Last Session Update     | Tunnel Name | Tunnel src    | Tunnel dst     | Doublezero IP | User Type | Current Device | Lowest Latency Device | Metro     | Network 
     up            | 2025-10-20 12:12:55 UTC | doublezero0 | 11.11.11.111 | 12.34.56.789 | 11.11.11.111 | IBRL      | ams-dz001      | ✅ ams-dz001          | Amsterdam | testnet
     ```
-2. -`up`-은 정상적인 연결을 의미합니다.
-3. 이 오류는 특정 DoubleZero IP를 사용하는 DoubleZero 터널이 이 머신에서 이미 활성화되어 있기 때문에 나타납니다. 
+2. -`up`-은 정상적인 연결을 나타냅니다.
+3. 이 오류는 특정 DoubleZero IP를 사용하는 DoubleZero 터널이 이미 이 머신에서 활성화되어 있기 때문에 나타납니다. 
 
-    이 오류는 DoubleZero 클라이언트 업그레이드 후에 자주 발생합니다. DoubleZero 업그레이드는 자동으로 doublezerod 서비스를 재시작하며, 서비스 재시작 전에 연결되어 있었다면 다시 연결됩니다.
+    이 오류는 DoubleZero 클라이언트 업그레이드 후에 자주 발생합니다. DoubleZero 업그레이드는 자동으로 doublezerod 서비스를 재시작하며, 서비스 재시작 전에 연결되어 있었다면 자동으로 다시 연결합니다.
 
 
 ### 문제: DoubleZero 상태가 unknown 또는 down
-이 문제는 서버와 DoubleZero 장치 간에 GRE 터널은 성공적으로 활성화되었지만, 방화벽이 BGP 세션 설정을 차단하는 경우에 자주 발생합니다. 이로 인해 네트워크에서 경로를 수신하지 못하거나 DoubleZero를 통해 트래픽을 전송하지 못합니다.
+이 문제는 서버와 DoubleZero 디바이스 간에 GRE 터널은 성공적으로 활성화되었지만, 방화벽이 BGP 세션 설정을 차단하는 경우에 주로 발생합니다. 이로 인해 네트워크에서 라우트를 수신하지 못하거나 DoubleZero를 통해 트래픽을 전송하지 못합니다.
 
 **증상:**
-- `doublezero connect ibrl`은 성공했습니다. 그러나 `doublezero status`가 `down` 또는 `unknown`을 반환합니다
+- `doublezero connect ibrl`은 성공했지만, `doublezero status`가 `down` 또는 `unknown`을 반환합니다
     ```
-    doublezero connect ibrl                                                                                                                                                                                                                                                                                                                                  
-    DoubleZero Service Provisioning
-    🔗  Start Provisioning User...
-    Public IP detected: 111.11.11.11 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
-    🔍  Provisioning User for IP: 111.11.11.11
-    User account created
-    Connected to device: nyc-dz001
-    The user has been successfully activated
-    Service provisioned with status: ok
+    doublezero connect ibrl
+    ⚡  Connecting to mainnet-beta...
+        DoubleZero ID: <your DoubleZero ID>
+    ⚡  Provisioning for IP: 111.11.11.11
+        Device selected: nyc-dz001
     ✅  User Provisioned
     ```
 
@@ -177,11 +173,11 @@ account                                      | accesspass_type                  
 **해결 방법:**
 1. 방화벽 규칙을 확인하세요!
 
-   DoubleZero는 머신과 DoubleZero 장치 간의 GRE 터널 인터페이스에 링크 로컬 주소 공간 169.254.0.0/16을 사용합니다. 169.254.0.0/16은 일반적으로 "라우팅 불가능한" 공간이므로 좋은 보안 관행에서는 이 공간으로의 통신을 차단할 것을 권장합니다. 방화벽에서 src 169.254.0.0/16이 dst 169.254.0.0/16과 tcp 포트 179로 통신할 수 있도록 허용하는 규칙을 추가해야 합니다. 이 규칙은 169.254.0.0/16으로의 트래픽을 거부하는 규칙보다 위에 배치되어야 합니다. 
+   DoubleZero는 머신과 DoubleZero 디바이스 간의 GRE 터널 인터페이스에 링크 로컬 주소 공간 169.254.0.0/16을 사용합니다. 169.254.0.0/16은 일반적으로 "라우팅 불가능한" 공간이므로 좋은 보안 관행에서는 이 공간으로의 통신을 차단하도록 권장합니다. 방화벽에서 src 169.254.0.0/16이 dst 169.254.0.0/16과 tcp 포트 179로 통신할 수 있도록 규칙을 허용해야 합니다. 이 규칙은 169.254.0.0/16으로의 트래픽을 거부하는 규칙보다 위에 배치되어야 합니다. 
 
-    ufw와 같은 방화벽에서는 `sudo ufw status`를 실행하여 방화벽 규칙을 확인할 수 있습니다. 
+    ufw와 같은 방화벽에서는 `sudo ufw status`를 실행하여 방화벽 규칙을 볼 수 있습니다.
 
-    Solana 밸리데이터가 가지고 있을 수 있는 유사한 샘플 출력입니다. 
+    Solana 밸리데이터에서 볼 수 있는 것과 유사한 샘플 출력입니다.
     ```
     To                         Action      From
     --                         ------      ----
@@ -200,17 +196,17 @@ account                                      | accesspass_type                  
     192.168.0.0/16             DENY OUT    Anywhere
     ```
 
-    위 출력에서 지정된 포트를 제외한 169.254.0.0/16으로의 모든 트래픽이 거부되는 것을 볼 수 있습니다. 
-    `sudo ufw insert <N> allow proto tcp from 169.254.0.0/16 to 169.254.0.0/16 port 179`를 사용하여 <N> 위치에 규칙을 삽입합니다. 예: N = 1이면 이 규칙이 첫 번째 규칙으로 삽입됩니다.
+    위 출력에서 지정된 포트를 제외한 169.254.0.0/16으로의 모든 트래픽이 거부되어 있는 것을 볼 수 있습니다. 
+    `sudo ufw insert <N> allow proto tcp from 169.254.0.0/16 to 169.254.0.0/16 port 179`를 실행하여 <N> 위치에 규칙을 삽입합니다. 예: N = 1이면 이 규칙을 첫 번째 규칙으로 삽입합니다.
     `sudo ufw status numbered`를 실행하면 규칙의 번호 순서를 확인할 수 있습니다.
     
-### 문제: 가장 가까운 DoubleZero 장치가 변경됨
+### 문제: 가장 가까운 DoubleZero 디바이스가 변경됨
 
 이것은 오류가 아니지만 최적화할 수 있는 사항입니다. 아래는 수시로 실행하거나 자동화할 수 있는 모범 사례입니다.
 
 **해결 방법:**
 
-1. 가장 가까운 장치까지의 지연 시간 확인
+1. 가장 가까운 디바이스까지의 지연 시간 확인
     - `doublezero latency` 실행 
 
         출력
@@ -222,34 +218,34 @@ account                                      | accesspass_type                  
          8J691gPwzy9FzUZQ4SmC6jJcY7By8kZXfbJwRfQ8ns31 | nyc002-dz002  | 38.122.35.137   | 2.33ms   | 2.39ms   | 2.37ms   | true      
          FEML4XsDPN3WfmyFAXzE2xzyYqSB9kFCRrMik8JqN6kT | nyc001-dz001  | 38.104.167.29   | 2.29ms   | 2.59ms   | 2.40ms   | true   
         ```
-        위에서 가장 가까운 장치는 `dz-ny7-sw01`입니다.
+        위에서 가장 가까운 디바이스는 `dz-ny7-sw01`입니다.
 
-        이 장치에 연결하려고 합니다:
+        이 디바이스에 연결하려고 합니다:
 
-2. 대상 장치에 이미 연결되어 있는지 확인
-    - `doublezero user list --env testnet | grep 111.11.11.11`을 실행합니다. `111.11.11.11`을 DoubleZero에 연결된 장치의 공인 IPv4 주소로 대체하세요. 밸리데이터 ID 또는 doublezero ID를 사용할 수도 있습니다.
+2. 대상 디바이스에 이미 연결되어 있는지 확인
+    - `doublezero user list --env testnet | grep 111.11.11.11` 실행 - `111.11.11.11`을 DoubleZero에 연결된 디바이스의 공인 IPv4 주소로 교체하세요. 밸리데이터 ID나 DoubleZero ID를 사용할 수도 있습니다.
 
         출력
         ```
         account                                      | user_type           | groups                        | device       | location    | cyoa_type  | client_ip       | dz_ip           | accesspass                                                      | tunnel_id | tunnel_net       | status    | owner                                        
         6QRU1ivJnKGHpom2BdzH9PiTRkJ5WhunPNLtfYcqVisW | IBRL                |                               | dz-ny7-sw01     | New York    | GREOverDIA | 111.11.11.11    | 111.11.11.11    | Prepaid: (MAX)                                                  | 514       | 111.254.1.111/31 | activated | DZfHh2vjXFqt8zfNbT1afm8PGuCm3BrQKegC5THtKFdn 
         ```
-        이 예시에서는 이미 가장 가까운 장치에 연결되어 있습니다. 추가 단계가 필요 없으며 여기서 중단할 수 있습니다.
+        이 예제에서는 이미 가장 가까운 디바이스에 연결되어 있습니다. 추가 단계가 필요하지 않으며 여기서 멈출 수 있습니다.
 
 
-        대신 출력이 다음과 같은 경우를 고려해 봅시다
+        대신 출력이 다음과 같다고 가정해 봅시다
          ```
         account                                      | user_type           | groups                        | device       | location    | cyoa_type  | client_ip       | dz_ip           | accesspass                                                      | tunnel_id | tunnel_net       | status    | owner                                        
         6QRU1ivJnKGHpom2BdzH9PiTRkJ5WhunPNLtfYcqVisW | IBRL                |                               | fra-dz-001-x     | New York    | GREOverDIA | 111.11.11.11    | 111.11.11.11    | Prepaid: (MAX)                                                  | 514       | 111.254.1.111/31 | activated | DZfHh2vjXFqt8zfNbT1afm8PGuCm3BrQKegC5THtKFdn 
         ```
-        이것은 최적이 아닌 연결입니다. 재연결이 필요한지 고려해 봅시다.
+        이것은 최적이 아닌 연결입니다. 재연결이 필요한지 살펴보겠습니다.
 
-        연결하기 전에 해당 장치에 사용 가능한 사용자 터널이 있는지 확인합니다.
+        연결하기 전에 디바이스에 사용 가능한 사용자 터널이 있는지 확인합니다.
 
-3. 선택 사항: 네트워크에서 사용 가능한 장치 확인
+3. 선택 사항: 네트워크에서 사용 가능한 디바이스 확인
 
     교육 목적으로 먼저: 
-    - `doublezero device list`를 실행하여 전체 장치 목록을 확인합니다. 출력을 설명하기 위해 2개의 장치를 예시로 가져왔습니다.
+    - `doublezero device list`를 실행하여 전체 디바이스 목록을 확인합니다. 출력을 설명하기 위해 2개의 디바이스를 예시로 가져왔습니다.
 
         출력:
         ```
@@ -257,22 +253,22 @@ account                                      | accesspass_type                  
         GphgLkA7JDVtkDQZCiDrwrDvaUs8r8XczEae1KkV6CGQ | ams001-dz002  | jump_       | EQX-AM4   | ams      | switch      | 149.11.64.57    | 38.246.201.64/27                 | 69    | 128       | activated |          | H647kAwTcWsGXZUK3BTr1JyTBZmbNcYyCmRFFCEnXUVp 
         7FfrX8YbvbzM8A1ojNynP9BjiKpK9rrmhdEdchB2myhG | dz-fr5-sw01   | glxy        | EQX-FR5   | fra      | switch      | 89.222.118.225  | 89.222.118.228/30                | 0     | 0         | activated |          | 5YbNrJHJJoiRwVEvgAWRGdFRG9gRdZ47hLCKSym8bqbp 
         ```
-        위에서 `ams001-dz002`는 69명의 사용자가 있고 최대 128명입니다. 이 장치는 59명의 사용자를 추가할 수 있습니다. 
+        위에서 `ams001-dz002`는 69명의 사용자가 있고 최대 사용자는 128명입니다. 이 디바이스는 59명의 사용자를 추가할 수 있습니다. 
 
-        그러나 `dz-fr5-sw01`은 사용자가 0명이고 최대 사용자도 0명입니다. 이 장치에는 연결할 수 없습니다. 최대 사용자가 0이므로 이 장치는 어떠한 연결도 수락하지 않습니다.
+        그러나 `dz-fr5-sw01`은 0명의 사용자가 있고 최대 사용자도 0명입니다. 이 디바이스에는 연결할 수 없습니다. 최대 사용자가 0이므로 이 디바이스는 어떠한 연결도 수락하지 않습니다.
 
-        이제 가장 가까운 장치에 연결하는 것으로 돌아갑시다.
+        이제 가장 가까운 디바이스에 연결하는 것으로 돌아가겠습니다.
 
-4. 대상 장치에 사용 가능한 연결이 있는지 확인
-    - `doublezero device list | grep dz-ny7-sw01`을 실행합니다. `dz-ny7-sw01`을 대상 장치로 대체하세요.
+4. 대상 디바이스에 사용 가능한 연결이 있는지 확인
+    - `doublezero device list | grep dz-ny7-sw01` 실행 - `dz-ny7-sw01`을 대상 디바이스로 교체하세요
 
         출력
         ```
         2hPMFJHh5BPX42ygBvuYYJfCv9q7g3rRR3ZRsUgtaqUi | dz-ny7-sw01   | glxy        | EQX-NY7   | nyc      | switch      | 137.239.213.162 | 137.239.216.164/31               | 29    | 128       | activated |          | 5YbNrJHJJoiRwVEvgAWRGdFRG9gRdZ47hLCKSym8bqbp 
         ```
-        여기서 `dz-ny7-sw01`에 연결 가능한 공간이 있는 것을 확인할 수 있습니다.
+        여기서 `dz-ny7-sw01`에 연결 가능한 공간이 있음을 확인할 수 있습니다.
 
-5. 가장 가까운 DoubleZero 장치에 연결
+5. 가장 가까운 DoubleZero 디바이스에 연결
 
     연결을 해제한 다음 DoubleZero에 다시 연결합니다.
 
@@ -289,7 +285,7 @@ account                                      | accesspass_type                  
         🔍  User Account deleted
         ✅  Deprovisioning Complete
         ```
-    이제 다음 명령어로 연결 해제를 확인합니다
+    이제 연결 해제를 확인하기 위해 다음 명령어로 상태를 확인합니다
     - `doublezero status`
 
     출력
@@ -298,27 +294,24 @@ account                                      | accesspass_type                  
     Tunnel status | Last Session Update | Tunnel Name | Tunnel src | Tunnel dst | Doublezero IP | User Type 
     disconnected  | no session data     |             |            |            |               |    
     ```
-    마지막으로 다음 명령어로 재연결합니다
+    마지막으로 다음 명령어로 다시 연결합니다
     - `doublezero connect ibrl`
 
     출력
     ```
-    DoubleZero Service Provisioning
-    🔗  Start Provisioning User...
-    Public IP detected: 111.11.11.11 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
-    🔍  Provisioning User for IP: 111.11.11.11
-    User account created
-    Connected to device: dz-ny7-sw01 
-    Service provisioned with status: ok
+    ⚡  Connecting to mainnet-beta...
+        DoubleZero ID: <your DoubleZero ID>
+    ⚡  Provisioning for IP: 111.11.11.11
+        Device selected: dz-ny7-sw01
     ✅  User Provisioned
     ```
-    위 출력에서 `Connected to device: dz-ny7-sw01`에 연결된 것을 확인할 수 있습니다. 이것은 1단계의 초기 조사에서 `dz-ny7-sw01`이 가장 낮은 지연 시간을 가진 장치임을 발견한 결과와 일치하는 원하는 결과입니다.
+    위 출력에서 `Device selected: dz-ny7-sw01`을 확인하세요. 이것은 1단계의 초기 조사에서 `dz-ny7-sw01`이 가장 낮은 지연 시간을 가진 디바이스라는 것을 발견한 결과로부터 원하는 결과입니다.
 
 ### 문제: 잘못된 DoubleZero 환경 {#issue-wrong-doublezero-environment}
 
-Mainnet-Beta와 Testnet은 서로 다른 패키지 저장소를 사용합니다. `doublezero status`는 클라이언트가 어떤 네트워크에 있는지 표시합니다(`Network` 열). 사용자가 잘못된 클라이언트를 설치했거나 데몬이 여전히 다른 환경을 가리키고 있는 경우, 아래의 복사-붙여넣기 전환 명령어를 사용하세요.
+Mainnet-Beta와 Testnet은 서로 다른 패키지 저장소를 사용합니다. `doublezero status`는 클라이언트가 어떤 네트워크에 있는지 보여줍니다 (`Network` 열). 사용자가 잘못된 클라이언트를 설치했거나 데몬이 아직 다른 환경을 가리키고 있는 경우 아래의 복사-붙여넣기 전환 명령어를 사용하세요.
 
-DoubleZero 클라이언트 CLI(`doublezero`)와 데몬(`doublezerod`)을 **DoubleZero testnet**에 연결하도록 구성하려면:
+DoubleZero 클라이언트 CLI (`doublezero`)와 데몬 (`doublezerod`)을 **DoubleZero testnet**에 연결하도록 구성하려면:
 
 ```bash
 DESIRED_DOUBLEZERO_ENV=testnet \
@@ -330,7 +323,7 @@ DESIRED_DOUBLEZERO_ENV=testnet \
 	&& echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV"
 ```
 
-DoubleZero 클라이언트 CLI(`doublezero`)와 데몬(`doublezerod`)을 **DoubleZero mainnet-beta**에 연결하도록 구성하려면:
+DoubleZero 클라이언트 CLI (`doublezero`)와 데몬 (`doublezerod`)을 **DoubleZero mainnet-beta**에 연결하도록 구성하려면:
 
 ```bash
 DESIRED_DOUBLEZERO_ENV=mainnet-beta \
@@ -342,14 +335,14 @@ DESIRED_DOUBLEZERO_ENV=mainnet-beta \
 	&& echo "✅ doublezerod configured for environment $DESIRED_DOUBLEZERO_ENV"
 ```
 
-다음과 같은 출력이 표시되어야 합니다: `✅ doublezerod configured for environment mainnet-beta` (또는 `testnet`). 그런 다음 `doublezero status`에서 일치하는 `Network`가 표시되어야 합니다.
+다음과 같이 표시되어야 합니다: `✅ doublezerod configured for environment mainnet-beta` (또는 `testnet`). 그런 다음 `doublezero status`에서 일치하는 `Network`가 표시되어야 합니다.
 
-### 문제: `doublezero status`가 일부 필드에서 N/A를 반환함
+### 문제: `doublezero status`가 일부 필드에서 N/A를 반환
 
-이 문제는 일반적으로 현재 데몬 및 클라이언트와 연결된 DZ 터널이 설정되었을 때의 데몬 및 클라이언트 간의 불일치와 관련이 있습니다.
+이 문제는 일반적으로 현재 데몬 및 클라이언트와, 연결된 DZ 터널이 설정되었을 때의 데몬 및 클라이언트 간의 불일치와 관련이 있습니다.
 
 **증상:**
-- `doublezero status` 실행 시 일부 필드에서 `N/A`가 표시됩니다
+- `doublezero status` 실행 시 일부 필드에서 `N/A`가 나타남
 
 
 
@@ -365,16 +358,16 @@ DESIRED_DOUBLEZERO_ENV=mainnet-beta \
     up            | 2025-10-20 20:06:18 UTC | doublezero0 | 149.28.38.64 | 64.86.249.22 | 149.28.38.64  | IBRL      | N/A            | ✅ dz-ny7-sw01        | N/A   | mainnet-beta
     ```
 
-    위의 예시 출력에서 `Tunnel status`가 `up`인 것을 확인할 수 있습니다. `Network`는 `mainnet-beta`입니다. 그러나 `Current Device`와 `Metro`가 `N/A`입니다.
+    위의 예시 출력에서 `Tunnel status`가 `up`임을 확인하세요. `Network`는 `mainnet-beta`입니다. 그러나 `Current Device`와 `Metro`가 `N/A`입니다.
 
-    이는 현재 환경에 없는 열린 터널이 머신에 있음을 나타냅니다.
-    이 경우 `up` 상태이지만 `mainnet-beta`에서 `Current Device`를 찾을 수 없으므로 터널이 testnet에 있음을 알 수 있습니다!
+    이것은 현재 환경에 속하지 않는 열린 터널이 머신에 있음을 나타냅니다.
+    이 경우 `up` 상태이지만 `mainnet-beta`에서 `Current Device`를 찾을 수 없다는 것은 터널이 testnet에 있다는 것을 알려줍니다!
  
-2. [잘못된 DoubleZero 환경](#issue-wrong-doublezero-environment)의 복사-붙여넣기 명령어를 사용하여 환경을 전환합니다. `N/A`를 반환하는 `Network` 값의 반대 환경을 사용하세요.
+2. [잘못된 DoubleZero 환경](#issue-wrong-doublezero-environment)의 복사-붙여넣기 명령어를 사용하여 환경을 전환하세요. `N/A`를 반환하는 `Network` 값의 반대 환경을 사용하세요.
 
 3. 상태 확인
 
-    환경을 전환한 후 다음을 실행합니다:
+    환경 전환 후 실행합니다:
 
     ```
     doublezero status

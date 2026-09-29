@@ -42,10 +42,11 @@ sudo iptables -A INPUT -i doublezero0 -p udp --dport 44880 -j ACCEPT
 sudo ufw allow proto gre from any to any
 sudo ufw allow in on doublezero1 from 169.254.0.0/16 to 169.254.0.0/16 port 179 proto tcp
 sudo ufw allow out on doublezero1 from 169.254.0.0/16 to 169.254.0.0/16 port 179 proto tcp
-sudo ufw allow out on doublezero1 proto pim from any to any
 sudo ufw allow in on doublezero1 to any port 7733 proto udp
 sudo ufw allow in on doublezero0 to any port 44880 proto udp
 ```
+
+UFW has no `pim` protocol. Outbound PIM is allowed by UFW's default outgoing policy; if you deny outgoing traffic, add a raw rule for PIM in `/etc/ufw/before.rules`.
 
 ### 3. Enable the Reconciler
 

@@ -3,12 +3,12 @@ description: Conecte-se ao DoubleZero no modo multicast para publicar ou assinar
 ---
 
 # Outra Conexão Multicast
-!!! warning "Ao conectar-se ao DoubleZero, eu concordo com os [Termos de Serviço do DoubleZero](https://doublezero.xyz/terms-protocol)"
+!!! warning "Ao conectar-me ao DoubleZero, concordo com os [Termos de Serviço do DoubleZero](https://doublezero.xyz/terms-protocol)"
  
 Informações detalhadas de conexão: 
 
 ### 1. Instalação do Cliente DoubleZero
-Por favor, siga as instruções de [configuração](setup.md) para instalar e configurar o cliente DoubleZero.
+Siga as instruções de [configuração](setup.md) para instalar e configurar o cliente DoubleZero.
 
 ### 2. Instruções de Conexão 
 
@@ -25,21 +25,18 @@ ou para publicar e assinar:
 
 ```doublezero connect multicast --publish <feed name> --subscribe <feed name>```
 
-Para publicar ou assinar múltiplos feeds, você pode incluir vários nomes de feeds separados por espaço.
+Para publicar ou assinar múltiplos feeds, você pode incluir vários nomes de feed separados por espaço.
 Isso também pode ser usado para publicar e assinar feeds de publicação.
 Por exemplo 
 ```doublezero connect multicast --subscribe feed1 feed2 feed3```
 
 Você deverá ver uma saída semelhante à seguinte:
 ```
-DoubleZero Service Provisioning
-🔗  Start Provisioning User to devnet...
-Public IP detected: 137.174.145.145 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
-    DoubleZero ID: <your dz_id>
-🔍  Provisioning User for IP: <your public ip>
-    Creating an account for the IP: <your public ip>
-    The Device has been selected: <the doublezero device you are connecting to>
-    Service provisioned with status: ok
+⚡  Connecting to devnet...
+    DoubleZero ID: <your DoubleZero ID>
+⚡  Provisioning for IP: <your public ip>
+    Creating account for IP: <your public ip>
+    Device selected: <the doublezero device you are connecting to>
 ✅  User Provisioned
 ```
 ### 3. Verifique sua conexão multicast ativa. 
@@ -50,8 +47,8 @@ doublezero status
 ```
 Resultado esperado:
 - Sessão BGP ativa na rede DoubleZero correta 
-- Se você for um publicador, seu IP DoubleZero será diferente do seu IP de Origem do Túnel. Isso é esperado. 
-- Se você for apenas um assinante, seu IP DoubleZero será o mesmo que seu IP de Origem do Túnel. 
+- Se você é um publicador, seu IP DoubleZero será diferente do seu IP Tunnel Src. Isso é esperado.
+- Se você é apenas um assinante, `doublezero status` deixa o IP DoubleZero em branco. `doublezero user list` o exibe.
 
 ```
 ~$ doublezero status

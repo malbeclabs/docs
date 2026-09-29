@@ -2,37 +2,37 @@
 description: Onboarding con permessi per non-validatori e RPC che si connettono a DoubleZero Mainnet-Beta e Testnet in modalità IBRL.
 ---
 
-# Connessione con permessi per non-validatori a DoubleZero in modalità IBRL
+# Connessione con Permessi per Non-Validatori a DoubleZero in Modalità IBRL
 !!! warning "Connettendomi a DoubleZero accetto i [Termini di Servizio di DoubleZero](https://doublezero.xyz/terms-protocol)"
 
-### Panoramica dell'onboarding per utenti con permessi
+### Panoramica dell'Onboarding per Utenti con Permessi
 
 L'onboarding degli utenti è attualmente soggetto a permessi per non-validatori e RPC. Per avviare il flusso con permessi, compilare [questo modulo](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z). Ecco cosa aspettarsi durante questo processo:
 
-- In futuro potrebbero esserci costi associati all'utilizzo da parte degli utenti con permessi.
+- In futuro potrebbero essere previsti costi associati all'utilizzo da parte degli Utenti con Permessi.
 - Dopo l'invio del modulo, monitorare il proprio contatto Telegram principale.
 
 
-### Connessione a Mainnet-Beta e Testnet in modalità IBRL
+###  Connessione a Mainnet-Beta e Testnet in Modalità IBRL
 
 !!! Note inline end
     La modalità IBRL non richiede il riavvio dei client validatore, poiché utilizza il proprio indirizzo IP pubblico esistente.
 
-Gli utenti con permessi completeranno la connessione a DoubleZero Mainnet-beta, come descritto in dettaglio in questa pagina.
+Gli Utenti con Permessi completeranno la connessione a DoubleZero Mainnet-beta, come descritto in dettaglio in questa pagina.
 
-## 1. Confermare la rete del client
+## 1. Verificare la rete del client
 
 Seguire le istruzioni di [configurazione](setup.md) prima di procedere. Installare i pacchetti Mainnet-Beta o Testnet per la rete desiderata — utilizzano repository di pacchetti diversi.
 
 L'ultimo passaggio della configurazione consisteva nel disconnettersi dalla rete. Questo serve a garantire che sulla propria macchina sia aperto un solo tunnel verso DoubleZero e che tale tunnel sia sulla rete corretta.
 
-Confermare con:
+Verificare con:
 
 ```bash
 doublezero status
 ```
 
-La colonna `Network` dovrebbe corrispondere alla rete a cui si intende unirsi. In caso contrario, utilizzare il comando di cambio copia-incolla nella sezione [risoluzione dei problemi](troubleshooting.md#issue-wrong-doublezero-environment).
+La colonna `Network` deve corrispondere alla rete a cui si intende partecipare. In caso contrario, utilizzare il comando di cambio copia-incolla nella sezione [risoluzione dei problemi](troubleshooting.md#issue-wrong-doublezero-environment).
 
 Dopo circa 30 secondi sarà possibile visualizzare i dispositivi DoubleZero disponibili:
 
@@ -54,14 +54,14 @@ Output di esempio (Testnet)
  9LFtjDzohKvCBzSquQD4YtL3HwuvkKBDE7KSzb8ztV2b | dz-mtl11-sw01 | 134.195.161.10  | 9.88ms   | 10.01ms  | 9.95ms   | true      
  9M7FfYYyjM4wGinKPofZRNmQFcCjCKRbXscGBUiXvXnG | dz-tor1-sw01  | 209.42.165.10   | 14.52ms  | 14.53ms  | 14.52ms  | true           
 ```
-L'output del Testnet sarà identico nella struttura, ma con molti più dispositivi disponibili.
+L'output del Testnet avrà una struttura identica, ma con molti più dispositivi disponibili.
 
 ## 2. Contattare la DoubleZero Foundation
 
-La DoubleZero Foundation. Sarà necessario fornire il proprio `DoubleZeroID`, il proprio `Validator ID` (ID del nodo) e l'`indirizzo pubblico ipv4` da cui ci si connetterà.
+La DoubleZero Foundation. Sarà necessario fornire il proprio `DoubleZeroID`, il proprio `Validator ID` (ID del nodo) e l'`indirizzo IPv4 pubblico` da cui ci si collegherà.
 
 
-## 3. Connettersi in modalità IBRL
+## 3. Connettersi in Modalità IBRL
 
 Sul server, con l'utente che si connetterà a DoubleZero, eseguire il comando `connect` per stabilire la connessione a DoubleZero.
 
@@ -69,17 +69,13 @@ Sul server, con l'utente che si connetterà a DoubleZero, eseguire il comando `c
 doublezero connect ibrl
 ```
 
-Si dovrebbe visualizzare un output che indica il provisioning, come ad esempio:
+Si dovrebbe vedere un output che indica il provisioning, come ad esempio:
 
 ```
-DoubleZero Service Provisioning
-🔗  Start Provisioning User...
-Public IP detected: 137.184.101.183 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
-🔍  Provisioning User for IP: 137.184.101.183
-    User account created
-    Connected to device: nyc-dz001
-    The user has been successfully activated
-    Service provisioned with status: ok
+⚡  Connecting to mainnet-beta...
+    DoubleZero ID: <your DoubleZero ID>
+⚡  Provisioning for IP: <your public ip>
+    Device selected: <the doublezero device you are connecting to>
 ✅  User Provisioned
 ```
 Attendere un minuto affinché il tunnel venga completato. Fino al completamento del tunnel, l'output dello stato potrebbe restituire "down" o "Unknown"
@@ -95,7 +91,7 @@ doublezero status
 Tunnel status | Last Session Update     | Tunnel Name | Tunnel src      | Tunnel dst   | DoubleZero IP   | User Type
 up            | 2025-09-10 12:16:03 UTC | doublezero0 | 137.184.101.183 | 64.86.249.22 | 137.184.101.183 | IBRL
 ```
-Uno stato `up` indica che la connessione è avvenuta con successo.
+Uno stato `up` indica che la connessione è stata stabilita con successo.
 
 Sarà possibile visualizzare le rotte propagate da altri utenti su DoubleZero eseguendo:
 
@@ -113,6 +109,6 @@ default via 149.28.38.1 dev enp1s0 proto dhcp src 149.28.38.64 metric 100
 ```
 
 
-### Passo successivo: Multicast
+### Prossimo Passaggio: Multicast
 
-Se questa configurazione è stata completata e si prevede di utilizzare il Multicast, procedere alla [pagina successiva](Other%20Multicast%20Connection.md).
+Se questa configurazione è stata completata e si prevede di utilizzare Multicast, procedere alla [pagina successiva](Other%20Multicast%20Connection.md).

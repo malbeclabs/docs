@@ -7,7 +7,7 @@ description: IBRLモードでDoubleZeroに接続するShelbyテストネット�
 
 ### DoubleZeroIDの取得
 
-この[フォーム](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z)で`DoubleZeroID`と`public ipv4 address`を提供する必要があります。
+`DoubleZeroID`と`public ipv4 address`をこちらの[フォーム](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z)で提出する必要があります。
 
 
 - 将来的に許可制ユーザーの利用に料金が発生する場合があります。
@@ -17,15 +17,15 @@ description: IBRLモードでDoubleZeroに接続するShelbyテストネット�
 
 ### テストネットへのIBRLモードでの接続
 
-Shelby許可制ユーザーは、このページで詳述されているDoubleZeroテストネットへの接続を完了します。
+Shelbyの許可制ユーザーは、このページで詳述されているDoubleZeroテストネットへの接続を完了します。
 
 ## 1. 環境設定
 
-先に進む前に、[セットアップ](setup.md)手順に従ってください。
+先に進む前に、[セットアップ](setup.md)の手順に従ってください。
 
-セットアップの最後のステップはネットワークからの切断でした。これは、DoubleZeroへのトンネルがマシン上で1つだけ開かれており、そのトンネルが正しいネットワーク上にあることを確認するためです。
+セットアップの最後のステップはネットワークからの切断でした。これは、お使いのマシンからDoubleZeroへのトンネルが1つだけ開かれていること、そしてそのトンネルが正しいネットワーク上にあることを確認するためです。
 
-DoubleZero Client CLI（`doublezero`）をDoubleZero上のShelbyテナントに接続するように設定するには：
+DoubleZeroクライアントCLI（`doublezero`）をDoubleZero上のShelbyテナントに接続するよう設定するには：
 ```bash
 doublezero config set --tenant shelby
 ```
@@ -60,17 +60,13 @@ doublezero connect ibrl
 以下のようなプロビジョニングを示す出力が表示されるはずです：
 
 ```
-DoubleZero Service Provisioning
-🔗  Start Provisioning User...
-Public IP detected: 137.184.101.183 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
-🔍  Provisioning User for IP: 137.184.101.183
-    User account created
-    Connected to device: nyc-dz001
-    The user has been successfully activated
-    Service provisioned with status: ok
+⚡  Connecting to testnet...
+    DoubleZero ID: <your DoubleZero ID>
+⚡  Provisioning for IP: <your public ip>
+    Device selected: <the doublezero device you are connecting to>
 ✅  User Provisioned
 ```
-トンネルが完了するまで1分間お待ちください。トンネルが完了するまで、ステータス出力は「down」または「Unknown」を返す場合があります。
+トンネルが完了するまで1分間お待ちください。トンネルが完了するまで、ステータス出力が「down」または「Unknown」を返す場合があります。
 
 接続を確認します：
 
@@ -85,7 +81,7 @@ up            | 2025-09-10 12:16:03 UTC | doublezero0 | 137.184.101.183 | 64.86.
 ```
 ステータスが`up`であれば、正常に接続されています。
 
-以下を実行することで、DoubleZero上の他のユーザーによって伝播されたルートを確認できます：
+DoubleZero上の他のユーザーによって伝播されたルートは、以下を実行することで確認できます：
 
 ```
 ip route

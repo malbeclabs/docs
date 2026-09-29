@@ -1,5 +1,5 @@
 ---
-description: Elija el tenant de DoubleZero y la ruta de conexión que se ajuste a su caso de uso — validadores de Solana, RPCs, datos de mercado de Kalshi, Shelby o un nuevo protocolo.
+description: Elija el tenant de DoubleZero y la ruta de conexión que se ajuste a su caso de uso — validadores de Solana, RPCs, datos de mercado de Kalshi y Phoenix, Shelby o un nuevo protocolo.
 ---
 
 # Tenants
@@ -10,25 +10,31 @@ Examine la tabla a continuación y elija el caso de uso que mejor describa cómo
 
 Solana
 
-| Caso de uso | Siguiente paso |
+| Caso de Uso | Siguiente Paso |
 |-------------|---------|
 | Validador de Solana (mainnet-beta o testnet), incluyendo respaldos | [Conexión de Validador en Modo IBRL](<DZ Mainnet-beta Connection.md>) |
-| No validadores - RPCs y otros. | [Conexión a DoubleZero Mainnet-Beta y Testnet](Permissioned%20Connection.md) |
+| No Validadores - RPCs y otros. | [Conexión a DoubleZero Mainnet-Beta y Testnet](Permissioned%20Connection.md) |
 
 Kalshi
 
-| Caso de uso | Siguiente paso |
+| Caso de Uso | Siguiente Paso |
 |-------------|---------|
 | Suscripción a los feeds de datos de mercado de Kalshi | [Kalshi](kalshi.md) |
 
+Phoenix
+
+| Caso de Uso | Siguiente Paso |
+|-------------|---------|
+| Suscripción a los feeds de datos de mercado de Phoenix | [Phoenix](phoenix.md) |
+
 Shelby
 
-| Caso de uso | Siguiente paso |
+| Caso de Uso | Siguiente Paso |
 |-------------|---------|
 | RPCs y Nodos de Almacenamiento del Testnet de Shelby | [Conexión al Testnet de DoubleZero](shelby.md) |
 
 Nuevo Tenant
 
-| Caso de uso | Siguiente paso |
+| Caso de Uso | Siguiente Paso |
 -------------|---------|
-| Tiene un nuevo protocolo, aplicación u otro caso de uso para aprovechar DoubleZero | [Agregar un Nuevo Tenant](New%20Tenant.md) |
+| Tiene un nuevo protocolo, aplicación u otro caso de uso para aprovechar DoubleZero | [Agregar Un Nuevo Tenant](New%20Tenant.md) |

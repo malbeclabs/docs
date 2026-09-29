@@ -23,4 +23,5 @@ To register a runbook, add a list item under **Index** in this shape:
 - `solana-shreds-publisher` — [Publish shreds (Edge)](solana-shreds-publisher-runbook.md)
 - `solana-shreds` — [Subscribe to shreds (Edge)](solana-shreds-runbook.md)
 - `kalshi` — [Kalshi + Edge Connect](kalshi-runbook.md)
+- `phoenix` — [Phoenix + Edge Connect](phoenix-runbook.md)
 - `hyperliquid-edge` — [Hyperliquid (Edge) + Edge Connect](hyperliquid-edge-runbook.md)

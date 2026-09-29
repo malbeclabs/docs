@@ -3,28 +3,28 @@ description: IBRL モードで DoubleZero Mainnet-Beta および Testnet に接�
 ---
 
 # IBRL モードでの非バリデーター許可制 DoubleZero 接続
-!!! warning "DoubleZero に接続することにより、[DoubleZero 利用規約](https://doublezero.xyz/terms-protocol)に同意するものとします"
+!!! warning "DoubleZero に接続することにより、[DoubleZero 利用規約](https://doublezero.xyz/terms-protocol)に同意したものとみなされます"
 
 ### 許可制ユーザーオンボーディングの概要
 
-現在、非バリデーターおよび RPC のユーザーオンボーディングは許可制となっています。許可制フローを開始するには、[こちらのフォーム](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z)にご記入ください。このプロセスで想定される事項は以下の通りです：
+現在、非バリデーターおよび RPC のユーザーオンボーディングは許可制です。許可制フローを開始するには、[こちらのフォーム](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z)にご記入ください。このプロセスで想定される内容は以下の通りです：
 
-- 将来的に許可制ユーザーの利用に対して料金が発生する場合があります。
-- フォーム送信後、主要な Telegram 連絡先をご確認ください。
+- 将来的に許可制ユーザーの利用に手数料が発生する場合があります。
+- フォーム送信後、主要な Telegram 連絡先を確認してください。
 
 
 ### Mainnet-Beta および Testnet への IBRL モードでの接続
 
 !!! Note inline end
-    IBRL モードでは、既存のパブリック IP アドレスを使用するため、バリデータークライアントの再起動は不要です。
+    IBRL モードではバリデータークライアントの再起動は不要です。既存のパブリック IP アドレスを使用するためです。
 
-許可制ユーザーは、このページで詳述されている DoubleZero Mainnet-beta への接続を完了します。
+許可制ユーザーは DoubleZero Mainnet-beta への接続を完了します。詳細はこのページに記載されています。
 
 ## 1. クライアントネットワークの確認
 
-先に進む前に、[セットアップ](setup.md)の手順に従ってください。接続したいネットワークに応じて Mainnet-Beta または Testnet のパッケージをインストールしてください — それぞれ異なるパッケージリポジトリを使用します。
+先に進む前に、[セットアップ](setup.md)の手順に従ってください。接続したいネットワークに対応する Mainnet-Beta または Testnet パッケージをインストールしてください — それぞれ異なるパッケージリポジトリを使用します。
 
-セットアップの最後のステップはネットワークからの切断でした。これは、DoubleZero へのトンネルがマシン上で 1 つだけ開いていること、そのトンネルが正しいネットワーク上にあることを確認するためです。
+セットアップの最後のステップはネットワークからの切断でした。これは、マシン上で DoubleZero へのトンネルが1つだけ開かれており、そのトンネルが正しいネットワーク上にあることを確認するためです。
 
 以下のコマンドで確認してください：
 
@@ -32,9 +32,9 @@ description: IBRL モードで DoubleZero Mainnet-Beta および Testnet に接�
 doublezero status
 ```
 
-`Network` 列が参加しようとしているネットワークと一致していることを確認してください。一致しない場合は、[トラブルシューティング](troubleshooting.md#issue-wrong-doublezero-environment)のコピー＆ペースト切り替え手順を使用してください。
+`Network` 列が参加しようとしているネットワークと一致している必要があります。一致しない場合は、[トラブルシューティング](troubleshooting.md#issue-wrong-doublezero-environment)のコピー＆ペーストによる切り替えを使用してください。
 
-約 30 秒後に、利用可能な DoubleZero デバイスが表示されます：
+約30秒後に、利用可能な DoubleZero デバイスが表示されます：
 
 ```bash
 doublezero latency
@@ -54,16 +54,16 @@ doublezero latency
  9LFtjDzohKvCBzSquQD4YtL3HwuvkKBDE7KSzb8ztV2b | dz-mtl11-sw01 | 134.195.161.10  | 9.88ms   | 10.01ms  | 9.95ms   | true      
  9M7FfYYyjM4wGinKPofZRNmQFcCjCKRbXscGBUiXvXnG | dz-tor1-sw01  | 209.42.165.10   | 14.52ms  | 14.53ms  | 14.52ms  | true           
 ```
-Testnet の出力は構造的には同一ですが、利用可能なデバイスがより多く表示されます。
+Testnet の出力は構造的には同一ですが、利用可能なデバイス数はより多くなります。
 
 ## 2. DoubleZero Foundation への連絡
 
-DoubleZero Foundation に連絡してください。`DoubleZeroID`、`Validator ID`（ノード ID）、および接続元の`パブリック IPv4 アドレス`を提供する必要があります。
+DoubleZero Foundation に連絡してください。`DoubleZeroID`、`Validator ID`（ノード ID）、および接続元の `public ipv4 address` を提供する必要があります。
 
 
 ## 3. IBRL モードでの接続
 
-サーバー上で、DoubleZero に接続するユーザーで `connect` コマンドを実行し、DoubleZero への接続を確立します。
+サーバー上で、DoubleZero に接続するユーザーとして `connect` コマンドを実行し、DoubleZero への接続を確立します。
 
 ```bash
 doublezero connect ibrl
@@ -72,17 +72,13 @@ doublezero connect ibrl
 以下のようなプロビジョニングを示す出力が表示されるはずです：
 
 ```
-DoubleZero Service Provisioning
-🔗  Start Provisioning User...
-Public IP detected: 137.184.101.183 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
-🔍  Provisioning User for IP: 137.184.101.183
-    User account created
-    Connected to device: nyc-dz001
-    The user has been successfully activated
-    Service provisioned with status: ok
+⚡  Connecting to mainnet-beta...
+    DoubleZero ID: <your DoubleZero ID>
+⚡  Provisioning for IP: <your public ip>
+    Device selected: <the doublezero device you are connecting to>
 ✅  User Provisioned
 ```
-トンネルが完了するまで 1 分間お待ちください。トンネルが完了するまで、ステータス出力が「down」または「Unknown」を返す場合があります。
+トンネルが完了するまで1分間お待ちください。トンネルが完了するまで、ステータス出力は「down」または「Unknown」を返す場合があります。
 
 接続を確認してください：
 
@@ -97,7 +93,7 @@ up            | 2025-09-10 12:16:03 UTC | doublezero0 | 137.184.101.183 | 64.86.
 ```
 ステータスが `up` であれば、正常に接続されています。
 
-DoubleZero 上の他のユーザーによって伝搬されたルートを表示するには、以下を実行してください：
+DoubleZero 上の他のユーザーによって伝播されたルートを以下のコマンドで確認できます：
 
 ```
 ip route

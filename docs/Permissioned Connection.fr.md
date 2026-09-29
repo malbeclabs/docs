@@ -1,5 +1,5 @@
 ---
-description: Intégration avec autorisation pour les non-validateurs et les RPC se connectant au Mainnet-Beta et au Testnet DoubleZero en mode IBRL.
+description: Intégration avec autorisation pour les non-validateurs et les RPCs se connectant au Mainnet-Beta et au Testnet DoubleZero en mode IBRL.
 ---
 
 # Connexion autorisée des non-validateurs à DoubleZero en mode IBRL
@@ -7,24 +7,24 @@ description: Intégration avec autorisation pour les non-validateurs et les RPC 
 
 ### Aperçu de l'intégration des utilisateurs autorisés
 
-L'intégration des utilisateurs est actuellement soumise à autorisation pour les non-validateurs et les RPC. Pour commencer le processus d'autorisation, veuillez remplir [ce formulaire](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z). Voici ce à quoi vous pouvez vous attendre durant ce processus :
+L'intégration des utilisateurs est actuellement soumise à autorisation pour les non-validateurs et les RPCs. Pour commencer le processus d'autorisation, veuillez remplir [ce formulaire](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z). Voici ce à quoi vous pouvez vous attendre durant ce processus :
 
-- Des frais pourraient être associés à l'utilisation par les utilisateurs autorisés à l'avenir.
+- Des frais pourraient être associés à l'utilisation en tant qu'utilisateur autorisé à l'avenir.
 - Après la soumission du formulaire, surveillez votre contact Telegram principal.
 
 
 ### Connexion au Mainnet-Beta et au Testnet en mode IBRL
 
 !!! Note inline end
-    Le mode IBRL ne nécessite pas le redémarrage des clients validateurs, car il utilise votre adresse IP publique existante.
+    Le mode IBRL ne nécessite pas de redémarrer les clients validateurs, car il utilise votre adresse IP publique existante.
 
-Les utilisateurs autorisés effectueront la connexion au Mainnet-beta de DoubleZero, qui est détaillée sur cette page.
+Les utilisateurs autorisés complèteront la connexion au Mainnet-beta de DoubleZero, dont les détails sont présentés sur cette page.
 
 ## 1. Confirmer le réseau du client
 
 Veuillez suivre les instructions de [configuration](setup.md) avant de continuer. Installez les paquets Mainnet-Beta ou Testnet pour le réseau souhaité — ils utilisent des dépôts de paquets différents.
 
-La dernière étape de la configuration consistait à se déconnecter du réseau. Ceci afin de s'assurer qu'un seul tunnel est ouvert sur votre machine vers DoubleZero, et que ce tunnel est sur le bon réseau.
+La dernière étape de la configuration consistait à se déconnecter du réseau. Cela permet de s'assurer qu'un seul tunnel est ouvert sur votre machine vers DoubleZero, et que ce tunnel est sur le bon réseau.
 
 Confirmez avec :
 
@@ -32,7 +32,7 @@ Confirmez avec :
 doublezero status
 ```
 
-La colonne `Network` doit correspondre au réseau que vous souhaitez rejoindre. Si ce n'est pas le cas, utilisez la commande de basculement par copier-coller dans le [dépannage](troubleshooting.md#issue-wrong-doublezero-environment).
+La colonne `Network` doit correspondre au réseau que vous souhaitez rejoindre. Si ce n'est pas le cas, utilisez le copier-coller de basculement dans la section [dépannage](troubleshooting.md#issue-wrong-doublezero-environment).
 
 Après environ 30 secondes, vous verrez les appareils DoubleZero disponibles :
 
@@ -58,7 +58,7 @@ La sortie du Testnet sera identique en structure, mais avec beaucoup plus d'appa
 
 ## 2. Contacter la Fondation DoubleZero
 
-La fondation DoubleZero. Vous devrez fournir votre `DoubleZeroID`, votre `Validator ID` (identifiant du nœud) et l'`adresse IPv4 publique` depuis laquelle vous vous connecterez.
+La fondation DoubleZero. Vous devrez fournir votre `DoubleZeroID`, votre `Validator ID` (identifiant de nœud), et l'`adresse IPv4 publique` depuis laquelle vous vous connecterez.
 
 
 ## 3. Se connecter en mode IBRL
@@ -72,17 +72,13 @@ doublezero connect ibrl
 Vous devriez voir une sortie indiquant le provisionnement, telle que :
 
 ```
-DoubleZero Service Provisioning
-🔗  Start Provisioning User...
-Public IP detected: 137.184.101.183 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
-🔍  Provisioning User for IP: 137.184.101.183
-    User account created
-    Connected to device: nyc-dz001
-    The user has been successfully activated
-    Service provisioned with status: ok
+⚡  Connecting to mainnet-beta...
+    DoubleZero ID: <your DoubleZero ID>
+⚡  Provisioning for IP: <your public ip>
+    Device selected: <the doublezero device you are connecting to>
 ✅  User Provisioned
 ```
-Attendez une minute que le tunnel soit complété. Tant que le tunnel n'est pas terminé, votre sortie de statut peut renvoyer "down" ou "Unknown"
+Attendez une minute que le tunnel se termine. Tant que le tunnel n'est pas terminé, la sortie de votre statut peut indiquer "down" ou "Unknown"
 
 Vérifiez votre connexion :
 
@@ -97,7 +93,7 @@ up            | 2025-09-10 12:16:03 UTC | doublezero0 | 137.184.101.183 | 64.86.
 ```
 Un statut `up` signifie que vous êtes connecté avec succès.
 
-Vous pourrez visualiser les routes propagées par les autres utilisateurs sur DoubleZero en exécutant :
+Vous pourrez voir les routes propagées par les autres utilisateurs sur DoubleZero en exécutant :
 
 ```
 ip route

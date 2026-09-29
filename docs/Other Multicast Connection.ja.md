@@ -8,11 +8,11 @@ description: マルチキャストモードで DoubleZero に接続し、1つ以
 詳細な接続情報: 
 
 ### 1. DoubleZero クライアントのインストール
-[セットアップ](setup.md)の手順に従って、DoubleZero クライアントをインストールおよび設定してください。
+[セットアップ](setup.md)手順に従って、DoubleZero クライアントをインストールおよび設定してください。
 
 ### 2. 接続手順 
 
-マルチキャストモードで DoubleZero に接続します
+マルチキャストモードで DoubleZero に接続します。
 パブリッシャーとして: 
 
 ```doublezero connect multicast --publish <feed name>```
@@ -21,37 +21,34 @@ description: マルチキャストモードで DoubleZero に接続し、1つ以
 
 ```doublezero connect multicast --subscribe <feed name>```
 
-またはパブリッシュとサブスクライブの両方: 
+またはパブリッシュとサブスクライブの両方を行う場合: 
 
 ```doublezero connect multicast --publish <feed name> --subscribe <feed name>```
 
 複数のフィードをパブリッシュまたはサブスクライブするには、複数のフィード名をスペース区切りで指定できます。
-これはパブリッシュフィードへのパブリッシュとサブスクライブにも使用できます。
-例 
+これは、パブリッシュフィードへのパブリッシュとサブスクライブにも使用できます。
+例: 
 ```doublezero connect multicast --subscribe feed1 feed2 feed3```
 
 以下のような出力が表示されるはずです:
 ```
-DoubleZero Service Provisioning
-🔗  Start Provisioning User to devnet...
-Public IP detected: 137.174.145.145 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
-    DoubleZero ID: <your dz_id>
-🔍  Provisioning User for IP: <your public ip>
-    Creating an account for the IP: <your public ip>
-    The Device has been selected: <the doublezero device you are connecting to>
-    Service provisioned with status: ok
+⚡  Connecting to devnet...
+    DoubleZero ID: <your DoubleZero ID>
+⚡  Provisioning for IP: <your public ip>
+    Creating account for IP: <your public ip>
+    Device selected: <the doublezero device you are connecting to>
 ✅  User Provisioned
 ```
-### 3. アクティブなマルチキャスト接続を確認する 
-60秒待ってから以下を実行してください
+### 3. アクティブなマルチキャスト接続を確認します。 
+60秒待ってから、以下を実行してください。
 
 ```
 doublezero status
 ```
 期待される結果:
 - 正しい DoubleZero ネットワーク上で BGP セッションが Up であること 
-- パブリッシャーの場合、DoubleZero IP は Tunnel Src IP と異なります。これは想定どおりの動作です。 
-- サブスクライバーのみの場合、DoubleZero IP は Tunnel Src IP と同じになります。 
+- パブリッシャーの場合、DoubleZero IP は Tunnel Src IP と異なります。これは想定どおりです。
+- サブスクライバーのみの場合、`doublezero status` では DoubleZero IP は空白になります。`doublezero user list` で確認できます。
 
 ```
 ~$ doublezero status

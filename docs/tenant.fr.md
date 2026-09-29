@@ -1,10 +1,10 @@
 ---
-description: Choisissez le locataire DoubleZero et le chemin de connexion qui correspondent à votre cas d'utilisation — validateurs Solana, RPCs, données de marché Kalshi, Shelby ou un nouveau protocole.
+description: Choisissez le tenant DoubleZero et le chemin de connexion qui correspond à votre cas d'utilisation — validateurs Solana, RPCs, données de marché Kalshi et Phoenix, Shelby, ou un nouveau protocole.
 ---
 
-# Locataires
+# Tenants
 
-Les locataires sur DoubleZero sont des groupes d'utilisateurs ayant des profils et des exigences de connexion similaires, représentant généralement différents écosystèmes blockchain, couches de transfert de données ou systèmes distribués.
+Les tenants sur DoubleZero sont des groupes d'utilisateurs ayant des profils et des exigences de connexion similaires, représentant généralement différents écosystèmes blockchain, couches de transfert de données ou systèmes distribués.
 
 Examinez le tableau ci-dessous et choisissez le cas d'utilisation qui décrit le mieux la manière dont vous prévoyez d'interagir avec le réseau DoubleZero.
 
@@ -21,14 +21,20 @@ Kalshi
 |-------------|---------|
 | S'abonner aux flux de données de marché Kalshi | [Kalshi](kalshi.md) |
 
+Phoenix
+
+| Cas d'utilisation | Étape suivante |
+|-------------|---------|
+| S'abonner aux flux de données de marché Phoenix | [Phoenix](phoenix.md) |
+
 Shelby
 
 | Cas d'utilisation | Étape suivante |
 |-------------|---------|
 | RPCs et nœuds de stockage Shelby Testnet | [Connexion DoubleZero Testnet](shelby.md) |
 
-Nouveau locataire
+Nouveau tenant
 
 | Cas d'utilisation | Étape suivante |
 -------------|---------|
-| Vous avez un nouveau protocole, une application ou un autre cas d'utilisation pour tirer parti de DoubleZero | [Ajouter un nouveau locataire](New%20Tenant.md) |
+| Vous avez un nouveau protocole, une application ou un autre cas d'utilisation pour tirer parti de DoubleZero | [Ajouter un nouveau tenant](New%20Tenant.md) |

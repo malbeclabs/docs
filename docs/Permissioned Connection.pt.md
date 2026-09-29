@@ -1,28 +1,28 @@
 ---
-description: Integração permissionada para não-validadores e RPCs conectando-se ao DoubleZero Mainnet-Beta e Testnet em modo IBRL.
+description: Integração permissionada para não validadores e RPCs conectando-se ao DoubleZero Mainnet-Beta e Testnet no modo IBRL.
 ---
 
-# Conexão Permissionada de Não-Validadores ao DoubleZero em Modo IBRL
-!!! warning "Ao conectar-se ao DoubleZero, eu concordo com os [Termos de Serviço do DoubleZero](https://doublezero.xyz/terms-protocol)"
+# Conexão Permissionada de Não Validadores ao DoubleZero no Modo IBRL
+!!! warning "Ao conectar-me ao DoubleZero, concordo com os [Termos de Serviço do DoubleZero](https://doublezero.xyz/terms-protocol)"
 
 ### Visão Geral da Integração de Usuários Permissionados
 
-A integração de usuários é atualmente permissionada para não-validadores e RPCs. Para iniciar o fluxo permissionado, por favor preencha [este formulário](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z). Veja o que esperar durante este processo:
+A integração de usuários é atualmente permissionada para não validadores e RPCs. Para iniciar o fluxo permissionado, por favor preencha [este formulário](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z). Aqui está o que esperar durante este processo:
 
-- Podem haver taxas associadas ao uso de Usuários Permissionados no futuro.
+- Pode haver taxas associadas ao uso de Usuário Permissionado no futuro.
 - Após o envio do formulário, monitore seu contato principal no Telegram.
 
 
-### Conectando-se ao Mainnet-Beta e Testnet em Modo IBRL
+### Conectando ao Mainnet-Beta e Testnet no Modo IBRL
 
 !!! Note inline end
     O modo IBRL não requer reiniciar os clientes validadores, pois utiliza seu endereço IP público existente.
 
-Usuários Permissionados completarão a conexão ao DoubleZero Mainnet-beta, que está detalhada nesta página.
+Usuários Permissionados completarão a conexão ao DoubleZero Mainnet-beta, o que está detalhado nesta página.
 
 ## 1. Confirmar a rede do cliente
 
-Por favor, siga as instruções de [configuração](setup.md) antes de prosseguir. Instale os pacotes do Mainnet-Beta ou Testnet para a rede desejada — eles utilizam repositórios de pacotes diferentes.
+Por favor, siga as instruções de [configuração](setup.md) antes de prosseguir. Instale os pacotes de Mainnet-Beta ou Testnet para a rede desejada — eles utilizam repositórios de pacotes diferentes.
 
 O último passo na configuração foi desconectar-se da rede. Isso é para garantir que apenas um túnel esteja aberto na sua máquina para o DoubleZero, e que esse túnel esteja na rede correta.
 
@@ -32,7 +32,7 @@ Confirme com:
 doublezero status
 ```
 
-A coluna `Network` deve corresponder à rede à qual você pretende se juntar. Caso não corresponda, use a opção de troca por copiar-e-colar em [solução de problemas](troubleshooting.md#issue-wrong-doublezero-environment).
+A coluna `Network` deve corresponder à rede à qual você pretende se conectar. Se não corresponder, use o comando de troca copiar-e-colar em [solução de problemas](troubleshooting.md#issue-wrong-doublezero-environment).
 
 Após cerca de 30 segundos, você verá os dispositivos DoubleZero disponíveis:
 
@@ -54,14 +54,14 @@ Exemplo de saída (Testnet)
  9LFtjDzohKvCBzSquQD4YtL3HwuvkKBDE7KSzb8ztV2b | dz-mtl11-sw01 | 134.195.161.10  | 9.88ms   | 10.01ms  | 9.95ms   | true      
  9M7FfYYyjM4wGinKPofZRNmQFcCjCKRbXscGBUiXvXnG | dz-tor1-sw01  | 209.42.165.10   | 14.52ms  | 14.53ms  | 14.52ms  | true           
 ```
-A saída do Testnet terá estrutura idêntica, mas com muitos mais dispositivos disponíveis.
+A saída da Testnet será idêntica em estrutura, mas com muito mais dispositivos disponíveis.
 
 ## 2. Contatar a Fundação DoubleZero
 
-A fundação DoubleZero. Você precisará fornecer seu `DoubleZeroID`, seu `Validator ID` (ID do nó) e o `public ipv4 address` a partir do qual você estará se conectando.
+A fundação DoubleZero. Você precisará fornecer seu `DoubleZeroID`, seu `Validator ID` (ID do nó) e o `endereço ipv4 público` a partir do qual você estará se conectando.
 
 
-## 3. Conectar em Modo IBRL
+## 3. Conectar no Modo IBRL
 
 No servidor, com o usuário que se conectará ao DoubleZero, execute o comando `connect` para estabelecer a conexão com o DoubleZero.
 
@@ -72,14 +72,10 @@ doublezero connect ibrl
 Você deverá ver uma saída indicando o provisionamento, como:
 
 ```
-DoubleZero Service Provisioning
-🔗  Start Provisioning User...
-Public IP detected: 137.184.101.183 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
-🔍  Provisioning User for IP: 137.184.101.183
-    User account created
-    Connected to device: nyc-dz001
-    The user has been successfully activated
-    Service provisioned with status: ok
+⚡  Connecting to mainnet-beta...
+    DoubleZero ID: <your DoubleZero ID>
+⚡  Provisioning for IP: <your public ip>
+    Device selected: <the doublezero device you are connecting to>
 ✅  User Provisioned
 ```
 Aguarde um minuto para o túnel ser concluído. Até que o túnel seja concluído, a saída do seu status pode retornar "down" ou "Unknown"
@@ -95,7 +91,7 @@ doublezero status
 Tunnel status | Last Session Update     | Tunnel Name | Tunnel src      | Tunnel dst   | DoubleZero IP   | User Type
 up            | 2025-09-10 12:16:03 UTC | doublezero0 | 137.184.101.183 | 64.86.249.22 | 137.184.101.183 | IBRL
 ```
-Um status de `up` significa que você está conectado com sucesso.
+Um status `up` significa que você está conectado com sucesso.
 
 Você poderá visualizar as rotas propagadas por outros usuários no DoubleZero executando:
 

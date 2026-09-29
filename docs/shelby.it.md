@@ -10,27 +10,27 @@ description: Guida alla connessione con permessi per gli utenti Shelby Testnet c
 Dovrai fornire il tuo `DoubleZeroID` e il `public ipv4 address` tramite questo [modulo](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z)
 
 
-- In futuro potrebbero essere previste tariffe associate all'utilizzo da parte degli Utenti con Permessi.
+- In futuro potrebbero essere previsti costi associati all'utilizzo come Utente con Permessi.
 - Dopo l'invio del modulo, monitora il tuo contatto Telegram principale.
 - Al momento Shelby è in grado di connettersi solo a DoubleZero Testnet.
 
 
 ### Connessione a Testnet in Modalità IBRL
 
-Gli utenti con permessi Shelby completeranno la connessione a DoubleZero Testnet, come descritto in dettaglio in questa pagina.
+Gli utenti con permessi Shelby completeranno la connessione a DoubleZero Testnet, come descritto in questa pagina.
 
 ## 1. Configurazione dell'Ambiente
 
-Segui le istruzioni di [setup](setup.md) prima di procedere.
+Segui le istruzioni di [configurazione](setup.md) prima di procedere.
 
-L'ultimo passaggio nella configurazione prevedeva la disconnessione dalla rete. Questo per garantire che sulla tua macchina sia aperto un solo tunnel verso DoubleZero, e che tale tunnel sia sulla rete corretta.
+L'ultimo passaggio della configurazione prevedeva la disconnessione dalla rete. Questo serve a garantire che sulla tua macchina sia aperto un solo tunnel verso DoubleZero e che tale tunnel sia sulla rete corretta.
 
-Per configurare la CLI del Client DoubleZero (`doublezero`) per connettersi al tenant Shelby su DoubleZero:
+Per configurare il DoubleZero Client CLI (`doublezero`) per connettersi al tenant Shelby su DoubleZero:
 ```bash
 doublezero config set --tenant shelby
 ```
 
-Applica regole Firewall aggiuntive specifiche per Shelby:
+Applica le regole Firewall aggiuntive specifiche per Shelby:
 
 iptables:
 ```
@@ -46,7 +46,7 @@ sudo ufw deny in to any port 39431 proto tcp
 
 ## 2. Contatta la DoubleZero Foundation
 
-La DoubleZero Foundation. Dovrai fornire il tuo `DoubleZeroID` e il `public ipv4 address` da cui ti connetterai.
+La DoubleZero Foundation. Dovrai fornire il tuo `DoubleZeroID` e il `public ipv4 address` dal quale ti connetterai.
 
 
 ## 3. Connettiti in Modalità IBRL
@@ -60,14 +60,10 @@ doublezero connect ibrl
 Dovresti vedere un output che indica il provisioning, come ad esempio:
 
 ```
-DoubleZero Service Provisioning
-🔗  Start Provisioning User...
-Public IP detected: 137.184.101.183 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
-🔍  Provisioning User for IP: 137.184.101.183
-    User account created
-    Connected to device: nyc-dz001
-    The user has been successfully activated
-    Service provisioned with status: ok
+⚡  Connecting to testnet...
+    DoubleZero ID: <your DoubleZero ID>
+⚡  Provisioning for IP: <your public ip>
+    Device selected: <the doublezero device you are connecting to>
 ✅  User Provisioned
 ```
 Attendi un minuto affinché il tunnel venga completato. Fino al completamento del tunnel, l'output dello stato potrebbe restituire "down" o "Unknown"

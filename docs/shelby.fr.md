@@ -1,5 +1,5 @@
 ---
-description: Guide de connexion avec autorisation pour les utilisateurs du Shelby Testnet se connectant à DoubleZero en mode IBRL.
+description: Guide de connexion avec permission pour les utilisateurs du Shelby Testnet se connectant à DoubleZero en mode IBRL.
 ---
 
 # Shelby
@@ -7,17 +7,17 @@ description: Guide de connexion avec autorisation pour les utilisateurs du Shelb
 
 ### Obtenez votre DoubleZeroID
 
-Vous devrez fournir votre `DoubleZeroID` et l'`public ipv4 address` sur ce [formulaire](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z)
+Vous devrez fournir votre `DoubleZeroID` et votre `public ipv4 address` sur ce [formulaire](https://forms.fillout.com/t/s77k7wandMus?id=rec08iF4Z8kVFGm1z)
 
 
-- Des frais pourraient être associés à l'utilisation en tant qu'utilisateur autorisé à l'avenir.
+- Des frais pourraient être associés à l'utilisation des utilisateurs avec permission à l'avenir.
 - Après la soumission du formulaire, surveillez votre contact Telegram principal.
 - Pour le moment, Shelby ne peut se connecter qu'au DoubleZero Testnet.
 
 
-### Connexion au Testnet en mode IBRL
+###  Connexion au Testnet en mode IBRL
 
-Les utilisateurs autorisés de Shelby effectueront la connexion au DoubleZero Testnet, ce qui est détaillé sur cette page.
+Les utilisateurs Shelby avec permission effectueront la connexion au DoubleZero Testnet, dont les détails sont présentés sur cette page.
 
 ## 1. Configuration de l'environnement
 
@@ -46,7 +46,7 @@ sudo ufw deny in to any port 39431 proto tcp
 
 ## 2. Contactez la Fondation DoubleZero
 
-La fondation DoubleZero. Vous devrez fournir votre `DoubleZeroID` et l'`public ipv4 address` depuis laquelle vous vous connecterez.
+La fondation DoubleZero. Vous devrez fournir votre `DoubleZeroID` et la `public ipv4 address` depuis laquelle vous vous connecterez.
 
 
 ## 3. Connexion en mode IBRL
@@ -60,17 +60,13 @@ doublezero connect ibrl
 Vous devriez voir une sortie indiquant le provisionnement, telle que :
 
 ```
-DoubleZero Service Provisioning
-🔗  Start Provisioning User...
-Public IP detected: 137.184.101.183 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
-🔍  Provisioning User for IP: 137.184.101.183
-    User account created
-    Connected to device: nyc-dz001
-    The user has been successfully activated
-    Service provisioned with status: ok
+⚡  Connecting to testnet...
+    DoubleZero ID: <your DoubleZero ID>
+⚡  Provisioning for IP: <your public ip>
+    Device selected: <the doublezero device you are connecting to>
 ✅  User Provisioned
 ```
-Attendez une minute que le tunnel se termine. Tant que le tunnel n'est pas terminé, la sortie de votre statut peut renvoyer « down » ou « Unknown ».
+Attendez une minute que le tunnel soit établi. Tant que le tunnel n'est pas terminé, la sortie de votre statut peut renvoyer "down" ou "Unknown"
 
 Vérifiez votre connexion :
 

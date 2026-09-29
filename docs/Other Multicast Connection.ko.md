@@ -13,45 +13,42 @@ description: 멀티캐스트 모드로 DoubleZero에 연결하여 하나 이상�
 ### 2. 연결 안내 
 
 멀티캐스트 모드로 DoubleZero에 연결
-게시자로서: 
+게시자로 연결: 
 
 ```doublezero connect multicast --publish <feed name>```
 
-또는 구독자로서: 
+또는 구독자로 연결: 
 
 ```doublezero connect multicast --subscribe <feed name>```
 
-또는 게시와 구독을 동시에: 
+또는 게시 및 구독 동시 연결: 
 
 ```doublezero connect multicast --publish <feed name> --subscribe <feed name>```
 
-여러 피드를 게시하거나 구독하려면 공백으로 구분된 여러 피드 이름을 포함할 수 있습니다.
-이를 사용하여 게시 피드에 대해 게시와 구독을 동시에 할 수도 있습니다.
-예시 
+여러 피드를 게시하거나 구독하려면 피드 이름을 공백으로 구분하여 여러 개 포함할 수 있습니다.
+이 방법은 게시 피드에 대해 게시와 구독을 동시에 하는 데에도 사용할 수 있습니다.
+예를 들어 
 ```doublezero connect multicast --subscribe feed1 feed2 feed3```
 
 다음과 유사한 출력이 표시됩니다:
 ```
-DoubleZero Service Provisioning
-🔗  Start Provisioning User to devnet...
-Public IP detected: 137.174.145.145 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
-    DoubleZero ID: <your dz_id>
-🔍  Provisioning User for IP: <your public ip>
-    Creating an account for the IP: <your public ip>
-    The Device has been selected: <the doublezero device you are connecting to>
-    Service provisioned with status: ok
+⚡  Connecting to devnet...
+    DoubleZero ID: <your DoubleZero ID>
+⚡  Provisioning for IP: <your public ip>
+    Creating account for IP: <your public ip>
+    Device selected: <the doublezero device you are connecting to>
 ✅  User Provisioned
 ```
-### 3. 활성 멀티캐스트 연결 확인 
-60초 동안 기다린 후 다음을 실행하세요
+### 3. 활성 멀티캐스트 연결을 확인합니다. 
+60초간 기다린 후 다음을 실행하세요
 
 ```
 doublezero status
 ```
 예상 결과:
 - 올바른 DoubleZero 네트워크에서 BGP 세션 활성화 
-- 게시자인 경우, DoubleZero IP가 Tunnel Src IP와 다릅니다. 이는 정상적인 동작입니다. 
-- 구독자만인 경우, DoubleZero IP가 Tunnel Src IP와 동일합니다. 
+- 게시자인 경우, DoubleZero IP가 Tunnel Src IP와 다릅니다. 이는 정상입니다.
+- 구독자 전용인 경우, `doublezero status`에서 DoubleZero IP가 비어 있습니다. `doublezero user list`에서 확인할 수 있습니다.
 
 ```
 ~$ doublezero status

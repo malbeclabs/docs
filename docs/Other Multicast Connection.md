@@ -32,14 +32,11 @@ For example
 
 You should see output similar to the following:
 ```
-DoubleZero Service Provisioning
-🔗  Start Provisioning User to devnet...
-Public IP detected: 137.174.145.145 - If you want to use a different IP, you can specify it with `--client-ip x.x.x.x`
-    DoubleZero ID: <your dz_id>
-🔍  Provisioning User for IP: <your public ip>
-    Creating an account for the IP: <your public ip>
-    The Device has been selected: <the doublezero device you are connecting to>
-    Service provisioned with status: ok
+⚡  Connecting to devnet...
+    DoubleZero ID: <your DoubleZero ID>
+⚡  Provisioning for IP: <your public ip>
+    Creating account for IP: <your public ip>
+    Device selected: <the doublezero device you are connecting to>
 ✅  User Provisioned
 ```
 ### 3. Verify your active multicast connection. 
@@ -50,8 +47,8 @@ doublezero status
 ```
 Expected result:
 - BGP Session Up on the correct DoubleZero Network 
-- If you are a publisher, your DoubleZero IP will be different than your Tunnel Src IP. This is expected. 
-- If you are a subscriber only, your DoubleZero IP will be the same as your Tunnel Src IP. 
+- If you are a publisher, your DoubleZero IP will be different than your Tunnel Src IP. This is expected.
+- If you are a subscriber only, `doublezero status` leaves DoubleZero IP blank. `doublezero user list` shows it.
 
 ```
 ~$ doublezero status

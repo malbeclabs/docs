@@ -1,5 +1,5 @@
 ---
-description: LLM-oriented runbook — request Hyperliquid Edge feeds, install Edge Connect, subscribe, and verify normalized quotes on the WebSocket. Served to the MCP via GitHub raw; not published on the docs site.
+description: LLM-oriented runbook — request Hyperliquid Edge feeds, install Edge Connect, subscribe, and verify decoded quotes on the WebSocket. Served to the MCP via GitHub raw; not published on the docs site.
 ---
 
 # Hyperliquid (Edge) + Edge Connect — runbook
@@ -26,7 +26,7 @@ By connecting, the user agrees to the [DoubleZero Terms of Use](https://doubleze
 | Need | Notes |
 |------|--------|
 | Linux/amd64 host | Installer target. |
-| Public IP on the host | Must match an IP entitled for the purchased feed (two receiving hosts per feed, per metro). Override detection with `DZ_CLIENT_IP` if behind NAT. |
+| Public IP on the host | Must match an IP entitled for the purchased feed (two receiving hosts per feed, per metro). The connect inside the container detects its own IP. `DZ_CLIENT_IP` only changes the IP the installer's access-pass pre-check uses; it does not help behind NAT. |
 | Access secret (`DZ_SECRET`) | A `DZ_…` token **or** path to the DoubleZero ID that owns the access pass / feed purchase. The matching private key must be on the machine that receives the feed. |
 | Approved Hyperliquid feed | Request at [doublezero.xyz/edge/subscribe](https://doublezero.xyz/edge/subscribe), wait for contact (**1–3 business days**), pay the invoice, then connect. |
 | Metro | Pick the delivery city with `doublezero latency` when applying. Tokyo package delivers to Tokyo receivers; anywhere else needs Global. |
@@ -40,9 +40,11 @@ Firewall sketch (after the tunnel exists, `doublezero1` is present):
 
 ```bash
 sudo iptables -A OUTPUT -p gre -j ACCEPT
+sudo iptables -A INPUT -i doublezero1 -s 169.254.0.0/16 -d 169.254.0.0/16 -p tcp --dport 179 -j ACCEPT
+sudo iptables -A OUTPUT -o doublezero1 -s 169.254.0.0/16 -d 169.254.0.0/16 -p tcp --dport 179 -j ACCEPT
+sudo iptables -A OUTPUT -o doublezero1 -p pim -j ACCEPT
 sudo iptables -A INPUT -i doublezero1 -p udp --dport 20000:20999 -j ACCEPT
 sudo iptables -A INPUT -i doublezero1 -p udp --dport 5765 -j ACCEPT
-# also allow BGP/PIM as in the full Hyperliquid Edge guide if you harden INPUT by default
 ```
 
 ---
@@ -88,17 +90,17 @@ You pick a **metro** and a **pubkey**. You do **not** bind a public IP at applic
 
 ```bash
 # example: keypair file
-DZ_SECRET=/path/to/keypair.json \
-DZ_FEEDS=HYPERLIQUID \
-DZ_ASSUME_YES=1 \
-  curl -fsSL https://get.doublezero.xyz/connect | bash
+curl -fsSL https://get.doublezero.xyz/connect | \
+  DZ_SECRET=/path/to/keypair.json DZ_FEEDS=HYPERLIQUID DZ_ASSUME_YES=1 bash
 ```
+
+The variables must come **after the pipe**, on `bash`. Placed before `curl`, they only reach `curl`: without a TTY the installer exits with `No secret provided`, and with one it prompts for the secret and ignores `DZ_FEEDS` and `DZ_ASSUME_YES`.
 
 If you omit `DZ_SECRET`, the installer prompts once. With it set, the install is non-interactive.
 
 What this does: prep host (Docker, `tun`/`ip_gre`, `rmem_max`) → run `doublezero-edge-connect` container (`--network host`) → run `doublezero connect multicast` inside it → serve WS on `:8081` when a **market-data** subscription is active.
 
-Watch the installer for `Access pass OK` and `Joined feed(s): …`. That feed list is what this identity actually purchased. Do not assume `hyper-hl-tob` unless it appears there.
+Watch the installer for `Access pass OK` and `Joined feed(s): …`. `Joined feed(s)` lists only the purchased feeds joined in the chosen metro with a free seat. Other purchased feeds print `Skipped…`, and a re-run prints `Already joined`. Do not assume `hyper-hl-tob` unless it was joined.
 
 A `⚠️` on **Lowest Latency Device** while **Current Device** is another metro is normal when the feed is only served from that metro. Do not pass `--device` to the closer site unless you know the feed is provisioned there — you will get *feed is not provisioned on the access pass* / *is served from that metro*.
 
@@ -106,22 +108,24 @@ A `⚠️` on **Lowest Latency Device** while **Current Device** is another metr
 
 Prefer the feed the installer already joined. If status already shows `S:edge-hyper-…`, skip this step.
 
-Connect with the **feed code** (no `edge-` prefix), e.g. `hyper-hl-tob`. The multicast **group code** in the [Feed map](#feed-map) and in `doublezero status` is `edge-hyper-…` — do not pass that to connect. `--subscribe-feed` and `--subscribe` both take the feed code from the pass. Subscribing a code that is not on the pass fails.
+Connect with the **feed code** (no `edge-` prefix), e.g. `hyper-hl-tob`. The multicast **group code** in the [Feed map](#feed-map) and in `doublezero status` is `edge-hyper-…` — do not pass that to connect.
 
-Only run an extra subscribe if the group you bought is missing from `doublezero status`. Prefer `--subscribe-feed` when using an Edge seat / access-pass identity:
+Only if a purchased feed is missing from `doublezero status`, join it. A bare connect joins every purchased feed (client v0.35.0 or later):
+
+```bash
+docker exec doublezero-edge-connect doublezero connect multicast
+```
+
+Or name feeds by feed code:
 
 ```bash
 docker exec doublezero-edge-connect \
   doublezero connect multicast --subscribe-feed <feed-code>
 ```
 
-Or with `--subscribe` (same feed codes — use what the pass joined, not a feed you did not buy):
+Do not use the per-metro feed **name** (fails with `feed … not found`) or `--subscribe` (it takes a group code; on an Edge seat pass it fails with `A Feed account is required for this EdgeSeat access pass` on the first connect, and with `You are not allowed to execute this action` once the user exists, unless an admin added the group to the pass’s allowlist).
 
-```bash
-# TOB example — swap for -mbo / xyz if that is what the pass joined
-docker exec doublezero-edge-connect \
-  doublezero connect multicast --subscribe hyper-hl-tob
-```
+A feed code you have not bought fails with `feed <address> is not provisioned on the access pass`. With no feeds bought at all, a bare connect prints `The AccessPass has no authorized multicast groups; nothing to connect to.`
 
 Multiple feeds, space-separated:
 
@@ -154,11 +158,13 @@ Re-run `doublezero status`. Expect `BGP Session Up` and `S:edge-hyper-…`.
 docker exec doublezero-edge-connect doublezero status --json
 ```
 
+Check that the reconciler activated the Hyperliquid receiver. The line is logged **once**, at activation, so search the whole log rather than a recent window:
+
 ```bash
-docker logs --since 2m doublezero-edge-connect 2>&1 | grep -iE 'hyper|activating|receiver|8081|error|warn'
+docker logs doublezero-edge-connect 2>&1 | grep -iE 'activating market-data receiver|hyper'
 ```
 
-Expect the reconciler to **activate** the Hyperliquid receiver for the subscribed code(s). `:8081` and `activating market-data receiver` can lag the tunnel by one refresh (default 30s). BGP Up + port down is not a failure yet — wait, then grep the logs again. No activation after that wait ⇒ code/IP table mismatch or feed not purchased / not yet provisioned.
+Activation can lag the tunnel by one refresh (default 30s). BGP Up + no activation line yet is not a failure — wait, then check again. Still nothing ⇒ group code mismatch or feed not purchased / not yet provisioned. The WebSocket in steps 5–6 is the final check.
 
 ### 5. Open the WebSocket
 
@@ -171,10 +177,10 @@ npx wscat -c ws://127.0.0.1:8081
 Optional filter (after connect):
 
 ```json
-{"method":"subscribe","subscription":{"venue":"HYPERLIQUID"}}
+{"method":"subscribe","subscription":{"source_name":"HYPERLIQUID"}}
 ```
 
-(Also accepted: `source` instead of deprecated `venue` — see PROTOCOL.md.)
+(`source_name` is matched case-insensitively. The deprecated `venue` key still works — see PROTOCOL.md.)
 
 With no subscription message you get the firehose of every active venue on this host.
 
@@ -201,10 +207,10 @@ Replace the group IP with the row you subscribed.
 
 1. **Approval before traffic.** Application + paid invoice + start date ⇒ then UDP. Tunnel can look fine while the seat is unpaid or not yet provisioned.
 2. **Silent non-activation.** Wrong `code` or group IP in the bridge registry ⇒ no receiver, no WS market-data, little noise. Diff `doublezero status --json` groups vs feed registry.
-3. **Host `doublezerod` vs container.** Edge Connect uses host networking and its own daemon. A host-level `doublezerod` fighting over the same UDP/GRE path will break the container — stop the host daemon when running the bridge.
+3. **Host `doublezerod` vs container.** Edge Connect uses host networking and its own daemon. A host-level `doublezerod` holds UDP port `44880`, which the container’s daemon also binds, so the container’s daemon exits right after starting. The installer offers to stop and disable the host daemon (without asking under `DZ_ASSUME_YES=1`).
 4. **WS only with market-data subscription.** Shreds-only (or no market feed) ⇒ no `:8081` service by design.
 5. **Port band.** Firewall must allow `20000:20999` and `5765` on `doublezero1`, not only GRE. Decapsulated UDP re-enters `INPUT` on the tunnel iface.
-6. **Installer exit 0 ≠ tunnel up.** Missing access pass or credits: the script continues and still prints Done / a WebSocket URL. Trust `doublezero status`, not the installer footer.
+6. **Installer exit 0 ≠ tunnel up.** A failed or pending connect prints `NOT CONNECTED` or `Not connected yet`, and the installer still exits 0. Trust `doublezero status`, not the exit code.
 7. **Feed metro ≠ closest device.** Edge Connect attaches to the metro that serves the purchased feed. Forcing `--device` at the lowest-latency site fails if that metro does not serve the feed. The constraint is the **device**, not where the host sits (a host far from the serving metro can still attach to that device).
 8. **Stale `doublezero1`.** `tunnel already exists`, mixed `169.254.x` addresses, or BGP TCP never establishing to the inner peer → disconnect, delete the iface, connect again. Do not stack a second GRE on a dirty iface.
 9. **Never `docker rm -f` / `docker kill` the bridge.** `SIGKILL` skips the disconnect the entrypoint runs on `docker stop`, orphaning the onchain session and `doublezero1` in the host netns — gotcha 8, self-inflicted. See [Teardown](#teardown).
@@ -216,9 +222,10 @@ Replace the group IP with the row you subscribed.
 
 ```text
 1. TCP connect ws://HOST:8081
-2. (optional) send {"method":"subscribe","subscription":{"venue":"HYPERLIQUID"}}
-3. On message: ignore unknown types; key books on (source, channel, instrument_id), not symbol alone
-4. Use instrument.price_exponent / qty_exponent for display tick size; quote fields are already decimal
+2. (optional) send {"method":"subscribe","subscription":{"source_name":"HYPERLIQUID"}}
+3. On message: ignore unknown types; key books on (source_id, channel, instrument_id), not symbol alone
+4. Quote prices and sizes are already decimal. The tradable tick is tick_size × 10^price_exponent;
+   tick_size alone is a raw fixed-point value
 ```
 
 Full field list: [PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md).
