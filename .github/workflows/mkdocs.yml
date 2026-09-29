@@ -43,6 +43,13 @@ jobs:
             echo "$unexpected"
             exit 1
           fi
+          # The llms index is generated from the English nav. Hyperliquid has to
+          # be in it, or agents that start at llms.txt never see those pages.
+          grep -q 'https://docs.doublezero.xyz/hyperliquid/index.md' site/llms.txt
+          grep -q 'https://docs.doublezero.xyz/hyperliquid/edge/index.md' site/llms.txt
+          grep -q 'https://docs.doublezero.xyz/hyperliquid/peering/index.md' site/llms.txt
+          grep -q '^# Peering Access$' site/llms-full.txt
+          python -m unittest hooks/test_emit_markdown.py
       # tar --dereference is what preserves the hidden .well-known directory.
       # Both deploy jobs consume this one artifact, so the two origins cannot drift.
       - name: Package site

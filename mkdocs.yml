@@ -1,9 +1,9 @@
 site_name: DoubleZero
 site_url: https://docs.doublezero.xyz/
 site_description: >-
-  Documentation for connecting to and operating on the Malbec Labs / DoubleZero
-  network — validator and tenant setup, multicast, rewards, geolocation, and
-  contributor operations.
+  Documentation for the DoubleZero protocol: connecting to the network,
+  DoubleZero Edge (Solana, Kalshi, and Hyperliquid), multicast, contributor
+  operations, rewards, and geolocation.
 # Machine-oriented runbooks stay in git for MCP / GitHub raw, but are not built
 # into the public docs site.
 exclude_docs: |

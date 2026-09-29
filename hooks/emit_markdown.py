@@ -8,8 +8,13 @@ Two things, both driven off the default (English) locale:
    "Copy Page" buttons and lets AI agents fetch clean Markdown for every
    language without depending on GitHub.
 
-2. Generate ``llms.txt`` (curated index, see https://llmstxt.org) and
-   ``llms-full.txt`` (full concatenated content) at the site root.
+2. Generate ``llms.txt`` (index, see https://llmstxt.org) and ``llms-full.txt``
+   (those same pages, concatenated) at the site root.
+
+Both files follow the English ``nav`` in mkdocs.yml. A page added to the nav is
+indexed on the next build. Translations stay out of these two files; each
+translated page still gets its own ``index.md``. Pages that are built but left
+out of the nav (redirects, for example) are not indexed.
 
 We build the llms files here instead of using the mkdocs-llmstxt plugin because
 that plugin cannot resolve localized page URIs under mkdocs-static-i18n.
@@ -26,44 +31,55 @@ LOCALES = {"zh", "ja", "ko", "pt", "es", "fr", "it"}
 
 log = logging.getLogger("mkdocs.hooks.emit_markdown")
 
-# Curated llms.txt layout: (section title, [source files in order]).
-SECTIONS = [
-    ("Welcome", ["index.md"]),
-    ("Setup", ["setup.md"]),
-    ("Connect your AI", ["mcp.md"]),
-    ("Kalshi", ["kalshi.md"]),
-    (
-        "Solana",
-        [
-            "DZ Mainnet-beta Connection.md",
-            "DZ Testnet Connection.md",
-            "Validator Multicast Connection.md",
-            "Edge Subscriber Connection.md",
-            "Permissioned Connection.md",
-            "Other Multicast Connection.md",
-            "troubleshooting.md",
-            "Validator Rewards.md",
-        ],
-    ),
-    ("Shelby", ["shelby.md"]),
-    (
-        "Contributors",
-        [
-            "contribute-overview.md",
-            "contribute.md",
-            "contribute-provisioning.md",
-            "contribute-operations.md",
-            "contribute-ops-management.md",
-            "contribute-geolocation.md",
-            "contribute-decommission.md",
-        ],
-    ),
-    ("Reference", ["architecture.md", "geolocation.md", "glossary.md"]),
-    ("Support", ["support.md"]),
-]
-
-# Collected default-locale pages, keyed by source filename (e.g. "setup.md").
+# Collected default-locale pages, keyed by source path (e.g. "setup.md").
 _pages: dict[str, dict] = {}
+
+
+def _norm(src: str) -> str:
+    return src.replace("\\", "/")
+
+
+def nav_sections(nav) -> list[tuple[str, list[str]]]:
+    """Turn the mkdocs nav into ``(section title, source paths)`` in nav order.
+
+    A top-level page becomes a one-page section named with its nav title. A
+    group becomes one section, with nested groups flattened in reading order.
+    """
+    sections: list[tuple[str, list[str]]] = []
+    for item in nav or []:
+        if isinstance(item, str):
+            sections.append((item, [_norm(item)]))
+            continue
+        if not isinstance(item, dict):
+            log.warning("llms nav item is not a page or section: %r", item)
+            continue
+        for title, value in item.items():
+            if isinstance(value, str):
+                sections.append((str(title), [_norm(value)]))
+            elif isinstance(value, list):
+                sections.append((str(title), _collect_nav_pages(value)))
+            else:
+                log.warning("llms nav section %r has no pages: %r", title, value)
+    return sections
+
+
+def _collect_nav_pages(items) -> list[str]:
+    pages: list[str] = []
+    for item in items:
+        if isinstance(item, str):
+            pages.append(_norm(item))
+            continue
+        if not isinstance(item, dict):
+            log.warning("llms nav item is not a page: %r", item)
+            continue
+        for _title, value in item.items():
+            if isinstance(value, str):
+                pages.append(_norm(value))
+            elif isinstance(value, list):
+                pages.extend(_collect_nav_pages(value))
+            else:
+                log.warning("llms nav entry %r is not a page: %r", _title, value)
+    return pages
 
 
 def _is_default_locale(dest_uri: str) -> bool:
@@ -95,7 +111,7 @@ def on_post_page(output: str, page, config, **kwargs) -> str:
         fh.write(markdown)
 
     if _is_default_locale(page.file.dest_uri):
-        _pages[page.file.src_uri] = {
+        _pages[_norm(page.file.src_uri)] = {
             "title": page.title or page.file.src_uri,
             "url": page.canonical_url,  # absolute, ends with "/"
             "md_url": page.canonical_url + "index.md",
@@ -123,18 +139,24 @@ def on_post_build(config, **kwargs) -> None:
     if site_description:
         full_lines += [f"> {site_description}", ""]
 
-    for title, files in SECTIONS:
-        index_lines.append(f"## {title}")
-        index_lines.append("")
+    for title, files in nav_sections(config.get("nav")):
+        resolved = []
         for src in files:
-            page = _pages.get(src)
+            page = _pages.get(_norm(src))
             if not page:
                 log.warning(
-                    "llms SECTIONS entry %r under %r did not resolve to a built page",
+                    "llms nav entry %r under %r did not resolve to a built page",
                     src,
                     title,
                 )
                 continue
+            resolved.append(page)
+        if not resolved:
+            continue
+
+        index_lines.append(f"## {title}")
+        index_lines.append("")
+        for page in resolved:
             entry = f"- [{page['title']}]({page['md_url']})"
             if page["description"]:
                 entry += f": {page['description']}"
