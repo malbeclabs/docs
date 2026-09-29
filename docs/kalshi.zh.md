@@ -26,7 +26,7 @@ Kalshi 数据源通过 DoubleZero Edge 网络以 UDP 组播方式传输永续合
 
 ---
 
-## 1. Edge Connect（推荐）{#1-edge-connect-recommended}
+## 1. Edge Connect（推荐） {#1-edge-connect-recommended}
 
 **从这里开始。** [doublezero-edge-connect](https://github.com/malbeclabs/doublezero-edge-connect) 是对代理友好的方式：一条安装命令，主机加入 DoubleZero，您的应用通过 **WebSocket 上的解码 JSON**（`ws://<host>:8081`）消费数据，无需解码二进制组播。
 
@@ -59,7 +59,7 @@ docker exec doublezero-edge-connect doublezero status
 
 ---
 
-## 2. 原生组播（高级）{#2-native-multicast-advanced}
+## 2. 原生组播（高级） {#2-native-multicast-advanced}
 
 !!! warning "需要更深入的技术知识"
     原生组播意味着您需要自行加入组播组并在主机上解码**原始** Edge 线路格式。只有技术能力最强的用户才应选择此方式。您需要阅读并理解规范，从 [market-by-price/spec.md](https://github.com/malbeclabs/edge-feed-spec/blob/main/market-by-price/spec.md) 和 [edge-feed-spec](https://github.com/malbeclabs/edge-feed-spec) 的其余部分开始。除非您有必须自行实现解码器的硬性要求，否则请优先选择 [Edge Connect](#1-edge-connect-recommended)。

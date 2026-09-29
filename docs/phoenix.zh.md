@@ -33,7 +33,7 @@ Phoenix 数据源通过 DoubleZero Edge 网络以 UDP 多播方式传输 Phoenix
 
 ---
 
-## 1. Edge Connect（推荐）{#1-edge-connect-recommended}
+## 1. Edge Connect（推荐） {#1-edge-connect-recommended}
 
 **从这里开始。** [doublezero-edge-connect](https://github.com/malbeclabs/doublezero-edge-connect) 是对代理友好的方式：一条安装命令，主机加入 DoubleZero，您的应用通过 **WebSocket 上的已解码 JSON**（`ws://<host>:8081`）消费数据，而无需解码二进制多播。
 
@@ -68,7 +68,7 @@ Edge Connect 会在 Phoenix 发布者之间进行仲裁，因此 WebSocket 客�
 
 ---
 
-## 2. 原生多播（高级）{#2-native-multicast-advanced}
+## 2. 原生多播（高级） {#2-native-multicast-advanced}
 
 !!! warning "需要更深入的技术知识"
     原生多播意味着您需要自行加入组播组，并在主机上解码**原始** Edge 线路格式。只有技术能力最强的用户才应选择此方式。您需要阅读并理解规范，从 [market-by-price/spec.md](https://github.com/malbeclabs/edge-feed-spec/blob/main/market-by-price/spec.md) 和 [edge-feed-spec](https://github.com/malbeclabs/edge-feed-spec) 的其余部分开始。除非您有必须自行拥有解码器的硬性要求，否则请优先使用 [Edge Connect](#1-edge-connect-recommended)。
@@ -174,7 +174,7 @@ Schema 版本为 **`3`** — 丢弃您的解码器未实现其版本的数据报
 
 **每个 Phoenix 数据源有多个发布者发送**，使用相同的组、通道和端口。所有通道和合约状态的键必须包含源 IP 地址和 Channel ID，否则两个发布者的序列号系列会交织在一起。原生订阅者每个发布者会收到每笔交易的一份副本。
 
-#### 应用消息（TOB）{#application-messages-tob}
+#### 应用消息（TOB） {#application-messages-tob}
 
 | 类型 | ID | 大小 | 端口 | 内容 |
 |------|----|------|------|---------|
