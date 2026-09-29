@@ -19,6 +19,8 @@ exclude_docs: |
   kalshi-runbook.*.md
   hyperliquid-edge-runbook.md
   hyperliquid-edge-runbook.*.md
+validation:
+  anchors: warn
 theme:
   name: material
   custom_dir: overrides
