@@ -1,44 +1,44 @@
 ---
-description: 配置 DoubleZero 设备 (DZD) 并在链上注册其接口和角色的分步指南。
+description: 逐步指南，用于配置 DoubleZero 设备 (DZD) 并在链上注册其接口和角色。
 ---
 
 # 设备配置指南
 
-本指南将引导您从头到尾完成 DoubleZero 设备 (DZD) 的配置。每个阶段对应[上线检查清单](contribute-overview.md#onboarding-checklist)中的相应步骤。
+本指南将引导您从头到尾完成 DoubleZero 设备 (DZD) 的配置。每个阶段对应[入网检查清单](contribute-overview.md#onboarding-checklist)。
 
 ---
 
-## 整体架构概览
+## 各部分如何协同工作
 
-本指南将引导您在链上注册基础设施，使 DoubleZero 网络能够通过它路由流量。设备注册得越完整，对网络的价值就越大。完整的链上设备表示有助于更好地进行故障排除、容量规划，并使控制器能够做出明智的决策。随着时间推移，目标是让控制器承担更多的配置职责。
+本指南将引导您在链上注册基础设施，以便 DoubleZero 网络能够通过它路由流量。设备注册得越完整，它对网络的作用就越大。完整的链上设备表示能够实现更好的故障排除、容量规划，并允许控制器做出更明智的决策。随着时间推移，目标是让控制器承担更多的配置职责。
 
-### 核心概念
+### 关键概念
 
 **接口**
 
-DZD 上的接口有多种形式：以太网端口、端口通道（由多个以太网端口组成的 LAG）和环回接口。每个在网络中发挥作用的接口都需要在链上注册并设置适当的标志，以便协议了解其功能。
+DZD 上的接口有不同形式：以太网端口、端口通道（由多个以太网端口组成的 LAG）和环回接口。每个在网络中发挥作用的接口都需要在链上注册并带有适当的标志，以便协议知道它的功能。
 
 以太网端口和端口通道可以承担以下角色：
 
 | 标志 | 含义 |
 |------|------|
-| `--interface-dia dia` | 将接口标记为直接互联网接入上行链路 |
-| `--interface-cyoa <subtype>` | 声明用户如何通过此接口建立 GRE 隧道（例如通过公共互联网、通过私有对等链路） |
-| `--user-tunnel-endpoint true` | 此接口携带用户终止 GRE 隧道的公共 IP |
+| `--interface-dia dia` | 将该接口标记为直接互联网接入上行链路 |
+| `--interface-cyoa <subtype>` | 声明用户如何通过该接口建立 GRE 隧道（例如通过公共互联网、通过私有对等链路） |
+| `--user-tunnel-endpoint true` | 该接口承载用户终止 GRE 隧道的公共 IP |
 
-用于 WAN 或 DZX 链路的接口不携带特定标志，它们仅注册带宽，然后在创建链路时被引用。
+用于 WAN 或 DZX 链路的接口不带特定标志，它们在注册时附带带宽信息，然后在创建链路时被引用。
 
 环回接口有多种用途：
 
 | 环回接口 | 含义 |
 |----------|------|
-| **Loopback100 / 101** | 携带用户终止 GRE 隧道的公共 IP。使用 `--user-tunnel-endpoint true` 注册。 |
-| **Loopback255** (`vpnv4`) | 注册后，控制器可以分配用于 BGP 路由器 ID、VPN-IPv4 对等（单播）、IS-IS 标识和段路由的 IP |
-| **Loopback256** (`ipv4`) | 注册后，控制器可以分配用于 IPv4 BGP 对等（组播）和 MSDP 会话的 IP |
+| **Loopback100 / 101** | 承载用户终止 GRE 隧道的公共 IP。使用 `--user-tunnel-endpoint true` 注册。 |
+| **Loopback255** (`vpnv4`) | 注册后控制器可以分配用于 BGP 路由器 ID、VPN-IPv4 对等（单播）、IS-IS 身份和段路由的 IP |
+| **Loopback256** (`ipv4`) | 注册后控制器可以分配用于 IPv4 BGP 对等（多播）和 MSDP 会话的 IP |
 
 **链路**
 
-链路与接口分开注册，接口必须先在链上存在，链路才能引用它们。创建 WAN 或 DZX 链路时，需要指定一个已注册的接口作为链路的物理端点。并非所有接口都绑定到链路：DIA、CYOA 和环回接口不连接到链路。
+链路与接口分开注册，接口必须先在链上存在，然后链路才能引用它们。当您创建 WAN 或 DZX 链路时，您需要指定一个已注册的接口作为链路的物理端点。并非所有接口都关联到链路：DIA、CYOA 和环回接口不连接到链路。
 
 | 术语 | 含义 |
 |------|------|
@@ -65,7 +65,7 @@ flowchart TB
     end
 
     subgraph Other Contributor
-        OtherDZD[其他贡献者的 DZD]
+        OtherDZD[对方的 DZD]
     end
 
     USERS["用户"]
@@ -81,22 +81,22 @@ flowchart TB
 
 ## 阶段 1：前提条件
 
-在配置设备之前，您需要完成物理硬件的设置和一些 IP 地址的分配。
+在配置设备之前，您需要完成物理硬件设置并分配一些 IP 地址。
 
 ### 所需条件
 
-| 需求 | 原因 |
+| 要求 | 原因 |
 |------|------|
 | **DZD 硬件** | Arista 7280CR3A 交换机（参见[硬件规格](contribute.md#hardware-requirements)） |
-| **机架空间** | 4U，具有适当的气流 |
+| **机架空间** | 4U，具备适当的气流通道 |
 | **电源** | 冗余供电，建议约 4KW |
-| **管理访问** | SSH/控制台访问以配置交换机 |
+| **管理访问** | 通过 SSH/控制台访问配置交换机 |
 | **互联网连接** | 用于发布指标和从控制器获取配置 |
 | **公共 IPv4 地址块** | DZ 前缀池最少需要 /29（见下文） |
 
 ### 安装 DoubleZero CLI
 
-DoubleZero CLI (`doublezero`) 在整个配置过程中用于注册设备、创建链路和管理您的贡献。它应安装在**管理服务器或虚拟机**上——而非 DZD 交换机本身。交换机仅运行配置代理和遥测代理（在[阶段 4](#phase-4-link-establishment-agent-installation)中安装）。
+DoubleZero CLI (`doublezero`) 在整个配置过程中用于注册设备、创建链路和管理您的贡献。它应该安装在**管理服务器或虚拟机**上——而不是 DZD 交换机本身。交换机只运行配置代理和遥测代理（在[阶段 4](#phase-4-link-establishment-agent-installation) 中安装）。
 
 **Ubuntu / Debian：**
 ```bash
@@ -110,37 +110,37 @@ curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh | 
 sudo yum install doublezero
 ```
 
-验证守护进程是否正在运行：
+验证守护进程正在运行：
 ```bash
 sudo systemctl status doublezerod
 ```
 
 ### 了解您的 DZ 前缀
 
-您的 DZ 前缀是 DoubleZero 协议管理的一组公共 IP 地址块，用于 IP 分配。
+您的 DZ 前缀是一组由 DoubleZero 协议管理用于 IP 分配的公共 IP 地址块。
 
 ```mermaid
 flowchart LR
-    subgraph "您的 /29 地址块 (8 个 IP)"
-        IP1["第一个 IP<br/>预留给<br/>您的设备"]
+    subgraph "您的 /29 地址块（8 个 IP）"
+        IP1["第一个 IP<br/>为您的设备保留"]
         IP2["IP 2"]
         IP3["IP 3"]
         IP4["..."]
         IP8["IP 8"]
     end
 
-    IP1 -->|分配给| LO[您的 DZD 上的<br/>Loopback100]
+    IP1 -->|分配给| LO[Loopback100<br/>在您的 DZD 上]
     IP2 -->|分配给| U1[用户 1]
     IP3 -->|分配给| U2[用户 2]
 ```
 
 **DZ 前缀的使用方式：**
 
-- **第一个 IP**：预留给您的设备（分配给 Loopback100 接口）
-- **剩余 IP**：分配给连接到您的 DZD 的特定用户类型：
+- **第一个 IP**：为您的设备保留（分配给 Loopback100 接口）
+- **其余 IP**：分配给连接到您的 DZD 的特定用户类型：
     - `IBRLWithAllocatedIP` 用户
     - `EdgeFiltering` 用户（未来用例）
-- **IBRL 用户**：不会消耗此地址池中的地址（他们使用自己的公共 IP）
+- **IBRL 用户**：不消耗此池中的地址（他们使用自己的公共 IP）
 
 !!! warning "DZ 前缀规则"
     **您不能将这些地址用于：**
@@ -152,18 +152,18 @@ flowchart LR
 
     **要求：**
 
-    - 必须是**全球可路由的（公共）** IPv4 地址
+    - 必须是**全球可路由（公共）** IPv4 地址
     - 私有 IP 范围（10.x、172.16-31.x、192.168.x）将被智能合约拒绝
-    - **最小大小：/29**（8 个地址），建议使用更大的前缀（例如 /28、/27）
+    - **最小规模：/29**（8 个地址），更大的前缀更好（如 /28、/27）
     - 整个地址块必须可用——不要预先分配任何地址
 
-    如果您需要为自己的设备使用地址（DIA 接口 IP、管理等），请使用**单独的地址池**。
+    如果您需要为自己的设备分配地址（DIA 接口 IP、管理接口等），请使用**单独的地址池**。
 
 ---
 
 ## 阶段 2：账户设置
 
-在此阶段，您将创建用于在网络上识别您和您的设备的加密密钥。
+在此阶段，您将创建用于在网络上标识您和您的设备的加密密钥。
 
 ### CLI 运行位置
 
@@ -195,12 +195,12 @@ flowchart LR
 
 ### 什么是密钥？
 
-将密钥视为安全的登录凭据：
+可以将密钥理解为安全的登录凭据：
 
 - **服务密钥**：您的贡献者身份——用于运行 CLI 命令
-- **指标发布者密钥**：您的设备提交遥测数据的身份
+- **指标发布者密钥**：您的设备身份，用于提交遥测数据
 
-两者都是加密密钥对（一个您分享的公钥和一个您保密的私钥）。
+两者都是加密密钥对（一个您共享的公钥，一个您保密的私钥）。
 
 ```mermaid
 flowchart LR
@@ -221,7 +221,7 @@ flowchart LR
 doublezero keygen
 ```
 
-此命令在默认位置创建一个密钥对。输出显示您的**公钥**——这是您将与 DZF 分享的内容。
+这将在默认位置创建一个密钥对。输出显示您的**公钥**——这是您将与 DZF 共享的内容。
 
 ### 步骤 2.2：生成指标发布者密钥
 
@@ -236,12 +236,12 @@ doublezero keygen -o ~/.config/doublezero/metrics-publisher.json
 联系 DoubleZero 基金会或 Malbec Labs 并提供：
 
 1. 您的**服务密钥公钥**
-2. 您的 **GitHub 用户名**（用于仓库访问权限）
+2. 您的 **GitHub 用户名**（用于仓库访问）
 
 他们将：
 
 - 在链上创建您的**贡献者账户**
-- 授予对私有**贡献者仓库**的访问权限
+- 授予私有**贡献者仓库**的访问权限
 
 ### 步骤 2.4：验证您的账户
 
@@ -260,17 +260,17 @@ doublezero contributor list
 - 基础设备配置
 - TCAM 配置文件
 - ACL 配置
-- 其他设置说明
+- 附加设置说明
 
-请按照其中的说明进行设备特定的配置。
+请按照其中的说明进行设备特定配置。
 
 ---
 
 ## 阶段 3：设备配置
 
-现在您将在区块链上注册物理设备并配置其接口。
+现在您将在区块链上注册您的物理设备并配置其接口。
 
-### 了解设备类型
+### 了解设备类型 {#understanding-device-types}
 
 **边缘（Edge）** — 仅接受用户连接
 
@@ -287,7 +287,7 @@ flowchart LR
     E_DZX <-->|DZX 链路| ED["DZD（不同贡献者）"]
 ```
 
-**中转（Transit）** — 在设备之间转发流量，无用户连接
+**中转（Transit）** — 在设备之间传输流量，没有用户连接
 
 ```mermaid
 flowchart LR
@@ -299,7 +299,7 @@ flowchart LR
     T_DZX <-->|DZX 链路| TD["DZD（不同贡献者）"]
 ```
 
-**混合（Hybrid）** — 用户连接和骨干传输兼备，最常见
+**混合（Hybrid）** — 用户连接和骨干网，最常见
 
 ```mermaid
 flowchart LR
@@ -319,8 +319,8 @@ flowchart LR
 | 类型 | 功能 | 适用场景 |
 |------|------|----------|
 | **边缘（Edge）** | 仅接受用户连接 | 单一位置，仅面向用户 |
-| **中转（Transit）** | 在设备之间转发流量 | 骨干连接，无用户 |
-| **混合（Hybrid）** | 用户连接和骨干传输兼备 | 最常见——兼具所有功能 |
+| **中转（Transit）** | 在设备之间传输流量 | 骨干网连接，无用户 |
+| **混合（Hybrid）** | 同时支持用户连接和骨干网 | 最常见——功能全面 |
 
 ### 步骤 3.1：查找您的位置和交换点
 
@@ -330,11 +330,11 @@ flowchart LR
 # 列出可用位置（数据中心）
 doublezero location list
 
-# 列出可用交换点（互联节点）
+# 列出可用交换点（互联点）
 doublezero exchange list
 ```
 
-### 步骤 3.2：在链上创建设备
+### 步骤 3.2：在链上创建您的设备 {#step-32-create-your-device-onchain}
 
 在区块链上注册您的设备：
 
@@ -368,7 +368,7 @@ doublezero device create \
 Signature: 4vKz8H...truncated...7xPq2
 ```
 
-验证设备是否已创建：
+验证您的设备已创建：
 
 ```bash
 doublezero device list | grep nyc-dz001
@@ -379,10 +379,10 @@ doublezero device list | grep nyc-dz001
 | 参数 | 含义 |
 |------|------|
 | `--code` | 设备的唯一名称（例如 `nyc-dz001`） |
-| `--contributor` | 您的贡献者代码（由 DZF 分配） |
+| `--contributor` | 您的贡献者代码（由 DZF 提供） |
 | `--device-type` | `hybrid`、`transit` 或 `edge` |
-| `--location` | 从 `location list` 获取的数据中心代码 |
-| `--exchange` | 从 `exchange list` 获取的最近交换点代码 |
+| `--location` | 来自 `location list` 的数据中心代码 |
+| `--exchange` | 来自 `exchange list` 的最近交换点代码 |
 | `--public-ip` | 用户通过互联网连接到您设备的公共 IP |
 | `--dz-prefixes` | 为用户分配的 IP 地址块 |
 
@@ -398,7 +398,7 @@ doublezero device interface create <DEVICE_CODE> Loopback255 --loopback-type vpn
 doublezero device interface create <DEVICE_CODE> Loopback256 --loopback-type ipv4
 ```
 
-**预期输出（每条命令）：**
+**预期输出（每个命令）：**
 
 ```
 Signature: 3mNx9K...truncated...8wRt5
@@ -406,7 +406,7 @@ Signature: 3mNx9K...truncated...8wRt5
 
 ### 步骤 3.4：创建物理接口
 
-注册将用于 WAN 或 DZX 链路的物理接口。这些接口必须先在链上存在，才能创建引用它们的链路。在此步骤中，您只需注册接口及其带宽，链路将在后续步骤中创建。
+注册将用于 WAN 或 DZX 链路的物理接口。这些接口必须先在链上存在，然后才能创建引用它们的链路。在此步骤中，您只需注册接口及其带宽，链路将在后续步骤中创建。
 
 ```bash
 doublezero device interface create <DEVICE_CODE> <INTERFACE_NAME> \
@@ -426,13 +426,13 @@ doublezero device interface create nyc-dz001 Ethernet1/1 \
 Signature: 7pQw2R...truncated...4xKm9
 ```
 
-对每个将用作 WAN 或 DZX 链路端点的接口重复此操作。CYOA 和 DIA 接口将在下一步单独注册。
+对每个将用作 WAN 或 DZX 链路端点的接口重复此操作。CYOA 和 DIA 接口在下一步中单独注册。
 
-### 步骤 3.5：创建 CYOA 接口（适用于边缘/混合设备）
+### 步骤 3.5：创建 CYOA 接口（适用于边缘/混合设备） {#step-35-create-cyoa-interface-for-edgehybrid-devices}
 
-混合和边缘 DZD 需要**两个公共 IP 地址**供用户终止其 GRE 隧道。用户可以通过单播、组播或两者同时连接，哪个 IP 服务于哪个用途会因用户而异轮换。
+混合和边缘 DZD 需要**两个公共 IP 地址**供用户终止 GRE 隧道。用户可以通过单播、多播或两者连接，哪个 IP 用于哪种用途会按用户轮换。
 
-两个 IP 都必须使用 `--user-tunnel-endpoint true` 注册，可以在物理接口或环回接口上。这包括您在创建设备时提供的 IP，该 IP 仍需要在此处显式注册。
+两个 IP 都必须使用 `--user-tunnel-endpoint true` 注册，可以在物理接口或环回接口上。这包括您在设备创建时提供的 IP——该 IP 仍然需要在此处显式注册。
 
 如果您的 IP 资源有限，可以使用 DZ 前缀的第一个 `/32` 作为两个 IP 之一。
 
@@ -443,19 +443,19 @@ Signature: 7pQw2R...truncated...4xKm9
 | DIA | `--interface-dia dia` | 将端口标记为直接互联网接入 |
 | CYOA | `--interface-cyoa <subtype>` | 声明用户如何通过 GRE 隧道连接到您的设备 |
 
-CYOA 标志始终设置在**物理接口**（以太网端口或端口通道）上。绝不在环回接口上。
+CYOA 标志始终设置在**物理接口**（以太网端口或端口通道）上。绝不设置在环回接口上。
 
 | CYOA 子类型 | 适用场景 |
 |-------------|----------|
 | `gre-over-dia` | 用户通过公共互联网连接。最常见。 |
-| `gre-over-private-peering` | 用户通过直连交叉连接或专线连接 |
+| `gre-over-private-peering` | 用户通过直连交叉连接或私有线路连接 |
 | `gre-over-public-peering` | 用户在互联网交换点 (IX) 与您对等 |
-| `gre-over-fabric` | 用户在同一机房并通过本地 Fabric 连接 |
-| `gre-over-cable` | 与单个专用用户的直连电缆连接 |
+| `gre-over-fabric` | 用户位于同一数据中心，通过本地交换网络连接 |
+| `gre-over-cable` | 直连线缆连接到单个专用用户 |
 
-#### 场景 A：单个物理接口
+#### 场景 A：单物理接口
 
-到 ISP 的单个物理上行链路。Ethernet1/1 是 CYOA 和 DIA 接口，携带两个公共 IP 中的一个。Loopback100 携带第二个公共 IP。
+到 ISP 的单物理上行链路。Ethernet1/1 是 CYOA 和 DIA 接口，承载两个公共 IP 中的一个。Loopback100 承载第二个公共 IP。
 
 ```mermaid
 flowchart LR
@@ -502,13 +502,13 @@ doublezero device interface create mydzd-nyc01 Loopback100 \
 
 #### 场景 B：端口通道 (LAG)
 
-DZD 通过带有 IP 的端口通道连接到上游设备。端口通道携带一个公共 IP 并作为 CYOA 端点。Loopback100 携带第二个公共 IP。
+DZD 通过带有 IP 的端口通道连接到上游设备。端口通道承载一个公共 IP 并作为 CYOA 端点。Loopback100 承载第二个公共 IP。
 
 ```mermaid
 flowchart LR
     USERS(["终端用户"])
 
-    subgraph SW["上游路由器/交换机"]
+    subgraph SW["上游路由器 / 交换机"]
         SWPC(["bond0
         203.0.113.2/30"])
     end
@@ -530,7 +530,7 @@ flowchart LR
 
 | 接口 | `--interface-cyoa` | `--interface-dia` | `--ip-net` | `--bandwidth` | `--cir` | `--routing-mode` | `--user-tunnel-endpoint` |
 |------|-------------------|------------------|------------|---------------|---------|-----------------|--------------------------|
-| Port-Channel1 | `gre-over-dia` | `dia` | 贡献者分配的 IP/子网 | LAG 总带宽 | 承诺速率 | `bgp` 或 `static` | `true` |
+| Port-Channel1 | `gre-over-dia` | `dia` | 贡献者分配的 IP/子网 | LAG 合计速率 | 承诺速率 | `bgp` 或 `static` | `true` |
 | Loopback100 | — | — | 您的公共 /32 | `0bps` | — | — | `true` |
 
 基于场景 B 执行的命令示例：
@@ -551,9 +551,9 @@ doublezero device interface create mydzd-fra01 Loopback100 \
 ```
 
 
-#### 场景 C：双物理上行链路连接到不同路由器
+#### 场景 C：连接到不同路由器的双物理上行链路
 
-每个物理接口连接到不同的上游路由器。两个公共 IP 分别位于 Loopback100 和 Loopback101 上，都注册为用户隧道端点。
+每个物理接口连接到不同的上游路由器。两个公共 IP 分别在 Loopback100 和 Loopback101 上，都注册为用户隧道端点。
 
 ```mermaid
 flowchart LR
@@ -638,7 +638,7 @@ doublezero device list
 
 ---
 
-## 阶段 4：链路建立与代理安装
+## 阶段 4：链路建立与代理安装 {#phase-4-link-establishment-agent-installation}
 
 链路将您的设备连接到 DoubleZero 网络的其余部分。
 
@@ -652,16 +652,16 @@ flowchart LR
     end
 
     subgraph "其他贡献者"
-        O1[其他贡献者的 DZD<br/>NYC]
+        O1[对方的 DZD<br/>NYC]
     end
 
     D1 ---|WAN 链路<br/>同一贡献者| D2
     D1 ---|DZX 链路<br/>不同贡献者| O1
 ```
 
-| 链路类型 | 连接对象 | 接受方式 |
-|----------|----------|----------|
-| **WAN 链路** | 您自己的两个设备 | 自动（您拥有两端） |
+| 链路类型 | 连接 | 接受方式 |
+|----------|------|----------|
+| **WAN 链路** | 您的两个设备 | 自动（您拥有两端） |
 | **DZX 链路** | 您的设备与另一个贡献者的设备 | 需要对方接受 |
 
 ### 步骤 4.1：创建 WAN 链路（如果您有多个设备）
@@ -736,7 +736,7 @@ doublezero link accept \
   --side-z-interface <THEIR_INTERFACE>
 ```
 
-**预期输出（接受方）：**
+**预期输出（接受方贡献者）：**
 
 ```
 Signature: 6vQt9L...truncated...3wPm4
@@ -755,7 +755,7 @@ doublezero link list
  8vkYpXaBW8RuknJq...                         | nyc-dz001:lax-dz001 | acme        | nyc-dz001   | Ethernet3/1       | lax-dz001   | Ethernet3/1       | WAN       | 10Gbps    | 9000 | 65.00ms  | 1.00ms    | 0.00ms            | 42        | 172.16.0.84/31  | activated | pending | 5FMtd5Woq5XAAg54...
 ```
 
-链路在两端都配置完成后应显示状态为 `activated`。
+链路在双方都配置完成后应显示状态为 `activated`。
 
 ---
 
@@ -780,10 +780,10 @@ flowchart TB
 
 | 代理 | 功能 |
 |------|------|
-| **配置代理** | 从控制器拉取配置，应用到您的交换机 |
-| **遥测代理** | 测量与其他设备之间的延迟/丢包，在链上报告指标 |
+| **配置代理** | 从控制器拉取配置，并应用到您的交换机 |
+| **遥测代理** | 测量到其他设备的延迟/丢包，在链上报告指标 |
 
-### 步骤 4.4：安装配置代理
+### 步骤 4.4：安装配置代理 {#step-44-install-config-agent}
 
 #### 在交换机上启用 API
 
@@ -797,8 +797,8 @@ management api eos-sdk-rpc
         no disabled
 ```
 
-!!! note "VRF 说明"
-    如果管理 VRF 名称不同（例如 `management`），请将 `default` 替换为您的管理 VRF 名称。
+!!! note "VRF 注意事项"
+    如果不同，请将 `default` 替换为您的管理 VRF 名称（例如 `management`）。
 
 #### 下载并安装代理
 
@@ -844,9 +844,9 @@ daemon doublezero-agent
 ```
 
 !!! info "控制器 IP 和端口"
-    控制器 IP 和端口可以在步骤 2.5 中获得访问权限的贡献者仓库中找到。
+    控制器 IP 和端口可以在步骤 2.5 中您获得访问权限的贡献者仓库中找到。
 
-!!! note "VRF 说明"
+!!! note "VRF 注意事项"
     如果您的管理 VRF 不是 `default`（即命名空间不是 `ns-default`），请在 exec 命令前加上 `exec /sbin/ip netns exec ns-<VRF>`。例如，如果您的 VRF 是 `management`：
     ```
     daemon doublezero-agent
@@ -854,9 +854,9 @@ daemon doublezero-agent
         no shut
     ```
 
-从 `doublezero device list` 中获取您的设备公钥（`account` 列）。
+从 `doublezero device list`（`account` 列）获取您的设备公钥。
 
-#### 验证代理是否运行
+#### 验证运行状态
 
 ```bash
 switch# show agent doublezero-agent logs
@@ -864,7 +864,7 @@ switch# show agent doublezero-agent logs
 
 您应该看到 "Starting doublezero-agent" 和成功的控制器连接信息。
 
-### 步骤 4.5：安装遥测代理
+### 步骤 4.5：安装遥测代理 {#step-45-install-telemetry-agent}
 
 #### 将指标发布者密钥复制到您的设备
 
@@ -924,7 +924,7 @@ daemon doublezero-telemetry
     no shut
 ```
 
-!!! note "VRF 说明"
+!!! note "VRF 注意事项"
     如果您的管理 VRF 不是 `default`（即命名空间不是 `ns-default`），请在 exec 命令中添加 `--management-namespace ns-<VRF>`。例如，如果您的 VRF 是 `management`：
     ```
     daemon doublezero-telemetry
@@ -932,7 +932,7 @@ daemon doublezero-telemetry
         no shut
     ```
 
-#### 验证代理是否运行
+#### 验证运行状态
 
 ```bash
 switch# show agent doublezero-telemetry logs
@@ -944,15 +944,15 @@ switch# show agent doublezero-telemetry logs
 
 ## 阶段 5：链路老化测试
 
-!!! warning "所有新链路在承载流量前必须进行老化测试"
-    新链路必须**排空至少 24 小时**才能激活用于生产流量。此老化测试要求在 [RFC12: Network Provisioning](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc12-network-provisioning.md) 中定义，该规范要求约 200,000 个 DZ 账本时隙（约 20 小时）的干净指标，链路才能投入使用。
+!!! warning "所有新链路在承载流量之前必须经过老化测试"
+    新链路必须**排空至少 24 小时**才能激活用于生产流量。此老化要求定义在 [RFC12: Network Provisioning](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc12-network-provisioning.md) 中，其规定在链路准备投入使用之前需要约 200,000 个 DZ 账本槽位（约 20 小时）的干净指标。
 
-安装并运行代理后，在 [metrics.doublezero.xyz](https://metrics.doublezero.xyz) 上监控您的链路至少连续 24 小时：
+安装并运行代理后，在 [metrics.doublezero.xyz](https://metrics.doublezero.xyz) 上监控您的链路至少 24 个连续小时：
 
-- **"DoubleZero Device-Link Latencies"** 仪表板 — 验证链路上随时间**零丢包**
-- **"DoubleZero Network Metrics"** 仪表板 — 验证您的链路上**零错误**
+- **"DoubleZero Device-Link Latencies"** 仪表板——验证链路在一段时间内**零丢包**
+- **"DoubleZero Network Metrics"** 仪表板——验证您的链路上**零错误**
 
-只有在老化测试期间显示链路零丢包、零错误后，才能解除链路排空状态。
+只有在老化期间显示链路干净、零丢包且零错误后，才能取消链路排空。
 
 ---
 
@@ -960,17 +960,17 @@ switch# show agent doublezero-telemetry logs
 
 逐项检查此清单以确认一切正常工作。
 
-!!! warning "您的设备初始状态为锁定（`max_users = 0`）"
-    创建设备时，`max_users` 默认设置为 **0**。这意味着还没有用户可以连接到它。这是有意为之的——您必须在接受用户流量之前验证一切正常。
+!!! warning "您的设备创建时处于锁定状态（`max_users = 0`）"
+    设备创建时，`max_users` 默认设置为 **0**。这意味着还没有用户可以连接到它。这是有意为之的——您必须在接受用户流量之前验证一切正常工作。
 
     **在将 `max_users` 设置为大于 0 之前，您必须：**
 
-    1. 确认所有链路已完成 **24 小时老化测试**，在 [metrics.doublezero.xyz](https://metrics.doublezero.xyz) 上显示零丢包/零错误
+    1. 确认所有链路已在 [metrics.doublezero.xyz](https://metrics.doublezero.xyz) 上完成**24 小时老化测试**且零丢包/零错误
     2. **与 DZ/Malbec Labs 协调**进行连接测试：
         - 测试用户能否连接到您的设备？
         - 用户是否通过 DZ 网络接收到路由？
-        - 用户是否能通过 DZ 网络进行端到端流量路由？
-    3. 仅在 DZ/ML 确认测试通过后，将 max_users 设置为 96：
+        - 用户能否通过 DZ 网络端到端路由流量？
+    3. 只有在 DZ/ML 确认测试通过后，才将 max_users 设置为 96：
 
     ```bash
     doublezero device update --pubkey <DEVICE_ACCOUNT> --max-users 96
@@ -990,7 +990,7 @@ doublezero device list | grep <YOUR_DEVICE_CODE>
 ```
 
 ```bash
-# 您的接口应在列表中显示
+# 您的接口应被列出
 doublezero device interface list | grep <YOUR_DEVICE_CODE>
 ```
 
@@ -1031,7 +1031,7 @@ switch# show agent doublezero-telemetry logs | tail -20
 
 ```mermaid
 flowchart TB
-    subgraph "验证检查清单"
+    subgraph "验证清单"
         D[设备状态：activated？]
         I[接口：已注册？]
         L[链路：activated？]
@@ -1045,7 +1045,7 @@ flowchart TB
     CA --> PASS
     TA --> PASS
 
-    PASS[所有检查通过] --> NOTIFY[通知 DZF/Malbec Labs<br/>您已完成技术准备！]
+    PASS[所有检查通过] --> NOTIFY[通知 DZF/Malbec Labs<br/>您已达到技术就绪状态！]
 ```
 
 ---
@@ -1060,12 +1060,12 @@ flowchart TB
 
 ### 链路停留在 "requested" 状态
 
-- DZX 链路需要另一个贡献者接受
+- DZX 链路需要另一个贡献者的接受
 - 联系对方运行 `doublezero link accept`
 
 ### 配置代理无法连接
 
-- 验证管理网络有互联网访问
+- 验证管理网络具有互联网访问
 - 检查 VRF 配置是否与您的设置匹配
 - 确保设备公钥正确
 
@@ -1081,4 +1081,4 @@ flowchart TB
 
 - 查阅[运维指南](contribute-operations.md)了解代理升级和链路管理
 - 查看[术语表](glossary.md)了解术语定义
-- 如遇到问题，请联系 DZF/Malbec Labs
+- 如遇问题请联系 DZF/Malbec Labs

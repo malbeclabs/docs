@@ -1,16 +1,16 @@
 ---
-description: DoubleZero Geolocationサービスが署名付きレイテンシ測定を使用してデバイスの物理的な位置を証明する仕組み、ユースケース、アーキテクチャについて。
+description: DoubleZero ジオロケーションサービスが署名付きレイテンシ測定を使用してデバイスの物理的な位置を証明する仕組み、ユースケースとアーキテクチャについて。
 ---
 
-# Geolocation
+# ジオロケーション
 
-DoubleZero Geolocationサービスは、レイテンシ測定を使用してデバイスの物理的な位置を特定するのに役立ちます。既知の位置にあるインフラストラクチャとターゲットデバイス間の[RTT](glossary.md#rtt-round-trip-time)（ラウンドトリップタイム）測定により、デバイスが特定の地点から一定の距離内にあることの暗号署名付き証明を提供します。DoubleZero Ledgerへの測定結果のオンチェーン記録は、将来のリリースで予定されています。
+DoubleZero ジオロケーションサービスは、レイテンシ測定を使用してデバイスの物理的な位置を特定するのに役立ちます。既知の位置にあるインフラストラクチャとターゲットデバイス間の [RTT](glossary.md#rtt-round-trip-time)（ラウンドトリップタイム）測定により、デバイスが特定の地点から一定の距離内にあることの暗号署名付き証明が提供されます。DoubleZero Ledger への測定結果のオンチェーン記録は、将来のリリースで計画されています。
 
-ユースケースには、規制コンプライアンス（例：GDPR — バリデーターがEU内で運用されていることの証明）、地理的分散の監査、デバイスやIPの所在地の検証可能な証明が必要なあらゆるアプリケーションが含まれます。
+ユースケースには、規制コンプライアンス（例：GDPR — バリデータが EU 内で運用されていることの証明）、地理的分散の監査、およびデバイスや IP の所在を検証可能な証明が必要なあらゆるアプリケーションが含まれます。
 
 ---
 
-## 仕組み
+## 仕組み {#how-it-works}
 
 ```mermaid
 flowchart LR
@@ -29,7 +29,7 @@ flowchart LR
      Probe -. "signed offset" .-> T
 ```
 
-以下の図は、3つのプローブフロータイプ — Outbound、OutboundIcmp、Inbound — を示しており、geoProbeがターゲットと通信する方法が異なります：
+以下の図は、3 つのプローブフロータイプ — Outbound、OutboundIcmp、および Inbound — を示しており、geoProbe がターゲットと通信する方法の違いを表しています：
 
 ```mermaid
 flowchart TB
@@ -52,78 +52,78 @@ flowchart TB
     end
 ```
 
-Geolocationは3層の測定チェーンを使用します：
+ジオロケーションは 3 層の測定チェーンを使用します：
 
 ```
 DZD (known location) ◄──TWAMP──► geoProbe ◄──RTT──► Target device
 ```
 
-- **[DZD](glossary.md#dzd-doublezero-device) <-> geoProbe**: [TWAMP](glossary.md#twamp-two-way-active-measurement-protocol)がDoubleZero Deviceとプローブ間のレイテンシを継続的に測定します。DZDはDZ Ledgerに登録された既知の固定地理座標を持っています。
-- **geoProbe <-> Target**: プローブと位置特定対象のデバイス間でRTTが測定されます。
+- **[DZD](glossary.md#dzd-doublezero-device) <-> geoProbe**: [TWAMP](glossary.md#twamp-two-way-active-measurement-protocol) が DoubleZero Device とプローブ間のレイテンシを継続的に測定します。DZD は DZ Ledger に登録された既知の固定地理座標を持っています。
+- **geoProbe <-> ターゲット**: プローブと位置特定対象のデバイス間で RTT が測定されます。
 
-オフセット結果は暗号署名され、UDPでターゲットまたはユーザー指定の代替宛先に配信されます。
+オフセット結果は暗号署名され、UDP でターゲットまたはユーザー指定の代替送信先に配信されます。
 
-**重要:** Geolocationが報告するのはRTTのみです — 推定距離や座標ではありません。一般的な使用方法としては、RTTを2で割り、ガラス中の光速（約200km/ms）を掛けることで、ターゲットが存在するDZD座標周辺の半径を算出します。RTTの解釈方法（例：最大距離半径の計算）はユーザーに委ねられています。
+**重要:** ジオロケーションは RTT のみをレポートします — 推定距離や座標ではありません。一般的な使用方法としては、RTT を 2 で割り、ガラス中の光速（約 200km/ms）を掛けて、ターゲットが位置する DZD 座標を中心とした半径を求めます。RTT の解釈方法（例：最大距離半径の計算）はユーザー次第です。
 
-### プローブフロータイプ
+### プローブフロータイプ {#probe-flow-types}
 
-プローブがターゲットを測定する方法は3つあります：
+プローブがターゲットを測定する方法は 3 つあります：
 
-| フロー | 開始者 | プロトコル | 使用場面 |
+| フロー | 開始側 | プロトコル | 使用する場面 |
 |------|---------------|----------|----------|
-| **Outbound** | Probe -> Target | [TWAMP](glossary.md#twamp-two-way-active-measurement-protocol) | ターゲットがパブリックIP、オープンな受信ポートを持ち、TWAMPリフレクターを実行できる場合 |
-| **OutboundIcmp** | Probe -> Target | ICMP echo | ターゲットがパブリックIPを持つがTWAMPリフレクターを実行できない場合（またはTWAMPがファイアウォールでブロックされている場合） |
-| **Inbound** | Target -> Probe | Signed TWAMP | ターゲットが受信接続を受け入れられない場合、または署名鍵の位置を検証したい場合 |
+| **Outbound** | プローブ -> ターゲット | [TWAMP](glossary.md#twamp-two-way-active-measurement-protocol) | ターゲットがパブリック IP を持ち、インバウンドポートが開いており、TWAMP リフレクタを実行できる場合 |
+| **OutboundIcmp** | プローブ -> ターゲット | ICMP echo | ターゲットがパブリック IP を持つが、TWAMP リフレクタを実行できない場合（またはファイアウォールで TWAMP がブロックされている場合） |
+| **Inbound** | ターゲット -> プローブ | 署名付き TWAMP | ターゲットがインバウンド接続を受け付けられない場合、または署名鍵の位置を検証したい場合 |
 
-すべてのケースで、DZD <-> geoProbeの測定は同じ方法で行われます。geoProbe <-> ターゲット通信の方向とプロトコルのみが異なります。
+すべてのケースで、DZD <-> geoProbe の測定は同じ方法で行われます。geoProbe <-> ターゲット間の通信の方向とプロトコルのみが異なります。
 
 !!! info "技術仕様"
-    暗号署名の詳細や測定プロトコルを含むジオロケーション検証システムの完全な技術仕様については、[RFC 16: Geolocation Verification](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc16-geolocation-verification.md)を参照してください。
+    暗号署名の詳細と測定プロトコルを含むジオロケーション検証システムの完全な技術仕様については、[RFC 16: Geolocation Verification](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc16-geolocation-verification.md) を参照してください。
 
 ---
 
-## 前提条件
+## 前提条件 {#prerequisites}
 
-### 1. クレジット付きのDoubleZero ID
+### 1. クレジット付きの DoubleZero ID {#1-doublezero-id-with-credits}
 
-Geolocationユーザーには、資金が投入されたDoubleZero IDが必要です。DoubleZeroネットワークへの接続は不要（アクセスパスは不要）ですが、ユーザーアカウントの作成やターゲットの管理にはDoubleZero Ledger上のクレジットが必要です — ターゲットの追加/削除操作ごとにクレジットがかかります。
+ジオロケーションユーザーには、資金が入った DoubleZero ID が必要です。DoubleZero ネットワークへの接続は不要です（アクセスパスは不要）が、ユーザーアカウントの作成とターゲット管理のために DoubleZero Ledger 上にクレジットが必要です — ターゲットの追加/削除操作ごとにクレジットが消費されます。
 
-DoubleZero IDをお持ちでない場合：
+DoubleZero ID をお持ちでない場合：
 
 ```bash
 doublezero keygen
 doublezero address   # get your pubkey
 ```
 
-公開鍵をDoubleZeroチームに連絡してIDに資金を投入してもらいます。ターゲットを動的に追加・削除する予定がある場合は、通常より多めに資金を投入してください。
+公開鍵を添えて DoubleZero チームに連絡し、ID に資金を投入してもらってください。ターゲットを動的に追加・削除する予定がある場合は、通常よりも多めに資金を投入してください。
 
-### 2. 2Zトークンアカウント
+### 2. 2Z トークンアカウント {#2-2z-token-account}
 
-[2Zトークン](glossary.md#2z-token)アカウントが必要です。サービス料金はエポックごとにこのアカウントから差し引かれます。
+[2Z token](glossary.md#2z-token) アカウントが必要です。サービス料金はエポックごとにこのアカウントから差し引かれます。
 
 ---
 
-## インストール
+## インストール {#installation}
 
-管理用コンピューターで：
+管理用コンピュータ上で：
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
 sudo apt install doublezero
 ```
 
-InboundまたはTWAMP Outboundのターゲットで：
+Inbound または TWAMP Outbound のターゲット上で：
 ```bash
 curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
 sudo apt install doublezero-geoprobe-target
 ```
-これにより`doublezero-geoprobe-target`（outbound）と`doublezero-geoprobe-target-sender`（inbound）がインストールされます。
+これにより `doublezero-geoprobe-target`（outbound）と `doublezero-geoprobe-target-sender`（inbound）がインストールされます。
 
 !!! note "ICMP Outbound"
-    `outbound-icmp`ターゲットにはソフトウェアのインストールは不要です。
+    `outbound-icmp` ターゲットにはソフトウェアのインストールは不要です。
 
 ---
 
-## 残高確認
+## 残高の確認 {#check-your-balance}
 
 ```bash
 doublezero balance
@@ -131,9 +131,9 @@ doublezero balance
 
 ---
 
-## セットアップ
+## セットアップ {#setup}
 
-### ステップ1：geolocationユーザーの作成
+### ステップ 1: ジオロケーションユーザーの作成 {#step-1-create-a-geolocation-user}
 
 ```bash
 doublezero geolocation user create \
@@ -143,24 +143,24 @@ doublezero geolocation user create \
 ```
 
 - `--code`: アカウントの短い一意の識別子（例：`myorg`）
-- `--token-account`: [2Zトークン](glossary.md#2z-token)アカウントの公開鍵 — サービス料金がここから差し引かれます
+- `--token-account`: [2Z token](glossary.md#2z-token) アカウントの公開鍵 — サービス料金はここから差し引かれます
 
 !!! note "アカウントの有効化"
-    ユーザー作成後、アカウントを有効化するためにDoubleZero Foundationに連絡してください。プローブの開始前に支払いステータスがアクティブとしてマークされている必要があります。
+    ユーザー作成後、DoubleZero Foundation に連絡してアカウントを有効化してください。プローブが開始される前に支払いステータスがアクティブに設定されている必要があります。
 
-### ステップ2：利用可能なプローブの一覧表示
+### ステップ 2: 利用可能なプローブの一覧表示 {#step-2-list-available-probes}
 
 ```bash
 doublezero geolocation probe list
 ```
 
-使用したいプローブの**code**または**public_ip**、および（inboundターゲット用の）**signing_pubkey**を控えてください。
+使用したいプローブの **code** または **public_ip**、および **signing_pubkey**（inbound ターゲットの場合）を確認してください。
 
-### ステップ3：ターゲットの追加
+### ステップ 3: ターゲットの追加 {#step-3-add-a-target}
 
-=== "Outbound（プローブがターゲットにTWAMPを送信）"
+=== "Outbound（プローブがターゲットに TWAMP を送信）"
 
-    ターゲットがパブリックIP、オープンな受信ポートを持ち、[TWAMP](glossary.md#twamp-two-way-active-measurement-protocol)リフレクターを実行できる場合にこのフローを使用します。
+    ターゲットがパブリック IP を持ち、インバウンドポートが開いており、[TWAMP](glossary.md#twamp-two-way-active-measurement-protocol) リフレクタを実行できる場合は、このフローを使用します。
 
     ```bash
     doublezero geolocation user add-target \
@@ -170,12 +170,12 @@ doublezero geolocation probe list
       --target-ip <target-public-ip>
     ```
 
-    `--probe`: ターゲットを測定するgeoProbeのコード（例：`ams-mn-gp1`）
-    `--ip-address`: ターゲットデバイスのパブリックIPv4アドレス
+    `--probe`: ターゲットを測定する geoProbe のコード（例：`ams-mn-gp1`）
+    `--ip-address`: ターゲットデバイスのパブリック IPv4 アドレス
 
-=== "OutboundIcmp（プローブがターゲットにpingを送信）"
+=== "OutboundIcmp（プローブがターゲットに ping を送信）"
 
-    ターゲットがパブリックIPを持つがTWAMPリフレクターを実行できない場合、またはTWAMPトラフィックがファイアウォールでブロックされている場合にこのフローを使用します。ターゲットはICMP echo（ping）リクエストに応答するだけで済みます — 追加のソフトウェアは不要です。
+    ターゲットがパブリック IP を持つが TWAMP リフレクタを実行できない場合、またはファイアウォールで TWAMP トラフィックがブロックされている場合は、このフローを使用します。ターゲットは ICMP echo（ping）リクエストに応答するだけでよく、追加のソフトウェアは不要です。
 
     ```bash
     doublezero geolocation user add-target \
@@ -185,14 +185,14 @@ doublezero geolocation probe list
       --ip-address <target-public-ip>
     ```
 
-    `--probe`: ターゲットを測定するgeoProbeのコード（例：`ams-mn-gp1`）
-    `--ip-address`: ターゲットデバイスのパブリックIPv4アドレス
+    `--probe`: ターゲットを測定する geoProbe のコード（例：`ams-mn-gp1`）
+    `--ip-address`: ターゲットデバイスのパブリック IPv4 アドレス
     !!! Warning "結果の送信先"
-        Outbound ICMPターゲットは、ユーザーに代替結果送信先が設定されている場合にのみ機能します。（ステップ3bを参照）
+        Outbound ICMP ターゲットは、ユーザーに代替結果送信先が設定されている場合にのみ機能します。（ステップ 3b を参照）
 
 === "Inbound（ターゲットがプローブに送信）"
 
-    ターゲットがNATの背後にある場合や、受信接続を受け入れられない場合にこのフローを使用します。
+    ターゲットが NAT の背後にあるか、インバウンド接続を受け付けられない場合は、このフローを使用します。
 
     ```bash
     doublezero geolocation user add-target \
@@ -202,14 +202,14 @@ doublezero geolocation probe list
       --target-pk <target-keypair-pubkey>
     ```
 
-    `--probe`: ターゲットを測定するgeoProbeのコード（例：`ams-mn-gp1`）
-    `--target-pk`: ターゲットがメッセージの署名に使用するキーペアの公開鍵 — プローブは登録済みの公開鍵からのメッセージのみを受け入れます
+    `--probe`: ターゲットを測定する geoProbe のコード（例：`ams-mn-gp1`）
+    `--target-pk`: ターゲットがメッセージの署名に使用するキーペアの公開鍵 — プローブは登録された公開鍵からのメッセージのみを受け付けます
 
-### ステップ3b：結果の送信先の設定（オプション）
+### ステップ 3b: 結果の送信先の設定（オプション） {#step-3b-set-a-result-destination-optional}
 
-Outboundターゲットタイプの複合LocationOffset結果が配信される代替`host:port`を設定します。これはLocationOffsetをターゲットに送信する代わりに使用され、ユーザーごとに設定されます。ターゲットごとに異なる動作が必要な場合は、それぞれの動作タイプに対して2つのユーザーを設定する必要があります。
+任意の Outbound ターゲットタイプについて、合成された LocationOffset 結果が配信される代替の `host:port` を設定します。これにより LocationOffset のターゲットへの送信が置き換えられ、ユーザーごとに設定されます。ターゲットごとに異なる動作が必要な場合は、それぞれの動作タイプに対して 2 つのユーザーを設定する必要があります。
 
-代替送信先は、複数のターゲットからの結果を単一のエンドポイントに集約するのに便利です。ICMPプローブでは必須です。
+代替送信先は、複数のターゲットからの結果を単一のエンドポイントに集約するのに便利です。ICMP プローブでは必須です。
 
 ```bash
 doublezero geolocation user set-result-destination \
@@ -217,21 +217,21 @@ doublezero geolocation user set-result-destination \
   --destination <host:port>
 ```
 
-`--destination`: パブリックにルーティング可能なIPv4アドレスまたは有効なドメイン名とポート（例：`203.0.113.10:9000`または`results.example.com:9000`）。空文字列を渡すとクリアされます。
+`--destination`: 公的にルーティング可能な IPv4 アドレスまたは有効なドメイン名とポート（例：`203.0.113.10:9000` または `results.example.com:9000`）。クリアするには空文字列を渡します。
 
-`user get`を使用して結果の送信先を確認します：
+`user get` を使用して結果の送信先を確認します：
 
 ```bash
 doublezero geolocation user get --user <your-user-code>
 ```
 
-### ステップ4：ターゲットアプリケーションの実行
+### ステップ 4: ターゲットアプリケーションの実行 {#step-4-run-the-target-application}
 
-OutboundフローとInboundフローの両方で、ターゲットデバイス上でアプリケーションを実行する必要があります。Go言語のリファレンス実装とサンプルが用意されており、直接実行するか、独自の統合の出発点として使用できます。
+Outbound と Inbound の両方のフローでは、ターゲットデバイス上でアプリケーションを実行する必要があります。Go でリファレンス実装とサンプルが利用可能です — 直接実行するか、独自の統合の出発点として使用できます。
 
 === "Outbound"
 
-    Outboundプローブでは、geoProbeがRTTを測定できるように、ターゲットデバイスで[TWAMP](glossary.md#twamp-two-way-active-measurement-protocol)リフレクターを実行する必要があります。測定対象のデバイスでターゲットアプリケーションを実行します：
+    Outbound プローブの場合、geoProbe が RTT を測定できるように、ターゲットデバイスで [TWAMP](glossary.md#twamp-two-way-active-measurement-protocol) リフレクタを実行する必要があります。測定対象のデバイス上でターゲットアプリケーションを実行します：
 
     ```bash
     doublezero-geoprobe-target
@@ -239,9 +239,9 @@ OutboundフローとInboundフローの両方で、ターゲットデバイス�
 
 === "Inbound"
 
-    Inboundプローブでは、ターゲットデバイスで署名済みメッセージをプローブに送信するソフトウェアを実行する必要があります。
+    Inbound プローブの場合、ターゲットデバイスで署名付きメッセージをプローブに送信するソフトウェアを実行する必要があります。
 
-    測定対象のデバイスで：
+    測定対象のデバイス上で：
 
     ```bash
     doublezero-geoprobe-target-sender \
@@ -250,45 +250,45 @@ OutboundフローとInboundフローの両方で、ターゲットデバイス�
       -keypair <path-to-keypair.json>
     ```
 
-`-probe-ip`: geoProbeのIPアドレス（`probe list`から取得）
-`-probe-pk`: geoProbeの公開鍵（`probe list`から取得）
-`-keypair`: ステップ3で`--target-pk`として登録した公開鍵のキーペアへのパス
+`-probe-ip`: geoProbe の IP アドレス（`probe list` から取得）
+`-probe-pk`: geoProbe の公開鍵（`probe list` から取得）
+`-keypair`: ステップ 3 で `--target-pk` として登録した公開鍵を持つキーペアへのパス
 
-ターゲットセンダーは2プローブペアメカニズムを使用します：2つの事前署名済み[TWAMP](glossary.md#twamp-two-way-active-measurement-protocol)プローブを連続して素早く送信します。プローブの2番目のパケットへの応答には`SinceLastRxNs`が含まれます — これはプローブがリプライ0を送信してからプローブ1を受信するまでの時間で、プローブが測定した[RTT](glossary.md#rtt-round-trip-time)として機能します。このペアアプローチにより、ターゲットが正確なカーネルレベルのタイムスタンプを実行できない場合でも、正確なRTT測定が可能になります。
+ターゲットセンダーは 2 プローブペアメカニズムを使用します：2 つの事前署名された [TWAMP](glossary.md#twamp-two-way-active-measurement-protocol) プローブを素早く連続して送信します。プローブの 2 番目のパケットへの応答には `SinceLastRxNs` が含まれます — これはプローブがリプライ 0 を送信してからプローブ 1 を受信するまでの時間であり、プローブが測定した [RTT](glossary.md#rtt-round-trip-time) として機能します。このペアアプローチにより、ターゲットが正確なカーネルレベルのタイムスタンプを実行できない場合でも、正確な RTT 測定が提供されます。
 
 ---
 
-## コマンドリファレンス
+## コマンドリファレンス {#command-reference}
 
-### `doublezero geolocation user`
+### `doublezero geolocation user` {#doublezero-geolocation-user}
 
 | サブコマンド | 説明 |
 |------------|-------------|
-| `create` | 新しいgeolocationユーザーアカウントを作成 |
+| `create` | 新しいジオロケーションユーザーアカウントを作成 |
 | `get` | 特定のユーザーの詳細を取得 |
-| `list` | すべてのgeolocationユーザーを一覧表示 |
+| `list` | すべてのジオロケーションユーザーを一覧表示 |
 | `delete` | ユーザーを削除 |
 | `add-target` | ユーザーにターゲットを追加 |
 | `remove-target` | ユーザーからターゲットを削除 |
-| `set-result-destination` | オフセット配信用の代替host:portを設定 |
-| `update-payment` | 支払いステータスを更新（foundation使用） |
+| `set-result-destination` | オフセット配信の代替 host:port を設定 |
+| `update-payment` | 支払いステータスを更新（Foundation 用） |
 
-### `doublezero geolocation probe`
+### `doublezero geolocation probe` {#doublezero-geolocation-probe}
 
 | サブコマンド | 説明 |
 |------------|-------------|
-| `create` | 新しいgeoProbeを登録 |
+| `create` | 新しい geoProbe を登録 |
 | `get` | 特定のプローブの詳細を取得 |
 | `list` | すべてのプローブを一覧表示 |
 | `update` | プローブの設定を更新 |
 | `delete` | プローブを削除 |
-| `add-parent` | DZDをプローブの親としてリンク |
-| `remove-parent` | 親DZDを削除 |
+| `add-parent` | DZD をプローブの親としてリンク |
+| `remove-parent` | 親 DZD を削除 |
 
-### グローバルフラグ
+### グローバルフラグ {#global-flags}
 
 | フラグ | 説明 |
 |------|-------------|
-| `--env` | ネットワーク環境：`testnet`、`devnet`、または`mainnet-beta` |
-| `--rpc-url` | カスタムDoubleZero RPCエンドポイント |
-| `--keypair` | 署名用キーペアへのパス（書き込み操作に必須） |
+| `--env` | ネットワーク環境: `testnet`、`devnet`、または `mainnet-beta` |
+| `--rpc-url` | カスタム DoubleZero RPC エンドポイント |
+| `--keypair` | 署名キーペアへのパス（書き込み操作に必須） |

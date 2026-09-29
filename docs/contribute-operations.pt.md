@@ -9,19 +9,19 @@ Este guia abrange as tarefas operacionais contínuas para manutenção dos seus 
 
 ## Registro de Incidentes e Manutenção
 
-Qualquer manutenção planejada ou problema não planejado de link/dispositivo deve ser registrado no [portal de Gerenciamento OPS](contribute-ops-management.md). Isso dá a todos os contribuidores visibilidade sobre o que está acontecendo na rede e evita investigações duplicadas.
+Qualquer manutenção planejada ou problema não planejado de link/dispositivo deve ser registrado no [portal de Gerenciamento de OPS](contribute-ops-management.md). Isso dá a todos os contribuidores visibilidade sobre o que está acontecendo em toda a rede e evita investigações duplicadas.
 
-- **Trabalho planejado** (ex.: substituição de um óptico, manutenção programada da operadora): crie um registro de manutenção antes de iniciar.
-- **Problemas não planejados** (ex.: link fora do ar, erros de interface, perda de pacotes): abra um incidente assim que começar a investigar.
+- **Trabalho planejado** (ex.: substituição de um módulo óptico, manutenção programada da operadora): crie um registro de manutenção antes de começar.
+- **Problemas não planejados** (ex.: link inativo, erros de interface, perda de pacotes): abra um incidente assim que começar a investigar.
 
-Consulte o [guia de Gerenciamento OPS](contribute-ops-management.md) para etapas de integração e como criar tickets.
+Consulte o [guia de Gerenciamento de OPS](contribute-ops-management.md) para etapas de integração e como criar tickets.
 
 ---
 
-**Pré-requisitos**: Antes de usar este guia, certifique-se de que você tenha:
+**Pré-requisitos**: Antes de usar este guia, certifique-se de que você:
 
-- Concluído o [Guia de Provisionamento de Dispositivos](contribute-provisioning.md)
-- Seu DZD esteja totalmente operacional com ambos os agentes de Configuração e Telemetria em execução
+- Concluiu o [Guia de Provisionamento de Dispositivos](contribute-provisioning.md)
+- Seu DZD está totalmente operacional com ambos os agentes de Configuração e Telemetria em execução
 
 ---
 
@@ -45,13 +45,13 @@ doublezero device update --pubkey <DEVICE_PUBKEY> [OPTIONS]
 
 ## Atualizações de Interfaces
 
-Use `doublezero device interface update` para modificar interfaces existentes. Este comando aceita as mesmas opções de `interface create`.
+Use `doublezero device interface update` para modificar interfaces existentes. Este comando aceita as mesmas opções que `interface create`.
 
 ```bash
 doublezero device interface update <DEVICE> <NAME> [OPTIONS]
 ```
 
-Para a lista completa de opções de interface, incluindo configurações CYOA/DIA, consulte [Criando Interfaces](contribute-provisioning.md#step-35-create-cyoa-interface-for-edgehybrid-devices).
+Para a lista completa de opções de interface incluindo configurações CYOA/DIA, veja [Criando Interfaces](contribute-provisioning.md#step-35-create-cyoa-interface-for-edgehybrid-devices).
 
 **Exemplo - Adicionar configurações CYOA a uma interface existente:**
 
@@ -67,14 +67,14 @@ doublezero device interface update lax-dz001 Ethernet1/2 \
 
 ```bash
 doublezero device interface list              # Todas as interfaces em todos os dispositivos
-doublezero device interface list <DEVICE>     # Interfaces de um dispositivo específico
+doublezero device interface list <DEVICE>     # Interfaces para um dispositivo específico
 ```
 
 ---
 
 ## Atualização do Agente de Configuração
 
-Quando uma nova versão do Agente de Configuração for lançada, siga estas etapas para atualizar.
+Quando uma nova versão do Agente de Configuração é lançada, siga estas etapas para atualizar.
 
 ### 1. Baixar a versão mais recente
 
@@ -104,7 +104,7 @@ Primeiro, encontre o nome do arquivo da versão antiga:
 switch# show extensions
 ```
 
-Execute os seguintes comandos para remover a versão antiga. Substitua `<OLD_VERSION>` pela versão antiga da saída acima:
+Execute os seguintes comandos para remover a versão antiga. Substitua `<OLD_VERSION>` pela versão antiga do output acima:
 ```
 switch# delete flash:doublezero-agent_<OLD_VERSION>_linux_amd64.rpm
 switch# delete extension:doublezero-agent_<OLD_VERSION>_linux_amd64.rpm
@@ -135,7 +135,7 @@ O Status deve ser "A, I, B".
 switch# show extensions
 ```
 
-### 7. Verificar a Saída de Log do Agente de Configuração
+### 7. Verificar o Log de Saída do Agente de Configuração
 
 ```
 show agent doublezero-agent log
@@ -145,7 +145,7 @@ show agent doublezero-agent log
 
 ## Atualização do Agente de Telemetria
 
-Quando uma nova versão do Agente de Telemetria for lançada, siga estas etapas para atualizar.
+Quando uma nova versão do Agente de Telemetria é lançada, siga estas etapas para atualizar.
 
 ### 1. Baixar a versão mais recente
 
@@ -175,7 +175,7 @@ Primeiro, encontre o nome do arquivo da versão antiga:
 switch# show extensions
 ```
 
-Execute os seguintes comandos para remover a versão antiga. Substitua `<OLD_VERSION>` pela versão antiga da saída acima:
+Execute os seguintes comandos para remover a versão antiga. Substitua `<OLD_VERSION>` pela versão antiga do output acima:
 ```
 switch# delete flash:doublezero-device-telemetry-agent_<OLD_VERSION>_linux_amd64.rpm
 switch# delete extension:doublezero-device-telemetry-agent_<OLD_VERSION>_linux_amd64.rpm
@@ -206,7 +206,7 @@ O Status deve ser "A, I, B".
 switch# show extensions
 ```
 
-### 7. Verificar a Saída de Log do Agente de Telemetria
+### 7. Verificar o Log de Saída do Agente de Telemetria
 
 ```
 show agent doublezero-telemetry log
@@ -214,7 +214,7 @@ show agent doublezero-telemetry log
 
 ---
 
-## Monitoramento
+## Monitoramento {#monitoring}
 
 > ⚠️ **Importante:**
 >
@@ -253,9 +253,9 @@ doublezero_agent_get_config_errors_total 0
 
 #### Erros de Alto Sinal
 
-- `up` - Esta é a métrica de série temporal gerada automaticamente pelo prometheus se a instância de coleta estiver saudável e acessível. Se não estiver, ou o agente não está acessível ou o agente não está em execução.
-- `doublezero_agent_apply_config_errors_total` - A configuração que o agente está tentando aplicar falhou. Nesta situação, os usuários não conseguirão se integrar ao dispositivo e as alterações de configuração on-chain não serão aplicadas até que isso seja resolvido.
-- `doublezero_agent_get_config_errors_total` - Isso sinaliza que o agente de configuração local não consegue se comunicar com o controlador DoubleZero. Na maioria dos casos, isso pode ser devido a um problema com a conectividade de gerenciamento no dispositivo. Similar à métrica acima, os usuários não conseguirão se integrar ao dispositivo e as alterações de configuração on-chain não serão aplicadas até que isso seja resolvido.
+- `up` - Esta é a métrica de série temporal gerada automaticamente pelo prometheus se a instância de coleta está saudável e acessível. Se não estiver, o agente não está acessível ou o agente não está em execução.
+- `doublezero_agent_apply_config_errors_total` - A configuração que o agente tentou aplicar falhou. Nesta situação, os usuários não conseguirão se conectar ao dispositivo e as alterações de configuração onchain não serão aplicadas até que isso seja resolvido.
+- `doublezero_agent_get_config_errors_total` - Isso sinaliza que o agente de configuração local não consegue se comunicar com o controlador DoubleZero. Na maioria dos casos, isso pode ser devido a um problema com a conectividade de gerenciamento no dispositivo. Similar à métrica acima, os usuários não conseguirão se conectar ao dispositivo e as alterações de configuração onchain não serão aplicadas até que isso seja resolvido.
 
 ### Métricas do Agente de Telemetria
 
@@ -292,21 +292,21 @@ doublezero_device_telemetry_agent_peer_discovery_not_found_tunnels{local_device_
 
 #### Erros de Alto Sinal
 
-- `up` - Esta é a métrica de série temporal gerada automaticamente pelo prometheus se a instância de coleta estiver saudável e acessível. Se não estiver, ou o agente não está acessível ou o agente não está em execução.
-- `doublezero_device_telemetry_agent_errors_total` com um `error_type` de `submitter_failed_to_write_samples` - Este é um sinal de que o agente de telemetria não consegue gravar amostras on-chain, o que pode ser devido a problemas de conectividade de gerenciamento no dispositivo.
+- `up` - Esta é a métrica de série temporal gerada automaticamente pelo prometheus se a instância de coleta está saudável e acessível. Se não estiver, o agente não está acessível ou o agente não está em execução.
+- `doublezero_device_telemetry_agent_errors_total` com um `error_type` de `submitter_failed_to_write_samples` - Este é um sinal de que o agente de telemetria não consegue gravar amostras onchain, o que pode ser devido a problemas de conectividade de gerenciamento no dispositivo.
 
 ---
 
 ## Gerenciamento de Links
 
-### Drenagem de Links
+### Drenagem de Link {#link-draining}
 
-A drenagem de links permite que os contribuidores removam graciosamente um link do serviço ativo para manutenção ou resolução de problemas. Existem dois estados de drenagem:
+A drenagem de link permite que contribuidores removam graciosamente um link do serviço ativo para manutenção ou resolução de problemas. Existem dois estados de drenagem:
 
 | Status | Comportamento IS-IS | Descrição |
 |--------|---------------------|-----------|
-| `soft-drained` | Métrica definida como 1.000.000 | Link é despriorizado. O tráfego usará caminhos alternativos se disponíveis, mas ainda usará este link se for a única opção. |
-| `hard-drained` | Definido como passivo | Link é completamente removido do roteamento. Nenhum tráfego passará por este link. |
+| `soft-drained` | Métrica definida para 1.000.000 | Link é desprioritizado. O tráfego usará caminhos alternativos se disponíveis, mas ainda usará este link se for a única opção. |
+| `hard-drained` | Definido como passivo | Link é completamente removido do roteamento. Nenhum tráfego atravessará este link. |
 
 ### Transições de Estado
 
@@ -322,11 +322,11 @@ hard-drained → activated ✗ (deve passar por soft-drained primeiro)
 ```
 
 > ⚠️ **Nota:**
-> Você não pode ir diretamente de `hard-drained` para `activated`. Você deve primeiro fazer a transição para `soft-drained` e então para `activated`.
+> Você não pode ir diretamente de `hard-drained` para `activated`. Você deve primeiro fazer a transição para `soft-drained` e depois para `activated`.
 
 ### Drenagem Suave de um Link
 
-A drenagem suave desprioriza um link definindo sua métrica IS-IS para 1.000.000. O tráfego preferirá caminhos alternativos, mas ainda pode usar este link se necessário.
+A drenagem suave desprioritiza um link definindo sua métrica IS-IS para 1.000.000. O tráfego preferirá caminhos alternativos, mas ainda pode usar este link se necessário.
 
 ```bash
 doublezero link update --pubkey <LINK_PUBKEY> --status soft-drained
@@ -334,7 +334,7 @@ doublezero link update --pubkey <LINK_PUBKEY> --status soft-drained
 
 ### Drenagem Forçada de um Link
 
-A drenagem forçada remove o link do roteamento completamente, definindo o IS-IS para modo passivo. Nenhum tráfego passará por este link.
+A drenagem forçada remove o link do roteamento inteiramente, definindo o IS-IS para modo passivo. Nenhum tráfego atravessará este link.
 
 ```bash
 doublezero link update --pubkey <LINK_PUBKEY> --status hard-drained
@@ -355,7 +355,7 @@ doublezero link update --pubkey <LINK_PUBKEY> --status activated
 
 ### Substituição de Atraso
 
-O recurso de substituição de atraso permite que os contribuidores alterem temporariamente o atraso efetivo de um link sem modificar o valor de atraso real medido. Isso é útil para rebaixar temporariamente um link de caminho primário para secundário.
+O recurso de substituição de atraso permite que contribuidores alterem temporariamente o atraso efetivo de um link sem modificar o valor real de atraso medido. Isso é útil para rebaixar temporariamente um link de caminho primário para secundário.
 
 ### Definir uma Substituição de Atraso
 
@@ -376,4 +376,4 @@ doublezero link update --pubkey <LINK_PUBKEY> --delay-override-ms 0
 ```
 
 > ⚠️ **Nota:**
-> Quando um link está em `soft-drained`, tanto `delay_ms` quanto `delay_override_ms` são substituídos para 1000ms (1 segundo) para garantir a despriorização.
+> Quando um link está em `soft-drained`, tanto `delay_ms` quanto `delay_override_ms` são substituídos para 1000ms (1 segundo) para garantir a desprioritização.

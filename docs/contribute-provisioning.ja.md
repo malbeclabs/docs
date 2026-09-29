@@ -1,49 +1,49 @@
 ---
-description: DoubleZero デバイス（DZD）のプロビジョニングと、インターフェースおよびロールのオンチェーン登録に関するステップバイステップガイド。
+description: DoubleZero Device（DZD）のプロビジョニングおよびインターフェースとロールのオンチェーン登録に関するステップバイステップガイド。
 ---
 
 # デバイスプロビジョニングガイド
 
-このガイドでは、DoubleZero デバイス（DZD）のプロビジョニングを最初から最後まで説明します。各フェーズは[オンボーディングチェックリスト](contribute-overview.md#onboarding-checklist)に対応しています。
+このガイドでは、DoubleZero Device（DZD）のプロビジョニングを最初から最後まで説明します。各フェーズは[オンボーディングチェックリスト](contribute-overview.md#onboarding-checklist)に対応しています。
 
 ---
 
 ## 全体の仕組み
 
-このガイドでは、DoubleZero ネットワークがトラフィックをルーティングできるように、インフラストラクチャをオンチェーンに登録する手順を説明します。デバイスの登録が完全であるほど、ネットワークにとってより有用になります。デバイスの完全なオンチェーン表現により、トラブルシューティング、キャパシティプランニングが改善され、コントローラーがより適切な判断を下せるようになります。将来的には、コントローラーがより多くの設定の責務を担うことを目指しています。
+このガイドでは、DoubleZeroネットワークがトラフィックをルーティングできるようにインフラストラクチャをオンチェーンに登録する手順を説明します。デバイスの登録が完全であるほど、ネットワークにとってより有用になります。デバイスの完全なオンチェーン表現により、トラブルシューティング、キャパシティプランニングが改善され、コントローラーが情報に基づいた意思決定を行えるようになります。将来的には、コントローラーがより多くの設定責任を担うことを目指しています。
 
 ### 主要な概念
 
 **インターフェース**
 
-DZD のインターフェースにはさまざまな形態があります：イーサネットポート、ポートチャネル（複数のイーサネットポートで構成される LAG）、およびループバックです。ネットワークで役割を果たす各インターフェースは、プロトコルがその機能を把握できるよう、適切なフラグとともにオンチェーンに登録する必要があります。
+DZDのインターフェースにはさまざまな形態があります：イーサネットポート、ポートチャネル（複数のイーサネットポートで構成されるLAG）、ループバックです。ネットワークで役割を果たす各インターフェースは、プロトコルがその機能を認識できるよう、適切なフラグとともにオンチェーンに登録する必要があります。
 
 イーサネットポートとポートチャネルは以下の役割を果たすことができます：
 
 | フラグ | 意味 |
 |------|---------------|
 | `--interface-dia dia` | インターフェースをダイレクトインターネットアクセスのアップリンクとしてマークする |
-| `--interface-cyoa <subtype>` | ユーザーがこのインターフェースを通じて GRE トンネルを確立する方法を宣言する（例：パブリックインターネット経由、プライベートピアリングリンク経由） |
-| `--user-tunnel-endpoint true` | このインターフェースはユーザーが GRE トンネルを終端するパブリック IP を保持する |
+| `--interface-cyoa <subtype>` | ユーザーがこのインターフェースを通じてGREトンネルを確立する方法を宣言する（例：パブリックインターネット経由、プライベートピアリングリンク経由） |
+| `--user-tunnel-endpoint true` | このインターフェースはユーザーがGREトンネルを終端するためのパブリックIPを持つ |
 
-WAN または DZX リンクに使用されるインターフェースには特定のフラグはなく、帯域幅とともに登録され、リンク作成時に参照されます。
+WANまたはDZXリンクに使用されるインターフェースには特定のフラグは付与されません。帯域幅とともに登録され、リンク作成時に参照されます。
 
-ループバックインターフェースにはいくつかの用途があります：
+ループバックインターフェースにはいくつかの目的があります：
 
 | ループバック | 意味 |
 |----------|---------------|
-| **Loopback100 / 101** | ユーザーが GRE トンネルを終端するパブリック IP を保持する。`--user-tunnel-endpoint true` で登録される。 |
-| **Loopback255** (`vpnv4`) | コントローラーが BGP ルーター ID、VPN-IPv4 ピアリング（ユニキャスト）、IS-IS アイデンティティ、およびセグメントルーティングに使用する IP を割り当てられるよう登録される |
-| **Loopback256** (`ipv4`) | コントローラーが IPv4 BGP ピアリング（マルチキャスト）および MSDP セッションに使用する IP を割り当てられるよう登録される |
+| **Loopback100 / 101** | ユーザーがGREトンネルを終端するためのパブリックIPを持つ。`--user-tunnel-endpoint true`で登録。 |
+| **Loopback255**（`vpnv4`） | コントローラーがBGPルーターID、VPN-IPv4ピアリング（ユニキャスト）、IS-ISアイデンティティ、セグメントルーティングに使用するIPを割り当てられるよう登録 |
+| **Loopback256**（`ipv4`） | コントローラーがIPv4 BGPピアリング（マルチキャスト）およびMSDPセッションに使用するIPを割り当てられるよう登録 |
 
 **リンク**
 
-リンクはインターフェースとは別に登録され、リンクがインターフェースを参照する前にインターフェースがオンチェーンに存在している必要があります。WAN または DZX リンクを作成する際、すでに登録済みのインターフェースをリンクの物理エンドポイントとして指定します。すべてのインターフェースがリンクに紐づいているわけではありません：DIA、CYOA、およびループバックインターフェースはリンクに接続されません。
+リンクはインターフェースとは別に登録され、リンクがインターフェースを参照する前にインターフェースがオンチェーンに存在している必要があります。WANまたはDZXリンクを作成する際、すでに登録済みのインターフェースをリンクの物理エンドポイントとして指定します。すべてのインターフェースがリンクに紐づくわけではありません：DIA、CYOA、ループバックインターフェースはリンクに接続されません。
 
 | 用語 | 意味 |
 |------|---------------|
-| **WAN リンク** | 自分が所有する 2 つの DZD 間のリンク |
-| **DZX リンク** | 自分の DZD と別のコントリビューターの DZD 間のリンク |
+| **WANリンク** | 自分のDZD間を接続するリンク |
+| **DZXリンク** | 自分のDZDと別のコントリビューターのDZD間を接続するリンク |
 
 ### アーキテクチャ概要
 
@@ -79,24 +79,24 @@ flowchart TB
 
 ---
 
-## フェーズ 1：前提条件
+## フェーズ1：前提条件
 
-デバイスをプロビジョニングする前に、物理ハードウェアのセットアップといくつかの IP アドレスの割り当てが必要です。
+デバイスをプロビジョニングする前に、物理ハードウェアのセットアップといくつかのIPアドレスの割り当てが必要です。
 
 ### 必要なもの
 
 | 要件 | 必要な理由 |
 |-------------|-----------------|
-| **DZD ハードウェア** | Arista 7280CR3A スイッチ（[ハードウェア仕様](contribute.md#hardware-requirements)を参照） |
-| **ラックスペース** | 適切なエアフローを備えた 4U |
-| **電源** | 冗長フィード、推奨 ~4KW |
-| **管理アクセス** | スイッチを設定するための SSH/コンソールアクセス |
+| **DZDハードウェア** | Arista 7280CR3Aスイッチ（[ハードウェア仕様](contribute.md#hardware-requirements)を参照） |
+| **ラックスペース** | 適切なエアフローを備えた4U |
+| **電源** | 冗長給電、〜4KW推奨 |
+| **管理アクセス** | スイッチ設定用のSSH/コンソールアクセス |
 | **インターネット接続** | メトリクス公開およびコントローラーからの設定取得用 |
-| **パブリック IPv4 ブロック** | DZ プレフィックスプール用に最低 /29（下記参照） |
+| **パブリックIPv4ブロック** | DZプレフィックスプール用の最小 /29（下記参照） |
 
-### DoubleZero CLI のインストール
+### DoubleZero CLIのインストール
 
-DoubleZero CLI（`doublezero`）は、プロビジョニング全体を通じてデバイスの登録、リンクの作成、コントリビューションの管理に使用されます。**管理サーバーまたは VM** にインストールする必要があります — DZD スイッチ本体にはインストールしないでください。スイッチでは Config Agent と Telemetry Agent のみが実行されます（[フェーズ 4](#phase-4-link-establishment-agent-installation) でインストール）。
+DoubleZero CLI（`doublezero`）は、プロビジョニング全体を通じてデバイスの登録、リンクの作成、コントリビューションの管理に使用します。**管理サーバーまたはVM**にインストールする必要があります。DZDスイッチ自体にはインストールしないでください。スイッチではConfig AgentとTelemetry Agentのみが動作します（[フェーズ4](#phase-4-link-establishment-agent-installation)でインストール）。
 
 **Ubuntu / Debian：**
 ```bash
@@ -110,14 +110,14 @@ curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh | 
 sudo yum install doublezero
 ```
 
-デーモンが実行中であることを確認します：
+デーモンが動作していることを確認します：
 ```bash
 sudo systemctl status doublezerod
 ```
 
-### DZ プレフィックスについて
+### DZプレフィックスの理解
 
-DZ プレフィックスは、DoubleZero プロトコルが IP 割り当てのために管理するパブリック IP アドレスのブロックです。
+DZプレフィックスは、DoubleZeroプロトコルがIP割り当てのために管理するパブリックIPアドレスのブロックです。
 
 ```mermaid
 flowchart LR
@@ -134,41 +134,41 @@ flowchart LR
     IP3 -->|Allocated to| U2[User 2]
 ```
 
-**DZ プレフィックスの使用方法：**
+**DZプレフィックスの使用方法：**
 
-- **最初の IP**：デバイス用に予約される（Loopback100 インターフェースに割り当て）
-- **残りの IP**：DZD に接続する特定のユーザータイプに割り当てられる：
+- **最初のIP**：デバイス用に予約（Loopback100インターフェースに割り当て）
+- **残りのIP**：DZDに接続する特定のユーザータイプに割り当て：
     - `IBRLWithAllocatedIP` ユーザー
     - `EdgeFiltering` ユーザー（将来のユースケース）
-- **IBRL ユーザー**：このプールからは消費しない（独自のパブリック IP を使用）
+- **IBRLユーザー**：このプールからは消費しません（独自のパブリックIPを使用）
 
-!!! warning "DZ プレフィックスのルール"
-    **以下の用途にはこれらのアドレスを使用できません：**
+!!! warning "DZプレフィックスのルール"
+    **これらのアドレスを以下の目的に使用することはできません：**
 
-    - 自社のネットワーク機器
-    - DIA インターフェース上のポイントツーポイントリンク
+    - 自分のネットワーク機器
+    - DIAインターフェースのポイントツーポイントリンク
     - 管理インターフェース
-    - DZ プロトコル外のあらゆるインフラストラクチャ
+    - DZプロトコル外のインフラストラクチャ
 
     **要件：**
 
-    - **グローバルにルーティング可能な（パブリック）** IPv4 アドレスである必要がある
-    - プライベート IP 範囲（10.x、172.16-31.x、192.168.x）はスマートコントラクトによって拒否される
-    - **最小サイズ：/29**（8 アドレス）、より大きなプレフィックスが推奨（例：/28、/27）
-    - ブロック全体が利用可能である必要がある — アドレスを事前に割り当てないこと
+    - **グローバルにルーティング可能な（パブリック）** IPv4アドレスである必要があります
+    - プライベートIPレンジ（10.x、172.16-31.x、192.168.x）はスマートコントラクトにより拒否されます
+    - **最小サイズ：/29**（8アドレス）、より大きなプレフィックスが推奨されます（例：/28、/27）
+    - ブロック全体が利用可能でなければなりません — アドレスを事前に割り当てないでください
 
-    自社機器用のアドレス（DIA インターフェース IP、管理用など）が必要な場合は、**別のアドレスプール**を使用してください。
+    自分の機器用のアドレス（DIAインターフェースIP、管理用など）が必要な場合は、**別のアドレスプール**を使用してください。
 
 ---
 
-## フェーズ 2：アカウントセットアップ
+## フェーズ2：アカウントセットアップ
 
 このフェーズでは、ネットワーク上であなたとデバイスを識別する暗号鍵を作成します。
 
-### CLI の実行場所
+### CLIの実行場所
 
-!!! warning "スイッチに CLI をインストールしないでください"
-    DoubleZero CLI（`doublezero`）は、Arista スイッチではなく、**管理サーバーまたは VM** にインストールする必要があります。
+!!! warning "スイッチにCLIをインストールしないでください"
+    DoubleZero CLI（`doublezero`）は、Aristaスイッチではなく**管理サーバーまたはVM**にインストールする必要があります。
 
     ```mermaid
     flowchart LR
@@ -193,14 +193,14 @@ flowchart LR
     | サービスキーペア | Telemetry Agent |
     | メトリクスパブリッシャーキーペア | メトリクスパブリッシャーキーペア（コピー） |
 
-### 鍵とは？
+### キーとは何か？
 
-鍵はセキュアなログイン資格情報のようなものです：
+キーは安全なログイン認証情報のようなものです：
 
-- **サービスキー**：コントリビューターのアイデンティティ - CLI コマンドの実行に使用
+- **サービスキー**：コントリビューターとしてのアイデンティティ - CLIコマンドの実行に使用
 - **メトリクスパブリッシャーキー**：テレメトリデータの送信に使用するデバイスのアイデンティティ
 
-どちらも暗号キーペア（共有するパブリックキーと、秘密にしておくプライベートキー）です。
+どちらも暗号キーペア（共有する公開鍵と、秘密にする秘密鍵）です。
 
 ```mermaid
 flowchart LR
@@ -213,39 +213,39 @@ flowchart LR
     MK -->|Used for| TEL[Telemetry Agent<br/>Submits metrics onchain]
 ```
 
-### ステップ 2.1：サービスキーの生成
+### ステップ2.1：サービスキーの生成
 
-これは DoubleZero とやり取りするためのメインのアイデンティティです。
+これはDoubleZeroとやり取りするためのメインのアイデンティティです。
 
 ```bash
 doublezero keygen
 ```
 
-デフォルトの場所にキーペアが作成されます。出力には**パブリックキー**が表示されます - これが DZF と共有するものです。
+デフォルトの場所にキーペアが作成されます。出力にはあなたの**公開鍵**が表示されます。これがDZFと共有するものです。
 
-### ステップ 2.2：メトリクスパブリッシャーキーの生成
+### ステップ2.2：メトリクスパブリッシャーキーの生成
 
-この鍵は Telemetry Agent がメトリクス送信に署名するために使用されます。
+このキーはTelemetry Agentがメトリクス送信に署名するために使用します。
 
 ```bash
 doublezero keygen -o ~/.config/doublezero/metrics-publisher.json
 ```
 
-### ステップ 2.3：DZF への鍵の提出
+### ステップ2.3：DZFへのキー提出
 
-DoubleZero Foundation または Malbec Labs に連絡し、以下を提供してください：
+DoubleZero FoundationまたはMalbec Labsに連絡し、以下を提供します：
 
-1. **サービスキーのパブリックキー**
-2. **GitHub ユーザー名**（リポジトリアクセス用）
+1. **サービスキーの公開鍵**
+2. **GitHubユーザー名**（リポジトリアクセス用）
 
 先方が以下を行います：
 
 - オンチェーンに**コントリビューターアカウント**を作成
 - プライベートな**コントリビューターリポジトリ**へのアクセスを付与
 
-### ステップ 2.4：アカウントの確認
+### ステップ2.4：アカウントの確認
 
-確認が取れたら、コントリビューターアカウントが存在することを確認します：
+確認が完了したら、コントリビューターアカウントが存在することを確認します：
 
 ```bash
 doublezero contributor list
@@ -253,24 +253,24 @@ doublezero contributor list
 
 リストにあなたのコントリビューターコードが表示されるはずです。
 
-### ステップ 2.5：コントリビューターリポジトリへのアクセス
+### ステップ2.5：コントリビューターリポジトリへのアクセス
 
-[malbeclabs/contributors](https://github.com/malbeclabs/contributors) リポジトリには以下が含まれています：
+[malbeclabs/contributors](https://github.com/malbeclabs/contributors)リポジトリには以下が含まれます：
 
 - 基本デバイス設定
-- TCAM プロファイル
-- ACL 設定
+- TCAMプロファイル
+- ACL設定
 - 追加のセットアップ手順
 
-デバイス固有の設定については、そちらの手順に従ってください。
+デバイス固有の設定については、そこに記載されている手順に従ってください。
 
 ---
 
-## フェーズ 3：デバイスプロビジョニング
+## フェーズ3：デバイスプロビジョニング
 
-ここでは、物理デバイスをブロックチェーンに登録し、インターフェースを設定します。
+ここでは物理デバイスをブロックチェーンに登録し、インターフェースを設定します。
 
-### デバイスタイプの理解
+### デバイスタイプの理解 {#understanding-device-types}
 
 **Edge** — ユーザー接続のみを受け付ける
 
@@ -287,7 +287,7 @@ flowchart LR
     E_DZX <-->|DZX Link| ED["DZD (different contributor)"]
 ```
 
-**Transit** — デバイス間のトラフィックを転送する、ユーザー接続なし
+**Transit** — デバイス間のトラフィックを転送、ユーザー接続なし
 
 ```mermaid
 flowchart LR
@@ -319,24 +319,24 @@ flowchart LR
 | タイプ | 機能 | 使用するケース |
 |------|--------------|-------------|
 | **Edge** | ユーザー接続のみを受け付ける | 単一拠点、ユーザー向けのみ |
-| **Transit** | デバイス間のトラフィックを転送する | バックボーン接続、ユーザーなし |
-| **Hybrid** | ユーザー接続とバックボーンの両方 | 最も一般的 - すべてを行う |
+| **Transit** | デバイス間のトラフィックを転送 | バックボーン接続、ユーザーなし |
+| **Hybrid** | ユーザー接続とバックボーンの両方 | 最も一般的 — すべてに対応 |
 
-### ステップ 3.1：ロケーションとエクスチェンジの検索
+### ステップ3.1：ロケーションとエクスチェンジの確認
 
-デバイスを作成する前に、データセンターの場所と最寄りのエクスチェンジのコードを調べます：
+デバイスを作成する前に、データセンターのロケーションと最寄りのエクスチェンジのコードを調べます：
 
 ```bash
-# 利用可能なロケーション（データセンター）を一覧表示
+# 利用可能なロケーション（データセンター）の一覧
 doublezero location list
 
-# 利用可能なエクスチェンジ（相互接続ポイント）を一覧表示
+# 利用可能なエクスチェンジ（相互接続ポイント）の一覧
 doublezero exchange list
 ```
 
-### ステップ 3.2：デバイスをオンチェーンに作成
+### ステップ3.2：デバイスのオンチェーン作成 {#step-32-create-your-device-onchain}
 
-ブロックチェーンにデバイスを登録します：
+デバイスをブロックチェーンに登録します：
 
 ```bash
 doublezero device create \
@@ -378,23 +378,23 @@ doublezero device list | grep nyc-dz001
 
 | パラメータ | 意味 |
 |-----------|---------------|
-| `--code` | デバイスの一意の名前（例：`nyc-dz001`） |
-| `--contributor` | コントリビューターコード（DZF から付与） |
+| `--code` | デバイスの一意な名前（例：`nyc-dz001`） |
+| `--contributor` | コントリビューターコード（DZFから付与） |
 | `--device-type` | `hybrid`、`transit`、または `edge` |
-| `--location` | `location list` から取得したデータセンターコード |
-| `--exchange` | `exchange list` から取得した最寄りのエクスチェンジコード |
-| `--public-ip` | ユーザーがインターネット経由でデバイスに接続するパブリック IP |
-| `--dz-prefixes` | ユーザー用に割り当てられた IP ブロック |
+| `--location` | `location list`から取得したデータセンターコード |
+| `--exchange` | `exchange list`から取得した最寄りのエクスチェンジコード |
+| `--public-ip` | ユーザーがインターネット経由でデバイスに接続するためのパブリックIP |
+| `--dz-prefixes` | ユーザー用に割り当てられたIPブロック |
 
-### ステップ 3.3：必須ループバックインターフェースの作成
+### ステップ3.3：必須ループバックインターフェースの作成
 
-すべてのデバイスには、内部ルーティング用に 2 つのループバックインターフェースが必要です：
+すべてのデバイスには内部ルーティング用の2つのループバックインターフェースが必要です：
 
 ```bash
-# VPNv4 ループバック
+# VPNv4ループバック
 doublezero device interface create <DEVICE_CODE> Loopback255 --loopback-type vpnv4
 
-# IPv4 ループバック
+# IPv4ループバック
 doublezero device interface create <DEVICE_CODE> Loopback256 --loopback-type ipv4
 ```
 
@@ -404,9 +404,9 @@ doublezero device interface create <DEVICE_CODE> Loopback256 --loopback-type ipv
 Signature: 3mNx9K...truncated...8wRt5
 ```
 
-### ステップ 3.4：物理インターフェースの作成
+### ステップ3.4：物理インターフェースの作成
 
-WAN または DZX リンクに使用される物理インターフェースを登録します。これらのインターフェースは、それらを参照するリンクを作成する前にオンチェーンに存在している必要があります。このステップではインターフェースとその帯域幅のみを登録し、リンクは後のステップで作成されます。
+WANまたはDZXリンクに使用される物理インターフェースを登録します。これらのインターフェースは、リンクが参照する前にオンチェーンに存在している必要があります。このステップではインターフェースと帯域幅のみを登録し、リンクは後のステップで作成します。
 
 ```bash
 doublezero device interface create <DEVICE_CODE> <INTERFACE_NAME> \
@@ -426,36 +426,36 @@ doublezero device interface create nyc-dz001 Ethernet1/1 \
 Signature: 7pQw2R...truncated...4xKm9
 ```
 
-WAN または DZX リンクのエンドポイントとして使用される各インターフェースについて、これを繰り返します。CYOA および DIA インターフェースは次のステップで別途登録されます。
+WANまたはDZXリンクのエンドポイントとして使用する各インターフェースに対してこれを繰り返します。CYOAおよびDIAインターフェースは次のステップで別途登録します。
 
-### ステップ 3.5：CYOA インターフェースの作成（Edge/Hybrid デバイス用）
+### ステップ3.5：CYOAインターフェースの作成（Edge/Hybridデバイス用） {#step-35-create-cyoa-interface-for-edgehybrid-devices}
 
-Hybrid および Edge の DZD には、ユーザーが GRE トンネルを終端する **2 つのパブリック IP アドレス**が必要です。ユーザーはユニキャスト、マルチキャスト、または両方で接続でき、どの IP がどの目的で使用されるかはユーザーごとにローテーションされます。
+HybridおよびEdge DZDには、ユーザーがGREトンネルを終端する**2つのパブリックIPアドレス**が必要です。ユーザーはユニキャスト、マルチキャスト、またはその両方で接続でき、どのIPがどの目的に使用されるかはユーザーごとにローテーションされます。
 
-両方の IP は、物理インターフェースまたはループバックのいずれかで `--user-tunnel-endpoint true` として登録する必要があります。これには、デバイス作成時に提供した IP も含まれます — その IP もここで明示的に登録する必要があります。
+両方のIPは`--user-tunnel-endpoint true`で登録する必要があり、物理インターフェースまたはループバックのいずれかに設定します。これには、デバイス作成時に提供したIPも含まれます。そのIPもここで明示的に登録する必要があります。
 
-IP が制限されている場合は、DZ プレフィックスの最初の `/32` を 2 つの IP のうちの 1 つとして使用できます。
+IPが制約される場合は、DZプレフィックスの最初の`/32`を2つのIPの1つとして使用できます。
 
-#### CYOA と DIA
+#### CYOAとDIA
 
-| タイプ | フラグ | 用途 |
+| タイプ | フラグ | 目的 |
 |------|------|---------|
-| DIA | `--interface-dia dia` | ポートをダイレクトインターネットアクセスとしてマークする |
-| CYOA | `--interface-cyoa <subtype>` | ユーザーがデバイスに GRE トンネルを接続する方法を宣言する |
+| DIA | `--interface-dia dia` | ポートをダイレクトインターネットアクセスとしてマーク |
+| CYOA | `--interface-cyoa <subtype>` | ユーザーがデバイスにGREトンネルを接続する方法を宣言 |
 
-CYOA フラグは常に**物理インターフェース**（イーサネットポートまたはポートチャネル）に設定されます。ループバックには設定しません。
+CYOAフラグは常に**物理インターフェース**（イーサネットポートまたはポートチャネル）に設定します。ループバックには設定しません。
 
-| CYOA サブタイプ | 使用するケース |
+| CYOAサブタイプ | 使用するケース |
 |-------------|-------------|
-| `gre-over-dia` | ユーザーがパブリックインターネット経由で接続する。最も一般的。 |
-| `gre-over-private-peering` | ユーザーがダイレクトクロスコネクトまたはプライベート回線経由で接続する |
-| `gre-over-public-peering` | ユーザーがインターネットエクスチェンジ（IX）でピアリングする |
-| `gre-over-fabric` | ユーザーがコロケーションされ、ローカルファブリック経由で接続する |
-| `gre-over-cable` | 単一の専用ユーザーへの直接ケーブル接続 |
+| `gre-over-dia` | ユーザーがパブリックインターネット経由で接続。最も一般的。 |
+| `gre-over-private-peering` | ユーザーがダイレクトクロスコネクトまたはプライベート回線経由で接続 |
+| `gre-over-public-peering` | ユーザーがインターネットエクスチェンジ（IX）でピアリング |
+| `gre-over-fabric` | ユーザーが同一施設内でローカルファブリック経由で接続 |
+| `gre-over-cable` | 単一の専用ユーザーへのダイレクトケーブル接続 |
 
-#### シナリオ A：単一物理インターフェース
+#### シナリオA：単一の物理インターフェース
 
-ISP への物理アップリンクが 1 つ。Ethernet1/1 が CYOA および DIA インターフェースであり、2 つのパブリック IP のうち 1 つを保持します。Loopback100 が 2 番目のパブリック IP を保持します。
+ISPへの1つの物理アップリンク。Ethernet1/1がCYOAおよびDIAインターフェースで、2つのパブリックIPのうち1つを持ちます。Loopback100が2つ目のパブリックIPを持ちます。
 
 ```mermaid
 flowchart LR
@@ -480,10 +480,10 @@ flowchart LR
 
 | インターフェース | `--interface-cyoa` | `--interface-dia` | `--ip-net` | `--bandwidth` | `--cir` | `--routing-mode` | `--user-tunnel-endpoint` |
 |-----------|-------------------|------------------|------------|---------------|---------|-----------------|--------------------------|
-| Ethernet1/1 | `gre-over-dia` | `dia` | コントリビューター割り当て IP/サブネット | ポート速度 | コミットレート | `bgp` または `static` | `true` |
+| Ethernet1/1 | `gre-over-dia` | `dia` | コントリビューター割り当てIP/サブネット | ポート速度 | コミットレート | `bgp` または `static` | `true` |
 | Loopback100 | — | — | パブリック /32 | `0bps` | — | — | `true` |
 
-シナリオ A に基づいて実行するコマンドの例：
+シナリオAに基づくコマンド実行例：
 ```bash
 doublezero device interface create mydzd-nyc01 Ethernet1/1 \
   --interface-cyoa gre-over-dia \
@@ -500,9 +500,9 @@ doublezero device interface create mydzd-nyc01 Loopback100 \
   --user-tunnel-endpoint true
 ```
 
-#### シナリオ B：ポートチャネル（LAG）
+#### シナリオB：ポートチャネル（LAG）
 
-DZD が IP 付きのポートチャネルを介して上流デバイスに接続します。ポートチャネルが 1 つのパブリック IP を保持し、CYOA エンドポイントとなります。Loopback100 が 2 番目のパブリック IP を保持します。
+DZDはIPを持つポートチャネルでアップストリームデバイスに接続します。ポートチャネルが1つのパブリックIPを持ち、CYOAエンドポイントとなります。Loopback100が2つ目のパブリックIPを持ちます。
 
 ```mermaid
 flowchart LR
@@ -530,10 +530,10 @@ flowchart LR
 
 | インターフェース | `--interface-cyoa` | `--interface-dia` | `--ip-net` | `--bandwidth` | `--cir` | `--routing-mode` | `--user-tunnel-endpoint` |
 |-----------|-------------------|------------------|------------|---------------|---------|-----------------|--------------------------|
-| Port-Channel1 | `gre-over-dia` | `dia` | コントリビューター割り当て IP/サブネット | LAG 合計速度 | コミットレート | `bgp` または `static` | `true` |
+| Port-Channel1 | `gre-over-dia` | `dia` | コントリビューター割り当てIP/サブネット | LAG合計速度 | コミットレート | `bgp` または `static` | `true` |
 | Loopback100 | — | — | パブリック /32 | `0bps` | — | — | `true` |
 
-シナリオ B に基づいて実行するコマンドの例：
+シナリオBに基づくコマンド実行例：
 ```bash
 doublezero device interface create mydzd-fra01 Port-Channel1 \
   --interface-cyoa gre-over-dia \
@@ -551,9 +551,9 @@ doublezero device interface create mydzd-fra01 Loopback100 \
 ```
 
 
-#### シナリオ C：別々のルーターへのデュアル物理アップリンク
+#### シナリオC：別々のルーターへのデュアル物理アップリンク
 
-各物理インターフェースが異なる上流ルーターに接続します。2 つのパブリック IP は Loopback100 と Loopback101 に配置され、両方ともユーザートンネルエンドポイントとして登録されます。
+各物理インターフェースが異なるアップストリームルーターに接続します。2つのパブリックIPはLoopback100とLoopback101に設定され、両方ともユーザートンネルエンドポイントとして登録されます。
 
 ```mermaid
 flowchart LR
@@ -587,12 +587,12 @@ flowchart LR
 
 | インターフェース | `--interface-cyoa` | `--interface-dia` | `--ip-net` | `--bandwidth` | `--cir` | `--routing-mode` | `--user-tunnel-endpoint` |
 |-----------|-------------------|------------------|------------|---------------|---------|-----------------|--------------------------|
-| Ethernet1/1 | `gre-over-dia` | `dia` | コントリビューター割り当て IP/サブネット | ポート速度 | コミットレート | `bgp` または `static` | — |
-| Ethernet2/1 | `gre-over-dia` | `dia` | コントリビューター割り当て IP/サブネット | ポート速度 | コミットレート | `bgp` または `static` | — |
+| Ethernet1/1 | `gre-over-dia` | `dia` | コントリビューター割り当てIP/サブネット | ポート速度 | コミットレート | `bgp` または `static` | — |
+| Ethernet2/1 | `gre-over-dia` | `dia` | コントリビューター割り当てIP/サブネット | ポート速度 | コミットレート | `bgp` または `static` | — |
 | Loopback100 | — | — | パブリック /32 | `0bps` | — | — | `true` |
 | Loopback101 | — | — | パブリック /32 | `0bps` | — | — | `true` |
 
-シナリオ C に基づいて実行するコマンドの例：
+シナリオCに基づくコマンド実行例：
 ```bash
 doublezero device interface create mydzd-ams01 Ethernet1/1 \
   --interface-cyoa gre-over-dia \
@@ -621,7 +621,7 @@ doublezero device interface create mydzd-ams01 Loopback101 \
   --user-tunnel-endpoint true
 ```
 
-### ステップ 3.6：デバイスの確認
+### ステップ3.6：デバイスの確認
 
 ```bash
 doublezero device list
@@ -634,13 +634,13 @@ doublezero device list
  7xKm9pQw2R4vHt3...                          | nyc-dz001 | acme        | EQX-NY5  | nyc      | hybrid      | 203.0.113.10 | 198.51.100.0/28 | 0     | 14        | activated | pending |          | 5FMtd5Woq5XAAg54...
 ```
 
-デバイスのステータスが `activated` と表示されるはずです。
+デバイスのステータスが`activated`で表示されるはずです。
 
 ---
 
-## フェーズ 4：リンク確立とエージェントインストール
+## フェーズ4：リンク確立とエージェントインストール {#phase-4-link-establishment-agent-installation}
 
-リンクはデバイスを DoubleZero ネットワークの残りの部分に接続します。
+リンクはデバイスをDoubleZeroネットワークの他の部分に接続します。
 
 ### リンクの理解
 
@@ -661,12 +661,12 @@ flowchart LR
 
 | リンクタイプ | 接続先 | 承認 |
 |-----------|----------|------------|
-| **WAN リンク** | 自分が所有する 2 つのデバイス | 自動（両方のデバイスを所有しているため） |
-| **DZX リンク** | 自分のデバイスと別のコントリビューターのデバイス | 相手の承認が必要 |
+| **WANリンク** | 自分のデバイス同士 | 自動（両方を所有） |
+| **DZXリンク** | 自分のデバイスと別のコントリビューター | 相手の承認が必要 |
 
-### ステップ 4.1：WAN リンクの作成（複数デバイスがある場合）
+### ステップ4.1：WANリンクの作成（複数デバイスがある場合）
 
-WAN リンクは自分のデバイス同士を接続します：
+WANリンクは自分のデバイス同士を接続します：
 
 ```bash
 doublezero link create wan \
@@ -704,9 +704,9 @@ doublezero link create wan \
 Signature: 5tNm7K...truncated...9pRw2
 ```
 
-### ステップ 4.2：DZX リンクの作成
+### ステップ4.2：DZXリンクの作成
 
-DZX リンクは自分のデバイスを別のコントリビューターの DZD に直接接続します：
+DZXリンクはデバイスを別のコントリビューターのDZDに直接接続します：
 
 ```bash
 doublezero link create dzx \
@@ -727,22 +727,22 @@ doublezero link create dzx \
 Signature: 8mKp3W...truncated...2nRx7
 ```
 
-DZX リンクを作成した後、相手のコントリビューターが承認する必要があります：
+DZXリンクを作成した後、相手のコントリビューターが承認する必要があります：
 
 ```bash
-# 相手のコントリビューターがこれを実行する
+# 相手のコントリビューターがこれを実行
 doublezero link accept \
   --code <LINK_CODE> \
   --side-z-interface <THEIR_INTERFACE>
 ```
 
-**期待される出力（承認するコントリビューター側）：**
+**期待される出力（承認側コントリビューター）：**
 
 ```
 Signature: 6vQt9L...truncated...3wPm4
 ```
 
-### ステップ 4.3：リンクの確認
+### ステップ4.3：リンクの確認
 
 ```bash
 doublezero link list
@@ -755,13 +755,13 @@ doublezero link list
  8vkYpXaBW8RuknJq...                         | nyc-dz001:lax-dz001 | acme        | nyc-dz001   | Ethernet3/1       | lax-dz001   | Ethernet3/1       | WAN       | 10Gbps    | 9000 | 65.00ms  | 1.00ms    | 0.00ms            | 42        | 172.16.0.84/31  | activated | pending | 5FMtd5Woq5XAAg54...
 ```
 
-両側が設定されると、リンクのステータスが `activated` と表示されるはずです。
+両側が設定されると、リンクのステータスが`activated`と表示されるはずです。
 
 ---
 
-### エージェントのインストール
+### エージェントインストール
 
-DZD 上で 2 つのソフトウェアエージェントが動作します：
+DZDでは2つのソフトウェアエージェントが動作します：
 
 ```mermaid
 flowchart TB
@@ -780,14 +780,14 @@ flowchart TB
 
 | エージェント | 機能 |
 |-------|--------------|
-| **Config Agent** | コントローラーから設定を取得し、スイッチに適用する |
-| **Telemetry Agent** | 他のデバイスへのレイテンシ/パケットロスを測定し、メトリクスをオンチェーンに報告する |
+| **Config Agent** | コントローラーから設定を取得し、スイッチに適用 |
+| **Telemetry Agent** | 他のデバイスへのレイテンシ/ロスを測定し、メトリクスをオンチェーンに報告 |
 
-### ステップ 4.4：Config Agent のインストール
+### ステップ4.4：Config Agentのインストール {#step-44-install-config-agent}
 
-#### スイッチで API を有効化する
+#### スイッチでAPIを有効化
 
-EOS 設定に追加します：
+EOS設定に追加：
 
 ```
 management api eos-sdk-rpc
@@ -797,13 +797,13 @@ management api eos-sdk-rpc
         no disabled
 ```
 
-!!! note "VRF に関する注意"
-    管理 VRF 名が異なる場合（例：`management`）は、`default` をその VRF 名に置き換えてください。
+!!! note "VRFに関する注意"
+    管理VRF名が異なる場合は`default`を置き換えてください（例：`management`）。
 
 #### エージェントのダウンロードとインストール
 
 ```bash
-# スイッチで bash に入る
+# スイッチでbashに入る
 switch# bash
 $ sudo bash
 # cd /mnt/flash
@@ -811,13 +811,13 @@ $ sudo bash
 # exit
 $ exit
 
-# EOS エクステンションとしてインストール
+# EOS拡張としてインストール
 switch# copy flash:AGENT_FILENAME extension:
 switch# extension AGENT_FILENAME
 switch# copy installed-extensions boot-extensions
 ```
 
-#### エクステンションの確認
+#### 拡張の確認
 
 ```bash
 switch# show extensions
@@ -835,7 +835,7 @@ A: available | NA: not available | I: installed | F: forced | B: install at boot
 
 #### エージェントの設定と起動
 
-EOS 設定に追加します：
+EOS設定に追加：
 
 ```
 daemon doublezero-agent
@@ -843,18 +843,18 @@ daemon doublezero-agent
     no shut
 ```
 
-!!! info "コントローラーの IP とポート"
-    コントローラーの IP とポートは、ステップ 2.5 でアクセス権を付与されたコントリビューターリポジトリで確認できます。
+!!! info "コントローラーのIPとポート"
+    コントローラーのIPとポートは、ステップ2.5でアクセス権を付与されたコントリビューターリポジトリに記載されています。
 
-!!! note "VRF に関する注意"
-    管理 VRF が `default` でない場合（つまり名前空間が `ns-default` でない場合）、exec コマンドの前に `exec /sbin/ip netns exec ns-<VRF>` を付けてください。例えば、VRF が `management` の場合：
+!!! note "VRFに関する注意"
+    管理VRFが`default`でない場合（つまりネームスペースが`ns-default`でない場合）、execコマンドの前に`exec /sbin/ip netns exec ns-<VRF>`を付加してください。例えば、VRFが`management`の場合：
     ```
     daemon doublezero-agent
         exec /sbin/ip netns exec ns-management /usr/local/bin/doublezero-agent -pubkey <YOUR_DEVICE_PUBKEY>
         no shut
     ```
 
-デバイスの pubkey は `doublezero device list`（`account` カラム）から取得できます。
+デバイスのpubkeyは`doublezero device list`（`account`列）から取得します。
 
 #### 動作確認
 
@@ -862,17 +862,17 @@ daemon doublezero-agent
 switch# show agent doublezero-agent logs
 ```
 
-"Starting doublezero-agent" とコントローラーへの接続成功のログが表示されるはずです。
+"Starting doublezero-agent" とコントローラーへの接続成功が表示されるはずです。
 
-### ステップ 4.5：Telemetry Agent のインストール
+### ステップ4.5：Telemetry Agentのインストール {#step-45-install-telemetry-agent}
 
-#### メトリクスパブリッシャーキーをデバイスにコピーする
+#### メトリクスパブリッシャーキーをデバイスにコピー
 
 ```bash
 scp ~/.config/doublezero/metrics-publisher.json <SWITCH_IP>:/mnt/flash/metrics-publisher-keypair.json
 ```
 
-#### メトリクスパブリッシャーをオンチェーンに登録する
+#### メトリクスパブリッシャーのオンチェーン登録
 
 ```bash
 doublezero device update \
@@ -880,7 +880,7 @@ doublezero device update \
   --metrics-publisher <METRICS_PUBLISHER_PUBKEY>
 ```
 
-pubkey は metrics-publisher.json ファイルから取得できます。
+metrics-publisher.jsonファイルからpubkeyを取得します。
 
 #### エージェントのダウンロードとインストール
 
@@ -892,13 +892,13 @@ $ sudo bash
 # exit
 $ exit
 
-# EOS エクステンションとしてインストール
+# EOS拡張としてインストール
 switch# copy flash:TELEMETRY_FILENAME extension:
 switch# extension TELEMETRY_FILENAME
 switch# copy installed-extensions boot-extensions
 ```
 
-#### エクステンションの確認
+#### 拡張の確認
 
 ```bash
 switch# show extensions
@@ -916,7 +916,7 @@ A: available | NA: not available | I: installed | F: forced | B: install at boot
 
 #### エージェントの設定と起動
 
-EOS 設定に追加します：
+EOS設定に追加：
 
 ```
 daemon doublezero-telemetry
@@ -924,8 +924,8 @@ daemon doublezero-telemetry
     no shut
 ```
 
-!!! note "VRF に関する注意"
-    管理 VRF が `default` でない場合（つまり名前空間が `ns-default` でない場合）、exec コマンドに `--management-namespace ns-<VRF>` を追加してください。例えば、VRF が `management` の場合：
+!!! note "VRFに関する注意"
+    管理VRFが`default`でない場合（つまりネームスペースが`ns-default`でない場合）、execコマンドに`--management-namespace ns-<VRF>`を追加してください。例えば、VRFが`management`の場合：
     ```
     daemon doublezero-telemetry
         exec /usr/local/bin/doublezero-telemetry --management-namespace ns-management --local-device-pubkey <DEVICE_ACCOUNT> --env mainnet --keypair /mnt/flash/metrics-publisher-keypair.json
@@ -938,39 +938,39 @@ daemon doublezero-telemetry
 switch# show agent doublezero-telemetry logs
 ```
 
-"Starting telemetry collector" と "Starting submission loop" のログが表示されるはずです。
+"Starting telemetry collector" と "Starting submission loop" が表示されるはずです。
 
 ---
 
-## フェーズ 5：リンクバーンイン
+## フェーズ5：リンクバーンイン
 
-!!! warning "すべての新しいリンクは、トラフィックを通す前にバーンインが必要です"
-    新しいリンクは、本番トラフィック用に有効化される前に、**少なくとも 24 時間ドレイン状態**にする必要があります。このバーンイン要件は [RFC12: Network Provisioning](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc12-network-provisioning.md) で定義されており、リンクがサービス可能になるまでに約 200,000 DZ Ledger スロット（約 20 時間）のクリーンなメトリクスが必要と規定されています。
+!!! warning "すべての新規リンクはトラフィックを流す前にバーンインが必要です"
+    新規リンクは本番トラフィックをアクティブにする前に、**少なくとも24時間ドレイン状態**にする必要があります。このバーンイン要件は[RFC12: Network Provisioning](https://github.com/malbeclabs/doublezero/blob/main/rfcs/rfc12-network-provisioning.md)で定義されており、リンクがサービス可能になる前に約200,000 DZ Ledgerスロット（約20時間）のクリーンなメトリクスが必要と規定されています。
 
-エージェントがインストールされて稼働した状態で、[metrics.doublezero.xyz](https://metrics.doublezero.xyz) で少なくとも 24 時間連続してリンクを監視します：
+エージェントのインストールと動作後、[metrics.doublezero.xyz](https://metrics.doublezero.xyz)で少なくとも24時間連続してリンクを監視します：
 
-- **"DoubleZero Device-Link Latencies"** ダッシュボード — リンクの**パケットロスがゼロ**であることを経時的に確認
+- **"DoubleZero Device-Link Latencies"** ダッシュボード — 経時的にリンクの**パケットロスがゼロ**であることを確認
 - **"DoubleZero Network Metrics"** ダッシュボード — リンクの**エラーがゼロ**であることを確認
 
-バーンイン期間がパケットロスゼロ、エラーゼロのクリーンなリンクを示した後にのみ、リンクのドレインを解除してください。
+バーンイン期間でロスゼロ、エラーゼロのクリーンなリンクが確認できた後にのみ、リンクのドレインを解除してください。
 
 ---
 
-## フェーズ 6：検証と有効化
+## フェーズ6：検証とアクティベーション
 
-すべてが正常に動作していることを確認するため、以下のチェックリストを実行します。
+このチェックリストを実行して、すべてが正常に動作していることを確認します。
 
 !!! warning "デバイスはロック状態（`max_users = 0`）で開始されます"
-    デバイスが作成されると、`max_users` はデフォルトで **0** に設定されます。これは、まだユーザーが接続できないことを意味します。これは意図的なもので、ユーザートラフィックを受け入れる前にすべてが正常に動作していることを確認する必要があります。
+    デバイスが作成されると、`max_users`はデフォルトで**0**に設定されます。これはまだユーザーが接続できないことを意味します。これは意図的なもので、ユーザートラフィックを受け入れる前にすべてが正常に動作することを確認する必要があります。
 
-    **`max_users` を 0 より大きくする前に、以下を行う必要があります：**
+    **`max_users`を0より大きく設定する前に、以下を行う必要があります：**
 
-    1. すべてのリンクが [metrics.doublezero.xyz](https://metrics.doublezero.xyz) でパケットロス/エラーゼロの **24 時間バーンイン**を完了したことを確認
-    2. **DZ/Malbec Labs と連携**して接続テストを実施：
+    1. すべてのリンクが[metrics.doublezero.xyz](https://metrics.doublezero.xyz)でロス/エラーゼロの**24時間バーンイン**を完了していることを確認
+    2. **DZ/Malbec Labsと調整**して接続テストを実施：
         - テストユーザーがデバイスに接続できるか？
-        - ユーザーが DZ ネットワーク経由でルートを受信できるか？
-        - ユーザーが DZ ネットワーク経由でエンドツーエンドのトラフィックをルーティングできるか？
-    3. DZ/ML がテスト合格を確認した後にのみ、max_users を 96 に設定：
+        - ユーザーがDZネットワーク経由でルートを受信できるか？
+        - ユーザーがDZネットワーク経由でエンドツーエンドのトラフィックルーティングができるか？
+    3. DZ/MLがテストに合格したことを確認した後にのみ、max_usersを96に設定：
 
     ```bash
     doublezero device update --pubkey <DEVICE_ACCOUNT> --max-users 96
@@ -979,7 +979,7 @@ switch# show agent doublezero-telemetry logs
 ### デバイスチェック
 
 ```bash
-# デバイスのステータスが "activated" と表示されること
+# デバイスのステータスが "activated" で表示されるはずです
 doublezero device list | grep <YOUR_DEVICE_CODE>
 ```
 
@@ -990,7 +990,7 @@ doublezero device list | grep <YOUR_DEVICE_CODE>
 ```
 
 ```bash
-# インターフェースがリストに表示されること
+# インターフェースが一覧表示されるはずです
 doublezero device interface list | grep <YOUR_DEVICE_CODE>
 ```
 
@@ -1005,7 +1005,7 @@ doublezero device interface list | grep <YOUR_DEVICE_CODE>
 ### リンクチェック
 
 ```bash
-# リンクのステータスが "activated" と表示されること
+# リンクのステータスが "activated" で表示されるはずです
 doublezero link list | grep <YOUR_DEVICE_CODE>
 ```
 
@@ -1020,14 +1020,14 @@ doublezero link list | grep <YOUR_DEVICE_CODE>
 スイッチ上で：
 
 ```bash
-# Config Agent が設定の取得に成功していること
+# Config Agentが設定の取得に成功していることを確認
 switch# show agent doublezero-agent logs | tail -20
 
-# Telemetry Agent がメトリクスの送信に成功していること
+# Telemetry Agentが送信に成功していることを確認
 switch# show agent doublezero-telemetry logs | tail -20
 ```
 
-### 最終検証ダイアグラム
+### 最終確認ダイアグラム
 
 ```mermaid
 flowchart TB
@@ -1052,28 +1052,28 @@ flowchart TB
 
 ## トラブルシューティング
 
-### デバイス作成が失敗する
+### デバイス作成に失敗する
 
-- サービスキーが認可されていることを確認（`doublezero contributor list`）
+- サービスキーが認証されていることを確認（`doublezero contributor list`）
 - ロケーションとエクスチェンジのコードが有効であることを確認
-- DZ プレフィックスが有効なパブリック IP 範囲であることを確認
+- DZプレフィックスが有効なパブリックIPレンジであることを確認
 
 ### リンクが "requested" ステータスのまま
 
-- DZX リンクは相手のコントリビューターによる承認が必要
-- 相手に連絡して `doublezero link accept` を実行してもらう
+- DZXリンクは相手のコントリビューターによる承認が必要
+- 相手に`doublezero link accept`の実行を依頼
 
-### Config Agent が接続できない
+### Config Agentが接続しない
 
-- 管理ネットワークがインターネットアクセスを持っていることを確認
-- VRF 設定がセットアップと一致していることを確認
-- デバイスの pubkey が正しいことを確認
+- 管理ネットワークにインターネットアクセスがあることを確認
+- VRF設定が環境と一致していることを確認
+- デバイスのpubkeyが正しいことを確認
 
-### Telemetry Agent がメトリクスを送信しない
+### Telemetry Agentが送信しない
 
 - メトリクスパブリッシャーキーがオンチェーンに登録されていることを確認
-- スイッチ上にキーペアファイルが存在することを確認
-- デバイスアカウントの pubkey が正しいことを確認
+- キーペアファイルがスイッチ上に存在することを確認
+- デバイスアカウントのpubkeyが正しいことを確認
 
 ---
 
@@ -1081,4 +1081,4 @@ flowchart TB
 
 - エージェントのアップグレードとリンク管理については[運用ガイド](contribute-operations.md)を参照
 - 用語の定義については[用語集](glossary.md)を確認
-- 問題が発生した場合は DZF/Malbec Labs に連絡
+- 問題が発生した場合はDZF/Malbec Labsに連絡

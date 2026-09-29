@@ -7,18 +7,18 @@ description: Registre e configure as recompensas de publicação de validadores 
 
 ## Como Funciona
 
-Validadores que publicam leader shreds no DoubleZero Edge ganham recompensas a cada epoch. Antes que as recompensas possam ser pagas, cada validador deve registrar **para onde** as recompensas vão, configurando uma conta `ValidatorPublisherRewards` na Solana. Essa conta armazena:
+Validadores que publicam shreds de líder no DoubleZero Edge ganham recompensas a cada epoch. Antes que as recompensas possam ser pagas, cada validador deve registrar **para onde** as recompensas vão, configurando uma conta `ValidatorPublisherRewards` na Solana. Essa conta armazena:
 
-- o **mint de recompensas** — o token no qual as recompensas são pagas 2z (a menos que seja alterado manualmente)
+- o **mint de recompensas** — o token em que as recompensas são pagas 2z (a menos que seja alterado manualmente)
 - o **proprietário das recompensas** — a carteira que possui a Associated Token Account (ATA) que recebe as recompensas
 
-O comando `configure` definirá esses campos, e os pagamentos automáticos ocorrerão epoch por epoch a partir de então. Você pode executar `configure` novamente posteriormente para alterar qualquer um dos campos.
+O comando `configure` definirá esses campos, e os pagamentos automáticos ocorrerão epoch após epoch a partir de então. Você pode executar `configure` novamente posteriormente para alterar qualquer um dos campos.
 
-!!! info "Se você ainda não concluiu o [Setup](setup.md), a [Conexão Validator Mainnet-Beta](DZ%20Mainnet-beta%20Connection.md) e a [Conexão Validator Multicast](Validator%20Multicast%20Connection.md), faça isso primeiro."
+!!! info "Se você ainda não completou o [Setup](setup.md), [Conexão Validator Mainnet-Beta](DZ%20Mainnet-beta%20Connection.md) e [Conexão Validator Multicast](Validator%20Multicast%20Connection.md), faça isso primeiro."
 
 ## Pré-requisitos
 
-- Validadores publicando leader shreds - veja [Conexão Validator Multicast](Validator%20Multicast%20Connection.md).
+- Validadores publicando shreds de líder - veja [Conexão Validator Multicast](Validator%20Multicast%20Connection.md).
 - A versão mais recente do CLI `doublezero-solana`: `sudo apt update && sudo apt install doublezero-solana`, no mínimo `0.5.6`.
 - Acesso ao **keypair de identidade do validador**, seja na mesma máquina ou mantido offline com a capacidade de assinar uma mensagem.
 - Uma pubkey de carteira de destino que será proprietária da ATA de recompensas.
@@ -52,10 +52,10 @@ Configured validator publisher rewards: 41111111ntmoBTnvcKcP1g2a1111111HPoN3z5uf
 |---|---|
 | `--node-id` | Pubkey de identidade do nó validador. |
 | `--rewards-token-owner` | Carteira que será proprietária da ATA receptora. |
-| `--rewards-token-mint` | O token no qual as recompensas da carteira serão recebidas em `2z`. Tokens suportados também incluem `usdc` e `wsol`. |
+| `--rewards-token-mint` | O token da carteira em que as recompensas serão recebidas em `2z`. Tokens suportados também incluem `usdc` e `wsol`. |
 | `-k` | Caminho para o keypair de identidade do validador. No caminho direto, a pubkey do keypair deve ser igual a `--node-id` ou o comando retornará erro e indicará para mudar para o caminho offchain. |
 
-A ATA é auto-inicializada na mesma transação se ainda não existir.
+A ATA é inicializada automaticamente na mesma transação se ainda não existir.
 
 
 !!! note "Se um Erro for Retornado"
@@ -70,7 +70,7 @@ A ATA é auto-inicializada na mesma transação se ainda não existir.
 doublezero-solana shreds publisher-rewards show --node-id <NODE_ID>
 ```
 
-O comando exibe o `Node ID`, `Rewards owner`, `Rewards mint`, o endereço ATA resolvido e o status da ATA. A **ATA Resolvida** é o endereço determinístico derivado do proprietário das recompensas + mint das recompensas — é onde as recompensas serão depositadas a cada epoch.
+O comando exibe o `Node ID`, `Rewards owner`, `Rewards mint`, o endereço da ATA resolvida e o status da ATA. A **ATA Resolvida** é o endereço determinístico derivado do proprietário das recompensas + mint de recompensas — é onde as recompensas serão depositadas a cada epoch.
 
 ---
 
@@ -80,7 +80,7 @@ Três sub-etapas: preparar, assinar, configurar.
 
 ### 1. Preparar a mensagem offchain
 
-Execute isso em qualquer lugar — é somente leitura e não precisa do keypair de identidade do validador. Ele imprime o blob hex para assinar e o slot absoluto em que a assinatura expira.
+Execute isso em qualquer lugar — é somente leitura e não precisa do keypair de identidade do validador. Ele exibe o blob hexadecimal para assinar e o slot absoluto em que a assinatura expira.
 
 ```bash
 doublezero-solana shreds publisher-rewards prepare-offchain-message \
@@ -108,12 +108,12 @@ Then submit:
 |---|---|
 | `--node-id` | Pubkey de identidade do nó validador. |
 | `--rewards-token-owner` | Carteira que será proprietária da ATA receptora. |
-| `--rewards-token-mint` | O token no qual as recompensas da carteira serão recebidas em `2z`. Tokens suportados também incluem `usdc` e `wsol`. |
+| `--rewards-token-mint` | O token da carteira em que as recompensas serão recebidas em `2z`. Tokens suportados também incluem `usdc` e `wsol`. |
 | `--valid-for` | Tempo de vida da assinatura relativo ao slot atual. Aceita `<n>s`, `<n>m` ou `<n>h`. Padrão: `1h`. |
 | `--deadline-slot` | Alternativa a `--valid-for`: slot absoluto em que a autorização expira. Mutuamente exclusivo com `--valid-for`. |
 | `--json` | Emite JSON (`{ hex, deadline_slot }`) em vez do resumo legível. |
 
-O comando imprime a mensagem de autenticação codificada em hex, o slot de deadline resolvido e trechos de shell prontos para execução para as próximas duas etapas.
+O comando exibe a mensagem de autenticação codificada em hexadecimal, o slot de deadline resolvido e trechos de shell prontos para executar nas próximas duas etapas.
 
 ### 2. Assinar a mensagem
 
@@ -124,7 +124,7 @@ solana sign-offchain-message <123457fc138f556a2578bdb079dc923342cc4e4a376683dc4c
 --keypair <path-to-validator-identity-keypair.json>
 ```
 
-Isso imprime uma assinatura em base58.
+Isso exibe uma assinatura em base58.
 
 Exemplo de Saída
 
@@ -134,7 +134,7 @@ SignatureTBUwGq511mPLMCEE4f5fNsmX1PQrozXBBJeCdSrcbhqSX1MwFp8NsNZbhCNMZ1kPWakjsLL
 
 ### 3. Enviar `configure`
 
-De volta à máquina com sua carteira pagadora de taxas:
+De volta na máquina com sua carteira pagadora de taxas:
 
 ```bash
 doublezero-solana shreds publisher-rewards configure \
@@ -146,7 +146,7 @@ doublezero-solana shreds publisher-rewards configure \
 
 `--signature` e `--deadline-slot` devem ser passados juntos. Os valores devem corresponder aos produzidos nas etapas 2b.i e 2b.ii.
 
-A ATA é auto-inicializada na mesma transação se ainda não existir.
+A ATA é inicializada automaticamente na mesma transação se ainda não existir.
 
 Exemplo de Saída
 
@@ -163,4 +163,4 @@ Configured validator publisher rewards: 41111111ntmoBTnvcKcP1g2a1111111HPoN3z5uf
 ---
 
 !!! note "Nota: Se a Assinatura Estiver Expirada"
-    Cada assinatura offchain tem um slot de deadline. Se passar muito tempo entre `prepare-offchain-message` e `configure`, execute novamente `prepare-offchain-message`, reassine e reenvie. A validade padrão é 1 hora — estenda com `--valid-for 4h` ou similar se precisar de mais tempo para um fluxo de assinatura offline.
+    Cada assinatura offchain tem um slot de deadline. Se passar muito tempo entre `prepare-offchain-message` e `configure`, execute novamente `prepare-offchain-message`, assine novamente e reenvie. A validade padrão é de 1 hora — estenda com `--valid-for 4h` ou similar se precisar de mais tempo para um fluxo de assinatura offline.

@@ -4,40 +4,40 @@ description: "Suscríbete a los datos de mercado de Hyperliquid en DoubleZero Ed
 
 # Suscribirse a Hyperliquid (Edge)
 
-!!! warning "Al conectarme a DoubleZero acepto los [Términos de Uso de DoubleZero](https://doublezero.xyz/terms-protocol). Ten en cuenta que los datos son solo para tu uso interno y no pueden ser retransmitidos (ver Sección 2(e))."
+!!! warning "Al conectarme a DoubleZero acepto los [Términos de Uso de DoubleZero](https://doublezero.xyz/terms-protocol). Ten en cuenta que los datos son únicamente para tu uso interno y no pueden ser retransmitidos (ver Sección 2(e))."
 
 Los feeds de Hyperliquid entregan datos de mercado a través de DoubleZero Edge como multicast UDP. Cuatro feeds principales cubren los perps nativos de Hyperliquid (`hl`) y los perps de [trade.xyz](https://trade.xyz) (`xyz`):
 
 | Feed | Descripción |
 |------|-------------|
 | `hyper-hl-tob` | Mejor oferta/demanda e impresiones de operaciones para perps de Hyperliquid |
-| `hyper-hl-mbo` | Libro completo orden por orden para perps de Hyperliquid (altas, cancelaciones, ejecuciones) |
+| `hyper-hl-mbo` | Libro completo orden por orden para perps de Hyperliquid (adiciones, cancelaciones, ejecuciones) |
 | `hyper-xyz-tob` | Mejor oferta/demanda e impresiones de operaciones para perps de trade.xyz |
-| `hyper-xyz-mbo` | Libro completo orden por orden para perps de trade.xyz (altas, cancelaciones, ejecuciones) |
+| `hyper-xyz-mbo` | Libro completo orden por orden para perps de trade.xyz (adiciones, cancelaciones, ejecuciones) |
 
-Descripción general del servicio: [Hyperliquid](/hyperliquid/).
+Descripción general del servicio: [Hyperliquid](index.md).
 
 ## ¿Qué camino debo tomar?
 
 | Modo | Qué obtienes | Cuándo usarlo |
 |------|----------------|-------------|
-| **Edge Connect** | [`doublezero-edge-connect`](https://github.com/malbeclabs/doublezero-edge-connect) — decodificación + WebSocket JSON normalizado | La forma más rápida de obtener un flujo de cotizaciones utilizable |
+| **Edge Connect** | [`doublezero-edge-connect`](https://github.com/malbeclabs/doublezero-edge-connect) — decodificación + JSON normalizado por WebSocket | Lo más rápido para obtener un flujo de cotizaciones utilizable |
 | **Multicast nativo** | Suscríbete en `doublezero1`, decodifica el UDP binario tú mismo (o con parsers de referencia) | Control total del cable |
 
-Primero los pasos compartidos: firewall, metro, solicitud y pago (Pasos 1–3). Tras la aprobación, el [Paso 4](#step-4-connect-after-approval) se divide — **Edge Connect** o **nativo**. No los mezcles en el mismo host.
+Primero los pasos compartidos: firewall, metro, solicitar y pagar (Pasos 1–3). Después de la aprobación, el [Paso 4](#step-4-connect-after-approval) se divide — **Edge Connect** o **nativo**. No los mezcles en el mismo host.
 
-¿Quieres que una IA haga la instalación contigo? Conecta el [DoubleZero MCP](/mcp/) y pídele que te guíe a través de Hyperliquid Edge.
+¿Quieres que una IA haga la instalación contigo? Conecta el [DoubleZero MCP](../mcp.md) y pídele que te guíe a través de Hyperliquid Edge.
 
 ---
 
 ## Paso 1: Configuración de DoubleZero
 
-**Configuración completa**
+**Completar la configuración**
 
 
-Sigue las instrucciones de [configuración](/setup/) para instalar y configurar el cliente de DoubleZero en el host.
+Sigue las instrucciones de [configuración](../setup.md) para instalar y configurar el cliente de DoubleZero en el host.
 
-Si previamente configuraste DoubleZero en el host para uso nativo, asegúrate de que el cliente esté actualizado:
+Si previamente has configurado DoubleZero en el host para uso nativo, asegúrate de que el cliente esté actualizado:
 
 ```bash
 sudo apt update && sudo apt install doublezero
@@ -46,7 +46,7 @@ sudo apt update && sudo apt install doublezero
 **Configurar el Firewall**
 
 
-Permite tráfico GRE, BGP, PIM y de los feeds de Hyperliquid en `doublezero1`. Los puertos UDP de Hyperliquid se encuentran en `20000`–`20999` (Top-of-Book y Market-by-Order de mercado, referencia y snapshot). También permite UDP `5765` para los heartbeats de DoubleZero en el túnel. Abre la banda de feeds para que nuevos feeds no requieran otro cambio en el firewall. Ver [Direcciones de feeds](#feed-addresses).
+Permite tráfico GRE, BGP, PIM y de feeds de Hyperliquid en `doublezero1`. Los puertos UDP de Hyperliquid están en el rango `20000`–`20999` (Top-of-Book y Market-by-Order de mercado, referencia y snapshot). También permite UDP `5765` para los heartbeats de DoubleZero en el túnel. Abre la banda de feeds para que los nuevos feeds no requieran otro cambio de firewall. Ver [Direcciones de feeds](#feed-addresses).
 
 **iptables:**
 
@@ -86,12 +86,12 @@ Identifica la ubicación de menor latencia desde la máquina que recibirá el fe
 doublezero latency
 ```
 
-Anota el metro / ciudad del resultado de menor latencia. Seleccionarás esa ciudad en el formulario de solicitud. Consulta el [mapa de topología](https://data.malbeclabs.com/topology/map?overlays=metroClustering%2Cbandwidth) para ver cómo se agrupan los metros.
+Anota el metro / ciudad del resultado con menor latencia. Seleccionarás esa ciudad en el formulario de solicitud. Consulta el [mapa de topología](https://data.malbeclabs.com/topology/map?overlays=metroClustering%2Cbandwidth) para ver cómo se agrupan los metros.
 
 **Precios**
 
 
-Los feeds se cobran por región de entrega. El precio depende de dónde se entregan los datos, no de dónde está el comprador. Un paquete de Tokio entrega a receptores en Tokio; la entrega en otro lugar requiere el paquete Global. Se incluyen dos hosts receptores (IPs) por feed, por metro.
+Los feeds se cobran por región de entrega. El precio sigue a donde se entregan los datos, no donde está el comprador. Un paquete de Tokio entrega a receptores en Tokio; la entrega en otro lugar requiere el paquete Global. Se incluyen dos hosts receptores (IPs) por feed, por metro.
 
 | Feed | Tokio /mes | Global /mes |
 | --- | --- | --- |
@@ -110,21 +110,21 @@ Los feeds se cobran por región de entrega. El precio depende de dónde se entre
 3. Selecciona la **ciudad** (metro) que necesitas. Usa la tabla anterior y `doublezero latency` para elegir.
 4. Completa el formulario de solicitud.
 
-Asignarás un DoubleZero ID (clave existente o genera una nueva) a cada solicitud de feed en la página de [cuentas](https://doublezero.xyz/shreds/account). La **clave privada correspondiente debe estar presente en la máquina que recibirá el feed** — no asignes una pubkey cuya clave privada no puedas mover a ese host.
+Asignarás un DoubleZero ID (clave existente, o genera una nueva) a cada solicitud de feed en la página de [cuentas](https://doublezero.xyz/shreds/account). La **clave privada correspondiente debe estar presente en la máquina que recibirá el feed** — no asignes una pubkey cuya clave privada no puedas mover a ese host.
 
 Eliges un **metro** y una **pubkey**. **No** vinculas una IP pública en el momento de la solicitud. Durante la suscripción puedes mover el acceso entre IPs **dentro de los metros elegidos**.
 
-Se te contactará con más instrucciones de manera oportuna (espera **1-3 días hábiles**).
+Se te contactará con más instrucciones en un plazo oportuno (espera **1-3 días hábiles**).
 
 ---
 
-## Paso 4: Conectar tras la aprobación {#step-4-connect-after-approval}
+## Paso 4: Conectar después de la aprobación {#step-4-connect-after-approval}
 
 Después de enviar la solicitud, recibirás una factura; una vez pagada, conéctate en cada máquina aprobada. El acceso se habilita en la fecha de inicio elegida. Elige **un** camino a continuación.
 
-### 4a. Edge Connect
+### 4a. Edge Connect {#4a-edge-connect}
 
-Si `doublezerod` ya está ejecutándose en el host (desde la [configuración](/setup/)), detenlo primero — compite con el daemon del contenedor por el mismo túnel:
+Si el host `doublezerod` ya está en ejecución (desde la [configuración](../setup.md)), detenlo primero — compite con el daemon del contenedor por el mismo túnel:
 
 ```bash
 sudo systemctl stop doublezerod
@@ -143,7 +143,7 @@ docker exec doublezero-edge-connect doublezero status
 ```
 
 !!! tip
-    Puedes crear un alias para ejecutar comandos fácilmente en el contenedor. Este ejemplo permite que `dz status` funcione igual que `doublezero status` dentro del contenedor:
+    Puedes crear un alias para facilitar los comandos al contenedor. Este ejemplo permite que `dz status` funcione igual que `doublezero status` dentro del contenedor:
 
     ```bash
     echo "alias dz='sudo docker exec -it doublezero-edge-connect doublezero'" >> ~/.bashrc && source ~/.bashrc
@@ -151,11 +151,11 @@ docker exec doublezero-edge-connect doublezero status
 
 Espera `BGP Session Up` y tus grupos `edge-hyper-…` suscritos.
 
-Luego abre el WebSocket (`ws://127.0.0.1:8081`). Contrato: [PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md). Guía completa: [MCP](/mcp/) runbook `hyperliquid-edge`.
+Luego abre el WebSocket (`ws://127.0.0.1:8081`). Contrato: [PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md). Guía completa: runbook [MCP](../mcp.md) `hyperliquid-edge`.
 
-### 4b. Multicast nativo
+### 4b. Multicast nativo {#4b-native-multicast}
 
-En el host que tiene la clave privada asignada (con `doublezerod` ejecutándose en el host), suscríbete a los feeds que compraste:
+En el host que tiene la clave privada asignada (con el host `doublezerod` en ejecución), suscríbete a los feeds que compraste:
 
 ```bash
 doublezero connect multicast --subscribe-feed <feed-code>
@@ -173,7 +173,7 @@ Verifica el túnel:
 doublezero status
 ```
 
-Espera `BGP Session Up` en la red DoubleZero correcta. Luego decodifica los datos tú mismo — ver [Decodificar el feed](#decode-the-feed).
+Espera `BGP Session Up` en la red DoubleZero correcta. Luego decodifica el cable tú mismo — ver [Decodificar el feed](#decode-the-feed).
 
 ---
 
@@ -181,13 +181,13 @@ Espera `BGP Session Up` en la red DoubleZero correcta. Luego decodifica los dato
 
 Los asientos se cobran **mensualmente**. Vigila la fecha de expiración del asiento.
 
-Necesitas pagar la factura antes de que el asiento expire. **No pagar conlleva la eliminación del asiento.**
+Necesitas pagar la factura antes de que expire el asiento. **No pagar lleva a la eliminación del asiento.**
 
 ---
 
 ## Direcciones de feeds {#feed-addresses}
 
-La IP selecciona el grupo multicast. El puerto selecciona el flujo en ese grupo. Verifica los valores de IP en vivo con:
+La IP selecciona el grupo multicast. El puerto selecciona el flujo en ese grupo. Verifica los valores IP en vivo con:
 
 ```bash
 doublezero multicast group list
@@ -221,21 +221,21 @@ Los frames son binarios de tamaño fijo en little-endian. Los perps nativos de H
 - [`go/topofbook-parser`](https://github.com/malbeclabs/edge-multicast-ref/tree/main/go/topofbook-parser) para Top-of-Book y Trades
 - [`go/marketbyorder-parser`](https://github.com/malbeclabs/edge-multicast-ref/tree/main/go/marketbyorder-parser) para Market-by-Order
 
-Consulta el [README principal](https://github.com/malbeclabs/edge-multicast-ref/blob/main/README.md#market-data-pipelines) para el pipeline completo.
+Consulta el [README principal](https://github.com/malbeclabs/edge-multicast-ref/blob/main/README.md#market-data-pipelines) para ver el pipeline completo.
 
 **Escribe tu propio decodificador**
 
-Decodifica contra [edge-feed-spec](https://github.com/malbeclabs/edge-feed-spec). Comienza con el encabezado del frame, luego los layouts de mensaje para el feed que estás recibiendo.
+Decodifica según [edge-feed-spec](https://github.com/malbeclabs/edge-feed-spec). Comienza con el encabezado del frame, luego los layouts de mensajes para el feed que estás recibiendo.
 
 **Encabezado del túnel GRE — XDP**
 
-El tráfico de datos de mercado entregado a través de la red está encapsulado en GRE en el último tramo. En `doublezero1`, el cliente presenta multicast UDP plano. Si terminas GRE tú mismo (p. ej. un pipeline XDP), elimina el encabezado GRE antes de alimentar los datos a tu decodificador. Ver [`gre-decap`](https://github.com/malbeclabs/edge-multicast-ref/tree/main/gre-decap).
+El tráfico de datos de mercado entregado a través de la red está encapsulado en GRE en la última milla. En `doublezero1`, el cliente presenta multicast UDP plano. Si terminas GRE tú mismo (por ejemplo, un pipeline XDP), elimina el encabezado GRE antes de alimentar los datos a tu decodificador. Ver [`gre-decap`](https://github.com/malbeclabs/edge-multicast-ref/tree/main/gre-decap).
 
 ---
 
 ## Solución de problemas
 
-Si encuentras un problema no cubierto aquí, por favor comunícate a través de tu canal existente antes de intentar solucionarlo por tu cuenta. Si no tienes un canal, consulta [Soporte](/support/).
+Si encuentras un problema no cubierto aquí, por favor comunícate a través de tu canal existente antes de intentar solucionarlo por tu cuenta. Si no tienes un canal, consulta [Soporte](../support.md).
 
 **Asegúrate de que tu cliente esté actualizado**
 
@@ -244,25 +244,25 @@ Si encuentras un problema no cubierto aquí, por favor comunícate a través de 
 sudo apt update && sudo apt install doublezero
 ```
 
-**El túnel no se establece**
+**El túnel no se levanta**
 
 
-1. **Edge Connect:** ejecuta status en el contenedor — `docker exec doublezero-edge-connect doublezero status`. El `doublezero status` del host a menudo falla mientras el feed funciona correctamente (el contenedor es dueño del daemon). Confirma que el `doublezerod` del host está detenido.
-2. **Nativo:** verifica que el daemon del host esté ejecutándose: `sudo systemctl status doublezerod`
-3. Verifica que las reglas del firewall estén en su lugar (GRE, BGP, PIM, puertos UDP de Hyperliquid y `5765` en `doublezero1`)
-4. Confirma que la factura de este asiento está pagada y que la fecha de inicio ha pasado
-5. Ejecuta connect en el camino que elegiste ([4a](#4a-edge-connect) o [4b](#4b-native-multicast)) con la clave que coincide con la página de cuentas
+1. **Edge Connect:** ejecuta status en el contenedor — `docker exec doublezero-edge-connect doublezero status`. El `doublezero status` del host a menudo falla mientras el feed funciona bien (el contenedor es dueño del daemon). Confirma que el `doublezerod` del host esté detenido.
+2. **Nativo:** verifica que el daemon del host esté en ejecución: `sudo systemctl status doublezerod`
+3. Verifica que las reglas de firewall estén configuradas (GRE, BGP, PIM, puertos UDP de Hyperliquid y `5765` en `doublezero1`)
+4. Confirma que la factura de este asiento esté pagada y que la fecha de inicio haya pasado
+5. Ejecuta connect en el camino que elegiste ([4a](#4a-edge-connect) o [4b](#4b-native-multicast)) con la clave que coincida con la página de cuentas
 6. Espera `BGP Session Up` desde el mismo lugar donde ejecutaste connect (contenedor o host)
 
 **Sin paquetes después de suscribirse**
 
 
 1. Confirma que estás suscrito: `doublezero user list`
-2. Confirma que el feed aparece en tus grupos: `doublezero multicast group list`
-3. Captura en el túnel, p. ej. Hyperliquid TOB: `sudo tcpdump -ni doublezero1 host 233.84.178.27`
+2. Confirma que el feed aparece bajo tus grupos: `doublezero multicast group list`
+3. Captura en el túnel, por ejemplo Hyperliquid TOB: `sudo tcpdump -ni doublezero1 host 233.84.178.27`
 4. Prefiere vincular market y reference juntos (y snapshot para MBO) para el feed que deseas
 
-**Feed comprado faltante (Edge Connect)**
+**Feed comprado no aparece (Edge Connect)**
 
 Si un feed comprado no aparece en `doublezero status`, suscríbete dentro del contenedor:
 
@@ -287,7 +287,7 @@ Los asientos son mensuales. Si la factura no se paga antes de la expiración, el
 **"Multicast user already exists"**
 
 
-Ya tienes una suscripción activa a través de un camino diferente. Desconéctate primero, luego reintenta connect:
+Ya tienes una suscripción activa a través de un camino diferente. Desconéctate primero, luego reintenta la conexión:
 
 - **Edge Connect:** `docker exec doublezero-edge-connect doublezero disconnect`
 - **Nativo:** `doublezero disconnect`

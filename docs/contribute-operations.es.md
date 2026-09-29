@@ -1,20 +1,20 @@
 ---
-description: Tareas operativas continuas para los contribuidores de DoubleZero — actualizaciones de agentes, actualizaciones de dispositivos e interfaces, gestión de enlaces y registro de incidentes.
+description: Tareas operativas continuas para contribuidores de DoubleZero — actualizaciones de agentes, actualizaciones de dispositivos e interfaces, gestión de enlaces y registro de incidentes.
 ---
 
 # Guía de Operaciones para Contribuidores
 
 
-Esta guía cubre las tareas operativas continuas para el mantenimiento de sus Dispositivos DoubleZero (DZDs), incluyendo actualizaciones de agentes, actualizaciones de dispositivos/interfaces y gestión de enlaces.
+Esta guía cubre las tareas operativas continuas para el mantenimiento de sus DoubleZero Devices (DZDs), incluyendo actualizaciones de agentes, actualizaciones de dispositivos/interfaces y gestión de enlaces.
 
 ## Registro de Incidentes y Mantenimiento
 
-Cualquier mantenimiento planificado o problema no planificado de enlace/dispositivo debe registrarse en el [portal de Gestión OPS](contribute-ops-management.md). Esto proporciona a todos los contribuidores visibilidad sobre lo que está sucediendo en la red y evita investigaciones duplicadas.
+Cualquier mantenimiento planificado o problema no planificado de enlace/dispositivo debe registrarse en el [portal de gestión OPS](contribute-ops-management.md). Esto brinda a todos los contribuidores visibilidad sobre lo que está sucediendo en la red y evita investigaciones duplicadas.
 
-- **Trabajo planificado** (p. ej., reemplazo de un óptico, mantenimiento programado del operador): cree un registro de mantenimiento antes de comenzar.
-- **Problemas no planificados** (p. ej., enlace caído, errores de interfaz, pérdida de paquetes): abra un incidente tan pronto como comience la investigación.
+- **Trabajo planificado** (por ejemplo, reemplazar un óptico, mantenimiento programado del operador): cree un registro de mantenimiento antes de comenzar.
+- **Problemas no planificados** (por ejemplo, enlace caído, errores de interfaz, pérdida de paquetes): abra un incidente tan pronto como comience a investigar.
 
-Consulte la [guía de Gestión OPS](contribute-ops-management.md) para los pasos de incorporación y cómo crear tickets.
+Consulte la [guía de gestión OPS](contribute-ops-management.md) para los pasos de incorporación y cómo crear tickets.
 
 ---
 
@@ -37,7 +37,7 @@ doublezero device update --pubkey <DEVICE_PUBKEY> [OPTIONS]
 
 | Opción | Descripción |
 |--------|-------------|
-| `--device-type <TYPE>` | Cambiar el modo de operación: `hybrid`, `transit`, `edge` (ver [Tipos de Dispositivos](contribute-provisioning.md#understanding-device-types)) |
+| `--device-type <TYPE>` | Cambiar modo de operación: `hybrid`, `transit`, `edge` (ver [Tipos de Dispositivos](contribute-provisioning.md#understanding-device-types)) |
 | `--location <LOCATION>` | Mover el dispositivo a una ubicación diferente |
 | `--metrics-publisher <PUBKEY>` | Cambiar la clave del publicador de métricas |
 
@@ -66,15 +66,15 @@ doublezero device interface update lax-dz001 Ethernet1/2 \
 ### Listar Interfaces
 
 ```bash
-doublezero device interface list              # Todas las interfaces de todos los dispositivos
-doublezero device interface list <DEVICE>     # Interfaces de un dispositivo específico
+doublezero device interface list              # Todas las interfaces en todos los dispositivos
+doublezero device interface list <DEVICE>     # Interfaces para un dispositivo específico
 ```
 
 ---
 
 ## Actualización del Agente de Configuración
 
-Cuando se publique una nueva versión del Agente de Configuración, siga estos pasos para actualizar.
+Cuando se publica una nueva versión del Agente de Configuración, siga estos pasos para actualizar.
 
 ### 1. Descargar la última versión
 
@@ -104,7 +104,7 @@ Primero, encuentre el nombre de archivo de la versión anterior:
 switch# show extensions
 ```
 
-Ejecute los siguientes comandos para eliminar la versión anterior. Reemplace `<OLD_VERSION>` con la versión anterior de la salida mostrada arriba:
+Ejecute los siguientes comandos para eliminar la versión anterior. Reemplace `<OLD_VERSION>` con la versión anterior de la salida anterior:
 ```
 switch# delete flash:doublezero-agent_<OLD_VERSION>_linux_amd64.rpm
 switch# delete extension:doublezero-agent_<OLD_VERSION>_linux_amd64.rpm
@@ -135,7 +135,7 @@ El Estado debe ser "A, I, B".
 switch# show extensions
 ```
 
-### 7. Verificar la salida del registro del Agente de Configuración
+### 7. Verificar la salida de registro del Agente de Configuración
 
 ```
 show agent doublezero-agent log
@@ -145,7 +145,7 @@ show agent doublezero-agent log
 
 ## Actualización del Agente de Telemetría
 
-Cuando se publique una nueva versión del Agente de Telemetría, siga estos pasos para actualizar.
+Cuando se publica una nueva versión del Agente de Telemetría, siga estos pasos para actualizar.
 
 ### 1. Descargar la última versión
 
@@ -175,7 +175,7 @@ Primero, encuentre el nombre de archivo de la versión anterior:
 switch# show extensions
 ```
 
-Ejecute los siguientes comandos para eliminar la versión anterior. Reemplace `<OLD_VERSION>` con la versión anterior de la salida mostrada arriba:
+Ejecute los siguientes comandos para eliminar la versión anterior. Reemplace `<OLD_VERSION>` con la versión anterior de la salida anterior:
 ```
 switch# delete flash:doublezero-device-telemetry-agent_<OLD_VERSION>_linux_amd64.rpm
 switch# delete extension:doublezero-device-telemetry-agent_<OLD_VERSION>_linux_amd64.rpm
@@ -206,7 +206,7 @@ El Estado debe ser "A, I, B".
 switch# show extensions
 ```
 
-### 7. Verificar la salida del registro del Agente de Telemetría
+### 7. Verificar la salida de registro del Agente de Telemetría
 
 ```
 show agent doublezero-telemetry log
@@ -214,7 +214,7 @@ show agent doublezero-telemetry log
 
 ---
 
-## Monitorización
+## Monitorización {#monitoring}
 
 > ⚠️ **Importante:**
 >
@@ -223,14 +223,14 @@ show agent doublezero-telemetry log
 
 ### Métricas del Agente de Configuración
 
-El agente de configuración en el dispositivo DoubleZero tiene la capacidad de exponer métricas compatibles con prometheus configurando el flag `-metrics-enable` en la configuración del daemon `doublezero-agent`. El puerto de escucha por defecto es tcp/8080 pero puede cambiarse para adaptarse al entorno mediante `-metrics-addr`:
+El agente de configuración en el dispositivo DoubleZero tiene la capacidad de exponer métricas compatibles con prometheus configurando el flag `-metrics-enable` en la configuración del daemon `doublezero-agent`. El puerto de escucha predeterminado es tcp/8080 pero puede cambiarse para adaptarse al entorno mediante `-metrics-addr`:
 ```
 daemon doublezero-agent
    exec /usr/local/bin/doublezero-agent -pubkey $PUBKEY -controller $CONTROLLER_ADDR -metrics-enable -metrics-addr 10.0.0.11:2112
    no shutdown
 ```
 
-Las siguientes métricas específicas de DoubleZero se exponen junto con métricas de tiempo de ejecución específicas de go:
+Las siguientes métricas específicas de DoubleZero se exponen junto con métricas de runtime específicas de go:
 ```
 $ curl -s 10.0.0.11:2112/metrics | grep doublezero
 
@@ -253,20 +253,20 @@ doublezero_agent_get_config_errors_total 0
 
 #### Errores de Alta Señal
 
-- `up` - Esta es la métrica de serie temporal generada automáticamente por prometheus si la instancia de recolección está sana y accesible. Si no lo está, el agente no es accesible o el agente no está en ejecución.
+- `up` - Esta es la métrica de serie temporal generada automáticamente por prometheus si la instancia de scrape está saludable y accesible. Si no lo está, el agente no es accesible o el agente no está en ejecución.
 - `doublezero_agent_apply_config_errors_total` - La configuración que el agente intenta aplicar ha fallado. En esta situación, los usuarios no podrán incorporarse al dispositivo y los cambios de configuración on-chain no se aplicarán hasta que esto se resuelva.
-- `doublezero_agent_get_config_errors_total` - Esto indica que el agente de configuración local no puede comunicarse con el controlador de DoubleZero. En la mayoría de los casos, esto puede deberse a un problema con la conectividad de gestión en el dispositivo. Similar a la métrica anterior, los usuarios no podrán incorporarse al dispositivo y los cambios de configuración on-chain no se aplicarán hasta que esto se resuelva.
+- `doublezero_agent_get_config_errors_total` - Esto indica que el agente de configuración local no puede comunicarse con el controlador de DoubleZero. En la mayoría de los casos, esto puede deberse a un problema con la conectividad de gestión del dispositivo. Similar a la métrica anterior, los usuarios no podrán incorporarse al dispositivo y los cambios de configuración on-chain no se aplicarán hasta que esto se resuelva.
 
 ### Métricas del Agente de Telemetría
 
-El agente de telemetría en el dispositivo DoubleZero tiene la capacidad de exponer métricas compatibles con prometheus configurando el flag `-metrics-enable` en la configuración del daemon `doublezero-telemetry`. El puerto de escucha por defecto es tcp/8080 pero puede cambiarse para adaptarse al entorno mediante `-metrics-addr`:
+El agente de telemetría en el dispositivo DoubleZero tiene la capacidad de exponer métricas compatibles con prometheus configurando el flag `-metrics-enable` en la configuración del daemon `doublezero-telemetry`. El puerto de escucha predeterminado es tcp/8080 pero puede cambiarse para adaptarse al entorno mediante `-metrics-addr`:
 ```
 daemon doublezero-telemetry
    exec /usr/local/bin/doublezero-telemetry  --local-device-pubkey $PUBKEY --env $ENV --keypair $KEY_PAIR -metrics-enable --metrics-addr 10.0.0.11:2113
    no shutdown
 ```
 
-Las siguientes métricas específicas de DoubleZero se exponen junto con métricas de tiempo de ejecución específicas de go:
+Las siguientes métricas específicas de DoubleZero se exponen junto con métricas de runtime específicas de go:
 ```
 $ curl -s 10.0.0.11:2113/metrics | grep doublezero
 
@@ -292,25 +292,25 @@ doublezero_device_telemetry_agent_peer_discovery_not_found_tunnels{local_device_
 
 #### Errores de Alta Señal
 
-- `up` - Esta es la métrica de serie temporal generada automáticamente por prometheus si la instancia de recolección está sana y accesible. Si no lo está, el agente no es accesible o el agente no está en ejecución.
+- `up` - Esta es la métrica de serie temporal generada automáticamente por prometheus si la instancia de scrape está saludable y accesible. Si no lo está, el agente no es accesible o el agente no está en ejecución.
 - `doublezero_device_telemetry_agent_errors_total` con un `error_type` de `submitter_failed_to_write_samples` - Esta es una señal de que el agente de telemetría no puede escribir muestras on-chain, lo cual podría deberse a problemas de conectividad de gestión en el dispositivo.
 
 ---
 
 ## Gestión de Enlaces
 
-### Drenaje de Enlaces
+### Drenaje de Enlaces {#link-draining}
 
-El drenaje de enlaces permite a los contribuidores retirar graciosamente un enlace del servicio activo para mantenimiento o resolución de problemas. Hay dos estados de drenaje:
+El drenaje de enlaces permite a los contribuidores retirar de forma ordenada un enlace del servicio activo para mantenimiento o resolución de problemas. Hay dos estados de drenaje:
 
 | Estado | Comportamiento IS-IS | Descripción |
 |--------|----------------------|-------------|
-| `soft-drained` | Métrica establecida en 1.000.000 | El enlace se desprioriza. El tráfico utilizará rutas alternativas si están disponibles, pero seguirá usando este enlace si es la única opción. |
+| `soft-drained` | Métrica establecida en 1.000.000 | El enlace es despriorizado. El tráfico utilizará rutas alternativas si están disponibles, pero seguirá usando este enlace si es la única opción. |
 | `hard-drained` | Establecido como pasivo | El enlace se elimina completamente del enrutamiento. Ningún tráfico atravesará este enlace. |
 
 ### Transiciones de Estado
 
-Se permiten las siguientes transiciones de estado:
+Las siguientes transiciones de estado están permitidas:
 
 ```
 activated → soft-drained ✓
@@ -322,7 +322,7 @@ hard-drained → activated ✗ (debe pasar por soft-drained primero)
 ```
 
 > ⚠️ **Nota:**
-> No se puede pasar directamente de `hard-drained` a `activated`. Primero debe transicionar a `soft-drained` y luego a `activated`.
+> No puede pasar directamente de `hard-drained` a `activated`. Primero debe transicionar a `soft-drained` y luego a `activated`.
 
 ### Drenaje Suave de un Enlace
 
@@ -353,13 +353,13 @@ doublezero link update --pubkey <LINK_PUBKEY> --status soft-drained
 doublezero link update --pubkey <LINK_PUBKEY> --status activated
 ```
 
-### Anulación de Retardo
+### Sobreescritura de Retardo
 
-La función de anulación de retardo permite a los contribuidores cambiar temporalmente el retardo efectivo de un enlace sin modificar el valor de retardo realmente medido. Esto es útil para degradar temporalmente un enlace de ruta primaria a secundaria.
+La función de sobreescritura de retardo permite a los contribuidores cambiar temporalmente el retardo efectivo de un enlace sin modificar el valor de retardo medido real. Esto es útil para degradar temporalmente un enlace de ruta primaria a secundaria.
 
-### Establecer una Anulación de Retardo
+### Establecer una Sobreescritura de Retardo
 
-Para anular el retardo de un enlace (haciéndolo menos preferido en el enrutamiento):
+Para sobreescribir el retardo de un enlace (haciéndolo menos preferido en el enrutamiento):
 
 ```bash
 doublezero link update --pubkey <LINK_PUBKEY> --delay-override-ms 100
@@ -367,13 +367,13 @@ doublezero link update --pubkey <LINK_PUBKEY> --delay-override-ms 100
 
 Los valores válidos son de `0.01` a `1000` milisegundos.
 
-### Eliminar una Anulación de Retardo
+### Eliminar una Sobreescritura de Retardo
 
-Para eliminar la anulación y volver a usar el retardo realmente medido:
+Para eliminar la sobreescritura y volver a usar el retardo medido real:
 
 ```bash
 doublezero link update --pubkey <LINK_PUBKEY> --delay-override-ms 0
 ```
 
 > ⚠️ **Nota:**
-> Cuando un enlace está en `soft-drained`, tanto `delay_ms` como `delay_override_ms` se anulan a 1000ms (1 segundo) para asegurar la despriorización.
+> Cuando un enlace está en estado soft-drained, tanto `delay_ms` como `delay_override_ms` se sobreescriben a 1000ms (1 segundo) para asegurar la despriorización.
