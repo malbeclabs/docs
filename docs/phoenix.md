@@ -22,8 +22,6 @@ Feeds are billed **per month**:
 
 ## Which path should I take? {#which-path-should-i-take}
 
-Two paths. Prefer Edge Connect unless you need to own the decoder.
-
 | # | Path | Best for | Effort |
 |---|------|----------|--------|
 | **1** | [Edge Connect](#1-edge-connect-recommended) | Agents and apps that want a simple CLI and decoded JSON over WebSocket | Lowest |
@@ -39,7 +37,7 @@ Want an AI to do the install with you? Connect the [DoubleZero MCP](mcp.md) and 
 
 **Start here.** [doublezero-edge-connect](https://github.com/malbeclabs/doublezero-edge-connect) is the agent-friendly path: one install command, the host joins DoubleZero, and your app consumes **decoded JSON over WebSocket** (`ws://<host>:8081`) instead of decoding binary multicast.
 
-The team evolves Edge Connect to meet the needs of its expanding user base. This is the easiest method of connection, and should be used unless you have a specific technical need.
+Edge Connect meets the needs of its expanding user base. This is the easiest method of connection, and should be used unless you have a specific technical need.
 
 Short version:
 
@@ -50,10 +48,11 @@ curl -fsSL https://get.doublezero.xyz/connect | \
 
 The variables go after the pipe so the installer (`bash`) receives them. `DZ_SECRET` is a `DZ_…` access token **or** the path to the Solana keypair JSON that owns your access pass / feed purchase.
 
-If a host `doublezerod` is already running, stop it first — it fights the container’s daemon for the same tunnel:
+If a host `doublezerod` is already running, it and the container’s own daemon both bind UDP port `44880`, so the container’s daemon exits right after starting. The installer offers to stop and disable the host daemon, and does it without asking when `DZ_ASSUME_YES=1` is set. To do it yourself:
 
 ```bash
 sudo systemctl stop doublezerod
+sudo systemctl disable doublezerod
 ```
 
 Then verify status **inside the container** (expect `BGP Session Up` and your Phoenix group) and connect a WebSocket client to `:8081`:
@@ -186,11 +185,11 @@ Every datagram opens with a 24-byte datagram header, followed by one or more app
 | EndOfSession | `0x06` | 12 B | market | Clean shutdown |
 | ManifestSummary | `0x07` | 24 B | reference | Valid flag, Manifest Seq change counter, instrument count, timestamp |
 
-Phoenix's Source ID in the edge-feed-spec registry is `2`. Read `price_exponent` and `qty_exponent` from each `InstrumentDefinition` — do not hardcode them. The exponent is the price precision, not the tick: BTC on Phoenix uses exponent `-2` with a tick size of `100`, so it moves in whole dollars.
+Phoenix does not send `0x08` (Liquidation). Phoenix's Source ID in the edge-feed-spec registry is `2`. Read `price_exponent` and `qty_exponent` from each `InstrumentDefinition` — do not hardcode them. The exponent is the price precision, not the tick: BTC on Phoenix uses exponent `-2` with a tick size of `100`, so it moves in whole dollars.
 
 The MBP feed uses the market-by-price message set. See the market-by-price and reference-data specs in edge-feed-spec. Both feeds come from the same publisher process, so they share instrument IDs, and the MBP market-data port carries the same trade prints as TOB. Phoenix trade IDs are per-market sequence numbers, so deduplicate trades on **(instrument ID, trade ID)**, never trade ID alone.
 
-Delivery is fire-and-forget UDP with no retransmit, and the reference-data port does not repair market data: it only repeats `InstrumentDefinition` (at most every 30 s) and `ManifestSummary` (at most every 1 s). A lost TOB Quote stays lost until that market's best bid or ask changes. Only MBP has a repair path — its snapshot cycle — and an MBP cold start must bind the snapshot port.
+Delivery is fire-and-forget UDP with no retransmit, and the reference-data port does not repair market data: it only repeats `InstrumentDefinition` (at least once every 30 s) and `ManifestSummary` (at least once every 1 s). A lost TOB Quote stays lost until that market's best bid or ask changes. Only MBP has a repair path — its snapshot cycle — and an MBP cold start must bind the snapshot port.
 
 ---
 
@@ -203,7 +202,7 @@ Delivery is fire-and-forget UDP with no retransmit, and the reference-data port 
 
 Subscribe with the feed code; `doublezero status` and `multicast group list` show the group code.
 
-The group selects the feed; the port selects market data, reference data, or snapshot within it. Multicast replication happens per source IP address and group, and the fabric never inspects the UDP port, so joining a group delivers everything on that group across your Edge Connect link. The port is a socket filter applied on your own host after the bytes arrive.
+The group selects the feed; the port selects market data, reference data, or snapshot within it. Multicast replication happens per source IP address and group, and the fabric never inspects the UDP port, so joining a group delivers everything on that group across your DoubleZero tunnel. The port is a socket filter applied on your own host after the bytes arrive.
 
 ---
 
@@ -248,12 +247,15 @@ Optional. If you already have a DoubleZero tunnel and subscription on the host a
 
 [github.com/malbeclabs/edge-multicast-ref/tree/main/demo](https://github.com/malbeclabs/edge-multicast-ref/tree/main/demo)
 
-Point `.env` at the Phoenix TOB group and ports (see [Feed Addresses](#feed-addresses)), then:
+This points the demo at Phoenix TOB (see [Feed Addresses](#feed-addresses)):
 
 ```bash
 cd demo
 cp .env.example .env
-# set DZ_MULTICAST_GROUP=233.84.178.24, DZ_MARKETDATA_PORT=9201, DZ_REFDATA_PORT=9202, DZ_INTERFACE=doublezero1
+sed -i -e 's/^DZ_MULTICAST_GROUP=.*/DZ_MULTICAST_GROUP=233.84.178.24/' \
+       -e 's/^DZ_MARKETDATA_PORT=.*/DZ_MARKETDATA_PORT=9201/' \
+       -e 's/^DZ_REFDATA_PORT=.*/DZ_REFDATA_PORT=9202/' \
+       -e 's/^DZ_INTERFACE=.*/DZ_INTERFACE=doublezero1/' .env
 docker compose up -d --build
 ```
 

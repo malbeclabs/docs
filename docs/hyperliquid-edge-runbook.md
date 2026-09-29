@@ -40,9 +40,11 @@ Firewall sketch (after the tunnel exists, `doublezero1` is present):
 
 ```bash
 sudo iptables -A OUTPUT -p gre -j ACCEPT
+sudo iptables -A INPUT -i doublezero1 -s 169.254.0.0/16 -d 169.254.0.0/16 -p tcp --dport 179 -j ACCEPT
+sudo iptables -A OUTPUT -o doublezero1 -s 169.254.0.0/16 -d 169.254.0.0/16 -p tcp --dport 179 -j ACCEPT
+sudo iptables -A OUTPUT -o doublezero1 -p pim -j ACCEPT
 sudo iptables -A INPUT -i doublezero1 -p udp --dport 20000:20999 -j ACCEPT
 sudo iptables -A INPUT -i doublezero1 -p udp --dport 5765 -j ACCEPT
-# also allow BGP/PIM as in the full Hyperliquid Edge guide if you harden INPUT by default
 ```
 
 ---
@@ -121,7 +123,7 @@ docker exec doublezero-edge-connect \
   doublezero connect multicast --subscribe-feed <feed-code>
 ```
 
-Do not use the per-metro feed **name** (fails with `feed … not found`) or `--subscribe` (it takes a group code and fails on an Edge seat pass with `A Feed account is required for this EdgeSeat access pass`).
+Do not use the per-metro feed **name** (fails with `feed … not found`) or `--subscribe` (it takes a group code; on an Edge seat pass it fails with `A Feed account is required for this EdgeSeat access pass` on the first connect, and with `You are not allowed to execute this action` once the user exists, unless an admin added the group to the pass’s allowlist).
 
 A feed code you have not bought fails with `feed <address> is not provisioned on the access pass`. With no feeds bought at all, a bare connect prints `The AccessPass has no authorized multicast groups; nothing to connect to.`
 
@@ -205,7 +207,7 @@ Replace the group IP with the row you subscribed.
 
 1. **Approval before traffic.** Application + paid invoice + start date ⇒ then UDP. Tunnel can look fine while the seat is unpaid or not yet provisioned.
 2. **Silent non-activation.** Wrong `code` or group IP in the bridge registry ⇒ no receiver, no WS market-data, little noise. Diff `doublezero status --json` groups vs feed registry.
-3. **Host `doublezerod` vs container.** Edge Connect uses host networking and its own daemon. A host-level `doublezerod` fighting over the same UDP/GRE path will break the container — stop the host daemon when running the bridge.
+3. **Host `doublezerod` vs container.** Edge Connect uses host networking and its own daemon. A host-level `doublezerod` holds UDP port `44880`, which the container’s daemon also binds, so the container’s daemon exits right after starting. The installer offers to stop and disable the host daemon (without asking under `DZ_ASSUME_YES=1`).
 4. **WS only with market-data subscription.** Shreds-only (or no market feed) ⇒ no `:8081` service by design.
 5. **Port band.** Firewall must allow `20000:20999` and `5765` on `doublezero1`, not only GRE. Decapsulated UDP re-enters `INPUT` on the tunnel iface.
 6. **Installer exit 0 ≠ tunnel up.** A failed or pending connect prints `NOT CONNECTED` or `Not connected yet`, and the installer still exits 0. Trust `doublezero status`, not the exit code.

@@ -37,8 +37,10 @@ Firewall sketch (after the tunnel exists, `doublezero1` is present):
 
 ```bash
 sudo iptables -A OUTPUT -p gre -j ACCEPT
+sudo iptables -A INPUT -i doublezero1 -s 169.254.0.0/16 -d 169.254.0.0/16 -p tcp --dport 179 -j ACCEPT
+sudo iptables -A OUTPUT -o doublezero1 -s 169.254.0.0/16 -d 169.254.0.0/16 -p tcp --dport 179 -j ACCEPT
+sudo iptables -A OUTPUT -o doublezero1 -p pim -j ACCEPT
 sudo iptables -A INPUT -i doublezero1 -p udp --dport 9201:9213 -j ACCEPT
-# also allow BGP/PIM as in the full Phoenix guide if you harden INPUT by default
 ```
 
 ---
@@ -58,7 +60,21 @@ Confirm the live group IP for your env:
 docker exec doublezero-edge-connect doublezero multicast group get --code edge-phoenix-tob
 ```
 
-**Edge Connect note:** the bridge activates a receiver when a group **code** in its feed registry matches what `doublezero status` reports. A code that does not match fails **silently**: no receiver, nothing on the WebSocket. An old bridge image still carries the retired Phoenix code (`scottsdale`) and activates nothing for `edge-phoenix-*` — pull the current image. A wrong group IP in the registry does not stop activation; the receiver starts and warns `no market data; … rejoining`.
+**Edge Connect note:** the bridge activates a receiver when a group **code** in its feed registry matches what `doublezero status` reports. A code that does not match fails **silently**: no receiver, nothing on the WebSocket. The image downloads its registry at startup from `DZ_FEED_REGISTRY_URL` (`https://get.doublezero.xyz/feeds/doublezero-edge-feeds-latest.json`) and falls back to its built-in copy only if the download fails or the file is rejected, so the hosted file, not the image version, decides which codes activate. Check which registry loaded:
+
+```bash
+docker logs doublezero-edge-connect 2>&1 | grep 'feed registry resolved'
+```
+
+If `origin` starts with `url https://get.doublezero.xyz`, the hosted file is in use and must list the Phoenix codes — this must not print `0`:
+
+```bash
+curl -fsSL https://get.doublezero.xyz/feeds/doublezero-edge-feeds-latest.json | grep -c edge-phoenix
+```
+
+If `origin` starts with `built-in`, the download failed or the file was rejected, and the image’s own list is in use.
+
+A wrong group IP in the registry does not stop activation; the receiver starts and warns `no market data; … rejoining`.
 
 ---
 
@@ -102,7 +118,7 @@ docker exec doublezero-edge-connect \
   doublezero connect multicast --subscribe-feed phoenix-tob phoenix-mbp
 ```
 
-Do not use the per-metro feed **name** (such as `phoenix-tob-cmh`, fails with `feed … not found`) or `--subscribe <group code>` (fails on an Edge seat pass with `A Feed account is required for this EdgeSeat access pass`).
+Do not use the per-metro feed **name** (such as `phoenix-tob-cmh`, fails with `feed … not found`) or `--subscribe <group code>` (on an Edge seat pass it fails with `A Feed account is required for this EdgeSeat access pass` on the first connect, and with `You are not allowed to execute this action` once the user exists, unless an admin added the group to the pass’s allowlist).
 
 A feed code you have not bought fails with `feed <address> is not provisioned on the access pass`. With no feeds bought at all, a bare connect prints `The AccessPass has no authorized multicast groups; nothing to connect to.`
 
@@ -177,8 +193,8 @@ Replace the group IP with the row you subscribed (`233.84.178.25` for MBP).
 ## Gotchas
 
 1. **Buy before subscribe.** No purchase ⇒ tunnel can look fine, UDP stays empty.
-2. **Silent non-activation.** A group code missing from the bridge registry ⇒ no receiver, no WS market data, little noise. Diff `doublezero status --json` groups vs the bridge feed registry. The retired `scottsdale` code is the usual culprit on an old image.
-3. **Host `doublezerod` vs container.** Edge Connect uses host networking and its own daemon. A host-level `doublezerod` fighting over the same UDP/GRE path will break the container — stop the host daemon when running the bridge.
+2. **Silent non-activation.** A group code missing from the bridge registry ⇒ no receiver, no WS market data, little noise. Diff `doublezero status --json` groups vs the bridge feed registry. Check which registry loaded and whether it lists `edge-phoenix-*` (see the Edge Connect note under [Feed map](#feed-map)).
+3. **Host `doublezerod` vs container.** Edge Connect uses host networking and its own daemon. A host-level `doublezerod` holds UDP port `44880`, which the container’s daemon also binds, so the container’s daemon exits right after starting. The installer offers to stop and disable the host daemon (without asking under `DZ_ASSUME_YES=1`).
 4. **WS only with market-data subscription.** Shreds-only (or no market feed) ⇒ no `:8081` service by design.
 5. **Ports.** Firewall must allow `9201:9213` on `doublezero1`, not only GRE. Decapsulated UDP re-enters `INPUT` on the tunnel iface.
 6. **Installer exit 0 ≠ tunnel up.** A failed or pending connect prints `NOT CONNECTED` or `Not connected yet`, and the installer still exits 0. Trust `doublezero status`, not the exit code.

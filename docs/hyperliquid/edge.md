@@ -125,10 +125,11 @@ After you submit the application, you will receive an invoice; once it is paid, 
 
 ### 4a. Edge Connect {#4a-edge-connect}
 
-If a host `doublezerod` is already running (from [setup](../setup.md)), stop it first — it fights the container’s daemon for the same tunnel:
+If a host `doublezerod` is already running (from [setup](../setup.md)), it and the container’s own daemon both bind UDP port `44880`, so the container’s daemon exits right after starting. The installer offers to stop and disable the host daemon, and does it without asking when `DZ_ASSUME_YES=1` is set. To do it yourself:
 
 ```bash
 sudo systemctl stop doublezerod
+sudo systemctl disable doublezerod
 ```
 
 Install [doublezero-edge-connect](https://github.com/malbeclabs/doublezero-edge-connect) **after** approval and payment. The bridge joins DoubleZero inside a `--network host` container and serves decoded JSON on `ws://<host>:8081`.
