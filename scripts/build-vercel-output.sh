@@ -19,8 +19,8 @@ tar -xf "$SITE_TAR" -C .vercel/output/static
 
 # Prebuilt output ignores vercel.json-style "trailingSlash", so the redirect is
 # an explicit route. Without it /hyperliquid is served as-is and relative links
-# (edge/, ../setup/) resolve one directory too high. Paths with a dot are files
-# and .well-known must stay unredirected. The error route serves mkdocs' 404.html.
+# (edge/, ../setup/) resolve one directory too high. .well-known must stay
+# unredirected. The error route serves mkdocs' 404.html.
 cat > .vercel/output/config.json <<'JSON'
 {
   "version": 3,
