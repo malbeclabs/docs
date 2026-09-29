@@ -42,11 +42,10 @@ Edge Connect meets the needs of its expanding user base. This is the easiest met
 Short version:
 
 ```bash
-curl -fsSL https://get.doublezero.xyz/connect | \
-  DZ_SECRET=/path/to/keypair.json DZ_FEEDS=PHOENIX DZ_ASSUME_YES=1 bash
+curl -fsSL https://get.doublezero.xyz/connect | bash
 ```
 
-The variables go after the pipe so the installer (`bash`) receives them. `DZ_SECRET` is a `DZ_…` access token **or** the path to the Solana keypair JSON that owns your access pass / feed purchase.
+The installer asks for your secret: a `DZ_…` access token **or** the path to the Solana keypair JSON that owns your access pass / feed purchase.
 
 If a host `doublezerod` is already running, it and the container’s own daemon both bind UDP port `44880`, so the container’s daemon exits right after starting. The installer offers to stop and disable the host daemon, and does it without asking when `DZ_ASSUME_YES=1` is set. To do it yourself:
 
