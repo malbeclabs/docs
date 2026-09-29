@@ -1,23 +1,27 @@
+---
+description: Enregistrez et configurez les récompenses de publication des validateurs afin que les validateurs publiant des shreds vers DoubleZero Edge soient payés à chaque epoch.
+---
+
 # Récompenses des validateurs
 !!! warning "En me connectant à DoubleZero, j'accepte les [Conditions d'utilisation de DoubleZero](https://doublezero.xyz/terms-protocol)"
 
-## Fonctionnement
+## Comment ça fonctionne
 
-Les validateurs qui publient des leader shreds vers DoubleZero Edge gagnent des récompenses à chaque epoch. Avant que les récompenses puissent être versées, chaque validateur doit enregistrer **où** les récompenses seront envoyées en configurant un compte `ValidatorPublisherRewards` sur Solana. Ce compte stocke :
+Les validateurs qui publient des leader shreds vers DoubleZero Edge gagnent des récompenses à chaque epoch. Avant que les récompenses puissent être versées, chaque validateur doit enregistrer **où** les récompenses sont envoyées en configurant un compte `ValidatorPublisherRewards` sur Solana. Ce compte stocke :
 
 - le **mint des récompenses** — le jeton dans lequel les récompenses sont versées 2z (sauf modification manuelle)
-- le **propriétaire des récompenses** — le portefeuille qui possède le compte de jetons associé (ATA) recevant les récompenses
+- le **propriétaire des récompenses** — le portefeuille qui possède l'Associated Token Account (ATA) recevant les récompenses
 
-La commande `configure` définira ces champs, et les paiements automatiques se feront ensuite sur une base epoch par epoch. Vous pouvez relancer `configure` ultérieurement pour modifier l'un ou l'autre champ.
+La commande `configure` définit ces champs, et les versements automatiques auront lieu sur une base epoch par epoch par la suite. Vous pouvez relancer `configure` ultérieurement pour modifier l'un ou l'autre champ.
 
-!!! info "Si vous n'avez pas encore terminé la [Configuration](setup.md), la [Connexion du validateur au Mainnet-Beta](DZ%20Mainnet-beta%20Connection.md) et la [Connexion Multicast du validateur](Validator%20Multicast%20Connection.md), faites-le d'abord."
+!!! info "Si vous n'avez pas encore terminé la [Configuration](setup.md), la [Connexion validateur Mainnet-Beta](DZ%20Mainnet-beta%20Connection.md), et la [Connexion Multicast validateur](Validator%20Multicast%20Connection.md), faites-le d'abord."
 
 ## Prérequis
 
-- Validateurs publiant des leader shreds - voir [Connexion Multicast du validateur](Validator%20Multicast%20Connection.md).
-- Le dernier CLI `doublezero-solana` : `sudo apt update && sudo apt install doublezero-solana`, au minimum `0.5.6`.
+- Validateurs publiant des leader shreds - voir [Connexion Multicast validateur](Validator%20Multicast%20Connection.md).
+- La dernière version du CLI `doublezero-solana` : `sudo apt update && sudo apt install doublezero-solana`, au minimum `0.5.6`.
 - Accès à la **paire de clés d'identité du validateur**, soit sur la même machine, soit conservée hors ligne avec la possibilité de signer un message.
-- Une clé publique de portefeuille de destination qui sera propriétaire de l'ATA des récompenses.
+- Une clé publique de portefeuille de destination qui possédera l'ATA des récompenses.
 
 
 ---
@@ -44,12 +48,12 @@ Configured validator publisher rewards: 41111111ntmoBTnvcKcP1g2a1111111HPoN3z5uf
 ```
 `Configured validator publisher rewards: ` affiche la transaction que vous pouvez consulter dans un explorateur de blocs.
 
-| Drapeau | Description |
+| Option | Description |
 |---|---|
 | `--node-id` | Clé publique d'identité du nœud validateur. |
-| `--rewards-token-owner` | Portefeuille qui sera propriétaire de l'ATA de réception. |
+| `--rewards-token-owner` | Portefeuille qui possédera l'ATA de réception. |
 | `--rewards-token-mint` | Le jeton dans lequel les récompenses du portefeuille seront reçues `2z`. Les jetons pris en charge incluent également `usdc` et `wsol`. |
-| `-k` | Chemin vers la paire de clés d'identité du validateur. Sur le chemin direct, la clé publique de la paire de clés doit correspondre à `--node-id`, sinon la commande renverra une erreur et vous indiquera de passer au chemin offchain. |
+| `-k` | Chemin vers la paire de clés d'identité du validateur. Sur le chemin direct, la clé publique de la paire de clés doit correspondre à `--node-id` sinon la commande retournera une erreur et vous indiquera de passer au chemin offchain. |
 
 L'ATA est automatiquement initialisé dans la même transaction s'il n'existe pas encore.
 
@@ -57,7 +61,7 @@ L'ATA est automatiquement initialisé dans la même transaction s'il n'existe pa
 !!! note "Si une erreur est retournée"
     Si la clé publique de `-k` ne correspond pas à `--node-id`
 
-    La paire de clés du payeur de frais que vous avez passée n'est pas l'identité du validateur. Passez soit la paire de clés d'identité du validateur comme `-k`, soit passez au [chemin offchain](#annexe-alternative-du-chemin-offchain).
+    La paire de clés du payeur de frais que vous avez transmise n'est pas l'identité du validateur. Soit transmettez la paire de clés d'identité du validateur comme `-k`, soit passez au [chemin offchain](#apendix-offchain-path-alternative).
 ---
 
 ## 2. Vérifier la configuration
@@ -66,11 +70,11 @@ L'ATA est automatiquement initialisé dans la même transaction s'il n'existe pa
 doublezero-solana shreds publisher-rewards show --node-id <NODE_ID>
 ```
 
-La commande affiche le `Node ID`, le `Rewards owner`, le `Rewards mint`, l'adresse ATA résolue et le statut de l'ATA. L'**ATA résolu** est l'adresse déterministe dérivée du propriétaire des récompenses + le mint des récompenses — c'est là que les récompenses seront déposées à chaque epoch.
+La commande affiche le `Node ID`, le `Rewards owner`, le `Rewards mint`, l'adresse ATA résolue et le statut de l'ATA. L'**ATA résolu** est l'adresse déterministe dérivée du propriétaire des récompenses + du mint des récompenses — c'est là que les récompenses seront déposées à chaque epoch.
 
 ---
 
-## Annexe : Alternative du chemin offchain
+## Annexe : Alternative par chemin offchain {#apendix-offchain-path-alternative}
 
 Trois sous-étapes : préparer, signer, configurer.
 
@@ -100,16 +104,16 @@ Then submit:
 ```
 
 
-| Drapeau | Description |
+| Option | Description |
 |---|---|
 | `--node-id` | Clé publique d'identité du nœud validateur. |
-| `--rewards-token-owner` | Portefeuille qui sera propriétaire de l'ATA de réception. |
+| `--rewards-token-owner` | Portefeuille qui possédera l'ATA de réception. |
 | `--rewards-token-mint` | Le jeton dans lequel les récompenses du portefeuille seront reçues `2z`. Les jetons pris en charge incluent également `usdc` et `wsol`. |
-| `--valid-for` | Durée de vie de la signature relative au slot actuel. Accepte `<n>s`, `<n>m` ou `<n>h`. Par défaut : `1h`. |
+| `--valid-for` | Durée de vie de la signature relative au slot actuel. Accepte `<n>s`, `<n>m`, ou `<n>h`. Valeur par défaut : `1h`. |
 | `--deadline-slot` | Alternative à `--valid-for` : slot absolu auquel l'autorisation expire. Mutuellement exclusif avec `--valid-for`. |
 | `--json` | Émet du JSON (`{ hex, deadline_slot }`) au lieu du résumé lisible. |
 
-La commande affiche le message d'autorisation encodé en hexadécimal, le slot d'échéance résolu et des extraits de commandes prêts à l'emploi pour les deux étapes suivantes.
+La commande affiche le message d'autorisation encodé en hexadécimal, le slot d'échéance résolu, et des extraits shell prêts à exécuter pour les deux étapes suivantes.
 
 ### 2. Signer le message
 
@@ -120,7 +124,7 @@ solana sign-offchain-message <123457fc138f556a2578bdb079dc923342cc4e4a376683dc4c
 --keypair <path-to-validator-identity-keypair.json>
 ```
 
-Cela affiche une signature en base58.
+Ceci affiche une signature en base58.
 
 Exemple de sortie
 
@@ -140,7 +144,7 @@ doublezero-solana shreds publisher-rewards configure \
     --deadline-slot <DEADLINE_SLOT>
 ```
 
-`--signature` et `--deadline-slot` doivent être passés ensemble. Les valeurs doivent correspondre à celles produites aux étapes 2b.i et 2b.ii.
+`--signature` et `--deadline-slot` doivent être transmis ensemble. Les valeurs doivent correspondre à celles produites aux étapes 2b.i et 2b.ii.
 
 L'ATA est automatiquement initialisé dans la même transaction s'il n'existe pas encore.
 
@@ -159,4 +163,4 @@ Configured validator publisher rewards: 41111111ntmoBTnvcKcP1g2a1111111HPoN3z5uf
 ---
 
 !!! note "Note : Si la signature est expirée"
-    Chaque signature offchain a un slot d'échéance. Si trop de temps s'écoule entre `prepare-offchain-message` et `configure`, relancez `prepare-offchain-message`, re-signez et resoumettez. La validité par défaut est de 1 heure — prolongez avec `--valid-for 4h` ou similaire si vous avez besoin de plus de temps pour un flux de signature hors ligne.
+    Chaque signature offchain a un slot d'échéance. Si trop de temps s'écoule entre `prepare-offchain-message` et `configure`, relancez `prepare-offchain-message`, re-signez et re-soumettez. La validité par défaut est de 1 heure — prolongez avec `--valid-for 4h` ou similaire si vous avez besoin de plus de temps pour un flux de signature hors ligne.

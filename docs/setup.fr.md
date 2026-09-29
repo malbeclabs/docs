@@ -12,7 +12,7 @@ description: Guide étape par étape pour installer doublezerod et connecter vot
 
 ## Prérequis
 !!! warning inline end
-    Pour les validateurs : DoubleZero doit être installé directement sur votre hôte validateur, pas dans un conteneur.
+    Pour les validateurs : DoubleZero doit être installé directement sur l'hôte de votre validateur, et non dans un conteneur.
 - Connectivité Internet avec une adresse IP publique (pas de NAT)
 - Serveur x86_64
 - Système d'exploitation pris en charge : Ubuntu 22.04+ ou Debian 11+, ou Rocky Linux / RHEL 9+
@@ -27,20 +27,15 @@ Lors de l'intégration à DoubleZero, vous établirez une **identité DoubleZero
 
 ## 1. Installer les paquets DoubleZero
 
-<div data-wizard-step="install-version-info" markdown>
-
 !!! info "Versions actuelles"
     | Paquet | Mainnet-Beta | Testnet |
     |---------|-------------|---------|
     | `doublezero` | `MAINNET_CLIENT_VERSION` | `TESTNET_CLIENT_VERSION` |
 
-</div>
 
 Suivez ces étapes en fonction de votre système d'exploitation :
 
 ### Ubuntu / Debian
-
-<div data-wizard-step="install-deb-mainnet-beta" markdown>
 
 Le déploiement actuellement recommandé pour Mainnet-Beta est :
 ```bash
@@ -48,9 +43,6 @@ curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | 
 sudo apt-get install doublezero
 ```
 
-</div>
-
-<div data-wizard-step="install-deb-testnet" markdown>
 
 Le déploiement actuellement recommandé pour Testnet est :
 ```bash
@@ -58,11 +50,8 @@ curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero-testnet/setup.d
 sudo apt-get install doublezero
 ```
 
-</div>
 
 ### Rocky Linux / RHEL
-
-<div data-wizard-step="install-rpm-mainnet-beta" markdown>
 
 Le déploiement actuellement recommandé pour Mainnet-Beta est :
 ```bash
@@ -70,9 +59,6 @@ curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.rpm.sh | 
 sudo yum install doublezero
 ```
 
-</div>
-
-<div data-wizard-step="install-rpm-testnet" markdown>
 
 Le déploiement actuellement recommandé pour Testnet est :
 ```bash
@@ -80,21 +66,18 @@ curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero-testnet/setup.r
 sudo yum install doublezero
 ```
 
-</div>
-
-<div data-wizard-step="install-network-warning" markdown>
 
 ??? info "Utilisateurs existants uniquement : Changer un paquet de *Testnet vers Mainnet-Beta*, ou de *Mainnet-Beta vers Testnet*"
-    Lorsque vous installez depuis l'un des dépôts de paquets ci-dessus, celui-ci est spécifique à DoubleZero **Testnet** ou **DoubleZero Mainnet Beta**. Si vous changez de réseau à un moment donné, vous devrez supprimer les dépôts de paquets précédemment installés et mettre à jour vers le dépôt cible.
+    Lorsque vous installez à partir de l'un des dépôts de paquets ci-dessus, il est spécifique à DoubleZero **Testnet** ou **DoubleZero Mainnet Beta**. Si vous changez de réseau à un moment donné, vous devrez supprimer les dépôts de paquets précédemment installés et mettre à jour vers le dépôt cible.
 
-    Cet exemple vous guidera à travers la migration de Testnet vers Mainnet-Beta
+    Cet exemple vous guidera à travers la migration de Testnet vers Mainnet-Beta.
 
     Les mêmes étapes peuvent être effectuées pour passer de Mainnet-Beta à Testnet, en remplaçant l'étape 3 par la commande d'installation pour Testnet ci-dessus.
 
 
     1. Trouver les anciens fichiers de dépôt
 
-        Tout d'abord, localisez les fichiers de configuration de dépôt DoubleZero existants sur votre système :
+        Tout d'abord, localisez tous les fichiers de configuration de dépôt DoubleZero existants sur votre système :
 
         `find /etc/apt | grep doublezero`
 
@@ -110,17 +93,13 @@ sudo yum install doublezero
         ```
     3. Installer depuis le nouveau dépôt
 
-        Ajoutez le nouveau dépôt Mainnet-Beta et installez le dernier paquet :
+        Ajoutez le nouveau dépôt Mainnet-Beta et installez la dernière version du paquet :
 
         ```
         curl -1sLf https://dl.cloudsmith.io/public/malbeclabs/doublezero/setup.deb.sh | sudo -E bash
         sudo apt-get install doublezero=<current_recomended_version_above>
         ```
 
-
-</div>
-
-<div data-wizard-step="install-verify-daemon" markdown>
 
 #### Vérifier le statut de `doublezerod`
 
@@ -129,15 +108,12 @@ Après l'installation du paquet, une nouvelle unité systemd est installée, act
 sudo systemctl status doublezerod
 ```
 
-</div>
 
 ### Configurer le pare-feu pour GRE et BGP
 
 DoubleZero utilise le tunneling GRE (protocole IP 47) et le routage BGP (tcp/179 sur les adresses link-local). Assurez-vous que votre pare-feu autorise ces protocoles :
 
 Autoriser GRE et BGP via iptables :
-
-<div data-wizard-step="firewall-gre-bgp-iptables" markdown>
 
 ```bash
 sudo iptables -A INPUT -p gre -j ACCEPT
@@ -146,11 +122,8 @@ sudo iptables -A INPUT -i doublezero0 -s 169.254.0.0/16 -d 169.254.0.0/16 -p tcp
 sudo iptables -A OUTPUT -o doublezero0 -s 169.254.0.0/16 -d 169.254.0.0/16 -p tcp --dport 179 -j ACCEPT
 ```
 
-</div>
 
 Ou autoriser GRE et BGP via UFW :
-
-<div data-wizard-step="firewall-gre-bgp-ufw" markdown>
 
 ```bash
 sudo ufw allow proto gre from any to any
@@ -158,7 +131,6 @@ sudo ufw allow in on doublezero0 from 169.254.0.0/16 to 169.254.0.0/16 port 179 
 sudo ufw allow out on doublezero0 from 169.254.0.0/16 to 169.254.0.0/16 port 179 proto tcp
 ```
 
-</div>
 
 ## 2. Créer une nouvelle identité DoubleZero
 
@@ -184,7 +156,7 @@ doublezero keygen
     ```
 ## 3. Récupérer l'identité DoubleZero du serveur
 
-Consultez votre identité DoubleZero. Cette identité sera utilisée pour créer la connexion entre votre machine et DoubleZero
+Consultez votre identité DoubleZero. Cette identité sera utilisée pour créer la connexion entre votre machine et DoubleZero.
 
 ```bash
 doublezero address
@@ -221,7 +193,7 @@ Si aucun appareil n'est retourné dans la sortie, attendez 10 à 20 secondes et 
 
 ## 5. Se déconnecter de DoubleZero
 
-Dans les sections suivantes, vous configurerez votre environnement DoubleZero. Afin de garantir le succès, déconnectez la session en cours. Cela évitera les problèmes liés à plusieurs tunnels ouverts sur votre machine.
+Dans les sections suivantes, vous configurerez votre environnement DoubleZero. Afin de garantir le succès, déconnectez la session en cours. Cela évitera les problèmes liés à l'ouverture de plusieurs tunnels sur votre machine.
 
 Vérifiez
 
@@ -229,17 +201,17 @@ Vérifiez
 doublezero status
 ```
 
-s'il est `up`, exécutez :
+si le statut est `up`, exécutez :
 
 ```bash
 doublezero disconnect
 ```
 
-### Étape suivante : Tenant
+### Suite : Tenant
 
-La connexion à DoubleZero diffère selon votre cas d'utilisation. Sur DoubleZero, les Tenants sont des groupes ayant des profils utilisateur similaires. Les exemples incluent les Blockchains, les couches de transfert de données, etc.
+La connexion à DoubleZero diffère selon votre cas d'utilisation. Sur DoubleZero, les Tenants sont des groupes ayant des profils d'utilisateurs similaires. Les exemples incluent les blockchains, les couches de transfert de données, etc.
 
-### [Cliquez ici pour choisir votre tenant](tenant.md)
+### [Procédez au choix de votre tenant ici](tenant.md)
 
 
 # Optionnel : Activer les métriques Prometheus
@@ -249,7 +221,7 @@ Les opérateurs familiers avec les métriques Prometheus peuvent souhaiter les a
 ## Quelles métriques sont disponibles
 
 DoubleZero expose plusieurs métriques clés :
-- **Informations de build** : Version, hash de commit et date de build
+- **Informations de build** : Version, hash du commit et date de build
 - **Statut de session** : Indique si la session DoubleZero est active
 - **Métriques de connexion** : Latence et informations de connectivité
 - **Données de performance** : Débit et taux d'erreur
@@ -260,7 +232,7 @@ Pour activer les métriques Prometheus sur le client DoubleZero, suivez ces éta
 
 ### 1. Modifier la commande de démarrage du service systemd doublezerod
 
-Créez ou modifiez la configuration de remplacement systemd :
+Créez ou modifiez la configuration de surcharge systemd :
 
 ```bash
 sudo mkdir -p /etc/systemd/system/doublezerod.service.d/
@@ -269,7 +241,7 @@ sudo nano /etc/systemd/system/doublezerod.service.d/override.conf
 
 Remplacez par cette configuration :
 
-Notez que le flag `-env` doit pointer vers `testnet` ou `mainnet-beta` selon le réseau dont vous souhaitez collecter les données. Dans le bloc d'exemple, `testnet` est utilisé. Vous pouvez le remplacer par `mainnet-beta` si nécessaire.
+Notez que le flag `-env` doit pointer vers `testnet` ou `mainnet-beta` selon le réseau à partir duquel vous souhaitez collecter des données. Dans le bloc d'exemple, `testnet` est utilisé. Vous pouvez le remplacer par `mainnet-beta` si nécessaire.
 
 ```ini
 [Service]
@@ -309,7 +281,7 @@ Si les métriques n'apparaissent pas :
 
 1. **Vérifier le statut du service** : `sudo systemctl status doublezerod`
 2. **Vérifier la configuration** : `sudo systemctl cat doublezerod`
-3. **Consulter les logs** : `sudo journalctl -u doublezerod -f`
+3. **Consulter les journaux** : `sudo journalctl -u doublezerod -f`
 4. **Tester le point de terminaison** : `curl -v localhost:2113/metrics`
 5. **Vérifier le port** : `netstat -tlnp | grep 2113`
 

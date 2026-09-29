@@ -1,7 +1,9 @@
-# Nouveau Tenant
-!!! warning "This translation was generated using artificial intelligence and has not been reviewed by a human translator. It may contain inaccuracies or errors and should not be relied upon."
+---
+description: Contactez-nous pour intégrer un nouveau système distribué ou protocole au réseau DoubleZero.
+---
 
+# Nouveau Locataire
 
-Si vous souhaitez que votre système distribué tire parti du réseau DoubleZero, nous sommes heureux de répondre à toutes vos questions techniques.
+Si vous souhaitez que votre système distribué tire parti du réseau DoubleZero, nous serons ravis de vous aider pour toute question technique que vous pourriez avoir.
 
 [Formulaire de Contact](https://docs.google.com/forms/d/e/1FAIpQLSdp11kHtmcaKaLfYRZA92ylOvucipY86CdjVKdiggNdjlZniw/viewform)

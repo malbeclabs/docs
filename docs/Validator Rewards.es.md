@@ -1,22 +1,26 @@
+---
+description: Registre y configure las recompensas de publicación de validadores para que los validadores que publican shreds en DoubleZero Edge reciban pagos en cada epoch.
+---
+
 # Recompensas para Validadores
-!!! warning "Al conectarse a DoubleZero, acepto los [Términos de Uso de DoubleZero](https://doublezero.xyz/terms-protocol)"
+!!! warning "Al conectarme a DoubleZero, acepto los [Términos de Uso de DoubleZero](https://doublezero.xyz/terms-protocol)"
 
 ## Cómo Funciona
 
-Los validadores que publican leader shreds en DoubleZero Edge obtienen recompensas en cada época. Antes de que se puedan pagar las recompensas, cada validador debe registrar **dónde** se envían las recompensas configurando una cuenta `ValidatorPublisherRewards` en Solana. Esa cuenta almacena:
+Los validadores que publican leader shreds en DoubleZero Edge obtienen recompensas en cada epoch. Antes de que las recompensas puedan ser pagadas, cada validador debe registrar **dónde** se envían las recompensas configurando una cuenta `ValidatorPublisherRewards` en Solana. Esa cuenta almacena:
 
-- el **mint de recompensas** — el token en el que se pagan las recompensas es 2z (a menos que se cambie manualmente)
+- el **mint de recompensas** — el token en el que se pagan las recompensas 2z (a menos que se cambie manualmente)
 - el **propietario de recompensas** — la wallet que posee la Associated Token Account (ATA) que recibe las recompensas
 
-El comando `configure` establecerá estos campos, y los pagos automáticos se realizarán época por época a partir de ese momento. Puede volver a ejecutar `configure` más adelante para cambiar cualquiera de los campos.
+El comando `configure` establecerá estos campos, y los pagos automáticos se realizarán epoch por epoch a partir de ese momento. Puede volver a ejecutar `configure` más adelante para cambiar cualquiera de los campos.
 
-!!! info "Si aún no ha completado la [Configuración](setup.md), la [Conexión del Validador a Mainnet-Beta](DZ%20Mainnet-beta%20Connection.md) y la [Conexión Multicast del Validador](Validator%20Multicast%20Connection.md), hágalo primero."
+!!! info "Si aún no ha completado [Configuración Inicial](setup.md), [Conexión del Validador a Mainnet-Beta](DZ%20Mainnet-beta%20Connection.md) y [Conexión Multicast del Validador](Validator%20Multicast%20Connection.md), hágalo primero."
 
 ## Requisitos Previos
 
 - Validadores publicando leader shreds - consulte [Conexión Multicast del Validador](Validator%20Multicast%20Connection.md).
 - La última versión del CLI `doublezero-solana`: `sudo apt update && sudo apt install doublezero-solana`, como mínimo `0.5.6`.
-- Acceso al **keypair de identidad del validador**, ya sea en la misma máquina o mantenido offline con la capacidad de firmar un mensaje.
+- Acceso al **keypair de identidad del validador**, ya sea en la misma máquina o almacenado offline con la capacidad de firmar un mensaje.
 - Una pubkey de wallet de destino que será propietaria de la ATA de recompensas.
 
 
@@ -48,8 +52,8 @@ Configured validator publisher rewards: 41111111ntmoBTnvcKcP1g2a1111111HPoN3z5uf
 |---|---|
 | `--node-id` | Pubkey de identidad del nodo validador. |
 | `--rewards-token-owner` | Wallet que será propietaria de la ATA receptora. |
-| `--rewards-token-mint` | El token en el que se recibirán las recompensas de la wallet en `2z`. Los tokens soportados también incluyen `usdc` y `wsol`. |
-| `-k` | Ruta al keypair de identidad del validador. En la ruta directa, la pubkey del keypair debe coincidir con `--node-id` o el comando devolverá un error indicando que cambie a la ruta offchain. |
+| `--rewards-token-mint` | El token en el que se recibirán las recompensas de la wallet `2z`. Los tokens compatibles también incluyen `usdc` y `wsol`. |
+| `-k` | Ruta al keypair de identidad del validador. En la ruta directa, la pubkey del keypair debe coincidir con `--node-id` o el comando devolverá un error indicando que debe cambiar a la ruta offchain. |
 
 La ATA se inicializa automáticamente en la misma transacción si aún no existe.
 
@@ -57,7 +61,7 @@ La ATA se inicializa automáticamente en la misma transacción si aún no existe
 !!! note "Si se Devuelve un Error"
     Si la pubkey de `-k` no coincide con `--node-id`
 
-    El keypair del pagador de comisiones que proporcionó no es la identidad del validador. Proporcione el keypair de identidad del validador como `-k`, o cambie a la [ruta offchain](#apendix-alternativa-de-ruta-offchain).
+    El keypair pagador de comisiones que proporcionó no es la identidad del validador. Pase el keypair de identidad del validador como `-k`, o cambie a la [ruta offchain](#apendix-offchain-path-alternative).
 ---
 
 ## 2. Verificar la Configuración
@@ -66,11 +70,11 @@ La ATA se inicializa automáticamente en la misma transacción si aún no existe
 doublezero-solana shreds publisher-rewards show --node-id <NODE_ID>
 ```
 
-El comando muestra el `Node ID`, `Rewards owner`, `Rewards mint`, la dirección ATA resuelta y el estado de la ATA. La **ATA Resuelta** es la dirección determinística derivada del propietario de recompensas + mint de recompensas — es donde se depositarán las recompensas en cada época.
+El comando muestra el `Node ID`, `Rewards owner`, `Rewards mint`, la dirección ATA resuelta y el estado de la ATA. La **ATA Resuelta** es la dirección determinística derivada del propietario de recompensas + mint de recompensas — es donde se depositarán las recompensas en cada epoch.
 
 ---
 
-## Apéndice: Alternativa de Ruta Offchain
+## Apéndice: Alternativa de Ruta Offchain {#apendix-offchain-path-alternative}
 
 Tres sub-pasos: preparar, firmar, configurar.
 
@@ -104,12 +108,12 @@ Then submit:
 |---|---|
 | `--node-id` | Pubkey de identidad del nodo validador. |
 | `--rewards-token-owner` | Wallet que será propietaria de la ATA receptora. |
-| `--rewards-token-mint` | El token en el que se recibirán las recompensas de la wallet en `2z`. Los tokens soportados también incluyen `usdc` y `wsol`. |
-| `--valid-for` | Tiempo de vida de la firma relativo al slot actual. Acepta `<n>s`, `<n>m`, o `<n>h`. Por defecto: `1h`. |
+| `--rewards-token-mint` | El token en el que se recibirán las recompensas de la wallet `2z`. Los tokens compatibles también incluyen `usdc` y `wsol`. |
+| `--valid-for` | Tiempo de vida de la firma relativo al slot actual. Acepta `<n>s`, `<n>m` o `<n>h`. Por defecto: `1h`. |
 | `--deadline-slot` | Alternativa a `--valid-for`: slot absoluto en el que expira la autorización. Mutuamente excluyente con `--valid-for`. |
 | `--json` | Emite JSON (`{ hex, deadline_slot }`) en lugar del resumen legible. |
 
-El comando imprime el mensaje de autorización codificado en hexadecimal, el slot de vencimiento resuelto y fragmentos de shell listos para ejecutar para los dos pasos siguientes.
+El comando imprime el mensaje de autorización codificado en hexadecimal, el slot de deadline resuelto y fragmentos de shell listos para ejecutar para los dos pasos siguientes.
 
 ### 2. Firmar el mensaje
 
@@ -159,4 +163,4 @@ Configured validator publisher rewards: 41111111ntmoBTnvcKcP1g2a1111111HPoN3z5uf
 ---
 
 !!! note "Nota: Si la Firma ha Expirado"
-    Cada firma offchain tiene un slot de vencimiento. Si pasa demasiado tiempo entre `prepare-offchain-message` y `configure`, vuelva a ejecutar `prepare-offchain-message`, firme de nuevo y reenvíe. La validez por defecto es de 1 hora — extiéndala con `--valid-for 4h` o similar si necesita más tiempo para un flujo de firma offline.
+    Cada firma offchain tiene un slot de deadline. Si pasa demasiado tiempo entre `prepare-offchain-message` y `configure`, vuelva a ejecutar `prepare-offchain-message`, firme de nuevo y reenvíe. La validez por defecto es de 1 hora — extiéndala con `--valid-for 4h` o similar si necesita más tiempo para un flujo de firma offline.
