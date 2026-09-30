@@ -41,6 +41,15 @@ Replace `~/override_gossip_config.json` with this, using your peer IP:
 | `try_new_peers: false` | Keeps the node on the DoubleZero peer. It will not switch to public peers. |
 | `split_client_blocks: true` | Streams mempool transactions to `~/hl/data/mempool_txs/`. |
 
+!!! note "Plan for disk and bandwidth"
+    With `split_client_blocks: true`, the node writes the full mempool to disk.
+    Plan for several hundred GB to about 1 TB of writes per day from the
+    mempool, and about the same again from other node output. Inbound
+    bandwidth is lower because gossip is compressed on the wire; our test
+    node took in about 110 GB/day. Set a retention policy for
+    `~/hl/data/` (for example, delete files older than a few hours) or the
+    disk will fill within a day.
+
 ### 2. Open your firewall to the peer
 
 Allow **inbound TCP and UDP 4001–4002 from `<PEER_IP>`**. Do this in your cloud security group and on the host firewall.
