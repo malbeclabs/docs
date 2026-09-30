@@ -18,6 +18,57 @@ Peering gives non-validating nodes a low-latency, deduplicated Hyperliquid gossi
 
 More information about peering is available via [Telegram](https://t.me/doublezero_telegram_bot?start=fromwebsite). Include your node's static public IP (and region). Expect peer details within **1–3 business days** after we have your node details and payment is done.
 
+## Connect your node
+
+Once you're approved, we send you your **peer IP**. Point your non-validating node at it, open your firewall to it, and restart the node.
+
+### 1. Set the gossip config
+
+Replace `~/override_gossip_config.json` with this, using your peer IP:
+
+```json
+{
+  "root_node_ips": [{"Ip": "<PEER_IP>"}],
+  "try_new_peers": false,
+  "split_client_blocks": true,
+  "chain": "Mainnet"
+}
+```
+
+| Setting | Why |
+|--|--|
+| `root_node_ips` | Your DoubleZero peer is your only upstream. |
+| `try_new_peers: false` | Keeps the node on the DoubleZero peer. It will not switch to public peers. |
+| `split_client_blocks: true` | Streams mempool transactions to `~/hl/data/mempool_txs/`. |
+
+### 2. Open your firewall to the peer
+
+Allow **inbound TCP and UDP 4001–4002 from `<PEER_IP>`**. Do this in your cloud security group and on the host firewall.
+
+When your node connects, the peer connects back to your node on 4001 and 4002 to check that it is reachable. If that check is blocked, the connection opens but no data arrives. Also allow outbound connections to the peer on 4001–4002.
+
+### 3. Restart the node
+
+```bash
+sudo systemctl restart hl-node   # or however you run hl-visor
+```
+
+The node reads this file when it starts. Changes made while it runs may not take full effect, so restart after every change. Catching up usually takes 5–15 minutes.
+
+### 4. Check that it works
+
+```bash
+ss -tn state established '( dport = :4001 )'     # one connection, to <PEER_IP>
+journalctl -u hl-node -f | grep 'applied block'  # blocks are being applied
+ls -l ~/hl/data/mempool_txs/                     # mempool files are growing
+```
+
+!!! warning "Connected but no data"
+    The peer cannot reach your node on 4001–4002. Check the inbound rules from step 2.
+
+!!! note "No fallback to public peers"
+    With `try_new_peers: false`, your node waits for the DoubleZero peer if it is unreachable. It does not switch to public peers. Contact us if you see repeated `Peer full` or connection timeouts.
+
 ## Why paid peering
 
 Public Hyperliquid root peers are shared: slots are contended, peers rotate or rate-limit, and many do not forward mempool. A reserved peering slot gives you a stable upstream on DoubleZero instead of competing for that public capacity.
