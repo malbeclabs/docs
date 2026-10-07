@@ -1,0 +1,20 @@
+{
+  "DZ Mainnet-beta Connection/": "solana/ibrl/publish/",
+  "Permissioned Connection/": "solana/ibrl/subscribe/",
+  "Validator Multicast Connection/": "solana/edge/publish/",
+  "Edge Subscriber Connection/": "solana/edge/subscribe/",
+  "Edge Subscriber CLI/": "solana/edge/subscribe-cli/",
+  "Validator Rewards/": "solana/edge/rewards/",
+  "troubleshooting/": "support/troubleshooting/",
+  "contribute-overview/": "contributors/",
+  "contribute/": "contributors/requirements/",
+  "contribute-provisioning/": "contributors/provisioning/",
+  "contribute-operations/": "contributors/operations/",
+  "contribute-ops-management/": "contributors/ops-management/",
+  "contribute-geolocation/": "contributors/geolocation/",
+  "contribute-decommission/": "contributors/decommissioning/",
+  "architecture/": "reference/architecture/",
+  "Other Multicast Connection/": "reference/other-multicast/",
+  "geolocation/": "reference/geolocation/",
+  "glossary/": "reference/glossary/"
+}

@@ -32,9 +32,11 @@
 
     {%- set ns = namespace(support_page=none) -%}
     {%- for nav_item in nav -%}
-      {%- if nav_item.is_page and nav_item.file and nav_item.file.src_uri == "support.md" -%}
-        {%- set ns.support_page = nav_item -%}
-      {%- endif -%}
+      {%- for support_item in ([nav_item] if nav_item.is_page else (nav_item.children or [])) -%}
+        {%- if support_item.is_page and support_item.file and support_item.file.src_uri == "support/index.md" -%}
+          {%- set ns.support_page = support_item -%}
+        {%- endif -%}
+      {%- endfor -%}
     {%- endfor -%}
     <a class="mobile-drawer-controls__btn" href="{% if ns.support_page %}{{ ns.support_page.url | url }}{% else %}{{ 'support/' | url }}{% endif %}">
       Support

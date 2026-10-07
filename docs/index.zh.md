@@ -35,5 +35,5 @@ DoubleZero 的唯一替代方案是公共互联网。与公共互联网相比，
 ## 后续步骤
 
 * *用户* - 从[初始设置](setup.md)开始并按设置流程操作。
-* *贡献者* - 了解如何[贡献](contribute-overview.md)额外容量以进一步扩展 DoubleZero 网络。
-* *更多信息* - 进一步了解 DoubleZero 网络的[架构](architecture.md)组成。
+* *贡献者* - 了解如何[贡献](contributors/index.md)额外容量以进一步扩展 DoubleZero 网络。
+* *更多信息* - 进一步了解 DoubleZero 网络的[架构](reference/architecture.md)组成。

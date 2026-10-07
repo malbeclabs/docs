@@ -22,8 +22,6 @@ Kalshi 数据源通过 DoubleZero Edge 网络以 UDP 组播方式传送永续合
 
 在选择任何方式之前：请在 [doublezero.xyz/edge/subscribe](https://doublezero.xyz/edge/subscribe) 购买所需的数据源。购买即表示您同意 [DoubleZero 使用条款](https://doublezero.xyz/terms-protocol) 和 [Kalshi 服务条款](https://doublezero.xyz/dz-edge-kalshi-terms)。
 
-希望 AI 协助您完成安装？连接 [DoubleZero MCP](mcp.md) 并让它引导您完成 Kalshi / Edge Connect 的配置。
-
 ---
 
 ## 1. Edge Connect（推荐） {#1-edge-connect-recommended}
@@ -53,7 +51,6 @@ sudo systemctl disable doublezerod
 docker exec doublezero-edge-connect doublezero status
 ```
 
-**完整步骤、验证和注意事项：** 连接 [DoubleZero MCP](mcp.md) 并让它引导您完成 Kalshi 的 Edge Connect 配置。
 **WebSocket 协议：** [PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md)。
 
 ---
@@ -201,7 +198,7 @@ MBP 数据源使用 market-by-price 消息集。请参阅 edge-feed-spec 中的 
 
 ## 故障排除
 
-如果您遇到此处未涵盖的问题，请在进行变通处理之前通过现有渠道联系我们。如果您没有现有渠道，请参阅[支持](support.md)。
+如果您遇到此处未涵盖的问题，请在进行变通处理之前通过现有渠道联系我们。如果您没有现有渠道，请参阅[支持](support/index.md)。
 
 ### 确保客户端为最新版本
 

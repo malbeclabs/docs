@@ -2001,3 +2001,40 @@ html:has([data-md-toggle="search"]:checked) body {
   opacity: 1;
   filter: none;
 }
+
+/* Second-level nav groups (Solana > IBRL / Edge) are static, always-open
+   headings rather than collapsible sections, on desktop and in the drawer. */
+.md-nav--primary .md-nav[data-md-level="1"] > .md-nav__list > .md-nav__item--nested > .md-nav__link {
+  pointer-events: none;
+  cursor: default;
+  margin-top: 0.6em;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.md-nav--primary .md-nav[data-md-level="1"] > .md-nav__list > .md-nav__item--nested > .md-nav__link .md-nav__icon {
+  display: none;
+}
+
+.md-nav--primary .md-nav[data-md-level="2"] {
+  position: static;
+  display: block;
+  height: auto;
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+  grid-template-rows: none;
+  transition: none;
+  background-color: transparent;
+}
+
+.md-nav--primary .md-nav[data-md-level="2"] > .md-nav__list {
+  overflow: visible;
+}
+
+.md-nav--primary .md-nav[data-md-level="2"] > .md-nav__title {
+  display: none;
+}

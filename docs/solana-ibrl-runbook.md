@@ -9,7 +9,7 @@ not published on the docs site.
 
 1. Connect the [DoubleZero MCP](mcp.md) (`https://data.doublezero.xyz/api/mcp`).
 2. Tell it this is a **Solana Mainnet-Beta validator**, the Linux host (or SSH), and where the validator identity keypair lives.
-3. Walk the steps below in order. Prefer to do it by hand? Use the [human guide](DZ%20Mainnet-beta%20Connection.md).
+3. Walk the steps below in order. Prefer to do it by hand? Use the [human guide](solana/ibrl/publish.md).
 
 **What success looks like:** `doublezero status` shows tunnel **up**, User Type **IBRL**, Network **mainnet-beta**. `Tunnel src` and `Doublezero IP` match the host public IPv4.
 
@@ -56,7 +56,7 @@ Install the Mainnet-Beta packages from [setup](setup.md) (Testnet uses a differe
 doublezero status
 ```
 
-**Pass:** `Network` is `mainnet-beta`. If it is `testnet`, switch with the copy-paste in [troubleshooting](troubleshooting.md#issue-wrong-doublezero-environment).
+**Pass:** `Network` is `mainnet-beta`. If it is `testnet`, switch with the copy-paste in [troubleshooting](support/troubleshooting.md#issue-wrong-doublezero-environment).
 
 Wait ~30s, then `doublezero latency` should list mainnet devices.
 
@@ -143,7 +143,7 @@ Expect BGP-learned routes via `doublezero0`.
 
 ## Gotchas
 
-1. **Wrong env.** Testnet packages will not land on mainnet-beta. Confirm with `doublezero status`; switch using [troubleshooting](troubleshooting.md#issue-wrong-doublezero-environment).
+1. **Wrong env.** Testnet packages will not land on mainnet-beta. Confirm with `doublezero status`; switch using [troubleshooting](support/troubleshooting.md#issue-wrong-doublezero-environment).
 2. **Identity not in gossip.** Junk IDs on the same IP cannot register the machine.
 3. **Backups must share the primary DoubleZero ID.** Copy `id.json`; do not keygen a second identity.
 4. **Sign with the validator identity**, not the DoubleZero key.
@@ -153,6 +153,6 @@ Expect BGP-learned routes via `doublezero0`.
 
 ## See also
 
-- [Validator Connection in IBRL Mode](DZ Mainnet-beta Connection.md)
+- [Validator Connection in IBRL Mode](solana/ibrl/publish.md)
 - [Setup](setup.md)
 - Next: [Publish shreds (Edge)](solana-shreds-publisher-runbook.md)

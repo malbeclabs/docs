@@ -22,8 +22,6 @@ Los feeds de Kalshi entregan datos de mercado de perps y deportes a través de l
 
 Antes de cualquier ruta: adquiere los feeds que necesites en [doublezero.xyz/edge/subscribe](https://doublezero.xyz/edge/subscribe). Al comprar, aceptas los [Términos de Uso de DoubleZero](https://doublezero.xyz/terms-protocol) y los [Términos de Servicio de Kalshi](https://doublezero.xyz/dz-edge-kalshi-terms).
 
-¿Quieres que una IA te ayude con la instalación? Conecta el [DoubleZero MCP](mcp.md) y pídele que te guíe a través de Kalshi / Edge Connect.
-
 ---
 
 ## 1. Edge Connect (recomendado) {#1-edge-connect-recommended}
@@ -53,7 +51,6 @@ Luego verifica el estado **dentro del contenedor** (espera `BGP Session Up` y tu
 docker exec doublezero-edge-connect doublezero status
 ```
 
-**Pasos completos, verificación y problemas comunes:** conecta el [DoubleZero MCP](mcp.md) y pídele que te guíe a través de Edge Connect para Kalshi.  
 **Contrato WebSocket:** [PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md).
 
 ---
@@ -201,7 +198,7 @@ El grupo selecciona el feed; el puerto selecciona datos de mercado, datos de ref
 
 ## Solución de problemas
 
-Si encuentras un problema no cubierto aquí, comunícate a través de tu canal existente antes de intentar resolverlo por tu cuenta. Si no tienes un canal, consulta [Soporte](support.md).
+Si encuentras un problema no cubierto aquí, comunícate a través de tu canal existente antes de intentar resolverlo por tu cuenta. Si no tienes un canal, consulta [Soporte](support/index.md).
 
 ### Asegúrate de que tu cliente esté actualizado
 

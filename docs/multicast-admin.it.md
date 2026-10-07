@@ -207,4 +207,4 @@ Questo comando mostra tutti i subscriber attualmente autorizzati a connettersi a
 
 ---
 
-Per ulteriori informazioni sulla connessione e l'utilizzo del multicast, consulta [Altra Connessione Multicast](Other%20Multicast%20Connection.md).
+Per ulteriori informazioni sulla connessione e l'utilizzo del multicast, consulta [Altra Connessione Multicast](reference/other-multicast.md).

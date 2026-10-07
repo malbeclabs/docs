@@ -51,9 +51,11 @@
     {% endif %}
     {%- set ns = namespace(support_page=none) -%}
     {%- for item in nav -%}
-      {%- if item.is_page and item.file and item.file.src_uri == "support.md" -%}
-        {%- set ns.support_page = item -%}
-      {%- endif -%}
+      {%- for support_item in ([item] if item.is_page else (item.children or [])) -%}
+        {%- if support_item.is_page and support_item.file and support_item.file.src_uri == "support/index.md" -%}
+          {%- set ns.support_page = support_item -%}
+        {%- endif -%}
+      {%- endfor -%}
     {%- endfor -%}
     <a href="{% if ns.support_page %}{{ ns.support_page.url | url }}{% else %}support/{% endif %}" class="md-header__button header-support-btn" title="Support">
       <span class="header-support-btn__text">Support</span>

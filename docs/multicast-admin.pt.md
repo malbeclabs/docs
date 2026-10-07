@@ -204,4 +204,4 @@ Este comando exibe todos os assinantes atualmente autorizados a se conectar ao g
 
 ---
 
-Para mais informações sobre como conectar e usar multicast, consulte [Outra Conexão Multicast](Other%20Multicast%20Connection.md).
+Para mais informações sobre como conectar e usar multicast, consulte [Outra Conexão Multicast](reference/other-multicast.md).

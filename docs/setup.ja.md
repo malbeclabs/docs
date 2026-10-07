@@ -5,7 +5,7 @@ description: doublezerod のインストールおよびバリデーターやノ�
 # DoubleZero のセットアップ方法
 
 !!! info "用語について"
-    DoubleZero を初めてお使いですか？[用語集](glossary.md)で [doublezerod](glossary.md#doublezerod)、[IBRL](glossary.md#ibrl-increase-bandwidth-reduce-latency)、[DZD](glossary.md#dzd-doublezero-device) などの用語の定義をご確認ください。
+    DoubleZero を初めてお使いですか？[用語集](reference/glossary.md)で [doublezerod](reference/glossary.md#doublezerod)、[IBRL](reference/glossary.md#ibrl-increase-bandwidth-reduce-latency)、[DZD](reference/glossary.md#dzd-doublezero-device) などの用語の定義をご確認ください。
 
 !!! warning "DoubleZero に接続することにより、[DoubleZero 利用規約](https://doublezero.xyz/terms-protocol)に同意したものとみなされます"
 

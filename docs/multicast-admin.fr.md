@@ -207,4 +207,4 @@ Cette commande affiche tous les abonnés actuellement autorisés à se connecter
 
 ---
 
-Pour plus d'informations sur la connexion et l'utilisation du multicast, consultez [Autre Connexion Multicast](Other%20Multicast%20Connection.md).
+Pour plus d'informations sur la connexion et l'utilisation du multicast, consultez [Autre Connexion Multicast](reference/other-multicast.md).

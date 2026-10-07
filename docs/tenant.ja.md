@@ -12,8 +12,8 @@ Solana
 
 | ユースケース | 次のステップ |
 |-------------|---------|
-| Solanaバリデーター（mainnet-betaまたはtestnet）、バックアップを含む | [IBRLモードでのバリデーター接続](<DZ Mainnet-beta Connection.md>) |
-| 非バリデーター - RPC、その他 | [DoubleZero Mainnet-BetaおよびTestnet接続](Permissioned%20Connection.md) |
+| Solanaバリデーター（mainnet-betaまたはtestnet）、バックアップを含む | [IBRLモードでのバリデーター接続](<solana/ibrl/publish.md>) |
+| 非バリデーター - RPC、その他 | [DoubleZero Mainnet-BetaおよびTestnet接続](solana/ibrl/subscribe.md) |
 
 Kalshi
 

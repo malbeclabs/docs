@@ -12,8 +12,8 @@ Solana
 
 | Cas d'utilisation | Étape suivante |
 |-------------|---------|
-| Validateur Solana (mainnet-beta ou testnet), y compris les sauvegardes | [Connexion validateur en mode IBRL](<DZ Mainnet-beta Connection.md>) |
-| Non-validateurs - RPCs et autres. | [Connexion DoubleZero Mainnet-Beta et Testnet](Permissioned%20Connection.md) |
+| Validateur Solana (mainnet-beta ou testnet), y compris les sauvegardes | [Connexion validateur en mode IBRL](<solana/ibrl/publish.md>) |
+| Non-validateurs - RPCs et autres. | [Connexion DoubleZero Mainnet-Beta et Testnet](solana/ibrl/subscribe.md) |
 
 Kalshi
 

@@ -22,8 +22,6 @@ Kalshiフィードは、パープス（perps）およびスポーツマーケッ
 
 いずれのパスを選ぶ場合も、まず [doublezero.xyz/edge/subscribe](https://doublezero.xyz/edge/subscribe) で必要なフィードを購入してください。購入することにより、[DoubleZero利用規約](https://doublezero.xyz/terms-protocol)および[Kalshi利用規約](https://doublezero.xyz/dz-edge-kalshi-terms)に同意したものとみなされます。
 
-AIにインストールを手伝ってほしいですか？[DoubleZero MCP](mcp.md)に接続して、Kalshi / Edge Connectのセットアップをガイドしてもらいましょう。
-
 ---
 
 ## 1. Edge Connect（推奨） {#1-edge-connect-recommended}
@@ -53,7 +51,6 @@ sudo systemctl disable doublezerod
 docker exec doublezero-edge-connect doublezero status
 ```
 
-**詳細な手順、検証、注意点：** [DoubleZero MCP](mcp.md)に接続して、Kalshi向けEdge Connectのセットアップをガイドしてもらいましょう。  
 **WebSocketプロトコル仕様：** [PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md)。
 
 ---
@@ -201,7 +198,7 @@ MBPフィードはmarket-by-priceメッセージセットを使用します。ed
 
 ## トラブルシューティング
 
-ここに記載されていない問題が発生した場合は、回避策を試す前に既存のチャネルを通じてお問い合わせください。チャネルがない場合は、[サポート](support.md)を参照してください。
+ここに記載されていない問題が発生した場合は、回避策を試す前に既存のチャネルを通じてお問い合わせください。チャネルがない場合は、[サポート](support/index.md)を参照してください。
 
 ### クライアントが最新であることを確認する
 

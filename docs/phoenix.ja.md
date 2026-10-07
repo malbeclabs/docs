@@ -29,8 +29,6 @@ Phoenix フィードは、DoubleZero Edge ネットワーク上で UDP マルチ
 
 どのパスを選ぶ場合でも、まず [doublezero.xyz/edge/subscribe](https://doublezero.xyz/edge/subscribe) で必要なフィードを購入してください。購入することにより、[DoubleZero 利用規約](https://doublezero.xyz/terms-protocol)に同意したものとみなされます。
 
-AI にインストールを手伝ってもらいたい場合は、[DoubleZero MCP](mcp.md) に接続して、Phoenix / Edge Connect のセットアップをガイドしてもらうよう依頼してください。
-
 ---
 
 ## 1. Edge Connect（推奨） {#1-edge-connect-recommended}
@@ -62,7 +60,6 @@ docker exec doublezero-edge-connect doublezero status
 
 Edge Connect は Phoenix パブリッシャー間の調停を行うため、WebSocket クライアントには各アップデートのコピーが 1 つだけ表示されます。
 
-**完全な手順、検証、および注意点：** [DoubleZero MCP](mcp.md) に接続して、Phoenix 向け Edge Connect のセットアップをガイドしてもらうよう依頼してください。
 **WebSocket コントラクト：** [PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md)。
 
 ---
@@ -207,7 +204,7 @@ MBP フィードは market-by-price メッセージセットを使用します�
 
 ## トラブルシューティング {#troubleshooting}
 
-ここに記載されていない問題が発生した場合は、回避策を試す前に既存のチャネルでお問い合わせください。チャネルがない場合は、[サポート](support.md)を参照してください。
+ここに記載されていない問題が発生した場合は、回避策を試す前に既存のチャネルでお問い合わせください。チャネルがない場合は、[サポート](support/index.md)を参照してください。
 
 ### クライアントが最新であることを確認 {#ensure-your-client-is-up-to-date}
 

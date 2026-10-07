@@ -12,8 +12,8 @@ Solana
 
 | 用例 | 下一步 |
 |-------------|---------|
-| Solana 验证者（mainnet-beta 或 testnet），包括备份 | [以 IBRL 模式进行验证者连接](<DZ Mainnet-beta Connection.md>) |
-| 非验证者 - RPC 及其他。 | [DoubleZero Mainnet-Beta 和 Testnet 连接](Permissioned%20Connection.md) |
+| Solana 验证者（mainnet-beta 或 testnet），包括备份 | [以 IBRL 模式进行验证者连接](<solana/ibrl/publish.md>) |
+| 非验证者 - RPC 及其他。 | [DoubleZero Mainnet-Beta 和 Testnet 连接](solana/ibrl/subscribe.md) |
 
 Kalshi
 

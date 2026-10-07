@@ -29,8 +29,6 @@ Los feeds se facturan **por mes**:
 
 Antes de cualquier camino: compra los feeds que necesites en [doublezero.xyz/edge/subscribe](https://doublezero.xyz/edge/subscribe). Al comprar, aceptas los [Términos de Uso de DoubleZero](https://doublezero.xyz/terms-protocol).
 
-¿Quieres que una IA haga la instalación contigo? Conecta el [DoubleZero MCP](mcp.md) y pídele que te guíe a través de Phoenix / Edge Connect.
-
 ---
 
 ## 1. Edge Connect (recomendado) {#1-edge-connect-recommended}
@@ -62,7 +60,6 @@ docker exec doublezero-edge-connect doublezero status
 
 Edge Connect arbitra entre los publicadores de Phoenix, por lo que los clientes WebSocket ven una sola copia de cada actualización.
 
-**Pasos completos, verificación y advertencias:** conecta el [DoubleZero MCP](mcp.md) y pídele que te guíe a través de Edge Connect para Phoenix.  
 **Contrato WebSocket:** [PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md).
 
 ---
@@ -207,7 +204,7 @@ El grupo selecciona el feed; el puerto selecciona datos de mercado, datos de ref
 
 ## Solución de problemas {#troubleshooting}
 
-Si encuentras un problema no cubierto aquí, por favor comunícate a través de tu canal existente antes de intentar solucionarlo por tu cuenta. Si no tienes un canal, consulta [Soporte](support.md).
+Si encuentras un problema no cubierto aquí, por favor comunícate a través de tu canal existente antes de intentar solucionarlo por tu cuenta. Si no tienes un canal, consulta [Soporte](support/index.md).
 
 ### Asegúrate de que tu cliente esté actualizado {#ensure-your-client-is-up-to-date}
 

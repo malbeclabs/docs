@@ -35,5 +35,5 @@ Per maggiori dettagli, consulta il whitepaper del [DoubleZero Protocol](https://
 ## Prossimi Passi
 
 * *Per gli Utenti* - Inizia dalla [configurazione iniziale](setup.md) e segui il flusso di configurazione.
-* *Per i Contributori* - Scopri come [Contribuire](contribute-overview.md) con capacità aggiuntiva per far crescere ulteriormente la rete DoubleZero.
-* *Maggiori Informazioni* - Leggi di più su ciò che compone l'[Architettura](architecture.md) della rete DoubleZero.
+* *Per i Contributori* - Scopri come [Contribuire](contributors/index.md) con capacità aggiuntiva per far crescere ulteriormente la rete DoubleZero.
+* *Maggiori Informazioni* - Leggi di più su ciò che compone l'[Architettura](reference/architecture.md) della rete DoubleZero.

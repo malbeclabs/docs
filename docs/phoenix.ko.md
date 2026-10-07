@@ -29,8 +29,6 @@ Phoenix 피드는 DoubleZero Edge 네트워크를 통해 Phoenix 무기한 선�
 
 어떤 경로든 시작하기 전에: [doublezero.xyz/edge/subscribe](https://doublezero.xyz/edge/subscribe)에서 필요한 피드를 구매하세요. 구매 시 [DoubleZero 이용 약관](https://doublezero.xyz/terms-protocol)에 동의하게 됩니다.
 
-AI가 설치를 도와주길 원하시나요? [DoubleZero MCP](mcp.md)를 연결하고 Phoenix / Edge Connect 설정을 안내해 달라고 요청하세요.
-
 ---
 
 ## 1. Edge Connect (권장) {#1-edge-connect-recommended}
@@ -62,7 +60,6 @@ docker exec doublezero-edge-connect doublezero status
 
 Edge Connect는 Phoenix 퍼블리셔 간 중재를 수행하므로, WebSocket 클라이언트는 각 업데이트의 사본을 하나만 수신합니다.
 
-**전체 단계, 검증 및 주의사항:** [DoubleZero MCP](mcp.md)를 연결하고 Phoenix용 Edge Connect 설정을 안내해 달라고 요청하세요.  
 **WebSocket 계약:** [PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md).
 
 ---
@@ -207,7 +204,7 @@ MBP 피드는 market-by-price 메시지 세트를 사용합니다. edge-feed-spe
 
 ## 문제 해결 {#troubleshooting}
 
-여기에서 다루지 않는 문제가 발생하면, 해결 방법을 직접 시도하기 전에 기존 채널을 통해 연락해 주세요. 채널이 없는 경우 [지원](support.md)을 참조하세요.
+여기에서 다루지 않는 문제가 발생하면, 해결 방법을 직접 시도하기 전에 기존 채널을 통해 연락해 주세요. 채널이 없는 경우 [지원](support/index.md)을 참조하세요.
 
 ### 클라이언트가 최신 상태인지 확인 {#ensure-your-client-is-up-to-date}
 

@@ -90,36 +90,39 @@ plugins:
 nav:
   - Welcome: index.md
   - Setup: setup.md
-  - Connect your AI: mcp.md
   - Solana:
-    - Connect validator (IBRL): DZ Mainnet-beta Connection.md
-    - Publish shreds (Edge): Validator Multicast Connection.md
-    - Subscribe to shreds (Edge): Edge Subscriber Connection.md
-    - Subscribe to shreds (CLI legacy): Edge Subscriber CLI.md
-    - Permissioned / RPC: Permissioned Connection.md
-    - Troubleshoot Edge: troubleshooting.md
-    - Validator Rewards: Validator Rewards.md
+    - IBRL:
+      - Connect validator: solana/ibrl/publish.md
+      - Permissioned / RPC: solana/ibrl/subscribe.md
+    - Edge:
+      - Publish shreds: solana/edge/publish.md
+      - Subscribe to shreds: solana/edge/subscribe.md
+      - Subscribe to shreds (CLI legacy): solana/edge/subscribe-cli.md
+      - Validator Rewards: solana/edge/rewards.md
   - Hyperliquid:
     - hyperliquid/index.md
     - Subscribe to Hyperliquid (Edge): hyperliquid/edge.md
     - Peering Access: hyperliquid/peering.md
+  - Binance: binance.md
   - Kalshi: kalshi.md
   - Phoenix: phoenix.md
   - Shelby: shelby.md
   - Contributors:
-    - Overview: contribute-overview.md
-    - Requirements & Architecture: contribute.md
-    - Device Provisioning: contribute-provisioning.md
-    - Operations: contribute-operations.md
-    - OPS Management: contribute-ops-management.md
-    - Geolocation: contribute-geolocation.md
-    - Decommissioning: contribute-decommission.md
+    - Overview: contributors/index.md
+    - Requirements & Architecture: contributors/requirements.md
+    - Device Provisioning: contributors/provisioning.md
+    - Operations: contributors/operations.md
+    - OPS Management: contributors/ops-management.md
+    - Geolocation: contributors/geolocation.md
+    - Decommissioning: contributors/decommissioning.md
   - Reference:
-    - Architecture: architecture.md
-    - Other multicast: Other Multicast Connection.md
-    - Geolocation: geolocation.md
-    - Glossary: glossary.md
-  - Support: support.md
+    - Architecture: reference/architecture.md
+    - Other multicast: reference/other-multicast.md
+    - Geolocation: reference/geolocation.md
+    - Glossary: reference/glossary.md
+  - Support:
+    - support/index.md
+    - Troubleshooting: support/troubleshooting.md
 markdown_extensions:
   - admonition
   - pymdownx.details
@@ -158,3 +161,4 @@ hooks:
   - hooks/exclude_runbooks.py
   - hooks/emit_markdown.py
   - hooks/emit_well_known.py
+  - hooks/redirects.py

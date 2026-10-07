@@ -26,8 +26,6 @@ Hyperliquid Feed 通过 DoubleZero Edge 以 UDP 组播方式传送市场数据�
 
 先完成共同步骤：防火墙、都市区、申请和付款（步骤 1–3）。审批通过后，[步骤 4](#step-4-connect-after-approval) 分为两条路径 — **Edge Connect** 或 **原生**。请勿在同一主机上混用两种方式。
 
-想让 AI 帮您完成安装？连接 [DoubleZero MCP](../mcp.md)，让它引导您完成 Hyperliquid Edge 的设置。
-
 ---
 
 ## 步骤 1：DoubleZero 设置
@@ -153,7 +151,7 @@ docker exec doublezero-edge-connect doublezero status
 
 预期看到 `BGP Session Up` 以及您的 `edge-hyper-…` 组已订阅。
 
-然后打开 WebSocket（`ws://127.0.0.1:8081`）。协议说明：[PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md)。完整操作指南：[MCP](../mcp.md) runbook `hyperliquid-edge`。
+然后打开 WebSocket（`ws://127.0.0.1:8081`）。协议说明：[PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md)。
 
 ### 4b. 原生组播 {#4b-native-multicast}
 
@@ -237,7 +235,7 @@ doublezero multicast group list
 
 ## 故障排除
 
-如果您遇到此处未涵盖的问题，请在尝试绕过问题之前通过您现有的沟通渠道联系我们。如果您没有沟通渠道，请参见[支持](../support.md)。
+如果您遇到此处未涵盖的问题，请在尝试绕过问题之前通过您现有的沟通渠道联系我们。如果您没有沟通渠道，请参见[支持](../support/index.md)。
 
 **确保客户端已更新到最新版本**
 

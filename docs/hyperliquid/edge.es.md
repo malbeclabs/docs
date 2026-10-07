@@ -26,8 +26,6 @@ Visión general del servicio: [Hyperliquid](index.md).
 
 Primero los pasos compartidos: firewall, metro, solicitud y pago (Pasos 1–3). Tras la aprobación, el [Paso 4](#step-4-connect-after-approval) se divide — **Edge Connect** o **nativo**. No los mezcles en el mismo host.
 
-¿Quieres que una IA haga la instalación contigo? Conecta el [DoubleZero MCP](../mcp.md) y pídele que te guíe a través de Hyperliquid Edge.
-
 ---
 
 ## Paso 1: Configuración de DoubleZero
@@ -153,7 +151,7 @@ docker exec doublezero-edge-connect doublezero status
 
 Espera `BGP Session Up` y tu(s) grupo(s) `edge-hyper-…` suscritos.
 
-Luego abre el WebSocket (`ws://127.0.0.1:8081`). Contrato: [PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md). Guía completa: runbook [MCP](../mcp.md) `hyperliquid-edge`.
+Luego abre el WebSocket (`ws://127.0.0.1:8081`). Contrato: [PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md).
 
 ### 4b. Multicast nativo {#4b-native-multicast}
 
@@ -237,7 +235,7 @@ El tráfico de datos de mercado entregado a través de la red está encapsulado 
 
 ## Resolución de problemas
 
-Si encuentras un problema no cubierto aquí, por favor comunícate a través de tu canal existente antes de intentar solucionarlo por tu cuenta. Si no tienes un canal, consulta [Soporte](../support.md).
+Si encuentras un problema no cubierto aquí, por favor comunícate a través de tu canal existente antes de intentar solucionarlo por tu cuenta. Si no tienes un canal, consulta [Soporte](../support/index.md).
 
 **Asegúrate de que tu cliente esté actualizado**
 

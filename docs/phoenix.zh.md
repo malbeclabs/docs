@@ -29,8 +29,6 @@ Phoenix 数据源通过 DoubleZero Edge 网络以 UDP 组播方式传输 Phoenix
 
 在选择任何路径之前：请在 [doublezero.xyz/edge/subscribe](https://doublezero.xyz/edge/subscribe) 购买您需要的数据源。购买即表示您同意 [DoubleZero 使用条款](https://doublezero.xyz/terms-protocol)。
 
-想要 AI 协助您完成安装？连接 [DoubleZero MCP](mcp.md)，让它引导您完成 Phoenix / Edge Connect 的设置。
-
 ---
 
 ## 1. Edge Connect（推荐） {#1-edge-connect-recommended}
@@ -62,7 +60,6 @@ docker exec doublezero-edge-connect doublezero status
 
 Edge Connect 在 Phoenix 发布者之间进行仲裁，因此 WebSocket 客户端只会看到每次更新的一个副本。
 
-**完整步骤、验证和注意事项：** 连接 [DoubleZero MCP](mcp.md)，让它引导您完成 Phoenix 的 Edge Connect 设置。
 **WebSocket 协议：** [PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md)。
 
 ---
@@ -207,7 +204,7 @@ MBP 数据源使用 market-by-price 消息集。参见 edge-feed-spec 中的 mar
 
 ## 故障排除 {#troubleshooting}
 
-如果您遇到此处未涵盖的问题，请在尝试变通方案之前通过您现有的渠道联系我们。如果您没有现有渠道，请参阅[支持](support.md)。
+如果您遇到此处未涵盖的问题，请在尝试变通方案之前通过您现有的渠道联系我们。如果您没有现有渠道，请参阅[支持](support/index.md)。
 
 ### 确保客户端为最新版本 {#ensure-your-client-is-up-to-date}
 
