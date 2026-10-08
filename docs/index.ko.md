@@ -35,5 +35,5 @@ DoubleZero의 유일한 대안은 공용 인터넷입니다. 공용 인터넷과
 ## 다음 단계
 
 * *사용자의 경우* - [초기 설정](setup.md)부터 시작하여 설정 흐름을 따라가세요.
-* *기여자의 경우* - DoubleZero 네트워크를 더욱 확장하기 위해 추가 용량을 [기여](contribute-overview.md)하는 방법을 확인하세요.
-* *추가 정보* - DoubleZero 네트워크의 [아키텍처](architecture.md)를 구성하는 요소에 대해 자세히 읽어보세요.
+* *기여자의 경우* - DoubleZero 네트워크를 더욱 확장하기 위해 추가 용량을 [기여](contributors/index.md)하는 방법을 확인하세요.
+* *추가 정보* - DoubleZero 네트워크의 [아키텍처](reference/architecture.md)를 구성하는 요소에 대해 자세히 읽어보세요.

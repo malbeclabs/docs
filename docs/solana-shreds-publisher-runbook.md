@@ -9,7 +9,7 @@ not published on the docs site.
 
 1. Connect the [DoubleZero MCP](mcp.md) (`https://data.doublezero.xyz/api/mcp`).
 2. Confirm the validator is **already on DoubleZero IBRL** (mainnet-beta). If not, finish [Connect validator (IBRL Mainnet)](solana-ibrl-runbook.md) first.
-3. Walk the steps below. Human guide: [Validator Multicast Connection](Validator Multicast Connection.md).
+3. Walk the steps below. Human guide: [Validator Multicast Connection](solana/edge/publish.md).
 
 **What success looks like:** validator sends leader shreds to `233.84.178.1:7733`, multicast publish on `edge-solana-shreds` is up, and [publisher-check](https://data.doublezero.xyz/dz/publisher-check) shows publishing after at least one leader slot.
 
@@ -21,7 +21,7 @@ This path is for **validators**. Trading firms that want to *subscribe* use [Sub
 
 | Need | Notes |
 |------|--------|
-| IBRL tunnel already up | [IBRL Mainnet runbook](solana-ibrl-runbook.md) / [human guide](DZ Mainnet-beta Connection.md). |
+| IBRL tunnel already up | [IBRL Mainnet runbook](solana-ibrl-runbook.md) / [human guide](solana/ibrl/publish.md). |
 | Supported client | Jito-Agave **3.1.9+**, JitoBam 3.1.9+, Frankendancer, or Harmonic **3.1.11+**. Other versions will not publish. |
 | Restart window | Adding the shred destination requires a validator restart. |
 
@@ -84,5 +84,5 @@ Healthy: outbound spikes aligned with leader slots (sawtooth). Steady outbound w
 
 ## See also
 
-- [Validator Multicast Connection](Validator Multicast Connection.md)
-- [Validator Rewards](Validator Rewards.md)
+- [Validator Multicast Connection](solana/edge/publish.md)
+- [Validator Rewards](solana/edge/rewards.md)

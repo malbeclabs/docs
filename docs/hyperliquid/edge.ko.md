@@ -26,8 +26,6 @@ Hyperliquid 피드는 DoubleZero Edge를 통해 UDP 멀티캐스트로 시장 �
 
 공통 단계 먼저: 방화벽, 메트로, 신청, 결제 (1~3단계). 승인 후 [4단계](#step-4-connect-after-approval)에서 분기됩니다 — **Edge Connect** 또는 **네이티브**. 동일한 호스트에서 두 방식을 혼합하지 마세요.
 
-AI가 설치를 도와주길 원하시나요? [DoubleZero MCP](../mcp.md)를 연결하고 Hyperliquid Edge 설정을 안내해 달라고 요청하세요.
-
 ---
 
 ## 1단계: DoubleZero 설정
@@ -153,7 +151,7 @@ docker exec doublezero-edge-connect doublezero status
 
 `BGP Session Up`과 `edge-hyper-…` 그룹 구독이 표시될 것입니다.
 
-그런 다음 WebSocket (`ws://127.0.0.1:8081`)을 엽니다. 프로토콜: [PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md). 전체 가이드: [MCP](../mcp.md) 런북 `hyperliquid-edge`.
+그런 다음 WebSocket (`ws://127.0.0.1:8081`)을 엽니다. 프로토콜: [PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md).
 
 ### 4b. 네이티브 멀티캐스트 {#4b-native-multicast}
 
@@ -237,7 +235,7 @@ doublezero multicast group list
 
 ## 문제 해결
 
-여기에 포함되지 않은 문제가 발생하면 우회 방법을 시도하기 전에 기존 채널을 통해 문의해 주세요. 채널이 없는 경우 [지원](../support.md)을 참조하세요.
+여기에 포함되지 않은 문제가 발생하면 우회 방법을 시도하기 전에 기존 채널을 통해 문의해 주세요. 채널이 없는 경우 [지원](../support/index.md)을 참조하세요.
 
 **클라이언트가 최신인지 확인**
 

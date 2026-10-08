@@ -22,8 +22,6 @@ Les flux Kalshi fournissent les données de marché perps et sports via le rése
 
 Avant tout chemin : achetez les flux dont vous avez besoin sur [doublezero.xyz/edge/subscribe](https://doublezero.xyz/edge/subscribe). En achetant, vous acceptez les [Conditions d'utilisation de DoubleZero](https://doublezero.xyz/terms-protocol) et les [Conditions de service Kalshi](https://doublezero.xyz/dz-edge-kalshi-terms).
 
-Vous souhaitez qu'une IA vous accompagne dans l'installation ? Connectez le [DoubleZero MCP](mcp.md) et demandez-lui de vous guider pour Kalshi / Edge Connect.
-
 ---
 
 ## 1. Edge Connect (recommandé) {#1-edge-connect-recommended}
@@ -53,7 +51,6 @@ Puis vérifiez le statut **à l'intérieur du conteneur** (attendez-vous à `BGP
 docker exec doublezero-edge-connect doublezero status
 ```
 
-**Étapes complètes, vérification et pièges :** connectez le [DoubleZero MCP](mcp.md) et demandez-lui de vous guider pour Edge Connect avec Kalshi.  
 **Contrat WebSocket :** [PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md).
 
 ---
@@ -201,7 +198,7 @@ Le groupe sélectionne le flux ; le port sélectionne les données de marché, l
 
 ## Dépannage
 
-Si vous rencontrez un problème non couvert ici, veuillez nous contacter via votre canal existant avant de tenter de le contourner. Si vous n'avez pas de canal, consultez [Support](support.md).
+Si vous rencontrez un problème non couvert ici, veuillez nous contacter via votre canal existant avant de tenter de le contourner. Si vous n'avez pas de canal, consultez [Support](support/index.md).
 
 ### Assurez-vous que votre client est à jour
 

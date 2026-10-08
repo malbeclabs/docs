@@ -12,8 +12,8 @@ Solana
 
 | Use Case | Next Stop |
 |-------------|---------|
-| Solana validator (mainnet-beta or testnet), including backups | [Validator Connection in IBRL Mode](<DZ Mainnet-beta Connection.md>) |
-| Non-Validators - RPCs, and others. | [DoubleZero Mainnet-Beta and Testnet Connection](Permissioned%20Connection.md) |
+| Solana validator (mainnet-beta or testnet), including backups | [Validator Connection in IBRL Mode](<solana/ibrl/publish.md>) |
+| Non-Validators - RPCs, and others. | [DoubleZero Mainnet-Beta and Testnet Connection](solana/ibrl/subscribe.md) |
 
 Kalshi
 

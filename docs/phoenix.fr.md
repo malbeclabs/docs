@@ -29,8 +29,6 @@ Les flux sont facturés **par mois** :
 
 Avant tout chemin : achetez les flux dont vous avez besoin sur [doublezero.xyz/edge/subscribe](https://doublezero.xyz/edge/subscribe). En achetant, vous acceptez les [Conditions d'utilisation de DoubleZero](https://doublezero.xyz/terms-protocol).
 
-Vous voulez qu'une IA fasse l'installation avec vous ? Connectez le [DoubleZero MCP](mcp.md) et demandez-lui de vous guider à travers Phoenix / Edge Connect.
-
 ---
 
 ## 1. Edge Connect (recommandé) {#1-edge-connect-recommended}
@@ -62,7 +60,6 @@ docker exec doublezero-edge-connect doublezero status
 
 Edge Connect arbitre entre les éditeurs Phoenix, de sorte que les clients WebSocket voient une seule copie de chaque mise à jour.
 
-**Étapes complètes, vérification et pièges :** connectez le [DoubleZero MCP](mcp.md) et demandez-lui de vous guider à travers Edge Connect pour Phoenix.
 **Contrat WebSocket :** [PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md).
 
 ---
@@ -207,7 +204,7 @@ Le groupe sélectionne le flux ; le port sélectionne les données de marché, l
 
 ## Dépannage {#troubleshooting}
 
-Si vous rencontrez un problème non couvert ici, veuillez nous contacter via votre canal existant avant de chercher une solution de contournement. Si vous n'avez pas de canal, consultez [Support](support.md).
+Si vous rencontrez un problème non couvert ici, veuillez nous contacter via votre canal existant avant de chercher une solution de contournement. Si vous n'avez pas de canal, consultez [Support](support/index.md).
 
 ### Assurez-vous que votre client est à jour {#ensure-your-client-is-up-to-date}
 

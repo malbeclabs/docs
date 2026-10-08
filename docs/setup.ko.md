@@ -5,7 +5,7 @@ description: doublezerod를 설치하고 검증자 또는 노드를 DoubleZero �
 # DoubleZero 설정 방법
 
 !!! info "용어 안내"
-    DoubleZero가 처음이신가요? [doublezerod](glossary.md#doublezerod), [IBRL](glossary.md#ibrl-increase-bandwidth-reduce-latency), [DZD](glossary.md#dzd-doublezero-device) 등의 용어 정의는 [용어집](glossary.md)을 참조하세요.
+    DoubleZero가 처음이신가요? [doublezerod](reference/glossary.md#doublezerod), [IBRL](reference/glossary.md#ibrl-increase-bandwidth-reduce-latency), [DZD](reference/glossary.md#dzd-doublezero-device) 등의 용어 정의는 [용어집](reference/glossary.md)을 참조하세요.
 
 !!! warning "DoubleZero에 연결함으로써 [DoubleZero 서비스 약관](https://doublezero.xyz/terms-protocol)에 동의합니다"
 

@@ -5,7 +5,7 @@ description: Guida passo passo per installare doublezerod e connettere il tuo va
 # Come configurare DoubleZero
 
 !!! info "Terminologia"
-    Sei nuovo su DoubleZero? Consulta il [Glossario](glossary.md) per le definizioni di termini come [doublezerod](glossary.md#doublezerod), [IBRL](glossary.md#ibrl-increase-bandwidth-reduce-latency) e [DZD](glossary.md#dzd-doublezero-device).
+    Sei nuovo su DoubleZero? Consulta il [Glossario](reference/glossary.md) per le definizioni di termini come [doublezerod](reference/glossary.md#doublezerod), [IBRL](reference/glossary.md#ibrl-increase-bandwidth-reduce-latency) e [DZD](reference/glossary.md#dzd-doublezero-device).
 
 !!! warning "Connettendomi a DoubleZero accetto i [Termini di Servizio di DoubleZero](https://doublezero.xyz/terms-protocol)"
 

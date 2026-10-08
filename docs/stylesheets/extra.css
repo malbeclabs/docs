@@ -594,7 +594,7 @@ a.dz-cta-rainbow:focus-visible {
   }
 }
 
-/* Header control order: logo / language (left) → title → search → support → theme */
+/* Header control order: logo / language / search (left) → title → theme → support → buy */
 .md-header__inner {
   display: flex;
   align-items: center;
@@ -623,19 +623,23 @@ a.dz-cta-rainbow:focus-visible {
 }
 
 .md-header__button[for="__search"] {
-  order: 50 !important;
+  order: 4 !important;
 }
 
 .md-search {
-  order: 51 !important;
+  order: 5 !important;
+}
+
+.md-header__option[data-md-component="palette"] {
+  order: 60 !important;
 }
 
 .header-support-btn {
   order: 80 !important;
 }
 
-.md-header__option[data-md-component="palette"] {
-  order: 999 !important;
+.header-buy-btn {
+  order: 90 !important;
 }
 
 .md-header__source {
@@ -667,40 +671,35 @@ a.dz-cta-rainbow:focus-visible {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.1rem;
-  height: 2.1rem;
+  width: 32px;
+  height: 32px;
   margin: 0;
   padding: 0;
   border: 0;
   border-radius: 9999px;
-  background: color-mix(in srgb, var(--dz-white) 14%, transparent);
-  color: var(--dz-white);
+  background: transparent;
+  color: #f5f6f6;
   cursor: pointer;
   transition: background-color 0.15s ease, color 0.15s ease;
 }
 
 .dz2-theme-btn:hover,
-.dz2-theme-btn:focus-visible {
-  background: color-mix(in srgb, var(--dz-white) 28%, transparent);
-  color: var(--dz-white);
+.dz2-theme-btn:focus-visible,
+[data-md-color-scheme="default"] .dz2-theme-btn:hover,
+[data-md-color-scheme="default"] .dz2-theme-btn:focus-visible {
+  background: var(--dz-grey);
+  color: #fff;
   outline: none;
 }
 
 [data-md-color-scheme="default"] .dz2-theme-btn {
-  background: color-mix(in srgb, var(--dz-black) 10%, transparent);
   color: var(--dz-black);
-}
-
-[data-md-color-scheme="default"] .dz2-theme-btn:hover,
-[data-md-color-scheme="default"] .dz2-theme-btn:focus-visible {
-  background: var(--dz-black);
-  color: var(--dz-white);
 }
 
 .dz2-theme-btn svg {
   display: block;
-  width: 1rem;
-  height: 1rem;
+  width: 16px;
+  height: 16px;
 }
 
 /* Hover tooltip like doublezero.xyz — right-align so it isn't clipped at viewport edge */
@@ -785,39 +784,39 @@ a.dz-cta-rainbow:focus-visible {
   display: none !important;
 }
 
-/* Support header button */
-/* Support header button — inverted vs theme; underline grows L→R on hover
-   (same recipe as doublezero.xyz .header-cta-link / .dz2-footer-link) */
+/* Support + Buy Market Data — same recipe as doublezero.xyz header
+   (.header-cta-link text link, then full-height inverted .header-cta block) */
 .header-support-btn {
   display: inline-flex !important;
   align-items: center;
-  justify-content: center;
   height: 2.1rem;
-  margin: 0.15rem 0.35rem;
-  padding: 0 0.85rem !important;
-  border: 1px solid var(--dz-white);
-  border-radius: 0;
-  background: var(--dz-white);
-  color: var(--dz-black) !important;
+  margin: 0 0 0 0.5rem;
+  padding: 0 1.2rem !important;
+  border: 0;
+  background: transparent;
   opacity: 1 !important;
   font-family: var(--dz-font-mono);
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 17px;
   text-decoration: none !important;
-  line-height: 1;
 }
 
 .header-support-btn,
 .header-support-btn:hover,
 .header-support-btn:focus,
 .header-support-btn:focus-visible {
-  color: var(--dz-black) !important;
-  background: var(--dz-white);
-  border-color: var(--dz-white);
+  color: var(--dz-white) !important;
+  background: transparent !important;
   text-decoration: none !important;
   outline: none !important;
+}
+
+[data-md-color-scheme="default"] .header-support-btn,
+[data-md-color-scheme="default"] .header-support-btn:hover,
+[data-md-color-scheme="default"] .header-support-btn:focus,
+[data-md-color-scheme="default"] .header-support-btn:focus-visible {
+  color: var(--dz-black) !important;
 }
 
 .header-support-btn__text {
@@ -842,15 +841,39 @@ a.dz-cta-rainbow:focus-visible {
   width: 100%;
 }
 
-/* Light theme: inverted — dark button */
-[data-md-color-scheme="default"] .header-support-btn,
-[data-md-color-scheme="default"] .header-support-btn:hover,
-[data-md-color-scheme="default"] .header-support-btn:focus,
-[data-md-color-scheme="default"] .header-support-btn:focus-visible {
-  color: var(--dz-white) !important;
-  background: var(--dz-black);
-  border-color: var(--dz-black);
+.header-buy-btn {
+  display: inline-flex;
+  align-items: center;
+  align-self: stretch;
+  gap: 8px;
+  margin-inline-end: -12px; /* bleed through .md-header__inner padding */
+  padding: 0 24px;
+  background: var(--dz-white);
+  color: var(--dz-black) !important;
+  font-family: var(--dz-font-mono);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19px;
+  white-space: nowrap;
   text-decoration: none !important;
+}
+
+[data-md-color-scheme="default"] .header-buy-btn {
+  background: var(--dz-black);
+  color: var(--dz-white) !important;
+}
+
+.header-buy-btn__arrow {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .header-buy-btn {
+    margin-inline-end: -32px;
+    padding: 0 32px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1470,35 +1493,45 @@ button.runbook-assist-btn {
    Search: circular header button → centered modal (Helius / QuickNode style)
    -------------------------------------------------------------------------- */
 
-/* Always show a round magnifying-glass control in the header */
+/* Round magnifying-glass control — same pattern as .dz2-theme-btn */
 .md-header__button[for="__search"] {
   display: inline-flex !important;
   align-items: center;
   justify-content: center;
-  width: 2.1rem;
-  height: 2.1rem;
-  margin: 0.15rem 0.25rem;
+  width: 32px;
+  height: 32px;
+  margin: 0.15rem 0.25rem 0.15rem 0.85rem;
   padding: 0;
   border: none;
   border-radius: 50%;
   box-sizing: border-box;
-  background-color: color-mix(in srgb, currentColor 18%, transparent);
+  background-color: transparent;
+  color: #f5f6f6;
+  opacity: 1;
   outline: none !important;
   box-shadow: none !important;
-  transition: background-color 0.15s ease;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+[data-md-color-scheme="default"] .md-header__button[for="__search"] {
+  color: var(--dz-black);
 }
 
 .md-header__button[for="__search"]:hover,
-.md-header__button[for="__search"]:focus {
+.md-header__button[for="__search"]:focus-visible,
+[data-md-color-scheme="default"] .md-header__button[for="__search"]:hover,
+[data-md-color-scheme="default"] .md-header__button[for="__search"]:focus-visible {
   border: none;
-  background-color: color-mix(in srgb, currentColor 48%, transparent);
+  background-color: var(--dz-grey);
+  color: #fff;
+  opacity: 1;
   outline: none !important;
   box-shadow: none !important;
 }
 
 .md-header__button[for="__search"] svg {
-  width: 1.05rem;
-  height: 1.05rem;
+  width: 16px;
+  height: 16px;
 }
 
 /* Desktop+: don't embed the long search field in the header — use a modal */
@@ -1777,6 +1810,7 @@ html:has([data-md-toggle="search"]:checked) body {
 @media screen and (max-width: 40em) {
   .md-header__inner > .md-header__option,
   .md-header__inner > .header-support-btn,
+  .md-header__inner > .header-buy-btn,
   .md-header__inner > .md-header__button[for="__search"] {
     display: none !important;
   }
@@ -2000,4 +2034,41 @@ html:has([data-md-toggle="search"]:checked) body {
 .page-toolbar-link:focus-visible .page-toolbar-icon {
   opacity: 1;
   filter: none;
+}
+
+/* Second-level nav groups (Solana > IBRL / Edge) are static, always-open
+   headings rather than collapsible sections, on desktop and in the drawer. */
+.md-nav--primary .md-nav[data-md-level="1"] > .md-nav__list > .md-nav__item--nested > .md-nav__link {
+  pointer-events: none;
+  cursor: default;
+  margin-top: 0.6em;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.md-nav--primary .md-nav[data-md-level="1"] > .md-nav__list > .md-nav__item--nested > .md-nav__link .md-nav__icon {
+  display: none;
+}
+
+.md-nav--primary .md-nav[data-md-level="2"] {
+  position: static;
+  display: block;
+  height: auto;
+  opacity: 1;
+  transform: none;
+  visibility: visible;
+  grid-template-rows: none;
+  transition: none;
+  background-color: transparent;
+}
+
+.md-nav--primary .md-nav[data-md-level="2"] > .md-nav__list {
+  overflow: visible;
+}
+
+.md-nav--primary .md-nav[data-md-level="2"] > .md-nav__title {
+  display: none;
 }

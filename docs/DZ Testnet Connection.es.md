@@ -4,4 +4,4 @@ description: Redirigir a la guía de conexión IBRL del validador Solana fusiona
 
 # Conexión de validador en testnet en modo IBRL
 
-Esta página se ha fusionado en [Conexión de validador en modo IBRL](DZ%20Mainnet-beta%20Connection.md). Seleccione `testnet` o `mainnet-beta` allí.
+Esta página se ha fusionado en [Conexión de validador en modo IBRL](solana/ibrl/publish.md). Seleccione `testnet` o `mainnet-beta` allí.

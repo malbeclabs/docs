@@ -5,7 +5,7 @@ description: 安装 doublezerod 并将您的验证者或节点连接到 DoubleZe
 # 如何设置 DoubleZero
 
 !!! info "术语说明"
-    初次接触 DoubleZero？请参阅[术语表](glossary.md)了解 [doublezerod](glossary.md#doublezerod)、[IBRL](glossary.md#ibrl-increase-bandwidth-reduce-latency) 和 [DZD](glossary.md#dzd-doublezero-device) 等术语的定义。
+    初次接触 DoubleZero？请参阅[术语表](reference/glossary.md)了解 [doublezerod](reference/glossary.md#doublezerod)、[IBRL](reference/glossary.md#ibrl-increase-bandwidth-reduce-latency) 和 [DZD](reference/glossary.md#dzd-doublezero-device) 等术语的定义。
 
 !!! warning "连接到 DoubleZero 即表示我同意 [DoubleZero 服务条款](https://doublezero.xyz/terms-protocol)"
 

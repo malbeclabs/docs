@@ -5,7 +5,7 @@ description: Guía paso a paso para instalar doublezerod y conectar tu validador
 # Cómo configurar DoubleZero
 
 !!! info "Terminología"
-    ¿Nuevo en DoubleZero? Consulta el [Glosario](glossary.md) para las definiciones de términos como [doublezerod](glossary.md#doublezerod), [IBRL](glossary.md#ibrl-increase-bandwidth-reduce-latency) y [DZD](glossary.md#dzd-doublezero-device).
+    ¿Nuevo en DoubleZero? Consulta el [Glosario](reference/glossary.md) para las definiciones de términos como [doublezerod](reference/glossary.md#doublezerod), [IBRL](reference/glossary.md#ibrl-increase-bandwidth-reduce-latency) y [DZD](reference/glossary.md#dzd-doublezero-device).
 
 !!! warning "Al conectarme a DoubleZero acepto los [Términos de Servicio de DoubleZero](https://doublezero.xyz/terms-protocol)"
 

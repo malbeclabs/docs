@@ -35,5 +35,5 @@ Pour plus de détails, consultez le livre blanc du [DoubleZero Protocol](https:/
 ## Prochaines étapes
 
 * *Pour les utilisateurs* - Commencez par la [configuration initiale](setup.md) et suivez le flux de configuration.
-* *Pour les contributeurs* - Découvrez comment [Contribuer](contribute-overview.md) de la capacité supplémentaire pour développer davantage le réseau DoubleZero.
-* *Plus d'informations* - En savoir plus sur ce qui compose l'[Architecture](architecture.md) du réseau DoubleZero.
+* *Pour les contributeurs* - Découvrez comment [Contribuer](contributors/index.md) de la capacité supplémentaire pour développer davantage le réseau DoubleZero.
+* *Plus d'informations* - En savoir plus sur ce qui compose l'[Architecture](reference/architecture.md) du réseau DoubleZero.

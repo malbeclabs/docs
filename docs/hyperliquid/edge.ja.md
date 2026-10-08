@@ -26,8 +26,6 @@ Hyperliquid フィードは、DoubleZero Edge を介して UDP マルチキャ�
 
 まず共通手順：ファイアウォール、メトロ、申請、支払い（ステップ 1〜3）。承認後、[ステップ 4](#step-4-connect-after-approval) で **Edge Connect** または**ネイティブ**に分岐します。同一ホストでこれらを混在させないでください。
 
-AI にインストールを手伝ってもらいたい場合は、[DoubleZero MCP](../mcp.md) に接続して、Hyperliquid Edge のセットアップを案内してもらってください。
-
 ---
 
 ## ステップ 1：DoubleZero セットアップ
@@ -153,7 +151,7 @@ docker exec doublezero-edge-connect doublezero status
 
 `BGP Session Up` と `edge-hyper-…` グループの購読が表示されることを確認してください。
 
-次に WebSocket（`ws://127.0.0.1:8081`）を開きます。プロトコル仕様：[PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md)。完全なウォークスルー：[MCP](../mcp.md) ランブック `hyperliquid-edge`。
+次に WebSocket（`ws://127.0.0.1:8081`）を開きます。プロトコル仕様：[PROTOCOL.md](https://github.com/malbeclabs/doublezero-edge-connect/blob/main/PROTOCOL.md)。
 
 ### 4b. ネイティブマルチキャスト {#4b-native-multicast}
 
@@ -237,7 +235,7 @@ doublezero multicast group list
 
 ## トラブルシューティング
 
-ここに記載されていない問題が発生した場合は、回避策を試みる前に既存のチャネルでお問い合わせください。チャネルがない場合は、[サポート](../support.md)を参照してください。
+ここに記載されていない問題が発生した場合は、回避策を試みる前に既存のチャネルでお問い合わせください。チャネルがない場合は、[サポート](../support/index.md)を参照してください。
 
 **クライアントが最新であることを確認する**
 

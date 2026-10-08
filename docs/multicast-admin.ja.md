@@ -207,4 +207,4 @@ doublezero multicast group allowlist subscriber list --code mg01
 
 ---
 
-マルチキャストの接続と使用方法の詳細については、[その他のマルチキャスト接続](Other%20Multicast%20Connection.md)を参照してください。
+マルチキャストの接続と使用方法の詳細については、[その他のマルチキャスト接続](reference/other-multicast.md)を参照してください。

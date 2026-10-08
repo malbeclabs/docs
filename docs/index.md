@@ -36,6 +36,5 @@ For more details, see the [DoubleZero Protocol](https://doublezero.xyz/whitepape
 ## Next Steps
 
 * *For Users* - Start with [initial setup](setup.md) and follow the setup flow.
-* *For AI agents* - Connect Claude, Cursor, ChatGPT, or Codex to the [DoubleZero MCP](mcp.md) and ask it to walk you through setup.
-* *For Contributors* - See how to [Contribute](contribute-overview.md) additional capacity to grow the DoubleZero network further.
-* *More Information* - Read more about what makes up the [Architecture](architecture.md) of the DoubleZero network.
+* *For Contributors* - See how to [Contribute](contributors/index.md) additional capacity to grow the DoubleZero network further.
+* *More Information* - Read more about what makes up the [Architecture](reference/architecture.md) of the DoubleZero network.

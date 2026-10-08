@@ -9,7 +9,7 @@ not published on the docs site.
 
 1. Connect the [DoubleZero MCP](mcp.md) (`https://data.doublezero.xyz/api/mcp`).
 2. Tell it the Linux host that will **receive** shreds (or SSH), the wallet/keypair for `doublezero-solana`, and which feed (leader vs retransmit).
-3. Walk the steps below in order. Human guide: [Edge Subscriber Connection](Edge Subscriber Connection.md).
+3. Walk the steps below in order. Human guide: [Edge Subscriber Connection](solana/edge/subscribe.md).
 
 **What success looks like:** seat allocated for the current epoch, `doublezero status` shows the tunnel up, UDP shreds on `doublezero1` port `7733` (leader group `233.84.178.1`).
 
@@ -140,6 +140,6 @@ sudo tcpdump -ni doublezero1 host 233.84.178.1 and udp port 7733
 
 ## See also
 
-- [Edge Subscriber Connection](Edge Subscriber Connection.md)
-- [Support](support.md)
+- [Edge Subscriber Connection](solana/edge/subscribe.md)
+- [Support](support/index.md)
 - Scoreboard / seats: [data.doublezero.xyz](https://data.doublezero.xyz/dz/shreds/scoreboard)

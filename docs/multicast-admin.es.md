@@ -204,4 +204,4 @@ Este comando muestra todos los suscriptores actualmente autorizados para conecta
 
 ---
 
-Para más información sobre la conexión y uso de multicast, consulte [Otra Conexión Multicast](Other%20Multicast%20Connection.md).
+Para más información sobre la conexión y uso de multicast, consulte [Otra Conexión Multicast](reference/other-multicast.md).

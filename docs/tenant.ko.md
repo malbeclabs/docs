@@ -12,8 +12,8 @@ Solana
 
 | 사용 사례 | 다음 단계 |
 |-------------|---------|
-| Solana 검증자 (mainnet-beta 또는 testnet), 백업 포함 | [IBRL 모드에서의 검증자 연결](<DZ Mainnet-beta Connection.md>) |
-| 비검증자 - RPC 및 기타 | [DoubleZero Mainnet-Beta 및 Testnet 연결](Permissioned%20Connection.md) |
+| Solana 검증자 (mainnet-beta 또는 testnet), 백업 포함 | [IBRL 모드에서의 검증자 연결](<solana/ibrl/publish.md>) |
+| 비검증자 - RPC 및 기타 | [DoubleZero Mainnet-Beta 및 Testnet 연결](solana/ibrl/subscribe.md) |
 
 Kalshi
 
