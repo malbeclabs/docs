@@ -9,6 +9,8 @@ on:
       - '**'
   # Fork PRs cannot push here, so this is what validates their build.
   pull_request:
+  # Run by hand. Needs write access, so it gets the same deploys as a push.
+  workflow_dispatch:
 
 # Least privilege at the top; the pages job re-grants what it needs.
 permissions:
@@ -60,7 +62,7 @@ jobs:
     needs: build
     # main only. Must stay ref-based: `event_name == 'push'` would publish
     # every branch to the live site now that push covers all branches.
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       pages: write
@@ -81,7 +83,7 @@ jobs:
     # PRs still get a preview, via the push event on their branch rather than
     # the pull_request event, which also avoids deploying twice per push.
     # pull_request_target is deliberately NOT used.
-    if: github.event_name == 'push'
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
