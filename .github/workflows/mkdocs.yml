@@ -4,7 +4,7 @@ name: docs
 on:
   push:
     branches: [main]
-  # Fork PRs cannot push here, so this is what validates their build.
+  # The build check for every PR; push builds only main.
   pull_request:
   workflow_dispatch:
 
@@ -26,6 +26,7 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install mkdocs-material mkdocs-static-i18n
+      # Keep this step in sync with deploy.yml.
       # Build without --strict so the known i18n + navigation.instant warning
       # does not abort. Still fail on any other WARNING (link/config issues).
       # Language alternates are rewritten at runtime (language-selector-label.js).

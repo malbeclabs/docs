@@ -4,10 +4,8 @@
 # publish workflows back. CI for the same build is mkdocs.yml.
 name: docs deploy
 on:
-  # All branches, so pushing a branch produces a Vercel preview without
-  # needing a PR. Deploy gates below are keyed on github.ref, NOT on
-  # event_name: with this wildcard, an event_name check would match every
-  # branch push and publish it to production.
+  # All branches, so pushing a branch produces a Vercel preview. Production
+  # gates below are keyed on github.ref: every branch push is a push event.
   push:
     branches:
       - '**'
@@ -33,6 +31,7 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install mkdocs-material mkdocs-static-i18n
+      # Keep this step in sync with mkdocs.yml.
       # Build without --strict so the known i18n + navigation.instant warning
       # does not abort. Still fail on any other WARNING (link/config issues).
       # Language alternates are rewritten at runtime (language-selector-label.js).
@@ -64,9 +63,8 @@ jobs:
 
   deploy-pages:
     needs: build
-    # main only. Must stay ref-based: `event_name == 'push'` would publish
-    # every branch to the live site now that push covers all branches.
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    # main only; the github-pages environment also allows only main.
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     permissions:
       pages: write
@@ -82,12 +80,8 @@ jobs:
 
   deploy-vercel:
     needs: build
-    # push only. Pushing here requires write access, so the Vercel token is
-    # never exposed to untrusted code and no fork check is needed. Same-repo
-    # PRs still get a preview, via the push event on their branch rather than
-    # the pull_request event, which also avoids deploying twice per push.
-    # pull_request_target is deliberately NOT used.
-    if: github.event_name != 'pull_request'
+    # Both triggers need write access, so the Vercel token is never exposed
+    # to untrusted code. Do not add pull_request or pull_request_target.
     runs-on: ubuntu-latest
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}

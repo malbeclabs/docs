@@ -24,4 +24,4 @@ The `Auto-translate docs` workflow translates English pages under `docs/` into e
 
 ## CI
 
-`docs` (`.github/workflows/mkdocs.yml`) builds the site on every pull request and push to `main`; `actions-lint` checks the workflows. Publishing to GitHub Pages and Vercel lives in `deploy.yml`, which is disabled until malbeclabs/infra#3172, so merges to `main` are not published until then.
+`docs` (`.github/workflows/mkdocs.yml`) builds the site on every pull request and push to `main`; `actions-lint` checks the workflows. Publishing to GitHub Pages and Vercel lives in `deploy.yml`, which is disabled until malbeclabs/infra#3172, so merges to `main` are not published until then. Branch pushes no longer produce Vercel previews; preview locally with `mkdocs serve`.
