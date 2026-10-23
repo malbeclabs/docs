@@ -21,3 +21,7 @@ The `Auto-translate docs` workflow translates English pages under `docs/` into e
 
 - Preview what would be translated: `python scripts/translate.py --dry-run` (add `--changed origin/main` to limit it to your branch's pages).
 - Force a page to be redone, for example to repair a bad translation: run the workflow from the Actions tab with that page in `files`, or delete its entries from `translations.json`.
+
+## CI
+
+`docs` (`.github/workflows/mkdocs.yml`) builds the site on every pull request and push to `main`; `actions-lint` checks the workflows. Publishing to GitHub Pages and Vercel lives in `deploy.yml`, which is disabled until malbeclabs/infra#3172, so merges to `main` are not published until then.
