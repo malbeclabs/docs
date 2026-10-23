@@ -1,5 +1,6 @@
 # CI: builds the site and fails on any unexpected mkdocs warning. Publishing
-# lives in deploy.yml, which stays disabled until malbeclabs/infra#3172.
+# (Pages and Vercel) is removed until malbeclabs/infra#3172; restore its jobs
+# from this file's revision at 7cc3c09.
 name: docs
 on:
   push:
@@ -26,7 +27,6 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install mkdocs-material mkdocs-static-i18n
-      # Keep this step in sync with deploy.yml.
       # Build without --strict so the known i18n + navigation.instant warning
       # does not abort. Still fail on any other WARNING (link/config issues).
       # Language alternates are rewritten at runtime (language-selector-label.js).

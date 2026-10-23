@@ -50,10 +50,6 @@ jobs:
           )
           excluded=()
           for name in "${disabled[@]}"; do excluded+=(! -name "$name"); done
-          mapfile -t workflows < <(find .github/workflows -name '*.y*ml' "${excluded[@]}" ! -name deploy.yml | sort)
-          "$RUNNER_TEMP/actionlint" "${workflows[@]}" .github/workflows/deploy.yml
+          mapfile -t workflows < <(find .github/workflows -name '*.y*ml' "${excluded[@]}" | sort)
+          "$RUNNER_TEMP/actionlint" "${workflows[@]}"
           "$RUNNER_TEMP/zizmor" --no-config --no-ignores "${workflows[@]}"
-          # deploy.yml is disabled until malbeclabs/infra#3172. Its Vercel CLI install
-          # is a low-severity adhoc-packages finding that only a lockfile clears, so
-          # zizmor checks it at medium and above: unpinned actions still fail.
-          "$RUNNER_TEMP/zizmor" --no-config --no-ignores --min-severity medium .github/workflows/deploy.yml
