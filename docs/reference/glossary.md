@@ -101,6 +101,34 @@ A network infrastructure provider who contributes bandwidth and hardware to the 
 
 ---
 
+## DoubleZero Edge for Builders
+
+### DoubleZero Edge for Builders {#doublezero-edge-for-builders}
+The DoubleZero Edge service that lets a [builder](#builder) deploy a market data feed against a [bond](#bond) and sell it to subscribers. See the [builder guides](../builders/edge/index.md).
+
+### Builder {#builder}
+An operator who has posted a [bond](#bond) and deployed a feed against it on DoubleZero Edge. Not the same role as a [contributor](#contributor).
+
+### Bond {#bond}
+The [2Z](#2z-token) a builder locks in the builder bond program on Solana for one feed. Its size is set by the feed's [tier](#tier). It can be withdrawn after the [hold](#hold) and can be forfeited for a proven breach. See [forfeiture](#forfeiture).
+
+### Committed Rate {#committed-rate}
+The maximum bandwidth a builder commits a feed to. It selects the feed's [tier](#tier).
+
+### Tier {#tier}
+A band of [committed rates](#committed-rate) that sets how much 2Z a [bond](#bond) must hold. The bands and amounts are onchain configuration and differ between testnet and mainnet-beta.
+
+### Hold {#hold}
+The period from a builder's first post to a [bond](#bond) before any of it can be withdrawn. Later posts do not restart it. On testnet the hold is 180 days.
+
+### Service Level {#service-level}
+A builder's declaration of a feed's update cadence, completeness, and availability. A standard format for it is planned.
+
+### Forfeiture {#forfeiture}
+The destruction of bonded 2Z for a proven breach: exceeding the [committed rate](#committed-rate), or missing the declared [service level](#service-level).
+
+---
+
 ## Networking Concepts
 
 ### MTU (Maximum Transmission Unit)

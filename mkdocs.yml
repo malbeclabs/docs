@@ -46,6 +46,7 @@ theme:
   font: false
   features:
     - content.code.copy
+    - content.tabs.link
     - navigation.indexes
     - navigation.tracking
     # Instant nav: language switcher uses JS path rewriting (see
@@ -107,6 +108,12 @@ nav:
   - Kalshi: kalshi.md
   - Phoenix: phoenix.md
   - Shelby: shelby.md
+  - Builders:
+    - builders/edge/index.md
+    - Publish a feed on testnet: builders/edge/publish-a-feed.md
+    - Choose a spec: builders/edge/choose-a-spec.md
+    - Operate your feed: builders/edge/operate.md
+    - Builder API: builders/edge/api.md
   - Contributors:
     - Overview: contributors/index.md
     - Requirements & Architecture: contributors/requirements.md

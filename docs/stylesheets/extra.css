@@ -2045,7 +2045,6 @@ html:has([data-md-toggle="search"]:checked) body {
   font-size: 0.6rem;
   font-weight: 700;
   letter-spacing: 0.04em;
-  text-transform: uppercase;
   opacity: 0.6;
 }
 
