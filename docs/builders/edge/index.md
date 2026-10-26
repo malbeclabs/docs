@@ -58,4 +58,4 @@ The bond backs two commitments. The feed must stay within its committed rate, be
 
 ## Support
 
-If you need help deploying or operating a feed, [contact the DoubleZero team](https://airtable.com/appQ8e047TKOgqV3h/pagIf9qvCcXlzDsDc/form) or ask in the [DoubleZero Discord](https://discord.com/invite/doublezerotech).
+If you need help deploying or operating a feed, [request support](https://airtable.com/appQ8e047TKOgqV3h/pagIf9qvCcXlzDsDc/form) or ask in the [DoubleZero Discord](https://discord.com/invite/doublezerotech).
