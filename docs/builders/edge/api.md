@@ -289,7 +289,7 @@ Creates a multicast group on one of your bonds. You own the group. A bond suppor
 
 The response adds `multicast_group_key` and `bond_key`. The group's address depends on how many accounts the ledger holds, so send the transaction promptly. If the ledger refuses it because another account was created first, request it again.
 
-Returns `503` until DoubleZero has copied a newly funded bond to the ledger, which takes about a minute.
+Returns `503` until the protocol has copied a newly funded bond to the ledger, which takes about a minute.
 
 ### `POST /builders/{builder}/multicast-groups/{multicast_group}/publishers`
 
@@ -352,7 +352,7 @@ Stops a feed from admitting new subscribers. Existing subscribers stay connected
 
 ### `POST /builders/{builder}/feeds/{feed_key}/resume`
 
-Returns a halted feed to `active`. A feed that DoubleZero halted can only be resumed by DoubleZero. No body.
+Returns a halted feed to `active`. A feed that the DoubleZero Foundation halted can only be resumed by the DoubleZero Foundation. No body.
 
 ### `POST /builders/{builder}/feeds/{feed_key}/retire`
 

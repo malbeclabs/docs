@@ -6,7 +6,7 @@ description: "DoubleZero Edge for Builders on testnet: deploy a market data feed
 
 DoubleZero Edge for Builders lets a builder deploy a market data feed on DoubleZero Edge and sell it to subscribers. A builder posts a 2Z [bond](#bond) and deploys a feed against it. These pages describe how to do that on DoubleZero testnet with the DoubleZero command line tools or the builder API.
 
-Deploying a feed does not require approval from DoubleZero. The builder signs every transaction with their own key.
+Deploying a feed does not require approval from the DoubleZero Foundation. The builder signs every transaction with their own key.
 
 !!! info "Testnet only"
     These pages cover DoubleZero testnet. The bond tiers, amounts, and hold period shown here apply to testnet only. Mainnet-beta will use different values.
@@ -22,7 +22,7 @@ A deployed feed is made up of the following:
 3. **Feed.** The DoubleZero ledger account that subscribers buy access to. It records the feed's multicast groups, its bond, the wire spec it publishes, and its committed rate.
 4. **Publisher grant.** Permission for the builder's host IP address to send to the multicast group.
 
-The bond must exist before anything else. DoubleZero copies each funded bond from Solana devnet to the DoubleZero ledger, and the ledger will not create a multicast group or a feed without that copy. One bond supports one feed and up to four multicast groups.
+The bond must exist before anything else. The protocol copies each funded bond from Solana devnet to the DoubleZero ledger, and the ledger will not create a multicast group or a feed without that copy. One bond supports one feed and up to four multicast groups.
 
 ## Bond
 

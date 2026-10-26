@@ -268,7 +268,7 @@ Check the bond:
 
 ## Step 4: Create a multicast group
 
-DoubleZero copies each funded bond to the DoubleZero ledger. Until the copy exists, creating a multicast group against the bond fails. The CLI reports `BondMirrorMissing` (custom program error 119), and the API answers `bond <address> has no mirror on the ledger yet`. Wait a minute and run the command again.
+The protocol copies each funded bond to the DoubleZero ledger. Until the copy exists, creating a multicast group against the bond fails. The CLI reports `BondMirrorMissing` (custom program error 119), and the API answers `bond <address> has no mirror on the ledger yet`. Wait a minute and run the command again.
 
 === "CLI"
 
