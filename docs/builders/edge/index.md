@@ -55,3 +55,7 @@ The bond backs two commitments. The feed must stay within its committed rate, be
 - [Choose a spec](choose-a-spec.md): pick a wire format and check your feed against it.
 - [Operate your feed](operate.md): halt, resume, and retire a feed; add multicast groups; withdraw from a bond.
 - [Builder API reference](api.md): every API endpoint, and how to sign the instructions it returns.
+
+## Support
+
+If you need help deploying or operating a feed, [contact the DoubleZero team](https://airtable.com/appQ8e047TKOgqV3h/pagIf9qvCcXlzDsDc/form) or ask in the [DoubleZero Discord](https://discord.com/invite/doublezerotech).
