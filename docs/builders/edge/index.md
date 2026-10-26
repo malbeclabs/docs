@@ -4,7 +4,7 @@ description: "DoubleZero Edge for Builders on testnet: deploy a market data feed
 
 # DoubleZero Edge for Builders
 
-DoubleZero Edge for Builders lets a [builder](../../reference/glossary.md#builder) deploy a market data feed on DoubleZero Edge and sell it to subscribers. A builder posts a 2Z [bond](../../reference/glossary.md#bond) and deploys a feed against it. These pages describe how to do that on DoubleZero testnet with the `doublezero` and `doublezero-solana` command line tools.
+DoubleZero Edge for Builders lets a builder deploy a market data feed on DoubleZero Edge and sell it to subscribers. A builder posts a 2Z [bond](#bond) and deploys a feed against it. These pages describe how to do that on DoubleZero testnet with the DoubleZero command line tools or the builder API.
 
 Deploying a feed does not require approval from DoubleZero. The builder signs every transaction with their own key.
 
@@ -40,7 +40,7 @@ On testnet, the first post to a bond starts a 180-day hold. Later posts do not r
 
 ## Forfeiture
 
-The bond backs two commitments. The feed must stay within its committed rate, because exceeding it degrades the network for other users. The feed must also meet the service level the builder declares, because that declaration is what subscribers are paying for. Breaking either commitment is grounds for forfeiting the bond. Nothing is forfeited on testnet.
+The bond backs two commitments. The feed must stay within its committed rate, because exceeding it degrades the network for other users. The feed must also meet any service level the builder declares, because that declaration is what subscribers are paying for. Breaking either commitment is grounds for forfeiting the bond. Nothing is forfeited on testnet.
 
 ## Requirements
 
@@ -54,3 +54,4 @@ The bond backs two commitments. The feed must stay within its committed rate, be
 - [Publish a feed on testnet](publish-a-feed.md): set up a host, post a bond, and deploy a feed.
 - [Choose a spec](choose-a-spec.md): pick a wire format and check your feed against it.
 - [Operate your feed](operate.md): halt, resume, and retire a feed; add multicast groups; withdraw from a bond.
+- [Builder API reference](api.md): every API endpoint, and how to sign the instructions it returns.

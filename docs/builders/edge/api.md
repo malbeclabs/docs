@@ -163,13 +163,13 @@ What a bond must hold at each tier.
 {
   "tiers": [
     {"name": "up-to-1gbps", "max_rate_bits_per_sec": 1000000000, "required_2z_amount": 100000000},
-    {"name": "up-to-5gbps", "max_rate_bits_per_sec": 5000000000, "required_2z_amount": 500000000},
-    {"name": "unmetered", "max_rate_bits_per_sec": null, "required_2z_amount": 1000000000}
+    {"name": "up-to-5gbps", "max_rate_bits_per_sec": 5000000000, "required_2z_amount": 200000000},
+    {"name": "unmetered", "max_rate_bits_per_sec": null, "required_2z_amount": 500000000}
   ]
 }
 ```
 
-The amounts above are examples. `max_rate_bits_per_sec` is `null` for the unmetered tier. A `required_2z_amount` of 0 means the tier is not priced yet, and a bond at that tier cannot be posted.
+`max_rate_bits_per_sec` is `null` for the unmetered tier. A `required_2z_amount` of 0 means the tier is not priced yet, and a bond at that tier cannot be posted.
 
 ### `GET /builders/{builder}/bonds`
 
