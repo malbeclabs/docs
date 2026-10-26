@@ -1,18 +1,14 @@
+# CI: builds the site and fails on any unexpected mkdocs warning. Publishing
+# (Pages and Vercel) is removed until malbeclabs/infra#3172; restore its jobs
+# from this file's revision at 7cc3c09.
 name: docs
 on:
-  # All branches, so pushing a branch produces a Vercel preview without
-  # needing a PR. Deploy gates below are keyed on github.ref, NOT on
-  # event_name: with this wildcard, an event_name check would match every
-  # branch push and publish it to production.
   push:
-    branches:
-      - '**'
-  # Fork PRs cannot push here, so this is what validates their build.
+    branches: [main]
+  # The build check for every PR; push builds only main.
   pull_request:
-  # Run by hand. Needs write access, so it gets the same deploys as a push.
   workflow_dispatch:
 
-# Least privilege at the top; the pages job re-grants what it needs.
 permissions:
   contents: read
 
@@ -24,8 +20,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
           python-version: '3.12'
       - run: pip install mkdocs-material mkdocs-static-i18n
@@ -45,76 +43,3 @@ jobs:
             echo "$unexpected"
             exit 1
           fi
-      # tar --dereference is what preserves the hidden .well-known directory.
-      # Both deploy jobs consume this one artifact, so the two origins cannot drift.
-      - name: Package site
-        run: |
-          mkdir -p /tmp/pages
-          tar --dereference -cf /tmp/pages/artifact.tar -C site .
-      - uses: actions/upload-artifact@v4
-        with:
-          name: github-pages
-          path: /tmp/pages/artifact.tar
-          retention-days: 1
-          if-no-files-found: error
-
-  deploy-pages:
-    needs: build
-    # main only. Must stay ref-based: `event_name == 'push'` would publish
-    # every branch to the live site now that push covers all branches.
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
-        with:
-          artifact_name: github-pages
-
-  deploy-vercel:
-    needs: build
-    # push only. Pushing here requires write access, so the Vercel token is
-    # never exposed to untrusted code and no fork check is needed. Same-repo
-    # PRs still get a preview, via the push event on their branch rather than
-    # the pull_request event, which also avoids deploying twice per push.
-    # pull_request_target is deliberately NOT used.
-    if: github.event_name != 'pull_request'
-    runs-on: ubuntu-latest
-    env:
-      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
-        with:
-          name: github-pages
-          path: /tmp/pages
-      - run: npm install --global vercel@latest
-      - name: Package for Vercel
-        run: scripts/build-vercel-output.sh /tmp/pages/artifact.tar
-      - name: Deploy (production)
-        if: github.ref == 'refs/heads/main'
-        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
-      - name: Deploy (preview)
-        if: github.ref != 'refs/heads/main'
-        run: |
-          set -o pipefail
-          vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }} 2>&1 | tee /tmp/deploy.log
-          url=$(grep -oE 'https://[a-z0-9-]+\.vercel\.app' /tmp/deploy.log | tail -1)
-          if [ -z "$url" ]; then
-            echo "::error::could not parse a preview URL from the deploy output"
-            exit 1
-          fi
-          # Surface the URL in the run summary; otherwise it is buried in logs.
-          {
-            echo "### Docs preview"
-            echo ""
-            echo "$url"
-            echo ""
-            echo "Requires \`doublezero-foundation\` Vercel team access (SSO-protected)."
-          } >> "$GITHUB_STEP_SUMMARY"
