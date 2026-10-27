@@ -13,7 +13,7 @@ The CLI identifies a feed by its code and its metro, so the feed commands take b
 
 ## Halt and resume
 
-Halting a feed stops it from admitting new subscribers. Existing subscribers stay connected. Halt a feed during maintenance, or when your upstream data is unreliable.
+Halting a feed stops it from admitting subscribers. Subscribers already connected stay connected, but anyone who connects again is refused, including seat holders. Halt a feed during maintenance, or when your upstream data is unreliable.
 
 === "CLI"
 
@@ -29,7 +29,7 @@ Halting a feed stops it from admitting new subscribers. Existing subscribers sta
     curl -sS -X POST $API/builders/$BUILDER/feeds/$FEED_KEY/resume | node ~/dz-sign/sign.mjs $LEDGER_RPC $KEY
     ```
 
-Resuming returns the feed to `Active`. Check the current status:
+Resuming returns the feed to `Active`. If the DoubleZero Foundation halted the feed, `doublezero feed list` shows the Foundation's key in `halted_by`, and only the Foundation can resume it. Check the current status:
 
 === "CLI"
 
@@ -61,7 +61,7 @@ Retiring a feed is permanent. It starts a 30-day notice period so that subscribe
 
 ## Add a multicast group
 
-A feed can use more than one multicast group, for example one per metro or one per set of instruments. Create the new group against the same bond and grant your host publish access:
+A feed can use more than one multicast group, for example one per metro or one per set of instruments. A bond can create at most four multicast groups, including the one from Step 4. Deleting a group does not free its place. Create the new group against the same bond and grant your host publish access:
 
 === "CLI"
 
@@ -77,6 +77,7 @@ A feed can use more than one multicast group, for example one per metro or one p
       -H 'content-type: application/json' \
       -d "{\"code\": \"acme-tob-ams\", \"max_bandwidth_bits_per_sec\": $RATE_BPS, \"bond_index\": 0}" \
       | node ~/dz-sign/sign.mjs $LEDGER_RPC $KEY
+    # If the ledger refuses this because another account was created first, run it again.
     export GROUP2_KEY=$(curl -sS $API/builders/$BUILDER/feeds \
       | jq -r '.multicast_groups[] | select(.code == "acme-tob-ams") | .multicast_group')
     curl -sS -X POST $API/builders/$BUILDER/multicast-groups/$GROUP2_KEY/publishers \
@@ -85,15 +86,21 @@ A feed can use more than one multicast group, for example one per metro or one p
       | node ~/dz-sign/sign.mjs $LEDGER_RPC $KEY
     ```
 
-Then add it to the feed. `--group` replaces the feed's full list of groups, so include every group the feed should keep. The API has no request for this yet, so use the CLI either way:
+Then add it to the feed. You can add groups to a feed but not remove them, so `--group` must list every current group plus the new one. The API has no request for this yet, so use the CLI either way:
 
 ```bash
 doublezero feed update --code $FEED --exchange $METRO --group $GROUP --group acme-tob-ams
 ```
 
+Then start publishing to the new group from the connected host:
+
+```bash
+doublezero multicast publish acme-tob-ams
+```
+
 ## Add a feed
 
-A bond supports one feed. To deploy another feed, create a second bond at bond index 1, then repeat Steps 3 to 6 of [Publish a feed on testnet](publish-a-feed.md) using that bond.
+A bond supports one feed. To deploy another feed, create a second bond at bond index 1 and set `BOND` to its address from `bond show --bond-index 1`. Choose new `GROUP` and `FEED` codes, then repeat Steps 4 to 6 of [Publish a feed on testnet](publish-a-feed.md) using that bond.
 
 === "CLI"
 
@@ -129,7 +136,7 @@ After the hold, which is 180 days on testnet, you can withdraw any 2Z in the bon
 
 === "CLI"
 
-    `bond show` reports this amount as `Withdrawable`. `--amount` is in 2Z.
+    `bond show` reports this amount as `Withdrawable`. `--amount` is in 2Z and takes only the decimal number, such as `0.5`.
 
     ```bash
     doublezero-solana bond show -u devnet --builder $BUILDER
