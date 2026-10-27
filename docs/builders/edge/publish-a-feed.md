@@ -425,16 +425,116 @@ The group now shows one publisher:
     curl -sS $API/builders/$BUILDER/feeds | jq '.multicast_groups[] | select(.code == env.GROUP) | .publishers'
     ```
 
-## Step 9: Confirm delivery
+## Step 9: List your feed
 
-On a second host that has completed [Setup](../../setup.md), subscribe to the group and capture traffic on the tunnel interface:
+A subscriber can buy a seat on your feed only after you list it. The listing sets the price of one seat for one month, and whether anyone may buy it.
+
+Use the API for this step from either tab. You sign the request body with your key, so the API needs no other credential. The `solana sign-offchain-message` command signs it. Install the Solana CLI and `jq` if you do not have them:
 
 ```bash
-doublezero connect multicast --subscribe acme-tob-fra
+sh -c "$(curl -sSfL https://release.anza.xyz/stable/install)"
+sudo apt install jq
+export API=https://subscription-api-testnet.doublezero.xyz
+export FEED_KEY=$(curl -sS $API/builders/$BUILDER/feeds | jq -r '.feeds[] | select(.code == env.FEED) | .feed_key')
+```
+
+Choose a price for one seat for one month, in USDC. The API takes the price in micro-USDC, so multiply by 1,000,000. This example lists the feed at 1 USDC:
+
+```bash
+body='{"feed_key":"'$FEED_KEY'","price_per_seat_micro_usdc":1000000,"self_serve":true,"signed_at":'$(date +%s)'}'
+curl -sS -X PUT $API/builders/$BUILDER/feeds/$FEED_KEY/listing \
+  -H 'content-type: application/json' \
+  -H "x-builder-signature: $(solana sign-offchain-message -k $KEY "$body")" \
+  -d "$body"
+```
+
+With `self_serve` set to `true`, any DoubleZero key can buy a seat. To sell only to keys you choose, set it to `false` and name each key with its own price:
+
+```bash
+body='{"feed_key":"'$FEED_KEY'","buyers":[{"service_key":"<subscriber DZ ID>","price_per_seat_micro_usdc":1000000}],"signed_at":'$(date +%s)'}'
+curl -sS -X PUT $API/builders/$BUILDER/feeds/$FEED_KEY/buyers \
+  -H 'content-type: application/json' \
+  -H "x-builder-signature: $(solana sign-offchain-message -k $KEY "$body")" \
+  -d "$body"
+```
+
+Each request replaces the last one. The API refuses a body signed more than five minutes ago (`422`) and a body signed before the last change it accepted (`409`). Sign a new body each time.
+
+## Step 10: Buy a seat and confirm delivery
+
+A host joins your feed only with a seat on it. Buy one from a second host, as a subscriber would. Run every command in this step on the second host.
+
+Complete [Setup](../../setup.md), install the Solana CLI, `jq` and the signing script from Step 1, and create a keypair. Then set:
+
+```bash
+export KEY=~/.config/doublezero/id.json
+export DZ_ID=$(doublezero address)
+export API=https://subscription-api-testnet.doublezero.xyz
+export SOLANA_RPC=https://api.devnet.solana.com
+export FEED=acme-tob
+export FEED_KEY=<the feed_key from Step 9>
+```
+
+Fund the key from the faucet with both requests in [Step 2](#step-2-get-devnet-2z-sol-and-ledger-credits). The devnet SOL pays the payment's fee, and the ledger credits pay to connect. Then get devnet USDC for `$DZ_ID` from [Circle's faucet](https://faucet.circle.com/), on Solana Devnet.
+
+Buy one seat for one month. The key signs the body, and `submission_id` and `item_id` are new UUIDs:
+
+```bash
+body='{"service_start":"'$(date -u +%F)'","submission_id":"'$(cat /proc/sys/kernel/random/uuid)'","feeds":[{"feed_key":"'$FEED_KEY'","max_users":1,"months":1,"item_id":"'$(cat /proc/sys/kernel/random/uuid)'"}],"signed_at":'$(date +%s)'}'
+curl -sS -X POST $API/subscribers/$DZ_ID/purchases \
+  -H 'content-type: application/json' \
+  -H "x-subscriber-signature: $(solana sign-offchain-message -k $KEY "$body")" \
+  -d "$body" | tee invoice.json
+export INVOICE=$(jq -r .id invoice.json)
+```
+
+The response is an invoice. In the first minute after a feed is listed, the purchase can answer `422` and name a payment account. Wait a minute and send the same request again. A repeat of the same body returns the same invoice.
+
+Pay the invoice in USDC. The API returns an unsigned instruction, and the signing script sends it on Solana devnet:
+
+```bash
+curl -sS -X POST $API/subscribers/$DZ_ID/purchases/$INVOICE/pay \
+  -H 'content-type: application/json' \
+  -d '{"payer":"'$DZ_ID'"}' | tee pay.json | node ~/dz-sign/sign.mjs $SOLANA_RPC $KEY | tee paid.txt
+```
+
+Record the payment. The key signs this body too:
+
+```bash
+body='{"tx_signature":"'$(cat paid.txt)'","amount_micro_usdc":'$(jq .amount_micro_usdc pay.json)'}'
+curl -sS -X POST $API/subscribers/$DZ_ID/purchases/$INVOICE/payments \
+  -H 'content-type: application/json' \
+  -H "x-subscriber-signature: $(solana sign-offchain-message -k $KEY "$body")" \
+  -d "$body"
+```
+
+An `outcome` of `recorded` means the payment counts. An `outcome` of `pending` means the API waits for Solana to confirm it. Send the same request again after a few seconds.
+
+The protocol grants the seat about ten seconds after it records the payment. `provisioned_at` shows when:
+
+```bash
+curl -sS $API/subscribers/$DZ_ID/purchases/$INVOICE | jq .provisioned_at
+```
+
+When it is set, join the feed:
+
+```bash
+doublezero connect multicast --subscribe-feed $FEED
+```
+
+The feed's datagrams arrive on `doublezero1` from an address the host routes through its main interface. Ubuntu and most cloud images drop these packets with strict reverse-path filtering. Set loose mode on the tunnel after each connect, because the client creates `doublezero1` again each time:
+
+```bash
+sudo sysctl -w net.ipv4.conf.doublezero1.rp_filter=2
+```
+
+Capture the traffic:
+
+```bash
 sudo tcpdump -ni doublezero1 udp and dst host <multicast_ip>
 ```
 
-Before announcing the feed, check it against its spec with `dz-conformance`. See [Check your feed](choose-a-spec.md#check-your-feed).
+Before you announce the feed, check it against its spec with `dz-conformance`. See [Check your feed](choose-a-spec.md#check-your-feed).
 
 ## Next steps
 

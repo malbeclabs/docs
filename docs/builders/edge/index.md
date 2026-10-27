@@ -47,7 +47,7 @@ The bond backs two commitments. The feed must stay within its committed rate, be
 - A Linux x86_64 host with a public IPv4 address and no NAT, such as an EC2 or GCE instance or a bare metal server. It does not need to be connected to DoubleZero yet.
 - Root or sudo access on that host.
 - An application that publishes your data in one of the [supported wire specs](choose-a-spec.md).
-- A second host to subscribe from, to confirm that your feed arrives.
+- A second host to buy a seat from, to confirm that your feed arrives.
 
 ## Guides
 
