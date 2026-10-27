@@ -30,7 +30,6 @@ log = logging.getLogger("mkdocs.hooks.emit_markdown")
 SECTIONS = [
     ("Welcome", ["index.md"]),
     ("Setup", ["setup.md"]),
-    ("Binance", ["binance.md"]),
     ("Kalshi", ["kalshi.md"]),
     ("Phoenix", ["phoenix.md"]),
     (
