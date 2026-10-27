@@ -157,7 +157,11 @@ The commands below use these variables. Group and feed codes must be unique acro
 
 `doublezero exchange list` lists the metros. Choose the one closest to your upstream data. `doublezero latency` shows the latency from your host to each DoubleZero device.
 
-## Step 2: Get devnet 2Z and SOL
+## Step 2: Get devnet 2Z, SOL, and ledger credits
+
+Fund the same key on both Solana devnet and the DoubleZero testnet ledger.
+
+### Solana devnet
 
 The DoubleZero devnet faucet sends 10 devnet 2Z and 0.1 devnet SOL to your key. That covers a bond at any tier and the Solana transaction fees.
 
@@ -181,6 +185,28 @@ The faucet makes one payout per IP address and one per key every 24 hours, with 
 | `429 pubkey limited` | Your key received a payout in the last 24 hours. |
 | `429 daily cap reached` | The faucet reached its daily limit. Retry after `retry_after_secs`. |
 | `504 not confirmed` | The transfer was sent but not yet confirmed. Check the returned signature before requesting again. |
+
+### DoubleZero testnet ledger
+
+Request ledger credits from the faucet's separate `/fund-ledger` endpoint. It sends 0.05 credits to your key to pay for creating the multicast group, feed, and publisher grant. The `/fund` request above funds only Solana devnet.
+
+```bash
+curl -sS -X POST https://faucet-testnet.doublezero.xyz/fund-ledger \
+  -H 'content-type: application/json' \
+  -d "{\"pubkey\": \"$BUILDER\"}"
+```
+
+The response confirms the transfer on the DoubleZero ledger:
+
+```json
+{"signature": "5x...", "amount_sol": "0.05"}
+```
+
+Check that your ledger balance is positive before continuing:
+
+```bash
+doublezero balance
+```
 
 ## Step 3: Post a bond
 
