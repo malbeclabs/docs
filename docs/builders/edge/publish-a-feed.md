@@ -162,7 +162,7 @@ The commands below use these variables. Group and feed codes must be unique acro
 The DoubleZero devnet faucet sends 10 devnet 2Z and 0.1 devnet SOL to your key. That covers a bond at any tier and the Solana transaction fees.
 
 ```bash
-curl -sS -X POST https://<FAUCET_HOST>/fund \
+curl -sS -X POST https://faucet-testnet.malbeclabs.com/fund \
   -H 'content-type: application/json' \
   -d "{\"pubkey\": \"$BUILDER\"}"
 ```
