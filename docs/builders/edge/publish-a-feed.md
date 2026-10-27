@@ -150,7 +150,7 @@ The commands below use these variables. Group and feed codes must be unique acro
     export FEED=acme-tob             # feed code
     export METRO=xfra                # metro code
     export RATE_BPS=1000000000       # committed rate, bits per second
-    export API=https://subscription-api-testnet.malbeclabs.com
+    export API=https://subscription-api-testnet.doublezero.xyz
     export SOLANA_RPC=https://api.devnet.solana.com
     export LEDGER_RPC=https://doublezerolocalnet.rpcpool.com/8a4fd3f4-0977-449f-88c7-63d4b0f10f16
     ```
@@ -162,7 +162,7 @@ The commands below use these variables. Group and feed codes must be unique acro
 The DoubleZero devnet faucet sends 10 devnet 2Z and 0.1 devnet SOL to your key. That covers a bond at any tier and the Solana transaction fees.
 
 ```bash
-curl -sS -X POST https://faucet-testnet.malbeclabs.com/fund \
+curl -sS -X POST https://faucet-testnet.doublezero.xyz/fund \
   -H 'content-type: application/json' \
   -d "{\"pubkey\": \"$BUILDER\"}"
 ```

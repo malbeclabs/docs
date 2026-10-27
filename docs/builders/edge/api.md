@@ -10,7 +10,7 @@ This page lists every endpoint of the DoubleZero builder API on testnet, and exp
 
 | | |
 |---|---|
-| Base URL | `https://subscription-api-testnet.malbeclabs.com` |
+| Base URL | `https://subscription-api-testnet.doublezero.xyz` |
 | Authentication | None |
 | Rate limit | 10 requests per 10 seconds from each IP address |
 | Request and response format | JSON. Send `content-type: application/json` with a body. |
