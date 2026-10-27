@@ -61,7 +61,7 @@ Retiring a feed is permanent. It starts a 30-day notice period so that subscribe
 
 ## Add a multicast group
 
-A bond supports up to four multicast groups, for example one per metro or one per set of instruments. Create the new group against the same bond and grant your host publish access:
+A feed can use more than one multicast group, for example one per metro or one per set of instruments. Create the new group against the same bond and grant your host publish access:
 
 === "CLI"
 

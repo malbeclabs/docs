@@ -275,7 +275,7 @@ Group instructions go to the DoubleZero ledger.
 
 ### `POST /builders/{builder}/multicast-groups`
 
-Creates a multicast group on one of your bonds. You own the group. A bond supports up to four groups.
+Creates a multicast group on one of your bonds. You own the group.
 
 | Field | Type | Meaning |
 |-------|------|---------|
