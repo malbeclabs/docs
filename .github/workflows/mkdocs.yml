@@ -1,6 +1,6 @@
-# CI: builds the site and fails on any unexpected mkdocs warning. Publishing
-# (Pages and Vercel) is removed until malbeclabs/infra#3172; restore its jobs
-# from this file's revision at 7cc3c09.
+# CI: builds the site and fails on any unexpected mkdocs warning. A push to main
+# also publishes it to GitHub Pages. Vercel publishing stays removed until
+# malbeclabs/infra#3172; restore its job from this file's revision at 7cc3c09.
 name: docs
 on:
   push:
@@ -43,3 +43,33 @@ jobs:
             echo "$unexpected"
             exit 1
           fi
+      # tar --dereference is what keeps the hidden .well-known directory.
+      - name: Package site
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        run: |
+          mkdir -p /tmp/pages
+          tar --dereference -cf /tmp/pages/artifact.tar -C site .
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        with:
+          name: github-pages
+          path: /tmp/pages/artifact.tar
+          retention-days: 1
+          if-no-files-found: error
+
+  deploy-pages:
+    needs: build
+    # main only. Keep it ref-based: workflow_dispatch can run from any branch.
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5
+        with:
+          artifact_name: github-pages
