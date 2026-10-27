@@ -522,7 +522,7 @@ When it is set, join the feed:
 doublezero connect multicast --subscribe-feed $FEED
 ```
 
-The feed's datagrams arrive on `doublezero1` from an address the host routes through its main interface. Ubuntu and most cloud images drop these packets with strict reverse-path filtering. Set loose mode on the tunnel after each connect, because the client creates `doublezero1` again each time:
+The feed's datagrams arrive on `doublezero1` from an address the host routes through its main interface. A host with strict reverse-path filtering drops them. Google Cloud images [turn strict filtering on](https://github.com/GoogleCloudPlatform/guest-configs/blob/afc5de719e50f9ad1b2b6fef32934a368940ca3e/src/etc/sysctl.d/60-gce-network-security.conf#L39-L42), so this step is likely needed only on Google Cloud. Check the value with `sysctl net.ipv4.conf.all.rp_filter`. If it is `1`, set loose mode on the tunnel after each connect, because the client creates `doublezero1` again each time:
 
 ```bash
 sudo sysctl -w net.ipv4.conf.doublezero1.rp_filter=2
