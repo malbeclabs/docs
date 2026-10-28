@@ -11,7 +11,7 @@ El peering proporciona a los nodos no validadores un feed de gossip de Hyperliqu
 | Para quién es | Nodos no validadores que usted opera |
 | Qué obtiene | Un feed de gossip arbitrado a través de Block Proxy (bloques + mempool) |
 | Hosts receptores | 1 IP incluida |
-| Precio | $999/mes (sin datos de mercado de Edge) |
+| Precio | $499/mes (sin datos de mercado de Edge) |
 | Objetivo de disponibilidad | 99.9% mensual |
 
 ## Solicitar peering
@@ -134,4 +134,4 @@ Objetivo: 99.9% de disponibilidad mensual.
 
 ## Precios
 
-$999/mes por peering. Incluye mempool. No incluye feeds de datos de mercado de Edge. Un host receptor (IP) está incluido. El peering no se incluye en paquete ni tiene descuento con los datos de mercado de Edge.
+$499/mes por peering. Incluye mempool. No incluye feeds de datos de mercado de Edge. Un host receptor (IP) está incluido. El peering no se incluye en paquete ni tiene descuento con los datos de mercado de Edge.

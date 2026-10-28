@@ -11,7 +11,7 @@ Le peering offre aux nœuds non-validateurs un flux gossip Hyperliquid à faible
 | À qui c'est destiné | Les nœuds non-validateurs que vous exploitez |
 | Ce que vous obtenez | Un flux gossip arbitré via Block Proxy (blocs + mempool) |
 | Hôtes récepteurs | 1 IP incluse |
-| Tarif | 999 $/mois (pas de données de marché Edge) |
+| Tarif | 499 $/mois (pas de données de marché Edge) |
 | Objectif de disponibilité | 99,9 % mensuel |
 
 ## Demander le peering
@@ -134,4 +134,4 @@ Objectif : 99,9 % de disponibilité mensuelle.
 
 ## Tarification
 
-999 $/mois pour le peering. Inclut le mempool. N'inclut pas les flux de données de marché Edge. Un hôte récepteur (IP) est inclus. Le peering n'est ni groupé ni remisé avec les données de marché Edge.
+499 $/mois pour le peering. Inclut le mempool. N'inclut pas les flux de données de marché Edge. Un hôte récepteur (IP) est inclus. Le peering n'est ni groupé ni remisé avec les données de marché Edge.

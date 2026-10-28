@@ -11,7 +11,7 @@ O peering oferece aos nós não validadores um feed de gossip Hyperliquid de bai
 | Para quem é | Nós não validadores que você opera |
 | O que você recebe | Um feed de gossip arbitrado via Block Proxy (blocos + mempool) |
 | Hosts receptores | 1 IP incluído |
-| Preço | $999/mês (sem dados de mercado Edge) |
+| Preço | $499/mês (sem dados de mercado Edge) |
 | Meta de disponibilidade | 99,9% mensal |
 
 ## Solicitar peering
@@ -134,4 +134,4 @@ Meta: 99,9% de disponibilidade mensal.
 
 ## Preços
 
-$999/mês para peering. Inclui mempool. Não inclui feeds de dados de mercado Edge. Um host receptor (IP) está incluído. O peering não é empacotado nem tem desconto com dados de mercado Edge.
+$499/mês para peering. Inclui mempool. Não inclui feeds de dados de mercado Edge. Um host receptor (IP) está incluído. O peering não é empacotado nem tem desconto com dados de mercado Edge.
