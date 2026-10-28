@@ -27,3 +27,5 @@ __pycache__/
 **/__pycache__/
 .vercel
 .env*
+site.tar
+mkdocs-build.log

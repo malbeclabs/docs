@@ -24,4 +24,6 @@ The `Auto-translate docs` workflow translates English pages under `docs/` into e
 
 ## CI
 
-`docs` (`.github/workflows/mkdocs.yml`) builds the site on every pull request and push to `main`; `actions-lint` checks the workflows. Publishing to GitHub Pages and Vercel is removed until malbeclabs/infra#3172, so merges to `main` are not published until then. Branch pushes no longer produce Vercel previews; preview locally with `mkdocs serve`.
+`docs` (`.github/workflows/mkdocs.yml`) builds the site on every pull request and push to `main`, and publishes `main` to GitHub Pages. `actions-lint` checks the workflows.
+
+Vercel serves docs.doublezero.xyz and builds it from `main` itself, through its GitHub app: `vercel.json` runs `scripts/vercel-build.sh`, which is the same build with the same pinned packages. No Vercel token is stored in this repository, and branches do not build on Vercel. Preview locally with `mkdocs serve`.
