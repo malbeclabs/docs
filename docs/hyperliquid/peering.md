@@ -11,7 +11,7 @@ Peering gives non-validating nodes a low-latency, deduplicated Hyperliquid gossi
 | Who it's for | Non-validating nodes you operate |
 | What you get | One arbitrated gossip feed via Block Proxy (blocks + mempool) |
 | Receiving hosts | 1 IP included |
-| Price | $999/mo (no Edge market data) |
+| Price | $499/mo (no Edge market data) |
 | Availability target | 99.9% monthly |
 
 ## Request peering
@@ -134,4 +134,4 @@ Target: 99.9% monthly availability.
 
 ## Pricing
 
-$999/mo for peering. Includes mempool. Does not include Edge market data feeds. One receiving host (IP) is included. Peering is not bundled or discounted with Edge market data.
+$499/mo for peering. Includes mempool. Does not include Edge market data feeds. One receiving host (IP) is included. Peering is not bundled or discounted with Edge market data.
