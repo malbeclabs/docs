@@ -13,7 +13,7 @@ Run every command on your publishing host unless a step says otherwise.
 !!! info "Testnet only"
     The bond amounts and hold period in this guide apply to testnet only. Mainnet-beta will use different values.
 
-!!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Use](https://doublezero.xyz/terms-protocol)"
+!!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Use](https://doublezero.xyz/terms-protocol){target=_blank rel=noopener}"
 
 ## CLI or API
 
@@ -48,7 +48,7 @@ Follow [Setup](../../setup.md) to install the testnet `doublezero` package and c
 
 === "API"
 
-    Install `jq` and [Node.js](https://nodejs.org/) 20 or later, then the signing script's one dependency:
+    Install `jq` and [Node.js](https://nodejs.org/){target=_blank rel=noopener} 20 or later, then the signing script's one dependency:
 
     ```bash
     sudo apt update && sudo apt install doublezero jq
@@ -494,7 +494,7 @@ export FEED=acme-tob
 export FEED_KEY=<the feed_key from Step 9>
 ```
 
-Fund the key from the faucet with both requests in [Step 2](#step-2-get-devnet-2z-sol-and-ledger-credits). The devnet SOL pays the payment's fee, and the ledger credits pay to connect. Then get devnet USDC for `$DZ_ID` from [Circle's faucet](https://faucet.circle.com/), on Solana Devnet.
+Fund the key from the faucet with both requests in [Step 2](#step-2-get-devnet-2z-sol-and-ledger-credits). The devnet SOL pays the payment's fee, and the ledger credits pay to connect. Then get devnet USDC for `$DZ_ID` from [Circle's faucet](https://faucet.circle.com/){target=_blank rel=noopener}, on Solana Devnet.
 
 Buy one seat for one month. The key signs the body, and `submission_id` and `item_id` are new UUIDs:
 
@@ -543,7 +543,7 @@ When it is set, join the feed:
 doublezero connect multicast --subscribe-feed $FEED
 ```
 
-The feed's datagrams arrive on `doublezero1` from an address the host routes through its main interface. A host with strict reverse-path filtering drops them. Google Cloud images [turn strict filtering on](https://github.com/GoogleCloudPlatform/guest-configs/blob/afc5de719e50f9ad1b2b6fef32934a368940ca3e/src/etc/sysctl.d/60-gce-network-security.conf#L39-L42), and so do many hardened images. Check both values, because the kernel uses the larger:
+The feed's datagrams arrive on `doublezero1` from an address the host routes through its main interface. A host with strict reverse-path filtering drops them. Google Cloud images [turn strict filtering on](https://github.com/GoogleCloudPlatform/guest-configs/blob/afc5de719e50f9ad1b2b6fef32934a368940ca3e/src/etc/sysctl.d/60-gce-network-security.conf#L39-L42){target=_blank rel=noopener}, and so do many hardened images. Check both values, because the kernel uses the larger:
 
 ```bash
 sysctl net.ipv4.conf.all.rp_filter net.ipv4.conf.doublezero1.rp_filter

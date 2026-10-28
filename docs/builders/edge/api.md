@@ -11,12 +11,12 @@ This page lists every endpoint of the DoubleZero builder API on testnet, and exp
 | | |
 |---|---|
 | Base URL | `https://subscription-api-testnet.doublezero.xyz` |
-| Authentication | None, except that [signed requests](#signed-requests) carry your signature over the body |
-| Rate limit | 10 requests per 10 seconds from each IP address |
+| Authentication | None, except that [signed requests](#signed-requests) carry your signature over the body. |
+| Rate limit | 10 requests per 10 seconds from each IP address. |
 | Request and response format | JSON. Send `content-type: application/json` with a body. |
-| `{builder}` in a path | Your builder key, the public key of your keypair |
+| `{builder}` in a path | Your builder key, the public key of your keypair. |
 | 2Z amounts | Base units. 1 2Z is 100000000. |
-| Rates and bandwidth | Bits per second |
+| Rates and bandwidth | Bits per second. |
 
 Read endpoints return public chain data, so they answer for any builder key. Write endpoints do not change state. Each one returns an unsigned instruction that you sign and send yourself. The API never holds your key. [Signed requests](#signed-requests) are the exception: they change the API's own records of listings and purchases.
 
@@ -173,7 +173,7 @@ It prints the transaction signature as soon as it sends the transaction, then ex
 
 ### `GET /builders/requirements`
 
-What a bond must hold at each tier.
+What a bond must hold at each tier:
 
 ```json
 {

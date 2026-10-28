@@ -11,7 +11,7 @@ Deploying a feed does not require approval from the DoubleZero Foundation. The b
 !!! info "Testnet only"
     These pages cover DoubleZero testnet. DoubleZero Edge for Builders is not available on mainnet-beta yet. The bond tiers, amounts, and hold period shown here apply to testnet only. Mainnet-beta will use different values.
 
-!!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Use](https://doublezero.xyz/terms-protocol)"
+!!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Use](https://doublezero.xyz/terms-protocol){target=_blank rel=noopener}"
 
 ## Components
 
@@ -34,7 +34,7 @@ The committed rate is the maximum bandwidth a feed will use. It determines the b
 | Up to 5 Gbps | 2 2Z |
 | Above 5 Gbps | 5 2Z |
 
-On testnet the bond is posted in devnet 2Z, which has no value. The [DoubleZero devnet faucet](publish-a-feed.md#step-2-get-devnet-2z-sol-and-ledger-credits) provides enough for any tier.
+On testnet, the bond is posted in devnet 2Z, which has no value. The [DoubleZero devnet faucet](publish-a-feed.md#step-2-get-devnet-2z-sol-and-ledger-credits) provides enough for any tier.
 
 On testnet, the first post to a bond starts a 180-day hold. Later posts do not restart it. Once the hold ends, the builder can withdraw any 2Z above what the tier requires.
 
@@ -58,4 +58,4 @@ The bond backs two commitments. The feed must stay within its committed rate, be
 
 ## Support
 
-If you need help deploying or operating a feed, [request support](https://airtable.com/appQ8e047TKOgqV3h/pagIf9qvCcXlzDsDc/form) or ask in the [DoubleZero Discord](https://discord.com/invite/doublezerotech).
+If you need help deploying or operating a feed, [request support](https://airtable.com/appQ8e047TKOgqV3h/pagIf9qvCcXlzDsDc/form){target=_blank rel=noopener} or ask in the [DoubleZero Discord](https://discord.com/invite/doublezerotech){target=_blank rel=noopener}.
