@@ -161,6 +161,14 @@ The commands below use these variables. Group and feed codes must be unique acro
 
 Fund the same key on both Solana devnet and the DoubleZero testnet ledger.
 
+The faucet pays only a key that holds at least 1000 2Z on Solana mainnet. Before you request, send 1000 2Z to `$BUILDER` on mainnet and check the balance:
+
+```bash
+spl-token balance J6pQQ3FAcJQeWPPGppWRb4nM8jU3wLyYbRrLh7feMfvd --owner $BUILDER -u mainnet-beta
+```
+
+The faucet only reads this balance. It does not move your mainnet 2Z.
+
 ### Solana devnet
 
 The DoubleZero devnet faucet sends 10 devnet 2Z and 0.1 devnet SOL to your key. That covers a bond at any tier and the Solana transaction fees.
@@ -181,6 +189,8 @@ The faucet makes one payout per IP address and one per key every 24 hours, with 
 
 | Response | Meaning |
 |----------|---------|
+| `403 mainnet 2Z below minimum` | Your key holds less than 1000 2Z on Solana mainnet. `balance_2z` shows what it holds. Fund it and retry. |
+| `503 mainnet unavailable` | The faucet could not read your mainnet balance. Retry in a minute. |
 | `429 ip limited` | Your IP address received a payout in the last 24 hours. |
 | `429 pubkey limited` | Your key received a payout in the last 24 hours. |
 | `429 daily cap reached` | The faucet reached its daily limit. Retry after `retry_after_secs`. |
@@ -188,7 +198,7 @@ The faucet makes one payout per IP address and one per key every 24 hours, with 
 
 ### DoubleZero testnet ledger
 
-Request ledger credits from the faucet's separate `/fund-ledger` endpoint. It sends 0.05 credits to your key to pay for creating the multicast group, feed, and publisher grant. The `/fund` request above funds only Solana devnet.
+Request ledger credits from the faucet's separate `/fund-ledger` endpoint. It checks the same 1000 2Z on mainnet and returns the same errors as `/fund`. It sends 0.05 credits to your key to pay for creating the multicast group, feed, and publisher grant. The `/fund` request above funds only Solana devnet.
 
 ```bash
 curl -sS -X POST https://faucet-testnet.doublezero.xyz/fund-ledger \
@@ -475,7 +485,7 @@ export FEED=acme-tob
 export FEED_KEY=<the feed_key from Step 9>
 ```
 
-Fund the key from the faucet with both requests in [Step 2](#step-2-get-devnet-2z-sol-and-ledger-credits). The devnet SOL pays the payment's fee, and the ledger credits pay to connect. Then get devnet USDC for `$DZ_ID` from [Circle's faucet](https://faucet.circle.com/), on Solana Devnet.
+Fund the key from the faucet with both requests in [Step 2](#step-2-get-devnet-2z-sol-and-ledger-credits). The key needs 1000 2Z on Solana mainnet first, as Step 2 describes. The devnet SOL pays the payment's fee, and the ledger credits pay to connect. Then get devnet USDC for `$DZ_ID` from [Circle's faucet](https://faucet.circle.com/), on Solana Devnet.
 
 Buy one seat for one month. The key signs the body, and `submission_id` and `item_id` are new UUIDs:
 
