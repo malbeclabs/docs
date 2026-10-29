@@ -34,7 +34,7 @@ The committed rate is the maximum bandwidth a feed will use. It determines the b
 | Up to 5 Gbps | 2 2Z |
 | Above 5 Gbps | 5 2Z |
 
-On testnet the bond is posted in devnet 2Z, which has no value. The [DoubleZero devnet faucet](publish-a-feed.md#step-2-get-devnet-2z-sol-and-ledger-credits) provides enough for any tier.
+On testnet the bond is posted in devnet 2Z, which has no value. The [DoubleZero devnet faucet](publish-a-feed.md#step-2-get-devnet-2z-sol-and-ledger-credits) provides enough for any tier to a key that holds at least 1000 2Z on Solana mainnet.
 
 On testnet, the first post to a bond starts a 180-day hold. Later posts do not restart it. Once the hold ends, the builder can withdraw any 2Z above what the tier requires.
 
