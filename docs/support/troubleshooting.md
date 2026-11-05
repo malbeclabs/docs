@@ -417,7 +417,7 @@ See https://docs.doublezero.xyz/support/troubleshooting#issue-missing-peer-route
 
 Allow inbound UDP 44880 on `doublezero0` with `sudo iptables -A INPUT -i doublezero0 -p udp --dport 44880 -j ACCEPT`, or with UFW, `sudo ufw allow in on doublezero0 to any port 44880 proto udp`.
 
-Then check that `sysctl net.ipv4.conf.doublezero0.rp_filter` reads `2`, because strict reverse-path filtering drops the probes. `doublezerod` sets it after each tunnel setup, and logs `tunnel: could not set loose rp_filter; strict filtering may drop liveness probes` when it cannot. If it reads another value, run `sudo sysctl -w net.ipv4.conf.doublezero0.rp_filter=2`.
+Then check that `sysctl net.ipv4.conf.doublezero0.rp_filter` reads `2`, because strict reverse-path filtering drops the probes. `doublezerod` sets it after each tunnel setup, and logs `tunnel: could not set loose rp_filter; strict filtering may drop liveness probes` when it cannot. If it reads another value, run `sudo sysctl -w net.ipv4.conf.doublezero0.rp_filter=2`. The value lasts until `doublezerod` recreates the tunnel on the next reconnect.
 
 `outbound` means this host hears peers, but peers do not hear it:
 
@@ -436,7 +436,7 @@ Allow outbound UDP 44880 on `doublezero0` with `sudo iptables -A OUTPUT -o doubl
 `Action` is `none`, as in the first example. Nothing needs fixing on this host, and traffic to those peers uses the public internet. Each missing route's state and reason say why:
 
 - `down (no reply)`: the peer never answered. It runs an older client, has route liveness off, or blocks UDP 44880.
-- `init`: this host hears the peer, but the peer does not hear this host.
+- `init` or `down (remote_down)`: this host hears the peer, but the peer does not hear this host.
 - `down (timeout)`: the peer stopped answering.
 - `up (held down)`: the peer flaps. Its route returns once its session stays up through a hold-down of up to 5 minutes.
 
