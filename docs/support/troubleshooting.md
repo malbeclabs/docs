@@ -383,7 +383,7 @@ With all fields populated you are now in the correct environment.
 
 ### Issue: routes to some or all peers are missing {#issue-missing-peer-routes}
 
-From client vX.Y.Z (TODO before merge: the first client release after v0.46.0), `doublezerod` runs route liveness in active mode by default. It installs the route to a peer, another DoubleZero user, only while that peer answers liveness probes on UDP 44880 over `doublezero0`. Traffic to any other peer uses the public internet, and you stay connected to DoubleZero.
+From client v0.47.0, `doublezerod` runs route liveness in active mode by default. It installs the route to a peer, another DoubleZero user, only while that peer answers liveness probes on UDP 44880 over `doublezero0`. Traffic to any other peer uses the public internet, and you stay connected to DoubleZero.
 
 **Symptoms:**
 
