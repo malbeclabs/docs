@@ -403,7 +403,7 @@ Run `doublezero routes status`. `Not Installed` groups the missing routes by liv
 
 #### No peer answers
 
-`Action` is `inbound` or `outbound` once no peer session has been up for 2 minutes. This is the only case with a warning, and the problem is on this host. `doublezerod` logs the warning every 15 minutes until a peer answers, then logs `liveness: missing peer routes cleared`.
+`Action` is `inbound` or `outbound` once no peer session has been up for 2 minutes. This is the only case with a warning, and the problem is usually on this host. `doublezerod` logs the warning every 15 minutes until a peer answers, then logs `liveness: missing peer routes cleared`.
 
 `inbound` means this host receives no liveness probes from peers:
 
@@ -411,7 +411,7 @@ Run `doublezero routes status`. `Not Installed` groups the missing routes by liv
  Desired | Installed | Not Installed       | Action  
  12      | 0         | down (no reply): 12 | inbound 
 
-⚠️  Missing peer routes: this host receives no liveness probes from peers. Allow inbound UDP 44880 on doublezero0.
+⚠️  Missing peer routes: this host receives no liveness probes from peers. Check that inbound UDP 44880 is allowed on doublezero0.
 See https://docs.doublezero.xyz/support/troubleshooting#issue-missing-peer-routes
 ```
 
@@ -425,11 +425,13 @@ Then check that `sysctl net.ipv4.conf.doublezero0.rp_filter` reads `2`, because 
  Desired | Installed | Not Installed                                  | Action   
  12      | 0         | down (timeout): 9, down (no reply): 2, init: 1 | outbound 
 
-⚠️  Missing peer routes: peers receive no liveness probes from this host. Allow outbound UDP 44880 on doublezero0.
+⚠️  Missing peer routes: peers receive no liveness probes from this host. Check that outbound UDP 44880 is allowed on doublezero0.
 See https://docs.doublezero.xyz/support/troubleshooting#issue-missing-peer-routes
 ```
 
 Allow outbound UDP 44880 on `doublezero0` with `sudo iptables -A OUTPUT -o doublezero0 -p udp --dport 44880 -j ACCEPT`, or with UFW, `sudo ufw allow out on doublezero0 to any port 44880 proto udp`.
+
+With only a few peers, the fault may be on their side: if this host already allows UDP 44880 in both directions, the peers should check theirs.
 
 #### Some peers do not answer
 
