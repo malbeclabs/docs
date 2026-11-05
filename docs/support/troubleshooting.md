@@ -395,8 +395,11 @@ From client vX.Y.Z (TODO before merge: the first client release after v0.46.0), 
 Run `doublezero routes status`. `Not Installed` groups the missing routes by liveness state and reason, and `Action` says whether you must act:
 
 ```
- Desired | Installed | Not Installed      | Action 
- 12      | 9         | down (no reply): 3 | none   
+ Peers | Installed | Not Installed      | Action 
+ 12    | 9         | down (no reply): 3 | none   
+
+Routes to 3 peers are not installed, so traffic to them uses the public internet. This host appears healthy and needs no action.
+See https://docs.doublezero.xyz/support/troubleshooting#issue-missing-peer-routes
 ```
 
 `doublezero status` warns only when `Action` is `inbound` or `outbound`, and prints nothing about routes otherwise. For each peer's state and reason, run `doublezero routes` and read the `Liveness State` and `Liveness State Reason` columns.
@@ -408,8 +411,8 @@ Run `doublezero routes status`. `Not Installed` groups the missing routes by liv
 `inbound` means this host receives no liveness probes from peers:
 
 ```
- Desired | Installed | Not Installed       | Action  
- 12      | 0         | down (no reply): 12 | inbound 
+ Peers | Installed | Not Installed       | Action  
+ 12    | 0         | down (no reply): 12 | inbound 
 
 ⚠️  Missing peer routes: this host receives no liveness probes from peers. Check that inbound UDP 44880 is allowed on doublezero0.
 See https://docs.doublezero.xyz/support/troubleshooting#issue-missing-peer-routes
@@ -422,8 +425,8 @@ Then check that `sysctl net.ipv4.conf.doublezero0.rp_filter` reads `2`, because 
 `outbound` means this host hears peers, but peers do not hear it:
 
 ```
- Desired | Installed | Not Installed                                  | Action   
- 12      | 0         | down (timeout): 9, down (no reply): 2, init: 1 | outbound 
+ Peers | Installed | Not Installed              | Action   
+ 3     | 0         | down (timeout): 2, init: 1 | outbound 
 
 ⚠️  Missing peer routes: peers receive no liveness probes from this host. Check that outbound UDP 44880 is allowed on doublezero0.
 See https://docs.doublezero.xyz/support/troubleshooting#issue-missing-peer-routes
@@ -435,7 +438,7 @@ With only a few peers, the fault may be on their side: if this host already allo
 
 #### Some peers do not answer
 
-`Action` is `none`, as in the first example. Nothing needs fixing on this host, and traffic to those peers uses the public internet. Each missing route's state and reason say why:
+`Action` is `none`, as in the first example, and `doublezero routes status` says `This host appears healthy and needs no action`. Traffic to those peers uses the public internet. Each missing route's state and reason say why:
 
 - `down (no reply)`: the peer never answered. It runs an older client, has route liveness off, or blocks UDP 44880.
 - `init` or `down (remote_down)`: this host hears the peer, but the peer does not hear this host.
