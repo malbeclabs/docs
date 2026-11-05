@@ -402,7 +402,7 @@ Routes to 3 peers are not installed, so traffic to them uses the public internet
 See https://docs.doublezero.xyz/support/troubleshooting#issue-missing-peer-routes
 ```
 
-While no peer session is up and no route is installed, for example right after you connect, `Action` reads `starting` for the first 2 minutes:
+While no peer session is up and at least one route is not installed, for example right after you connect, `Action` reads `starting` for the first 2 minutes:
 
 ```
  Peers | Installed | Not Installed       | Action   
@@ -415,7 +415,7 @@ Liveness checks are still starting. Run 'doublezero routes status' again in 2 mi
 
 #### No peer answers
 
-`Action` becomes `inbound` or `outbound` once no peer session has been up and no route has been installed for 2 minutes. This is the only case with a warning, and the problem is usually on this host. `doublezerod` logs the warning every 15 minutes until a peer answers, then logs `liveness: missing peer routes cleared`.
+`Action` becomes `inbound` or `outbound` once no peer session has been up for 2 minutes and at least one route is not installed. This is the only case with a warning, and the problem is usually on this host. `doublezerod` logs the warning every 15 minutes until a peer answers, then logs `liveness: missing peer routes cleared`.
 
 `inbound` means this host receives no liveness probes from peers:
 
