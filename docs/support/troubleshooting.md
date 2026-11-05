@@ -402,11 +402,20 @@ Routes to 3 peers are not installed, so traffic to them uses the public internet
 See https://docs.doublezero.xyz/support/troubleshooting#issue-missing-peer-routes
 ```
 
-`doublezero status` warns only when `Action` is `inbound` or `outbound`, and prints nothing about routes otherwise. For each peer's state and reason, run `doublezero routes` and read the `Liveness State` and `Liveness State Reason` columns.
+While no peer session is up and no route is installed, for example right after you connect, `Action` reads `starting` for the first 2 minutes:
+
+```
+ Peers | Installed | Not Installed       | Action   
+ 12    | 0         | down (no reply): 12 | starting 
+
+Liveness checks are still starting. Run 'doublezero routes status' again in 2 minutes.
+```
+
+`doublezero status` warns only when `Action` is `inbound` or `outbound`; for `none` and `starting` it prints nothing about routes. For each peer's state and reason, run `doublezero routes` and read the `Liveness State` and `Liveness State Reason` columns.
 
 #### No peer answers
 
-`Action` is `inbound` or `outbound` once no peer session has been up for 2 minutes. This is the only case with a warning, and the problem is usually on this host. `doublezerod` logs the warning every 15 minutes until a peer answers, then logs `liveness: missing peer routes cleared`.
+`Action` becomes `inbound` or `outbound` once no peer session has been up and no route has been installed for 2 minutes. This is the only case with a warning, and the problem is usually on this host. `doublezerod` logs the warning every 15 minutes until a peer answers, then logs `liveness: missing peer routes cleared`.
 
 `inbound` means this host receives no liveness probes from peers:
 
@@ -438,7 +447,7 @@ With only a few peers, the fault may be on their side: if this host already allo
 
 #### Some peers do not answer
 
-`Action` is `none`, as in the first example, and `doublezero routes status` says `This host appears healthy and needs no action`. Traffic to those peers uses the public internet. Each missing route's state and reason say why:
+`Action` is `none`, as in the first example. When at least one peer session is up, `doublezero routes status` says `This host appears healthy and needs no action`. Traffic to the peers that do not answer uses the public internet. Each missing route's state and reason say why:
 
 - `down (no reply)`: the peer never answered. It runs an older client, has route liveness off, or blocks UDP 44880.
 - `init` or `down (remote_down)`: this host hears the peer, but the peer does not hear this host.
@@ -447,9 +456,11 @@ With only a few peers, the fault may be on their side: if this host already allo
 
 #### Opt out of active liveness
 
-Pass `-route-liveness-enable-active=false` to `doublezerod`. The trade-off: routes to peers that stop answering stay installed. If you turned liveness off with `-route-liveness-enable-passive=false`, pass this flag as well, because the passive flag alone now leaves active liveness on.
+Pass `-route-liveness-enable-active=false` to `doublezerod`, and leave passive liveness on. This host then keeps answering probes, so peers keep their DoubleZero routes to it. The trade-off: routes to peers that stop answering stay installed.
 
-Add the flag to the `ExecStart` line of the `doublezerod` systemd override, and keep any flags already on it (`sudo systemctl cat doublezerod` shows them):
+If you set `-route-liveness-enable-passive=false`, remove it. The passive flag alone no longer turns liveness off, and with both flags false this host answers no probes, so upgraded peers reach it over the public internet.
+
+Add the flag to the `ExecStart` line of the `doublezerod` systemd override, and keep any other flags already on it (`sudo systemctl cat doublezerod` shows them):
 
 ```bash
 sudo mkdir -p /etc/systemd/system/doublezerod.service.d/
