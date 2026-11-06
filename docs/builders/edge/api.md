@@ -11,14 +11,14 @@ This page lists every endpoint of the DoubleZero builder API on testnet, and exp
 | | |
 |---|---|
 | Base URL | `https://subscription-api-testnet.doublezero.xyz` |
-| Authentication | None |
+| Authentication | None, except that [signed requests](#signed-requests) carry your signature over the body |
 | Rate limit | 10 requests per 10 seconds from each IP address |
 | Request and response format | JSON. Send `content-type: application/json` with a body. |
 | `{builder}` in a path | Your builder key, the public key of your keypair |
 | 2Z amounts | Base units. 1 2Z is 100000000. |
 | Rates and bandwidth | Bits per second |
 
-Read endpoints return public chain data, so they answer for any builder key. Write endpoints never change state. Each one returns an unsigned instruction that you sign and send yourself. The API never holds your key.
+Read endpoints return public chain data, so they answer for any builder key. Write endpoints do not change state. Each one returns an unsigned instruction that you sign and send yourself. The API never holds your key. [Signed requests](#signed-requests) are the exception: they change the API's own records of listings and purchases.
 
 ### Errors
 
@@ -30,8 +30,10 @@ A refused request returns an HTTP error status and a JSON body that names the pr
 
 | Status | Meaning |
 |--------|---------|
-| `404` | The path or the account it names does not exist. No body. |
-| `422` | A field is missing or malformed, or the request breaks a ledger rule, such as a code already in use. |
+| `403` | A signed request's signature is missing or does not match the body, or the feed is not yours. |
+| `404` | The path does not exist. No body. |
+| `409` | A signed body is not newer than the last one the API accepted. |
+| `422` | A field is missing or malformed, the request names an account that does not exist, such as an unknown bond index or feed key, or the request breaks a ledger rule, such as a code already in use. |
 | `429` | Rate limited. Wait for the next 10-second window. The body is not JSON. |
 | `502` | The API could not read Solana or the DoubleZero ledger. Retry. |
 | `503` | The request is valid but must wait, such as a bond the ledger has not mirrored yet. Retry in a minute. |
@@ -63,17 +65,18 @@ Every write endpoint returns the same four fields, plus the addresses of the acc
 
 To complete a write:
 
-1. Check that `signers` holds your builder key and nothing else.
+1. Check that `signers` holds your builder key and nothing else, and that `program_id` is one of the programs below.
 2. Build an instruction from `program_id`, `accounts`, and the decoded `data`.
 3. Put it in a transaction with your key as the fee payer and a recent blockhash from the right chain.
 4. Sign with your key and send.
 
 The API returns an instruction rather than a transaction because a blockhash expires in about a minute. You fetch the blockhash when you are ready to sign, and you can add instructions of your own, such as a priority fee.
 
-| Endpoints | Send to |
-|-----------|---------|
-| `/bonds` and below | Solana devnet, `https://api.devnet.solana.com` |
-| Everything else | DoubleZero testnet ledger, `https://doublezerolocalnet.rpcpool.com/8a4fd3f4-0977-449f-88c7-63d4b0f10f16` |
+| Endpoints | Program | Send to |
+|-----------|---------|---------|
+| `/bonds` and below | Builder bond, `dzbschFChpPoWihZFdnYjyzHJicZwPHb6QTntHjhLki` | Solana devnet, `https://api.devnet.solana.com` |
+| `/subscribers/{service_key}/purchases/{id}/pay` | Feed subscription, `J9gupbyffs4XAoKn5NrJ4hrbdqW5ZfvMDaaas3FtH8yC` | Solana devnet, `https://api.devnet.solana.com` |
+| Everything else | Serviceability, `DZtnuQ839pSaDMFG5q1ad2V95G82S5EC4RrB3Ndw2Heb` | DoubleZero testnet ledger, `https://doublezerolocalnet.rpcpool.com/8a4fd3f4-0977-449f-88c7-63d4b0f10f16` |
 
 ### Signing script
 
@@ -96,7 +99,6 @@ import {
   PublicKey,
   Transaction,
   TransactionInstruction,
-  sendAndConfirmTransaction,
 } from "@solana/web3.js";
 
 const [rpcUrl, keypairFile] = process.argv.slice(2);
@@ -108,6 +110,18 @@ try {
 } catch {}
 if (!answer.program_id) {
   console.error(`The API refused the request: ${body}`);
+  process.exit(1);
+}
+
+// The builder bond and feed subscription programs on Solana devnet, and the
+// serviceability program on the DoubleZero testnet ledger.
+const programs = [
+  "dzbschFChpPoWihZFdnYjyzHJicZwPHb6QTntHjhLki",
+  "J9gupbyffs4XAoKn5NrJ4hrbdqW5ZfvMDaaas3FtH8yC",
+  "DZtnuQ839pSaDMFG5q1ad2V95G82S5EC4RrB3Ndw2Heb",
+];
+if (!programs.includes(answer.program_id)) {
+  console.error(`The API built this for an unknown program, ${answer.program_id}`);
   process.exit(1);
 }
 
@@ -132,12 +146,14 @@ const instruction = new TransactionInstruction({
 
 const connection = new Connection(rpcUrl, "confirmed");
 try {
-  const signature = await sendAndConfirmTransaction(
-    connection,
-    new Transaction().add(instruction),
-    [signer],
-  );
+  const { blockhash, lastValidBlockHeight } = await connection.getLatestBlockhash();
+  const transaction = new Transaction({ feePayer: signer.publicKey, blockhash, lastValidBlockHeight });
+  transaction.add(instruction).sign(signer);
+  const signature = await connection.sendRawTransaction(transaction.serialize());
+  // Printed before confirming, so the signature is kept even if confirming fails.
   console.log(signature);
+  const { value } = await connection.confirmTransaction({ signature, blockhash, lastValidBlockHeight });
+  if (value.err) throw new Error(`The transaction failed: ${JSON.stringify(value.err)}`);
 } catch (err) {
   console.error(err.message);
   process.exit(1);
@@ -151,7 +167,7 @@ curl -sS -X POST $API/builders/$BUILDER/feeds/$FEED_KEY/halt \
   | node ~/dz-sign/sign.mjs $LEDGER_RPC ~/.config/doublezero/id.json
 ```
 
-It prints the transaction signature. If the API refused the request, it prints the API's error and sends nothing. Any Solana SDK works the same way if you prefer another language.
+It prints the transaction signature as soon as it sends the transaction, then exits with an error if the transaction does not confirm. If the API refused the request, or built it for another program, it prints an error and sends nothing. Any Solana SDK works the same way if you prefer another language.
 
 ## Reads
 
@@ -169,7 +185,7 @@ What a bond must hold at each tier.
 }
 ```
 
-`max_rate_bits_per_sec` is `null` for the unmetered tier. A `required_2z_amount` of 0 means the tier is not priced yet, and a bond at that tier cannot be posted.
+`max_rate_bits_per_sec` is `null` for the unmetered tier. Returns `503` if the tiers are not priced yet.
 
 ### `GET /builders/{builder}/bonds`
 
@@ -250,7 +266,7 @@ Creates a bond. The bond holds no 2Z until you post to it. You pay the rent for 
 {"bond_index": 0, "committed_rate_bits_per_sec": 1000000000}
 ```
 
-Refused when the rate is 0, its tier is not priced, or you already have a bond at that index.
+Refused when the rate is 0 or you already have a bond at that index. Returns `503` if the rate's tier is not priced yet.
 
 ### `POST /builders/{builder}/bonds/{bond_index}/post`
 
@@ -348,7 +364,7 @@ The response adds `feed_key` and `bond_key`.
 
 ### `POST /builders/{builder}/feeds/{feed_key}/halt`
 
-Stops a feed from admitting new subscribers. Existing subscribers stay connected. Only an `active` feed can be halted. No body.
+Stops a feed from admitting subscribers. Subscribers already connected stay connected, but anyone who connects again is refused, including seat holders. Only an `active` feed can be halted. No body.
 
 ### `POST /builders/{builder}/feeds/{feed_key}/resume`
 
@@ -359,3 +375,18 @@ Returns a halted feed to `active`. A feed that the DoubleZero Foundation halted 
 Starts the feed's 30-day retirement notice. The feed keeps publishing during the notice and is retired when it ends. Retiring is permanent. No body.
 
 Each feed response adds `feed_key`.
+
+## Signed requests
+
+These requests list a feed and buy seats on it. They change the API's own records rather than a chain, so there is no instruction to sign. Instead you sign the JSON body with `solana sign-offchain-message`, and send the signature in a header with the exact body you signed. [Steps 9 and 10](publish-a-feed.md#step-9-list-your-feed) of Publish a feed show each one.
+
+| Request | What it does | Header, signed by |
+|---------|--------------|-------------------|
+| `PUT /builders/{builder}/feeds/{feed_key}/listing` | Sets the price of one seat for one month, and `self_serve`, which lets any key buy | `x-builder-signature`, your builder key |
+| `PUT /builders/{builder}/feeds/{feed_key}/buyers` | Sets the keys that may buy when `self_serve` is `false`, each with its own price. Does not change `self_serve`. List the feed first. | `x-builder-signature`, your builder key |
+| `POST /subscribers/{service_key}/purchases` | Buys seats and returns an invoice | `x-subscriber-signature`, the subscriber's key |
+| `POST /subscribers/{service_key}/purchases/{id}/payments` | Records a payment's transaction signature | `x-subscriber-signature`, the subscriber's key |
+
+A missing or wrong signature returns `403`. Each body except a payment's includes `signed_at`, in Unix seconds. The API refuses a `signed_at` more than 300 seconds behind its clock or more than 60 seconds ahead (`422`). A listing or buyers body replaces the last one, and the API refuses one whose `signed_at` is at or before the last one it accepted on that route (`409`). After an administrator changes your listing, the API refuses your next listing for up to 60 seconds.
+
+Two unsigned requests complete a purchase. `GET /subscribers/{service_key}/purchases/{id}` returns the invoice, with `provisioned_at` set once the seat is granted. `POST /subscribers/{service_key}/purchases/{id}/pay` takes `payer` and returns a [signing response](#signing) plus `amount_micro_usdc`. Until a payment is recorded, each `pay` request builds a new payment, so record the signature before you request `pay` again.

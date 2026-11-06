@@ -36,7 +36,7 @@ The API accepts 10 requests per 10 seconds from each IP address. See the [Builde
 
 ## Step 1: Install the tools and create a keypair
 
-Follow [Setup](../../setup.md) to install the testnet `doublezero` package and configure your firewall for GRE and BGP.
+Follow [Setup](../../setup.md) to install the testnet `doublezero` package and configure your firewall for GRE and BGP. You need `doublezero` 0.46.0 or later, and for the CLI, `doublezero-solana` 0.6.0 or later. Earlier versions have no `--bond-ref` or `bond` command.
 
 === "CLI"
 
@@ -68,7 +68,6 @@ Follow [Setup](../../setup.md) to install the testnet `doublezero` package and c
       PublicKey,
       Transaction,
       TransactionInstruction,
-      sendAndConfirmTransaction,
     } from "@solana/web3.js";
 
     const [rpcUrl, keypairFile] = process.argv.slice(2);
@@ -80,6 +79,18 @@ Follow [Setup](../../setup.md) to install the testnet `doublezero` package and c
     } catch {}
     if (!answer.program_id) {
       console.error(`The API refused the request: ${body}`);
+      process.exit(1);
+    }
+
+    // The builder bond and feed subscription programs on Solana devnet, and the
+    // serviceability program on the DoubleZero testnet ledger.
+    const programs = [
+      "dzbschFChpPoWihZFdnYjyzHJicZwPHb6QTntHjhLki",
+      "J9gupbyffs4XAoKn5NrJ4hrbdqW5ZfvMDaaas3FtH8yC",
+      "DZtnuQ839pSaDMFG5q1ad2V95G82S5EC4RrB3Ndw2Heb",
+    ];
+    if (!programs.includes(answer.program_id)) {
+      console.error(`The API built this for an unknown program, ${answer.program_id}`);
       process.exit(1);
     }
 
@@ -104,19 +115,21 @@ Follow [Setup](../../setup.md) to install the testnet `doublezero` package and c
 
     const connection = new Connection(rpcUrl, "confirmed");
     try {
-      const signature = await sendAndConfirmTransaction(
-        connection,
-        new Transaction().add(instruction),
-        [signer],
-      );
+      const { blockhash, lastValidBlockHeight } = await connection.getLatestBlockhash();
+      const transaction = new Transaction({ feePayer: signer.publicKey, blockhash, lastValidBlockHeight });
+      transaction.add(instruction).sign(signer);
+      const signature = await connection.sendRawTransaction(transaction.serialize());
+      // Printed before confirming, so the signature is kept even if confirming fails.
       console.log(signature);
+      const { value } = await connection.confirmTransaction({ signature, blockhash, lastValidBlockHeight });
+      if (value.err) throw new Error(`The transaction failed: ${JSON.stringify(value.err)}`);
     } catch (err) {
       console.error(err.message);
       process.exit(1);
     }
     ```
 
-    The script reads the API's response on standard input. It checks that your key is the instruction's only signer, then builds a transaction with a recent blockhash, signs it as the fee payer, sends it, and prints the transaction signature. If the API refused the request, the script prints the API's error and sends nothing.
+    The script reads the API's response on standard input. It checks that your key is the instruction's only signer and that the instruction calls one of the programs the API uses. Then it builds a transaction with a recent blockhash, signs it as the fee payer, sends it, and prints the transaction signature before it waits for confirmation. If the API refused the request, the script prints the API's error and sends nothing.
 
     Any Solana SDK can do the same if you prefer another language.
 
@@ -264,11 +277,11 @@ Check the bond:
     Builder:      HTt...
     Bond index:   0
     Committed:    1000000000 bits/sec
-    Bonded:       1
-    Required:     1
+    Bonded:       1.00000000 2Z (100000000 base units)
+    Required:     1.00000000 2Z (100000000 base units)
     Covers:       true
     Hold expires: 2027-04-24T15:00:00+00:00
-    Withdrawable: 0
+    Withdrawable: 0.00000000 2Z (0 base units)
     ```
 
 === "API"
@@ -422,7 +435,7 @@ The output should show `BGP Session Up` with a `User Type` of `Multicast`. For a
 
 ## Step 8: Publish
 
-Configure your application to send to the group's `multicast_ip` from Step 4. Each wire spec uses two UDP ports, one for market data and one for reference data. You choose the ports and publish them for your subscribers. DoubleZero routes multicast traffic through the tunnel, so no other configuration is needed on the host.
+Configure your application to send to the group's `multicast_ip` from Step 4. Each wire spec uses two UDP ports, one for market data and one for reference data. You choose the ports and publish them for your subscribers. DoubleZero routes multicast traffic through the tunnel and sends it from your `Doublezero IP`, so leave the socket unbound and do not set `IP_MULTICAST_IF`. Set `IP_MULTICAST_TTL` to 32 or more. Linux defaults it to 1, and a datagram with a TTL of 1 goes no further than the first DoubleZero device.
 
 The group now shows one publisher:
 
@@ -446,6 +459,7 @@ Use the API for this step from either tab. You sign the request body with your k
 
 ```bash
 sh -c "$(curl -sSfL https://release.anza.xyz/stable/install)"
+export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"
 sudo apt install jq
 export API=https://subscription-api-testnet.doublezero.xyz
 export FEED_KEY=$(curl -sS $API/builders/$BUILDER/feeds | jq -r '.feeds[] | select(.code == env.FEED) | .feed_key')
@@ -461,9 +475,14 @@ curl -sS -X PUT $API/builders/$BUILDER/feeds/$FEED_KEY/listing \
   -d "$body"
 ```
 
-With `self_serve` set to `true`, any DoubleZero key can buy a seat. To sell only to keys you choose, set it to `false` and name each key with its own price:
+With `self_serve` set to `true`, any DoubleZero key can buy a seat. To sell only to keys you choose, list the feed again with `self_serve` set to `false`, then name each key with its own price:
 
 ```bash
+body='{"feed_key":"'$FEED_KEY'","price_per_seat_micro_usdc":1000000,"self_serve":false,"signed_at":'$(date +%s)'}'
+curl -sS -X PUT $API/builders/$BUILDER/feeds/$FEED_KEY/listing \
+  -H 'content-type: application/json' \
+  -H "x-builder-signature: $(solana sign-offchain-message -k $KEY "$body")" \
+  -d "$body"
 body='{"feed_key":"'$FEED_KEY'","buyers":[{"service_key":"<subscriber DZ ID>","price_per_seat_micro_usdc":1000000}],"signed_at":'$(date +%s)'}'
 curl -sS -X PUT $API/builders/$BUILDER/feeds/$FEED_KEY/buyers \
   -H 'content-type: application/json' \
@@ -471,13 +490,13 @@ curl -sS -X PUT $API/builders/$BUILDER/feeds/$FEED_KEY/buyers \
   -d "$body"
 ```
 
-Each request replaces the last one. The API refuses a body signed more than five minutes ago (`422`) and a body signed before the last change it accepted (`409`). Sign a new body each time.
+Each request replaces the last one. The API refuses a body signed more than five minutes ago or more than a minute ahead (`422`), and a body signed at or before the last one it accepted (`409`). Sign a new body each time, and wait a second before you send another of the same kind. After an administrator changes your listing, a new listing is refused for up to a minute.
 
 ## Step 10: Buy a seat and confirm delivery
 
 A host joins your feed only with a seat on it. Buy one from a second host, as a subscriber would. Run every command in this step on the second host.
 
-Complete [Setup](../../setup.md), install the Solana CLI, `jq` and the signing script from Step 1, and create a keypair. Then set:
+Complete [Setup](../../setup.md), install the Solana CLI and `jq` as in Step 9 and the signing script from Step 1, and create a keypair. Then set:
 
 ```bash
 export KEY=~/.config/doublezero/id.json
@@ -511,6 +530,8 @@ curl -sS -X POST $API/subscribers/$DZ_ID/purchases/$INVOICE/pay \
   -d '{"payer":"'$DZ_ID'"}' | tee pay.json | node ~/dz-sign/sign.mjs $SOLANA_RPC $KEY | tee paid.txt
 ```
 
+The script writes the signature to `paid.txt` as soon as it sends the payment, so you have it even if confirmation fails. Record it either way, and do not request `pay` again while the payment may still land, because a second request builds a second payment.
+
 Record the payment. The key signs this body too:
 
 ```bash
@@ -535,7 +556,13 @@ When it is set, join the feed:
 doublezero connect multicast --subscribe-feed $FEED
 ```
 
-The feed's datagrams arrive on `doublezero1` from an address the host routes through its main interface. A host with strict reverse-path filtering drops them. Google Cloud images [turn strict filtering on](https://github.com/GoogleCloudPlatform/guest-configs/blob/afc5de719e50f9ad1b2b6fef32934a368940ca3e/src/etc/sysctl.d/60-gce-network-security.conf#L39-L42), so this step is likely needed only on Google Cloud. Check the value with `sysctl net.ipv4.conf.all.rp_filter`. If it is `1`, set loose mode on the tunnel after each connect, because the client creates `doublezero1` again each time:
+The feed's datagrams arrive on `doublezero1` from an address the host routes through its main interface. A host with strict reverse-path filtering drops them. Google Cloud images [turn strict filtering on](https://github.com/GoogleCloudPlatform/guest-configs/blob/afc5de719e50f9ad1b2b6fef32934a368940ca3e/src/etc/sysctl.d/60-gce-network-security.conf#L39-L42), and so do many hardened images. Check both values, because the kernel uses the larger:
+
+```bash
+sysctl net.ipv4.conf.all.rp_filter net.ipv4.conf.doublezero1.rp_filter
+```
+
+If the larger is `1`, set loose mode on the tunnel after each connect, because the client creates `doublezero1` again each time:
 
 ```bash
 sudo sysctl -w net.ipv4.conf.doublezero1.rp_filter=2
@@ -547,7 +574,7 @@ Capture the traffic:
 sudo tcpdump -ni doublezero1 udp and dst host <multicast_ip>
 ```
 
-Before you announce the feed, check it against its spec with `dz-conformance`. See [Check your feed](choose-a-spec.md#check-your-feed).
+tcpdump shows datagrams before the reverse-path filter runs, so it shows them even when the filter drops them. To confirm delivery, and before you announce the feed, check it against its spec with `dz-conformance` on this host. It receives on an ordinary socket, so it sees only what the kernel delivers. See [Check your feed](choose-a-spec.md#check-your-feed).
 
 ## Next steps
 

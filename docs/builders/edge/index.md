@@ -9,7 +9,7 @@ DoubleZero Edge for Builders lets a builder deploy a market data feed on DoubleZ
 Deploying a feed does not require approval from the DoubleZero Foundation. The builder signs every transaction with their own key.
 
 !!! info "Testnet only"
-    These pages cover DoubleZero testnet. The bond tiers, amounts, and hold period shown here apply to testnet only. Mainnet-beta will use different values.
+    These pages cover DoubleZero testnet. DoubleZero Edge for Builders is not available on mainnet-beta yet. The bond tiers, amounts, and hold period shown here apply to testnet only. Mainnet-beta will use different values.
 
 !!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Use](https://doublezero.xyz/terms-protocol)"
 
@@ -26,7 +26,7 @@ The bond must exist before anything else. The protocol copies each funded bond f
 
 ## Bond
 
-The committed rate is the maximum bandwidth a feed will use. It determines the bond's tier, and the tier determines how much 2Z the bond must hold. The testnet tiers are:
+The committed rate is the maximum bandwidth a feed will use. It determines the bond's tier, and the tier determines how much 2Z the bond must hold. The amounts are onchain configuration and can change, so this table is an example. [`GET /builders/requirements`](api.md#get-buildersrequirements) returns the current ones.
 
 | Committed rate | Required bond |
 |----------------|---------------|
