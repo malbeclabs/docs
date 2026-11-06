@@ -53,6 +53,8 @@ sudo iptables -A INPUT -i doublezero1 -p udp --dport 30000:59999 -j ACCEPT
 | `kalshi-perps-mbp` | `edge-kalshi-perps-mbp` | MBP | `233.84.178.4` | `32000` | `42000` | `52000` |
 | `kalshi-sports-tob` | `edge-kalshi-sports-tob` | TOB | `233.84.178.17` | `33000`+id | `43000`+id | — |
 | `kalshi-sports-mbp` | `edge-kalshi-sports-mbp` | MBP | `233.84.178.20` | `34000`+id | `44000`+id | `54000`+id |
+| `kalshi-updown-tob` | `edge-kalshi-updown-tob` | TOB | `233.84.178.26` | `37000` | `47000` | — |
+| `kalshi-updown-mbp` | `edge-kalshi-updown-mbp` | MBP | `233.84.178.34` | `38000` | `48000` | `58000` |
 
 Subscribe with the **feed code**. `doublezero status` reports the **group code**.
 
@@ -107,7 +109,8 @@ Or name feeds by **feed code**, space-separated:
 docker exec doublezero-edge-connect \
   doublezero connect multicast --subscribe-feed \
     kalshi-perps-tob kalshi-perps-mbp \
-    kalshi-sports-tob kalshi-sports-mbp
+    kalshi-sports-tob kalshi-sports-mbp \
+    kalshi-updown-tob kalshi-updown-mbp
 ```
 
 Do not use the per-metro feed **name** (fails with `feed … not found`) or `--subscribe <group code>` (on an Edge seat pass it fails with `A Feed account is required for this EdgeSeat access pass` on the first connect, and with `You are not allowed to execute this action` once the user exists, unless an admin added the group to the pass’s allowlist).
