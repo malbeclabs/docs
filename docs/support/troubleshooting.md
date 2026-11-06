@@ -380,3 +380,99 @@ This issue is generally related to a mismatch between the current daemon and cli
     up            | 2025-10-21 12:32:12 UTC | doublezero0 | 149.28.38.64 | 64.86.249.22 | 149.28.38.64  | IBRL      | nyc-dz001      | ✅ nyc-dz001          | New York | testnet 
     ```
 With all fields populated you are now in the correct environment.
+
+### Issue: routes to some or all peers are missing {#issue-missing-peer-routes}
+
+From client v0.47.0, `doublezerod` runs route liveness in active mode by default. It installs the route to a peer, another DoubleZero user, only while that peer answers liveness probes on UDP 44880 over `doublezero0`. Traffic to any other peer uses the public internet, and you stay connected to DoubleZero.
+
+**Symptoms:**
+
+- `doublezero status` prints a warning under its table, such as `⚠️  Missing peer routes: this host receives no liveness probes from peers. Run 'doublezero routes status' for details.`
+- The `doublezerod` log (`sudo journalctl -u doublezerod`) has `liveness: missing peer routes: …`, `liveness: session down` or `liveness: session up (route held down)`, each with a `docs` link to this section.
+
+#### Check the routes
+
+Run `doublezero routes status`. `Not Installed` groups the missing routes by liveness state and reason, and `Action` says whether you must act:
+
+```
+ Peers | Installed | Not Installed      | Action 
+ 12    | 9         | down (no reply): 3 | none   
+
+Routes to 3 peers are not installed, so traffic to them uses the public internet. This host appears healthy and needs no action.
+See https://docs.doublezero.xyz/support/troubleshooting#issue-missing-peer-routes
+```
+
+While no peer session is up and at least one route is not installed, for example right after you connect, `Action` reads `starting` for the first 2 minutes:
+
+```
+ Peers | Installed | Not Installed       | Action   
+ 12    | 0         | down (no reply): 12 | starting 
+
+Liveness checks are still starting. Run 'doublezero routes status' again in 2 minutes.
+```
+
+`doublezero status` warns only when `Action` is `inbound` or `outbound`; for `none` and `starting` it prints nothing about routes. For each peer's state and reason, run `doublezero routes` and read the `Liveness State` and `Liveness State Reason` columns.
+
+#### No peer answers
+
+`Action` becomes `inbound` or `outbound` once no peer session has been up for 2 minutes and at least one route is not installed. This is the only case with a warning, and the problem is usually on this host. `doublezerod` logs the warning every 15 minutes until a peer answers, then logs `liveness: missing peer routes cleared`.
+
+`inbound` means this host receives no liveness probes from peers:
+
+```
+ Peers | Installed | Not Installed       | Action  
+ 12    | 0         | down (no reply): 12 | inbound 
+
+⚠️  Missing peer routes: this host receives no liveness probes from peers. Check that inbound UDP 44880 is allowed on doublezero0.
+See https://docs.doublezero.xyz/support/troubleshooting#issue-missing-peer-routes
+```
+
+Allow inbound UDP 44880 on `doublezero0` with `sudo iptables -A INPUT -i doublezero0 -p udp --dport 44880 -j ACCEPT`, or with UFW, `sudo ufw allow in on doublezero0 to any port 44880 proto udp`.
+
+Then check that `sysctl net.ipv4.conf.doublezero0.rp_filter` reads `2`, because strict reverse-path filtering drops the probes. `doublezerod` sets it after each tunnel setup, and logs `tunnel: could not set loose rp_filter; strict filtering may drop liveness probes` when it cannot. If it reads another value, run `sudo sysctl -w net.ipv4.conf.doublezero0.rp_filter=2`. The value lasts until `doublezerod` recreates the tunnel on the next reconnect.
+
+`outbound` means this host hears peers, but peers do not hear it:
+
+```
+ Peers | Installed | Not Installed              | Action   
+ 3     | 0         | down (timeout): 2, init: 1 | outbound 
+
+⚠️  Missing peer routes: peers receive no liveness probes from this host. Check that outbound UDP 44880 is allowed on doublezero0.
+See https://docs.doublezero.xyz/support/troubleshooting#issue-missing-peer-routes
+```
+
+Allow outbound UDP 44880 on `doublezero0` with `sudo iptables -A OUTPUT -o doublezero0 -p udp --dport 44880 -j ACCEPT`, or with UFW, `sudo ufw allow out on doublezero0 to any port 44880 proto udp`.
+
+With only a few peers, the fault may be on their side: if this host already allows UDP 44880 in both directions, the peers should check theirs.
+
+#### Some peers do not answer
+
+`Action` is `none`, as in the first example. When at least one peer session is up, `doublezero routes status` says `This host appears healthy and needs no action`. Traffic to the peers that do not answer uses the public internet. Each missing route's state and reason say why:
+
+- `down (no reply)`: the peer never answered. It runs an older client, has route liveness off, or blocks UDP 44880.
+- `init` or `down (remote_down)`: this host hears the peer, but the peer does not hear this host.
+- `down (timeout)`: the peer stopped answering.
+- `up (held down)`: the peer flaps. Its route returns once its session stays up through a hold-down of up to 5 minutes.
+
+#### Opt out of active liveness
+
+Pass `-route-liveness-enable-active=false` to `doublezerod`, and leave passive liveness on. This host then keeps answering probes, so peers keep their DoubleZero routes to it. The trade-off: routes to peers that stop answering stay installed.
+
+If you set `-route-liveness-enable-passive=false`, remove it. The passive flag alone no longer turns liveness off, and with both flags false this host answers no probes, so upgraded peers reach it over the public internet.
+
+Add the flag to the `ExecStart` line of the `doublezerod` systemd override, and keep any other flags already on it (`sudo systemctl cat doublezerod` shows them):
+
+```bash
+sudo mkdir -p /etc/systemd/system/doublezerod.service.d/
+sudo nano /etc/systemd/system/doublezerod.service.d/override.conf
+```
+
+With no other flags, the file reads as follows. On testnet, use `-env testnet`.
+
+```ini
+[Service]
+ExecStart=
+ExecStart=/usr/bin/doublezerod -sock-file /run/doublezerod/doublezerod.sock -env mainnet-beta -route-liveness-enable-active=false
+```
+
+Then run `sudo systemctl daemon-reload` and `sudo systemctl restart doublezerod`. The switch in [wrong DoubleZero environment](#issue-wrong-doublezero-environment) rewrites this file, so add the flag again after using it.
