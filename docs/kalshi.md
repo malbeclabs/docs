@@ -171,9 +171,12 @@ Every datagram opens with a 24-byte datagram header, followed by one or more app
 | Trade | `0x04` | 52 B | market | Price, size, aggressor side, trade ID |
 | EndOfSession | `0x06` | 12 B | market | Clean shutdown |
 | ManifestSummary | `0x07` | 24 B | reference | Valid flag, Manifest Seq change counter, instrument count, timestamp |
+| StrikeInterval | `0x09` | 40 B | reference | Strike bounds, sent right after its `InstrumentDefinition`, for a contract that pays on a strike |
 | PerpStats | `0x30` | 124 B | sibling | Funding, mark and oracle prices, open interest, day volume |
 
 Kalshi's Source ID in the edge-feed-spec registry is `3`. Read `price_exponent` and `qty_exponent` from each `InstrumentDefinition` — do not hardcode them.
+
+Crypto up/down markets run in 15-minute windows. The published set rolls every 15 minutes, and `Manifest Seq` advances once per roll. Each up/down `InstrumentDefinition` is followed by a `StrikeInterval`. The strike is pending (no bounds) for the first seconds of each window; the publisher then resends the pair with the fixed strike. A decoder that skips `0x09` has no strike for these markets.
 
 MBP feeds use the market-by-price message set. See the market-by-price and reference-data specs in edge-feed-spec.
 
