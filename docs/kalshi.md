@@ -6,12 +6,14 @@ description: Get Kalshi market data on DoubleZero Edge — Edge Connect or nativ
 
 !!! warning "By connecting to DoubleZero I agree to the [DoubleZero Terms of Use](https://doublezero.xyz/terms-protocol). Please note that the data is for your internal purposes only and may not be retransmitted (see Section 2(e))."
 
-The Kalshi feeds deliver perps and sports market data over the DoubleZero Edge network as UDP multicast. There are four feeds:
+The Kalshi feeds deliver perps, sports, and crypto up/down market data over the DoubleZero Edge network as UDP multicast. There are six feeds:
 
 - perps Top of Book (TOB)
 - perps Market by Price (MBP)
 - sports Top of Book (TOB)
 - sports Market by Price (MBP)
+- crypto up/down Top of Book (TOB)
+- crypto up/down Market by Price (MBP)
 
 ## Which path should I take?
 
@@ -118,7 +120,7 @@ doublezero connect multicast
 Or name the feeds by **feed code**, space-separated:
 
 ```bash
-doublezero connect multicast --subscribe-feed kalshi-perps-tob kalshi-perps-mbp kalshi-sports-tob kalshi-sports-mbp
+doublezero connect multicast --subscribe-feed kalshi-perps-tob kalshi-perps-mbp kalshi-sports-tob kalshi-sports-mbp kalshi-updown-tob kalshi-updown-mbp
 ```
 
 Use the feed codes (`kalshi-…`), not the per-metro feed names and not the group codes (`edge-kalshi-…`). Subscribing by group code with `--subscribe` fails on a purchased pass.
@@ -169,9 +171,12 @@ Every datagram opens with a 24-byte datagram header, followed by one or more app
 | Trade | `0x04` | 52 B | market | Price, size, aggressor side, trade ID |
 | EndOfSession | `0x06` | 12 B | market | Clean shutdown |
 | ManifestSummary | `0x07` | 24 B | reference | Valid flag, Manifest Seq change counter, instrument count, timestamp |
+| StrikeInterval | `0x09` | 40 B | reference | Strike bounds, sent right after its `InstrumentDefinition`, for a contract that pays on a strike |
 | PerpStats | `0x30` | 124 B | sibling | Funding, mark and oracle prices, open interest, day volume |
 
 Kalshi's Source ID in the edge-feed-spec registry is `3`. Read `price_exponent` and `qty_exponent` from each `InstrumentDefinition` — do not hardcode them.
+
+Crypto up/down markets run in 15-minute windows. The published set rolls every 15 minutes, and `Manifest Seq` advances once per roll. Each up/down `InstrumentDefinition` is followed by a `StrikeInterval`. The strike is pending (no bounds) for the first seconds of each window; the publisher then resends the pair with the fixed strike. A decoder that skips `0x09` has no strike for these markets.
 
 MBP feeds use the market-by-price message set. See the market-by-price and reference-data specs in edge-feed-spec.
 
@@ -187,10 +192,12 @@ Delivery is fire-and-forget UDP with no retransmit, and the reference-data port 
 | `kalshi-perps-mbp` | `edge-kalshi-perps-mbp` | Perps market-by-price | `233.84.178.4` | `32000` | `42000` | `52000` |
 | `kalshi-sports-tob` | `edge-kalshi-sports-tob` | Sports top-of-book | `233.84.178.17` | `33000` + id | `43000` + id | — |
 | `kalshi-sports-mbp` | `edge-kalshi-sports-mbp` | Sports market-by-price | `233.84.178.20` | `34000` + id | `44000` + id | `54000` + id |
+| `kalshi-updown-tob` | `edge-kalshi-updown-tob` | Crypto up/down top-of-book | `233.84.178.26` | `37000` | `47000` | — |
+| `kalshi-updown-mbp` | `edge-kalshi-updown-mbp` | Crypto up/down market-by-price | `233.84.178.34` | `38000` | `48000` | `58000` |
 
 Subscribe with the feed code; `doublezero status` and `multicast group list` show the group code.
 
-Port scheme: leading digit is traffic class (`3` market, `4` reference, `5` snapshot); second digit is the feed. Reference is market + `10000`; snapshot is market + `20000`. Perps ports are fixed. Sports ports are `base + channel id` (for example, id `10` on `edge-kalshi-sports-mbp` uses `34010` / `44010` / `54010`).
+Port scheme: leading digit is traffic class (`3` market, `4` reference, `5` snapshot); second digit is the feed. Reference is market + `10000`; snapshot is market + `20000`. Perps and crypto up/down ports are fixed. Sports ports are `base + channel id` (for example, id `10` on `edge-kalshi-sports-mbp` uses `34010` / `44010` / `54010`).
 
 The group selects the feed; the port selects market data, reference data, or snapshot within it. Multicast replication happens per source IP address and group, and the fabric never inspects the UDP port, so joining a group delivers everything on that group across your DoubleZero tunnel. The port is a socket filter applied on your own host after the bytes arrive.
 
