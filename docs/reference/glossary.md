@@ -110,13 +110,13 @@ The DoubleZero Edge service that lets a [builder](#builder) deploy a market data
 An operator who has posted a [bond](#bond) and deployed a feed against it on DoubleZero Edge. Not the same role as a [contributor](#contributor).
 
 ### Bond {#bond}
-The [2Z](#2z-token) a builder locks in the builder bond program on Solana for one feed. Its size is set by the feed's [tier](#tier). It can be withdrawn after the [hold](#hold) and can be forfeited for a proven breach. See [forfeiture](#forfeiture).
+The [2Z](#2z-token) a builder locks in the builder bond program on Solana for one feed. Its size is set by the feed's [tier](#tier). After the [hold](#hold), the 2Z above the tier's requirement can be withdrawn. Withdrawing the required amount is not supported yet. A bond can be forfeited for a proven breach. See [forfeiture](#forfeiture).
 
 ### Committed Rate {#committed-rate}
 The maximum bandwidth a builder commits a feed to. It selects the feed's [tier](#tier).
 
 ### Tier {#tier}
-A band of [committed rates](#committed-rate) that sets how much 2Z a [bond](#bond) must hold. The bands and amounts are onchain configuration and differ between testnet and mainnet-beta.
+A band of [committed rates](#committed-rate) that sets how much 2Z a [bond](#bond) must hold. The amounts are onchain configuration and can differ between testnet and mainnet-beta.
 
 ### Hold {#hold}
 The period from a builder's first post to a [bond](#bond) before any of it can be withdrawn. Later posts do not restart it. On testnet the hold is 180 days.
