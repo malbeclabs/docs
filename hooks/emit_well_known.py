@@ -6,15 +6,17 @@ Instead we keep the source files under ``well-known/`` (no leading dot) at the
 repo root and copy them into ``<site_dir>/.well-known/`` here, mirroring the way
 ``hooks/emit_markdown.py`` writes ``llms.txt`` straight into the site dir.
 
-Two things are published:
+What is published:
 
-1. ``/.well-known/mcp/server-card.json`` — MCP Server Card (SEP-1649) advertising
-   the DoubleZero Data MCP server at https://data.doublezero.xyz/mcp.
+- ``/.well-known/agent-skills/index.json`` — Agent Skills discovery index
+  (Agent Skills Discovery RFC v0.2.0). Each ``SKILL.md`` found under
+  ``well-known/agent-skills/<name>/`` becomes an entry whose ``digest`` is the
+  SHA-256 of the copied artifact, computed at build time so it can never drift.
 
-2. ``/.well-known/agent-skills/index.json`` — Agent Skills discovery index
-   (Agent Skills Discovery RFC v0.2.0). Each ``SKILL.md`` found under
-   ``well-known/agent-skills/<name>/`` becomes an entry whose ``digest`` is the
-   SHA-256 of the copied artifact, computed at build time so it can never drift.
+The MCP Server Card (``/.well-known/mcp/server-card.json``, SEP-1649) used to be
+published here, pointing at the DoubleZero Data MCP server. It has been removed
+while that server is under maintenance; restore ``well-known/mcp/server-card.json``
+in a single commit once the replacement MCP endpoint is live.
 
 GitHub Pages serves the ``.well-known`` directory (it is exempt from the usual
 dotfile exclusion), and the deploy workflow tars the site dir with ``-cvf .``,

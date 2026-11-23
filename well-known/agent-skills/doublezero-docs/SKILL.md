@@ -3,8 +3,7 @@ name: doublezero-docs
 description: >-
   Help users connect to and operate on the DoubleZero / Malbec Labs network —
   validator and tenant setup, multicast, rewards, geolocation, and contributor
-  operations — by grounding answers in the official documentation and live
-  network data.
+  operations — by grounding answers in the official documentation.
 license: See https://docs.doublezero.xyz/
 ---
 
@@ -30,28 +29,11 @@ prefer these sources over general knowledge, and cite the page you used.
   `https://docs.doublezero.xyz/DZ%20Testnet%20Connection/index.md`. Translations
   live under a locale prefix, e.g. `https://docs.doublezero.xyz/es/setup/index.md`.
 
-## Query live network data (MCP)
-
-For questions about the current state of the network — which users/devices exist,
-publisher/subscriber status, link health, telemetry — use the DoubleZero Data MCP
-server instead of guessing.
-
-- **Endpoint:** `https://data.doublezero.xyz/mcp` (MCP Streamable HTTP)
-- **Discovery:** `https://docs.doublezero.xyz/.well-known/mcp/server-card.json`
-- **Tools:** `get_schema` (always call first to learn the available tables,
-  columns, and types — never assume names), `execute_sql` and `execute_cypher`
-  (read-only queries over the data), and `read_docs` (conceptual/procedural docs
-  pages). All tools are read-only.
-
 ## Workflow
 
-1. Identify whether the question is about **procedure/concepts** (use the docs)
-   or **live state** (use the MCP), or both.
-2. For docs: fetch `llms.txt`, pick the relevant page(s), then fetch the
-   `index.md` Markdown for those pages.
-3. For live data: call `get_schema` first, then issue a read-only `execute_sql`
-   or `execute_cypher` query.
-4. Answer concisely and link the user to the canonical page on
+1. Fetch `llms.txt`, pick the relevant page(s), then fetch the `index.md`
+   Markdown for those pages.
+2. Answer concisely and link the user to the canonical page on
    `https://docs.doublezero.xyz/` so they can follow the full steps.
 
 ## Notes
@@ -60,5 +42,4 @@ server instead of guessing.
   agent login or write API. Do not attempt to register credentials.
 - Dashboards referenced in the docs (e.g.
   `https://data.doublezero.xyz/dz/publisher-check`,
-  `https://data.doublezero.xyz/dz/users`) are human-facing; for programmatic
-  access use the MCP tools above.
+  `https://data.doublezero.xyz/dz/users`) are human-facing.
