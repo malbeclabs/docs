@@ -36,7 +36,18 @@ LOCALE = "((?:zh|ja|ko|pt|es|fr|it)/)?"
 def pattern(path):
     return "(?:%20| )".join(re.sub(r"([.^$*+?()\[\]{}|\\])", r"\\\1", part) for part in path.rstrip("/").split(" "))
 
-routes = []
+# RFC 8288 Link header surfacing the agent-orientation files to HTTP-only
+# crawlers (the HTML pages already carry equivalent <link rel="alternate">
+# tags). `continue: true` keeps the request flowing through the redirect and
+# fallthrough routes below.
+LINK_HEADER = ", ".join([
+    '</llms.txt>; rel="alternate"; type="text/plain"',
+    '</llms-full.txt>; rel="alternate"; type="text/plain"',
+])
+
+routes = [
+    {"src": "/.*", "headers": {"Link": LINK_HEADER}, "continue": True},
+]
 with open(sys.argv[1], encoding="utf-8") as fh:
     for old, new in json.load(fh).items():
         src, dest = pattern(old), quote(new, safe="/._-~")
