@@ -65,6 +65,19 @@ with open(sys.argv[1], encoding="utf-8") as fh:
         routes.append({"src": f"^/{LOCALE}{src}/index\\.md$", "headers": {"Location": f"/$1{dest}index.md"}, "status": 308})
         routes.append({"src": f"^/{LOCALE}{src}/?$", "headers": {"Location": f"/$1{dest}"}, "status": 308})
 routes += [
+    # Content negotiation: agents that send `Accept: text/markdown` get the
+    # sidecar `<page>/index.md` instead of the HTML. hooks/emit_markdown.py
+    # writes the sidecar for every page in every locale, so matching any
+    # trailing-slash path is safe. Browsers never advertise text/markdown,
+    # so no risk of swapping HTML out from under a human. Positioned after
+    # the per-file redirects above so a redirected old URL still 308s first
+    # (the agent then re-requests the new URL with Accept intact and lands
+    # on the right .md).
+    {
+        "src": "^/((?:[^/]+/)*)$",
+        "has": [{"type": "header", "key": "accept", "value": "text/markdown"}],
+        "dest": "/$1index.md",
+    },
     {"src": "^/(?!\\.well-known(?:/|$))((?:[^/]+/)*[^/.]+)$", "headers": {"Location": "/$1/"}, "status": 308},
     {"handle": "error"},
     {"src": "/.*", "status": 404, "dest": "/404.html"},
