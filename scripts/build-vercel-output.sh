@@ -43,9 +43,20 @@ def pattern(path):
 LINK_HEADER = ", ".join([
     '</llms.txt>; rel="alternate"; type="text/plain"',
     '</llms-full.txt>; rel="alternate"; type="text/plain"',
+    '</.well-known/api-catalog>; rel="api-catalog"',
 ])
 
+# The api-catalog file is written without an extension (RFC 9727 convention), so
+# Vercel defaults it to application/octet-stream. Force the linkset Content-Type
+# before the generic Link-header route so both headers land on the response.
 routes = [
+    {
+        "src": "^/\\.well-known/api-catalog$",
+        "headers": {
+            "Content-Type": 'application/linkset+json; profile="https://www.rfc-editor.org/info/rfc9727"',
+        },
+        "continue": True,
+    },
     {"src": "/.*", "headers": {"Link": LINK_HEADER}, "continue": True},
 ]
 with open(sys.argv[1], encoding="utf-8") as fh:
