@@ -93,6 +93,9 @@ def on_post_build(config, **kwargs) -> None:
     shutil.copytree(src_root, dest_root, dirs_exist_ok=True)
 
     # Build the Agent Skills discovery index from the copied SKILL.md files.
+    # The flag drives whether the api-catalog describedby cross-links it below —
+    # linking an index.json we never wrote would 404 the catalog consumer.
+    skills_index_written = False
     skills_dir = os.path.join(dest_root, "agent-skills")
     if os.path.isdir(skills_dir):
         skills = []
@@ -116,33 +119,37 @@ def on_post_build(config, **kwargs) -> None:
         with open(os.path.join(skills_dir, "index.json"), "w", encoding="utf-8") as fh:
             json.dump(index, fh, indent=2, ensure_ascii=False)
             fh.write("\n")
+        skills_index_written = True
 
     # RFC 9727 API catalog. Two anchors: this docs site (describedby fans out to
-    # the llms family and agent-skills index) and the lake API (describedby
-    # points at lake's own catalog so its service list cannot drift here).
+    # the llms family and, when present, the agent-skills index) and the lake
+    # API (describedby points at lake's own catalog so its service list cannot
+    # drift here).
+    site_describedby = [
+        {"href": f"{SITE_BASE}/llms.txt", "type": "text/plain", "title": "Agent orientation"},
+        {
+            "href": f"{SITE_BASE}/llms-full.txt",
+            "type": "text/plain",
+            "title": "Full agent orientation (every doc page in one request)",
+        },
+        {
+            "href": f"{SITE_BASE}/index.md",
+            "type": "text/markdown",
+            "title": "Welcome page (markdown)",
+        },
+    ]
+    if skills_index_written:
+        site_describedby.append(
+            {
+                "href": f"{SITE_BASE}/.well-known/agent-skills/index.json",
+                "type": "application/json",
+                "title": "Agent Skills discovery index",
+            }
+        )
+
     catalog = {
         "linkset": [
-            {
-                "anchor": SITE_BASE,
-                "describedby": [
-                    {"href": f"{SITE_BASE}/llms.txt", "type": "text/plain", "title": "Agent orientation"},
-                    {
-                        "href": f"{SITE_BASE}/llms-full.txt",
-                        "type": "text/plain",
-                        "title": "Full agent orientation (every doc page in one request)",
-                    },
-                    {
-                        "href": f"{SITE_BASE}/index.md",
-                        "type": "text/markdown",
-                        "title": "Welcome page (markdown)",
-                    },
-                    {
-                        "href": f"{SITE_BASE}/.well-known/agent-skills/index.json",
-                        "type": "application/json",
-                        "title": "Agent Skills discovery index",
-                    },
-                ],
-            },
+            {"anchor": SITE_BASE, "describedby": site_describedby},
             {
                 "anchor": LAKE_API_BASE,
                 "describedby": [
