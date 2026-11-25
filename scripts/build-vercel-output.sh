@@ -57,7 +57,12 @@ routes = [
         },
         "continue": True,
     },
-    {"src": "/.*", "headers": {"Link": LINK_HEADER}, "continue": True},
+    # `Vary: Accept` is required because the Accept-based rewrite below returns
+    # HTML or markdown for the same URL depending on the request Accept header.
+    # Vercel's own cache keys on the rewritten destination path, but downstream
+    # caches (browsers, Cloudflare, corporate proxies) would otherwise serve the
+    # wrong body cross-client without this signal.
+    {"src": "/.*", "headers": {"Link": LINK_HEADER, "Vary": "Accept"}, "continue": True},
 ]
 with open(sys.argv[1], encoding="utf-8") as fh:
     for old, new in json.load(fh).items():
