@@ -36,13 +36,53 @@ LOCALE = "((?:zh|ja|ko|pt|es|fr|it)/)?"
 def pattern(path):
     return "(?:%20| )".join(re.sub(r"([.^$*+?()\[\]{}|\\])", r"\\\1", part) for part in path.rstrip("/").split(" "))
 
-routes = []
+# RFC 8288 Link header surfacing the agent-orientation files to HTTP-only
+# crawlers (the HTML pages already carry equivalent <link rel="alternate">
+# tags). `continue: true` keeps the request flowing through the redirect and
+# fallthrough routes below.
+LINK_HEADER = ", ".join([
+    '</llms.txt>; rel="alternate"; type="text/plain"',
+    '</llms-full.txt>; rel="alternate"; type="text/plain"',
+    '</.well-known/api-catalog>; rel="api-catalog"',
+])
+
+# The api-catalog file is written without an extension (RFC 9727 convention), so
+# Vercel defaults it to application/octet-stream. Force the linkset Content-Type
+# before the generic Link-header route so both headers land on the response.
+routes = [
+    {
+        "src": "^/\\.well-known/api-catalog$",
+        "headers": {
+            "Content-Type": 'application/linkset+json; profile="https://www.rfc-editor.org/info/rfc9727"',
+        },
+        "continue": True,
+    },
+    # `Vary: Accept` is required because the Accept-based rewrite below returns
+    # HTML or markdown for the same URL depending on the request Accept header.
+    # Vercel's own cache keys on the rewritten destination path, but downstream
+    # caches (browsers, Cloudflare, corporate proxies) would otherwise serve the
+    # wrong body cross-client without this signal.
+    {"src": "/.*", "headers": {"Link": LINK_HEADER, "Vary": "Accept"}, "continue": True},
+]
 with open(sys.argv[1], encoding="utf-8") as fh:
     for old, new in json.load(fh).items():
         src, dest = pattern(old), quote(new, safe="/._-~")
         routes.append({"src": f"^/{LOCALE}{src}/index\\.md$", "headers": {"Location": f"/$1{dest}index.md"}, "status": 308})
         routes.append({"src": f"^/{LOCALE}{src}/?$", "headers": {"Location": f"/$1{dest}"}, "status": 308})
 routes += [
+    # Content negotiation: agents that send `Accept: text/markdown` get the
+    # sidecar `<page>/index.md` instead of the HTML. hooks/emit_markdown.py
+    # writes the sidecar for every page in every locale, so matching any
+    # trailing-slash path is safe. Browsers never advertise text/markdown,
+    # so no risk of swapping HTML out from under a human. Positioned after
+    # the per-file redirects above so a redirected old URL still 308s first
+    # (the agent then re-requests the new URL with Accept intact and lands
+    # on the right .md).
+    {
+        "src": "^/((?:[^/]+/)*)$",
+        "has": [{"type": "header", "key": "accept", "value": ".*text/markdown.*"}],
+        "dest": "/$1index.md",
+    },
     {"src": "^/(?!\\.well-known(?:/|$))((?:[^/]+/)*[^/.]+)$", "headers": {"Location": "/$1/"}, "status": 308},
     {"handle": "error"},
     {"src": "/.*", "status": 404, "dest": "/404.html"},

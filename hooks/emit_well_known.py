@@ -12,6 +12,10 @@ What is published:
   (Agent Skills Discovery RFC v0.2.0). Each ``SKILL.md`` found under
   ``well-known/agent-skills/<name>/`` becomes an entry whose ``digest`` is the
   SHA-256 of the copied artifact, computed at build time so it can never drift.
+- ``/.well-known/api-catalog`` — RFC 9727 linkset pointing agents at this site's
+  agent-readable surfaces (``llms.txt`` family, ``index.md``, agent-skills index)
+  and cross-linking the lake API (``data.doublezero.xyz``) via its own catalog.
+  Mirrors the main-site catalog in ``doublezero.xyz-new``.
 
 The MCP Server Card (``/.well-known/mcp/server-card.json``, SEP-1649) used to be
 published here, pointing at the DoubleZero Data MCP server. It has been removed
@@ -32,6 +36,13 @@ import shutil
 
 SKILLS_SCHEMA = "https://schemas.agentskills.io/discovery/0.2.0/schema.json"
 SITE_BASE = "https://docs.doublezero.xyz"
+
+# Lake API (data.doublezero.xyz). The catalog cross-links to the lake's own
+# /.well-known/api-catalog rather than copying its service list — the lake
+# stays the single source of truth for its endpoints.
+LAKE_API_BASE = "https://data.doublezero.xyz/api"
+LAKE_API_CATALOG = "https://data.doublezero.xyz/.well-known/api-catalog"
+LAKE_LLMS_TXT = "https://data.doublezero.xyz/llms.txt"
 
 
 def _repo_root(config) -> str:
@@ -82,28 +93,76 @@ def on_post_build(config, **kwargs) -> None:
     shutil.copytree(src_root, dest_root, dirs_exist_ok=True)
 
     # Build the Agent Skills discovery index from the copied SKILL.md files.
+    # The flag drives whether the api-catalog describedby cross-links it below —
+    # linking an index.json we never wrote would 404 the catalog consumer.
+    skills_index_written = False
     skills_dir = os.path.join(dest_root, "agent-skills")
-    if not os.path.isdir(skills_dir):
-        return
+    if os.path.isdir(skills_dir):
+        skills = []
+        for name in sorted(os.listdir(skills_dir)):
+            skill_md = os.path.join(skills_dir, name, "SKILL.md")
+            if not os.path.isfile(skill_md):
+                continue
+            with open(skill_md, "rb") as fh:
+                digest = hashlib.sha256(fh.read()).hexdigest()
+            skills.append(
+                {
+                    "name": name,
+                    "type": "skill-md",
+                    "description": _frontmatter_description(skill_md),
+                    "url": f"{SITE_BASE}/.well-known/agent-skills/{name}/SKILL.md",
+                    "digest": f"sha256:{digest}",
+                }
+            )
 
-    skills = []
-    for name in sorted(os.listdir(skills_dir)):
-        skill_md = os.path.join(skills_dir, name, "SKILL.md")
-        if not os.path.isfile(skill_md):
-            continue
-        with open(skill_md, "rb") as fh:
-            digest = hashlib.sha256(fh.read()).hexdigest()
-        skills.append(
+        index = {"$schema": SKILLS_SCHEMA, "skills": skills}
+        with open(os.path.join(skills_dir, "index.json"), "w", encoding="utf-8") as fh:
+            json.dump(index, fh, indent=2, ensure_ascii=False)
+            fh.write("\n")
+        skills_index_written = True
+
+    # RFC 9727 API catalog. Two anchors: this docs site (describedby fans out to
+    # the llms family and, when present, the agent-skills index) and the lake
+    # API (describedby points at lake's own catalog so its service list cannot
+    # drift here).
+    site_describedby = [
+        {"href": f"{SITE_BASE}/llms.txt", "type": "text/plain", "title": "Agent orientation"},
+        {
+            "href": f"{SITE_BASE}/llms-full.txt",
+            "type": "text/plain",
+            "title": "Full agent orientation (every doc page in one request)",
+        },
+        {
+            "href": f"{SITE_BASE}/index.md",
+            "type": "text/markdown",
+            "title": "Welcome page (markdown)",
+        },
+    ]
+    if skills_index_written:
+        site_describedby.append(
             {
-                "name": name,
-                "type": "skill-md",
-                "description": _frontmatter_description(skill_md),
-                "url": f"{SITE_BASE}/.well-known/agent-skills/{name}/SKILL.md",
-                "digest": f"sha256:{digest}",
+                "href": f"{SITE_BASE}/.well-known/agent-skills/index.json",
+                "type": "application/json",
+                "title": "Agent Skills discovery index",
             }
         )
 
-    index = {"$schema": SKILLS_SCHEMA, "skills": skills}
-    with open(os.path.join(skills_dir, "index.json"), "w", encoding="utf-8") as fh:
-        json.dump(index, fh, indent=2, ensure_ascii=False)
+    catalog = {
+        "linkset": [
+            {"anchor": SITE_BASE, "describedby": site_describedby},
+            {
+                "anchor": LAKE_API_BASE,
+                "describedby": [
+                    {
+                        "href": LAKE_API_CATALOG,
+                        "type": "application/linkset+json",
+                        "title": "Lake API catalog",
+                    },
+                    {"href": LAKE_LLMS_TXT, "type": "text/plain", "title": "Lake agent orientation"},
+                ],
+            },
+        ]
+    }
+    with open(os.path.join(dest_root, "api-catalog"), "w", encoding="utf-8") as fh:
+        json.dump(catalog, fh, indent=2, ensure_ascii=False)
         fh.write("\n")
