@@ -75,7 +75,7 @@ routes += [
     # on the right .md).
     {
         "src": "^/((?:[^/]+/)*)$",
-        "has": [{"type": "header", "key": "accept", "value": "text/markdown"}],
+        "has": [{"type": "header", "key": "accept", "value": ".*text/markdown.*"}],
         "dest": "/$1index.md",
     },
     {"src": "^/(?!\\.well-known(?:/|$))((?:[^/]+/)*[^/.]+)$", "headers": {"Location": "/$1/"}, "status": 308},
